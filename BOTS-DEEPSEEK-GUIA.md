@@ -159,9 +159,10 @@ Asesor Técnico: Depende de tu uso:
 
 1. **`.env`** - Configuración de API
 ```env
-VITE_DEEPSEEK_API_KEY=sk-4d4cc3ac92254985b045a1881b85b12a
+VITE_DEEPSEEK_API_KEY=tu_api_key_aqui
 VITE_DEEPSEEK_API_URL=https://api.deepseek.com/v1/chat/completions
 ```
+**IMPORTANTE**: Reemplaza `tu_api_key_aqui` con tu API key real de DeepSeek. Nunca compartas tu API key públicamente.
 
 2. **`src/data/fuxionKnowledgeBase.js`**
    - Base de datos con toda la información

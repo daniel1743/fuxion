@@ -35,14 +35,20 @@ const resolveWhatsappBase = () => {
 const buildWhatsappUrl = (encodedMessage) => {
   const base = resolveWhatsappBase();
 
-  try {
-    const url = new URL(base);
-    url.searchParams.set('text', encodedMessage);
-    return url.toString();
-  } catch {
-    const number = base.replace(/[^\d]/g, '') || DEFAULT_WHATSAPP_NUMBER;
-    return `https://wa.me/${number}?text=${encodedMessage}`;
+  // Si ya tiene el formato wa.me/message/XXX, agregar el parámetro correctamente
+  if (base.includes('/message/')) {
+    return `${base}?text=${encodedMessage}`;
   }
+
+  // Si es un número directo wa.me/56912345678
+  if (base.includes('wa.me/')) {
+    const separator = base.includes('?') ? '&' : '?';
+    return `${base}${separator}text=${encodedMessage}`;
+  }
+
+  // Fallback: construir desde el número
+  const number = base.replace(/[^\d]/g, '') || DEFAULT_WHATSAPP_NUMBER;
+  return `https://wa.me/${number}?text=${encodedMessage}`;
 };
 
 const CartPage = () => {
