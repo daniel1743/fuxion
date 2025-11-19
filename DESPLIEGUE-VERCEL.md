@@ -26,18 +26,28 @@ Este proyecto está completamente configurado para desplegarse en Vercel con Rea
 3. Haz clic en **"Import"**
 
 ### Paso 3: Configurar Variables de Entorno
-En la sección **"Environment Variables"**, agrega:
+En la sección **"Environment Variables"**, agrega SOLAMENTE estas 3 variables:
 
-```
-VITE_DEEPSEEK_API_KEY=tu_nueva_api_key_aqui
-VITE_DEEPSEEK_API_URL=https://api.deepseek.com/v1/chat/completions
-VITE_APP_NAME=Fuxion Shop
-VITE_WHATSAPP_URL=https://wa.me/message/XJNUSSLNP24CJ1
-```
+**Variables OBLIGATORIAS**:
 
-**⚠️ IMPORTANTE**:
-- Reemplaza `tu_nueva_api_key_aqui` con tu nueva API key de DeepSeek
-- Si tienes un número de WhatsApp diferente, actualiza la URL
+1. **VITE_DEEPSEEK_API_KEY**
+   - Value: `tu_nueva_api_key_aqui`
+   - ⚠️ Reemplaza con tu API key NUEVA de DeepSeek
+
+2. **VITE_DEEPSEEK_API_URL**
+   - Value: `https://api.deepseek.com/v1/chat/completions`
+
+3. **VITE_WHATSAPP_URL**
+   - Value: `https://wa.me/message/XJNUSSLNP24CJ1`
+   - Si tienes otro número/enlace, actualiza aquí
+
+**Variables OPCIONALES** (no necesarias, tienen valores por defecto):
+- VITE_APP_NAME - El proyecto ya tiene "Fuxion Shop" por defecto
+
+**⚠️ MUY IMPORTANTE**:
+- Genera una API key NUEVA en https://platform.deepseek.com
+- La anterior quedó expuesta y debe ser revocada
+- Sin VITE_DEEPSEEK_API_KEY el bot de IA NO funcionará
 
 ### Paso 4: Configuración del Proyecto
 - **Framework Preset**: Vite

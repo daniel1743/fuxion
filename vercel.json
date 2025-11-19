@@ -18,15 +18,5 @@
       "src": "/(.*)",
       "dest": "/index.html"
     }
-  ],
-  "env": {
-    "VITE_APP_NAME": "@VITE_APP_NAME"
-  },
-  "build": {
-    "env": {
-      "VITE_DEEPSEEK_API_KEY": "@VITE_DEEPSEEK_API_KEY",
-      "VITE_DEEPSEEK_API_URL": "@VITE_DEEPSEEK_API_URL",
-      "VITE_WHATSAPP_URL": "@VITE_WHATSAPP_URL"
-    }
-  }
+  ]
 }
