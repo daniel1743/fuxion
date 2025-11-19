@@ -11,8 +11,8 @@ import UserMenu from '@/components/UserMenu';
 
 const navLinks = [
   { name: 'Inicio', path: '/' },
-  { name: 'Explorar', path: '/explorar' },
-  { name: 'Ofertas', path: '/ofertas' },
+  { name: 'Productos', path: '/explorar' },
+  { name: 'Más comprados', path: '/ofertas' },
   { name: 'Categorías', path: '/categorias' },
   { name: 'Soporte', path: '/ayuda' },
 ];

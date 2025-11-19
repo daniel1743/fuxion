@@ -44,3 +44,4 @@ vite.config.ts.timestamp-*
 
 # Temporary files
 nul
+.vercel

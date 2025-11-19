@@ -63,63 +63,83 @@ const HomePage = () => {
             <meta name="description" content="Explora el futuro del marketplace con Fuxion Shop. Encuentra gadgets, arte digital y colecciones únicas." />
         </Helmet>
       
-      <section className="relative min-h-screen flex items-center justify-center text-center overflow-hidden pt-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/50 via-blue-900/30 to-pink-900/40 opacity-70 dark:opacity-70 light:opacity-0"></div>
+      <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/60 via-blue-900/40 to-pink-900/50 opacity-90"></div>
         <div className="absolute inset-0 radial-gradient-glow"></div>
-        <motion.div 
-            className="w-full h-full absolute"
-            animate={{
-                background: [
-                    "radial-gradient(ellipse 80% 80% at 50% -20%,rgba(120,119,198,0.3),rgba(255,255,255,0))",
-                    "radial-gradient(ellipse 80% 80% at 50% -20%,rgba(198,119,169,0.3),rgba(255,255,255,0))",
-                    "radial-gradient(ellipse 80% 80% at 50% -20%,rgba(119,198,193,0.3),rgba(255,255,255,0))",
-                    "radial-gradient(ellipse 80% 80% at 50% -20%,rgba(120,119,198,0.3),rgba(255,255,255,0))",
-                ]
-            }}
-            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+        <motion.div
+          className="w-full h-full absolute"
+          animate={{
+            background: [
+              "radial-gradient(ellipse 80% 80% at 50% -20%,rgba(120,119,198,0.3),rgba(255,255,255,0))",
+              "radial-gradient(ellipse 80% 80% at 50% -20%,rgba(198,119,169,0.3),rgba(255,255,255,0))",
+              "radial-gradient(ellipse 80% 80% at 50% -20%,rgba(119,198,193,0.3),rgba(255,255,255,0))",
+              "radial-gradient(ellipse 80% 80% at 50% -20%,rgba(120,119,198,0.3),rgba(255,255,255,0))",
+            ]
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
         />
-        <div className="relative z-10 p-6 flex flex-col items-center">
-            <motion.div 
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="mb-8"
-            >
-              <img className="w-64 h-64 md:w-80 md:h-80 object-contain" alt="A floating 3D render of futuristic gadgets" src="https://images.unsplash.com/photo-1619118884592-11b151f1ae11" />
-            </motion.div>
-            <motion.h1 
-                className="text-4xl md:text-6xl font-extrabold text-foreground tracking-tighter"
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-12">
+          <div className="grid gap-16 lg:grid-cols-2 items-center">
+            <div className="text-center lg:text-left">
+              <motion.p
+                className="text-sm uppercase tracking-[0.3em] text-primary/80 mb-4 font-semibold"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                Comunidad Fuxion
+              </motion.p>
+              <motion.h1
+                className="text-4xl md:text-6xl font-extrabold text-foreground tracking-tight leading-tight"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.4 }}
-            >
-                Explora el futuro del marketplace
-            </motion.h1>
-            <motion.p 
-                className="mt-4 max-w-2xl text-lg md:text-xl text-primary/80"
+                transition={{ duration: 0.7, delay: 0.35 }}
+              >
+                Bienvenido a la familia Fuxion
+              </motion.h1>
+              <motion.p
+                className="mt-6 text-lg md:text-xl text-primary/90 max-w-xl mx-auto lg:mx-0"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.6 }}
-            >
-                Encuentra gadgets, arte digital y colecciones únicas en Fuxion Shop.
-            </motion.p>
-            <motion.div 
-                className="mt-8 flex flex-wrap justify-center gap-4"
+                transition={{ duration: 0.7, delay: 0.5 }}
+              >
+                Conecta con productos inteligentes, experiencias inmersivas y accesorios únicos que elevan cada momento
+                en casa. Tecnología y bienestar para toda la familia en un solo lugar.
+              </motion.p>
+              <motion.div
+                className="mt-10 flex flex-wrap justify-center lg:justify-start gap-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.8 }}
-            >
+                transition={{ duration: 0.7, delay: 0.65 }}
+              >
                 <Link to="/explorar">
-                    <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-full shadow-lg dark:neon-glow">
-                        Explorar productos <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
+                  <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-full shadow-lg dark:neon-glow">
+                    Explorar productos <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
                 </Link>
                 <Link to="/ofertas">
-                    <Button size="lg" variant="outline" className="text-foreground border-primary hover:bg-primary/10 hover:text-foreground rounded-full font-bold">
-                        Ver ofertas del día
-                    </Button>
+                  <Button size="lg" variant="outline" className="text-foreground border-primary hover:bg-primary/10 hover:text-foreground rounded-full font-bold">
+                    Ver ofertas del día
+                  </Button>
                 </Link>
+              </motion.div>
+            </div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.4, type: 'spring', stiffness: 120 }}
+              className="relative"
+            >
+              <div className="absolute -inset-6 bg-gradient-to-br from-purple-500/40 via-pink-500/30 to-cyan-400/30 blur-3xl opacity-40 pointer-events-none"></div>
+              <div className="relative rounded-[40px] overflow-hidden shadow-2xl border border-white/10">
+                <img
+                  src="/img/familia.fuxion.png"
+                  alt="Familia disfrutando de productos Fuxion"
+                  className="w-full h-full object-cover max-h-[560px]"
+                />
+              </div>
             </motion.div>
+          </div>
         </div>
       </section>
 
