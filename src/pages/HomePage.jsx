@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Cpu, Gamepad2, Lamp, Sparkles, Star, Tv } from 'lucide-react';
+import { ArrowRight, Flame, Droplets, Sparkles, ShieldCheck, Activity, Star } from 'lucide-react';
 import { toast } from "@/components/ui/use-toast";
 
 const pageVariants = {
@@ -23,11 +23,36 @@ const featuredProducts = [
 ];
 
 const categories = [
-  { name: 'Electrónica', icon: <Cpu size={40} />, slug: 'electronica' },
-  { name: 'Casa & Deco', icon: <Tv size={40} />, slug: 'casa-deco' },
-  { name: 'Gaming', icon: <Gamepad2 size={40} />, slug: 'gaming' },
-  { name: 'Moda Tech', icon: <Sparkles size={40} />, slug: 'moda-tech' },
-  { name: 'Iluminación', icon: <Lamp size={40} />, slug: 'iluminacion' },
+  {
+    name: 'Control de Peso',
+    description: 'Thermo T3, Biopro Fit, Nocarb-T',
+    icon: <Activity size={40} />,
+    slug: 'control-peso'
+  },
+  {
+    name: 'Energía Natural',
+    description: 'Vita Xtra T+, Vitaenergía',
+    icon: <Flame size={40} />,
+    slug: 'energia-natural'
+  },
+  {
+    name: 'Bienestar Digestivo',
+    description: 'Prunex 1, Liquid Fiber, Flora Liv',
+    icon: <Droplets size={40} />,
+    slug: 'bienestar-digestivo'
+  },
+  {
+    name: 'Belleza & Anti-edad',
+    description: 'Beauty In, Youth Elixir',
+    icon: <Sparkles size={40} />,
+    slug: 'belleza-anti-edad'
+  },
+  {
+    name: 'Sistema Inmune',
+    description: 'Biopro Tect, Vera+, Rexus',
+    icon: <ShieldCheck size={40} />,
+    slug: 'sistema-inmune'
+  },
 ];
 
 const deals = [
@@ -180,11 +205,12 @@ const HomePage = () => {
                             viewport={{ once: true }}
                             transition={{ duration: 0.4, delay: i * 0.1, type: 'spring', stiffness: 150 }}
                         >
-                            <Link to={`/categorias#${cat.slug}`} className="flex flex-col items-center gap-3 group">
+                            <Link to={`/categorias#${cat.slug}`} className="flex flex-col items-center gap-3 group text-center max-w-[220px]">
                                 <div className="w-32 h-32 rounded-full flex items-center justify-center bg-primary/10 border-2 border-primary/30 text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/50">
                                     {cat.icon}
                                 </div>
                                 <p className="text-foreground font-semibold transition-colors group-hover:text-primary">{cat.name}</p>
+                                <p className="text-sm text-muted-foreground">{cat.description}</p>
                             </Link>
                          </motion.div>
                     ))}

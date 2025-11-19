@@ -3,7 +3,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
-import { Cpu, Gamepad2, Lamp, Sparkles, Tv, ArrowRight } from 'lucide-react';
+import { Activity, Flame, Droplets, Sparkles, ShieldCheck, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from "@/components/ui/use-toast";
 
@@ -13,12 +13,88 @@ const pageVariants = {
   out: { opacity: 0, y: -20 },
 };
 
+// Mapeo de categorías amigables a categorías reales de la base de datos
 const categories = [
-  { name: 'Electrónica', slug: 'electronica', icon: <Cpu size={40} />, description: 'Lo último en procesadores, placas base y más.' },
-  { name: 'Casa & Deco', slug: 'casa-deco', icon: <Tv size={40} />, description: 'Gadgets para un hogar inteligente y con estilo.' },
-  { name: 'Gaming', slug: 'gaming', icon: <Gamepad2 size={40} />, description: 'Periféricos y accesorios para llevar tu juego al siguiente nivel.' },
-  { name: 'Moda Tech', slug: 'moda-tech', icon: <Sparkles size={40} />, description: 'Wearables y accesorios que combinan estilo y tecnología.' },
-  { name: 'Iluminación', slug: 'iluminacion', icon: <Lamp size={40} />, description: 'Soluciones de iluminación inteligente para cada ambiente.' },
+  {
+    name: 'Limpieza y Desintoxicación',
+    slug: 'limpieza-desintoxicacion',
+    icon: <Droplets size={40} />,
+    description: 'Productos para limpiar colon, sistema digestivo, hígado, sangre y vías urinarias.',
+    categoriasDB: [
+      'Limpieza del Colon',
+      'Limpieza del Sistema Digestivo',
+      'Regeneración Flora Intestinal',
+      'Limpieza Vías Urinarias',
+      'Limpieza de Sangre',
+      'Limpieza Hígado y Sistema Hepatobiliar'
+    ]
+  },
+  {
+    name: 'Proteínas y Nutrición',
+    slug: 'proteinas-nutricion',
+    icon: <Activity size={40} />,
+    description: 'Proteínas premium, vegetales e hidratación nutricional para toda la familia.',
+    categoriasDB: [
+      'Proteína Premium con Colostrum',
+      'Proteína 100% Vegetal',
+      'Hidratación Nutricional para la Familia'
+    ]
+  },
+  {
+    name: 'Energía Natural',
+    slug: 'energia-natural',
+    icon: <Flame size={40} />,
+    description: 'Energizantes naturales y multivitamínicos para revitalizar tu día.',
+    categoriasDB: [
+      'Energizante Natural',
+      'Multivitamínico Energizante'
+    ]
+  },
+  {
+    name: 'Sistema Inmune',
+    slug: 'sistema-inmune',
+    icon: <ShieldCheck size={40} />,
+    description: 'Productos que fortalecen las defensas y protegen el sistema inmunológico.',
+    categoriasDB: [
+      'Inmunológica - Defensas'
+    ]
+  },
+  {
+    name: 'Control de Peso',
+    slug: 'control-peso',
+    icon: <Activity size={40} />,
+    description: 'Productos especializados para control de peso y aceleración del metabolismo.',
+    categoriasDB: [
+      'Control de Peso'
+    ]
+  },
+  {
+    name: 'Anti-Edad y Belleza',
+    slug: 'anti-edad-belleza',
+    icon: <Sparkles size={40} />,
+    description: 'Productos para retrasar el envejecimiento y mejorar la belleza desde adentro.',
+    categoriasDB: [
+      'Anti-Edad'
+    ]
+  },
+  {
+    name: 'Vigor Mental',
+    slug: 'vigor-mental',
+    icon: <Activity size={40} />,
+    description: 'Productos para mejorar concentración, memoria y reducir estrés.',
+    categoriasDB: [
+      'Vigor Mental'
+    ]
+  },
+  {
+    name: 'Deportes',
+    slug: 'deportes',
+    icon: <Activity size={40} />,
+    description: 'Productos especializados para atletas y deportistas.',
+    categoriasDB: [
+      'Sport'
+    ]
+  },
 ];
 
 const CategoriesPage = () => {
@@ -77,7 +153,7 @@ const CategoriesPage = () => {
                 <h2 className="text-3xl font-bold text-foreground">{category.name}</h2>
                 <p className="text-muted-foreground mt-2">{category.description}</p>
               </div>
-              <Link to="/explorar" onClick={handleNotImplemented}>
+              <Link to={`/explorar?categoria=${category.slug}`}>
                 <Button variant="outline" className="mt-4 md:mt-0">
                   Ver productos <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
