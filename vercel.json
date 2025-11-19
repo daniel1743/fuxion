@@ -1,0 +1,32 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "env": {
+    "VITE_APP_NAME": "@VITE_APP_NAME"
+  },
+  "build": {
+    "env": {
+      "VITE_DEEPSEEK_API_KEY": "@VITE_DEEPSEEK_API_KEY",
+      "VITE_DEEPSEEK_API_URL": "@VITE_DEEPSEEK_API_URL",
+      "VITE_WHATSAPP_URL": "@VITE_WHATSAPP_URL"
+    }
+  }
+}
