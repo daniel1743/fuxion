@@ -45,3 +45,12 @@ vite.config.ts.timestamp-*
 # Temporary files
 nul
 .vercel
+
+# Imágenes: Solo ignorar las originales grandes (PNG/JPG)
+# Las optimizadas WebP SÍ deben subirse
+public/img/productos/*.png
+public/img/productos/*.jpg
+
+# Asegurar que las imágenes optimizadas SÍ se suban
+!public/img/productos-mini/*.webp
+!public/img/productos-tiny/*.webp

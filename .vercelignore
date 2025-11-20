@@ -1,6 +1,15 @@
-# Ignorar imágenes originales grandes (solo subir las optimizadas)
+# IMPORTANTE: Solo ignorar imágenes ORIGINALES grandes PNG/JPG
+# Las imágenes optimizadas WebP SÍ se deben subir
+
+# Ignorar SOLO las imágenes originales en /productos/
 public/img/productos/*.png
 public/img/productos/*.jpg
+
+# Asegurar que las carpetas optimizadas SÍ se suban
+!public/img/productos-mini/
+!public/img/productos-mini/*.webp
+!public/img/productos-tiny/
+!public/img/productos-tiny/*.webp
 
 # Ignorar archivos de desarrollo
 node_modules
@@ -21,7 +30,3 @@ Thumbs.db
 *.log
 npm-debug.log*
 .npm
-
-# Solo incluir las imágenes optimizadas (tiny y mini)
-# public/img/productos-mini/
-# public/img/productos-tiny/
