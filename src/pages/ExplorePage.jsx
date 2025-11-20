@@ -51,10 +51,33 @@ const categoryMapping = {
   ]
 };
 
+// Función helper para generar el nombre correcto de la imagen
+const getImagePath = (productKey) => {
+  // Normalizar el nombre del producto
+  let slug = productKey.toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/á/g, 'a')
+    .replace(/é/g, 'e')
+    .replace(/í/g, 'i')
+    .replace(/ó/g, 'o')
+    .replace(/ú/g, 'u')
+    .replace(/ñ/g, 'n')
+    .replace(/\+/g, '+')
+    .replace(/\(/g, '')
+    .replace(/\)/g, '')
+    .replace(/\//g, '-');
+  
+  // Caso especial: thermo-t3 es .jpg, el resto es .png
+  const extension = slug === 'thermo-t3' ? '.jpg' : '.png';
+  
+  return `/img/productos/${slug}${extension}`;
+};
+
 // Convertir productos de la base de datos al formato del componente
 const convertProductFromDB = (productKey, productData) => {
   const basePrice = productData.precio || 0;
   const description = productData.beneficios?.join('. ') || productData.descripcion || '';
+  const imagePath = getImagePath(productKey);
   
   // Si tiene múltiples sabores, crear productos separados
   if (productData.sabores && Array.isArray(productData.sabores) && productData.sabores.length > 1) {
@@ -75,7 +98,7 @@ const convertProductFromDB = (productKey, productData) => {
         description: description,
         categoria: productData.categoria,
         // Misma imagen para ambos sabores
-        image: `/img/productos/${productKey.toLowerCase().replace(/\s+/g, '-')}.jpg`,
+        image: imagePath,
         sabor: sabor,
         specs: [
           { label: 'Presentación', value: productData.presentacion || 'Consultar' },
@@ -100,7 +123,7 @@ const convertProductFromDB = (productKey, productData) => {
     reviews: Math.floor(Math.random() * 200) + 50,
     description: description,
     categoria: productData.categoria,
-    image: `/img/productos/${productKey.toLowerCase().replace(/\s+/g, '-')}.jpg`,
+    image: imagePath,
     specs: [
       { label: 'Presentación', value: productData.presentacion || 'Consultar' },
       { label: 'Modo de uso', value: productData.modo_uso || 'Consultar' },
@@ -234,15 +257,10 @@ const ExplorePage = () => {
                 {/* Content */}
                 <div className="p-4 flex flex-col flex-grow">
                   <h3 className="text-base font-semibold text-foreground truncate mb-2">{product.name}</h3>
-                  <div className="flex items-center justify-between mb-3">
-                    <div>
-                      <p className="text-xl font-bold text-primary">
-                        ${product.price.toLocaleString('es-CL')}
-                      </p>
-                    </div>
-                    <div className="text-xs text-muted-foreground">
-                      ⭐ {product.rating || 4.5}
-                    </div>
+                  <div className="mb-3">
+                    <p className="text-xl font-bold text-primary">
+                      ${product.price.toLocaleString('es-CL')}
+                    </p>
                   </div>
 
                   {/* Category badge */}

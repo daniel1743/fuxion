@@ -172,10 +172,6 @@ const CartPage = () => {
           {/* Lista de productos */}
           <div className="lg:col-span-2 space-y-4">
             {cartItems.map((item) => {
-              const price = item.discount
-                ? item.price * (1 - item.discount / 100)
-                : item.price;
-
               return (
                 <motion.div
                   key={item.id}
@@ -199,18 +195,8 @@ const CartPage = () => {
                       <h3 className="font-semibold text-foreground mb-1">{item.name}</h3>
                       <div className="flex items-center gap-2 mb-2">
                         <p className="text-lg font-bold text-primary">
-                          ${price.toFixed(2)}
+                          ${typeof item.price === 'number' ? item.price.toLocaleString('es-CL') : item.price}
                         </p>
-                        {item.discount && (
-                          <>
-                            <p className="text-sm text-muted-foreground line-through">
-                              ${item.price}
-                            </p>
-                            <span className="text-xs bg-pink-500 text-white px-2 py-0.5 rounded-full">
-                              -{item.discount}%
-                            </span>
-                          </>
-                        )}
                       </div>
                     </div>
 

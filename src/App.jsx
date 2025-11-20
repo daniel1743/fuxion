@@ -8,7 +8,6 @@ import { CartProvider } from '@/context/CartContext';
 
 const HomePage = lazy(() => import('@/pages/HomePage'));
 const ExplorePage = lazy(() => import('@/pages/ExplorePage'));
-const OffersPage = lazy(() => import('@/pages/OffersPage'));
 const CategoriesPage = lazy(() => import('@/pages/CategoriesPage'));
 const SupportPage = lazy(() => import('@/pages/SupportPage'));
 const CartPage = lazy(() => import('@/pages/CartPage'));
@@ -30,7 +29,6 @@ function App() {
               <Routes location={location} key={location.pathname}>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/explorar" element={<ExplorePage />} />
-                <Route path="/ofertas" element={<OffersPage />} />
                 <Route path="/categorias" element={<CategoriesPage />} />
                 <Route path="/ayuda" element={<SupportPage />} />
                 <Route path="/producto/:slug" element={<PlaceholderPage pageName="Detalle de Producto" />} />

@@ -14,12 +14,54 @@ const pageVariants = {
 };
 
 const featuredProducts = [
-  { id: 1, name: 'Quantum Laptop', image: 'Futuristic laptop on a desk', slug: 'quantum-laptop' },
-  { id: 2, name: 'Holo-Projector', image: 'Holographic projector displaying a galaxy', slug: 'holo-projector' },
-  { id: 3, name: 'Cybernetic Arm', image: 'Sleek robotic arm with neon lights', slug: 'cybernetic-arm' },
-  { id: 4, name: 'Smart Plant Pot', image: 'A plant in a pot with a digital display', slug: 'smart-plant-pot' },
-  { id: 5, name: 'VR Goggles X', image: 'A person wearing futuristic virtual reality goggles', slug: 'vr-goggles-x' },
-  { id: 6, name: 'Drone Companion', image: 'A small, friendly drone hovering in the air', slug: 'drone-companion' },
+  {
+    id: 'prunex-1',
+    name: 'PRUNEX 1',
+    description: 'Limpieza del colon - Ideal para estreñimiento severo',
+    image: '/img/productos/prunex-1.png',
+    price: 23300,
+    slug: 'prunex-1'
+  },
+  {
+    id: 'vitaenergia',
+    name: 'VITAENERGÍA',
+    description: 'Energizante natural - Vitalidad todo el día',
+    image: '/img/productos/vitaenergía.png',
+    price: 46500,
+    slug: 'vitaenergía'
+  },
+  {
+    id: 'biopro+-tect',
+    name: 'BIOPRO+ TECT',
+    description: 'Proteína premium con colostrum - Fortalece tu sistema inmune',
+    image: '/img/productos/biopro+-tect.png',
+    price: 58000,
+    slug: 'biopro+-tect'
+  },
+  {
+    id: 'thermo-t3',
+    name: 'THERMO T3',
+    description: 'Control de peso - Acelera tu metabolismo',
+    image: '/img/productos/thermo-t3.png',
+    price: 54000,
+    slug: 'thermo-t3'
+  },
+  {
+    id: 'beauty-in',
+    name: 'BEAUTY-IN',
+    description: 'Anti-edad y belleza - Piel radiante y saludable',
+    image: '/img/productos/beauty-in.png',
+    price: 52000,
+    slug: 'beauty-in'
+  },
+  {
+    id: 'vera+',
+    name: 'VERA+',
+    description: 'Limpieza hepática - Desintoxica tu hígado naturalmente',
+    image: '/img/productos/vera+.png',
+    price: 46500,
+    slug: 'vera+'
+  },
 ];
 
 const categories = [
@@ -55,15 +97,43 @@ const categories = [
   },
 ];
 
-const deals = [
-  { id: 1, name: 'Smart RGB Lamp', discount: '30%', image: 'A smart lamp changing colors', slug: 'smart-rgb-lamp' },
-  { id: 2, name: 'Gaming Keyboard Pro', discount: '25%', image: 'A mechanical gaming keyboard with RGB lighting', slug: 'gaming-keyboard-pro' },
-];
-
 const testimonials = [
-    { name: 'Alex R.', quote: '¡La mejor experiencia de compra! Los productos son de otro mundo.', avatar: 'Portrait of a smiling person' },
-    { name: 'Jasmine L.', quote: 'Encontré gadgets que no sabía que existían. ¡Increíble!', avatar: 'Portrait of a happy customer' },
-    { name: 'Kenji T.', quote: 'El envío fue súper rápido y el servicio al cliente es excelente.', avatar: 'Portrait of a satisfied man' },
+    {
+      name: 'María González',
+      quote: 'Llevo 3 meses tomando Thermo T3 y he bajado 8 kilos. Me siento con más energía y mi metabolismo ha mejorado notablemente. ¡100% recomendado!',
+      avatar: 'https://randomuser.me/api/portraits/women/44.jpg',
+      product: 'Thermo T3'
+    },
+    {
+      name: 'Carlos Mendoza',
+      quote: 'Vitaenergía cambió mi vida. Antes me sentía cansado todo el día, ahora tengo energía para mi trabajo y mi familia. Los resultados son increíbles.',
+      avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
+      product: 'Vitaenergía'
+    },
+    {
+      name: 'Ana Rodríguez',
+      quote: 'Sufría de estreñimiento crónico por años. Prunex 1 me ayudó desde la primera semana. Mi digestión mejoró y me siento mucho más liviana.',
+      avatar: 'https://randomuser.me/api/portraits/women/65.jpg',
+      product: 'Prunex 1'
+    },
+    {
+      name: 'Roberto Silva',
+      quote: 'Beauty-In no es solo para mujeres. Mi piel se ve más joven, las arrugas han disminuido y me siento más seguro. Excelente producto.',
+      avatar: 'https://randomuser.me/api/portraits/men/46.jpg',
+      product: 'Beauty-In'
+    },
+    {
+      name: 'Laura Pérez',
+      quote: 'Biopro+ Tect ha fortalecido mi sistema inmune. Antes me enfermaba seguido, ahora llevo 6 meses sin un resfriado. Increíble.',
+      avatar: 'https://randomuser.me/api/portraits/women/28.jpg',
+      product: 'Biopro+ Tect'
+    },
+    {
+      name: 'Diego Torres',
+      quote: 'Vera+ me ayudó a limpiar mi hígado después de años de malos hábitos. Me siento renovado, con más energía y mejor salud en general.',
+      avatar: 'https://randomuser.me/api/portraits/men/52.jpg',
+      product: 'Vera+'
+    },
 ];
 
 
@@ -142,11 +212,6 @@ const HomePage = () => {
                     Explorar productos <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
-                <Link to="/ofertas">
-                  <Button size="lg" variant="outline" className="text-foreground border-primary hover:bg-primary/10 hover:text-foreground rounded-full font-bold">
-                    Ver ofertas del día
-                  </Button>
-                </Link>
               </motion.div>
             </div>
             <motion.div
@@ -179,12 +244,25 @@ const HomePage = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: i * 0.1 }}
                 >
-                    <Link to={`/producto/${product.slug}`} onClick={handleNotImplemented}>
-                        <div className="group relative bg-card rounded-lg overflow-hidden border border-border transition-all duration-300 hover:border-primary hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-2">
+                    <Link to="/explorar">
+                        <div className="group relative bg-card rounded-lg overflow-hidden border border-border transition-all duration-300 hover:border-primary hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-2 flex flex-col h-full">
                              <div className="absolute inset-0 radial-gradient-glow opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            <img className="w-full h-60 object-cover" alt={product.name} src="https://images.unsplash.com/photo-1635865165118-917ed9e20936" />
-                            <div className="p-4">
-                                <h3 className="text-lg font-semibold text-foreground">{product.name}</h3>
+                            <div className="relative h-60 overflow-hidden bg-secondary flex-shrink-0">
+                              <img
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                alt={product.name}
+                                src={product.image}
+                                onError={(e) => {
+                                  e.target.src = "https://images.unsplash.com/photo-1635865165118-917ed9e20936";
+                                }}
+                              />
+                            </div>
+                            <div className="p-4 flex flex-col flex-grow">
+                                <h3 className="text-lg font-bold text-foreground mb-2">{product.name}</h3>
+                                <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{product.description}</p>
+                                <div className="mt-auto">
+                                  <p className="text-2xl font-bold text-primary">${product.price.toLocaleString('es-CL')}</p>
+                                </div>
                             </div>
                         </div>
                     </Link>
@@ -218,66 +296,40 @@ const HomePage = () => {
             </div>
         </section>
 
-      <section id="ofertas" className="py-20 container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-12 text-foreground">Ofertas del Día</h2>
-        <div className="space-y-8">
-          {deals.map((deal, i) => (
-             <motion.div
-                key={deal.id}
-                initial={{ opacity: 0, x: i % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-             >
-                <Link to={`/producto/${deal.slug}`} onClick={handleNotImplemented}>
-                    <div className="group relative bg-gradient-to-r from-card to-primary/10 p-6 rounded-lg border border-border flex flex-col md:flex-row items-center gap-8 transition-all duration-300 hover:border-pink-500 hover:shadow-2xl hover:shadow-pink-500/20">
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <img className="w-full md:w-1/3 h-60 object-cover rounded-lg" alt={deal.name} src="https://images.unsplash.com/photo-1527264935190-1401c51b5bbc" />
-                        <div className="flex-1 text-center md:text-left">
-                            <span className="inline-block bg-pink-500 text-white text-sm font-bold px-3 py-1 rounded-full mb-2">{deal.discount} OFF</span>
-                            <h3 className="text-2xl font-bold text-foreground mb-4">{deal.name}</h3>
-                            <Button className="bg-pink-600 hover:bg-pink-700 text-white font-bold rounded-full">Comprar ahora</Button>
-                        </div>
-                    </div>
-                </Link>
-            </motion.div>
-          ))}
-        </div>
-        <div className="text-center mt-12">
-            <Link to="/ofertas">
-                <Button variant="outline" size="lg" className="text-foreground border-primary hover:bg-primary/10 hover:text-foreground rounded-full font-bold">
-                    Ver todas las ofertas
-                </Button>
-            </Link>
-        </div>
-      </section>
-
         <section id="opiniones" className="py-20 bg-secondary/50">
             <div className="container mx-auto px-6">
                 <h2 className="text-3xl font-bold text-center mb-12 text-foreground">Lo que dicen nuestros clientes</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                     {testimonials.map((testimonial, i) => (
+                     {testimonials.slice(0, 3).map((testimonial, i) => (
                         <motion.div
                             key={i}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: i * 0.15 }}
-                            className="bg-card p-6 rounded-lg border border-border text-center flex flex-col items-center"
+                            className="bg-card p-6 rounded-lg border border-border flex flex-col items-center"
                         >
-                            <img className="w-20 h-20 rounded-full mb-4 border-2 border-primary" alt={testimonial.avatar} src="https://images.unsplash.com/photo-1649399045831-40bfde3ef21d" />
-                            <p className="text-muted-foreground italic">"{testimonial.quote}"</p>
-                            <div className="flex mt-4 text-yellow-400">
-                                <Star/><Star/><Star/><Star/><Star/>
+                            <img
+                              className="w-20 h-20 rounded-full mb-4 border-4 border-primary object-cover"
+                              alt={testimonial.name}
+                              src={testimonial.avatar}
+                              onError={(e) => {
+                                e.target.src = "https://randomuser.me/api/portraits/lego/1.jpg";
+                              }}
+                            />
+                            <p className="text-muted-foreground italic text-sm mb-4 text-center">"{testimonial.quote}"</p>
+                            <div className="flex mt-2 text-yellow-400">
+                                <Star className="w-5 h-5 fill-current"/><Star className="w-5 h-5 fill-current"/><Star className="w-5 h-5 fill-current"/><Star className="w-5 h-5 fill-current"/><Star className="w-5 h-5 fill-current"/>
                             </div>
-                            <p className="mt-4 font-bold text-foreground">- {testimonial.name}</p>
+                            <p className="mt-4 font-bold text-foreground text-center">{testimonial.name}</p>
+                            <p className="text-xs text-primary mt-1">{testimonial.product}</p>
                         </motion.div>
                      ))}
                 </div>
                  <div className="text-center mt-12">
-                     <Link to="/opiniones" onClick={handleNotImplemented}>
-                        <Button variant="link" className="text-primary hover:text-primary/80">
-                            Ver más reseñas
+                     <Link to="/explorar">
+                        <Button variant="outline" className="hover:bg-primary hover:text-primary-foreground">
+                            Ver todos los productos
                         </Button>
                     </Link>
                 </div>

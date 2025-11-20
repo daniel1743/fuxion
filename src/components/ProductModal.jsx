@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ShoppingCart, Star, Package, Shield, Zap } from 'lucide-react';
+import { X, ShoppingCart, Package, Shield, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/CartContext';
 
@@ -60,45 +60,16 @@ const ProductModal = ({ product, isOpen, onClose }) => {
                         ¡Solo {product.stock} disponibles!
                       </div>
                     )}
-                    {product.discount && (
-                      <div className="absolute top-4 left-4 bg-pink-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                        -{product.discount}%
-                      </div>
-                    )}
                   </div>
 
                   {/* Info */}
                   <div className="space-y-6">
                     <div>
-                      <h3 className="text-3xl font-bold text-foreground mb-2">{product.name}</h3>
-                      <div className="flex items-center gap-2 mb-4">
-                        <div className="flex items-center">
-                          {[...Array(5)].map((_, i) => (
-                            <Star
-                              key={i}
-                              className={`h-4 w-4 ${
-                                i < Math.floor(product.rating || 4.5)
-                                  ? 'fill-yellow-400 text-yellow-400'
-                                  : 'text-muted-foreground'
-                              }`}
-                            />
-                          ))}
-                        </div>
-                        <span className="text-sm text-muted-foreground">
-                          ({product.reviews || 127} reseñas)
-                        </span>
-                      </div>
+                      <h3 className="text-3xl font-bold text-foreground mb-4">{product.name}</h3>
                       <div className="flex items-baseline gap-3">
                         <span className="text-4xl font-bold text-primary">
-                          ${product.discount
-                            ? (product.price * (1 - product.discount / 100)).toFixed(2)
-                            : product.price}
+                          ${typeof product.price === 'number' ? product.price.toLocaleString('es-CL') : product.price}
                         </span>
-                        {product.discount && (
-                          <span className="text-xl text-muted-foreground line-through">
-                            ${product.price}
-                          </span>
-                        )}
                       </div>
                     </div>
 

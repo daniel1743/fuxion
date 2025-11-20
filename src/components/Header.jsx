@@ -12,7 +12,6 @@ import UserMenu from '@/components/UserMenu';
 const navLinks = [
   { name: 'Inicio', path: '/' },
   { name: 'Productos', path: '/explorar' },
-  { name: 'Más comprados', path: '/ofertas' },
   { name: 'Categorías Fuxion', path: '/categorias' },
   { name: 'Soporte', path: '/ayuda' },
 ];
