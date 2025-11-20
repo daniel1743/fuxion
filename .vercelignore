@@ -1,0 +1,27 @@
+# Ignorar imágenes originales grandes (solo subir las optimizadas)
+public/img/productos/*.png
+public/img/productos/*.jpg
+
+# Ignorar archivos de desarrollo
+node_modules
+.git
+.env
+.env.local
+
+# Ignorar documentación
+*.md
+!README.md
+
+# Ignorar scripts de desarrollo
+scripts/
+
+# Ignorar archivos temporales
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+.npm
+
+# Solo incluir las imágenes optimizadas (tiny y mini)
+# public/img/productos-mini/
+# public/img/productos-tiny/
