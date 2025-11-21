@@ -337,7 +337,7 @@ const HomePage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.2 }}
-                className={`bg-gradient-to-br ${solution.color} rounded-2xl p-8 border border-border hover:border-primary transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-2`}
+                className={`bg-gradient-to-br ${solution.color} rounded-2xl p-8 border border-border hover:border-primary transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-2 flex flex-col h-full`}
               >
                 <div className="flex items-center gap-4 mb-4 text-primary">
                   {solution.icon}
@@ -360,7 +360,7 @@ const HomePage = () => {
                   </ul>
                 </div>
                 <Button
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-full"
+                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-full mt-auto"
                   onClick={() => handleWhatsAppClick(`Hola, me interesa: ${solution.title}`)}
                 >
                   {solution.buttonText} <ArrowRight className="ml-2 h-4 w-4" />

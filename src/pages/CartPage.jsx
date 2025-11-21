@@ -17,7 +17,7 @@ const pageVariants = {
   out: { opacity: 0, y: -20 },
 };
 
-const DEFAULT_WHATSAPP_NUMBER = '56912345678';
+const DEFAULT_WHATSAPP_NUMBER = '56989639088';
 
 const resolveWhatsappBase = () => {
   const envUrl = import.meta.env.VITE_WHATSAPP_URL?.trim();
@@ -244,7 +244,7 @@ const CartPage = () => {
                   <div className="text-right">
                     <p className="text-sm text-muted-foreground mb-1">Subtotal</p>
                     <p className="text-lg font-bold text-foreground">
-                      ${(price * item.quantity).toFixed(2)}
+                      ${((typeof item.price === 'number' ? item.price : parseFloat(item.price) || 0) * item.quantity).toFixed(2)}
                     </p>
                   </div>
                 </motion.div>

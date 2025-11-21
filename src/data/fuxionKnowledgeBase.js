@@ -7,7 +7,7 @@ export const fuxionKnowledgeBase = {
     name: "Fuxion Shop",
     slogan: "Gadgets del Futuro",
     description: "Tienda especializada en tecnología de vanguardia y gadgets innovadores",
-    whatsapp: "https://wa.me/message/XJNUSSLNP24CJ1",
+    whatsapp: "https://wa.me/56989639088",
     email: "soporte@fuxionshop.com",
     horarios: "Lunes a Viernes: 9:00 AM - 6:00 PM, Sábados: 10:00 AM - 2:00 PM",
   },
