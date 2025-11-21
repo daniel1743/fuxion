@@ -14,7 +14,7 @@ const pageVariants = {
   out: { opacity: 0, y: -20 },
 };
 
-const DEFAULT_WHATSAPP_NUMBER = '56912345678';
+const DEFAULT_WHATSAPP_NUMBER = '56989639088';
 
 const resolveWhatsappBase = () => {
   const envUrl = import.meta.env.VITE_WHATSAPP_URL?.trim();
