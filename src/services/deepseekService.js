@@ -1,7 +1,13 @@
 import fuxionDatabase from '@/data/fuxion_database.json';
 
+// Configuración de APIs con sistema de fallback: DeepSeek > Qwen > Gemini
 const DEEPSEEK_API_KEY = import.meta.env.VITE_DEEPSEEK_API_KEY;
+const QWEN_API_KEY = import.meta.env.VITE_QWEN_API_KEY;
+const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+
 const DEEPSEEK_API_URL = 'https://api.deepseek.com/v1/chat/completions';
+const QWEN_API_URL = 'https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions';
+const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
 
 // Función para construir el contexto del bot basado en la base de datos real de Fuxion
 const buildBotContext = (botType) => {
@@ -250,12 +256,129 @@ IMPORTANTE: Solo recomienda productos que están en la base de datos de Fuxion B
   return contexts[botType] || contexts.ventas;
 };
 
-// Función principal para enviar mensajes a DeepSeek
-export const sendMessageToDeepSeek = async (userMessage, botType = 'ventas', conversationHistory = []) => {
-  if (!DEEPSEEK_API_KEY) {
-    throw new Error('API Key de DeepSeek no configurada');
+// Función para llamar a DeepSeek API
+const callDeepSeekAPI = async (messages) => {
+  const response = await fetch(DEEPSEEK_API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${DEEPSEEK_API_KEY}`
+    },
+    body: JSON.stringify({
+      model: 'deepseek-chat',
+      messages: messages,
+      temperature: 0.7,
+      max_tokens: 500,
+      stream: false
+    })
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(`DeepSeek Error ${response.status}: ${errorData.error?.message || 'Error desconocido'}`);
   }
 
+  const data = await response.json();
+
+  if (!data.choices || data.choices.length === 0) {
+    throw new Error('DeepSeek: No se recibió respuesta');
+  }
+
+  console.log('✅ DeepSeek API funcionó correctamente');
+  return {
+    text: data.choices[0].message.content,
+    usage: data.usage,
+    model: 'DeepSeek: ' + data.model,
+    apiUsed: 'DeepSeek'
+  };
+};
+
+// Función para llamar a Qwen API (Alibaba Cloud)
+const callQwenAPI = async (messages) => {
+  const response = await fetch(QWEN_API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${QWEN_API_KEY}`
+    },
+    body: JSON.stringify({
+      model: 'qwen-plus',
+      messages: messages,
+      temperature: 0.7,
+      max_tokens: 500
+    })
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(`Qwen Error ${response.status}: ${errorData.message || 'Error desconocido'}`);
+  }
+
+  const data = await response.json();
+
+  if (!data.choices || data.choices.length === 0) {
+    throw new Error('Qwen: No se recibió respuesta');
+  }
+
+  console.log('✅ Qwen API funcionó correctamente (fallback activado)');
+  return {
+    text: data.choices[0].message.content,
+    usage: data.usage,
+    model: 'Qwen: ' + (data.model || 'qwen-plus'),
+    apiUsed: 'Qwen'
+  };
+};
+
+// Función para llamar a Gemini API (Google)
+const callGeminiAPI = async (messages) => {
+  // Gemini usa un formato diferente, convertimos los mensajes
+  const systemMessage = messages.find(m => m.role === 'system');
+  const userMessages = messages.filter(m => m.role !== 'system');
+
+  const geminiPrompt = systemMessage
+    ? `${systemMessage.content}\n\n${userMessages.map(m => `${m.role}: ${m.content}`).join('\n')}`
+    : userMessages.map(m => `${m.role}: ${m.content}`).join('\n');
+
+  const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      contents: [{
+        parts: [{
+          text: geminiPrompt
+        }]
+      }],
+      generationConfig: {
+        temperature: 0.7,
+        maxOutputTokens: 500
+      }
+    })
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(`Gemini Error ${response.status}: ${errorData.error?.message || 'Error desconocido'}`);
+  }
+
+  const data = await response.json();
+
+  if (!data.candidates || data.candidates.length === 0) {
+    throw new Error('Gemini: No se recibió respuesta');
+  }
+
+  console.log('✅ Gemini API funcionó correctamente (fallback 2 activado)');
+  return {
+    text: data.candidates[0].content.parts[0].text,
+    usage: data.usageMetadata,
+    model: 'Gemini: gemini-1.5-flash',
+    apiUsed: 'Gemini'
+  };
+};
+
+// Función principal con sistema de fallback: DeepSeek > Qwen > Gemini
+export const sendMessageToDeepSeek = async (userMessage, botType = 'ventas', conversationHistory = []) => {
   const systemContext = buildBotContext(botType);
 
   const messages = [
@@ -283,48 +406,39 @@ Responde en español de forma concisa, amigable y profesional.`
     }
   ];
 
-  try {
-    const response = await fetch(DEEPSEEK_API_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${DEEPSEEK_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: 'deepseek-chat',
-        messages: messages,
-        temperature: 0.7,
-        max_tokens: 500,
-        stream: false
-      })
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      throw new Error(`Error de API: ${response.status} - ${errorData.error?.message || 'Error desconocido'}`);
+  // Intentar con DeepSeek primero
+  if (DEEPSEEK_API_KEY) {
+    try {
+      console.log('🔄 Intentando con DeepSeek API...');
+      return await callDeepSeekAPI(messages);
+    } catch (error) {
+      console.warn('⚠️ DeepSeek falló, intentando con Qwen...', error.message);
     }
-
-    const data = await response.json();
-
-    if (!data.choices || data.choices.length === 0) {
-      throw new Error('No se recibió respuesta de la API');
-    }
-
-    console.log('✅ Respuesta DeepSeek recibida:', {
-      tokens: data.usage,
-      model: data.model
-    });
-
-    return {
-      text: data.choices[0].message.content,
-      usage: data.usage,
-      model: data.model
-    };
-
-  } catch (error) {
-    console.error('❌ Error en DeepSeek API:', error);
-    throw error;
   }
+
+  // Si DeepSeek falla, intentar con Qwen
+  if (QWEN_API_KEY) {
+    try {
+      console.log('🔄 Intentando con Qwen API (fallback)...');
+      return await callQwenAPI(messages);
+    } catch (error) {
+      console.warn('⚠️ Qwen falló, intentando con Gemini...', error.message);
+    }
+  }
+
+  // Si Qwen falla, intentar con Gemini
+  if (GEMINI_API_KEY) {
+    try {
+      console.log('🔄 Intentando con Gemini API (fallback final)...');
+      return await callGeminiAPI(messages);
+    } catch (error) {
+      console.error('❌ Gemini también falló:', error.message);
+      throw new Error('Todas las APIs fallaron. Por favor, verifica las API Keys.');
+    }
+  }
+
+  // Si no hay ninguna API configurada
+  throw new Error('No hay APIs configuradas. Por favor, configura al menos una API Key.');
 };
 
 // Función para obtener recomendaciones de productos Fuxion

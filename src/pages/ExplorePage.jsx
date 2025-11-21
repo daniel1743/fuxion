@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/CartContext';
 import ProductModal from '@/components/ProductModal';
 import fuxionDatabase from '@/data/fuxion_database.json';
+import { getImageUrl, getPlaceholderImage, getProductImageUrl } from '@/lib/imageUtils';
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -52,25 +53,10 @@ const categoryMapping = {
 };
 
 // Función helper para generar el nombre correcto de la imagen
+// Ahora usa getProductImageUrl que tiene el mapeo completo
 const getImagePath = (productKey) => {
-  // Normalizar el nombre del producto
-  let slug = productKey.toLowerCase()
-    .replace(/\s+/g, '-')
-    .replace(/á/g, 'a')
-    .replace(/é/g, 'e')
-    .replace(/í/g, 'i')
-    .replace(/ó/g, 'o')
-    .replace(/ú/g, 'u')
-    .replace(/ñ/g, 'n')
-    .replace(/\+/g, '+')
-    .replace(/\(/g, '')
-    .replace(/\)/g, '')
-    .replace(/\//g, '-');
-  
-  // Caso especial: thermo-t3 es .jpg, el resto es .png
-  const extension = slug === 'thermo-t3' ? '.jpg' : '.png';
-  
-  return `/img/productos/${slug}${extension}`;
+  // Usar getProductImageUrl que maneja el mapeo y normalización
+  return getProductImageUrl(productKey);
 };
 
 // Convertir productos de la base de datos al formato del componente
@@ -241,10 +227,12 @@ const ExplorePage = () => {
                   <img
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     alt={product.name}
-                    src={product.image || "https://images.unsplash.com/photo-1635865165118-917ed9e20936"}
+                    src={product.image || getPlaceholderImage('product')}
                     loading="lazy"
                     onError={(e) => {
-                      e.target.src = "https://images.unsplash.com/photo-1635865165118-917ed9e20936";
+                      if (e.target.src !== getPlaceholderImage('product')) {
+                        e.target.src = getPlaceholderImage('product');
+                      }
                     }}
                   />
                   {product.stock < 10 && product.stock > 0 && (

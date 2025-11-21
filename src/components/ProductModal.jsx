@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ShoppingCart, Package, Shield, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/CartContext';
+import { getPlaceholderImage } from '@/lib/imageUtils';
 
 const ProductModal = ({ product, isOpen, onClose }) => {
   const { addToCart } = useCart();
@@ -50,9 +51,15 @@ const ProductModal = ({ product, isOpen, onClose }) => {
                   <div className="relative group">
                     <div className="aspect-square rounded-xl overflow-hidden bg-secondary">
                       <img
-                        src={product.image || "https://images.unsplash.com/photo-1635865165118-917ed9e20936"}
+                        src={product.image || getPlaceholderImage('product')}
                         alt={product.name}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        loading="lazy"
+                        onError={(e) => {
+                          if (e.target.src !== getPlaceholderImage('product')) {
+                            e.target.src = getPlaceholderImage('product');
+                          }
+                        }}
                       />
                     </div>
                     {product.stock < 10 && product.stock > 0 && (

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Heart, Sparkles, Zap, CheckCircle2, MessageCircle, Star } from 'lucide-react';
 import { toast } from "@/components/ui/use-toast";
+import { getImageUrl, getPlaceholderImage } from '@/lib/imageUtils';
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -104,21 +105,21 @@ const featuredProducts = [
     id: 'prunex-1',
     name: 'PRUNEX 1',
     description: 'Digestión + liviandad',
-    image: '/img/productos/prunex-1.png',
+    image: getImageUrl('/img/productos/prunex-1.png'),
     slug: 'prunex-1'
   },
   {
     id: 'thermo-t3',
     name: 'THERMO T3',
     description: 'Metabolismo + energía',
-    image: '/img/productos/thermo-t3.png',
+    image: getImageUrl('/img/productos/thermo-t3.jpg'),
     slug: 'thermo-t3'
   },
   {
     id: 'vita-xtra-t+',
     name: 'VITA XTRA T+',
     description: 'Energía + rendimiento',
-    image: '/img/productos/vita-xtra-t+.png',
+    image: getImageUrl('/img/productos/vita-xtra-t+.png'),
     slug: 'vita-xtra-t+'
   }
 ];
@@ -229,12 +230,13 @@ const HomePage = () => {
               <div className="absolute -inset-6 bg-gradient-to-br from-purple-500/40 via-pink-500/30 to-rose-400/30 blur-3xl opacity-40 pointer-events-none"></div>
               <div className="relative rounded-[40px] overflow-hidden shadow-2xl border border-white/10">
                 <img
-                  src="/img/familia.fuxion.png"
+                  src={getImageUrl('/img/familia.fuxion.png')}
                   alt="Mujer sonriendo, energía, bienestar, estilo soft-wellness"
                   className="w-full h-full object-cover max-h-[560px]"
                   onError={(e) => {
-                    e.target.src = "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800";
+                    e.target.src = getPlaceholderImage('woman');
                   }}
+                  loading="eager"
                 />
               </div>
             </motion.div>
@@ -450,8 +452,11 @@ const HomePage = () => {
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         alt={product.name}
                         src={product.image}
+                        loading="lazy"
                         onError={(e) => {
-                          e.target.src = "https://images.unsplash.com/photo-1635865165118-917ed9e20936";
+                          if (e.target.src !== getPlaceholderImage('product')) {
+                            e.target.src = getPlaceholderImage('product');
+                          }
                         }}
                       />
                     </div>

@@ -99,8 +99,12 @@ const FalconBot = () => {
             setMessages(prev => [...prev, {
                 sender: 'bot',
                 text: response.text,
-                botType: selectedBot
+                botType: selectedBot,
+                apiUsed: response.apiUsed
             }]);
+
+            // Log para debug: mostrar qué API se usó
+            console.log(`💬 Respuesta generada por: ${response.apiUsed}`);
 
         } catch (error) {
             console.error('Error al enviar mensaje:', error);
@@ -272,7 +276,7 @@ const FalconBot = () => {
                                 ⚠️ No soy médico. Solo proporciono información de productos Fuxion.
                             </p>
                             <p className="text-xs text-muted-foreground text-center opacity-70">
-                                Powered by DeepSeek AI
+                                Powered by AI (DeepSeek/Qwen/Gemini)
                             </p>
                         </form>
                     </motion.div>

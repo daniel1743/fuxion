@@ -46,11 +46,11 @@ vite.config.ts.timestamp-*
 nul
 .vercel
 
-# Imágenes: Solo ignorar las originales grandes (PNG/JPG)
-# Las optimizadas WebP SÍ deben subirse
-public/img/productos/*.png
-public/img/productos/*.jpg
+# NOTA: Las imágenes PNG y JPG DEBEN subirse a Git para que funcionen en producción
+# No ignorar las imágenes de productos porque son necesarias para el sitio
+# public/img/productos/*.png  <- COMENTADO: Necesario para producción
+# public/img/productos/*.jpg  <- COMENTADO: Necesario para producción
 
-# Asegurar que las imágenes optimizadas SÍ se suban
-!public/img/productos-mini/*.webp
-!public/img/productos-tiny/*.webp
+# Las imágenes optimizadas WebP también se suben
+# !public/img/productos-mini/*.webp
+# !public/img/productos-tiny/*.webp
