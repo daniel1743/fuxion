@@ -1,11 +1,15 @@
-# IMPORTANTE: Solo ignorar imágenes ORIGINALES grandes PNG/JPG
-# Las imágenes optimizadas WebP SÍ se deben subir
+# IMPORTANTE: Las imágenes de productos SON NECESARIAS en producción
+# NO ignorar las imágenes de /productos/ porque Vite las copia a dist/
 
-# Ignorar SOLO las imágenes originales en /productos/
-public/img/productos/*.png
-public/img/productos/*.jpg
+# Las imágenes se suben a producción porque:
+# 1. Vite copia public/ a dist/ automáticamente
+# 2. Los usuarios necesitan ver las imágenes de productos
+# 3. El tamaño es aceptable para el despliegue
 
 # Asegurar que las carpetas optimizadas SÍ se suban
+!public/img/productos/
+!public/img/productos/*.png
+!public/img/productos/*.jpg
 !public/img/productos-mini/
 !public/img/productos-mini/*.webp
 !public/img/productos-tiny/
