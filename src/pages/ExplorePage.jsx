@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
@@ -8,7 +7,8 @@ import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/CartContext';
 import ProductModal from '@/components/ProductModal';
 import fuxionDatabase from '@/data/fuxion_database.json';
-import { getImageUrl, getPlaceholderImage, getProductImageUrl } from '@/lib/imageUtils';
+// Importamos las funciones del archivo cerebro que creamos
+import { getPlaceholderImage, getProductImageUrl } from '@/lib/imageUtils';
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -52,18 +52,16 @@ const categoryMapping = {
   ]
 };
 
-// Función helper para generar el nombre correcto de la imagen
-// Ahora usa getProductImageUrl que tiene el mapeo completo
-const getImagePath = (productKey) => {
-  // Usar getProductImageUrl que maneja el mapeo y normalización
-  return getProductImageUrl(productKey);
-};
-
 // Convertir productos de la base de datos al formato del componente
 const convertProductFromDB = (productKey, productData) => {
   const basePrice = productData.precio || 0;
   const description = productData.beneficios?.join('. ') || productData.descripcion || '';
-  const imagePath = getImagePath(productKey);
+  
+  // --- CORRECCIÓN CRÍTICA AQUÍ ---
+  // Usamos el NOMBRE (ej: "Prunex 1") en lugar de la key para buscar la imagen
+  // Esto asegura que coincida con el mapa de imageUtils.js
+  const imagePath = getProductImageUrl(productData.nombre || productKey); 
+  // -------------------------------
   
   // Si tiene múltiples sabores, crear productos separados
   if (productData.sabores && Array.isArray(productData.sabores) && productData.sabores.length > 1) {
@@ -131,15 +129,18 @@ const ExplorePage = () => {
   // Obtener todos los productos de la base de datos
   const allProducts = useMemo(() => {
     const products = [];
-    Object.entries(fuxionDatabase.productos).forEach(([key, product]) => {
-      const converted = convertProductFromDB(key, product);
-      // Si es un array (múltiples sabores), agregar todos
-      if (Array.isArray(converted)) {
-        products.push(...converted);
-      } else {
-        products.push(converted);
-      }
-    });
+    // Verificamos que fuxionDatabase y fuxionDatabase.productos existan
+    if (fuxionDatabase && fuxionDatabase.productos) {
+        Object.entries(fuxionDatabase.productos).forEach(([key, product]) => {
+        const converted = convertProductFromDB(key, product);
+        // Si es un array (múltiples sabores), agregar todos
+        if (Array.isArray(converted)) {
+            products.push(...converted);
+        } else {
+            products.push(converted);
+        }
+        });
+    }
     return products;
   }, []);
 
@@ -227,9 +228,11 @@ const ExplorePage = () => {
                   <img
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     alt={product.name}
-                    src={product.image || getPlaceholderImage('product')}
+                    // Aquí ya usamos la ruta correcta generada por getProductImageUrl
+                    src={product.image} 
                     loading="lazy"
                     onError={(e) => {
+                      // Fallback final por si la imagen no existe ni en el mapa
                       if (e.target.src !== getPlaceholderImage('product')) {
                         e.target.src = getPlaceholderImage('product');
                       }

@@ -9,6 +9,7 @@ import { Label } from '@/components/ui/label';
 import { useCart } from '@/context/CartContext';
 import { toast } from "@/components/ui/use-toast";
 import { Link } from 'react-router-dom';
+import { getPlaceholderImage } from '@/lib/imageUtils';
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -183,9 +184,14 @@ const CartPage = () => {
                   {/* Imagen */}
                   <div className="w-24 h-24 rounded-lg overflow-hidden bg-secondary flex-shrink-0">
                     <img
-                      src={item.image || "https://images.unsplash.com/photo-1635865165118-917ed9e20936"}
+                      src={item.image || getPlaceholderImage('product')}
                       alt={item.name}
                       className="w-full h-full object-cover"
+                      onError={(e) => {
+                        if (e.target.src !== getPlaceholderImage('product')) {
+                          e.target.src = getPlaceholderImage('product');
+                        }
+                      }}
                     />
                   </div>
 

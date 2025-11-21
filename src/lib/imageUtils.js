@@ -23,8 +23,8 @@ const PRODUCT_IMAGE_MAP = {
 
   // Sistema Base - Revitaliza tu Energía
   'VITA XTRA T+': 'vita-xtra-t+.png',
-  'VITAENERGÍA': 'vitaenergía.png',
-  'VITAENERGIA': 'vitaenergía.png',
+  'VITAENERGÍA': 'vitaenergia.png',
+  'VITAENERGIA': 'vitaenergia.png',
   'NUTRADAY': 'nutraday.png',
 
   // Línea Inmunológica
@@ -130,7 +130,7 @@ export const normalizeProductName = (productName) => {
 
 /**
  * Obtiene la URL de una imagen de producto desde el nombre del producto
- * @param {string} productName - Nombre del producto (ej: 'PRUNEX 1', 'VITAENERGÍA')
+ * @param {string} productName - Nombre del producto (ej: 'PRUNEX 1', 'VITAENERGÍA', 'NO STRESS (OFF)')
  * @returns {string} - URL de la imagen del producto
  */
 export const getProductImageUrl = (productName) => {
@@ -138,22 +138,49 @@ export const getProductImageUrl = (productName) => {
     return getPlaceholderImage('product');
   }
 
-  // Buscar en el mapeo primero (usando el nombre en mayúsculas)
-  const mappedFile = PRODUCT_IMAGE_MAP[productName.toUpperCase()];
-  if (mappedFile) {
-    return getImageUrl(`/img/productos/${mappedFile}`);
+  // Limpiar el nombre: eliminar paréntesis y su contenido, "PRO EDITION", etc.
+  const cleanName = productName
+    .toUpperCase()
+    .replace(/\s*\([^)]*\)\s*/g, '') // Eliminar paréntesis y su contenido (ej: "(OFF)")
+    .replace(/\s*PRO EDITION\s*/gi, '') // Eliminar "PRO EDITION"
+    .trim();
+
+  // Buscar en el mapeo primero con el nombre limpio
+  let mappedFile = PRODUCT_IMAGE_MAP[cleanName];
+  
+  // Si no se encuentra, intentar con el nombre original en mayúsculas
+  if (!mappedFile) {
+    mappedFile = PRODUCT_IMAGE_MAP[productName.toUpperCase()];
   }
 
-  // Si no está en el mapeo, normalizar el nombre
-  const normalized = normalizeProductName(productName);
+  // Si encontramos en el mapeo, usar esa imagen
+  if (mappedFile) {
+    const imagePath = getImageUrl(`/img/productos/${mappedFile}`);
+    // Log para debugging
+    if (import.meta.env.DEV) {
+      console.log('getProductImageUrl - Mapeo encontrado:', { productName, cleanName, mappedFile, imagePath });
+    }
+    return imagePath;
+  }
+
+  // Si no está en el mapeo, normalizar el nombre limpio
+  const normalized = normalizeProductName(cleanName);
   
   // Intentar .png primero, luego .jpg
   const extensions = ['.png', '.jpg'];
   for (const ext of extensions) {
-    const imagePath = `/img/productos/${normalized}${ext}`;
-    return getImageUrl(imagePath);
+    const imagePath = getImageUrl(`/img/productos/${normalized}${ext}`);
+    // Log para debugging
+    if (import.meta.env.DEV) {
+      console.log('getProductImageUrl - Normalizado:', { productName, cleanName, normalized, ext, imagePath });
+    }
+    return imagePath;
   }
 
+  // Log de advertencia si no se encuentra
+  console.warn('getProductImageUrl - No se encontró imagen para:', productName, 'usando placeholder');
+  
+  // Si todo falla, usar placeholder local en lugar de Unsplash
   return getPlaceholderImage('product');
 };
 
@@ -172,12 +199,18 @@ export const checkImageExists = async (url) => {
 
 /**
  * Obtiene una URL de placeholder si la imagen no existe
+ * Usa imágenes locales en lugar de Unsplash para mejor rendimiento y evitar dependencias externas
  */
 export const getPlaceholderImage = (type = 'product') => {
+  // Construir las rutas directamente para evitar recursión
+  const baseUrl = import.meta.env.BASE_URL || '';
+  const cleanBaseUrl = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
+  
   const placeholders = {
-    product: 'https://images.unsplash.com/photo-1635865165118-917ed9e20936?w=400',
-    woman: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800',
-    wellness: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800'
+    // Usar una imagen de producto local por defecto (vitaenergia que sabemos que funciona)
+    product: `${cleanBaseUrl}/img/productos/vitaenergia.png`,
+    woman: `${cleanBaseUrl}/img/familia.fuxion.png`,
+    wellness: `${cleanBaseUrl}/img/productos/vitaenergia.png`
   };
   
   return placeholders[type] || placeholders.product;

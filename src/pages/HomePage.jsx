@@ -112,7 +112,7 @@ const featuredProducts = [
     id: 'thermo-t3',
     name: 'THERMO T3',
     description: 'Metabolismo + energía',
-    image: getImageUrl('/img/productos/thermo-t3.jpg'),
+    image: getImageUrl('/img/productos/thermo-t3.png'),
     slug: 'thermo-t3'
   },
   {
