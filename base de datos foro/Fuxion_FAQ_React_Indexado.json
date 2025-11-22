@@ -1,0 +1,1781 @@
+{
+  "metadata": {
+    "total": 80,
+    "categorias": [
+      "Línea Anti-Edad",
+      "Sistema DETOX",
+      "Vigor Mental",
+      "Control de Peso",
+      "Sport",
+      "Línea Inmunológica"
+    ],
+    "autores_unicos": 77,
+    "fecha_creacion": "2025-11-21",
+    "version": "1.0",
+    "idioma": "es"
+  },
+  "porAutor": {
+    "ConsumidorRegular": [
+      1,
+      4
+    ],
+    "ConsumidorExperto": [
+      2
+    ],
+    "NutricionistaCertificada": [
+      3
+    ],
+    "VendedorSabio": [
+      5,
+      7
+    ],
+    "ConsejeraFamiliar": [
+      6
+    ],
+    "TipoQueInvestiga": [
+      8
+    ],
+    "HijoPreocupado": [
+      9
+    ],
+    "MedicoLocal": [
+      10,
+      48
+    ],
+    "IndicacionesOficiales": [
+      11
+    ],
+    "VozDeRazon": [
+      12
+    ],
+    "UrologoLocal": [
+      13
+    ],
+    "NaturopatiaConsiente": [
+      14
+    ],
+    "ChemistaResponsable": [
+      15
+    ],
+    "ConsejeraDeVida": [
+      16
+    ],
+    "ExpertaEnRegulacion": [
+      17
+    ],
+    "GastroenterologoAtenido": [
+      18
+    ],
+    "ReumatologiaEnLinea": [
+      19
+    ],
+    "ProtocoloOficial": [
+      20
+    ],
+    "ExperienciaReal": [
+      21
+    ],
+    "EspecialistaEnPeso": [
+      22
+    ],
+    "ProtectorDeLaAnsiedad": [
+      23
+    ],
+    "EntrenadorLocal": [
+      24
+    ],
+    "KetoExplicador": [
+      25
+    ],
+    "VeganaCertificada": [
+      26
+    ],
+    "RealistaConsejero": [
+      27
+    ],
+    "NutricionistaSinCulpas": [
+      28
+    ],
+    "Cardiologo": [
+      29
+    ],
+    "VerdadIncómoda": [
+      30
+    ],
+    "ConsejoDsueno": [
+      31
+    ],
+    "ComparadorOtroVez": [
+      32
+    ],
+    "EstrategaOptimo": [
+      33
+    ],
+    "PsicologoNutricion": [
+      34
+    ],
+    "ConsistenciaEsLaClave": [
+      35
+    ],
+    "EducacionCafeina": [
+      36
+    ],
+    "RealidadCruel": [
+      37
+    ],
+    "CardioConSensatez": [
+      38
+    ],
+    "CeliacoAlert": [
+      39
+    ],
+    "AnalisisFinanciero": [
+      40
+    ],
+    "ExperienciaCovid": [
+      41
+    ],
+    "VejezAlerta": [
+      42
+    ],
+    "TiaPreocupada": [
+      43
+    ],
+    "CardiacoHealth": [
+      44
+    ],
+    "ProactiveHealth": [
+      45
+    ],
+    "DefensaStrategy": [
+      46
+    ],
+    "BudgetHealth": [
+      47
+    ],
+    "PandemiaWisdom": [
+      49
+    ],
+    "SaborExigente": [
+      50
+    ],
+    "AntiAgingReal": [
+      51
+    ],
+    "CollagenExpert": [
+      52
+    ],
+    "PreventivaFeminina": [
+      53
+    ],
+    "GymInflammation": [
+      54
+    ],
+    "IntimateHealth": [
+      55
+    ],
+    "HormonaBalance": [
+      56
+    ],
+    "AntiAgingCombos": [
+      57
+    ],
+    "GastroProtect": [
+      58
+    ],
+    "AntiBotoxAlternative": [
+      59
+    ],
+    "DailyRoutine": [
+      60
+    ],
+    "FocusGain": [
+      61
+    ],
+    "AnxietyHelper": [
+      62
+    ],
+    "BrainNutrition": [
+      63
+    ],
+    "MentalHealthFirst": [
+      64
+    ],
+    "TDAHSupport": [
+      65
+    ],
+    "MeditationMindful": [
+      66
+    ],
+    "StudentSuccess": [
+      67
+    ],
+    "TimingMatters": [
+      68
+    ],
+    "MentalHealthAdvice": [
+      69
+    ],
+    "PowerCombo": [
+      70
+    ],
+    "AthletePerformance": [
+      71
+    ],
+    "ErgogenicHelp": [
+      72
+    ],
+    "MultiSport": [
+      73
+    ],
+    "CaffeineControl": [
+      74
+    ],
+    "RealisticMuscle": [
+      75
+    ],
+    "OptimalRecovery": [
+      76
+    ],
+    "SportCaffeine": [
+      77
+    ],
+    "ProAthletics": [
+      78
+    ],
+    "DiabetesAware": [
+      79
+    ],
+    "SportBudget": [
+      80
+    ]
+  },
+  "porEtiqueta": {
+    "hígado": [
+      1
+    ],
+    "tiempo": [
+      1,
+      35,
+      68
+    ],
+    "resultados": [
+      1,
+      76
+    ],
+    "colón": [
+      2
+    ],
+    "estreñimiento": [
+      2,
+      17
+    ],
+    "fibra": [
+      2,
+      7,
+      25
+    ],
+    "probióticos": [
+      3
+    ],
+    "digestión": [
+      3,
+      7
+    ],
+    "comparativa": [
+      3,
+      22,
+      32,
+      46,
+      66
+    ],
+    "combinación": [
+      4,
+      22,
+      33,
+      57,
+      70,
+      76
+    ],
+    "protocolo": [
+      4,
+      76
+    ],
+    "horarios": [
+      4,
+      70
+    ],
+    "precio": [
+      5,
+      47,
+      59
+    ],
+    "inversión": [
+      5,
+      59,
+      80
+    ],
+    "presupuesto": [
+      5,
+      40,
+      47,
+      80
+    ],
+    "riñones": [
+      6
+    ],
+    "infección": [
+      6
+    ],
+    "cranberry": [
+      6
+    ],
+    "peso": [
+      7
+    ],
+    "metales pesados": [
+      8
+    ],
+    "limpieza": [
+      8
+    ],
+    "alcalinizante": [
+      8
+    ],
+    "hígado graso": [
+      9
+    ],
+    "colesterol": [
+      9
+    ],
+    "triglicéridos": [
+      9
+    ],
+    "antibióticos": [
+      10
+    ],
+    "flora intestinal": [
+      10
+    ],
+    "medicamentos": [
+      10,
+      48,
+      64
+    ],
+    "preparación": [
+      11
+    ],
+    "dosis": [
+      11,
+      23,
+      27
+    ],
+    "modo": [
+      11
+    ],
+    "seguridad": [
+      12,
+      20,
+      29,
+      36,
+      39,
+      43,
+      44,
+      48,
+      58,
+      60
+    ],
+    "pánico": [
+      12
+    ],
+    "salud": [
+      12,
+      44,
+      79
+    ],
+    "cálculos": [
+      13
+    ],
+    "prevención": [
+      13,
+      45,
+      53
+    ],
+    "urology": [
+      13
+    ],
+    "candida": [
+      14
+    ],
+    "flora": [
+      14
+    ],
+    "competencia": [
+      14,
+      78
+    ],
+    "aditivos": [
+      15
+    ],
+    "natural": [
+      15
+    ],
+    "química": [
+      15
+    ],
+    "almacenamiento": [
+      16
+    ],
+    "duración": [
+      16
+    ],
+    "conservación": [
+      16
+    ],
+    "frecuencia": [
+      17
+    ],
+    "uso": [
+      17
+    ],
+    "gastritis": [
+      18,
+      58
+    ],
+    "transición": [
+      18
+    ],
+    "cuidado": [
+      18
+    ],
+    "acido úrico": [
+      19
+    ],
+    "gota": [
+      19
+    ],
+    "prescripción": [
+      19
+    ],
+    "orden": [
+      20
+    ],
+    "timing": [
+      20,
+      31,
+      33,
+      74
+    ],
+    "rebote": [
+      21
+    ],
+    "mantenimiento": [
+      21
+    ],
+    "hábitos": [
+      21,
+      37
+    ],
+    "estrategia": [
+      22
+    ],
+    "cafeína": [
+      23,
+      31,
+      36,
+      43,
+      63,
+      74,
+      77
+    ],
+    "ansiedad": [
+      23,
+      34,
+      62
+    ],
+    "proteína": [
+      24,
+      32,
+      71
+    ],
+    "hipertrofia": [
+      24,
+      75
+    ],
+    "definición": [
+      24
+    ],
+    "keto": [
+      25
+    ],
+    "carbohidratos": [
+      25
+    ],
+    "vegan": [
+      26
+    ],
+    "vegetariana": [
+      26
+    ],
+    "origen": [
+      26
+    ],
+    "consistencia": [
+      27
+    ],
+    "dieta": [
+      27,
+      30
+    ],
+    "azúcar": [
+      28,
+      79
+    ],
+    "calorías": [
+      28
+    ],
+    "saludable": [
+      28
+    ],
+    "corazón": [
+      29
+    ],
+    "taquicardia": [
+      29
+    ],
+    "esfuerzo": [
+      30
+    ],
+    "realidad": [
+      30
+    ],
+    "sueño": [
+      31,
+      63,
+      74
+    ],
+    "grasas": [
+      32
+    ],
+    "efectividad": [
+      33,
+      53,
+      68
+    ],
+    "emociones": [
+      34
+    ],
+    "psicología": [
+      34
+    ],
+    "expectativas": [
+      35
+    ],
+    "constancia": [
+      35
+    ],
+    "interacción": [
+      36
+    ],
+    "dependencia": [
+      37
+    ],
+    "sostenibilidad": [
+      37
+    ],
+    "presión": [
+      38
+    ],
+    "cardio": [
+      38
+    ],
+    "contraindicación": [
+      38
+    ],
+    "gluten": [
+      39
+    ],
+    "celiaquía": [
+      39
+    ],
+    "costo": [
+      40,
+      80
+    ],
+    "ROI": [
+      40
+    ],
+    "inmunidad": [
+      41
+    ],
+    "defensas": [
+      41
+    ],
+    "covid": [
+      41,
+      49
+    ],
+    "asma": [
+      42
+    ],
+    "respiratorio": [
+      42
+    ],
+    "niños": [
+      42,
+      43,
+      67
+    ],
+    "presión arterial": [
+      44
+    ],
+    "gripe": [
+      45
+    ],
+    "temporada": [
+      45
+    ],
+    "beta glucanos": [
+      46
+    ],
+    "composición": [
+      46
+    ],
+    "familia": [
+      47
+    ],
+    "interacciones": [
+      48
+    ],
+    "vacuna": [
+      49
+    ],
+    "protección": [
+      49
+    ],
+    "sabor": [
+      50
+    ],
+    "gusto": [
+      50
+    ],
+    "experiencia": [
+      50
+    ],
+    "envejecimiento": [
+      51
+    ],
+    "piel": [
+      51,
+      52
+    ],
+    "aminoácidos": [
+      51
+    ],
+    "colágeno": [
+      52
+    ],
+    "arrugas": [
+      52
+    ],
+    "edad": [
+      53,
+      67
+    ],
+    "cúrcuma": [
+      54
+    ],
+    "inflamación": [
+      54
+    ],
+    "dolor": [
+      54
+    ],
+    "potencia sexual": [
+      55
+    ],
+    "circulación": [
+      55
+    ],
+    "ginseng": [
+      55
+    ],
+    "hormonas": [
+      56
+    ],
+    "género": [
+      56
+    ],
+    "menopausia": [
+      56
+    ],
+    "sinergia": [
+      57,
+      70
+    ],
+    "anti-edad": [
+      57
+    ],
+    "estómago": [
+      58
+    ],
+    "valor": [
+      59
+    ],
+    "adicción": [
+      60
+    ],
+    "consumo": [
+      60
+    ],
+    "concentración": [
+      61
+    ],
+    "cerebro": [
+      61
+    ],
+    "memoria": [
+      61
+    ],
+    "estrés": [
+      62
+    ],
+    "mental": [
+      62
+    ],
+    "estimulante": [
+      63
+    ],
+    "depresión": [
+      64,
+      69
+    ],
+    "psiquiatría": [
+      64
+    ],
+    "TDAH": [
+      65
+    ],
+    "atención": [
+      65
+    ],
+    "complemento": [
+      65,
+      66
+    ],
+    "meditación": [
+      66
+    ],
+    "educación": [
+      67
+    ],
+    "cinética": [
+      68
+    ],
+    "terapia": [
+      69
+    ],
+    "tratamiento": [
+      69
+    ],
+    "deporte": [
+      71
+    ],
+    "recuperación": [
+      71,
+      73
+    ],
+    "energía": [
+      72,
+      77
+    ],
+    "desempeño": [
+      72,
+      77
+    ],
+    "entrenamiento": [
+      72,
+      75
+    ],
+    "deportes": [
+      73
+    ],
+    "universalidad": [
+      73
+    ],
+    "músculos": [
+      75
+    ],
+    "profesionales": [
+      78
+    ],
+    "calidad": [
+      78
+    ],
+    "diabetes": [
+      79
+    ]
+  },
+  "faq": [
+    {
+      "id": 1,
+      "categoria": "Sistema DETOX",
+      "pregunta": "¿En cuanto tiempo veo resultados con REXET?",
+      "respuesta": "Entre 5-7 días empiezas a sentir diferencia. Lo importante es ser consistente, toma todos los días en ayunas",
+      "autor": "ConsumidorRegular",
+      "etiquetas": [
+        "hígado",
+        "tiempo",
+        "resultados"
+      ]
+    },
+    {
+      "id": 2,
+      "categoria": "Sistema DETOX",
+      "pregunta": "PRUNEX1 sirve para estreñimiento?",
+      "respuesta": "Sí hermano, es la solución. Tómalo antes de dormir y al otro día te sorprendería",
+      "autor": "ConsumidorExperto",
+      "etiquetas": [
+        "colón",
+        "estreñimiento",
+        "fibra"
+      ]
+    },
+    {
+      "id": 3,
+      "categoria": "Sistema DETOX",
+      "pregunta": "¿FLORA LIV vs probióticos del super?",
+      "respuesta": "Ni se comparan. FLORA LIV tiene 10 MIL MILLONES de bacterias, los del super 1 millón",
+      "autor": "NutricionistaCertificada",
+      "etiquetas": [
+        "probióticos",
+        "digestión",
+        "comparativa"
+      ]
+    },
+    {
+      "id": 4,
+      "categoria": "Sistema DETOX",
+      "pregunta": "Puedo tomar REXET y PRUNEX1 juntos?",
+      "respuesta": "No weon, los tomas en horarios diferentes. REXET en ayunas y PRUNEX1 antes de dormir",
+      "autor": "ConsumidorRegular",
+      "etiquetas": [
+        "combinación",
+        "protocolo",
+        "horarios"
+      ]
+    },
+    {
+      "id": 5,
+      "categoria": "Sistema DETOX",
+      "pregunta": "¿Cuanto cuesta hacer un mes completo de detox?",
+      "respuesta": "Aprox $110.000 al mes si lo estiras. Es inversión en salud, después te ahorras en doctores",
+      "autor": "VendedorSabio",
+      "etiquetas": [
+        "precio",
+        "inversión",
+        "presupuesto"
+      ]
+    },
+    {
+      "id": 6,
+      "categoria": "Sistema DETOX",
+      "pregunta": "BERRY BALANCE sirve pa infecciones urinarias?",
+      "respuesta": "Sí, tiene cranberry que son antibióticos naturales. Mi hermana lo probó y se le quitó",
+      "autor": "ConsejeraFamiliar",
+      "etiquetas": [
+        "riñones",
+        "infección",
+        "cranberry"
+      ]
+    },
+    {
+      "id": 7,
+      "categoria": "Sistema DETOX",
+      "pregunta": "LIQUID FIBER para peso o digestión?",
+      "respuesta": "Sirve para ambas cosas. La fibra te llena y regula el sistema digestivo",
+      "autor": "VendedorSabio",
+      "etiquetas": [
+        "fibra",
+        "peso",
+        "digestión"
+      ]
+    },
+    {
+      "id": 8,
+      "categoria": "Sistema DETOX",
+      "pregunta": "¿ALPHA BALANCE limpia metales pesados?",
+      "respuesta": "Sí, tiene alfalfa y pasto de trigo que son chelantes naturales que atrapan metales",
+      "autor": "TipoQueInvestiga",
+      "etiquetas": [
+        "metales pesados",
+        "limpieza",
+        "alcalinizante"
+      ]
+    },
+    {
+      "id": 9,
+      "categoria": "Sistema DETOX",
+      "pregunta": "Mi papá tiene hígado graso, ¿REXET?",
+      "respuesta": "100% weon. REXET está diseñado para hígado graso. Mi papá bajó colesterol y triglicéridos",
+      "autor": "HijoPreocupado",
+      "etiquetas": [
+        "hígado graso",
+        "colesterol",
+        "triglicéridos"
+      ]
+    },
+    {
+      "id": 10,
+      "categoria": "Sistema DETOX",
+      "pregunta": "¿Puedo tomar FLORA LIV con antibióticos?",
+      "respuesta": "Sí, de hecho es LO MEJOR. Los antibióticos matan tu flora, FLORA LIV la regenera",
+      "autor": "MedicoLocal",
+      "etiquetas": [
+        "antibióticos",
+        "flora intestinal",
+        "medicamentos"
+      ]
+    },
+    {
+      "id": 11,
+      "categoria": "Sistema DETOX",
+      "pregunta": "Como preparo ALPHA BALANCE?",
+      "respuesta": "En agua FRIA, 1 sobre por vaso. NO lo calientes porque destruye nutrientes",
+      "autor": "IndicacionesOficiales",
+      "etiquetas": [
+        "preparación",
+        "dosis",
+        "modo"
+      ]
+    },
+    {
+      "id": 12,
+      "categoria": "Sistema DETOX",
+      "pregunta": "REXET daña el hígado si tomo mucho?",
+      "respuesta": "No hermano, REXET PROTEGE hígado. Aunque tomes 2-3 meses seguido no causa daño",
+      "autor": "VozDeRazon",
+      "etiquetas": [
+        "seguridad",
+        "pánico",
+        "salud"
+      ]
+    },
+    {
+      "id": 13,
+      "categoria": "Sistema DETOX",
+      "pregunta": "BERRY BALANCE para cálculos renales?",
+      "respuesta": "Es principalmente PREVENTIVO. Si ya tienes cálculos grandes necesitas litotricia",
+      "autor": "UrologoLocal",
+      "etiquetas": [
+        "cálculos",
+        "prevención",
+        "urology"
+      ]
+    },
+    {
+      "id": 14,
+      "categoria": "Sistema DETOX",
+      "pregunta": "Si tengo candida, ¿FLORA LIV ayuda?",
+      "respuesta": "Sí, regenera flora bacteriana SALUDABLE que crea ambiente hostil para candida",
+      "autor": "NaturopatiaConsiente",
+      "etiquetas": [
+        "candida",
+        "flora",
+        "competencia"
+      ]
+    },
+    {
+      "id": 15,
+      "categoria": "Sistema DETOX",
+      "pregunta": "REXET tiene aditivos malos?",
+      "respuesta": "REXET ES 95% natural. Los aditivos son dióxido de silicio, estearato de magnesio, sorbitol - todos seguros",
+      "autor": "ChemistaResponsable",
+      "etiquetas": [
+        "aditivos",
+        "natural",
+        "química"
+      ]
+    },
+    {
+      "id": 16,
+      "categoria": "Sistema DETOX",
+      "pregunta": "Cuanto tiempo guardar REXET?",
+      "respuesta": "Dura 2 años guardado bien en lugar seco. Si lo abriste pero no usaste, dura 30 días",
+      "autor": "ConsejeraDeVida",
+      "etiquetas": [
+        "almacenamiento",
+        "duración",
+        "conservación"
+      ]
+    },
+    {
+      "id": 17,
+      "categoria": "Sistema DETOX",
+      "pregunta": "PRUNEX1 para estreñimiento constante?",
+      "respuesta": "Ocasional = 1 sobre cuando necesitas. Constante = 1 diario durante 1 mes. Después 3 veces x semana",
+      "autor": "ExpertaEnRegulacion",
+      "etiquetas": [
+        "estreñimiento",
+        "frecuencia",
+        "uso"
+      ]
+    },
+    {
+      "id": 18,
+      "categoria": "Sistema DETOX",
+      "pregunta": "Tengo gastritis crónica, ¿FLORA LIV?",
+      "respuesta": "Empieza con algo más ligero primero. Toma manzanilla + ALPHA BALANCE suave por 1 semana. Después FLORA LIV",
+      "autor": "GastroenterologoAtenido",
+      "etiquetas": [
+        "gastritis",
+        "transición",
+        "cuidado"
+      ]
+    },
+    {
+      "id": 19,
+      "categoria": "Sistema DETOX",
+      "pregunta": "¿BERRY BALANCE para ácido úrico alto?",
+      "respuesta": "Ayuda indirectamente. Cranberry acidifica orina que previene cristales de ácido úrico",
+      "autor": "ReumatologiaEnLinea",
+      "etiquetas": [
+        "acido úrico",
+        "gota",
+        "prescripción"
+      ]
+    },
+    {
+      "id": 20,
+      "categoria": "Sistema DETOX",
+      "pregunta": "Puedo tomar todo el detox junto?",
+      "respuesta": "NO. Tiene que ser SECUENCIAL. Semana 1: ALPHA, Semana 2: REXET, Semana 3: PRUNEX1, Semana 4: FLORA",
+      "autor": "ProtocoloOficial",
+      "etiquetas": [
+        "orden",
+        "timing",
+        "seguridad"
+      ]
+    },
+    {
+      "id": 21,
+      "categoria": "Control de Peso",
+      "pregunta": "¿THERMO T3 da rebote al dejar?",
+      "respuesta": "No hermano. THERMO T3 acelera metabolismo mientras lo tomas. Si cambias hábitos = peso se mantiene",
+      "autor": "ExperienciaReal",
+      "etiquetas": [
+        "rebote",
+        "mantenimiento",
+        "hábitos"
+      ]
+    },
+    {
+      "id": 22,
+      "categoria": "Control de Peso",
+      "pregunta": "¿THERMO T3 vs NOCARB-T cuál es mejor?",
+      "respuesta": "THERMO T3 acelera metabolismo. NOCARB-T bloquea carbohidratos. Si comes muchos carbos = NOCARB-T",
+      "autor": "EspecialistaEnPeso",
+      "etiquetas": [
+        "comparativa",
+        "estrategia",
+        "combinación"
+      ]
+    },
+    {
+      "id": 23,
+      "categoria": "Control de Peso",
+      "pregunta": "¿CAFE FIT tiene cafeina? Tengo ansiedad",
+      "respuesta": "Café normal 95mg, CAFÉ FIT 35-45mg. Es 40% menos. Tómalo mañana temprano, no en tarde",
+      "autor": "ProtectorDeLaAnsiedad",
+      "etiquetas": [
+        "cafeína",
+        "ansiedad",
+        "dosis"
+      ]
+    },
+    {
+      "id": 24,
+      "categoria": "Control de Peso",
+      "pregunta": "¿BIOPRO FIT para aumentar músculo?",
+      "respuesta": "Es proteína VB=100. Si haces FUERZA = aumenta músculo. Si haces CARDIO = define",
+      "autor": "EntrenadorLocal",
+      "etiquetas": [
+        "proteína",
+        "hipertrofia",
+        "definición"
+      ]
+    },
+    {
+      "id": 25,
+      "categoria": "Control de Peso",
+      "pregunta": "Estoy en keto, ¿NOCARB-T ok?",
+      "respuesta": "Carbohidratos de NOCARB-T son FIBRA. Fibra NO cuenta en macros keto. Es PERFECTO",
+      "autor": "KetoExplicador",
+      "etiquetas": [
+        "keto",
+        "carbohidratos",
+        "fibra"
+      ]
+    },
+    {
+      "id": 26,
+      "categoria": "Control de Peso",
+      "pregunta": "¿BIOPROTEIN ACTIVE es vegetariana?",
+      "respuesta": "100% VEGETAL. Proteína de algas + vegetales. Si eres vegan es PERFECTO",
+      "autor": "VeganaCertificada",
+      "etiquetas": [
+        "vegan",
+        "vegetariana",
+        "origen"
+      ]
+    },
+    {
+      "id": 27,
+      "categoria": "Control de Peso",
+      "pregunta": "Cuanto THERMO T3 tomar?",
+      "respuesta": "1 sobre diario MAXIMO. Aumentar dosis NO aumenta resultados. Consistencia matters más",
+      "autor": "RealistaConsejero",
+      "etiquetas": [
+        "dosis",
+        "consistencia",
+        "dieta"
+      ]
+    },
+    {
+      "id": 28,
+      "categoria": "Control de Peso",
+      "pregunta": "¿CHOCOLATE FIT tiene azúcar?",
+      "respuesta": "CERO azúcar refinada. Usa xilitol/stevia. 60-80 calorías. MAS SALUDABLE que chocolate normal",
+      "autor": "NutricionistaSinCulpas",
+      "etiquetas": [
+        "azúcar",
+        "calorías",
+        "saludable"
+      ]
+    },
+    {
+      "id": 29,
+      "categoria": "Control de Peso",
+      "pregunta": "¿THERMO T3 me acelera el corazón?",
+      "respuesta": "Es NORMAL cuando aceleras metabolismo. 70bpm → 85bpm = ok. SI 110+ = consulta cardiólogo",
+      "autor": "Cardiologo",
+      "etiquetas": [
+        "corazón",
+        "taquicardia",
+        "seguridad"
+      ]
+    },
+    {
+      "id": 30,
+      "categoria": "Control de Peso",
+      "pregunta": "NOCARB-T sin dieta funciona?",
+      "respuesta": "HELPER no es MILAGRO. Sin dieta = 30%. Con dieta + NOCARB-T = 100%. Necesitas déficit calórico BASE",
+      "autor": "VerdadIncómoda",
+      "etiquetas": [
+        "dieta",
+        "esfuerzo",
+        "realidad"
+      ]
+    },
+    {
+      "id": 31,
+      "categoria": "Control de Peso",
+      "pregunta": "¿CAFE FIT en la noche me deja despierto?",
+      "respuesta": "Depende sensibilidad. 45mg cafeína en normal = sleep ok. MEJOR máximo 3pm LAST DOSE",
+      "autor": "ConsejoDsueno",
+      "etiquetas": [
+        "cafeína",
+        "sueño",
+        "timing"
+      ]
+    },
+    {
+      "id": 32,
+      "categoria": "Control de Peso",
+      "pregunta": "¿BIOPRO FIT vs BIOPROTEIN cual es mejor?",
+      "respuesta": "BIOPROTEIN ACTIVE es más potente para grasa. Tiene L-Lisina que acelera metabolismo",
+      "autor": "ComparadorOtroVez",
+      "etiquetas": [
+        "proteína",
+        "grasas",
+        "comparativa"
+      ]
+    },
+    {
+      "id": 33,
+      "categoria": "Control de Peso",
+      "pregunta": "¿Puedo mezclar THERMO T3 + NOCARB-T?",
+      "respuesta": "SÍ pero INTELIGENTEMENTE. THERMO mañana + NOCARB almuerzo. NO juntos en misma comida",
+      "autor": "EstrategaOptimo",
+      "etiquetas": [
+        "combinación",
+        "timing",
+        "efectividad"
+      ]
+    },
+    {
+      "id": 34,
+      "categoria": "Control de Peso",
+      "pregunta": "¿CHOCOLATE FIT vs CAFE FIT para ansiedad?",
+      "respuesta": "CHOCOLATE FIT es mejor. Tiene CLA + componentes de saciedad + PLACER emocional",
+      "autor": "PsicologoNutricion",
+      "etiquetas": [
+        "ansiedad",
+        "emociones",
+        "psicología"
+      ]
+    },
+    {
+      "id": 35,
+      "categoria": "Control de Peso",
+      "pregunta": "Cuanto tiempo NOCARB-T resultados?",
+      "respuesta": "MINIMO 30 días para ver cambios REALES. 30 días = evidente. 60 días = impresionante",
+      "autor": "ConsistenciaEsLaClave",
+      "etiquetas": [
+        "tiempo",
+        "expectativas",
+        "constancia"
+      ]
+    },
+    {
+      "id": 36,
+      "categoria": "Control de Peso",
+      "pregunta": "¿CAFE FIT compatible con café normal?",
+      "respuesta": "TÉCNICAMENTE sí pero NO RECOMENDADO. Suma 95mg + 45mg = 140mg. Una cosa O otra",
+      "autor": "EducacionCafeina",
+      "etiquetas": [
+        "cafeína",
+        "interacción",
+        "seguridad"
+      ]
+    },
+    {
+      "id": 37,
+      "categoria": "Control de Peso",
+      "pregunta": "¿THERMO T3 causa dependencia?",
+      "respuesta": "NO causa dependencia fisiológica. PERO SÍ puedes regresar peso si vuelves a comer igual",
+      "autor": "RealidadCruel",
+      "etiquetas": [
+        "dependencia",
+        "hábitos",
+        "sostenibilidad"
+      ]
+    },
+    {
+      "id": 38,
+      "categoria": "Control de Peso",
+      "pregunta": "Tengo presión alta, ¿puedo THERMO T3?",
+      "respuesta": "RIESGO en presión alta. CONSULTA cardiólogo PRIMERO. Depende qué tan controlada esté",
+      "autor": "CardioConSensatez",
+      "etiquetas": [
+        "presión",
+        "cardio",
+        "contraindicación"
+      ]
+    },
+    {
+      "id": 39,
+      "categoria": "Control de Peso",
+      "pregunta": "¿BIOPROTEIN ACTIVE tiene gluten?",
+      "respuesta": "Es GLUTEN FREE. 100% vegetal sin gluten. Pero verifica etiqueta certificado",
+      "autor": "CeliacoAlert",
+      "etiquetas": [
+        "gluten",
+        "celiaquía",
+        "seguridad"
+      ]
+    },
+    {
+      "id": 40,
+      "categoria": "Control de Peso",
+      "pregunta": "¿Costo protocolo peso completo 1 mes?",
+      "respuesta": "THERMO T3 + NOCARB-T + BIOPRO FIT = $125.000-135.000. Es inversión fuerte pero ROI alto",
+      "autor": "AnalisisFinanciero",
+      "etiquetas": [
+        "costo",
+        "presupuesto",
+        "ROI"
+      ]
+    },
+    {
+      "id": 41,
+      "categoria": "Línea Inmunológica",
+      "pregunta": "¿VERA+ de verdá sube defensas?",
+      "respuesta": "No es cuento weon, de verdá sube. Tiene beta glucanos que activan sistema inmune",
+      "autor": "ExperienciaCovid",
+      "etiquetas": [
+        "inmunidad",
+        "defensas",
+        "covid"
+      ]
+    },
+    {
+      "id": 42,
+      "categoria": "Línea Inmunológica",
+      "pregunta": "Mi hijo tiene asma, ¿VERA+?",
+      "respuesta": "Sí, ayuda mucho. Fortalece sistema respiratorio. Combina con tratamiento pediatra",
+      "autor": "VejezAlerta",
+      "etiquetas": [
+        "asma",
+        "respiratorio",
+        "niños"
+      ]
+    },
+    {
+      "id": 43,
+      "categoria": "Línea Inmunológica",
+      "pregunta": "¿GANO+ CAPPUCCINO tiene mucha cafeína?",
+      "respuesta": "No hermano. Menos cafeína que chocolate caliente normal. Es seguro pa niños",
+      "autor": "TiaPreocupada",
+      "etiquetas": [
+        "niños",
+        "cafeína",
+        "seguridad"
+      ]
+    },
+    {
+      "id": 44,
+      "categoria": "Línea Inmunológica",
+      "pregunta": "¿VERA+ con presión alta?",
+      "respuesta": "Claro que sí. VERA+ no sube presión. De hecho algunos componentes ayudan",
+      "autor": "CardiacoHealth",
+      "etiquetas": [
+        "presión arterial",
+        "salud",
+        "seguridad"
+      ]
+    },
+    {
+      "id": 45,
+      "categoria": "Línea Inmunológica",
+      "pregunta": "¿VERA+ previene gripe o solo cuando estás enfermo?",
+      "respuesta": "AMBAS! Previene si lo tomas antes temporada gripe. Si estás enfermo, acelera recuperación",
+      "autor": "ProactiveHealth",
+      "etiquetas": [
+        "prevención",
+        "gripe",
+        "temporada"
+      ]
+    },
+    {
+      "id": 46,
+      "categoria": "Línea Inmunológica",
+      "pregunta": "¿Cuantos beta glucanos GANO+ vs VERA+?",
+      "respuesta": "VERA+ es más concentrado en beta glucanos, es defensa pura. GANO+ es más café",
+      "autor": "DefensaStrategy",
+      "etiquetas": [
+        "beta glucanos",
+        "comparativa",
+        "composición"
+      ]
+    },
+    {
+      "id": 47,
+      "categoria": "Línea Inmunológica",
+      "pregunta": "¿Costo mes VERA+ para familia?",
+      "respuesta": "VERA+ $46.500/mes. 28 sobres = 28 tomas. Si 4 en casa, cada uno día de por medio",
+      "autor": "BudgetHealth",
+      "etiquetas": [
+        "precio",
+        "presupuesto",
+        "familia"
+      ]
+    },
+    {
+      "id": 48,
+      "categoria": "Línea Inmunológica",
+      "pregunta": "¿VERA+ interfiere medicamentos?",
+      "respuesta": "Generalmente no. PERO si tomas inmunosupresores = consulta doc. Mejor saber",
+      "autor": "MedicoLocal",
+      "etiquetas": [
+        "medicamentos",
+        "interacciones",
+        "seguridad"
+      ]
+    },
+    {
+      "id": 49,
+      "categoria": "Línea Inmunológica",
+      "pregunta": "Durante COVID, ¿VERA+ protege?",
+      "respuesta": "No es vacuna obvio. PERO fortalece cuerpo pa luchar. Si sistema inmune fuerte = menos riesgo severa",
+      "autor": "PandemiaWisdom",
+      "etiquetas": [
+        "covid",
+        "vacuna",
+        "protección"
+      ]
+    },
+    {
+      "id": 50,
+      "categoria": "Línea Inmunológica",
+      "pregunta": "¿GANO+ CAPPUCCINO sabe bien?",
+      "respuesta": "¡Hermano sabe DELICIOSO! Como cappuccino gourmet de verdá. Mejor que otras bebidas",
+      "autor": "SaborExigente",
+      "etiquetas": [
+        "sabor",
+        "gusto",
+        "experiencia"
+      ]
+    },
+    {
+      "id": 51,
+      "categoria": "Línea Anti-Edad",
+      "pregunta": "¿YOUTH ELIXIR retarda envejecimiento?",
+      "respuesta": "Funciona más de lo que esperas. Tiene aminoácidos que estimulan hormona de crecimiento",
+      "autor": "AntiAgingReal",
+      "etiquetas": [
+        "envejecimiento",
+        "piel",
+        "aminoácidos"
+      ]
+    },
+    {
+      "id": 52,
+      "categoria": "Línea Anti-Edad",
+      "pregunta": "¿BEAUTY-IN para arrugas?",
+      "respuesta": "Sí, colágeno bioactivo 4 veces más potente. En 1 mes ves piel más tersa",
+      "autor": "CollagenExpert",
+      "etiquetas": [
+        "colágeno",
+        "arrugas",
+        "piel"
+      ]
+    },
+    {
+      "id": 53,
+      "categoria": "Línea Anti-Edad",
+      "pregunta": "¿A qué edad tomar BEAUTY-IN?",
+      "respuesta": "Desde 25-30 pa prevención. Si ya tienes arrugas = ahora. Prevención es lo mejor",
+      "autor": "PreventivaFeminina",
+      "etiquetas": [
+        "edad",
+        "prevención",
+        "efectividad"
+      ]
+    },
+    {
+      "id": 54,
+      "categoria": "Línea Anti-Edad",
+      "pregunta": "¿GOLDEN FLX para dolores musculares?",
+      "respuesta": "Sirve para cualquier inflamación weon. Lo tomo post-gym pa dolores y es increíble",
+      "autor": "GymInflammation",
+      "etiquetas": [
+        "cúrcuma",
+        "inflamación",
+        "dolor"
+      ]
+    },
+    {
+      "id": 55,
+      "categoria": "Línea Anti-Edad",
+      "pregunta": "¿PASSION para potencia sexual?",
+      "respuesta": "Sí funciona hermano. Tiene jalea real y ginseng que mejoran circulación",
+      "autor": "IntimateHealth",
+      "etiquetas": [
+        "potencia sexual",
+        "circulación",
+        "ginseng"
+      ]
+    },
+    {
+      "id": 56,
+      "categoria": "Línea Anti-Edad",
+      "pregunta": "¿PROBAL para hombres o mujeres?",
+      "respuesta": "Para ambos pero especialmente mujeres con desbalance hormonal",
+      "autor": "HormonaBalance",
+      "etiquetas": [
+        "hormonas",
+        "género",
+        "menopausia"
+      ]
+    },
+    {
+      "id": 57,
+      "categoria": "Línea Anti-Edad",
+      "pregunta": "¿YOUTH ELIXIR + BEAUTY-IN juntos?",
+      "respuesta": "Excelente combinación. YOUTH ELIXIR desde adentro, BEAUTY-IN repone colágeno",
+      "autor": "AntiAgingCombos",
+      "etiquetas": [
+        "combinación",
+        "sinergia",
+        "anti-edad"
+      ]
+    },
+    {
+      "id": 58,
+      "categoria": "Línea Anti-Edad",
+      "pregunta": "¿GOLDEN FLX causa gastritis?",
+      "respuesta": "No, cúrcuma protege estómago. Al contrario. Tómalo con comida pa evitar irritación",
+      "autor": "GastroProtect",
+      "etiquetas": [
+        "gastritis",
+        "estómago",
+        "seguridad"
+      ]
+    },
+    {
+      "id": 59,
+      "categoria": "Línea Anti-Edad",
+      "pregunta": "¿Costo tratamiento anti-edad completo?",
+      "respuesta": "YOUTH ELIXIR + BEAUTY-IN + PASSION + GOLDEN FLX = $170.000-180.000/mes",
+      "autor": "AntiBotoxAlternative",
+      "etiquetas": [
+        "precio",
+        "inversión",
+        "valor"
+      ]
+    },
+    {
+      "id": 60,
+      "categoria": "Línea Anti-Edad",
+      "pregunta": "¿PASSION causa adicción?",
+      "respuesta": "Puedes tomarlo todos los días sin problema. No causa adicción, es natural",
+      "autor": "DailyRoutine",
+      "etiquetas": [
+        "seguridad",
+        "adicción",
+        "consumo"
+      ]
+    },
+    {
+      "id": 61,
+      "categoria": "Vigor Mental",
+      "pregunta": "¿ON mejora concentración o es placebo?",
+      "respuesta": "No es placebo hermano. Tiene aminoácidos que nutren cerebro directamente",
+      "autor": "FocusGain",
+      "etiquetas": [
+        "concentración",
+        "cerebro",
+        "memoria"
+      ]
+    },
+    {
+      "id": 62,
+      "categoria": "Vigor Mental",
+      "pregunta": "¿NO STRESS para ansiedad?",
+      "respuesta": "Depende nivel. Si ligera-moderada, excelente. Si severa necesitas terapia + medicamento",
+      "autor": "AnxietyHelper",
+      "etiquetas": [
+        "ansiedad",
+        "estrés",
+        "mental"
+      ]
+    },
+    {
+      "id": 63,
+      "categoria": "Vigor Mental",
+      "pregunta": "¿ON tiene cafeína?",
+      "respuesta": "ON tiene nutrientes principalmente, muy poca cafeína si tiene. Es estimulación neuronal natural",
+      "autor": "BrainNutrition",
+      "etiquetas": [
+        "cafeína",
+        "estimulante",
+        "sueño"
+      ]
+    },
+    {
+      "id": 64,
+      "categoria": "Vigor Mental",
+      "pregunta": "¿Puedo ON con antidepresivos?",
+      "respuesta": "Consulta psiquiatra. Generalmente no hay conflicto pero es mejor asegurarse",
+      "autor": "MentalHealthFirst",
+      "etiquetas": [
+        "medicamentos",
+        "depresión",
+        "psiquiatría"
+      ]
+    },
+    {
+      "id": 65,
+      "categoria": "Vigor Mental",
+      "pregunta": "¿ON sirve para TDAH?",
+      "respuesta": "ON ayuda pero no es tratamiento pa TDAH. Necesitas medicamento prescrito",
+      "autor": "TDAHSupport",
+      "etiquetas": [
+        "TDAH",
+        "atención",
+        "complemento"
+      ]
+    },
+    {
+      "id": 66,
+      "categoria": "Vigor Mental",
+      "pregunta": "¿NO STRESS vs meditación cuál es mejor?",
+      "respuesta": "NO son excluyentes. Meditación cambia relación con estrés. NO STRESS baja cortisol",
+      "autor": "MeditationMindful",
+      "etiquetas": [
+        "meditación",
+        "comparativa",
+        "complemento"
+      ]
+    },
+    {
+      "id": 67,
+      "categoria": "Vigor Mental",
+      "pregunta": "¿Edad mínima ON pa niños?",
+      "respuesta": "Desde 10-12 años si necesitan. Si hijo tiene problemas concentración en cole, ON ayuda",
+      "autor": "StudentSuccess",
+      "etiquetas": [
+        "niños",
+        "educación",
+        "edad"
+      ]
+    },
+    {
+      "id": 68,
+      "categoria": "Vigor Mental",
+      "pregunta": "¿Cuanto tardan actuar ON y NO STRESS?",
+      "respuesta": "ON actúa 15-30 minutos. NO STRESS 30-45 minutos. Efecto sostenido durante horas",
+      "autor": "TimingMatters",
+      "etiquetas": [
+        "tiempo",
+        "efectividad",
+        "cinética"
+      ]
+    },
+    {
+      "id": 69,
+      "categoria": "Vigor Mental",
+      "pregunta": "¿NO STRESS elimina depresión?",
+      "respuesta": "NO STRESS no es antidepresivo. Oculta síntomas pero debe ir con terapia psicológica",
+      "autor": "MentalHealthAdvice",
+      "etiquetas": [
+        "depresión",
+        "terapia",
+        "tratamiento"
+      ]
+    },
+    {
+      "id": 70,
+      "categoria": "Vigor Mental",
+      "pregunta": "¿ON + NO STRESS mismo día?",
+      "respuesta": "Sí, ON mañana pa concentración y NO STRESS tarde si necesitas calma",
+      "autor": "PowerCombo",
+      "etiquetas": [
+        "combinación",
+        "sinergia",
+        "horarios"
+      ]
+    },
+    {
+      "id": 71,
+      "categoria": "Sport",
+      "pregunta": "¿BIOPRO+ SPORT vs normal cuál es mejor?",
+      "respuesta": "BIOPRO+ SPORT específico pa atletas. Si entrenas 4+ veces/semana = SPORT",
+      "autor": "AthletePerformance",
+      "etiquetas": [
+        "proteína",
+        "deporte",
+        "recuperación"
+      ]
+    },
+    {
+      "id": 72,
+      "categoria": "Sport",
+      "pregunta": "¿PRE SPORT hace falta?",
+      "respuesta": "No imprescindible pero SÍ ayuda. Yo sin PRE hago 3 series, con PRE hago 5",
+      "autor": "ErgogenicHelp",
+      "etiquetas": [
+        "energía",
+        "desempeño",
+        "entrenamiento"
+      ]
+    },
+    {
+      "id": 73,
+      "categoria": "Sport",
+      "pregunta": "¿POST SPORT solo gym o cualquier deporte?",
+      "respuesta": "Cualquier deporte weon. Futbol, basket, correr, natación - todos necesitan recuperación",
+      "autor": "MultiSport",
+      "etiquetas": [
+        "deportes",
+        "recuperación",
+        "universalidad"
+      ]
+    },
+    {
+      "id": 74,
+      "categoria": "Sport",
+      "pregunta": "¿PRE SPORT tiene cafeína?",
+      "respuesta": "Sí pero controlada. Algunos toman 6pm sin problema pa dormir después",
+      "autor": "CaffeineControl",
+      "etiquetas": [
+        "cafeína",
+        "timing",
+        "sueño"
+      ]
+    },
+    {
+      "id": 75,
+      "categoria": "Sport",
+      "pregunta": "¿BIOPRO+ SPORT hace crecer músculo?",
+      "respuesta": "BIOPRO+ SPORT no hace crecer mágicamente hermano. LO QUE HACE es nutrir pa que CREZCA",
+      "autor": "RealisticMuscle",
+      "etiquetas": [
+        "músculos",
+        "hipertrofia",
+        "entrenamiento"
+      ]
+    },
+    {
+      "id": 76,
+      "categoria": "Sport",
+      "pregunta": "¿PRE + POST SPORT mismo día?",
+      "respuesta": "¡Claro que sí! PRE antes de entrenar (energía) y POST después (recuperación). Es lo recomendable",
+      "autor": "OptimalRecovery",
+      "etiquetas": [
+        "protocolo",
+        "combinación",
+        "resultados"
+      ]
+    },
+    {
+      "id": 77,
+      "categoria": "Sport",
+      "pregunta": "¿CAFÉ & CAFÉ FIT para deporte?",
+      "respuesta": "CAFÉ es pura energía. CAFÉ FIT es energía + control peso. Si meta desempeño = CAFÉ",
+      "autor": "SportCaffeine",
+      "etiquetas": [
+        "cafeína",
+        "desempeño",
+        "energía"
+      ]
+    },
+    {
+      "id": 78,
+      "categoria": "Sport",
+      "pregunta": "¿Atletas profesionales BIOPRO+ SPORT?",
+      "respuesta": "Profesionales usan superior. PERO BIOPRO+ SPORT muy bueno semi-pro. Yo conozco futbolistas que lo usan",
+      "autor": "ProAthletics",
+      "etiquetas": [
+        "profesionales",
+        "calidad",
+        "competencia"
+      ]
+    },
+    {
+      "id": 79,
+      "categoria": "Sport",
+      "pregunta": "¿POST SPORT tiene azúcar? Tengo diabetes",
+      "respuesta": "Tiene carbohidrato necesario pero NO azúcar refinada. Consulta endocrinólogo. Generalmente ok",
+      "autor": "DiabetesAware",
+      "etiquetas": [
+        "diabetes",
+        "azúcar",
+        "salud"
+      ]
+    },
+    {
+      "id": 80,
+      "categoria": "Sport",
+      "pregunta": "¿Costo mes protocolo SPORT FULL?",
+      "respuesta": "BIOPRO+ SPORT + PRE + POST = $120.000-135.000/mes. Mejora performance 15-20%",
+      "autor": "SportBudget",
+      "etiquetas": [
+        "costo",
+        "presupuesto",
+        "inversión"
+      ]
+    }
+  ]
+}

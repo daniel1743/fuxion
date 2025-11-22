@@ -1,12 +1,13 @@
 
 import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingCart, Search, Menu, X, Rocket } from 'lucide-react';
+import { ShoppingCart, Search, Menu, X, Rocket, Shield, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from "@/components/ui/use-toast";
 import { useAuth } from '@/context/AuthContext';
 import { useCart } from '@/context/CartContext';
+import { useAdmin } from '@/context/AdminContext';
 import UserMenu from '@/components/UserMenu';
 
 const navLinks = [
@@ -18,15 +19,25 @@ const navLinks = [
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const { isAuthenticated, user, openAuthModal } = useAuth();
   const { getCartCount } = useCart();
+  const { isAdmin, openLoginModal, logout } = useAdmin();
+  const navigate = useNavigate();
 
   const handleSearch = (e) => {
     e.preventDefault();
-    toast({
-      title: "🚧 Búsqueda no implementada",
-      description: "¡Esta función estará disponible pronto! 🚀",
-    });
+    if (!searchQuery.trim()) {
+      toast({
+        title: "⚠️ Campo vacío",
+        description: "Por favor ingresa algo para buscar",
+      });
+      return;
+    }
+
+    // Redirigir a la página de explorar con el query de búsqueda
+    navigate(`/explorar?search=${encodeURIComponent(searchQuery.trim())}`);
+    setSearchQuery('');
   };
 
   const handleAnchorClick = (e, path) => {
@@ -65,7 +76,13 @@ const Header = () => {
 
         <div className="flex items-center gap-4">
           <form onSubmit={handleSearch} className="hidden sm:flex items-center bg-secondary rounded-full p-1 border border-transparent focus-within:border-primary transition-colors">
-            <input type="text" placeholder="Buscar..." className="bg-transparent text-foreground placeholder-muted-foreground text-sm px-3 focus:outline-none w-24 md:w-32" />
+            <input
+              type="text"
+              placeholder="Buscar productos..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="bg-transparent text-foreground placeholder-muted-foreground text-sm px-3 focus:outline-none w-24 md:w-32"
+            />
             <Button type="submit" variant="ghost" size="icon" className="h-8 w-8 rounded-full hover:bg-primary/20">
               <Search className="h-4 w-4 text-muted-foreground" />
             </Button>
@@ -79,7 +96,32 @@ const Header = () => {
               </span>
             )}
           </Link>
-          
+
+          {/* Admin Button */}
+          {isAdmin ? (
+            <Button
+              onClick={logout}
+              variant="outline"
+              size="sm"
+              className="hidden md:flex items-center gap-2 border-green-500/30 bg-green-500/10 text-green-400 hover:bg-green-500/20"
+              title="Cerrar sesión de administrador"
+            >
+              <Shield className="w-4 h-4" />
+              <span className="text-xs font-semibold">Admin</span>
+              <LogOut className="w-3 h-3" />
+            </Button>
+          ) : (
+            <Button
+              onClick={openLoginModal}
+              variant="ghost"
+              size="icon"
+              className="hidden md:flex text-muted-foreground hover:text-primary"
+              title="Acceso de administrador"
+            >
+              <Shield className="w-5 h-5" />
+            </Button>
+          )}
+
           <UserMenu />
 
           <div className="md:hidden">

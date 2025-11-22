@@ -106,64 +106,51 @@ export const fuxionKnowledgeBase = {
   featuredProducts: [
     {
       id: 1,
-      name: "Quantum Laptop Pro",
-      categoria: "Computación",
-      precio: 1999.99,
-      descuento: 10,
-      precioFinal: 1799.99,
-      stock: 15,
-      caracteristicas: [
-        "Procesador Quantum Core i9 de última generación",
-        "32GB RAM DDR5 para multitarea extrema",
-        "1TB SSD NVMe - velocidad ultrarrápida",
-        "Pantalla 15.6\" 4K OLED con colores vibrantes",
-        "GPU dedicada para gaming y diseño",
-        "Batería de 12 horas de duración",
-        "Puerto Thunderbolt 4, USB-C y HDMI 2.1"
+      name: "PRUNEX 1",
+      categoria: "Limpieza del Colon",
+      price: 23300,
+      stock: 25,
+      description: "Limpieza profunda del colon con mix de fibras solubles. Ideal para estreñimiento severo y desinflamar el abdomen.",
+      features: [
+        "Limpia el colon y desinflama el abdomen",
+        "Mix de fibras solubles (Psyllium, Inulina, Linaza)",
+        "Ideal para toda la familia"
       ],
-      usos: ["Edición de video profesional", "Gaming de alta gama", "Programación", "Diseño gráfico"],
-      garantia: "1 año",
-      incluye: ["Laptop", "Cargador", "Manual", "Software de productividad"]
+      beneficios: ["Limpia el colon", "Desinflama el abdomen", "Mejora la asimilación de nutrientes", "Adecuado tránsito intestinal"],
+      modo_uso: "Tomar un sobre en agua fría antes de dormir",
+      para_toda_familia: true
     },
     {
-      id: 5,
-      name: "VR Goggles X Pro",
-      categoria: "Realidad Virtual",
-      precio: 499.99,
-      descuento: 20,
-      precioFinal: 399.99,
-      stock: 22,
-      caracteristicas: [
-        "Resolución 4K por ojo",
-        "Frecuencia de actualización 120Hz",
-        "Seguimiento ocular avanzado",
-        "Audio espacial 3D integrado",
-        "Campo de visión 120 grados",
-        "6 grados de libertad (6DoF)",
-        "Compatible con PC y consolas"
+      id: 2,
+      name: "FLORA LIV",
+      categoria: "Regeneración Flora Intestinal",
+      price: 43000,
+      stock: 30,
+      description: "Probióticos premium con 10 mil millones de bacterias. Regenera y equilibra tu flora intestinal.",
+      features: [
+        "10 mil millones de bacterias probióticas",
+        "Mejora digestión y reflujo gastritis",
+        "Sabor natural a granadilla"
       ],
-      usos: ["Gaming inmersivo", "Simulaciones", "Entretenimiento", "Educación virtual"],
-      garantia: "1 año",
-      incluye: ["Gafas VR", "Controladores", "Cable de conexión", "Almohadilla facial extra"]
+      beneficios: ["Regenera flora intestinal", "Ideal en gastritis y reflujo", "Mejora digestión", "Protección inmunológica"],
+      modo_uso: "Tomar un sobre en agua fría en ayunas",
+      para_toda_familia: true
     },
     {
-      id: 8,
-      name: "Smartwatch Ultra Fitness",
-      categoria: "Wearables",
-      precio: 299.99,
-      stock: 50,
-      caracteristicas: [
-        "Monitoreo cardíaco 24/7",
-        "GPS integrado",
-        "Resistente al agua 50m",
-        "Batería de 7 días",
-        "Pantalla AMOLED táctil",
-        "Más de 100 modos deportivos",
-        "Análisis de sueño avanzado"
+      id: 3,
+      name: "BIOPRO+ TECT",
+      categoria: "Proteína Premium",
+      price: 34000,
+      stock: 40,
+      description: "Proteína premium con Colostrum y valor biológico 100%. Potencia tu sistema inmune y regenera células.",
+      features: [
+        "Proteína con Colostrum® - Valor biológico 100%",
+        "Fortalece huesos y sistema inmune",
+        "Con DHA, ARA y aminoácidos esenciales"
       ],
-      usos: ["Fitness tracking", "Natación", "Running", "Ciclismo", "Monitoreo de salud"],
-      garantia: "1 año",
-      incluye: ["Smartwatch", "Correa deportiva", "Cargador magnético", "Manual"]
+      beneficios: ["Mejora regeneración celular", "Potencia defensas", "Fortalece huesos", "Protección inmunológica"],
+      modo_uso: "Tomar un sobre en agua fría a media mañana o tarde",
+      para_toda_familia: true
     }
   ],
 

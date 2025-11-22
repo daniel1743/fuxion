@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { X, ThumbsUp, ThumbsDown, CheckCircle2, Send, ArrowLeft } from 'lucide-react';
+import { X, ThumbsUp, ThumbsDown, CheckCircle2, Send, ArrowLeft, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
 import { useForumContext } from '@/context/ForumContext';
+import { useAdmin } from '@/context/AdminContext';
 import { toast } from '@/components/ui/use-toast';
+import VerifiedBadge from './VerifiedBadge';
 
 const QuestionDetail = ({ questionId, onClose }) => {
   const {
@@ -18,7 +20,10 @@ const QuestionDetail = ({ questionId, onClose }) => {
     voteAnswer,
     acceptAnswer,
     incrementViews,
+    deleteAnswer,
   } = useForumContext();
+
+  const { isAdmin } = useAdmin();
 
   const question = getQuestionById(questionId);
   const answers = getAnswersByQuestionId(questionId);
@@ -58,7 +63,16 @@ const QuestionDetail = ({ questionId, onClose }) => {
       return;
     }
 
-    addAnswer(questionId, newAnswer);
+    // Si es admin, auto-asignar perfil de Fuxion Shop
+    const answerData = isAdmin
+      ? {
+          ...newAnswer,
+          author: 'Fuxion Shop',
+          authorAvatar: '✅'
+        }
+      : newAnswer;
+
+    addAnswer(questionId, answerData);
     toast({
       title: '✅ Respuesta publicada',
       description: 'Tu respuesta ha sido agregada.',
@@ -81,6 +95,16 @@ const QuestionDetail = ({ questionId, onClose }) => {
       title: '✅ Respuesta marcada como solución',
       description: 'Has marcado esta respuesta como la solución correcta.',
     });
+  };
+
+  const handleDeleteAnswer = (answerId) => {
+    if (window.confirm('¿Estás seguro de eliminar esta respuesta? Esta acción no se puede deshacer.')) {
+      deleteAnswer(questionId, answerId);
+      toast({
+        title: '🗑️ Respuesta eliminada',
+        description: 'La respuesta ha sido eliminada correctamente.',
+      });
+    }
   };
 
   const formatDate = (dateString) => {
@@ -214,30 +238,39 @@ const QuestionDetail = ({ questionId, onClose }) => {
                     <Label htmlFor="answer-author">Tu Nombre *</Label>
                     <Input
                       id="answer-author"
-                      value={newAnswer.author}
+                      value={isAdmin ? 'Fuxion Shop' : newAnswer.author}
                       onChange={(e) => setNewAnswer({ ...newAnswer, author: e.target.value })}
                       placeholder="Tu nombre"
+                      disabled={isAdmin}
                       required
+                      className={isAdmin ? 'bg-primary/10 border-primary/50' : ''}
                     />
                   </div>
                   <div className="space-y-2">
                     <Label>Avatar</Label>
-                    <div className="flex gap-2 flex-wrap">
-                      {avatars.map((avatar) => (
-                        <button
-                          key={avatar}
-                          type="button"
-                          onClick={() => setNewAnswer({ ...newAnswer, authorAvatar: avatar })}
-                          className={`text-xl p-2 rounded-lg border transition-all ${
-                            newAnswer.authorAvatar === avatar
-                              ? 'border-primary bg-primary/10'
-                              : 'border-border hover:border-primary/50'
-                          }`}
-                        >
-                          {avatar}
-                        </button>
-                      ))}
-                    </div>
+                    {isAdmin ? (
+                      <div className="flex items-center gap-2 p-3 bg-primary/10 border border-primary/50 rounded-lg">
+                        <span className="text-2xl">✅</span>
+                        <span className="text-sm text-muted-foreground">Cuenta Verificada</span>
+                      </div>
+                    ) : (
+                      <div className="flex gap-2 flex-wrap">
+                        {avatars.map((avatar) => (
+                          <button
+                            key={avatar}
+                            type="button"
+                            onClick={() => setNewAnswer({ ...newAnswer, authorAvatar: avatar })}
+                            className={`text-xl p-2 rounded-lg border transition-all ${
+                              newAnswer.authorAvatar === avatar
+                                ? 'border-primary bg-primary/10'
+                                : 'border-border hover:border-primary/50'
+                            }`}
+                          >
+                            {avatar}
+                          </button>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -315,21 +348,35 @@ const QuestionDetail = ({ questionId, onClose }) => {
                           <div className="flex items-center gap-2 text-sm">
                             <span className="text-xl">{answer.authorAvatar}</span>
                             <span className="font-medium text-foreground">{answer.author}</span>
+                            {answer.author === 'Fuxion Shop' && <VerifiedBadge size="sm" />}
                             <span className="text-muted-foreground">•</span>
                             <span className="text-muted-foreground text-xs">{formatDate(answer.createdAt)}</span>
                           </div>
 
-                          {!answer.isAccepted && !question.solved && (
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              onClick={() => handleAcceptAnswer(answer.id)}
-                              className="text-xs"
-                            >
-                              <CheckCircle2 className="w-3 h-3 mr-1" />
-                              Marcar como solución
-                            </Button>
-                          )}
+                          <div className="flex items-center gap-2">
+                            {!answer.isAccepted && !question.solved && (
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => handleAcceptAnswer(answer.id)}
+                                className="text-xs"
+                              >
+                                <CheckCircle2 className="w-3 h-3 mr-1" />
+                                Marcar como solución
+                              </Button>
+                            )}
+                            {isAdmin && (
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => handleDeleteAnswer(answer.id)}
+                                className="text-red-500 hover:text-red-600 hover:bg-red-500/10"
+                                title="Eliminar respuesta"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </Button>
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>

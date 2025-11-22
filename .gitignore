@@ -19,6 +19,13 @@ dist-ssr
 .env.test.local
 .env.production.local
 
+# Archivos de documentación con credenciales expuestas
+# IMPORTANTE: Estos archivos contienen API keys y credenciales reales
+VARIABLES_ENTORNO_PRODUCCION.md
+RESUMEN_FINAL_VARIABLES.md
+COMO_USAR_ADMIN.md
+README_CONFIGURACION.md
+
 # Logs
 npm-debug.log*
 yarn-debug.log*

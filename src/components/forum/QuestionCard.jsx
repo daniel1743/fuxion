@@ -1,16 +1,26 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MessageSquare, ThumbsUp, Eye, CheckCircle2 } from 'lucide-react';
+import { MessageSquare, ThumbsUp, Eye, CheckCircle2, Trash2 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { useForumContext } from '@/context/ForumContext';
+import { useAdmin } from '@/context/AdminContext';
+import VerifiedBadge from './VerifiedBadge';
 
 const QuestionCard = ({ question, onClick }) => {
-  const { voteQuestion } = useForumContext();
+  const { voteQuestion, deleteQuestion } = useForumContext();
+  const { isAdmin } = useAdmin();
 
   const handleVote = (e) => {
     e.stopPropagation();
     voteQuestion(question.id, 1);
+  };
+
+  const handleDelete = (e) => {
+    e.stopPropagation();
+    if (window.confirm('¿Estás seguro de eliminar esta pregunta? Esta acción no se puede deshacer.')) {
+      deleteQuestion(question.id);
+    }
   };
 
   const formatDate = (dateString) => {
@@ -52,15 +62,28 @@ const QuestionCard = ({ question, onClick }) => {
         <div className="flex-1 space-y-3">
           {/* Título y Estado */}
           <div className="flex items-start justify-between gap-4">
-            <h3 className="text-lg font-semibold text-foreground hover:text-primary transition-colors">
+            <h3 className="text-lg font-semibold text-foreground hover:text-primary transition-colors flex-1">
               {question.title}
             </h3>
-            {question.solved && (
-              <Badge variant="success" className="bg-green-500/20 text-green-400 border-green-500/30 flex items-center gap-1 whitespace-nowrap">
-                <CheckCircle2 className="w-3 h-3" />
-                Resuelto
-              </Badge>
-            )}
+            <div className="flex items-center gap-2">
+              {question.solved && (
+                <Badge variant="success" className="bg-green-500/20 text-green-400 border-green-500/30 flex items-center gap-1 whitespace-nowrap">
+                  <CheckCircle2 className="w-3 h-3" />
+                  Resuelto
+                </Badge>
+              )}
+              {isAdmin && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleDelete}
+                  className="text-red-500 hover:text-red-600 hover:bg-red-500/10 h-8 w-8 p-0"
+                  title="Eliminar pregunta"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </Button>
+              )}
+            </div>
           </div>
 
           {/* Descripción */}
@@ -82,6 +105,7 @@ const QuestionCard = ({ question, onClick }) => {
               <div className="flex items-center gap-2">
                 <span className="text-lg">{question.authorAvatar}</span>
                 <span>{question.author}</span>
+                {question.author === 'Fuxion Shop' && <VerifiedBadge size="sm" />}
               </div>
 
               {/* Stats */}

@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Heart, Sparkles, Zap, CheckCircle2, MessageCircle, Star } from 'lucide-react';
+import { ArrowRight, Heart, Sparkles, Zap, CheckCircle2, MessageCircle, Star, ShoppingCart } from 'lucide-react';
 import { toast } from "@/components/ui/use-toast";
 import { getImageUrl, getPlaceholderImage } from '@/lib/imageUtils';
 
@@ -211,13 +211,23 @@ const HomePage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.65 }}
+                className="flex flex-col sm:flex-row gap-4"
               >
-                <Button 
-                  size="lg" 
+                <Button
+                  size="lg"
                   className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-full shadow-lg dark:neon-glow text-lg px-8 py-6"
                   onClick={() => handleWhatsAppClick('Hola, quiero empezar mi cambio con Fuxion')}
                 >
                   Quiero empezar mi cambio <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="font-bold rounded-full text-lg px-8 py-6 border-2"
+                  onClick={() => window.open('https://ifuxion.com/daniel/enrollment/chooseperson', '_blank')}
+                >
+                  <ShoppingCart className="mr-2 h-5 w-5" />
+                  Tienda Oficial
                 </Button>
               </motion.div>
             </div>
@@ -412,13 +422,24 @@ const HomePage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.5 }}
           >
-            <Button
-              size="lg"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-full shadow-lg"
-              onClick={() => handleWhatsAppClick('Hola, quiero mi recomendación personalizada')}
-            >
-              Quiero mi recomendación personalizada <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                size="lg"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-full shadow-lg"
+                onClick={() => handleWhatsAppClick('Hola, quiero mi recomendación personalizada')}
+              >
+                Quiero mi recomendación personalizada <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="font-bold rounded-full border-2"
+                onClick={() => window.open('https://ifuxion.com/daniel/enrollment/chooseperson', '_blank')}
+              >
+                <ShoppingCart className="mr-2 h-5 w-5" />
+                Ver Tienda
+              </Button>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -566,6 +587,7 @@ const HomePage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Button
               size="lg"
@@ -573,6 +595,15 @@ const HomePage = () => {
               onClick={() => handleWhatsAppClick('Hola, quiero iniciar mi cambio ahora')}
             >
               Iniciar mi cambio ahora <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="font-bold rounded-full text-lg px-8 py-6 border-2"
+              onClick={() => window.open('https://ifuxion.com/daniel/enrollment/chooseperson', '_blank')}
+            >
+              <ShoppingCart className="mr-2 h-5 w-5" />
+              Comprar Ahora
             </Button>
           </motion.div>
         </div>

@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { startForumBots } from '@/services/forumBotService';
 
 const ForumContext = createContext();
 
@@ -10,120 +11,9 @@ export const useForumContext = () => {
   return context;
 };
 
-// Datos de ejemplo iniciales
-const initialQuestions = [
-  {
-    id: 1,
-    author: 'María González',
-    authorAvatar: '👩‍💼',
-    title: '¿Cómo funciona la garantía de los productos?',
-    content: 'Me gustaría saber más detalles sobre la política de garantía. ¿Qué cubre exactamente y por cuánto tiempo?',
-    category: 'Garantías',
-    votes: 15,
-    answers: 3,
-    views: 234,
-    solved: true,
-    createdAt: '2025-01-15T10:30:00',
-    tags: ['garantía', 'políticas', 'devoluciones'],
-  },
-  {
-    id: 2,
-    author: 'Carlos Méndez',
-    authorAvatar: '👨‍💻',
-    title: '¿Hacen envíos internacionales?',
-    content: 'Vivo en Argentina y me interesa comprar algunos productos. ¿Realizan envíos fuera de Chile?',
-    category: 'Envíos',
-    votes: 8,
-    answers: 2,
-    views: 145,
-    solved: false,
-    createdAt: '2025-01-16T14:20:00',
-    tags: ['envíos', 'internacional'],
-  },
-  {
-    id: 3,
-    author: 'Ana Silva',
-    authorAvatar: '👩‍🎓',
-    title: '¿Los productos tienen stock real o son por pedido?',
-    content: 'Quiero asegurarme de que el producto que compre esté disponible de inmediato.',
-    category: 'Stock',
-    votes: 12,
-    answers: 1,
-    views: 189,
-    solved: true,
-    createdAt: '2025-01-14T09:15:00',
-    tags: ['stock', 'disponibilidad'],
-  },
-];
-
-const initialAnswers = {
-  1: [
-    {
-      id: 1,
-      questionId: 1,
-      author: 'Soporte Fuxion',
-      authorAvatar: '🚀',
-      content: 'Todos nuestros productos cuentan con garantía de 12 meses contra defectos de fabricación. La garantía cubre cualquier problema técnico que no sea causado por mal uso del producto.',
-      votes: 10,
-      isAccepted: true,
-      createdAt: '2025-01-15T11:00:00',
-    },
-    {
-      id: 2,
-      questionId: 1,
-      author: 'Pedro Ruiz',
-      authorAvatar: '👨‍🔧',
-      content: 'Yo tuve un problema con mi laptop hace 3 meses y me la reemplazaron sin problema. El servicio fue excelente.',
-      votes: 5,
-      isAccepted: false,
-      createdAt: '2025-01-15T15:30:00',
-    },
-    {
-      id: 3,
-      questionId: 1,
-      author: 'Laura Torres',
-      authorAvatar: '👩‍🦰',
-      content: '¿La garantía también cubre daños por transporte?',
-      votes: 2,
-      isAccepted: false,
-      createdAt: '2025-01-16T08:45:00',
-    },
-  ],
-  2: [
-    {
-      id: 4,
-      questionId: 2,
-      author: 'Soporte Fuxion',
-      authorAvatar: '🚀',
-      content: 'Por el momento solo realizamos envíos dentro de Chile. Estamos trabajando en expandir nuestro servicio a otros países de Latinoamérica próximamente.',
-      votes: 6,
-      isAccepted: false,
-      createdAt: '2025-01-16T15:00:00',
-    },
-    {
-      id: 5,
-      questionId: 2,
-      author: 'Roberto Campos',
-      authorAvatar: '👨‍🚀',
-      content: 'Puedes usar un servicio de casilla de correo en Chile y ellos te lo reenvían a Argentina.',
-      votes: 3,
-      isAccepted: false,
-      createdAt: '2025-01-16T16:20:00',
-    },
-  ],
-  3: [
-    {
-      id: 6,
-      questionId: 3,
-      author: 'Soporte Fuxion',
-      authorAvatar: '🚀',
-      content: 'Todos los productos que ves en la web tienen stock real en nuestro almacén. El envío se realiza dentro de las 24-48 horas siguientes a la compra.',
-      votes: 8,
-      isAccepted: true,
-      createdAt: '2025-01-14T10:00:00',
-    },
-  ],
-};
+// Datos de ejemplo iniciales - Foro vacío para que los bots lo llenen
+const initialQuestions = [];
+const initialAnswers = {};
 
 export const ForumProvider = ({ children }) => {
   const [questions, setQuestions] = useState([]);
@@ -134,24 +24,48 @@ export const ForumProvider = ({ children }) => {
 
   // Cargar datos desde localStorage o usar datos iniciales
   useEffect(() => {
-    const savedQuestions = localStorage.getItem('forumQuestions');
-    const savedAnswers = localStorage.getItem('forumAnswers');
-    const savedReviews = localStorage.getItem('productReviews');
+    // Verificar si necesitamos limpiar el localStorage (primera carga con bots)
+    const hasOldData = localStorage.getItem('forumQuestions');
+    const botsInitialized = localStorage.getItem('forumBotsInitialized');
 
-    if (savedQuestions) {
-      setQuestions(JSON.parse(savedQuestions));
-    } else {
+    // Si hay datos viejos pero los bots no se han inicializado, limpiar todo
+    if (hasOldData && !botsInitialized) {
+      console.log('🧹 Limpiando conversaciones antiguas del foro...');
+      localStorage.removeItem('forumQuestions');
+      localStorage.removeItem('forumAnswers');
+      localStorage.removeItem('productReviews');
+      localStorage.setItem('forumBotsInitialized', 'true');
+
+      // Iniciar con datos vacíos
       setQuestions(initialQuestions);
-    }
-
-    if (savedAnswers) {
-      setAnswers(JSON.parse(savedAnswers));
-    } else {
       setAnswers(initialAnswers);
-    }
+      setReviews([]);
+    } else {
+      // Cargar normalmente
+      const savedQuestions = localStorage.getItem('forumQuestions');
+      const savedAnswers = localStorage.getItem('forumAnswers');
+      const savedReviews = localStorage.getItem('productReviews');
 
-    if (savedReviews) {
-      setReviews(JSON.parse(savedReviews));
+      if (savedQuestions) {
+        setQuestions(JSON.parse(savedQuestions));
+      } else {
+        setQuestions(initialQuestions);
+      }
+
+      if (savedAnswers) {
+        setAnswers(JSON.parse(savedAnswers));
+      } else {
+        setAnswers(initialAnswers);
+      }
+
+      if (savedReviews) {
+        setReviews(JSON.parse(savedReviews));
+      }
+
+      // Marcar que los bots ya fueron inicializados
+      if (!botsInitialized) {
+        localStorage.setItem('forumBotsInitialized', 'true');
+      }
     }
   }, []);
 
@@ -253,6 +167,32 @@ export const ForumProvider = ({ children }) => {
     ));
   };
 
+  // Eliminar pregunta (solo para moderador/dueño)
+  const deleteQuestion = (questionId) => {
+    setQuestions(questions.filter(q => q.id !== questionId));
+    // También eliminar las respuestas asociadas
+    const newAnswers = { ...answers };
+    delete newAnswers[questionId];
+    setAnswers(newAnswers);
+  };
+
+  // Eliminar respuesta (solo para moderador/dueño)
+  const deleteAnswer = (questionId, answerId) => {
+    setAnswers({
+      ...answers,
+      [questionId]: answers[questionId].filter(a => a.id !== answerId)
+    });
+    // Decrementar contador de respuestas
+    setQuestions(questions.map(q =>
+      q.id === questionId ? { ...q, answers: Math.max(0, q.answers - 1) } : q
+    ));
+  };
+
+  // Eliminar reseña (solo para moderador/dueño)
+  const deleteReview = (reviewId) => {
+    setReviews(reviews.filter(r => r.id !== reviewId));
+  };
+
   // Obtener pregunta por ID
   const getQuestionById = (id) => {
     return questions.find(q => q.id === parseInt(id));
@@ -336,6 +276,9 @@ export const ForumProvider = ({ children }) => {
     voteAnswer,
     acceptAnswer,
     incrementViews,
+    deleteQuestion,
+    deleteAnswer,
+    deleteReview,
     getQuestionById,
     getAnswersByQuestionId,
     getFilteredQuestions,
@@ -345,6 +288,18 @@ export const ForumProvider = ({ children }) => {
     getAllReviews,
     getAverageRating,
   };
+
+  // Iniciar bots automáticos del foro
+  useEffect(() => {
+    // Solo iniciar bots si hay contexto completo
+    if (questions && addQuestion && addAnswer) {
+      startForumBots({
+        questions,
+        addQuestion,
+        addAnswer
+      });
+    }
+  }, []); // Solo ejecutar una vez al montar
 
   return <ForumContext.Provider value={value}>{children}</ForumContext.Provider>;
 };

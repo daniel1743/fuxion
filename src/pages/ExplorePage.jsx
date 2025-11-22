@@ -123,6 +123,7 @@ const ExplorePage = () => {
   const { addToCart } = useCart();
   const [searchParams] = useSearchParams();
   const categoriaParam = searchParams.get('categoria');
+  const searchQuery = searchParams.get('search');
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -144,17 +145,31 @@ const ExplorePage = () => {
     return products;
   }, []);
 
-  // Filtrar productos por categoría si hay parámetro
+  // Filtrar productos por categoría y búsqueda
   const filteredProducts = useMemo(() => {
-    if (!categoriaParam || !categoryMapping[categoriaParam]) {
-      return allProducts;
+    let products = allProducts;
+
+    // Filtrar por categoría
+    if (categoriaParam && categoryMapping[categoriaParam]) {
+      const categoriasDB = categoryMapping[categoriaParam];
+      products = products.filter(product =>
+        categoriasDB.includes(product.categoria)
+      );
     }
 
-    const categoriasDB = categoryMapping[categoriaParam];
-    return allProducts.filter(product =>
-      categoriasDB.includes(product.categoria)
-    );
-  }, [allProducts, categoriaParam]);
+    // Filtrar por búsqueda
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      products = products.filter(product =>
+        product.name.toLowerCase().includes(query) ||
+        product.description.toLowerCase().includes(query) ||
+        product.categoria.toLowerCase().includes(query) ||
+        (product.features && product.features.some(f => f.toLowerCase().includes(query)))
+      );
+    }
+
+    return products;
+  }, [allProducts, categoriaParam, searchQuery]);
 
   const handleAddToCart = (product) => {
     addToCart(product);
@@ -195,8 +210,17 @@ const ExplorePage = () => {
 
       <div className="text-center mb-12">
         <h1 className="text-4xl md:text-6xl font-extrabold text-foreground tracking-tighter">
-          {categoriaParam ? getCategoryName(categoriaParam) : 'Todos los Productos'}
+          {searchQuery
+            ? `Resultados para "${searchQuery}"`
+            : categoriaParam
+            ? getCategoryName(categoriaParam)
+            : 'Todos los Productos'}
         </h1>
+        {searchQuery && (
+          <p className="mt-4 text-muted-foreground">
+            {filteredProducts.length} producto{filteredProducts.length !== 1 ? 's' : ''} encontrado{filteredProducts.length !== 1 ? 's' : ''}
+          </p>
+        )}
         <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground">
           {categoriaParam 
             ? `Explora ${filteredProducts.length} productos de ${getCategoryName(categoriaParam).toLowerCase()}.`

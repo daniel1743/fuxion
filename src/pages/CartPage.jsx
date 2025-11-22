@@ -345,6 +345,25 @@ const CartPage = () => {
                   Enviar Pedido por WhatsApp
                 </Button>
 
+                <div className="relative my-4">
+                  <div className="absolute inset-0 flex items-center">
+                    <div className="w-full border-t border-border"></div>
+                  </div>
+                  <div className="relative flex justify-center text-xs">
+                    <span className="bg-card px-2 text-muted-foreground">O compra directamente</span>
+                  </div>
+                </div>
+
+                <Button
+                  onClick={() => window.open('https://ifuxion.com/daniel/enrollment/chooseperson', '_blank')}
+                  variant="outline"
+                  className="w-full h-12 text-lg gap-2"
+                  size="lg"
+                >
+                  <ShoppingCart className="h-5 w-5" />
+                  Ir a Tienda Oficial Fuxion
+                </Button>
+
                 <p className="text-xs text-muted-foreground text-center mt-4">
                   Al enviar, se abrirá WhatsApp con tu pedido completo
                 </p>

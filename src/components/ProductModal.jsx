@@ -88,24 +88,39 @@ const ProductModal = ({ product, isOpen, onClose }) => {
                     <div className="space-y-3">
                       <h4 className="font-semibold text-foreground">Características destacadas:</h4>
                       <div className="grid grid-cols-1 gap-3">
-                        <div className="flex items-center gap-3 text-sm">
-                          <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                            <Package className="h-5 w-5 text-primary" />
-                          </div>
-                          <span className="text-muted-foreground">Envío gratis en compras superiores a $50</span>
-                        </div>
-                        <div className="flex items-center gap-3 text-sm">
-                          <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                            <Shield className="h-5 w-5 text-primary" />
-                          </div>
-                          <span className="text-muted-foreground">Garantía de 1 año</span>
-                        </div>
-                        <div className="flex items-center gap-3 text-sm">
-                          <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                            <Zap className="h-5 w-5 text-primary" />
-                          </div>
-                          <span className="text-muted-foreground">Entrega en 2-3 días hábiles</span>
-                        </div>
+                        {product.features && product.features.length > 0 ? (
+                          product.features.slice(0, 3).map((feature, index) => (
+                            <div key={index} className="flex items-center gap-3 text-sm">
+                              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                                {index === 0 && <Package className="h-5 w-5 text-primary" />}
+                                {index === 1 && <Shield className="h-5 w-5 text-primary" />}
+                                {index === 2 && <Zap className="h-5 w-5 text-primary" />}
+                              </div>
+                              <span className="text-muted-foreground">{feature}</span>
+                            </div>
+                          ))
+                        ) : (
+                          <>
+                            <div className="flex items-center gap-3 text-sm">
+                              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                                <Package className="h-5 w-5 text-primary" />
+                              </div>
+                              <span className="text-muted-foreground">100% Natural y Orgánico</span>
+                            </div>
+                            <div className="flex items-center gap-3 text-sm">
+                              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                                <Shield className="h-5 w-5 text-primary" />
+                              </div>
+                              <span className="text-muted-foreground">Certificado por Fuxion Biotech</span>
+                            </div>
+                            <div className="flex items-center gap-3 text-sm">
+                              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                                <Zap className="h-5 w-5 text-primary" />
+                              </div>
+                              <span className="text-muted-foreground">Resultados visibles en semanas</span>
+                            </div>
+                          </>
+                        )}
                       </div>
                     </div>
 
