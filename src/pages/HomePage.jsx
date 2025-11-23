@@ -162,6 +162,24 @@ const HomePage = () => {
       <Helmet>
         <title>Fuxion — Transforma tu cuerpo desde adentro | Pérdida de Peso y Bienestar Femenino</title>
         <meta name="description" content="Descubre el sistema Fuxion: productos naturales diseñados para ayudarte a desinflamar, controlar tu peso, mejorar tu digestión y aumentar tu energía diaria. Sin dietas extremas. Sin sufrimiento. Resultados reales." />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={typeof window !== 'undefined' ? window.location.href : 'https://tiendafuxion.space/'} />
+        <meta property="og:title" content="Fuxion Shop - Transforma tu cuerpo desde adentro" />
+        <meta property="og:description" content="Descubre el sistema Fuxion: productos naturales diseñados para ayudarte a desinflamar, controlar tu peso, mejorar tu digestión y aumentar tu energía diaria. Sin dietas extremas. Sin sufrimiento. Resultados reales." />
+        <meta property="og:image" content={`${typeof window !== 'undefined' ? window.location.origin : 'https://tiendafuxion.space'}/img/familia.fuxion.png`} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:site_name" content="Fuxion Shop" />
+        <meta property="og:locale" content="es_CL" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Fuxion Shop - Transforma tu cuerpo desde adentro" />
+        <meta name="twitter:description" content="Descubre el sistema Fuxion: productos naturales diseñados para ayudarte a desinflamar, controlar tu peso, mejorar tu digestión y aumentar tu energía diaria." />
+        <meta name="twitter:image" content={`${typeof window !== 'undefined' ? window.location.origin : 'https://tiendafuxion.space'}/img/familia.fuxion.png`} />
       </Helmet>
 
       {/* SECCIÓN 1 – HERO */}
