@@ -38,14 +38,14 @@ const ProductReviewCard = ({ review, onLike }) => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-card border border-border rounded-lg p-6 hover:border-primary/50 transition-all duration-200"
+      className="bg-card border border-border rounded-lg p-4 sm:p-6 hover:border-primary/50 transition-all duration-200 w-full overflow-hidden"
     >
       {/* Header */}
-      <div className="flex items-start justify-between mb-4">
-        <div className="space-y-2">
+      <div className="flex items-start justify-between mb-4 gap-2 min-w-0">
+        <div className="space-y-2 flex-1 min-w-0">
           {/* Author */}
-          <div className="flex items-center gap-2">
-            <span className="font-semibold text-foreground">{review.author}</span>
+          <div className="flex items-center gap-2 min-w-0">
+            <span className="font-semibold text-foreground truncate">{review.author}</span>
             {review.verified && (
               <Badge variant="secondary" className="text-xs">
                 ✓ Compra verificada
@@ -63,7 +63,7 @@ const ProductReviewCard = ({ review, onLike }) => {
         </div>
 
         {/* Date */}
-        <span className="text-xs text-muted-foreground">{formatDate(review.createdAt)}</span>
+        <span className="text-xs text-muted-foreground whitespace-nowrap flex-shrink-0">{formatDate(review.createdAt)}</span>
       </div>
 
       {/* Product Name (if applicable) */}
@@ -76,7 +76,7 @@ const ProductReviewCard = ({ review, onLike }) => {
       )}
 
       {/* Comment */}
-      <p className="text-foreground leading-relaxed mb-4">{review.comment}</p>
+      <p className="text-foreground leading-relaxed mb-4 break-words overflow-hidden">{review.comment}</p>
 
       {/* Footer - Likes and Actions */}
       <div className="flex items-center gap-4 pt-3 border-t border-border">

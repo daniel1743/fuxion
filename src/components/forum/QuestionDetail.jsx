@@ -54,10 +54,20 @@ const QuestionDetail = ({ questionId, onClose }) => {
   const handleSubmitAnswer = (e) => {
     e.preventDefault();
 
-    if (!newAnswer.author || !newAnswer.content) {
+    // Validar campos requeridos (para admin solo validar contenido)
+    if (!isAdmin && !newAnswer.author) {
       toast({
-        title: '⚠️ Campos incompletos',
-        description: 'Por favor completa todos los campos.',
+        title: '⚠️ Nombre requerido',
+        description: 'Por favor ingresa tu nombre.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    if (!newAnswer.content || !newAnswer.content.trim()) {
+      toast({
+        title: '⚠️ Respuesta requerida',
+        description: 'Por favor escribe tu respuesta.',
         variant: 'destructive',
       });
       return;
@@ -129,79 +139,80 @@ const QuestionDetail = ({ questionId, onClose }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 overflow-y-auto"
+      className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 overflow-y-auto overflow-x-hidden"
       onClick={onClose}
     >
-      <div className="min-h-screen p-4 md:p-8">
+      <div className="min-h-screen p-3 sm:p-4 md:p-8 w-full">
         <motion.div
           initial={{ scale: 0.95, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.95, opacity: 0 }}
           onClick={(e) => e.stopPropagation()}
-          className="max-w-4xl mx-auto bg-card border border-border rounded-xl overflow-hidden"
+          className="max-w-4xl mx-auto bg-card border border-border rounded-xl overflow-hidden w-full"
         >
           {/* Header */}
-          <div className="bg-background/50 border-b border-border p-6 flex items-center justify-between">
-            <Button variant="ghost" size="sm" onClick={onClose} className="flex items-center gap-2">
-              <ArrowLeft className="w-4 h-4" />
-              Volver al foro
+          <div className="bg-background/50 border-b border-border p-3 sm:p-4 md:p-6 flex items-center justify-between">
+            <Button variant="ghost" size="sm" onClick={onClose} className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm">
+              <ArrowLeft className="w-3 h-3 sm:w-4 sm:h-4" />
+              <span className="hidden sm:inline">Volver al foro</span>
+              <span className="sm:hidden">Volver</span>
             </Button>
-            <Button variant="ghost" size="icon" onClick={onClose}>
-              <X className="w-5 h-5" />
+            <Button variant="ghost" size="icon" onClick={onClose} className="h-8 w-8 sm:h-10 sm:w-10">
+              <X className="w-4 h-4 sm:w-5 sm:h-5" />
             </Button>
           </div>
 
           {/* Question */}
-          <div className="p-6 md:p-8 border-b border-border">
-            <div className="flex gap-6">
+          <div className="p-3 sm:p-4 md:p-6 lg:p-8 border-b border-border">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6">
               {/* Voting */}
-              <div className="flex flex-col items-center gap-2">
+              <div className="flex sm:flex-col items-center sm:items-center gap-2 justify-start sm:justify-start flex-shrink-0">
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => handleVoteQuestion(1)}
-                  className="p-2 hover:bg-primary/10 hover:text-primary"
+                  className="p-1.5 sm:p-2 hover:bg-primary/10 hover:text-primary"
                 >
-                  <ThumbsUp className="w-5 h-5" />
+                  <ThumbsUp className="w-4 h-4 sm:w-5 sm:h-5" />
                 </Button>
-                <span className="text-2xl font-bold text-foreground">{question.votes}</span>
+                <span className="text-lg sm:text-xl md:text-2xl font-bold text-foreground">{question.votes}</span>
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => handleVoteQuestion(-1)}
-                  className="p-2 hover:bg-destructive/10 hover:text-destructive"
+                  className="p-1.5 sm:p-2 hover:bg-destructive/10 hover:text-destructive"
                 >
-                  <ThumbsDown className="w-5 h-5" />
+                  <ThumbsDown className="w-4 h-4 sm:w-5 sm:h-5" />
                 </Button>
               </div>
 
               {/* Content */}
-              <div className="flex-1 space-y-4">
-                <div className="flex items-start justify-between gap-4">
-                  <h1 className="text-2xl md:text-3xl font-bold text-foreground">{question.title}</h1>
+              <div className="flex-1 space-y-3 sm:space-y-4 min-w-0 overflow-hidden">
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 sm:gap-4">
+                  <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground break-words overflow-hidden">{question.title}</h1>
                   {question.solved && (
-                    <Badge variant="success" className="bg-green-500/20 text-green-400 border-green-500/30 flex items-center gap-1 whitespace-nowrap">
-                      <CheckCircle2 className="w-4 h-4" />
+                    <Badge variant="success" className="bg-green-500/20 text-green-400 border-green-500/30 flex items-center gap-1 whitespace-nowrap self-start">
+                      <CheckCircle2 className="w-3 h-3 sm:w-4 sm:h-4" />
                       Resuelto
                     </Badge>
                   )}
                 </div>
 
-                <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-2">
-                    <span className="text-2xl">{question.authorAvatar}</span>
-                    <span className="font-medium text-foreground">{question.author}</span>
+                <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-muted-foreground">
+                  <div className="flex items-center gap-1.5 sm:gap-2">
+                    <span className="text-lg sm:text-xl md:text-2xl">{question.authorAvatar}</span>
+                    <span className="font-medium text-foreground truncate max-w-[150px] sm:max-w-none">{question.author}</span>
                   </div>
-                  <span>•</span>
-                  <span>{formatDate(question.createdAt)}</span>
-                  <span>•</span>
-                  <Badge variant="secondary">{question.category}</Badge>
+                  <span className="hidden sm:inline">•</span>
+                  <span className="text-xs sm:text-sm break-words">{formatDate(question.createdAt)}</span>
+                  <span className="hidden sm:inline">•</span>
+                  <Badge variant="secondary" className="text-xs">{question.category}</Badge>
                 </div>
 
-                <p className="text-foreground text-lg leading-relaxed">{question.content}</p>
+                <p className="text-sm sm:text-base md:text-lg text-foreground leading-relaxed break-words">{question.content}</p>
 
                 {question.tags && question.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-2 pt-2">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-2">
                     {question.tags.map((tag, index) => (
                       <Badge key={index} variant="outline" className="text-xs">
                         {tag}
@@ -214,12 +225,12 @@ const QuestionDetail = ({ questionId, onClose }) => {
           </div>
 
           {/* Answers */}
-          <div className="p-6 md:p-8">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-bold text-foreground">
+          <div className="p-3 sm:p-4 md:p-6 lg:p-8">
+            <div className="flex items-center justify-between mb-4 sm:mb-6">
+              <h2 className="text-lg sm:text-xl font-bold text-foreground">
                 {answers.length} {answers.length === 1 ? 'Respuesta' : 'Respuestas'}
               </h2>
-              <Button onClick={() => setShowAnswerForm(!showAnswerForm)} size="sm">
+              <Button onClick={() => setShowAnswerForm(!showAnswerForm)} size="sm" className="text-xs sm:text-sm">
                 {showAnswerForm ? 'Cancelar' : 'Responder'}
               </Button>
             </div>
@@ -235,14 +246,16 @@ const QuestionDetail = ({ questionId, onClose }) => {
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="answer-author">Tu Nombre *</Label>
+                    <Label htmlFor="answer-author">
+                      Tu Nombre {!isAdmin && '*'}
+                    </Label>
                     <Input
                       id="answer-author"
                       value={isAdmin ? 'Fuxion Shop' : newAnswer.author}
                       onChange={(e) => setNewAnswer({ ...newAnswer, author: e.target.value })}
                       placeholder="Tu nombre"
                       disabled={isAdmin}
-                      required
+                      required={!isAdmin}
                       className={isAdmin ? 'bg-primary/10 border-primary/50' : ''}
                     />
                   </div>

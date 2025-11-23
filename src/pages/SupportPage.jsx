@@ -14,14 +14,17 @@ import {
   CheckCircle2,
   MessageSquare,
   HelpCircle,
-  Star
+  Star,
+  Settings
 } from 'lucide-react';
 import { useForumContext } from '@/context/ForumContext';
+import { useAdmin } from '@/context/AdminContext';
 import QuestionCard from '@/components/forum/QuestionCard';
 import NewQuestionForm from '@/components/forum/NewQuestionForm';
 import QuestionDetail from '@/components/forum/QuestionDetail';
 import ProductReviewForm from '@/components/forum/ProductReviewForm';
 import ProductReviewCard from '@/components/forum/ProductReviewCard';
+import AdminPanel from '@/components/admin/AdminPanel';
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -40,10 +43,12 @@ const SupportPage = () => {
     addReview,
     likeReview
   } = useForumContext();
+  const { isAdmin } = useAdmin();
   const [showNewQuestion, setShowNewQuestion] = useState(false);
   const [showNewReview, setShowNewReview] = useState(false);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [showAdminPanel, setShowAdminPanel] = useState(false);
 
   const questions = getFilteredQuestions();
   const allReviews = getAllReviews();
@@ -74,7 +79,7 @@ const SupportPage = () => {
       exit="out"
       variants={pageVariants}
       transition={{ duration: 0.5 }}
-      className="container mx-auto px-6 py-28"
+      className="container mx-auto px-4 sm:px-6 py-28 max-w-7xl overflow-x-hidden"
     >
       <Helmet>
         <title>Foro de Soporte — Fuxion Shop</title>
@@ -101,26 +106,26 @@ const SupportPage = () => {
         </p>
 
         {/* Stats */}
-        <div className="flex justify-center gap-8 mt-8">
-          <div className="text-center">
-            <div className="text-3xl font-bold text-primary">{stats.total}</div>
-            <div className="text-sm text-muted-foreground">Preguntas</div>
+        <div className="flex justify-center gap-4 sm:gap-8 mt-8 flex-wrap">
+          <div className="text-center min-w-[80px]">
+            <div className="text-2xl sm:text-3xl font-bold text-primary">{stats.total}</div>
+            <div className="text-xs sm:text-sm text-muted-foreground">Preguntas</div>
           </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-green-400">{stats.solved}</div>
-            <div className="text-sm text-muted-foreground">Resueltas</div>
+          <div className="text-center min-w-[80px]">
+            <div className="text-2xl sm:text-3xl font-bold text-green-400">{stats.solved}</div>
+            <div className="text-xs sm:text-sm text-muted-foreground">Resueltas</div>
           </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-blue-400">{stats.totalAnswers}</div>
-            <div className="text-sm text-muted-foreground">Respuestas</div>
+          <div className="text-center min-w-[80px]">
+            <div className="text-2xl sm:text-3xl font-bold text-blue-400">{stats.totalAnswers}</div>
+            <div className="text-xs sm:text-sm text-muted-foreground">Respuestas</div>
           </div>
         </div>
       </div>
 
       {/* Tabs y Content */}
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-5xl mx-auto w-full">
         <Tabs defaultValue="questions" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 mb-8">
+          <TabsList className="grid w-full grid-cols-2 mb-6 sm:mb-8">
             <TabsTrigger value="questions" className="flex items-center gap-2">
               <MessageSquare className="w-4 h-4" />
               Preguntas y Respuestas
@@ -157,15 +162,28 @@ const SupportPage = () => {
                   <MessageSquarePlus className="w-5 h-5" />
                   Nueva Pregunta
                 </Button>
+
+                {/* Admin Panel Button - Only visible for admin */}
+                {isAdmin && (
+                  <Button
+                    onClick={() => setShowAdminPanel(true)}
+                    variant="outline"
+                    className="flex items-center gap-2 whitespace-nowrap border-purple-500/50 text-purple-400 hover:bg-purple-500/10"
+                    size="lg"
+                  >
+                    <Settings className="w-5 h-5" />
+                    Panel Admin
+                  </Button>
+                )}
               </div>
 
         {/* Filters */}
-        <div className="flex flex-wrap items-center gap-4">
+        <div className="flex flex-wrap items-center gap-3 sm:gap-4">
           {/* Filter by status */}
-          <div className="flex items-center gap-2">
-            <Filter className="w-4 h-4 text-muted-foreground" />
-            <span className="text-sm text-muted-foreground">Filtrar:</span>
-            <div className="flex gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
+            <Filter className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+            <span className="text-xs sm:text-sm text-muted-foreground whitespace-nowrap">Filtrar:</span>
+            <div className="flex gap-1.5 sm:gap-2 flex-wrap">
               <Button
                 variant={filter === 'all' ? 'default' : 'outline'}
                 size="sm"
@@ -194,13 +212,13 @@ const SupportPage = () => {
             </div>
           </div>
 
-          <div className="h-6 w-px bg-border" />
+          <div className="hidden sm:block h-6 w-px bg-border" />
 
           {/* Sort */}
-          <div className="flex items-center gap-2">
-            <TrendingUp className="w-4 h-4 text-muted-foreground" />
-            <span className="text-sm text-muted-foreground">Ordenar:</span>
-            <div className="flex gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
+            <TrendingUp className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+            <span className="text-xs sm:text-sm text-muted-foreground whitespace-nowrap">Ordenar:</span>
+            <div className="flex gap-1.5 sm:gap-2 flex-wrap">
               <Button
                 variant={sortBy === 'recent' ? 'default' : 'outline'}
                 size="sm"
@@ -344,6 +362,12 @@ const SupportPage = () => {
           <QuestionDetail
             questionId={selectedQuestion}
             onClose={() => setSelectedQuestion(null)}
+          />
+        )}
+        {showAdminPanel && (
+          <AdminPanel
+            isOpen={showAdminPanel}
+            onClose={() => setShowAdminPanel(false)}
           />
         )}
       </AnimatePresence>

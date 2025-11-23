@@ -143,18 +143,101 @@ IMPORTANTE: Solo devuelve la pregunta, nada más. Sin explicaciones.`;
 }
 
 /**
+ * Genera variaciones más naturales de respuestas según la personalidad del bot
+ */
+function generateVariationsByPersonality(bot, faqItem) {
+  const base = faqItem.respuesta;
+  const baseLower = faqItem.respuesta.toLowerCase();
+  
+  // Variaciones específicas por personalidad
+  const personalityVariations = {
+    'ConsumidorRegular': [
+      `Yo uso eso! ${base} La verdad que funciona bien 👍`,
+      `A mi me sirvió! ${base} Pruébalo hermano`,
+      `Weon, ${baseLower} Yo lo tomo hace rato y me va súper bien`,
+      `${base} Yo lo recomiendo, funciona re bien`,
+      `A mi me pasó lo mismo. ${base} Pruébalo y me cuentas`,
+      `Mi experiencia: ${baseLower} Dale una oportunidad`,
+      `${base} En mi opinión es bueno, vale la pena`,
+    ],
+    'NutricionistaExp': [
+      `${base} El mecanismo de acción es bastante efectivo según estudios.`,
+      `Desde el punto de vista nutricional: ${base} Los componentes activos son bien absorbidos.`,
+      `Técnicamente hablando, ${baseLower} La biodisponibilidad es adecuada.`,
+      `${base} Los bioactivos funcionan correctamente en el organismo.`,
+      `Según los principios de nutrición: ${base} El metabolismo los procesa bien.`,
+      `${base} Los nutrientes están en formas que el cuerpo asimila mejor.`,
+    ],
+    'CuriosoPreguntón': [
+      `${base} Alguien sabe más sobre esto?`,
+      `Interesante! ${base} X eso funciona entonces?`,
+      `${base} Tb hay otras opciones o solo esa?`,
+      `Oka, ${baseLower} Pero xq funciona así?`,
+      `${base} Alguien más lo probó? Quiero confirmar`,
+      `Gracias! ${base} Tb funciona para otras cosas?`,
+    ],
+    'Sabelotodo': [
+      `Exacto! ${base} Eso es correcto.`,
+      `${base} Así es como funciona, lo sé porque lo he estudiado.`,
+      `Efectivamente: ${base} Esto lo sé por experiencia propia y documentada.`,
+      `${base} Puedo confirmarlo, es la información correcta.`,
+      `Correcto. ${base} Esto es así porque los componentes trabajan de esa forma.`,
+      `${base} Lo sé con certeza, esta es la respuesta precisa.`,
+    ],
+    'NeuroticoPreocupado': [
+      `${base} Pero no tiene efectos secundarios cierto??`,
+      `Ok pero ${baseLower} Es seguro?? No me hará mal??`,
+      `${base} Alguien tuvo algún problema con esto??`,
+      `Gracias! ${base} Seguro que no tiene contraindicaciones??`,
+      `${base} Estoy preocupado, será que me cae mal??`,
+      `Agradezco la info pero ${baseLower} Es realmente seguro??`,
+    ],
+    'VendedorInformado': [
+      `${base} Si necesitas más info o combos, pregúntame!`,
+      `${base} Yo lo vendo y he visto excelentes resultados. Te puedo ayudar si quieres.`,
+      `${base} He ayudado a muchas personas con esto. Si te interesa, conversamos!`,
+      `Excelente pregunta! ${base} Si quieres te ayudo a armar tu plan.`,
+      `${base} Como vendedor, he visto casos exitosos. ¿Te interesa?`,
+      `${base} Lo tengo disponible si te sirve. Con gusto te ayudo!`,
+    ],
+    'PrincipianteInseguro': [
+      `${base} No sé si será así pero espero que sí...`,
+      `Gracias! ${base} Será que funciona para mi caso??`,
+      `${base} Espero que funcione, estoy un poco inseguro...`,
+      `Ok, ${baseLower} No sé si lo entiendo bien pero gracias!`,
+      `${base} Será que es seguro? No quiero que me haga mal...`,
+      `Gracias por la info! ${base} Confío en que me servirá...`,
+    ]
+  };
+
+  // Si tenemos variaciones específicas para esta personalidad, usarlas
+  if (personalityVariations[bot.name]) {
+    const variations = personalityVariations[bot.name];
+    return variations[Math.floor(Math.random() * variations.length)];
+  }
+
+  // Fallback genérico con más variación
+  const genericVariations = [
+    `${base}`,
+    `${base} 👍`,
+    `Mira, ${baseLower}`,
+    `En mi experiencia, ${baseLower}`,
+    `${base} Espero que te sirva!`,
+    `Según lo que sé: ${base}`,
+    `${base} Probablemente te sirva.`,
+    `Puedo confirmar que ${baseLower}`,
+    `${base} Esa es mi experiencia al menos.`,
+    `Yo diría que ${baseLower}`,
+  ];
+
+  return genericVariations[Math.floor(Math.random() * genericVariations.length)];
+}
+
+/**
  * Genera una respuesta usando DeepSeek basada en la base de datos
  */
 async function generateAnswer(bot, question, faqItem) {
-  // Fallback: usar variaciones de la respuesta original
-  const variations = [
-    faqItem.respuesta,
-    `${faqItem.respuesta} 👍`,
-    `Mira, ${faqItem.respuesta}`,
-    `En mi experiencia, ${faqItem.respuesta.toLowerCase()}`,
-    `${faqItem.respuesta} Espero que te sirva!`,
-  ];
-
+  // Intentar usar DeepSeek primero para generar respuesta única
   const prompt = `${bot.prompt}
 
 Alguien preguntó: "${question}"
@@ -164,22 +247,35 @@ Información de referencia:
 - Categoría: ${faqItem.categoria}
 - Etiquetas: ${faqItem.etiquetas.join(', ')}
 
-Genera UNA respuesta corta (2-3 líneas máximo) como si fueras este usuario.
-La respuesta debe:
-- Ser natural y coloquial
-- Estar basada en la información de referencia pero con tus palabras
-- Usar el tono de: ${bot.tone}
-- Incluir expresiones como "jajaja", "weon", "hermano", "x", "tb" si es apropiado para tu personalidad
+IMPORTANTE: Genera UNA respuesta corta (2-3 líneas máximo) como si fueras este usuario.
+La respuesta DEBE:
+- Ser completamente ÚNICA y diferente a otras respuestas sobre el mismo tema
+- Usar tus propias palabras, NO repetir literalmente la información de referencia
+- Reflejar tu personalidad: ${bot.tone}
+- Incluir expresiones naturales según tu estilo (${bot.style})
+- Ser natural y conversacional
+- Variar la estructura y el enfoque de respuesta
 
-IMPORTANTE: Solo devuelve la respuesta, nada más. Sin explicaciones.`;
+EJEMPLOS de cómo variar:
+- Si otros dijeron "Producto X + Producto Y = $100", tú podrías decir "Entre Producto X e Y son como $100, vale la pena" o "El combo cuesta alrededor de $100"
+- Agrega contexto personal: "A mi me funcionó", "Yo lo uso así", "He visto que..."
+
+IMPORTANTE: Crea una respuesta completamente original, no uses la respuesta base literalmente.`;
 
   try {
     const response = await sendMessageToDeepSeek(prompt, 'soporte');
-    return response.text.trim();
+    const generatedText = response.text.trim();
+    
+    // Verificar que la respuesta no sea muy similar a la base
+    if (generatedText && generatedText.length > 20) {
+      return generatedText;
+    }
+    // Si DeepSeek devuelve algo muy corto, usar variaciones
+    throw new Error('Respuesta muy corta de DeepSeek');
   } catch (error) {
-    console.warn('⚠️ DeepSeek no disponible, usando respuesta de base de datos:', error.message);
-    // Fallback: usar una variación aleatoria
-    return variations[Math.floor(Math.random() * variations.length)];
+    console.warn('⚠️ DeepSeek no disponible, usando variaciones por personalidad:', error.message);
+    // Usar variaciones más inteligentes según personalidad
+    return generateVariationsByPersonality(bot, faqItem);
   }
 }
 
@@ -213,8 +309,18 @@ export async function createAutoBotQuestion(addQuestion) {
 /**
  * Crea una respuesta automática a una pregunta existente
  */
-export async function createAutoBotAnswer(question, addAnswer) {
-  const bot = getRandomBot();
+export async function createAutoBotAnswer(question, addAnswer, existingAnswers = []) {
+  // Evitar que múltiples bots respondan lo mismo
+  // Seleccionar un bot que no haya respondido ya a esta pregunta
+  let bot = getRandomBot();
+  const usedBots = existingAnswers.map(a => a.author);
+  
+  // Si ya hay respuestas, intentar usar un bot diferente
+  let attempts = 0;
+  while (usedBots.includes(bot.name) && attempts < 5) {
+    bot = getRandomBot();
+    attempts++;
+  }
 
   // Buscar FAQ relacionada por tags
   let relatedFAQ = null;
@@ -235,9 +341,46 @@ export async function createAutoBotAnswer(question, addAnswer) {
     relatedFAQ = getRandomFAQ(question.category);
   }
 
+  // Generar respuesta única, diferente a las existentes
   console.log(`🤖 Bot ${bot.name} está respondiendo...`);
 
-  const answerText = await generateAnswer(bot, question.title, relatedFAQ);
+  let answerText = await generateAnswer(bot, question.title, relatedFAQ);
+  
+  // Verificar que la respuesta no sea muy similar a las existentes
+  const existingTexts = existingAnswers.map(a => a.content.toLowerCase());
+  const answerLower = answerText.toLowerCase();
+  
+  // Si la respuesta es muy similar a alguna existente, generar otra variación
+  const isTooSimilar = existingTexts.some(existing => {
+    // Calcular similitud simple (palabras en común)
+    const existingWords = existing.split(' ').filter(w => w.length > 3);
+    const answerWords = answerLower.split(' ').filter(w => w.length > 3);
+    const commonWords = existingWords.filter(w => answerWords.includes(w));
+    const similarity = commonWords.length / Math.max(existingWords.length, answerWords.length);
+    return similarity > 0.7; // Más del 70% de similitud
+  });
+
+  // Si es muy similar, usar variación más diferente
+  if (isTooSimilar && attempts < 3) {
+    console.log(`⚠️ Respuesta muy similar, generando variación...`);
+    answerText = generateVariationsByPersonality(bot, relatedFAQ);
+    
+    // Intentar hacerla más única agregando contexto del bot
+    const additions = [
+      'Desde mi experiencia personal',
+      'En mi caso',
+      'Yo lo he visto así',
+      'Según lo que he notado',
+      'Basándome en lo que sé',
+      'A mi me pasó que',
+    ];
+    const randomAddition = additions[Math.floor(Math.random() * additions.length)];
+    
+    // Solo agregar si no está ya incluido
+    if (!answerText.toLowerCase().includes(randomAddition.toLowerCase().split(' ')[0])) {
+      answerText = `${randomAddition}, ${answerText.toLowerCase()}`;
+    }
+  }
 
   const answerData = {
     author: bot.name,
@@ -246,7 +389,7 @@ export async function createAutoBotAnswer(question, addAnswer) {
   };
 
   const newAnswer = addAnswer(question.id, answerData);
-  console.log(`✅ Respuesta creada por ${bot.name}`);
+  console.log(`✅ Respuesta única creada por ${bot.name}:`, answerText.substring(0, 50) + '...');
 
   return newAnswer;
 }
@@ -255,7 +398,7 @@ export async function createAutoBotAnswer(question, addAnswer) {
  * Simula actividad en el foro (pregunta O respuesta)
  */
 export async function simulateForumActivity(forumContext) {
-  const { questions, addQuestion, addAnswer } = forumContext;
+  const { questions, addQuestion, addAnswer, getAnswersByQuestionId } = forumContext;
 
   // 70% probabilidad de responder a pregunta existente sin respuesta
   // 30% probabilidad de crear nueva pregunta
@@ -272,7 +415,12 @@ export async function simulateForumActivity(forumContext) {
         Math.floor(Math.random() * questionsNeedingAnswers.length)
       ];
 
-      await createAutoBotAnswer(randomQuestion, addAnswer);
+      // Obtener respuestas existentes para evitar duplicados
+      const existingAnswers = getAnswersByQuestionId ? 
+        getAnswersByQuestionId(randomQuestion.id) || [] : 
+        [];
+
+      await createAutoBotAnswer(randomQuestion, addAnswer, existingAnswers);
       return 'answer';
     }
   }

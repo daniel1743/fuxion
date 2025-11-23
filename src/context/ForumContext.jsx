@@ -24,48 +24,45 @@ export const ForumProvider = ({ children }) => {
 
   // Cargar datos desde localStorage o usar datos iniciales
   useEffect(() => {
-    // Verificar si necesitamos limpiar el localStorage (primera carga con bots)
-    const hasOldData = localStorage.getItem('forumQuestions');
-    const botsInitialized = localStorage.getItem('forumBotsInitialized');
+    // Cargar datos guardados
+    const savedQuestions = localStorage.getItem('forumQuestions');
+    const savedAnswers = localStorage.getItem('forumAnswers');
+    const savedReviews = localStorage.getItem('productReviews');
 
-    // Si hay datos viejos pero los bots no se han inicializado, limpiar todo
-    if (hasOldData && !botsInitialized) {
-      console.log('🧹 Limpiando conversaciones antiguas del foro...');
-      localStorage.removeItem('forumQuestions');
-      localStorage.removeItem('forumAnswers');
-      localStorage.removeItem('productReviews');
-      localStorage.setItem('forumBotsInitialized', 'true');
-
-      // Iniciar con datos vacíos
-      setQuestions(initialQuestions);
-      setAnswers(initialAnswers);
-      setReviews([]);
-    } else {
-      // Cargar normalmente
-      const savedQuestions = localStorage.getItem('forumQuestions');
-      const savedAnswers = localStorage.getItem('forumAnswers');
-      const savedReviews = localStorage.getItem('productReviews');
-
-      if (savedQuestions) {
+    if (savedQuestions) {
+      try {
         setQuestions(JSON.parse(savedQuestions));
-      } else {
+      } catch (error) {
+        console.error('Error al cargar preguntas:', error);
         setQuestions(initialQuestions);
       }
+    } else {
+      setQuestions(initialQuestions);
+    }
 
-      if (savedAnswers) {
+    if (savedAnswers) {
+      try {
         setAnswers(JSON.parse(savedAnswers));
-      } else {
+      } catch (error) {
+        console.error('Error al cargar respuestas:', error);
         setAnswers(initialAnswers);
       }
+    } else {
+      setAnswers(initialAnswers);
+    }
 
-      if (savedReviews) {
+    if (savedReviews) {
+      try {
         setReviews(JSON.parse(savedReviews));
+      } catch (error) {
+        console.error('Error al cargar reseñas:', error);
+        setReviews([]);
       }
+    }
 
-      // Marcar que los bots ya fueron inicializados
-      if (!botsInitialized) {
-        localStorage.setItem('forumBotsInitialized', 'true');
-      }
+    // Marcar que el foro fue inicializado
+    if (!localStorage.getItem('forumBotsInitialized')) {
+      localStorage.setItem('forumBotsInitialized', new Date().toISOString());
     }
   }, []);
 
@@ -290,16 +287,19 @@ export const ForumProvider = ({ children }) => {
   };
 
   // Iniciar bots automáticos del foro
-  useEffect(() => {
-    // Solo iniciar bots si hay contexto completo
-    if (questions && addQuestion && addAnswer) {
-      startForumBots({
-        questions,
-        addQuestion,
-        addAnswer
-      });
-    }
-  }, []); // Solo ejecutar una vez al montar
+  // TEMPORALMENTE DESHABILITADO - Los bots están causando conflictos
+  // con el panel de administración. Reactiva esto solo si quieres
+  // actividad automática de bots en el foro.
+  // useEffect(() => {
+  //   // Solo iniciar bots si hay contexto completo
+  //   if (questions && addQuestion && addAnswer) {
+  //     startForumBots({
+  //       questions,
+  //       addQuestion,
+  //       addAnswer
+  //     });
+  //   }
+  // }, []); // Solo ejecutar una vez al montar
 
   return <ForumContext.Provider value={value}>{children}</ForumContext.Provider>;
 };

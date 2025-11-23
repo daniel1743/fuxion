@@ -161,7 +161,7 @@ const CartPage = () => {
         <meta name="description" content="Revisa tu carrito y envía tu pedido por WhatsApp" />
       </Helmet>
 
-      <div className="container mx-auto max-w-6xl">
+      <div className="container mx-auto max-w-6xl px-4 sm:px-6">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-foreground mb-2">Tu Carrito</h1>
           <p className="text-muted-foreground">
@@ -169,9 +169,9 @@ const CartPage = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-6 lg:gap-8 justify-items-stretch">
           {/* Lista de productos */}
-          <div className="lg:col-span-2 space-y-4">
+          <div className="lg:col-span-2 space-y-4 w-full">
             {cartItems.map((item) => {
               return (
                 <motion.div
@@ -179,73 +179,75 @@ const CartPage = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, x: -100 }}
-                  className="bg-card border border-border rounded-xl p-4 flex gap-4"
+                  className="bg-card border border-border rounded-xl p-3 sm:p-4 w-full"
                 >
-                  {/* Imagen */}
-                  <div className="w-24 h-24 rounded-lg overflow-hidden bg-secondary flex-shrink-0">
-                    <img
-                      src={item.image || getPlaceholderImage('product')}
-                      alt={item.name}
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        if (e.target.src !== getPlaceholderImage('product')) {
-                          e.target.src = getPlaceholderImage('product');
-                        }
-                      }}
-                    />
-                  </div>
+                  {/* Layout responsive: columna en móvil, fila en desktop */}
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full">
+                    {/* Imagen y info básica */}
+                    <div className="flex gap-3 sm:flex-1">
+                      {/* Imagen */}
+                      <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-lg overflow-hidden bg-secondary flex-shrink-0">
+                        <img
+                          src={item.image || getPlaceholderImage('product')}
+                          alt={item.name}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            if (e.target.src !== getPlaceholderImage('product')) {
+                              e.target.src = getPlaceholderImage('product');
+                            }
+                          }}
+                        />
+                      </div>
 
-                  {/* Info */}
-                  <div className="flex-1 flex flex-col justify-between">
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-1">{item.name}</h3>
-                      <div className="flex items-center gap-2 mb-2">
-                        <p className="text-lg font-bold text-primary">
+                      {/* Info */}
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-semibold text-foreground mb-1 text-sm sm:text-base truncate">{item.name}</h3>
+                        <p className="text-base sm:text-lg font-bold text-primary">
                           ${typeof item.price === 'number' ? item.price.toLocaleString('es-CL') : item.price}
                         </p>
                       </div>
                     </div>
 
-                    {/* Controles */}
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
+                    {/* Controles y subtotal */}
+                    <div className="flex items-center justify-between sm:flex-col sm:items-end gap-3">
+                      {/* Controles de cantidad */}
+                      <div className="flex items-center gap-1 sm:gap-2">
                         <Button
                           variant="outline"
                           size="icon"
-                          className="h-8 w-8"
+                          className="h-7 w-7 sm:h-8 sm:w-8"
                           onClick={() => updateQuantity(item.id, item.quantity - 1)}
                         >
-                          <Minus className="h-4 w-4" />
+                          <Minus className="h-3 w-3 sm:h-4 sm:w-4" />
                         </Button>
-                        <span className="w-12 text-center font-semibold">{item.quantity}</span>
+                        <span className="w-8 sm:w-12 text-center font-semibold text-sm sm:text-base">{item.quantity}</span>
                         <Button
                           variant="outline"
                           size="icon"
-                          className="h-8 w-8"
+                          className="h-7 w-7 sm:h-8 sm:w-8"
                           onClick={() => updateQuantity(item.id, item.quantity + 1)}
                           disabled={item.quantity >= item.stock}
                         >
-                          <Plus className="h-4 w-4" />
+                          <Plus className="h-3 w-3 sm:h-4 sm:w-4" />
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-7 w-7 sm:h-8 sm:w-8 text-destructive hover:bg-destructive/10 ml-1"
+                          onClick={() => removeFromCart(item.id)}
+                        >
+                          <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
                         </Button>
                       </div>
 
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-8 w-8 text-destructive hover:bg-destructive/10"
-                        onClick={() => removeFromCart(item.id)}
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
+                      {/* Subtotal */}
+                      <div className="text-right">
+                        <p className="text-xs text-muted-foreground mb-0.5 hidden sm:block">Subtotal</p>
+                        <p className="text-base sm:text-lg font-bold text-foreground whitespace-nowrap">
+                          ${((typeof item.price === 'number' ? item.price : parseFloat(item.price) || 0) * item.quantity).toLocaleString('es-CL')}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-
-                  {/* Subtotal */}
-                  <div className="text-right">
-                    <p className="text-sm text-muted-foreground mb-1">Subtotal</p>
-                    <p className="text-lg font-bold text-foreground">
-                      ${((typeof item.price === 'number' ? item.price : parseFloat(item.price) || 0) * item.quantity).toFixed(2)}
-                    </p>
                   </div>
                 </motion.div>
               );
@@ -253,8 +255,8 @@ const CartPage = () => {
           </div>
 
           {/* Formulario y resumen */}
-          <div className="lg:col-span-1">
-            <div className="sticky top-24 space-y-6">
+          <div className="lg:col-span-1 w-full max-w-full">
+            <div className="sticky top-24 space-y-6 w-full">
               {/* Formulario de datos del cliente */}
               <div className="bg-card border border-border rounded-xl p-6">
                 <h2 className="text-xl font-bold text-foreground mb-4">Tus Datos</h2>

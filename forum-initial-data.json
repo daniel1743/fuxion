@@ -1,0 +1,637 @@
+{
+  "forumQuestions": [
+    {
+      "id": 1763830326994,
+      "author": "VendedorInformado",
+      "authorAvatar": "💼",
+      "title": "Por favor ayuda: ¿probal para hombres o mujeres?",
+      "content": "Hola! ¿PROBAL para hombres o mujeres?",
+      "category": "Línea Anti-Edad",
+      "tags": [
+        "hormonas",
+        "género",
+        "menopausia"
+      ],
+      "votes": 5,
+      "answers": 4,
+      "views": 24,
+      "solved": true,
+      "createdAt": "2025-11-20T15:09:16.892Z"
+    },
+    {
+      "id": 1763830326989,
+      "author": "NutricionistaExp",
+      "authorAvatar": "👨‍⚕️",
+      "title": "Tengo una duda: ¿puedo mezclar thermo t3 + nocarb-t?",
+      "content": "Hola! ¿Puedo mezclar THERMO T3 + NOCARB-T?",
+      "category": "Control de Peso",
+      "tags": [
+        "combinación",
+        "timing",
+        "efectividad"
+      ],
+      "votes": 7,
+      "answers": 2,
+      "views": 47,
+      "solved": false,
+      "createdAt": "2025-11-15T16:33:28.050Z"
+    },
+    {
+      "id": 1763830326981,
+      "author": "María González",
+      "authorAvatar": "👩‍💼",
+      "title": "Hola! REXET tiene aditivos malos?",
+      "content": "Hola! REXET tiene aditivos malos?",
+      "category": "Sistema DETOX",
+      "tags": [
+        "aditivos",
+        "natural",
+        "química"
+      ],
+      "votes": 10,
+      "answers": 1,
+      "views": 48,
+      "solved": false,
+      "createdAt": "2025-11-12T19:53:31.992Z"
+    },
+    {
+      "id": 1763830326980,
+      "author": "Sabelotodo",
+      "authorAvatar": "🧠",
+      "title": "Puedo tomar todo el detox junto? ??",
+      "content": "Hola! Puedo tomar todo el detox junto?",
+      "category": "Sistema DETOX",
+      "tags": [
+        "orden",
+        "timing",
+        "seguridad"
+      ],
+      "votes": 10,
+      "answers": 2,
+      "views": 25,
+      "solved": false,
+      "createdAt": "2025-11-12T03:12:39.718Z"
+    },
+    {
+      "id": 1763830326991,
+      "author": "NeuroticoPreocupado",
+      "authorAvatar": "😰",
+      "title": "Hola! Tengo gastritis crónica, ¿FLORA LIV?",
+      "content": "Hola! Tengo gastritis crónica, ¿FLORA LIV?",
+      "category": "Sistema DETOX",
+      "tags": [
+        "gastritis",
+        "transición",
+        "cuidado"
+      ],
+      "votes": 3,
+      "answers": 1,
+      "views": 8,
+      "solved": false,
+      "createdAt": "2025-11-11T23:30:09.021Z"
+    },
+    {
+      "id": 1763830326986,
+      "author": "ConsumidorRegular",
+      "authorAvatar": "👤",
+      "title": "¿ALPHA BALANCE limpia metales pesados?",
+      "content": "Hola! ¿ALPHA BALANCE limpia metales pesados?",
+      "category": "Sistema DETOX",
+      "tags": [
+        "metales pesados",
+        "limpieza",
+        "alcalinizante"
+      ],
+      "votes": 9,
+      "answers": 2,
+      "views": 40,
+      "solved": false,
+      "createdAt": "2025-11-10T13:14:16.715Z"
+    },
+    {
+      "id": 1763830326990,
+      "author": "VendedorInformado",
+      "authorAvatar": "💼",
+      "title": "BERRY BALANCE para cálculos renales? ??",
+      "content": "Hola! BERRY BALANCE para cálculos renales?",
+      "category": "Sistema DETOX",
+      "tags": [
+        "cálculos",
+        "prevención",
+        "urology"
+      ],
+      "votes": 8,
+      "answers": 2,
+      "views": 58,
+      "solved": false,
+      "createdAt": "2025-11-10T11:45:00.728Z"
+    },
+    {
+      "id": 1763830326993,
+      "author": "PrincipianteInseguro",
+      "authorAvatar": "🆕",
+      "title": "¿Costo tratamiento anti-edad completo? ??",
+      "content": "Hola! ¿Costo tratamiento anti-edad completo?",
+      "category": "Línea Anti-Edad",
+      "tags": [
+        "precio",
+        "inversión",
+        "valor"
+      ],
+      "votes": 5,
+      "answers": 4,
+      "views": 43,
+      "solved": false,
+      "createdAt": "2025-11-06T21:59:24.670Z"
+    },
+    {
+      "id": 1763830326988,
+      "author": "CuriosoPreguntón",
+      "authorAvatar": "🤔",
+      "title": "Tengo una duda: estoy en keto, ¿nocarb-t ok?",
+      "content": "Hola! Estoy en keto, ¿NOCARB-T ok?",
+      "category": "Control de Peso",
+      "tags": [
+        "keto",
+        "carbohidratos",
+        "fibra"
+      ],
+      "votes": 7,
+      "answers": 3,
+      "views": 30,
+      "solved": true,
+      "createdAt": "2025-11-06T21:54:35.923Z"
+    },
+    {
+      "id": 1763830326992,
+      "author": "PrincipianteInseguro",
+      "authorAvatar": "🆕",
+      "title": "Hola! ¿A qué edad tomar BEAUTY-IN?",
+      "content": "Hola! ¿A qué edad tomar BEAUTY-IN?",
+      "category": "Línea Anti-Edad",
+      "tags": [
+        "edad",
+        "prevención",
+        "efectividad"
+      ],
+      "votes": 3,
+      "answers": 1,
+      "views": 17,
+      "solved": false,
+      "createdAt": "2025-11-05T13:26:02.238Z"
+    },
+    {
+      "id": 1763830326985,
+      "author": "Sabelotodo",
+      "authorAvatar": "🧠",
+      "title": "¿THERMO T3 da rebote al dejar?",
+      "content": "Hola! ¿THERMO T3 da rebote al dejar?",
+      "category": "Control de Peso",
+      "tags": [
+        "rebote",
+        "mantenimiento",
+        "hábitos"
+      ],
+      "votes": 2,
+      "answers": 2,
+      "views": 46,
+      "solved": false,
+      "createdAt": "2025-11-04T14:08:08.526Z"
+    },
+    {
+      "id": 1763830326982,
+      "author": "Ana Silva",
+      "authorAvatar": "👩‍🎓",
+      "title": "¿BIOPROTEIN ACTIVE tiene gluten?",
+      "content": "Hola! ¿BIOPROTEIN ACTIVE tiene gluten?",
+      "category": "Control de Peso",
+      "tags": [
+        "gluten",
+        "celiaquía",
+        "seguridad"
+      ],
+      "votes": 2,
+      "answers": 4,
+      "views": 32,
+      "solved": true,
+      "createdAt": "2025-11-04T09:30:50.919Z"
+    },
+    {
+      "id": 1763830326983,
+      "author": "CuriosoPreguntón",
+      "authorAvatar": "🤔",
+      "title": "¿CAFE FIT en la noche me deja despierto?",
+      "content": "Hola! ¿CAFE FIT en la noche me deja despierto?",
+      "category": "Control de Peso",
+      "tags": [
+        "cafeína",
+        "sueño",
+        "timing"
+      ],
+      "votes": 5,
+      "answers": 1,
+      "views": 35,
+      "solved": true,
+      "createdAt": "2025-11-02T08:09:59.288Z"
+    },
+    {
+      "id": 1763830326987,
+      "author": "Sabelotodo",
+      "authorAvatar": "🧠",
+      "title": "¿ON mejora concentración o es placebo? ??",
+      "content": "Hola! ¿ON mejora concentración o es placebo?",
+      "category": "Vigor Mental",
+      "tags": [
+        "concentración",
+        "cerebro",
+        "memoria"
+      ],
+      "votes": 6,
+      "answers": 2,
+      "views": 12,
+      "solved": false,
+      "createdAt": "2025-11-02T03:42:01.466Z"
+    },
+    {
+      "id": 1763830326979,
+      "author": "Carlos Ruiz",
+      "authorAvatar": "👨‍💻",
+      "title": "Mi hijo tiene asma, ¿VERA+? ??",
+      "content": "Hola! Mi hijo tiene asma, ¿VERA+?",
+      "category": "Línea Inmunológica",
+      "tags": [
+        "asma",
+        "respiratorio",
+        "niños"
+      ],
+      "votes": 10,
+      "answers": 2,
+      "views": 56,
+      "solved": true,
+      "createdAt": "2025-11-01T21:47:00.043Z"
+    }
+  ],
+  "forumAnswers": {
+    "1763830326994": [
+      {
+        "id": 3527660653974,
+        "questionId": 1763830326994,
+        "author": "Sabelotodo",
+        "authorAvatar": "🧠",
+        "content": "Para ambos pero especialmente mujeres con desbalance hormonal",
+        "votes": 1,
+        "isAccepted": true,
+        "createdAt": "2025-11-22T16:52:06.981Z"
+      },
+      {
+        "id": 3527660653976,
+        "questionId": 1763830326994,
+        "author": "CuriosoPreguntón",
+        "authorAvatar": "🤔",
+        "content": "En mi experiencia, para ambos pero especialmente mujeres con desbalance hormonal",
+        "votes": 1,
+        "isAccepted": false,
+        "createdAt": "2025-11-22T17:52:06.981Z"
+      },
+      {
+        "id": 3527660653977,
+        "questionId": 1763830326994,
+        "author": "Ana Silva",
+        "authorAvatar": "👩‍🎓",
+        "content": "Para ambos pero especialmente mujeres con desbalance hormonal 👍",
+        "votes": 8,
+        "isAccepted": false,
+        "createdAt": "2025-11-22T18:52:06.981Z"
+      },
+      {
+        "id": 3527660653978,
+        "questionId": 1763830326994,
+        "author": "Sabelotodo",
+        "authorAvatar": "🧠",
+        "content": "Para ambos pero especialmente mujeres con desbalance hormonal 👍",
+        "votes": 2,
+        "isAccepted": false,
+        "createdAt": "2025-11-22T19:52:06.981Z"
+      }
+    ],
+    "1763830326989": [
+      {
+        "id": 3527660653970,
+        "questionId": 1763830326989,
+        "author": "CuriosoPreguntón",
+        "authorAvatar": "🤔",
+        "content": "SÍ pero INTELIGENTEMENTE. THERMO mañana + NOCARB almuerzo. NO juntos en misma comida 👍",
+        "votes": 3,
+        "isAccepted": false,
+        "createdAt": "2025-11-22T16:52:06.981Z"
+      },
+      {
+        "id": 3527660653971,
+        "questionId": 1763830326989,
+        "author": "ConsumidorRegular",
+        "authorAvatar": "👤",
+        "content": "En mi experiencia, sí pero inteligentemente. thermo mañana + nocarb almuerzo. no juntos en misma comida",
+        "votes": 8,
+        "isAccepted": false,
+        "createdAt": "2025-11-22T17:52:06.981Z"
+      }
+    ],
+    "1763830326981": [
+      {
+        "id": 3527660653962,
+        "questionId": 1763830326981,
+        "author": "CuriosoPreguntón",
+        "authorAvatar": "🤔",
+        "content": "En mi experiencia, rexet es 95% natural. los aditivos son dióxido de silicio, estearato de magnesio, sorbitol - todos seguros",
+        "votes": 1,
+        "isAccepted": false,
+        "createdAt": "2025-11-22T16:52:06.981Z"
+      }
+    ],
+    "1763830326980": [
+      {
+        "id": 3527660653961,
+        "questionId": 1763830326980,
+        "author": "NutricionistaExp",
+        "authorAvatar": "👨‍⚕️",
+        "content": "NO. Tiene que ser SECUENCIAL. Semana 1: ALPHA, Semana 2: REXET, Semana 3: PRUNEX1, Semana 4: FLORA 👍",
+        "votes": 3,
+        "isAccepted": false,
+        "createdAt": "2025-11-22T16:52:06.981Z"
+      },
+      {
+        "id": 3527660653962,
+        "questionId": 1763830326980,
+        "author": "PrincipianteInseguro",
+        "authorAvatar": "🆕",
+        "content": "En mi experiencia, no. tiene que ser secuencial. semana 1: alpha, semana 2: rexet, semana 3: prunex1, semana 4: flora",
+        "votes": 3,
+        "isAccepted": false,
+        "createdAt": "2025-11-22T17:52:06.981Z"
+      }
+    ],
+    "1763830326991": [
+      {
+        "id": 3527660653972,
+        "questionId": 1763830326991,
+        "author": "CuriosoPreguntón",
+        "authorAvatar": "🤔",
+        "content": "Te cuento: empieza con algo más ligero primero. toma manzanilla + alpha balance suave por 1 semana. después flora liv",
+        "votes": 3,
+        "isAccepted": true,
+        "createdAt": "2025-11-22T16:52:06.981Z"
+      }
+    ],
+    "1763830326986": [
+      {
+        "id": 3527660653967,
+        "questionId": 1763830326986,
+        "author": "NutricionistaExp",
+        "authorAvatar": "👨‍⚕️",
+        "content": "Sí, tiene alfalfa y pasto de trigo que son chelantes naturales que atrapan metales Espero que te sirva!",
+        "votes": 8,
+        "isAccepted": false,
+        "createdAt": "2025-11-22T16:52:06.981Z"
+      },
+      {
+        "id": 3527660653968,
+        "questionId": 1763830326986,
+        "author": "CuriosoPreguntón",
+        "authorAvatar": "🤔",
+        "content": "Mira, Sí, tiene alfalfa y pasto de trigo que son chelantes naturales que atrapan metales",
+        "votes": 4,
+        "isAccepted": false,
+        "createdAt": "2025-11-22T17:52:06.981Z"
+      }
+    ],
+    "1763830326990": [
+      {
+        "id": 3527660653971,
+        "questionId": 1763830326990,
+        "author": "Sabelotodo",
+        "authorAvatar": "🧠",
+        "content": "En mi experiencia, es principalmente preventivo. si ya tienes cálculos grandes necesitas litotricia",
+        "votes": 3,
+        "isAccepted": true,
+        "createdAt": "2025-11-22T16:52:06.981Z"
+      },
+      {
+        "id": 3527660653972,
+        "questionId": 1763830326990,
+        "author": "Ana Silva",
+        "authorAvatar": "👩‍🎓",
+        "content": "En mi experiencia, es principalmente preventivo. si ya tienes cálculos grandes necesitas litotricia",
+        "votes": 7,
+        "isAccepted": false,
+        "createdAt": "2025-11-22T17:52:06.981Z"
+      }
+    ],
+    "1763830326993": [
+      {
+        "id": 3527660653974,
+        "questionId": 1763830326993,
+        "author": "Sabelotodo",
+        "authorAvatar": "🧠",
+        "content": "YOUTH ELIXIR + BEAUTY-IN + PASSION + GOLDEN FLX = $170.000-180.000/mes",
+        "votes": 3,
+        "isAccepted": true,
+        "createdAt": "2025-11-22T16:52:06.981Z"
+      },
+      {
+        "id": 3527660653975,
+        "questionId": 1763830326993,
+        "author": "VendedorInformado",
+        "authorAvatar": "💼",
+        "content": "YOUTH ELIXIR + BEAUTY-IN + PASSION + GOLDEN FLX = $170.000-180.000/mes Espero que te sirva!",
+        "votes": 6,
+        "isAccepted": false,
+        "createdAt": "2025-11-22T17:52:06.981Z"
+      },
+      {
+        "id": 3527660653976,
+        "questionId": 1763830326993,
+        "author": "ConsumidorRegular",
+        "authorAvatar": "👤",
+        "content": "YOUTH ELIXIR + BEAUTY-IN + PASSION + GOLDEN FLX = $170.000-180.000/mes Espero que te sirva!",
+        "votes": 7,
+        "isAccepted": false,
+        "createdAt": "2025-11-22T18:52:06.981Z"
+      },
+      {
+        "id": 3527660653977,
+        "questionId": 1763830326993,
+        "author": "NutricionistaExp",
+        "authorAvatar": "👨‍⚕️",
+        "content": "Te cuento: youth elixir + beauty-in + passion + golden flx = $170.000-180.000/mes",
+        "votes": 5,
+        "isAccepted": false,
+        "createdAt": "2025-11-22T19:52:06.981Z"
+      }
+    ],
+    "1763830326988": [
+      {
+        "id": 3527660653969,
+        "questionId": 1763830326988,
+        "author": "Carlos Ruiz",
+        "authorAvatar": "👨‍💻",
+        "content": "Carbohidratos de NOCARB-T son FIBRA. Fibra NO cuenta en macros keto. Es PERFECTO Espero que te sirva!",
+        "votes": 7,
+        "isAccepted": false,
+        "createdAt": "2025-11-22T16:52:06.981Z"
+      },
+      {
+        "id": 3527660653970,
+        "questionId": 1763830326988,
+        "author": "VendedorInformado",
+        "authorAvatar": "💼",
+        "content": "Te cuento: carbohidratos de nocarb-t son fibra. fibra no cuenta en macros keto. es perfecto",
+        "votes": 8,
+        "isAccepted": false,
+        "createdAt": "2025-11-22T17:52:06.981Z"
+      },
+      {
+        "id": 3527660653971,
+        "questionId": 1763830326988,
+        "author": "CuriosoPreguntón",
+        "authorAvatar": "🤔",
+        "content": "Te cuento: carbohidratos de nocarb-t son fibra. fibra no cuenta en macros keto. es perfecto",
+        "votes": 4,
+        "isAccepted": false,
+        "createdAt": "2025-11-22T18:52:06.981Z"
+      }
+    ],
+    "1763830326992": [
+      {
+        "id": 3527660653973,
+        "questionId": 1763830326992,
+        "author": "VendedorInformado",
+        "authorAvatar": "💼",
+        "content": "Desde 25-30 pa prevención. Si ya tienes arrugas = ahora. Prevención es lo mejor 👍",
+        "votes": 4,
+        "isAccepted": false,
+        "createdAt": "2025-11-22T16:52:06.981Z"
+      }
+    ],
+    "1763830326985": [
+      {
+        "id": 3527660653966,
+        "questionId": 1763830326985,
+        "author": "ConsumidorRegular",
+        "authorAvatar": "👤",
+        "content": "Te cuento: no hermano. thermo t3 acelera metabolismo mientras lo tomas. si cambias hábitos = peso se mantiene",
+        "votes": 7,
+        "isAccepted": true,
+        "createdAt": "2025-11-22T16:52:06.981Z"
+      },
+      {
+        "id": 3527660653967,
+        "questionId": 1763830326985,
+        "author": "NutricionistaExp",
+        "authorAvatar": "👨‍⚕️",
+        "content": "No hermano. THERMO T3 acelera metabolismo mientras lo tomas. Si cambias hábitos = peso se mantiene 👍",
+        "votes": 1,
+        "isAccepted": false,
+        "createdAt": "2025-11-22T17:52:06.981Z"
+      }
+    ],
+    "1763830326982": [
+      {
+        "id": 3527660653963,
+        "questionId": 1763830326982,
+        "author": "NutricionistaExp",
+        "authorAvatar": "👨‍⚕️",
+        "content": "Mira, Es GLUTEN FREE. 100% vegetal sin gluten. Pero verifica etiqueta certificado",
+        "votes": 1,
+        "isAccepted": true,
+        "createdAt": "2025-11-22T16:52:06.981Z"
+      },
+      {
+        "id": 3527660653964,
+        "questionId": 1763830326982,
+        "author": "Ana Silva",
+        "authorAvatar": "👩‍🎓",
+        "content": "Te cuento: es gluten free. 100% vegetal sin gluten. pero verifica etiqueta certificado",
+        "votes": 7,
+        "isAccepted": false,
+        "createdAt": "2025-11-22T17:52:06.981Z"
+      },
+      {
+        "id": 3527660653965,
+        "questionId": 1763830326982,
+        "author": "ConsumidorRegular",
+        "authorAvatar": "👤",
+        "content": "Te cuento: es gluten free. 100% vegetal sin gluten. pero verifica etiqueta certificado",
+        "votes": 1,
+        "isAccepted": false,
+        "createdAt": "2025-11-22T18:52:06.981Z"
+      },
+      {
+        "id": 3527660653966,
+        "questionId": 1763830326982,
+        "author": "Carlos Ruiz",
+        "authorAvatar": "👨‍💻",
+        "content": "En mi experiencia, es gluten free. 100% vegetal sin gluten. pero verifica etiqueta certificado",
+        "votes": 2,
+        "isAccepted": false,
+        "createdAt": "2025-11-22T19:52:06.981Z"
+      }
+    ],
+    "1763830326983": [
+      {
+        "id": 3527660653964,
+        "questionId": 1763830326983,
+        "author": "Sabelotodo",
+        "authorAvatar": "🧠",
+        "content": "Depende sensibilidad. 45mg cafeína en normal = sleep ok. MEJOR máximo 3pm LAST DOSE 👍",
+        "votes": 8,
+        "isAccepted": false,
+        "createdAt": "2025-11-22T16:52:06.981Z"
+      }
+    ],
+    "1763830326987": [
+      {
+        "id": 3527660653968,
+        "questionId": 1763830326987,
+        "author": "Sabelotodo",
+        "authorAvatar": "🧠",
+        "content": "No es placebo hermano. Tiene aminoácidos que nutren cerebro directamente Espero que te sirva!",
+        "votes": 1,
+        "isAccepted": true,
+        "createdAt": "2025-11-22T16:52:06.981Z"
+      },
+      {
+        "id": 3527660653969,
+        "questionId": 1763830326987,
+        "author": "CuriosoPreguntón",
+        "authorAvatar": "🤔",
+        "content": "Te cuento: no es placebo hermano. tiene aminoácidos que nutren cerebro directamente",
+        "votes": 8,
+        "isAccepted": false,
+        "createdAt": "2025-11-22T17:52:06.981Z"
+      }
+    ],
+    "1763830326979": [
+      {
+        "id": 3527660653960,
+        "questionId": 1763830326979,
+        "author": "Sabelotodo",
+        "authorAvatar": "🧠",
+        "content": "En mi experiencia, sí, ayuda mucho. fortalece sistema respiratorio. combina con tratamiento pediatra",
+        "votes": 6,
+        "isAccepted": true,
+        "createdAt": "2025-11-22T16:52:06.981Z"
+      },
+      {
+        "id": 3527660653961,
+        "questionId": 1763830326979,
+        "author": "NutricionistaExp",
+        "authorAvatar": "👨‍⚕️",
+        "content": "Sí, ayuda mucho. Fortalece sistema respiratorio. Combina con tratamiento pediatra",
+        "votes": 1,
+        "isAccepted": false,
+        "createdAt": "2025-11-22T17:52:06.981Z"
+      }
+    ]
+  },
+  "forumBotsInitialized": "2025-11-22T16:52:06.981Z"
+}

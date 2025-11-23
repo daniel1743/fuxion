@@ -1,9 +1,22 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Rocket, Heart, Twitter, Youtube, Twitch } from 'lucide-react';
+import { Rocket, Heart, Instagram, Facebook, Globe, MessageCircle } from 'lucide-react';
 
 const Footer = () => {
+    // Función para obtener el enlace de WhatsApp desde variables de entorno
+    const getWhatsAppUrl = () => {
+        const envUrl = import.meta.env.VITE_WHATSAPP_URL?.trim();
+        if (envUrl) {
+            return envUrl;
+        }
+        const envNumber = import.meta.env.VITE_WHATSAPP_NUMBER?.replace(/[^\d]/g, '');
+        if (envNumber) {
+            return `https://wa.me/${envNumber}`;
+        }
+        return 'https://wa.me/56989639088';
+    };
+
     return (
         <footer className="bg-card border-t border-border mt-20">
             <div className="container mx-auto px-6 py-12">
@@ -36,9 +49,42 @@ const Footer = () => {
                     <div>
                         <p className="font-semibold text-foreground tracking-wider">Síguenos</p>
                         <div className="flex mt-4 space-x-4">
-                            <a href="#" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors"><Twitter /></a>
-                            <a href="#" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors"><Youtube /></a>
-                            <a href="#" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors"><Twitch /></a>
+                            <a 
+                                href="https://www.instagram.com/donde_mi_negro?igsh=MWU1MWo5aXhvMnh3bg==" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="text-muted-foreground hover:text-primary transition-colors"
+                                aria-label="Instagram"
+                            >
+                                <Instagram className="w-5 h-5" />
+                            </a>
+                            <a 
+                                href="https://www.facebook.com/share/1KVxA4JL4t/" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="text-muted-foreground hover:text-primary transition-colors"
+                                aria-label="Facebook"
+                            >
+                                <Facebook className="w-5 h-5" />
+                            </a>
+                            <a 
+                                href="https://ifuxion.com/daniel/enrollment/chooseperson" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="text-muted-foreground hover:text-primary transition-colors"
+                                aria-label="Página Web"
+                            >
+                                <Globe className="w-5 h-5" />
+                            </a>
+                            <a 
+                                href={getWhatsAppUrl()} 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="text-muted-foreground hover:text-primary transition-colors"
+                                aria-label="WhatsApp"
+                            >
+                                <MessageCircle className="w-5 h-5" />
+                            </a>
                         </div>
                     </div>
                 </div>
