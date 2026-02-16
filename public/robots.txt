@@ -1,0 +1,18 @@
+# robots.txt para tiendafuxion.space
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://tiendafuxion.space/sitemap.xml
+
+# Bloquear rutas internas/privadas
+Disallow: /api/
+Disallow: /admin/
+Disallow: /carrito
+Disallow: /checkout
+Disallow: /cuenta
+
+# Permitir recursos estáticos
+Allow: /img/
+Allow: /assets/

@@ -7,6 +7,7 @@ import { AuthProvider } from '@/context/AuthContext';
 import { CartProvider } from '@/context/CartContext';
 import { ForumProvider } from '@/context/ForumContext';
 import { AdminProvider } from '@/context/AdminContext';
+import { BlogProvider } from '@/context/BlogContext';
 import AdminLoginModal from '@/components/admin/AdminLoginModal';
 import '@/utils/clearForumData'; // Cargar utilidades del foro
 import '@/utils/testBots'; // Cargar test de bots
@@ -16,6 +17,8 @@ const ExplorePage = lazy(() => import('@/pages/ExplorePage'));
 const CategoriesPage = lazy(() => import('@/pages/CategoriesPage'));
 const SupportPage = lazy(() => import('@/pages/SupportPage'));
 const CartPage = lazy(() => import('@/pages/CartPage'));
+const BlogPage = lazy(() => import('@/pages/BlogPage'));
+const BlogPostPage = lazy(() => import('@/pages/BlogPostPage'));
 const PlaceholderPage = lazy(() => import('@/pages/PlaceholderPage'));
 
 function App() {
@@ -25,8 +28,9 @@ function App() {
     <AuthProvider>
       <CartProvider>
         <ForumProvider>
-          <AdminProvider>
-            <Layout>
+          <BlogProvider>
+            <AdminProvider>
+              <Layout>
               <AnimatePresence mode="wait">
                 <Suspense fallback={
                   <div className="w-full h-screen flex items-center justify-center bg-background">
@@ -43,7 +47,8 @@ function App() {
                     <Route path="/checkout" element={<PlaceholderPage pageName="Checkout" />} />
                     <Route path="/cuenta" element={<PlaceholderPage pageName="Mi Cuenta" />} />
                     <Route path="/opiniones" element={<PlaceholderPage pageName="Opiniones" />} />
-                    <Route path="/blog" element={<PlaceholderPage pageName="Blog" />} />
+                    <Route path="/blog" element={<BlogPage />} />
+                    <Route path="/blog/:slug" element={<BlogPostPage />} />
                     <Route path="/terminos" element={<PlaceholderPage pageName="Términos y Condiciones" />} />
                     <Route path="/contacto" element={<PlaceholderPage pageName="Contacto" />} />
                     <Route path="/envios" element={<PlaceholderPage pageName="Envíos y Devoluciones" />} />
@@ -51,9 +56,10 @@ function App() {
                   </Routes>
                 </Suspense>
               </AnimatePresence>
-            </Layout>
-            <AdminLoginModal />
-          </AdminProvider>
+              </Layout>
+              <AdminLoginModal />
+            </AdminProvider>
+          </BlogProvider>
         </ForumProvider>
       </CartProvider>
     </AuthProvider>

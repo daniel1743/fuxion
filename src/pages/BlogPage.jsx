@@ -1,0 +1,257 @@
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
+import { BookOpen, Clock, Eye, ArrowRight, Search, Filter, Settings } from 'lucide-react';
+import { useBlog } from '@/context/BlogContext';
+import { useAdmin } from '@/context/AdminContext';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import BlogAdminPanel from '@/components/admin/BlogAdminPanel';
+
+const BlogPage = () => {
+  const { posts, loading, categories } = useBlog();
+  const { isAdmin } = useAdmin();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [showAdminPanel, setShowAdminPanel] = useState(false);
+
+  // Filtrar posts
+  const filteredPosts = posts.filter(post => {
+    const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = selectedCategory === 'all' || post.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
+
+  // Formatear fecha
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('es-CL', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+  };
+
+  // Calcular tiempo de lectura
+  const readingTime = (content) => {
+    const words = content?.split(/\s+/).length || 0;
+    const minutes = Math.ceil(words / 200);
+    return `${minutes} min de lectura`;
+  };
+
+  return (
+    <>
+      <Helmet>
+        <title>Blog de Salud y Bienestar | Consejos para Perder Peso | Tienda Fuxion</title>
+        <meta name="description" content="Artículos sobre pérdida de peso, bienestar, nutrición y vida saludable. Consejos prácticos para vivir mejor sin dietas extremas." />
+        <meta name="keywords" content="blog salud, consejos perder peso, bienestar, sobrepeso, nutrición, vida saludable, recetas saludables" />
+        <link rel="canonical" href="https://tiendafuxion.space/blog" />
+      </Helmet>
+
+      <div className="min-h-screen bg-gradient-to-b from-background to-background/95 pt-24 pb-16">
+        <div className="container mx-auto px-4">
+
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center mb-12"
+          >
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-4">
+              <BookOpen className="w-4 h-4" />
+              <span className="text-sm font-medium">Blog de Bienestar</span>
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+              Consejos para una
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500"> Vida Saludable</span>
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Artículos sobre pérdida de peso, bienestar y nutrición.
+              Sin promesas milagro, solo información real y consejos que funcionan.
+            </p>
+
+            {/* Admin Button */}
+            {isAdmin && (
+              <Button
+                onClick={() => setShowAdminPanel(true)}
+                variant="outline"
+                className="mt-6 border-purple-500/50 text-purple-400 hover:bg-purple-500/10"
+              >
+                <Settings className="w-4 h-4 mr-2" />
+                Administrar Blog
+              </Button>
+            )}
+          </motion.div>
+
+          {/* Filtros */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="bg-card border border-border rounded-xl p-4 mb-8"
+          >
+            <div className="flex flex-col md:flex-row gap-4">
+              {/* Búsqueda */}
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Input
+                  type="text"
+                  placeholder="Buscar artículos..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10"
+                />
+              </div>
+
+              {/* Categorías */}
+              <div className="flex flex-wrap gap-2">
+                <Button
+                  variant={selectedCategory === 'all' ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => setSelectedCategory('all')}
+                >
+                  Todos
+                </Button>
+                {categories.map((cat) => (
+                  <Button
+                    key={cat.id}
+                    variant={selectedCategory === cat.name ? 'default' : 'outline'}
+                    size="sm"
+                    onClick={() => setSelectedCategory(cat.name)}
+                  >
+                    {cat.name}
+                  </Button>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Loading State */}
+          {loading && (
+            <div className="flex justify-center items-center py-20">
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+            </div>
+          )}
+
+          {/* Empty State */}
+          {!loading && filteredPosts.length === 0 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center py-20"
+            >
+              <BookOpen className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-foreground mb-2">
+                No hay artículos disponibles
+              </h3>
+              <p className="text-muted-foreground">
+                {searchTerm || selectedCategory !== 'all'
+                  ? 'No encontramos artículos con esos filtros. Intenta con otros términos.'
+                  : 'Pronto publicaremos contenido de valor para ti.'}
+              </p>
+            </motion.div>
+          )}
+
+          {/* Grid de artículos */}
+          {!loading && filteredPosts.length > 0 && (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredPosts.map((post, index) => (
+                <motion.article
+                  key={post.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="group bg-card border border-border rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-300"
+                >
+                  {/* Imagen */}
+                  <Link to={`/blog/${post.slug}`}>
+                    <div className="relative h-48 overflow-hidden">
+                      {post.image_url ? (
+                        <img
+                          src={post.image_url}
+                          alt={post.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
+                          <BookOpen className="w-12 h-12 text-primary/50" />
+                        </div>
+                      )}
+                      {/* Categoría badge */}
+                      <span className="absolute top-3 left-3 bg-primary text-primary-foreground text-xs font-medium px-3 py-1 rounded-full">
+                        {post.category}
+                      </span>
+                    </div>
+                  </Link>
+
+                  {/* Contenido */}
+                  <div className="p-5">
+                    <Link to={`/blog/${post.slug}`}>
+                      <h2 className="text-lg font-semibold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+                        {post.title}
+                      </h2>
+                    </Link>
+                    <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
+                      {post.excerpt}
+                    </p>
+
+                    {/* Meta info */}
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
+                      <div className="flex items-center gap-3">
+                        <span className="flex items-center gap-1">
+                          <Clock className="w-3 h-3" />
+                          {readingTime(post.content)}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Eye className="w-3 h-3" />
+                          {post.views || 0}
+                        </span>
+                      </div>
+                      <span>{formatDate(post.created_at)}</span>
+                    </div>
+
+                    {/* CTA */}
+                    <Link to={`/blog/${post.slug}`}>
+                      <Button variant="ghost" size="sm" className="w-full mt-4 group-hover:bg-primary/10">
+                        Leer artículo
+                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                      </Button>
+                    </Link>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          )}
+
+          {/* Disclaimer */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="mt-12 p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-lg"
+          >
+            <p className="text-sm text-muted-foreground text-center">
+              <strong>Aviso importante:</strong> El contenido de este blog es solo informativo y educativo.
+              No reemplaza el consejo médico profesional. Siempre consulta con un profesional de salud
+              antes de hacer cambios significativos en tu alimentación o estilo de vida.
+            </p>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Admin Panel Modal */}
+      <AnimatePresence>
+        {showAdminPanel && (
+          <BlogAdminPanel
+            isOpen={showAdminPanel}
+            onClose={() => setShowAdminPanel(false)}
+          />
+        )}
+      </AnimatePresence>
+    </>
+  );
+};
+
+export default BlogPage;

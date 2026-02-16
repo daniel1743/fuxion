@@ -14,7 +14,8 @@ const navLinks = [
   { name: 'Inicio', path: '/' },
   { name: 'Productos', path: '/explorar' },
   { name: 'Categorías Fuxion', path: '/categorias' },
-  { name: 'Opiniones', path: '/ayuda' },
+  { name: 'Blog', path: '/blog' },
+  { name: 'Comunidad', path: '/ayuda' },
 ];
 
 const Header = () => {

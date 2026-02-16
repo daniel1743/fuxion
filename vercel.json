@@ -4,6 +4,14 @@
   "outputDirectory": "dist",
   "routes": [
     {
+      "src": "/sitemap.xml",
+      "dest": "/sitemap.xml"
+    },
+    {
+      "src": "/robots.txt",
+      "dest": "/robots.txt"
+    },
+    {
       "src": "/assets/(.*)",
       "dest": "/assets/$1",
       "headers": {
