@@ -2,12 +2,14 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Heart, Sparkles, Zap, CheckCircle2, MessageCircle, Star, ShoppingCart } from 'lucide-react';
-import { toast } from "@/components/ui/use-toast";
+import { ArrowRight, Heart, Sparkles, Zap, CheckCircle2, MessageCircle, ShoppingCart, ShieldCheck, Truck, Leaf } from 'lucide-react';
 import { getImageUrl, getPlaceholderImage } from '@/lib/imageUtils';
 import { buildStoreSchema, SITE_URL, STORE_NAME } from '@/lib/productSeo';
+import { confirmAndOpenWhatsapp, openWhatsapp } from '@/lib/whatsapp';
+import ProductNeedSearch from '@/components/ProductNeedSearch';
+import { AiRobotIcon, WhatsAppIcon } from '@/components/icons/BrandIcons';
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -15,42 +17,26 @@ const pageVariants = {
   out: { opacity: 0, y: -20 },
 };
 
-const DEFAULT_WHATSAPP_NUMBER = '56989639088';
-
-const resolveWhatsappBase = () => {
-  const envUrl = import.meta.env.VITE_WHATSAPP_URL?.trim();
-  if (envUrl) {
-    return envUrl;
-  }
-
-  const envNumber = import.meta.env.VITE_WHATSAPP_NUMBER?.replace(/[^\d]/g, '');
-  if (envNumber) {
-    return `https://wa.me/${envNumber}`;
-  }
-
-  return `https://wa.me/${DEFAULT_WHATSAPP_NUMBER}`;
-};
-
-const buildWhatsappUrl = (message) => {
-  const base = resolveWhatsappBase();
-  const encodedMessage = encodeURIComponent(message);
-
-  if (base.includes('/message/')) {
-    return `${base}?text=${encodedMessage}`;
-  }
-
-  if (base.includes('wa.me/')) {
-    const separator = base.includes('?') ? '&' : '?';
-    return `${base}${separator}text=${encodedMessage}`;
-  }
-
-  const number = base.replace(/[^\d]/g, '') || DEFAULT_WHATSAPP_NUMBER;
-  return `https://wa.me/${number}?text=${encodedMessage}`;
-};
-
 const handleWhatsAppClick = (message = 'Hola, quiero empezar mi cambio con Fuxion') => {
-  const whatsappUrl = buildWhatsappUrl(message);
-  window.open(whatsappUrl, '_blank');
+  openWhatsapp(message);
+};
+
+const handleProductAiClick = (product) => {
+  window.dispatchEvent(new CustomEvent('fuxion:open-product-ai', {
+    detail: {
+      product: {
+        name: product.name,
+        slug: product.slug,
+        image: product.image,
+        description: product.description,
+        categoria: 'Producto destacado Fuxion'
+      }
+    }
+  }));
+};
+
+const handleProductWhatsappClick = (product) => {
+  confirmAndOpenWhatsapp(`Hola, quiero hablar con un asesor sobre ${product.name}.`);
 };
 
 const solutions = [
@@ -66,7 +52,6 @@ const solutions = [
       'Eliminación de toxinas'
     ],
     buttonText: 'Quiero mejorar mi digestión',
-    color: 'from-purple-500/20 to-pink-500/20',
     icon: <Sparkles className="w-8 h-8" />
   },
   {
@@ -75,13 +60,12 @@ const solutions = [
     subtitle: 'Perfectos para acelerar el metabolismo y controlar ansiedad.',
     products: ['Thermo T3', 'NoCarb-T', 'Protein Active Fit', 'Pack 5/14'],
     benefits: [
-      'Ayuda a quemar grasa',
+      'Apoyo para hábitos de control de peso',
       'Controla antojos',
       'Mejora energía',
-      'Resultados visibles en semanas'
+      'Rutina simple de acompañamiento'
     ],
     buttonText: 'Quiero bajar de peso',
-    color: 'from-pink-500/20 to-rose-500/20',
     icon: <Zap className="w-8 h-8" />
   },
   {
@@ -96,7 +80,6 @@ const solutions = [
       'Vitalidad durante el día'
     ],
     buttonText: 'Quiero más energía',
-    color: 'from-cyan-500/20 to-blue-500/20',
     icon: <Heart className="w-8 h-8" />
   }
 ];
@@ -117,26 +100,26 @@ const featuredProducts = [
     slug: 'thermo-t3'
   },
   {
-    id: 'vita-xtra-t+',
+    id: 'vita-xtra-t-plus',
     name: 'VITA XTRA T+',
     description: 'Energía + rendimiento',
     image: getImageUrl('/img/productos/vita-xtra-t+.png'),
-    slug: 'vita-xtra-t+'
+    slug: 'vita-xtra-t-plus'
   }
 ];
 
-const testimonials = [
+const purchaseSteps = [
   {
-    quote: 'Al tercer día ya me sentía más liviana. La hinchazón bajó muchísimo.',
-    name: 'María G.'
+    title: 'Busca por objetivo',
+    text: 'Encuentra productos por digestión, energía, control de peso, defensas o bienestar general.'
   },
   {
-    quote: 'Me ayudó a controlar la ansiedad de comer y por fin empecé a bajar medidas.',
-    name: 'Ana R.'
+    title: 'Agrega al carrito',
+    text: 'Revisa precios, presentación y modo de uso antes de enviar tu pedido.'
   },
   {
-    quote: 'La energía me cambió. No más café que me alteraba.',
-    name: 'Laura M.'
+    title: 'Coordina por WhatsApp',
+    text: 'Un asesor confirma disponibilidad, resuelve dudas y coordina pago y despacho.'
   }
 ];
 
@@ -150,7 +133,31 @@ const painPoints = [
   'dificultad para ver resultados aunque se esfuercen'
 ];
 
+const trustItems = [
+  {
+    icon: <ShieldCheck className="h-6 w-6" />,
+    title: 'Compra asistida',
+    text: 'Te orientamos antes de comprar para elegir productos según tu objetivo.'
+  },
+  {
+    icon: <Leaf className="h-6 w-6" />,
+    title: 'Fuxion Biotech',
+    text: 'Productos nutracéuticos con enfoque en nutrición, bienestar y hábitos saludables.'
+  },
+  {
+    icon: <Truck className="h-6 w-6" />,
+    title: 'Pedido por WhatsApp',
+    text: 'Agregas al carrito, envías tu pedido y coordinamos la atención directamente.'
+  }
+];
+
 const HomePage = () => {
+  const navigate = useNavigate();
+
+  const handleNeedSearch = (query) => {
+    navigate(`/explorar?search=${encodeURIComponent(query)}`);
+  };
+
   return (
     <motion.div
       initial="initial"
@@ -191,48 +198,50 @@ const HomePage = () => {
       </Helmet>
 
       {/* SECCIÓN 1 – HERO */}
-      <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/60 via-pink-900/40 to-rose-900/50 opacity-90"></div>
-        <div className="absolute inset-0 radial-gradient-glow"></div>
-        <motion.div
-          className="w-full h-full absolute"
-          animate={{
-            background: [
-              "radial-gradient(ellipse 80% 80% at 50% -20%,rgba(168,85,247,0.3),rgba(255,255,255,0))",
-              "radial-gradient(ellipse 80% 80% at 50% -20%,rgba(236,72,153,0.3),rgba(255,255,255,0))",
-              "radial-gradient(ellipse 80% 80% at 50% -20%,rgba(251,113,133,0.3),rgba(255,255,255,0))",
-              "radial-gradient(ellipse 80% 80% at 50% -20%,rgba(168,85,247,0.3),rgba(255,255,255,0))",
-            ]
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-        />
+      <section className="relative min-h-screen flex items-center overflow-hidden pt-20 bg-gradient-to-br from-[#f7faf4] via-white to-[#edf7ee] dark:from-[#0f1f18] dark:via-[#111827] dark:to-[#1b1630]">
         <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-12">
           <div className="grid gap-16 lg:grid-cols-2 items-center">
             <div className="text-center lg:text-left">
+              <motion.p
+                className="inline-flex items-center rounded-full border border-emerald-200 bg-white/80 px-4 py-2 text-sm font-semibold text-emerald-700 shadow-sm dark:border-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 mb-6"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                Tienda Fuxion Chile · Asesoría personalizada
+              </motion.p>
               <motion.h1
                 className="text-4xl md:text-6xl font-extrabold text-foreground tracking-tight leading-tight mb-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
               >
-                Transforma tu cuerpo desde adentro.
+                Productos Fuxion para nutrición y bienestar natural.
               </motion.h1>
               <motion.p
-                className="text-2xl md:text-3xl font-semibold text-primary/90 mb-6"
+                className="text-2xl md:text-3xl font-semibold text-emerald-700 dark:text-emerald-300 mb-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.35 }}
               >
-                Recupera tu energía, liviandad y bienestar natural.
+                Te ayudamos a elegir según tu objetivo: energía, digestión, control de peso o defensas.
               </motion.p>
               <motion.p
-                className="mt-6 text-lg md:text-xl text-primary/80 max-w-xl mx-auto lg:mx-0 mb-8"
+                className="mt-6 text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.5 }}
               >
-                Descubre el sistema Fuxion: productos naturales diseñados para ayudarte a desinflamar, controlar tu peso, mejorar tu digestión y aumentar tu energía diaria. Sin dietas extremas. Sin sufrimiento. Resultados reales.
+                Explora el catálogo Fuxion y recibe orientación directa antes de comprar. Agrega tus productos al carrito y envía el pedido por WhatsApp para coordinar atención y despacho.
               </motion.p>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.58 }}
+                className="mb-8"
+              >
+                <ProductNeedSearch onSearch={handleNeedSearch} />
+              </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -241,19 +250,19 @@ const HomePage = () => {
               >
                 <Button
                   size="lg"
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-full shadow-lg dark:neon-glow text-lg px-8 py-6"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-full shadow-lg text-lg px-8 py-6"
                   onClick={() => handleWhatsAppClick('Hola, quiero empezar mi cambio con Fuxion')}
                 >
-                  Quiero empezar mi cambio <ArrowRight className="ml-2 h-5 w-5" />
+                  Recibir asesoría <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
                   className="font-bold rounded-full text-lg px-8 py-6 border-2"
-                  onClick={() => window.open('https://ifuxion.com/daniel/enrollment/chooseperson', '_blank')}
+                  onClick={() => window.location.href = '/explorar'}
                 >
                   <ShoppingCart className="mr-2 h-5 w-5" />
-                  Tienda Oficial
+                  Ver catálogo
                 </Button>
               </motion.div>
             </div>
@@ -263,11 +272,10 @@ const HomePage = () => {
               transition={{ duration: 0.8, delay: 0.4, type: 'spring', stiffness: 120 }}
               className="relative"
             >
-              <div className="absolute -inset-6 bg-gradient-to-br from-purple-500/40 via-pink-500/30 to-rose-400/30 blur-3xl opacity-40 pointer-events-none"></div>
-              <div className="relative rounded-[40px] overflow-hidden shadow-2xl border border-white/10">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-emerald-100 dark:border-emerald-900">
                 <img
                   src={getImageUrl('/img/familia.fuxion.png')}
-                  alt="Mujer sonriendo, energía, bienestar, estilo soft-wellness"
+                  alt="Bienestar Fuxion y productos para nutrición natural"
                   className="w-full h-full object-cover max-h-[560px]"
                   onError={(e) => {
                     e.target.src = getPlaceholderImage('woman');
@@ -276,6 +284,22 @@ const HomePage = () => {
                 />
               </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-10 bg-white dark:bg-card border-y border-emerald-100 dark:border-border">
+        <div className="container mx-auto px-6">
+          <div className="grid gap-4 md:grid-cols-3">
+            {trustItems.map((item) => (
+              <div key={item.title} className="flex gap-4 rounded-xl border border-emerald-100 bg-[#f7faf4] p-5 dark:border-border dark:bg-secondary/40">
+                <div className="text-emerald-700 dark:text-emerald-300">{item.icon}</div>
+                <div>
+                  <h2 className="font-bold text-foreground">{item.title}</h2>
+                  <p className="mt-1 text-sm text-muted-foreground">{item.text}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -322,9 +346,9 @@ const HomePage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
-            No es falta de voluntad.
+            Elige con información clara.
             <br />
-            <span className="text-foreground">Tu cuerpo solo necesita recuperar su equilibrio.</span>
+            <span className="text-foreground">Te orientamos para encontrar una opción adecuada a tu objetivo.</span>
           </motion.p>
         </div>
       </section>
@@ -373,11 +397,11 @@ const HomePage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.2 }}
-                className={`bg-gradient-to-br ${solution.color} rounded-2xl p-8 border border-border hover:border-primary transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-2 flex flex-col h-full`}
+                className="bg-card rounded-2xl p-8 border border-emerald-100 dark:border-border transition-all duration-300 hover:border-primary hover:shadow-xl hover:-translate-y-1 flex flex-col h-full"
               >
                 <div className="flex items-center gap-4 mb-4 text-primary">
                   {solution.icon}
-                  <h3 className="text-2xl font-bold text-foreground">{solution.id === 1 ? '🔶' : solution.id === 2 ? '🔷' : '🔶'} {solution.title}</h3>
+                  <h3 className="text-2xl font-bold text-foreground">{solution.title}</h3>
                 </div>
                 <p className="text-muted-foreground mb-6">{solution.subtitle}</p>
                 <div className="mb-6">
@@ -407,7 +431,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* SECCIÓN 5 – Testimonios */}
+      {/* SECCIÓN 5 – Cómo funciona */}
       <section className="py-20">
         <div className="container mx-auto px-6 max-w-5xl">
           <motion.h2
@@ -417,27 +441,23 @@ const HomePage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            Tú puedes ser la siguiente historia bonita.
+            Compra simple, asistida y sin cobro automático.
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-            {testimonials.map((testimonial, i) => (
+            {purchaseSteps.map((step, i) => (
               <motion.div
-                key={i}
+                key={step.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.15 }}
                 className="bg-card p-6 rounded-lg border border-border flex flex-col items-center text-center hover:border-primary transition-all duration-300"
               >
-                <div className="flex mb-4 text-yellow-400">
-                  <Star className="w-5 h-5 fill-current" />
-                  <Star className="w-5 h-5 fill-current" />
-                  <Star className="w-5 h-5 fill-current" />
-                  <Star className="w-5 h-5 fill-current" />
-                  <Star className="w-5 h-5 fill-current" />
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
+                  <span className="text-sm font-bold">{i + 1}</span>
                 </div>
-                <p className="text-muted-foreground italic text-lg mb-4">"{testimonial.quote}"</p>
-                <p className="font-bold text-foreground">{testimonial.name}</p>
+                <p className="font-bold text-foreground">{step.title}</p>
+                <p className="mt-3 text-sm text-muted-foreground">{step.text}</p>
               </motion.div>
             ))}
           </div>
@@ -460,10 +480,10 @@ const HomePage = () => {
                 size="lg"
                 variant="outline"
                 className="font-bold rounded-full border-2"
-                onClick={() => window.open('https://ifuxion.com/daniel/enrollment/chooseperson', '_blank')}
+                onClick={() => window.location.href = '/explorar'}
               >
                 <ShoppingCart className="mr-2 h-5 w-5" />
-                Ver Tienda
+                Ver productos
               </Button>
             </div>
           </motion.div>
@@ -491,13 +511,12 @@ const HomePage = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
-                <Link to="/explorar">
-                  <div className="group relative bg-card rounded-lg overflow-hidden border border-border transition-all duration-300 hover:border-primary hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-2 flex flex-col h-full">
-                    <div className="absolute inset-0 radial-gradient-glow opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <Link to={`/producto/${product.slug}`}>
+                  <div className="group relative bg-card rounded-xl overflow-hidden border border-emerald-100 dark:border-border transition-all duration-300 hover:border-primary hover:shadow-xl hover:-translate-y-1 flex flex-col h-full">
                     <div className="relative h-60 overflow-hidden bg-secondary flex-shrink-0">
                       <img
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        alt={product.name}
+                        alt={`${product.name} Fuxion`}
                         src={product.image}
                         loading="lazy"
                         onError={(e) => {
@@ -510,6 +529,33 @@ const HomePage = () => {
                     <div className="p-6 flex flex-col flex-grow">
                       <h3 className="text-xl font-bold text-foreground mb-2">{product.name}</h3>
                       <p className="text-sm text-muted-foreground mb-4">{product.description}</p>
+                      <div className="mt-auto flex gap-2">
+                        <span className="flex-1 rounded-md bg-emerald-600 px-3 py-2 text-center text-sm font-semibold text-white">Ver detalles</span>
+                        <button
+                          type="button"
+                          onClick={(event) => {
+                            event.preventDefault();
+                            handleProductAiClick(product);
+                          }}
+                          className="h-9 w-9 rounded-md border border-emerald-200 text-emerald-700 hover:bg-emerald-600 hover:text-white"
+                          title={`Preguntar a la IA sobre ${product.name}`}
+                          aria-label={`Preguntar a la IA sobre ${product.name}`}
+                        >
+                          <AiRobotIcon className="mx-auto h-4 w-4" />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={(event) => {
+                            event.preventDefault();
+                            handleProductWhatsappClick(product);
+                          }}
+                          className="h-9 w-9 rounded-md border border-green-200 text-green-700 hover:bg-green-600 hover:text-white"
+                          title="Hablar con asesor"
+                          aria-label={`Hablar con asesor por WhatsApp sobre ${product.name}`}
+                        >
+                          <WhatsAppIcon className="mx-auto h-4 w-4" />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </Link>
@@ -536,7 +582,7 @@ const HomePage = () => {
       <section className="py-20">
         <div className="container mx-auto px-6 max-w-4xl">
           <motion.div
-            className="bg-gradient-to-br from-purple-500/20 via-pink-500/20 to-rose-500/20 rounded-2xl p-8 md:p-12 border border-primary/30 text-center"
+            className="rounded-2xl border border-emerald-100 bg-emerald-50 p-8 text-center dark:border-emerald-900 dark:bg-emerald-950/20 md:p-12"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -549,7 +595,7 @@ const HomePage = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2, type: 'spring' }}
             >
-              <MessageCircle className="w-8 h-8 text-primary" />
+              <WhatsAppIcon className="w-8 h-8 text-primary" />
             </motion.div>
             <motion.h2
               className="text-3xl md:text-4xl font-bold mb-4 text-foreground"
@@ -558,7 +604,7 @@ const HomePage = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              Asesoría personalizada GRATIS hoy
+              Asesoría personalizada antes de comprar
             </motion.h2>
             <motion.p
               className="text-lg md:text-xl text-muted-foreground mb-8"
@@ -567,7 +613,7 @@ const HomePage = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              No todos los cuerpos son iguales. Te ayudo a elegir el producto ideal según tu objetivo.
+              Te ayudamos a revisar opciones, disponibilidad y forma de uso antes de confirmar tu pedido.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -580,7 +626,7 @@ const HomePage = () => {
                 className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-full shadow-lg text-lg px-8 py-6"
                 onClick={() => handleWhatsAppClick('Hola, quiero mi recomendación personalizada')}
               >
-                Quiero mi recomendación <MessageCircle className="ml-2 h-5 w-5" />
+                Quiero mi recomendación <WhatsAppIcon className="ml-2 h-5 w-5" />
               </Button>
             </motion.div>
           </motion.div>
@@ -617,7 +663,7 @@ const HomePage = () => {
           >
             <Button
               size="lg"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-full shadow-lg dark:neon-glow text-lg px-8 py-6"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-full shadow-lg text-lg px-8 py-6"
               onClick={() => handleWhatsAppClick('Hola, quiero iniciar mi cambio ahora')}
             >
               Iniciar mi cambio ahora <ArrowRight className="ml-2 h-5 w-5" />
@@ -626,10 +672,10 @@ const HomePage = () => {
               size="lg"
               variant="outline"
               className="font-bold rounded-full text-lg px-8 py-6 border-2"
-              onClick={() => window.open('https://ifuxion.com/daniel/enrollment/chooseperson', '_blank')}
+              onClick={() => window.location.href = '/explorar'}
             >
               <ShoppingCart className="mr-2 h-5 w-5" />
-              Comprar Ahora
+              Ver catálogo
             </Button>
           </motion.div>
         </div>

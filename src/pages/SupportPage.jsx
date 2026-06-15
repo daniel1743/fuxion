@@ -82,8 +82,8 @@ const SupportPage = () => {
       className="container mx-auto px-4 sm:px-6 py-28 max-w-7xl overflow-x-hidden"
     >
       <Helmet>
-        <title>Foro de Soporte — Fuxion Shop</title>
-        <meta name="description" content="Foro de preguntas, respuestas y opiniones de Fuxion Shop. Resuelve tus dudas con la comunidad." />
+        <title>Opiniones y Consultas — Fuxion Shop</title>
+        <meta name="description" content="Consultas, respuestas y opiniones sobre productos Fuxion. Comparte tu experiencia o solicita orientación antes de comprar." />
       </Helmet>
 
       {/* Header */}
@@ -95,21 +95,21 @@ const SupportPage = () => {
           className="inline-block"
         >
           <Badge variant="outline" className="mb-4 text-sm">
-            💬 Centro de Ayuda Comunitario
+            Centro de consultas y opiniones
           </Badge>
         </motion.div>
         <h1 className="text-4xl md:text-6xl font-extrabold text-foreground tracking-tighter mb-4">
-          Foro de Soporte
+          Opiniones y consultas
         </h1>
         <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground">
-          Pregunta, responde y comparte opiniones con otros usuarios de Fuxion Shop
+          Deja una reseña, inicia una consulta o responde dudas de forma clara y respetuosa.
         </p>
 
         {/* Stats */}
         <div className="flex justify-center gap-4 sm:gap-8 mt-8 flex-wrap">
           <div className="text-center min-w-[80px]">
             <div className="text-2xl sm:text-3xl font-bold text-primary">{stats.total}</div>
-            <div className="text-xs sm:text-sm text-muted-foreground">Preguntas</div>
+            <div className="text-xs sm:text-sm text-muted-foreground">Consultas</div>
           </div>
           <div className="text-center min-w-[80px]">
             <div className="text-2xl sm:text-3xl font-bold text-green-400">{stats.solved}</div>
@@ -128,11 +128,11 @@ const SupportPage = () => {
           <TabsList className="grid w-full grid-cols-2 mb-6 sm:mb-8">
             <TabsTrigger value="questions" className="flex items-center gap-2">
               <MessageSquare className="w-4 h-4" />
-              Preguntas y Respuestas
+              Consultas
             </TabsTrigger>
             <TabsTrigger value="reviews" className="flex items-center gap-2">
               <Star className="w-4 h-4" />
-              Reseñas de Productos
+              Opiniones de productos
             </TabsTrigger>
           </TabsList>
 
@@ -146,7 +146,7 @@ const SupportPage = () => {
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                   <Input
                     type="text"
-                    placeholder="Buscar preguntas..."
+                    placeholder="Buscar consultas u opiniones..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="pl-10"
@@ -160,7 +160,7 @@ const SupportPage = () => {
                   size="lg"
                 >
                   <MessageSquarePlus className="w-5 h-5" />
-                  Nueva Pregunta
+                  Iniciar tema
                 </Button>
 
                 {/* Admin Panel Button - Only visible for admin */}
@@ -254,17 +254,17 @@ const SupportPage = () => {
               >
                 <MessageSquare className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
                 <h3 className="text-xl font-semibold text-foreground mb-2">
-                  {searchTerm ? 'No se encontraron resultados' : 'No hay preguntas aún'}
+                  {searchTerm ? 'No se encontraron resultados' : 'No hay consultas aún'}
                 </h3>
                 <p className="text-muted-foreground mb-6">
                   {searchTerm
                     ? 'Intenta con otros términos de búsqueda'
-                    : '¡Sé el primero en hacer una pregunta!'}
+                    : 'Inicia el primer tema para recibir orientación general o compartir una duda.'}
                 </p>
                 {!searchTerm && (
                   <Button onClick={() => setShowNewQuestion(true)}>
                     <MessageSquarePlus className="w-4 h-4 mr-2" />
-                    Crear Primera Pregunta
+                    Iniciar primer tema
                   </Button>
                 )}
               </motion.div>
@@ -290,7 +290,7 @@ const SupportPage = () => {
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                   <Input
                     type="text"
-                    placeholder="Buscar reseñas..."
+                    placeholder="Buscar opiniones..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="pl-10"
@@ -304,7 +304,7 @@ const SupportPage = () => {
                   size="lg"
                 >
                   <Star className="w-5 h-5" />
-                  Escribir Reseña
+                  Escribir opinión
                 </Button>
               </div>
             </div>
@@ -318,17 +318,17 @@ const SupportPage = () => {
               >
                 <Star className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
                 <h3 className="text-xl font-semibold text-foreground mb-2">
-                  {searchTerm ? 'No se encontraron reseñas' : 'No hay reseñas aún'}
+                  {searchTerm ? 'No se encontraron opiniones' : 'No hay opiniones aún'}
                 </h3>
                 <p className="text-muted-foreground mb-6">
                   {searchTerm
                     ? 'Intenta con otros términos de búsqueda'
-                    : '¡Sé el primero en escribir una reseña!'}
+                    : 'Comparte tu experiencia de compra o uso de un producto.'}
                 </p>
                 {!searchTerm && (
                   <Button onClick={() => setShowNewReview(true)}>
                     <Star className="w-4 h-4 mr-2" />
-                    Escribir Primera Reseña
+                    Escribir primera opinión
                   </Button>
                 )}
               </motion.div>

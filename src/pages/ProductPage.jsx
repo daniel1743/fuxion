@@ -14,6 +14,8 @@ import {
   STORE_NAME
 } from '@/lib/productSeo';
 import { getPlaceholderImage } from '@/lib/imageUtils';
+import { confirmAndOpenWhatsapp } from '@/lib/whatsapp';
+import { AiRobotIcon, WhatsAppIcon } from '@/components/icons/BrandIcons';
 
 const ProductPage = () => {
   const { slug } = useParams();
@@ -60,6 +62,26 @@ const ProductPage = () => {
       { label: 'Horario', value: product.schedule || 'Consultar' },
       ...(product.flavor ? [{ label: 'Sabor', value: product.flavor }] : [])
     ]
+  };
+
+  const handleAskAi = () => {
+    window.dispatchEvent(new CustomEvent('fuxion:open-product-ai', {
+      detail: {
+        product: {
+          ...productForCart,
+          category: product.category,
+          presentation: product.presentation,
+          usage: product.usage,
+          schedule: product.schedule,
+          benefits: product.benefits,
+          ingredients: product.ingredients
+        }
+      }
+    }));
+  };
+
+  const handleProductWhatsapp = () => {
+    confirmAndOpenWhatsapp(`Hola, quiero hablar con un asesor sobre ${product.name}.`);
   };
 
   return (
@@ -151,13 +173,34 @@ const ProductPage = () => {
             </div>
           </div>
 
-          <Button
-            onClick={() => addToCart(productForCart)}
-            className="mt-8 h-12 px-6 gap-2"
-          >
-            <ShoppingCart className="h-5 w-5" />
-            Agregar al carrito
-          </Button>
+          <div className="mt-8 flex flex-col sm:flex-row gap-3">
+            <Button
+              onClick={() => addToCart(productForCart)}
+              className="h-12 px-6 gap-2"
+            >
+              <ShoppingCart className="h-5 w-5" />
+              Agregar al carrito
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={handleAskAi}
+              className="h-12 px-5 gap-2 border-emerald-200 text-emerald-700 hover:bg-emerald-600 hover:text-white"
+            >
+              <AiRobotIcon className="h-4 w-4" />
+              Consultar con IA
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={handleProductWhatsapp}
+              className="h-12 px-5 gap-2 border-green-200 text-green-700 hover:bg-green-600 hover:text-white"
+              title="Hablar con asesor"
+            >
+              <WhatsAppIcon className="h-4 w-4" />
+              Asesor
+            </Button>
+          </div>
         </div>
       </section>
 

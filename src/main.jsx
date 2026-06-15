@@ -6,11 +6,14 @@ import App from '@/App';
 import '@/index.css';
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from '@/context/ThemeProvider';
+import { initializeAdvisorFromUrl } from '@/lib/whatsapp';
+
+initializeAdvisorFromUrl();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <>
     <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
         <App />
         <Toaster />
       </ThemeProvider>

@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FalconBot from '@/components/FalconBot';
 import AuthModal from '@/components/AuthModal';
+import WhatsAppConfirmDialog from '@/components/WhatsAppConfirmDialog';
 
 const Layout = ({ children }) => {
   return (
@@ -13,6 +14,7 @@ const Layout = ({ children }) => {
       <Footer />
       <FalconBot />
       <AuthModal />
+      <WhatsAppConfirmDialog />
     </div>
   );
 };

@@ -7,13 +7,17 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { X, Rocket } from 'lucide-react';
-import { toast } from "@/components/ui/use-toast";
+import { Leaf } from 'lucide-react';
 
 const AuthModal = () => {
-  const { isAuthModalOpen, closeAuthModal, login } = useAuth();
+  const { isAuthModalOpen, closeAuthModal, login, register } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [registerData, setRegisterData] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -22,10 +26,7 @@ const AuthModal = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    toast({
-      title: "🚧 Registro no implementado",
-      description: "Esta función estará disponible pronto. Por ahora, puedes usar cualquier email/contraseña para iniciar sesión. 🚀",
-    });
+    register(registerData);
   };
 
   return (
@@ -33,11 +34,11 @@ const AuthModal = () => {
       <DialogContent className="bg-card border-border p-0 max-w-md">
         <DialogHeader className="p-6 pb-0">
           <div className="flex items-center gap-2 mb-2">
-            <Rocket className="text-primary h-6 w-6" />
-            <DialogTitle className="text-2xl font-bold text-foreground">Fuxion Shop</DialogTitle>
+            <Leaf className="text-primary h-6 w-6" />
+            <DialogTitle className="text-2xl font-bold text-foreground">Tienda Fuxion</DialogTitle>
           </div>
           <DialogDescription>
-            Únete a la comunidad de gadgets del futuro.
+            Accede para guardar tu experiencia en este dispositivo. Los pedidos se siguen coordinando por WhatsApp.
           </DialogDescription>
         </DialogHeader>
         <div className="p-6">
@@ -63,15 +64,35 @@ const AuthModal = () => {
               <form onSubmit={handleRegister} className="space-y-4 mt-4">
                 <div className="space-y-2">
                   <Label htmlFor="register-name">Nombre</Label>
-                  <Input id="register-name" placeholder="Tu Nombre" required />
+                  <Input
+                    id="register-name"
+                    placeholder="Tu nombre"
+                    value={registerData.name}
+                    onChange={(e) => setRegisterData({ ...registerData, name: e.target.value })}
+                    required
+                  />
                 </div>
-                <div className="spacey-y-2">
+                <div className="space-y-2">
                   <Label htmlFor="register-email">Email</Label>
-                  <Input id="register-email" type="email" placeholder="nombre@ejemplo.com" required />
+                  <Input
+                    id="register-email"
+                    type="email"
+                    placeholder="nombre@ejemplo.com"
+                    value={registerData.email}
+                    onChange={(e) => setRegisterData({ ...registerData, email: e.target.value })}
+                    required
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="register-password">Contraseña</Label>
-                  <Input id="register-password" type="password" placeholder="••••••••" required />
+                  <Input
+                    id="register-password"
+                    type="password"
+                    placeholder="••••••••"
+                    value={registerData.password}
+                    onChange={(e) => setRegisterData({ ...registerData, password: e.target.value })}
+                    required
+                  />
                 </div>
                 <Button type="submit" className="w-full bg-primary hover:bg-primary/90">Crear Cuenta</Button>
               </form>

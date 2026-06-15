@@ -4,10 +4,23 @@ import { X, ShoppingCart, Package, Shield, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/CartContext';
 import { getPlaceholderImage } from '@/lib/imageUtils';
+import { confirmAndOpenWhatsapp } from '@/lib/whatsapp';
+import { AiRobotIcon, WhatsAppIcon } from '@/components/icons/BrandIcons';
 
 const ProductModal = ({ product, isOpen, onClose }) => {
   const { addToCart } = useCart();
   if (!product) return null;
+
+  const handleAskAi = () => {
+    window.dispatchEvent(new CustomEvent('fuxion:open-product-ai', {
+      detail: { product }
+    }));
+    onClose();
+  };
+
+  const handleProductWhatsapp = () => {
+    confirmAndOpenWhatsapp(`Hola, quiero hablar con un asesor sobre ${product.name}.`);
+  };
 
   return (
     <AnimatePresence>
@@ -126,17 +139,38 @@ const ProductModal = ({ product, isOpen, onClose }) => {
 
                     {/* Add to Cart */}
                     <div className="pt-4 space-y-3">
-                      <Button
-                        onClick={() => {
-                          addToCart(product);
-                          onClose();
-                        }}
-                        className="w-full h-12 text-lg gap-2"
-                        disabled={product.stock === 0}
-                      >
-                        <ShoppingCart className="h-5 w-5" />
-                        {product.stock === 0 ? 'Agotado' : 'Agregar al Carrito'}
-                      </Button>
+                      <div className="grid gap-3 sm:grid-cols-[1fr_auto_auto]">
+                        <Button
+                          onClick={() => {
+                            addToCart(product);
+                            onClose();
+                          }}
+                          className="h-12 text-lg gap-2"
+                          disabled={product.stock === 0}
+                        >
+                          <ShoppingCart className="h-5 w-5" />
+                          {product.stock === 0 ? 'Agotado' : 'Agregar al Carrito'}
+                        </Button>
+                        <Button
+                          type="button"
+                          variant="outline"
+                          onClick={handleAskAi}
+                          className="h-12 gap-2 border-emerald-200 text-emerald-700 hover:bg-emerald-600 hover:text-white"
+                        >
+                          <AiRobotIcon className="h-4 w-4" />
+                          IA
+                        </Button>
+                        <Button
+                          type="button"
+                          variant="outline"
+                          onClick={handleProductWhatsapp}
+                          className="h-12 gap-2 border-green-200 text-green-700 hover:bg-green-600 hover:text-white"
+                          title="Hablar con asesor"
+                        >
+                          <WhatsAppIcon className="h-4 w-4" />
+                          Asesor
+                        </Button>
+                      </div>
                       {product.stock > 0 && product.stock < 5 && (
                         <p className="text-sm text-orange-500 text-center font-medium">
                           ⚠️ ¡Quedan pocas unidades!

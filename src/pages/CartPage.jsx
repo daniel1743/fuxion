@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
-import { ShoppingCart, Trash2, Plus, Minus, Send, ShoppingBag } from 'lucide-react';
+import { ShoppingCart, Trash2, Plus, Minus, Send, ShoppingBag, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -10,46 +10,13 @@ import { useCart } from '@/context/CartContext';
 import { toast } from "@/components/ui/use-toast";
 import { Link } from 'react-router-dom';
 import { getPlaceholderImage } from '@/lib/imageUtils';
+import { buildWhatsappUrl, confirmAndOpenWhatsapp } from '@/lib/whatsapp';
+import { WhatsAppIcon } from '@/components/icons/BrandIcons';
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
   in: { opacity: 1, y: 0 },
   out: { opacity: 0, y: -20 },
-};
-
-const DEFAULT_WHATSAPP_NUMBER = '56989639088';
-
-const resolveWhatsappBase = () => {
-  const envUrl = import.meta.env.VITE_WHATSAPP_URL?.trim();
-  if (envUrl) {
-    return envUrl;
-  }
-
-  const envNumber = import.meta.env.VITE_WHATSAPP_NUMBER?.replace(/[^\d]/g, '');
-  if (envNumber) {
-    return `https://wa.me/${envNumber}`;
-  }
-
-  return `https://wa.me/${DEFAULT_WHATSAPP_NUMBER}`;
-};
-
-const buildWhatsappUrl = (encodedMessage) => {
-  const base = resolveWhatsappBase();
-
-  // Si ya tiene el formato wa.me/message/XXX, agregar el parámetro correctamente
-  if (base.includes('/message/')) {
-    return `${base}?text=${encodedMessage}`;
-  }
-
-  // Si es un número directo wa.me/56912345678
-  if (base.includes('wa.me/')) {
-    const separator = base.includes('?') ? '&' : '?';
-    return `${base}${separator}text=${encodedMessage}`;
-  }
-
-  // Fallback: construir desde el número
-  const number = base.replace(/[^\d]/g, '') || DEFAULT_WHATSAPP_NUMBER;
-  return `https://wa.me/${number}?text=${encodedMessage}`;
 };
 
 const CartPage = () => {
@@ -68,6 +35,10 @@ const CartPage = () => {
       ...prev,
       [name]: value
     }));
+  };
+
+  const handleProductWhatsapp = (item) => {
+    confirmAndOpenWhatsapp(`Hola, quiero hablar con un asesor sobre ${item.name}.`);
   };
 
   const handleSendWhatsApp = () => {
@@ -107,7 +78,7 @@ const CartPage = () => {
 
     toast({
       title: "✅ Pedido enviado",
-      description: "Se abrió WhatsApp con tu pedido",
+      description: "Se abrió WhatsApp con tu pedido para coordinar con un asesor",
     });
   };
 
@@ -167,6 +138,12 @@ const CartPage = () => {
           <p className="text-muted-foreground">
             {getCartCount()} {getCartCount() === 1 ? 'producto' : 'productos'} en tu carrito
           </p>
+          <div className="mt-4 flex gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-left text-sm text-emerald-900 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-100">
+            <ShieldCheck className="h-5 w-5 flex-shrink-0 text-emerald-700 dark:text-emerald-300" />
+            <p>
+              Este carrito no realiza cobros automáticos. Al enviarlo serás derivado a un asesor por WhatsApp para confirmar disponibilidad, resolver dudas, coordinar pago y despacho.
+            </p>
+          </div>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-6 lg:gap-8 justify-items-stretch">
@@ -237,6 +214,16 @@ const CartPage = () => {
                           onClick={() => removeFromCart(item.id)}
                         >
                           <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-7 w-7 sm:h-8 sm:w-8 text-green-700 hover:bg-green-600/10"
+                          onClick={() => handleProductWhatsapp(item)}
+                          title="Hablar con asesor"
+                          aria-label={`Hablar con asesor por WhatsApp sobre ${item.name}`}
+                        >
+                          <WhatsAppIcon className="h-3 w-3 sm:h-4 sm:w-4" />
                         </Button>
                       </div>
 
@@ -328,12 +315,12 @@ const CartPage = () => {
                 <div className="space-y-3 mb-6">
                   <div className="flex justify-between text-muted-foreground">
                     <span>Productos ({getCartCount()})</span>
-                    <span>${getCartTotal().toFixed(2)}</span>
+                    <span>${getCartTotal().toLocaleString('es-CL')}</span>
                   </div>
                   <div className="border-t border-border pt-3">
                     <div className="flex justify-between text-lg font-bold text-foreground">
                       <span>Total</span>
-                      <span className="text-primary">${getCartTotal().toFixed(2)}</span>
+                      <span className="text-primary">${getCartTotal().toLocaleString('es-CL')}</span>
                     </div>
                   </div>
                 </div>
@@ -344,7 +331,7 @@ const CartPage = () => {
                   size="lg"
                 >
                   <Send className="h-5 w-5" />
-                  Enviar Pedido por WhatsApp
+                  Enviar pedido a un asesor
                 </Button>
 
                 <div className="relative my-4">
@@ -352,7 +339,7 @@ const CartPage = () => {
                     <div className="w-full border-t border-border"></div>
                   </div>
                   <div className="relative flex justify-center text-xs">
-                    <span className="bg-card px-2 text-muted-foreground">O compra directamente</span>
+                    <span className="bg-card px-2 text-muted-foreground">O revisa la tienda oficial</span>
                   </div>
                 </div>
 
@@ -367,7 +354,7 @@ const CartPage = () => {
                 </Button>
 
                 <p className="text-xs text-muted-foreground text-center mt-4">
-                  Al enviar, se abrirá WhatsApp con tu pedido completo
+                  No se cobrará nada en esta página. WhatsApp se abrirá con tu pedido para que un asesor confirme los detalles contigo.
                 </p>
               </div>
 

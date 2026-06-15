@@ -5,6 +5,7 @@ Allow: /explorar
 Allow: /categorias
 Allow: /blog
 Allow: /ayuda
+Allow: /opiniones
 Allow: /img/
 Allow: /assets/
 

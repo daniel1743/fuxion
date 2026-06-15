@@ -10,6 +10,7 @@ import { toast } from '@/components/ui/use-toast';
 const ProductReviewForm = ({ onClose, onSubmit, productName }) => {
   const [formData, setFormData] = useState({
     author: '',
+    productName: productName || '',
     rating: 0,
     comment: '',
   });
@@ -39,9 +40,12 @@ const ProductReviewForm = ({ onClose, onSubmit, productName }) => {
       return;
     }
 
-    onSubmit(formData);
+    onSubmit({
+      ...formData,
+      productName: formData.productName.trim(),
+    });
     toast({
-      title: '✅ Reseña publicada',
+      title: 'Opinión publicada',
       description: 'Gracias por compartir tu opinión.',
     });
     onClose();
@@ -89,7 +93,7 @@ const ProductReviewForm = ({ onClose, onSubmit, productName }) => {
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h2 className="text-2xl font-bold text-foreground">Califica este producto</h2>
+            <h2 className="text-2xl font-bold text-foreground">Escribe tu opinión</h2>
             {productName && (
               <p className="text-sm text-muted-foreground mt-1">{productName}</p>
             )}
@@ -112,6 +116,18 @@ const ProductReviewForm = ({ onClose, onSubmit, productName }) => {
               required
             />
           </div>
+
+          {!productName && (
+            <div className="space-y-2">
+              <Label htmlFor="productName">Producto relacionado</Label>
+              <Input
+                id="productName"
+                value={formData.productName}
+                onChange={(e) => setFormData({ ...formData, productName: e.target.value })}
+                placeholder="Ej: Liquid Fiber"
+              />
+            </div>
+          )}
 
           {/* Calificación con Estrellas */}
           <div className="space-y-2">
@@ -159,7 +175,7 @@ const ProductReviewForm = ({ onClose, onSubmit, productName }) => {
             </Button>
             <Button type="submit" className="flex items-center gap-2">
               <Send className="w-4 h-4" />
-              Publicar Reseña
+              Publicar opinión
             </Button>
           </div>
         </form>

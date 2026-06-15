@@ -1,28 +1,75 @@
 
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 import { toast } from "@/components/ui/use-toast";
 
 const AuthContext = createContext(null);
+const AUTH_STORAGE_KEY = 'fuxion-customer-session';
+const DEFAULT_AVATAR = 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde';
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
+  useEffect(() => {
+    try {
+      const savedSession = localStorage.getItem(AUTH_STORAGE_KEY);
+      if (!savedSession) return;
+
+      const parsedSession = JSON.parse(savedSession);
+      if (parsedSession?.email) {
+        setUser(parsedSession);
+        setIsAuthenticated(true);
+      }
+    } catch (error) {
+      console.error('Error al cargar la sesión local:', error);
+      localStorage.removeItem(AUTH_STORAGE_KEY);
+    }
+  }, []);
+
+  const saveSession = (sessionUser) => {
+    setUser(sessionUser);
+    setIsAuthenticated(true);
+    localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(sessionUser));
+    setIsAuthModalOpen(false);
+  };
+
   const login = (email, password) => {
-    // Mock login
+    // Sesión local para experiencia de usuario. No reemplaza autenticación real con backend.
     if (email && password) {
-      setUser({ name: 'Daniel Falcon', email: email, avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde' });
-      setIsAuthenticated(true);
-      setIsAuthModalOpen(false);
+      saveSession({
+        name: email.split('@')[0] || 'Cliente Fuxion',
+        email,
+        avatar: DEFAULT_AVATAR,
+      });
       toast({
-        title: "🎉 ¡Bienvenido de vuelta!",
+        title: "Sesión iniciada",
         description: "Has iniciado sesión correctamente.",
       });
     } else {
        toast({
-        title: "❌ Error de inicio de sesión",
+        title: "Error de inicio de sesión",
         description: "Por favor, introduce credenciales válidas.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const register = ({ name, email, password }) => {
+    if (name && email && password) {
+      saveSession({
+        name,
+        email,
+        avatar: DEFAULT_AVATAR,
+      });
+      toast({
+        title: "Cuenta local creada",
+        description: "Tu sesión quedó activa en este dispositivo.",
+      });
+    } else {
+      toast({
+        title: "Datos incompletos",
+        description: "Completa nombre, email y contraseña.",
         variant: "destructive",
       });
     }
@@ -31,8 +78,9 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setUser(null);
     setIsAuthenticated(false);
+    localStorage.removeItem(AUTH_STORAGE_KEY);
     toast({
-      title: "👋 ¡Hasta pronto!",
+      title: "Sesión cerrada",
       description: "Has cerrado sesión.",
     });
   };
@@ -44,6 +92,7 @@ export const AuthProvider = ({ children }) => {
     isAuthenticated,
     user,
     login,
+    register,
     logout,
     isAuthModalOpen,
     openAuthModal,

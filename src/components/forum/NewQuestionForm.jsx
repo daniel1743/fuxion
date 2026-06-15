@@ -39,8 +39,8 @@ const NewQuestionForm = ({ onClose }) => {
 
     addQuestion(formData);
     toast({
-      title: '✅ Pregunta publicada',
-      description: 'Tu pregunta ha sido publicada exitosamente.',
+      title: 'Tema publicado',
+      description: 'Tu consulta fue publicada correctamente.',
     });
     onClose();
   };
@@ -79,7 +79,7 @@ const NewQuestionForm = ({ onClose }) => {
       >
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-foreground">Nueva Pregunta</h2>
+          <h2 className="text-2xl font-bold text-foreground">Iniciar tema</h2>
           <Button variant="ghost" size="icon" onClick={onClose}>
             <X className="w-5 h-5" />
           </Button>
@@ -122,12 +122,12 @@ const NewQuestionForm = ({ onClose }) => {
 
           {/* Título */}
           <div className="space-y-2">
-            <Label htmlFor="title">Título de tu pregunta *</Label>
+            <Label htmlFor="title">Título de tu consulta *</Label>
             <Input
               id="title"
               value={formData.title}
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-              placeholder="Ej: ¿Cómo funciona la garantía de los productos?"
+              placeholder="Ej: ¿Cómo funciona la compra asistida?"
               required
             />
           </div>
@@ -139,7 +139,7 @@ const NewQuestionForm = ({ onClose }) => {
               id="content"
               value={formData.content}
               onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-              placeholder="Describe tu pregunta con el mayor detalle posible..."
+              placeholder="Describe tu consulta con el mayor detalle posible. Si tienes tratamiento médico, pide derivación a un asesor."
               rows={5}
               required
             />
@@ -209,7 +209,7 @@ const NewQuestionForm = ({ onClose }) => {
               Cancelar
             </Button>
             <Button type="submit">
-              Publicar Pregunta
+              Publicar tema
             </Button>
           </div>
         </form>

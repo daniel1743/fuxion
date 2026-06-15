@@ -19,6 +19,7 @@ export const ForumProvider = ({ children }) => {
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState({});
   const [reviews, setReviews] = useState([]);
+  const [isHydrated, setIsHydrated] = useState(false);
   const [filter, setFilter] = useState('all'); // all, solved, unsolved
   const [sortBy, setSortBy] = useState('recent'); // recent, votes, answers
 
@@ -64,26 +65,28 @@ export const ForumProvider = ({ children }) => {
     if (!localStorage.getItem('forumBotsInitialized')) {
       localStorage.setItem('forumBotsInitialized', new Date().toISOString());
     }
+
+    setIsHydrated(true);
   }, []);
 
   // Guardar en localStorage cuando cambian
   useEffect(() => {
-    if (questions.length > 0) {
+    if (isHydrated) {
       localStorage.setItem('forumQuestions', JSON.stringify(questions));
     }
-  }, [questions]);
+  }, [questions, isHydrated]);
 
   useEffect(() => {
-    if (Object.keys(answers).length > 0) {
+    if (isHydrated) {
       localStorage.setItem('forumAnswers', JSON.stringify(answers));
     }
-  }, [answers]);
+  }, [answers, isHydrated]);
 
   useEffect(() => {
-    if (reviews.length > 0) {
+    if (isHydrated) {
       localStorage.setItem('productReviews', JSON.stringify(reviews));
     }
-  }, [reviews]);
+  }, [reviews, isHydrated]);
 
   // Crear nueva pregunta
   const addQuestion = (questionData) => {
@@ -96,7 +99,7 @@ export const ForumProvider = ({ children }) => {
       solved: false,
       createdAt: new Date().toISOString(),
     };
-    setQuestions([newQuestion, ...questions]);
+    setQuestions((currentQuestions) => [newQuestion, ...currentQuestions]);
     return newQuestion;
   };
 
@@ -111,13 +114,13 @@ export const ForumProvider = ({ children }) => {
       createdAt: new Date().toISOString(),
     };
 
-    setAnswers({
-      ...answers,
-      [questionId]: [...(answers[questionId] || []), newAnswer],
-    });
+    setAnswers((currentAnswers) => ({
+      ...currentAnswers,
+      [questionId]: [...(currentAnswers[questionId] || []), newAnswer],
+    }));
 
     // Incrementar contador de respuestas
-    setQuestions(questions.map(q =>
+    setQuestions((currentQuestions) => currentQuestions.map(q =>
       q.id === questionId ? { ...q, answers: q.answers + 1 } : q
     ));
 
@@ -126,68 +129,70 @@ export const ForumProvider = ({ children }) => {
 
   // Votar pregunta
   const voteQuestion = (questionId, increment = 1) => {
-    setQuestions(questions.map(q =>
+    setQuestions((currentQuestions) => currentQuestions.map(q =>
       q.id === questionId ? { ...q, votes: q.votes + increment } : q
     ));
   };
 
   // Votar respuesta
   const voteAnswer = (questionId, answerId, increment = 1) => {
-    setAnswers({
-      ...answers,
-      [questionId]: answers[questionId].map(a =>
+    setAnswers((currentAnswers) => ({
+      ...currentAnswers,
+      [questionId]: (currentAnswers[questionId] || []).map(a =>
         a.id === answerId ? { ...a, votes: a.votes + increment } : a
       ),
-    });
+    }));
   };
 
   // Marcar respuesta como aceptada
   const acceptAnswer = (questionId, answerId) => {
-    setAnswers({
-      ...answers,
-      [questionId]: answers[questionId].map(a => ({
+    setAnswers((currentAnswers) => ({
+      ...currentAnswers,
+      [questionId]: (currentAnswers[questionId] || []).map(a => ({
         ...a,
         isAccepted: a.id === answerId,
       })),
-    });
+    }));
 
     // Marcar pregunta como resuelta
-    setQuestions(questions.map(q =>
+    setQuestions((currentQuestions) => currentQuestions.map(q =>
       q.id === questionId ? { ...q, solved: true } : q
     ));
   };
 
   // Incrementar vistas
   const incrementViews = (questionId) => {
-    setQuestions(questions.map(q =>
+    setQuestions((currentQuestions) => currentQuestions.map(q =>
       q.id === questionId ? { ...q, views: q.views + 1 } : q
     ));
   };
 
   // Eliminar pregunta (solo para moderador/dueño)
   const deleteQuestion = (questionId) => {
-    setQuestions(questions.filter(q => q.id !== questionId));
+    setQuestions((currentQuestions) => currentQuestions.filter(q => q.id !== questionId));
     // También eliminar las respuestas asociadas
-    const newAnswers = { ...answers };
-    delete newAnswers[questionId];
-    setAnswers(newAnswers);
+    setAnswers((currentAnswers) => {
+      const nextAnswers = { ...currentAnswers };
+      delete nextAnswers[questionId];
+      return nextAnswers;
+    });
   };
 
   // Eliminar respuesta (solo para moderador/dueño)
   const deleteAnswer = (questionId, answerId) => {
-    setAnswers({
-      ...answers,
-      [questionId]: answers[questionId].filter(a => a.id !== answerId)
-    });
+    setAnswers((currentAnswers) => ({
+      ...currentAnswers,
+      [questionId]: (currentAnswers[questionId] || []).filter(a => a.id !== answerId)
+    }));
     // Decrementar contador de respuestas
-    setQuestions(questions.map(q =>
+    setQuestions((currentQuestions) => currentQuestions.map(q =>
       q.id === questionId ? { ...q, answers: Math.max(0, q.answers - 1) } : q
     ));
   };
 
   // Eliminar reseña (solo para moderador/dueño)
   const deleteReview = (reviewId) => {
-    setReviews(reviews.filter(r => r.id !== reviewId));
+    setReviews((currentReviews) => currentReviews.filter(r => r.id !== reviewId));
   };
 
   // Obtener pregunta por ID
@@ -234,12 +239,12 @@ export const ForumProvider = ({ children }) => {
       verified: false,
       createdAt: new Date().toISOString(),
     };
-    setReviews([newReview, ...reviews]);
+    setReviews((currentReviews) => [newReview, ...currentReviews]);
     return newReview;
   };
 
   const likeReview = (reviewId) => {
-    setReviews(reviews.map(r =>
+    setReviews((currentReviews) => currentReviews.map(r =>
       r.id === reviewId ? { ...r, likes: r.likes + 1 } : r
     ));
   };

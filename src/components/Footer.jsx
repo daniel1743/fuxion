@@ -1,37 +1,28 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Rocket, Heart, Instagram, Facebook, Globe, MessageCircle } from 'lucide-react';
+import { Leaf, Heart, Instagram, Facebook } from 'lucide-react';
+import { buildWhatsappUrl } from '@/lib/whatsapp';
+import { WhatsAppIcon } from '@/components/icons/BrandIcons';
 
 const Footer = () => {
-    // Función para obtener el enlace de WhatsApp desde variables de entorno
-    const getWhatsAppUrl = () => {
-        const envUrl = import.meta.env.VITE_WHATSAPP_URL?.trim();
-        if (envUrl) {
-            return envUrl;
-        }
-        const envNumber = import.meta.env.VITE_WHATSAPP_NUMBER?.replace(/[^\d]/g, '');
-        if (envNumber) {
-            return `https://wa.me/${envNumber}`;
-        }
-        return 'https://wa.me/56989639088';
-    };
-
     return (
         <footer className="bg-card border-t border-border mt-20">
             <div className="container mx-auto px-6 py-12">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     <div className="col-span-1 md:col-span-1 flex flex-col items-start">
                          <Link to="/" className="flex items-center gap-2 mb-4">
-                            <Rocket className="text-primary h-10 w-10 animate-pulse" />
-                            <span className="text-xl font-bold text-foreground tracking-tighter">Fuxion Shop</span>
+                            <Leaf className="text-emerald-600 h-10 w-10" />
+                            <span className="text-xl font-bold text-foreground tracking-tight">Tienda Fuxion</span>
                         </Link>
-                        <p className="text-muted-foreground text-sm">Tu universo de gadgets premium, arte digital y colecciones únicas.</p>
+                        <p className="text-muted-foreground text-sm">Productos Fuxion para nutrición, bienestar natural, energía, digestión y control de peso. Compra asistida por WhatsApp.</p>
                     </div>
 
                     <div>
-                        <p className="font-semibold text-foreground tracking-wider">Compañía</p>
+                        <p className="font-semibold text-foreground tracking-wider">Tienda</p>
                         <div className="flex flex-col mt-4 space-y-2">
+                            <Link to="/explorar" className="text-muted-foreground hover:text-primary transition-colors">Productos Fuxion</Link>
+                            <Link to="/categorias" className="text-muted-foreground hover:text-primary transition-colors">Categorías</Link>
                             <Link to="/blog" className="text-muted-foreground hover:text-primary transition-colors">Blog</Link>
                             <Link to="/terminos" className="text-muted-foreground hover:text-primary transition-colors">Términos y Condiciones</Link>
                         </div>
@@ -68,22 +59,13 @@ const Footer = () => {
                                 <Facebook className="w-5 h-5" />
                             </a>
                             <a 
-                                href="https://ifuxion.com/daniel/enrollment/chooseperson" 
-                                target="_blank" 
-                                rel="noopener noreferrer" 
-                                className="text-muted-foreground hover:text-primary transition-colors"
-                                aria-label="Página Web"
-                            >
-                                <Globe className="w-5 h-5" />
-                            </a>
-                            <a 
-                                href={getWhatsAppUrl()} 
+                                href={buildWhatsappUrl('Hola, quiero hablar con un asesor Fuxion.')} 
                                 target="_blank" 
                                 rel="noopener noreferrer" 
                                 className="text-muted-foreground hover:text-primary transition-colors"
                                 aria-label="WhatsApp"
                             >
-                                <MessageCircle className="w-5 h-5" />
+                                <WhatsAppIcon className="w-5 h-5" />
                             </a>
                         </div>
                     </div>
@@ -91,7 +73,7 @@ const Footer = () => {
 
                 <div className="mt-12 border-t border-border pt-8 flex flex-col sm:flex-row justify-between items-center">
                     <p className="text-muted-foreground text-sm flex items-center gap-1.5">
-                        © {new Date().getFullYear()} Fuxion Shop. Creado con <Heart className="h-4 w-4 text-pink-500" /> por Daniel Falcon.
+                        © {new Date().getFullYear()} Tienda Fuxion. Atención personalizada por Daniel Falcon.
                     </p>
                 </div>
             </div>

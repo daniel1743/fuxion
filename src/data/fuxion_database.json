@@ -39,7 +39,10 @@
       "horario": "Antes de acostarte a dormir",
       "efecto": "Laxante - plan agresivo de desintoxicación",
       "palabra_clave": "COLON",
-      "para_toda_familia": true
+      "para_toda_familia": true,
+      "codigo": "144284",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
     },
     "LIQUID FIBER": {
       "nombre": "LIQUID FIBER",
@@ -63,7 +66,10 @@
       "horario": "Antes de dormir o en ayunas",
       "efecto": "Plan menos agresivo que Prunex 1",
       "palabra_clave": "FIBRA DIGESTIVA",
-      "para_toda_familia": true
+      "para_toda_familia": true,
+      "codigo": "147383",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
     },
     "FLORA LIV": {
       "nombre": "FLORA LIV",
@@ -90,7 +96,10 @@
       "modo_uso": "Tomar un sobre en agua fría",
       "horario": "En ayunas o 40 minutos después de las comidas",
       "palabra_clave": "PROBIÓTICOS",
-      "para_toda_familia": true
+      "para_toda_familia": true,
+      "codigo": "144274",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
     },
     "BERRY BALANCE": {
       "nombre": "BERRY BALANCE",
@@ -118,14 +127,17 @@
       "modo_uso": "Tomar un sobre en agua fría",
       "horario": "En ayunas o cuando tengas sed",
       "palabra_clave": "RIÑONES",
-      "para_toda_familia": true
+      "para_toda_familia": true,
+      "codigo": "144271",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
     },
     "ALPHA BALANCE": {
       "nombre": "ALPHA BALANCE",
       "categoria": "Limpieza de Sangre",
       "linea": "Sistema Base - Limpia tu Cuerpo",
       "presentacion": "Caja 28 x 5g",
-      "precio": 46500,
+      "precio": 36000,
       "ingredientes": [
         "Alfalfa",
         "Algas (Chlorella + Espirulina)",
@@ -149,7 +161,10 @@
       "modo_uso": "Tomar un sobre en agua fría",
       "horario": "En ayunas o cuando tengas sed",
       "palabra_clave": "SANGRE",
-      "para_toda_familia": true
+      "para_toda_familia": true,
+      "codigo": "144269",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
     },
     "REXET": {
       "nombre": "REXET",
@@ -183,35 +198,10 @@
       "palabra_clave": "HÍGADO",
       "efecto_especial": "Cambios de color en orina - se ve casi inmediatamente",
       "combo": "COMBO FIESTA con Vita Xtra T+",
-      "para_toda_familia": true
-    },
-    "BIOPRO+ TECT": {
-      "nombre": "BIOPRO+ TECT",
-      "categoria": "Proteína Premium con Colostrum",
-      "linea": "Sistema Base - Nutre y Regenera",
-      "presentacion": "Caja 14 x 25g",
-      "precio": 34000,
-      "tipo_batido": "Batido instantáneo",
-      "ingredientes": [
-        "BioProtein+ con Colostrum®",
-        "BioFerrin®",
-        "Aminoácidos",
-        "Fosfato de calcio",
-        "DHA y ARA"
-      ],
-      "valor_biologico": "100%",
-      "beneficios": [
-        "Elevar cualitativa y cuantitativamente el perfil proteico",
-        "Mejora procesos de regeneración celular",
-        "Potencia sistema de defensas del organismo",
-        "Eleva resistencia a enfermedades",
-        "Fortalece los huesos",
-        "Protección inmunológica"
-      ],
-      "modo_uso": "Tomar un sobre en agua fría",
-      "horario": "De media mañana o media tarde",
-      "palabra_clave": "NUTRICIÓN",
-      "para_toda_familia": true
+      "para_toda_familia": true,
+      "codigo": "146319",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
     },
     "BIOPROTEIN ACTIVE": {
       "nombre": "BIOPROTEIN ACTIVE",
@@ -246,7 +236,14 @@
       "modo_uso": "Tomar un sobre en agua fría",
       "horario": "De media mañana o media tarde",
       "palabra_clave": "PROTEÍNA VEGETAL",
-      "para_toda_familia": true
+      "para_toda_familia": true,
+      "codigo": "144686",
+      "precios_sabores": {
+        "Vainilla y Canela": 39500,
+        "Chocolate con Avellanas": 40000
+      },
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
     },
     "VITA XTRA T+": {
       "nombre": "VITA XTRA T+",
@@ -278,7 +275,10 @@
       "horario": "Durante el día - evitar en la noche",
       "advertencia": "No recomendado para deficiencias cardiacas",
       "palabra_clave": "ENERGÍA",
-      "combo": "COMBO FIESTA con Rexet"
+      "combo": "COMBO FIESTA con Rexet",
+      "codigo": "147059",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
     },
     "VITAENERGÍA": {
       "nombre": "VITAENERGÍA",
@@ -307,7 +307,10 @@
       "modo_uso": "Tomar un sobre en agua fría",
       "horario": "Cualquier hora del día",
       "palabra_clave": "ENERGÍA",
-      "para_toda_familia": true
+      "para_toda_familia": true,
+      "codigo": "144286",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
     },
     "NUTRADAY": {
       "nombre": "NUTRADAY",
@@ -338,7 +341,10 @@
       "modo_uso": "Tomar un sobre en agua fría",
       "horario": "Cada vez que lo desees",
       "palabra_clave": "NUTRICIÓN NIÑOS",
-      "para_toda_familia": true
+      "para_toda_familia": true,
+      "codigo": "144282",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
     },
     "VERA+": {
       "nombre": "VERA+",
@@ -358,13 +364,16 @@
         "Sube las defensas",
         "Aumenta resistencia a enfermedades",
         "Resistencia especialmente a enfermedades respiratorias",
-        "Ayuda en caso de gripe, asma, rinitis, COVID",
+        "Apoya el bienestar respiratorio y las defensas dentro de hábitos saludables",
         "Reduce estrés oxidativo",
         "Protege sistema inmunológico"
       ],
       "modo_uso": "Tomar un sobre en agua caliente",
       "horario": "Antes de dormir o cada vez que se te antoje",
-      "palabra_clave": "SISTEMA RESPIRATORIO, DEFENSAS"
+      "palabra_clave": "SISTEMA RESPIRATORIO, DEFENSAS",
+      "codigo": "144281",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
     },
     "GANO+ CAPPUCCINO": {
       "nombre": "GANO+ CAPPUCCINO",
@@ -381,15 +390,18 @@
       "advertencia": "No recomendado para menores de 8 años, embarazadas y nodrizas sin indicación profesional",
       "beneficios": [
         "Sube las defensas",
-        "Ayuda en caso de cáncer",
-        "Ayuda en caso de hipertensión",
+        "Apoya el bienestar general con ingredientes funcionales",
+        "Acompaña rutinas de bienestar y cuidado diario",
         "Protege el hígado",
         "Refuerza y regula el sistema inmunológico",
         "Reduce daño oxidativo"
       ],
       "modo_uso": "Tomar un sobre en agua caliente",
       "horario": "A la hora que desees",
-      "palabra_clave": "PRESIÓN ARTERIAL, DEFENSAS"
+      "palabra_clave": "PRESIÓN ARTERIAL, DEFENSAS",
+      "codigo": "144272",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
     },
     "THERMO T3": {
       "nombre": "THERMO T3",
@@ -413,11 +425,14 @@
         "Reduce acumulación de grasa",
         "Aumenta resistencia",
         "Efecto termogénico",
-        "Ayuda en caso de hígado graso, colesterol, triglicéridos"
+        "Apoya hábitos de control de peso y metabolismo saludable"
       ],
       "modo_uso": "Tomar un sobre en agua caliente",
       "horario": "20 minutos después de almorzar o 10 minutos antes de ejercicio",
-      "palabra_clave": "METABOLISMO, QUEMA GRASA"
+      "palabra_clave": "METABOLISMO, QUEMA GRASA",
+      "codigo": "144280",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
     },
     "NOCARB-T": {
       "nombre": "NOCARB-T",
@@ -443,42 +458,17 @@
       ],
       "modo_uso": "Tomar un sobre en agua caliente",
       "horario": "Antes o con las comidas",
-      "palabra_clave": "CARBOHIDRATOS, AZÚCAR"
-    },
-    "BIOPRO+ FIT": {
-      "nombre": "BIOPRO+ FIT",
-      "categoria": "Control de Peso",
-      "linea": "Línea Control de Peso",
-      "presentacion": "Caja 14 x 25g",
-      "precio": 30250,
-      "tipo_batido": "Batido proteico bajo en calorías",
-      "ingredientes": [
-        "BioProtein+ con Colostrum®",
-        "Prolibra®",
-        "Aminoácidos de suero de leche",
-        "Vitaminas",
-        "DHA y ARA"
-      ],
-      "valor_biologico": "100%",
-      "beneficios": [
-        "En la justa medida",
-        "Acelera metabolismo",
-        "Tonifica músculos y piel",
-        "Controla ansiedad de comer",
-        "Reduce medidas",
-        "Nutre cuerpo y cerebro",
-        "Reduce sensación de apetito"
-      ],
-      "modo_uso": "Tomar un sobre en agua fría",
-      "horario": "De media mañana, media tarde o post-ejercicio",
-      "palabra_clave": "PROTEÍNA FIT"
+      "palabra_clave": "CARBOHIDRATOS, AZÚCAR",
+      "codigo": "144279",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
     },
     "PROTEIN ACTIVE FIT": {
       "nombre": "PROTEIN ACTIVE FIT",
       "categoria": "Control de Peso",
       "linea": "Línea Control de Peso",
       "presentacion": "Caja 14 x 25g",
-      "precio": 41750,
+      "precio": 41500,
       "sabores": [
         "Vainilla y Canela",
         "Chocolate con Avellanas"
@@ -501,10 +491,17 @@
       ],
       "modo_uso": "Tomar un sobre en agua fría",
       "horario": "De media mañana o media tarde",
-      "palabra_clave": "PROTEÍNA VEGETAL FIT"
+      "palabra_clave": "PROTEÍNA VEGETAL FIT",
+      "codigo": "144340",
+      "precios_sabores": {
+        "Vainilla y Canela": 41750,
+        "Chocolate con Avellanas": 41500
+      },
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
     },
     "YOUTH ELIXIR HGH": {
-      "nombre": "YOUTH ELIXIR HGH",
+      "nombre": "YOUTH ELIXIR",
       "categoria": "Anti-Edad",
       "linea": "Línea Anti-Edad",
       "presentacion": "Caja 28 x 5g",
@@ -527,10 +524,13 @@
       ],
       "modo_uso": "Tomar un sobre en agua fría",
       "horario": "En la noche",
-      "palabra_clave": "BELLEZA"
+      "palabra_clave": "BELLEZA",
+      "codigo": "144273",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
     },
     "BEAUTY-IN": {
-      "nombre": "BEAUTY-IN / COOL AGE",
+      "nombre": "BEAUTY-IN",
       "categoria": "Anti-Edad",
       "linea": "Línea Anti-Edad",
       "presentacion": "Caja 28 x 5g",
@@ -556,7 +556,10 @@
       ],
       "modo_uso": "Tomar un sobre en agua fría",
       "horario": "Antes de dormir o en ayunas",
-      "palabra_clave": "COLÁGENO, PIEL"
+      "palabra_clave": "COLÁGENO, PIEL",
+      "codigo": "144270",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
     },
     "PROBAL": {
       "nombre": "PROBAL",
@@ -583,7 +586,10 @@
       ],
       "modo_uso": "Tomar un sobre en agua caliente",
       "horario": "Antes de dormir",
-      "palabra_clave": "SISTEMA HORMONAL MUJER"
+      "palabra_clave": "SISTEMA HORMONAL MUJER",
+      "codigo": "144230",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
     },
     "PASSION": {
       "nombre": "PASSION",
@@ -608,7 +614,10 @@
       ],
       "modo_uso": "Tomar un sobre en agua fría",
       "horario": "A la hora que desees",
-      "palabra_clave": "CIRCULACIÓN, POTENCIA SEXUAL"
+      "palabra_clave": "CIRCULACIÓN, POTENCIA SEXUAL",
+      "codigo": "144277",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
     },
     "GOLDEN FLX": {
       "nombre": "GOLDEN FLX",
@@ -635,7 +644,10 @@
       ],
       "modo_uso": "Tomar un sobre en agua caliente",
       "horario": "A la hora que desees",
-      "palabra_clave": "DESINFLAMAR ARTICULACIONES, MOVILIDAD"
+      "palabra_clave": "DESINFLAMAR ARTICULACIONES, MOVILIDAD",
+      "codigo": "144275",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
     },
     "ON": {
       "nombre": "ON",
@@ -663,10 +675,13 @@
       ],
       "modo_uso": "Tomar un sobre en agua fría",
       "horario": "A la hora que desees",
-      "palabra_clave": "CONCENTRACIÓN, MEMORIA"
+      "palabra_clave": "CONCENTRACIÓN, MEMORIA",
+      "codigo": "144276",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
     },
     "NO STRESS": {
-      "nombre": "NO STRESS (OFF)",
+      "nombre": "NO STRESS",
       "categoria": "Vigor Mental",
       "linea": "Línea Vigor Mental",
       "presentacion": "Caja 28 x 5g",
@@ -690,34 +705,10 @@
       "modo_uso": "Tomar un sobre en agua fría",
       "horario": "Antes de dormir o durante el día",
       "advertencia": "No produce somnolencia",
-      "palabra_clave": "ESTRÉS, ANSIEDAD"
-    },
-    "BIOPRO+ SPORT": {
-      "nombre": "BIOPRO+ SPORT PRO EDITION",
-      "categoria": "Sport",
-      "linea": "Línea Sport",
-      "presentacion": "Caja 14 x 25g",
-      "precio": 37750,
-      "sabor": "Vainilla",
-      "tipo_batido": "Batido proteico",
-      "ingredientes": [
-        "BioProtein+ con Colostrum®",
-        "ACTINOS®",
-        "Aminoácidos",
-        "Fosfato de calcio",
-        "DHA y ARA"
-      ],
-      "caracteristica": "ACTINOS® péptido natural que favorece producción de óxido nítrico",
-      "beneficios": [
-        "Libera al atleta que vive en ti",
-        "Genera masa muscular magra (marcada)",
-        "Mejora recuperación y aporte de oxígeno",
-        "Incrementa rendimiento físico",
-        "Incrementa flujo sanguíneo"
-      ],
-      "modo_uso": "Tomar un sobre en agua fría",
-      "horario": "Post-ejercicio",
-      "certificacion": "Sin GMO, Sin gluten, Sin azúcar, Bajo en sodio"
+      "palabra_clave": "ESTRÉS, ANSIEDAD",
+      "codigo": "144236",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
     },
     "PRE SPORT": {
       "nombre": "PRE SPORT PRO EDITION",
@@ -741,7 +732,10 @@
         "Aumenta resistencia"
       ],
       "modo_uso": "Tomar un sobre en agua fría",
-      "horario": "Antes de iniciar rutina de ejercicio"
+      "horario": "Antes de iniciar rutina de ejercicio",
+      "codigo": "144244",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
     },
     "POST SPORT": {
       "nombre": "POST SPORT PRO EDITION",
@@ -765,7 +759,52 @@
         "Recupera, incrementa y fortalece fibras musculares"
       ],
       "modo_uso": "Tomar un sobre en agua fría",
-      "horario": "Cuando termines de hacer ejercicio"
+      "horario": "Cuando termines de hacer ejercicio",
+      "codigo": "144278",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
+    },
+    "CAFE & CAFE FIT CAPPUCCINO": {
+      "nombre": "CAFÉ & CAFÉ FIT CAPPUCCINO",
+      "categoria": "Control de Peso",
+      "linea": "Línea Control de Peso",
+      "presentacion": "Caja 28 x 15g",
+      "precio": 51500,
+      "codigo": "144202",
+      "sabor": "Cappuccino",
+      "ingredientes": [
+        "Café tostado liofilizado",
+        "Leche descremada",
+        "Crema para café"
+      ],
+      "beneficios": [
+        "Energía diaria",
+        "Apoyo para control de peso",
+        "Formato cappuccino"
+      ],
+      "modo_uso": "Tomar un sobre en agua caliente",
+      "horario": "Durante el día; evitar en la noche si eres sensible a la cafeína",
+      "palabra_clave": "CAFÉ, ENERGÍA, CONTROL DE PESO",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
+    },
+    "PACK 5/14": {
+      "nombre": "PACK 5/14",
+      "categoria": "Control de Peso",
+      "linea": "Línea Control de Peso",
+      "presentacion": "Caja Pack",
+      "precio": 111000,
+      "codigo": "144595",
+      "ingredientes": [],
+      "beneficios": [
+        "Pack de apoyo para control de peso y medidas",
+        "Consultar disponibilidad vigente con un asesor antes de confirmar el pedido"
+      ],
+      "modo_uso": "Seguir la pauta del pack y consultar asesoría personalizada",
+      "horario": "Según pauta del pack",
+      "palabra_clave": "PACK 5/14, CONTROL DE PESO",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
     }
   }
 }

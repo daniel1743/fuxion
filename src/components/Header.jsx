@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingCart, Search, Menu, X, Rocket, Shield, LogOut } from 'lucide-react';
+import { ShoppingCart, Search, Menu, X, Leaf, Shield, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from "@/components/ui/use-toast";
 import { useAuth } from '@/context/AuthContext';
@@ -12,10 +12,9 @@ import UserMenu from '@/components/UserMenu';
 
 const navLinks = [
   { name: 'Inicio', path: '/' },
-  { name: 'Productos', path: '/explorar' },
-  { name: 'Categorías Fuxion', path: '/categorias' },
+  { name: 'Catálogo', path: '/explorar' },
+  { name: 'Opiniones', path: '/opiniones' },
   { name: 'Blog', path: '/blog' },
-  { name: 'Comunidad', path: '/ayuda' },
 ];
 
 const Header = () => {
@@ -59,8 +58,8 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 glassmorphism">
       <nav className="container mx-auto px-6 py-3 flex justify-between items-center">
         <Link to="/" className="flex items-center gap-2">
-          <Rocket className="text-purple-400 h-8 w-8 animate-pulse" />
-          <span className="text-2xl font-bold text-foreground tracking-tighter">Fuxion Shop</span>
+          <Leaf className="text-emerald-600 h-8 w-8" />
+          <span className="text-2xl font-bold text-foreground tracking-tight">Tienda Fuxion</span>
         </Link>
         
         <div className="hidden md:flex items-center space-x-6">
@@ -92,7 +91,7 @@ const Header = () => {
           <Link to="/carrito" className="relative text-muted-foreground hover:text-foreground transition-colors">
             <ShoppingCart />
             {getCartCount() > 0 && (
-              <span className="absolute -top-2 -right-2 bg-pink-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center animate-pulse">
+              <span className="absolute -top-2 -right-2 bg-emerald-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                 {getCartCount()}
               </span>
             )}

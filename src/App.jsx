@@ -47,7 +47,7 @@ function App() {
                     <Route path="/carrito" element={<CartPage />} />
                     <Route path="/checkout" element={<PlaceholderPage pageName="Checkout" />} />
                     <Route path="/cuenta" element={<PlaceholderPage pageName="Mi Cuenta" />} />
-                    <Route path="/opiniones" element={<PlaceholderPage pageName="Opiniones" />} />
+                    <Route path="/opiniones" element={<SupportPage />} />
                     <Route path="/blog" element={<BlogPage />} />
                     <Route path="/blog/:slug" element={<BlogPostPage />} />
                     <Route path="/terminos" element={<PlaceholderPage pageName="Términos y Condiciones" />} />

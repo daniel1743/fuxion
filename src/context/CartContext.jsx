@@ -1,6 +1,7 @@
 
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { toast } from "@/components/ui/use-toast";
+import { getActiveAdvisor } from '@/lib/whatsapp';
 
 const CartContext = createContext(null);
 
@@ -87,7 +88,14 @@ export const CartProvider = ({ children }) => {
   };
 
   const generateWhatsAppMessage = (customerData) => {
+    const formatPrice = (value) => Number(value || 0).toLocaleString('es-CL');
+    const advisor = getActiveAdvisor();
     let message = `🛒 *NUEVO PEDIDO - FUXION SHOP*\n\n`;
+    message += `Este pedido no ha sido pagado ni cobrado automáticamente. El cliente solicita asesoría para confirmar disponibilidad, resolver dudas, coordinar pago y despacho.\n\n`;
+    message += `🧭 *ASESOR ASIGNADO:*\n`;
+    message += `Nombre: ${advisor.name}\n`;
+    message += `Código: ${advisor.id}\n`;
+    message += `Origen: ${advisor.id === 'daniel' ? 'web / SEO / directo' : 'link personalizado'}\n\n`;
     message += `👤 *DATOS DEL CLIENTE:*\n`;
     message += `Nombre: ${customerData.name}\n`;
     message += `Teléfono: ${customerData.phone}\n`;
@@ -106,18 +114,18 @@ export const CartProvider = ({ children }) => {
         : item.price;
       message += `${index + 1}. ${item.name}\n`;
       message += `   • Cantidad: ${item.quantity}\n`;
-      message += `   • Precio unitario: $${price.toFixed(2)}\n`;
-      message += `   • Subtotal: $${(price * item.quantity).toFixed(2)}\n`;
+      message += `   • Precio unitario: $${formatPrice(price)}\n`;
+      message += `   • Subtotal: $${formatPrice(price * item.quantity)}\n`;
       if (item.discount) {
         message += `   • Descuento aplicado: ${item.discount}%\n`;
       }
       message += `\n`;
     });
 
-    message += `💰 *TOTAL: $${getCartTotal().toFixed(2)}*\n\n`;
+    message += `💰 *TOTAL REFERENCIAL: $${formatPrice(getCartTotal())}*\n\n`;
     message += `_Pedido generado desde Fuxion Shop_`;
 
-    return encodeURIComponent(message);
+    return message;
   };
 
   const value = {

@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "total": 80,
+    "total": 73,
     "categorias": [
       "Línea Anti-Edad",
       "Sistema DETOX",
@@ -539,18 +539,6 @@
         ]
       },
       {
-        "id": 24,
-        "categoria": "Control de Peso",
-        "pregunta": "¿BIOPRO FIT para aumentar músculo?",
-        "respuesta": "Es proteína VB=100. Si haces FUERZA = aumenta músculo. Si haces CARDIO = define",
-        "autor": "EntrenadorLocal",
-        "etiquetas": [
-          "proteína",
-          "hipertrofia",
-          "definición"
-        ]
-      },
-      {
         "id": 25,
         "categoria": "Control de Peso",
         "pregunta": "Estoy en keto, ¿NOCARB-T ok?",
@@ -632,18 +620,6 @@
           "cafeína",
           "sueño",
           "timing"
-        ]
-      },
-      {
-        "id": 32,
-        "categoria": "Control de Peso",
-        "pregunta": "¿BIOPRO FIT vs BIOPROTEIN cual es mejor?",
-        "respuesta": "BIOPROTEIN ACTIVE es más potente para grasa. Tiene L-Lisina que acelera metabolismo",
-        "autor": "ComparadorOtroVez",
-        "etiquetas": [
-          "proteína",
-          "grasas",
-          "comparativa"
         ]
       },
       {
@@ -729,33 +705,9 @@
           "celiaquía",
           "seguridad"
         ]
-      },
-      {
-        "id": 40,
-        "categoria": "Control de Peso",
-        "pregunta": "¿Costo protocolo peso completo 1 mes?",
-        "respuesta": "THERMO T3 + NOCARB-T + BIOPRO FIT = $125.000-135.000. Es inversión fuerte pero ROI alto",
-        "autor": "AnalisisFinanciero",
-        "etiquetas": [
-          "costo",
-          "presupuesto",
-          "ROI"
-        ]
       }
     ],
     "Sport": [
-      {
-        "id": 71,
-        "categoria": "Sport",
-        "pregunta": "¿BIOPRO+ SPORT vs normal cuál es mejor?",
-        "respuesta": "BIOPRO+ SPORT específico pa atletas. Si entrenas 4+ veces/semana = SPORT",
-        "autor": "AthletePerformance",
-        "etiquetas": [
-          "proteína",
-          "deporte",
-          "recuperación"
-        ]
-      },
       {
         "id": 72,
         "categoria": "Sport",
@@ -793,18 +745,6 @@
         ]
       },
       {
-        "id": 75,
-        "categoria": "Sport",
-        "pregunta": "¿BIOPRO+ SPORT hace crecer músculo?",
-        "respuesta": "BIOPRO+ SPORT no hace crecer mágicamente hermano. LO QUE HACE es nutrir pa que CREZCA",
-        "autor": "RealisticMuscle",
-        "etiquetas": [
-          "músculos",
-          "hipertrofia",
-          "entrenamiento"
-        ]
-      },
-      {
         "id": 76,
         "categoria": "Sport",
         "pregunta": "¿PRE + POST SPORT mismo día?",
@@ -829,18 +769,6 @@
         ]
       },
       {
-        "id": 78,
-        "categoria": "Sport",
-        "pregunta": "¿Atletas profesionales BIOPRO+ SPORT?",
-        "respuesta": "Profesionales usan superior. PERO BIOPRO+ SPORT muy bueno semi-pro. Yo conozco futbolistas que lo usan",
-        "autor": "ProAthletics",
-        "etiquetas": [
-          "profesionales",
-          "calidad",
-          "competencia"
-        ]
-      },
-      {
         "id": 79,
         "categoria": "Sport",
         "pregunta": "¿POST SPORT tiene azúcar? Tengo diabetes",
@@ -850,18 +778,6 @@
           "diabetes",
           "azúcar",
           "salud"
-        ]
-      },
-      {
-        "id": 80,
-        "categoria": "Sport",
-        "pregunta": "¿Costo mes protocolo SPORT FULL?",
-        "respuesta": "BIOPRO+ SPORT + PRE + POST = $120.000-135.000/mes. Mejora performance 15-20%",
-        "autor": "SportBudget",
-        "etiquetas": [
-          "costo",
-          "presupuesto",
-          "inversión"
         ]
       }
     ],

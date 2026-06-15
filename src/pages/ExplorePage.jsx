@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { ShoppingCart, Info } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/CartContext';
@@ -10,6 +10,10 @@ import fuxionDatabase from '@/data/fuxion_database.json';
 import { buildStoreSchema, SITE_URL, slugifyProduct } from '@/lib/productSeo';
 // Importamos las funciones del archivo cerebro que creamos
 import { getPlaceholderImage, getProductImageUrl } from '@/lib/imageUtils';
+import { confirmAndOpenWhatsapp } from '@/lib/whatsapp';
+import ProductNeedSearch from '@/components/ProductNeedSearch';
+import { getRelatedProducts, searchProductsByNeed } from '@/lib/productSearch';
+import { AiRobotIcon, WhatsAppIcon } from '@/components/icons/BrandIcons';
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -67,9 +71,7 @@ const convertProductFromDB = (productKey, productData) => {
   // Si tiene múltiples sabores, crear productos separados
   if (productData.sabores && Array.isArray(productData.sabores) && productData.sabores.length > 1) {
     return productData.sabores.map((sabor, index) => {
-      // Vainilla y Canela es un poco más cara (aprox 5% más)
-      const priceMultiplier = sabor.toLowerCase().includes('vainilla') ? 1.05 : 1.0;
-      const price = Math.round(basePrice * priceMultiplier);
+      const price = productData.precios_sabores?.[sabor] || basePrice;
       const saborSlug = sabor.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
       
       return {
@@ -122,6 +124,7 @@ const convertProductFromDB = (productKey, productData) => {
 
 const ExplorePage = () => {
   const { addToCart } = useCart();
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const categoriaParam = searchParams.get('categoria');
   const searchQuery = searchParams.get('search');
@@ -158,19 +161,21 @@ const ExplorePage = () => {
       );
     }
 
-    // Filtrar por búsqueda
     if (searchQuery) {
-      const query = searchQuery.toLowerCase();
-      products = products.filter(product =>
-        product.name.toLowerCase().includes(query) ||
-        product.description.toLowerCase().includes(query) ||
-        product.categoria.toLowerCase().includes(query) ||
-        (product.features && product.features.some(f => f.toLowerCase().includes(query)))
-      );
+      products = searchProductsByNeed(products, searchQuery);
     }
 
     return products;
   }, [allProducts, categoriaParam, searchQuery]);
+
+  const relatedProducts = useMemo(() => {
+    if (!searchQuery || filteredProducts.length === 0) return [];
+    return getRelatedProducts(allProducts, filteredProducts, searchQuery);
+  }, [allProducts, filteredProducts, searchQuery]);
+
+  const handleNeedSearch = (query) => {
+    navigate(`/explorar?search=${encodeURIComponent(query)}`);
+  };
 
   const handleAddToCart = (product) => {
     addToCart(product);
@@ -179,6 +184,16 @@ const ExplorePage = () => {
   const handleViewDetails = (product) => {
     setSelectedProduct(product);
     setIsModalOpen(true);
+  };
+
+  const handleAskAi = (product) => {
+    window.dispatchEvent(new CustomEvent('fuxion:open-product-ai', {
+      detail: { product }
+    }));
+  };
+
+  const handleProductWhatsapp = (product) => {
+    confirmAndOpenWhatsapp(`Hola, quiero hablar con un asesor sobre ${product.name}.`);
   };
 
   const getCategoryName = (slug) => {
@@ -234,6 +249,12 @@ const ExplorePage = () => {
             : `Sumérgete en nuestro catálogo de ${filteredProducts.length} productos Fuxion Biotech.`
           }
         </p>
+        <ProductNeedSearch
+          initialValue={searchQuery || ''}
+          onSearch={handleNeedSearch}
+          compact
+          className="mt-8"
+        />
       </div>
 
       {filteredProducts.length === 0 ? (
@@ -300,11 +321,31 @@ const ExplorePage = () => {
                   <div className="flex gap-2 mt-auto">
                     <Button
                       onClick={() => handleAddToCart(product)}
-                      className="flex-1 h-9 text-sm gap-1 cursor-pointer"
+                      className="flex-1 h-9 text-sm gap-1 cursor-pointer px-3"
                       disabled={product.stock === 0}
                     >
                       <ShoppingCart className="h-4 w-4" />
                       {product.stock === 0 ? 'Agotado' : 'Agregar'}
+                    </Button>
+                    <Button
+                      onClick={() => handleAskAi(product)}
+                      variant="outline"
+                      size="icon"
+                      className="h-9 w-9 cursor-pointer border-emerald-200 text-emerald-700 hover:bg-emerald-600 hover:text-white"
+                      title={`Preguntar a la IA sobre ${product.name}`}
+                      aria-label={`Preguntar a la IA sobre ${product.name}`}
+                    >
+                      <AiRobotIcon className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      onClick={() => handleProductWhatsapp(product)}
+                      variant="outline"
+                      size="icon"
+                      className="h-9 w-9 cursor-pointer border-green-200 text-green-700 hover:bg-green-600 hover:text-white"
+                      title="Hablar con asesor"
+                      aria-label={`Hablar con asesor por WhatsApp sobre ${product.name}`}
+                    >
+                      <WhatsAppIcon className="h-4 w-4" />
                     </Button>
                     <Button
                       onClick={() => handleViewDetails(product)}
@@ -320,6 +361,46 @@ const ExplorePage = () => {
             </motion.div>
           ))}
         </div>
+      )}
+
+      {relatedProducts.length > 0 && (
+        <section className="mt-16 rounded-2xl border border-emerald-100 bg-emerald-50/60 p-6 dark:border-emerald-900 dark:bg-emerald-950/20">
+          <div className="mb-6">
+            <p className="text-sm font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-300">
+              Recomendación complementaria
+            </p>
+            <h2 className="mt-2 text-2xl font-bold text-foreground">
+              También puedes ver estos otros productos
+            </h2>
+            <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
+              Según lo que escribiste, estos productos pueden complementar tu objetivo. Un asesor puede ayudarte a elegir la combinación más adecuada.
+            </p>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {relatedProducts.map((product) => (
+              <Link
+                key={product.id}
+                to={`/producto/${product.slug}`}
+                className="group rounded-xl border border-border bg-card p-4 transition hover:border-primary hover:shadow-md"
+              >
+                <div className="mb-3 aspect-square overflow-hidden rounded-lg bg-secondary">
+                  <img
+                    src={product.image}
+                    alt={`${product.name} Fuxion`}
+                    className="h-full w-full object-cover transition group-hover:scale-105"
+                    loading="lazy"
+                    onError={(event) => {
+                      event.currentTarget.src = getPlaceholderImage('product');
+                    }}
+                  />
+                </div>
+                <h3 className="font-semibold text-foreground">{product.name}</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{product.categoria}</p>
+                <p className="mt-2 font-bold text-primary">${product.price.toLocaleString('es-CL')}</p>
+              </Link>
+            ))}
+          </div>
+        </section>
       )}
 
       {/* Product Modal */}

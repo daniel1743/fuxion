@@ -18,7 +18,6 @@ const PRODUCT_IMAGE_MAP = {
   'REXET': 'rexet.png',
 
   // Sistema Base - Nutre y Regenera
-  'BIOPRO+ TECT': 'biopro+-tect.png',
   'BIOPROTEIN ACTIVE': 'bioprotein-active.png',
 
   // Sistema Base - Revitaliza tu Energía
@@ -34,11 +33,11 @@ const PRODUCT_IMAGE_MAP = {
   // Línea Control de Peso
   'THERMO T3': 'thermo-t3.png',
   'NOCARB-T': 'nocarb-t.png',
-  'BIOPRO+ FIT': 'biopro+-fit.png',
   'PROTEIN ACTIVE FIT': 'protein-active-fit.png',
 
   // Línea Anti-Edad
   'YOUTH ELIXIR HGH': 'youth-elixir-hgh.png',
+  'YOUTH ELIXIR': 'youth-elixir-hgh.png',
   'BEAUTY-IN': 'beauty-in.png',
   'COOL AGE': 'beauty-in.png',
   'PROBAL': 'probal.png',
@@ -51,7 +50,6 @@ const PRODUCT_IMAGE_MAP = {
   'OFF': 'no-stress.png',
 
   // Línea Sport
-  'BIOPRO+ SPORT': 'biopro+-sport.png',
   'PRE SPORT': 'pre-sport.png',
   'POST SPORT': 'post-sport.png',
 
@@ -59,6 +57,7 @@ const PRODUCT_IMAGE_MAP = {
   'PACK 5/14': 'kit-514-active.png',
   'KIT 514 ACTIVE': 'kit-514-active.png',
   'KIT DETOX 5 DIAS': 'kit-detox-5-dias.png',
+  'PACK 514': 'kit-514-active.png',
 };
 
 /**
@@ -215,4 +214,3 @@ export const getPlaceholderImage = (type = 'product') => {
   
   return placeholders[type] || placeholders.product;
 };
-
