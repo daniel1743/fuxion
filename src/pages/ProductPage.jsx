@@ -1,0 +1,204 @@
+import React from 'react';
+import { Helmet } from 'react-helmet';
+import { Link, useParams } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { ArrowLeft, CheckCircle2, ShoppingCart } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { useCart } from '@/context/CartContext';
+import {
+  buildProductKeywords,
+  buildProductMetaDescription,
+  buildProductSchema,
+  getSeoProductBySlug,
+  SITE_URL,
+  STORE_NAME
+} from '@/lib/productSeo';
+import { getPlaceholderImage } from '@/lib/imageUtils';
+
+const ProductPage = () => {
+  const { slug } = useParams();
+  const { addToCart } = useCart();
+  const product = getSeoProductBySlug(slug);
+
+  if (!product) {
+    return (
+      <main className="container mx-auto px-6 py-32">
+        <Helmet>
+          <title>Producto no encontrado | {STORE_NAME}</title>
+          <meta name="robots" content="noindex, follow" />
+        </Helmet>
+        <div className="max-w-xl">
+          <h1 className="text-3xl font-bold text-foreground">Producto no encontrado</h1>
+          <p className="mt-4 text-muted-foreground">
+            Este producto no esta disponible en el catalogo actual.
+          </p>
+          <Button asChild className="mt-6">
+            <Link to="/explorar">Ver productos Fuxion</Link>
+          </Button>
+        </div>
+      </main>
+    );
+  }
+
+  const metaDescription = buildProductMetaDescription(product);
+  const productForCart = {
+    id: product.id,
+    name: product.name,
+    slug: product.slug,
+    price: product.price,
+    stock: 50,
+    rating: 4.5,
+    reviews: 120,
+    description: product.description,
+    categoria: product.category,
+    image: product.image,
+    beneficios: product.benefits,
+    ingredientes: product.ingredients,
+    specs: [
+      { label: 'Presentacion', value: product.presentation || 'Consultar' },
+      { label: 'Modo de uso', value: product.usage || 'Consultar' },
+      { label: 'Horario', value: product.schedule || 'Consultar' },
+      ...(product.flavor ? [{ label: 'Sabor', value: product.flavor }] : [])
+    ]
+  };
+
+  return (
+    <motion.main
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.4 }}
+      className="container mx-auto px-6 py-28"
+    >
+      <Helmet>
+        <title>{`${product.name} Fuxion | Precio, Beneficios y Modo de Uso | ${STORE_NAME}`}</title>
+        <meta name="description" content={metaDescription} />
+        <meta name="keywords" content={buildProductKeywords(product)} />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
+        <link rel="canonical" href={product.url} />
+
+        <meta property="og:type" content="product" />
+        <meta property="og:url" content={product.url} />
+        <meta property="og:title" content={`${product.name} Fuxion | ${STORE_NAME}`} />
+        <meta property="og:description" content={metaDescription} />
+        <meta property="og:image" content={product.imageUrl} />
+        <meta property="product:price:amount" content={String(product.price)} />
+        <meta property="product:price:currency" content="CLP" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${product.name} Fuxion | ${STORE_NAME}`} />
+        <meta name="twitter:description" content={metaDescription} />
+        <meta name="twitter:image" content={product.imageUrl} />
+
+        <script type="application/ld+json">
+          {JSON.stringify(buildProductSchema(product))}
+        </script>
+      </Helmet>
+
+      <Link to="/explorar" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary mb-8">
+        <ArrowLeft className="h-4 w-4" />
+        Volver al catalogo
+      </Link>
+
+      <section className="grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-10 items-start">
+        <div className="bg-secondary rounded-2xl overflow-hidden border border-border">
+          <img
+            src={product.image || getPlaceholderImage('product')}
+            alt={`${product.name} Fuxion producto nutraceutico`}
+            className="w-full aspect-square object-cover"
+            onError={(event) => {
+              event.currentTarget.src = getPlaceholderImage('product');
+            }}
+          />
+        </div>
+
+        <div>
+          <p className="text-sm font-semibold text-primary uppercase tracking-wide">
+            {product.category}
+          </p>
+          <h1 className="mt-3 text-4xl md:text-5xl font-extrabold text-foreground">
+            {product.name} Fuxion
+          </h1>
+          <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
+            {metaDescription}
+          </p>
+
+          <div className="mt-6 flex flex-wrap items-center gap-4">
+            <span className="text-4xl font-bold text-primary">
+              ${product.price.toLocaleString('es-CL')}
+            </span>
+            <span className="text-sm text-muted-foreground">
+              Producto Fuxion disponible para pedido y asesoria.
+            </span>
+          </div>
+
+          <div className="mt-8 grid sm:grid-cols-2 gap-4">
+            <div className="rounded-xl border border-border p-4">
+              <p className="text-sm text-muted-foreground">Presentacion</p>
+              <p className="font-semibold text-foreground">{product.presentation || 'Consultar'}</p>
+            </div>
+            <div className="rounded-xl border border-border p-4">
+              <p className="text-sm text-muted-foreground">Modo de uso</p>
+              <p className="font-semibold text-foreground">{product.usage || 'Consultar'}</p>
+            </div>
+            <div className="rounded-xl border border-border p-4">
+              <p className="text-sm text-muted-foreground">Horario sugerido</p>
+              <p className="font-semibold text-foreground">{product.schedule || 'Consultar'}</p>
+            </div>
+            <div className="rounded-xl border border-border p-4">
+              <p className="text-sm text-muted-foreground">Linea</p>
+              <p className="font-semibold text-foreground">{product.line || 'Fuxion Biotech'}</p>
+            </div>
+          </div>
+
+          <Button
+            onClick={() => addToCart(productForCart)}
+            className="mt-8 h-12 px-6 gap-2"
+          >
+            <ShoppingCart className="h-5 w-5" />
+            Agregar al carrito
+          </Button>
+        </div>
+      </section>
+
+      <section className="mt-14 grid lg:grid-cols-2 gap-10">
+        <div>
+          <h2 className="text-2xl font-bold text-foreground">
+            Beneficios de {product.name}
+          </h2>
+          <div className="mt-5 space-y-3">
+            {product.benefits.map((benefit) => (
+              <div key={benefit} className="flex gap-3 text-muted-foreground">
+                <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                <span>{benefit}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-bold text-foreground">
+            Ingredientes y enfoque natural
+          </h2>
+          <p className="mt-4 text-muted-foreground leading-relaxed">
+            {product.name} forma parte del catalogo Fuxion de nutricion y bienestar. Su informacion se presenta con enfoque educativo y de asesoria comercial.
+          </p>
+          {product.ingredients.length > 0 && (
+            <div className="mt-5 flex flex-wrap gap-2">
+              {product.ingredients.map((ingredient) => (
+                <span key={ingredient} className="rounded-full bg-secondary px-3 py-1 text-sm text-muted-foreground">
+                  {ingredient}
+                </span>
+              ))}
+            </div>
+          )}
+          <p className="mt-6 text-sm text-muted-foreground">
+            No somos medicos ni reemplazamos la evaluacion profesional. Si tienes una condicion de salud, embarazo, lactancia o tomas medicamentos, consulta con un profesional de salud.
+          </p>
+        </div>
+      </section>
+    </motion.main>
+  );
+};
+
+export default ProductPage;

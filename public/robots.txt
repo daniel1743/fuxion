@@ -1,18 +1,18 @@
-# robots.txt para tiendafuxion.space
-
 User-agent: *
 Allow: /
-
-# Sitemap
-Sitemap: https://tiendafuxion.space/sitemap.xml
-
-# Bloquear rutas internas/privadas
-Disallow: /api/
-Disallow: /admin/
-Disallow: /carrito
-Disallow: /checkout
-Disallow: /cuenta
-
-# Permitir recursos estáticos
+Allow: /producto/
+Allow: /explorar
+Allow: /categorias
+Allow: /blog
+Allow: /ayuda
 Allow: /img/
 Allow: /assets/
+
+Disallow: /api/
+Disallow: /admin/
+Disallow: /carrito/
+Disallow: /checkout/
+Disallow: /cuenta/
+Disallow: /*?search=
+
+Sitemap: https://tiendafuxion.space/sitemap.xml

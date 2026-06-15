@@ -1,12 +1,13 @@
 import React, { useState, useMemo } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { ShoppingCart, Info } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/CartContext';
 import ProductModal from '@/components/ProductModal';
 import fuxionDatabase from '@/data/fuxion_database.json';
+import { buildStoreSchema, SITE_URL, slugifyProduct } from '@/lib/productSeo';
 // Importamos las funciones del archivo cerebro que creamos
 import { getPlaceholderImage, getProductImageUrl } from '@/lib/imageUtils';
 
@@ -74,7 +75,7 @@ const convertProductFromDB = (productKey, productData) => {
       return {
         id: `${productKey}-${saborSlug}`,
         name: `${productData.nombre} - ${sabor}`,
-        slug: `${productKey.toLowerCase().replace(/\s+/g, '-')}-${saborSlug}`,
+        slug: `${slugifyProduct(productData.nombre || productKey)}-${saborSlug}`,
         price: price,
         stock: 50,
         rating: 4.5,
@@ -100,7 +101,7 @@ const convertProductFromDB = (productKey, productData) => {
   return {
     id: productKey,
     name: productData.nombre,
-    slug: productKey.toLowerCase().replace(/\s+/g, '-'),
+    slug: slugifyProduct(productData.nombre || productKey),
     price: basePrice,
     stock: 50,
     rating: 4.5,
@@ -204,8 +205,14 @@ const ExplorePage = () => {
       className="container mx-auto px-6 py-28"
     >
       <Helmet>
-        <title>{categoriaParam ? `${getCategoryName(categoriaParam)} — ` : ''}Productos — Fuxion Shop</title>
-        <meta name="description" content="Descubre la colección completa de productos Fuxion Biotech." />
+        <title>{categoriaParam ? `${getCategoryName(categoriaParam)} Fuxion | ` : ''}Productos Fuxion Chile | Nutricion y Bienestar Natural</title>
+        <meta name="description" content="Catalogo de productos Fuxion en Chile para nutricion, bienestar natural, energia, digestion, control de peso, defensas, deporte y belleza." />
+        <meta name="keywords" content="productos Fuxion, Fuxion Chile, comprar Fuxion, nutricion natural, bienestar natural, productos nutraceuticos, control de peso, energia natural, digestion" />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
+        <link rel="canonical" href={`${SITE_URL}/explorar${categoriaParam ? `?categoria=${categoriaParam}` : ''}`} />
+        <script type="application/ld+json">
+          {JSON.stringify(buildStoreSchema())}
+        </script>
       </Helmet>
 
       <div className="text-center mb-12">
@@ -249,19 +256,21 @@ const ExplorePage = () => {
 
                 {/* Image */}
                 <div className="relative h-48 overflow-hidden bg-secondary flex-shrink-0">
-                  <img
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    alt={product.name}
-                    // Aquí ya usamos la ruta correcta generada por getProductImageUrl
-                    src={product.image} 
-                    loading="lazy"
-                    onError={(e) => {
-                      // Fallback final por si la imagen no existe ni en el mapa
-                      if (e.target.src !== getPlaceholderImage('product')) {
-                        e.target.src = getPlaceholderImage('product');
-                      }
-                    }}
-                  />
+                  <Link to={`/producto/${product.slug}`} aria-label={`Ver ${product.name} Fuxion`}>
+                    <img
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      alt={`${product.name} Fuxion`}
+                      // Aquí ya usamos la ruta correcta generada por getProductImageUrl
+                      src={product.image}
+                      loading="lazy"
+                      onError={(e) => {
+                        // Fallback final por si la imagen no existe ni en el mapa
+                        if (e.target.src !== getPlaceholderImage('product')) {
+                          e.target.src = getPlaceholderImage('product');
+                        }
+                      }}
+                    />
+                  </Link>
                   {product.stock < 10 && product.stock > 0 && (
                     <div className="absolute top-2 left-2 bg-orange-500 text-white px-2 py-1 rounded-lg text-xs font-bold">
                       ¡Últimas {product.stock}!
@@ -271,7 +280,9 @@ const ExplorePage = () => {
 
                 {/* Content */}
                 <div className="p-4 flex flex-col flex-grow">
-                  <h3 className="text-base font-semibold text-foreground truncate mb-2">{product.name}</h3>
+                  <Link to={`/producto/${product.slug}`} className="text-base font-semibold text-foreground hover:text-primary truncate mb-2">
+                    {product.name}
+                  </Link>
                   <div className="mb-3">
                     <p className="text-xl font-bold text-primary">
                       ${product.price.toLocaleString('es-CL')}

@@ -1,6 +1,6 @@
 import path from 'node:path';
 import react from '@vitejs/plugin-react';
-import { createLogger, defineConfig } from 'vite';
+import { createLogger, defineConfig, loadEnv } from 'vite';
 import inlineEditPlugin from './plugins/visual-editor/vite-plugin-react-inline-editor.js';
 import editModeDevPlugin from './plugins/visual-editor/vite-plugin-edit-mode.js';
 import iframeRouteRestorationPlugin from './plugins/vite-plugin-iframe-route-restoration.js';
@@ -220,6 +220,48 @@ const addTransformIndexHtml = {
 	},
 };
 
+const vercelApiDevPlugin = () => ({
+	name: 'vercel-api-dev',
+	configureServer(server) {
+		server.middlewares.use('/api/chat', async (req, res) => {
+			let rawBody = '';
+
+			req.on('data', chunk => {
+				rawBody += chunk;
+			});
+
+			req.on('end', async () => {
+				try {
+					req.body = rawBody ? JSON.parse(rawBody) : {};
+
+					const { default: handler } = await import(`./api/chat.js?t=${Date.now()}`);
+
+					const vercelRes = {
+						status(code) {
+							res.statusCode = code;
+							return this;
+						},
+						json(payload) {
+							res.setHeader('Content-Type', 'application/json');
+							res.end(JSON.stringify(payload));
+							return this;
+						}
+					};
+
+					await handler(req, vercelRes);
+				} catch (error) {
+					res.statusCode = 500;
+					res.setHeader('Content-Type', 'application/json');
+					res.end(JSON.stringify({
+						error: 'Error interno del servidor local',
+						message: error.message
+					}));
+				}
+			});
+		});
+	}
+});
+
 console.warn = () => {};
 
 const logger = createLogger()
@@ -233,12 +275,17 @@ logger.error = (msg, options) => {
 	loggerError(msg, options);
 }
 
-export default defineConfig({
+export default defineConfig(({ mode }) => {
+	const env = loadEnv(mode, process.cwd(), '');
+	Object.assign(process.env, env);
+
+	return {
 	customLogger: logger,
 	plugins: [
 		...(isDev ? [inlineEditPlugin(), editModeDevPlugin(), iframeRouteRestorationPlugin(), selectionModePlugin()] : []),
 		react(),
-		addTransformIndexHtml
+		addTransformIndexHtml,
+		...(isDev ? [vercelApiDevPlugin()] : [])
 	],
 	server: {
 		cors: true,
@@ -263,4 +310,5 @@ export default defineConfig({
 			]
 		}
 	}
+	};
 });

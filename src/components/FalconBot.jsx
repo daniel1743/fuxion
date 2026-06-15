@@ -1,7 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Send, Bot, ShoppingBag, Headphones, Lightbulb, Loader2 } from 'lucide-react';
+import { X, Send, Bot, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from "@/components/ui/use-toast";
 import { sendMessageToDeepSeek } from '@/services/deepseekService';
@@ -11,35 +11,13 @@ const FalconBot = () => {
     const [messages, setMessages] = useState([]);
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const [selectedBot, setSelectedBot] = useState('ventas');
     const messagesEndRef = useRef(null);
 
-    // Bots especializados - Fuxion Assistants
-    const bots = {
-        ventas: {
-            name: 'Fuxion Assistant',
-            subtitle: 'Ventas',
-            icon: <ShoppingBag className="h-5 w-5" />,
-            color: 'bg-blue-500',
-            description: 'Encuentra productos Fuxion',
-            greeting: '¡Hola! 👋 Soy tu Fuxion Assistant de Ventas. ¿Qué producto Fuxion estás buscando hoy? Puedo ayudarte con control de peso, energía, salud y más.'
-        },
-        soporte: {
-            name: 'Fuxion Assistant',
-            subtitle: 'Soporte',
-            icon: <Headphones className="h-5 w-5" />,
-            color: 'bg-green-500',
-            description: 'Ayuda con productos y modo de uso',
-            greeting: '¡Hola! 🛟 Soy tu Fuxion Assistant de Soporte. ¿Tienes dudas sobre cómo tomar algún producto Fuxion o sus beneficios?'
-        },
-        asesor: {
-            name: 'Fuxion Assistant',
-            subtitle: 'Asesor',
-            icon: <Lightbulb className="h-5 w-5" />,
-            color: 'bg-purple-500',
-            description: 'Recomendaciones personalizadas',
-            greeting: '¡Hola! 💡 Soy tu Fuxion Assistant Técnico. Cuéntame qué necesitas (bajar de peso, más energía, mejor salud) y te ayudaré a elegir los mejores productos Fuxion.'
-        }
+    const bot = {
+        name: 'Fuxion Assistant',
+        subtitle: 'Asesor integral',
+        color: 'bg-purple-500',
+        greeting: '¡Hola! Soy tu Fuxion Assistant. Puedo ayudarte a elegir productos, resolver dudas de uso y recomendar opciones según tu objetivo. ¿Qué estás buscando mejorar hoy?'
     };
 
     const scrollToBottom = () => {
@@ -55,20 +33,10 @@ const FalconBot = () => {
         if (!isOpen && messages.length === 0) {
             setMessages([{
                 sender: 'bot',
-                text: '¡Bienvenido a Fuxion Biotech! 🚀\n\nTenemos 3 Fuxion Assistants especializados para ayudarte con productos nutracéuticos:\n\n🛍️ Ventas - Encuentra productos\n🎧 Soporte - Modo de uso y beneficios\n💡 Asesor - Recomendaciones personalizadas\n\nSelecciona uno arriba para comenzar.',
-                botType: 'system'
+                text: bot.greeting,
+                botType: 'assistant'
             }]);
         }
-    };
-
-    const switchBot = (botType) => {
-        setSelectedBot(botType);
-        const bot = bots[botType];
-        setMessages(prev => [...prev, {
-            sender: 'bot',
-            text: bot.greeting,
-            botType: botType
-        }]);
     };
 
     const handleSend = async (e) => {
@@ -92,14 +60,14 @@ const FalconBot = () => {
 
             const response = await sendMessageToDeepSeek(
                 userMessage,
-                selectedBot,
+                'unificado',
                 conversationHistory
             );
 
             setMessages(prev => [...prev, {
                 sender: 'bot',
                 text: response.text,
-                botType: selectedBot,
+                botType: 'assistant',
                 apiUsed: response.apiUsed
             }]);
 
@@ -111,7 +79,9 @@ const FalconBot = () => {
 
             let errorMessage = '❌ Lo siento, tuve un problema al procesar tu mensaje. ';
 
-            if (error.message.includes('API Key')) {
+            if (error.message.includes('Insufficient Balance') || error.message.includes('402')) {
+                errorMessage += 'DeepSeek no tiene saldo disponible. Por favor revisa el saldo de la cuenta o configura una API de respaldo válida.';
+            } else if (error.message.includes('API Key') || error.message.includes('API key')) {
                 errorMessage += 'La configuración de la API no está completa.';
             } else if (error.message.includes('429')) {
                 errorMessage += 'Se excedió el límite de solicitudes. Intenta en unos momentos.';
@@ -161,15 +131,15 @@ const FalconBot = () => {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 100, scale: 0.8 }}
                         transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-                        className="fixed bottom-6 right-6 z-50 w-96 h-[600px] bg-card border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+                        className="fixed inset-x-3 bottom-3 z-50 h-[min(600px,calc(100dvh-24px))] bg-card border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden sm:inset-x-auto sm:bottom-6 sm:right-6 sm:w-96 sm:h-[min(600px,calc(100dvh-48px))]"
                     >
                         {/* Header */}
                         <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-4 flex justify-between items-center">
                             <div className="flex items-center gap-2">
                                 <Bot className="h-6 w-6 text-white" />
                                 <div>
-                                    <h3 className="text-white font-bold">{bots[selectedBot].name}</h3>
-                                    <p className="text-white/80 text-xs">{bots[selectedBot].subtitle}</p>
+                                    <h3 className="text-white font-bold">{bot.name}</h3>
+                                    <p className="text-white/80 text-xs">{bot.subtitle}</p>
                                 </div>
                             </div>
                             <Button
@@ -180,29 +150,6 @@ const FalconBot = () => {
                             >
                                 <X className="h-5 w-5" />
                             </Button>
-                        </div>
-
-                        {/* Selector de Bots */}
-                        <div className="p-3 bg-secondary border-b border-border grid grid-cols-3 gap-2">
-                            {Object.entries(bots).map(([key, bot]) => (
-                                <button
-                                    key={key}
-                                    onClick={() => switchBot(key)}
-                                    className={`p-2 rounded-lg transition-all ${
-                                        selectedBot === key
-                                            ? `${bot.color} text-white shadow-lg`
-                                            : 'bg-card hover:bg-accent'
-                                    }`}
-                                    title={bot.description}
-                                >
-                                    <div className="flex flex-col items-center gap-1">
-                                        {bot.icon}
-                                        <span className="text-xs font-medium truncate w-full text-center">
-                                            {bot.subtitle}
-                                        </span>
-                                    </div>
-                                </button>
-                            ))}
                         </div>
 
                         {/* Mensajes */}
@@ -222,13 +169,13 @@ const FalconBot = () => {
                                                 ? 'bg-destructive/10 text-destructive border border-destructive/20'
                                                 : message.botType === 'system'
                                                 ? 'bg-secondary text-foreground border border-border'
-                                                : `${bots[message.botType]?.color || 'bg-secondary'} text-white`
+                                                : `${bot.color} text-white`
                                         }`}
                                     >
                                         {message.sender === 'bot' && message.botType !== 'system' && message.botType !== 'error' && (
                                             <div className="flex items-center gap-2 mb-1 opacity-80">
-                                                {bots[message.botType]?.icon}
-                                                <span className="text-xs font-semibold">{bots[message.botType]?.name}</span>
+                                                <Bot className="h-4 w-4" />
+                                                <span className="text-xs font-semibold">{bot.name}</span>
                                             </div>
                                         )}
                                         <p className="text-sm whitespace-pre-wrap">{message.text}</p>
@@ -242,7 +189,7 @@ const FalconBot = () => {
                                     animate={{ opacity: 1 }}
                                     className="flex justify-start"
                                 >
-                                    <div className={`${bots[selectedBot].color} text-white p-3 rounded-2xl flex items-center gap-2`}>
+                                    <div className={`${bot.color} text-white p-3 rounded-2xl flex items-center gap-2`}>
                                         <Loader2 className="h-4 w-4 animate-spin" />
                                         <span className="text-sm">Pensando...</span>
                                     </div>
@@ -276,7 +223,7 @@ const FalconBot = () => {
                                 ⚠️ No soy médico. Solo proporciono información de productos Fuxion.
                             </p>
                             <p className="text-xs text-muted-foreground text-center opacity-70">
-                                Powered by AI (DeepSeek/Qwen/Gemini)
+                                Powered by DeepSeek AI
                             </p>
                         </form>
                     </motion.div>

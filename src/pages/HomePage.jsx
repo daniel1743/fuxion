@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Heart, Sparkles, Zap, CheckCircle2, MessageCircle, Star, ShoppingCart } from 'lucide-react';
 import { toast } from "@/components/ui/use-toast";
 import { getImageUrl, getPlaceholderImage } from '@/lib/imageUtils';
+import { buildStoreSchema, SITE_URL, STORE_NAME } from '@/lib/productSeo';
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -160,26 +161,33 @@ const HomePage = () => {
       className="overflow-x-hidden"
     >
       <Helmet>
-        <title>Fuxion — Transforma tu cuerpo desde adentro | Pérdida de Peso y Bienestar Femenino</title>
-        <meta name="description" content="Descubre el sistema Fuxion: productos naturales diseñados para ayudarte a desinflamar, controlar tu peso, mejorar tu digestión y aumentar tu energía diaria. Sin dietas extremas. Sin sufrimiento. Resultados reales." />
+        <title>Tienda Fuxion Chile | Productos Fuxion para Nutricion y Bienestar Natural</title>
+        <meta name="description" content="Tienda Fuxion en Chile con productos nutraceuticos para nutricion, bienestar natural, digestion, energia, control de peso, defensas, deporte y belleza. Asesoria personalizada." />
+        <meta name="keywords" content="Fuxion Chile, tienda Fuxion, productos Fuxion, comprar Fuxion, nutricion natural, bienestar natural, nutraceuticos, control de peso, energia natural, digestion, defensas, belleza natural" />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
+        <link rel="canonical" href={`${SITE_URL}/`} />
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={typeof window !== 'undefined' ? window.location.href : 'https://tiendafuxion.space/'} />
-        <meta property="og:title" content="Fuxion Shop - Transforma tu cuerpo desde adentro" />
-        <meta property="og:description" content="Descubre el sistema Fuxion: productos naturales diseñados para ayudarte a desinflamar, controlar tu peso, mejorar tu digestión y aumentar tu energía diaria. Sin dietas extremas. Sin sufrimiento. Resultados reales." />
-        <meta property="og:image" content={`${typeof window !== 'undefined' ? window.location.origin : 'https://tiendafuxion.space'}/img/familia.fuxion.png`} />
+        <meta property="og:url" content={`${SITE_URL}/`} />
+        <meta property="og:title" content={`${STORE_NAME} | Productos Fuxion para Nutricion y Bienestar`} />
+        <meta property="og:description" content="Catalogo Fuxion en Chile para nutricion, bienestar natural, digestion, energia, control de peso, defensas y belleza." />
+        <meta property="og:image" content={`${SITE_URL}/img/familia.fuxion.png`} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:type" content="image/png" />
-        <meta property="og:site_name" content="Fuxion Shop" />
+        <meta property="og:site_name" content={STORE_NAME} />
         <meta property="og:locale" content="es_CL" />
         
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Fuxion Shop - Transforma tu cuerpo desde adentro" />
-        <meta name="twitter:description" content="Descubre el sistema Fuxion: productos naturales diseñados para ayudarte a desinflamar, controlar tu peso, mejorar tu digestión y aumentar tu energía diaria." />
-        <meta name="twitter:image" content={`${typeof window !== 'undefined' ? window.location.origin : 'https://tiendafuxion.space'}/img/familia.fuxion.png`} />
+        <meta name="twitter:title" content={`${STORE_NAME} | Productos Fuxion Chile`} />
+        <meta name="twitter:description" content="Productos Fuxion para nutricion, bienestar natural, digestion, energia y control de peso." />
+        <meta name="twitter:image" content={`${SITE_URL}/img/familia.fuxion.png`} />
+
+        <script type="application/ld+json">
+          {JSON.stringify(buildStoreSchema())}
+        </script>
       </Helmet>
 
       {/* SECCIÓN 1 – HERO */}

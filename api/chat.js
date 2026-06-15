@@ -7,15 +7,50 @@
  * Sistema de fallback: DeepSeek > Qwen > Gemini
  */
 
-// Configuración de APIs desde variables de entorno (seguras)
-const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY;
-const QWEN_API_KEY = process.env.QWEN_API_KEY;
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+// Configuración de APIs desde variables de entorno (seguras).
+// Se acepta el prefijo VITE_ solo como compatibilidad con instalaciones antiguas.
+const getApiKey = (name) => process.env[`VITE_${name}`] || process.env[name];
+
+const DEEPSEEK_API_KEY = getApiKey('DEEPSEEK_API_KEY');
+const QWEN_API_KEY = getApiKey('QWEN_API_KEY');
+const GEMINI_API_KEY = getApiKey('GEMINI_API_KEY');
 
 const DEEPSEEK_API_URL = 'https://api.deepseek.com/v1/chat/completions';
 const QWEN_API_URL = 'https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions';
 // Corregido: Usar v1 en lugar de v1beta
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent';
+const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
+
+const API_PROVIDERS = {
+  deepseek: {
+    name: 'DeepSeek',
+    hasKey: () => Boolean(DEEPSEEK_API_KEY),
+    call: callDeepSeekAPI
+  },
+  qwen: {
+    name: 'Qwen',
+    hasKey: () => Boolean(QWEN_API_KEY),
+    call: callQwenAPI
+  },
+  gemini: {
+    name: 'Gemini',
+    hasKey: () => Boolean(GEMINI_API_KEY),
+    call: callGeminiAPI
+  }
+};
+
+const getProviderOrder = (preferredProvider = 'deepseek') => {
+  const fallbackOrder = ['deepseek', 'qwen', 'gemini'];
+  const normalizedProvider = String(preferredProvider).toLowerCase();
+
+  if (!API_PROVIDERS[normalizedProvider]) {
+    return fallbackOrder;
+  }
+
+  return [
+    normalizedProvider,
+    ...fallbackOrder.filter(provider => provider !== normalizedProvider)
+  ];
+};
 
 // Función para llamar a DeepSeek API
 async function callDeepSeekAPI(messages) {
@@ -146,56 +181,32 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { messages } = req.body;
+    const { messages, preferredProvider = 'deepseek' } = req.body;
 
     if (!messages || !Array.isArray(messages)) {
       return res.status(400).json({ error: 'Se requiere un array de mensajes.' });
     }
 
-    // Sistema de fallback: DeepSeek > Qwen > Gemini
-    let result = null;
+    // Sistema de fallback por defecto: DeepSeek > Qwen > Gemini
     let errors = [];
+    const providerOrder = getProviderOrder(preferredProvider);
 
-    // Intentar con DeepSeek primero
-    if (DEEPSEEK_API_KEY) {
+    for (const providerKey of providerOrder) {
+      const provider = API_PROVIDERS[providerKey];
+
+      if (!provider.hasKey()) {
+        errors.push({ api: provider.name, error: 'API key no configurada' });
+        continue;
+      }
+
       try {
-        console.log('🔄 Intentando con DeepSeek API...');
-        result = await callDeepSeekAPI(messages);
+        console.log(`🔄 Intentando con ${provider.name} API...`);
+        const result = await provider.call(messages);
         return res.status(200).json(result);
       } catch (error) {
-        console.warn('⚠️ DeepSeek falló:', error.message);
-        errors.push({ api: 'DeepSeek', error: error.message });
+        console.warn(`⚠️ ${provider.name} falló:`, error.message);
+        errors.push({ api: provider.name, error: error.message });
       }
-    } else {
-      errors.push({ api: 'DeepSeek', error: 'API key no configurada' });
-    }
-
-    // Si DeepSeek falla, intentar con Qwen
-    if (QWEN_API_KEY) {
-      try {
-        console.log('🔄 Intentando con Qwen API (fallback)...');
-        result = await callQwenAPI(messages);
-        return res.status(200).json(result);
-      } catch (error) {
-        console.warn('⚠️ Qwen falló:', error.message);
-        errors.push({ api: 'Qwen', error: error.message });
-      }
-    } else {
-      errors.push({ api: 'Qwen', error: 'API key no configurada' });
-    }
-
-    // Si Qwen falla, intentar con Gemini
-    if (GEMINI_API_KEY) {
-      try {
-        console.log('🔄 Intentando con Gemini API (fallback final)...');
-        result = await callGeminiAPI(messages);
-        return res.status(200).json(result);
-      } catch (error) {
-        console.error('❌ Gemini también falló:', error.message);
-        errors.push({ api: 'Gemini', error: error.message });
-      }
-    } else {
-      errors.push({ api: 'Gemini', error: 'API key no configurada' });
     }
 
     // Si todas fallaron

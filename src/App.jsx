@@ -19,6 +19,7 @@ const SupportPage = lazy(() => import('@/pages/SupportPage'));
 const CartPage = lazy(() => import('@/pages/CartPage'));
 const BlogPage = lazy(() => import('@/pages/BlogPage'));
 const BlogPostPage = lazy(() => import('@/pages/BlogPostPage'));
+const ProductPage = lazy(() => import('@/pages/ProductPage'));
 const PlaceholderPage = lazy(() => import('@/pages/PlaceholderPage'));
 
 function App() {
@@ -42,7 +43,7 @@ function App() {
                     <Route path="/explorar" element={<ExplorePage />} />
                     <Route path="/categorias" element={<CategoriesPage />} />
                     <Route path="/ayuda" element={<SupportPage />} />
-                    <Route path="/producto/:slug" element={<PlaceholderPage pageName="Detalle de Producto" />} />
+                    <Route path="/producto/:slug" element={<ProductPage />} />
                     <Route path="/carrito" element={<CartPage />} />
                     <Route path="/checkout" element={<PlaceholderPage pageName="Checkout" />} />
                     <Route path="/cuenta" element={<PlaceholderPage pageName="Mi Cuenta" />} />
