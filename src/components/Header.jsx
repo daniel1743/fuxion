@@ -2,27 +2,27 @@
 import React, { useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingCart, Search, Menu, X, Leaf, Shield, LogOut } from 'lucide-react';
+import { ShoppingCart, Search, Menu, X, Leaf, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from "@/components/ui/use-toast";
-import { useAuth } from '@/context/AuthContext';
 import { useCart } from '@/context/CartContext';
-import { useAdmin } from '@/context/AdminContext';
+import { useSiteSettings } from '@/context/SiteSettingsContext';
 import UserMenu from '@/components/UserMenu';
 
 const navLinks = [
   { name: 'Inicio', path: '/' },
   { name: 'Catálogo', path: '/explorar' },
   { name: 'Opiniones', path: '/opiniones' },
-  { name: 'Blog', path: '/blog' },
+  { name: 'Evidencias', path: '/blog' },
 ];
+
+const officialStoreUrl = 'https://ifuxion.com/daniel/enrollment/chooseperson';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const { isAuthenticated, user, openAuthModal } = useAuth();
   const { getCartCount } = useCart();
-  const { isAdmin, openLoginModal, logout } = useAdmin();
+  const { settings } = useSiteSettings();
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
@@ -56,10 +56,18 @@ const Header = () => {
   
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glassmorphism">
-      <nav className="container mx-auto px-6 py-3 flex justify-between items-center">
-        <Link to="/" className="flex items-center gap-2">
-          <Leaf className="text-emerald-600 h-8 w-8" />
-          <span className="text-2xl font-bold text-foreground tracking-tight">Tienda Fuxion</span>
+      <nav className="container mx-auto flex items-center justify-between gap-2 px-3 py-3 sm:px-6">
+        <Link to="/" className="flex min-w-0 flex-1 items-center gap-2 md:flex-none">
+          {settings.logo_url ? (
+            <img
+              src={settings.logo_url}
+              alt={settings.site_name}
+              className="h-9 w-9 shrink-0 rounded-full object-cover ring-1 ring-emerald-200 sm:h-10 sm:w-10"
+            />
+          ) : (
+            <Leaf className="h-8 w-8 shrink-0 text-emerald-600" />
+          )}
+          <span className="truncate text-lg font-bold tracking-tight text-foreground sm:text-2xl">{settings.site_name}</span>
         </Link>
         
         <div className="hidden md:flex items-center space-x-6">
@@ -72,9 +80,18 @@ const Header = () => {
               {link.name}
             </NavLink>
           ))}
+          <a
+            href={officialStoreUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors duration-300"
+          >
+            Tienda oficial
+            <ExternalLink className="h-3.5 w-3.5" />
+          </a>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex shrink-0 items-center gap-2 sm:gap-4">
           <form onSubmit={handleSearch} className="hidden sm:flex items-center bg-secondary rounded-full p-1 border border-transparent focus-within:border-primary transition-colors">
             <input
               type="text"
@@ -96,31 +113,6 @@ const Header = () => {
               </span>
             )}
           </Link>
-
-          {/* Admin Button */}
-          {isAdmin ? (
-            <Button
-              onClick={logout}
-              variant="outline"
-              size="sm"
-              className="hidden md:flex items-center gap-2 border-green-500/30 bg-green-500/10 text-green-400 hover:bg-green-500/20"
-              title="Cerrar sesión de administrador"
-            >
-              <Shield className="w-4 h-4" />
-              <span className="text-xs font-semibold">Admin</span>
-              <LogOut className="w-3 h-3" />
-            </Button>
-          ) : (
-            <Button
-              onClick={openLoginModal}
-              variant="ghost"
-              size="icon"
-              className="hidden md:flex text-muted-foreground hover:text-primary"
-              title="Acceso de administrador"
-            >
-              <Shield className="w-5 h-5" />
-            </Button>
-          )}
 
           <UserMenu />
 
@@ -151,6 +143,16 @@ const Header = () => {
                   {link.name}
                 </NavLink>
               ))}
+              <a
+                href={officialStoreUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMenuOpen(false)}
+                className="inline-flex items-center justify-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-300 text-center py-2 rounded-md"
+              >
+                Tienda oficial
+                <ExternalLink className="h-4 w-4" />
+              </a>
             </div>
           </motion.div>
         )}

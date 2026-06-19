@@ -623,10 +623,11 @@ const HomePage = () => {
             >
               <Button
                 size="lg"
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-full shadow-lg text-lg px-8 py-6"
+                className="h-auto w-full max-w-full whitespace-normal bg-primary px-4 py-4 text-center text-base font-bold leading-tight text-primary-foreground shadow-lg hover:bg-primary/90 sm:w-auto sm:px-8 sm:py-6 sm:text-lg"
                 onClick={() => handleWhatsAppClick('Hola, quiero mi recomendación personalizada')}
               >
-                Quiero mi recomendación <WhatsAppIcon className="ml-2 h-5 w-5" />
+                <span>Quiero mi recomendación</span>
+                <WhatsAppIcon className="ml-2 h-5 w-5 shrink-0" />
               </Button>
             </motion.div>
           </motion.div>

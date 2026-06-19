@@ -1,14 +1,29 @@
 
 > fuxion-shop@0.0.0 dev
-> vite --host :: --port 3000 --port 3017
+> vite --host :: --port 3000
 
 
-  [32m[1mVITE[22m v4.5.14[39m  [2mready in [0m[1m10999[22m[2m[0m ms[22m
+  [32m[1mVITE[22m v4.5.14[39m  [2mready in [0m[1m825[22m[2m[0m ms[22m
 
-  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m3017[22m/[39m
-  [32m➜[39m  [1mNetwork[22m: [36mhttp://172.28.160.1:[1m3017[22m/[39m
-  [32m➜[39m  [1mNetwork[22m: [36mhttp://192.168.1.89:[1m3017[22m/[39m
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m3000[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://192.168.1.89:[1m3000[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://172.17.176.1:[1m3000[22m/[39m
 [2m[32m  ➜[39m[22m[2m  press [22m[1mh[22m[2m to show help[22m
-[2m10:09:46 p. m.[22m [36m[1m[vite][22m[39m [32m.env changed, restarting server...[39m
-[2m10:09:46 p. m.[22m [36m[1m[vite][22m[39m [32m.env changed, restarting server...[39m
-[2m10:09:48 p. m.[22m [36m[1m[vite][22m[39m server restarted.
+[2m5:13:14 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/AuthModal.jsx, /src/index.css[22m
+[2m5:13:14 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/admin/AdminLoginModal.jsx, /src/index.css[22m
+[2m5:14:12 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/AuthModal.jsx, /src/index.css[22m
+[2m5:14:12 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/UserMenu.jsx, /src/index.css[22m
+[2m5:19:48 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/admin/AdminPanel.jsx, /src/index.css[22m
+[2m5:20:09 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/admin/AdminPanel.jsx, /src/index.css[22m
+[2m5:20:31 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/admin/AdminPanel.jsx, /src/index.css[22m
+[2m5:20:41 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/admin/AdminPanel.jsx, /src/index.css[22m
+[2m5:26:47 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[2m5:26:47 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/UserMenu.jsx, /src/index.css[22m
+[2m5:27:34 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/context/CartContext.jsx, /src/index.css[22m
+[2m5:27:34 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/CartPage.jsx, /src/index.css[22m
+[2m5:27:34 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/CartContext.jsx[22m Could not Fast Refresh ("useCart" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m5:27:34 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Header.jsx, /src/index.css, /src/App.jsx, /src/pages/CartPage.jsx[22m
+[2m5:27:53 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/context/CartContext.jsx, /src/index.css[22m
+[2m5:27:53 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/CartPage.jsx, /src/index.css[22m
+[2m5:27:53 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/CartContext.jsx[22m Could not Fast Refresh ("useCart" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m5:27:53 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Header.jsx, /src/index.css, /src/App.jsx, /src/pages/CartPage.jsx[22m

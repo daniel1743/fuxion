@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabaseClient';
+import { isAppAdmin } from '@/services/siteAdminService';
 
 const AdminContext = createContext();
 
@@ -14,7 +15,8 @@ export const useAdmin = () => {
 // Credenciales del administrador (FALLBACK - usa esto si Supabase no está configurado aún)
 const ADMIN_CREDENTIALS = {
   username: 'admin',
-  password: 'FuxionAdmin2025!',
+  email: 'falcondaniel37@gmail.com',
+  password: 'Daniel22.',
 };
 
 export const AdminProvider = ({ children }) => {
@@ -26,7 +28,43 @@ export const AdminProvider = ({ children }) => {
   // Verificar si ya está autenticado al cargar
   useEffect(() => {
     checkAdminSession();
+
+    const loadAuthAdmin = async () => {
+      await refreshAdminAccess();
+    };
+
+    loadAuthAdmin();
+
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      refreshAdminAccess(session?.user?.email);
+    });
+
+    return () => {
+      listener?.subscription?.unsubscribe();
+    };
   }, []);
+
+  const refreshAdminAccess = async (emailFromSession) => {
+    try {
+      const email = emailFromSession || (await supabase.auth.getUser()).data.user?.email;
+      if (!email) return false;
+
+      const allowed = await isAppAdmin(email);
+      if (allowed) {
+        setIsAdmin(true);
+        setAdminData({
+          username: email,
+          email,
+          nombre_completo: email.split('@')[0],
+        });
+      }
+
+      return allowed;
+    } catch (error) {
+      console.warn('No se pudo verificar rol admin por correo:', error.message);
+      return false;
+    }
+  };
 
   const checkAdminSession = async () => {
     const adminToken = localStorage.getItem('adminToken');
@@ -45,6 +83,8 @@ export const AdminProvider = ({ children }) => {
   };
 
   const login = async (username, password) => {
+    const cleanUsername = username.trim();
+
     // Si Supabase está habilitado, intentar autenticación con Supabase
     if (useSupabase) {
       try {
@@ -53,7 +93,7 @@ export const AdminProvider = ({ children }) => {
         // Llamar a la función RPC que verifica y devuelve datos del admin
         const { data, error } = await supabase
           .rpc('get_admin_data', {
-            input_username: username,
+            input_username: cleanUsername,
             input_password: password
           });
 
@@ -67,15 +107,13 @@ export const AdminProvider = ({ children }) => {
         // Si no hay datos o el array está vacío, credenciales incorrectas
         if (!data || data.length === 0) {
           console.log('❌ Credenciales incorrectas en Supabase');
-          return {
-            success: false,
-            error: 'Usuario o contraseña incorrectos'
-          };
+          console.warn('📝 Probando autenticación local como fallback');
+          return loginLocal(cleanUsername, password);
         }
 
         // Autenticación exitosa con Supabase
         const adminInfo = data[0];
-        const token = btoa(`${username}:${Date.now()}`);
+        const token = btoa(`${cleanUsername}:${Date.now()}`);
         const expiry = new Date();
         expiry.setHours(expiry.getHours() + 24); // Expira en 24 horas
 
@@ -95,18 +133,18 @@ export const AdminProvider = ({ children }) => {
         console.error('⚠️ Excepción de Supabase:', error);
         console.warn('📝 Usando autenticación local como fallback');
         // Fallback a autenticación local
-        return loginLocal(username, password);
+        return loginLocal(cleanUsername, password);
       }
     } else {
       console.log('📝 Usando autenticación local (Supabase desactivado)');
       // Usar autenticación local
-      return loginLocal(username, password);
+      return loginLocal(cleanUsername, password);
     }
   };
 
   const loginLocal = (username, password) => {
     if (
-      username === ADMIN_CREDENTIALS.username &&
+      (username === ADMIN_CREDENTIALS.username || username.toLowerCase() === ADMIN_CREDENTIALS.email) &&
       password === ADMIN_CREDENTIALS.password
     ) {
       // Autenticación exitosa
@@ -143,10 +181,12 @@ export const AdminProvider = ({ children }) => {
   const value = {
     isAdmin,
     isLoginModalOpen,
+    adminData,
     login,
     logout,
     openLoginModal,
     closeLoginModal,
+    refreshAdminAccess,
   };
 
   return <AdminContext.Provider value={value}>{children}</AdminContext.Provider>;

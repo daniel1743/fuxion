@@ -1,12 +1,14 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Send, Loader2 } from 'lucide-react';
+import { Minus, X, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from "@/components/ui/use-toast";
 import { sendMessageToDeepSeek } from '@/services/deepseekService';
-import { buildWhatsappUrl } from '@/lib/whatsapp';
+import { buildWhatsappUrl, confirmAndOpenWhatsapp, getActiveAdvisor } from '@/lib/whatsapp';
+import { recordAdvisorEvent } from '@/services/advisorService';
 import { AiRobotIcon, WhatsAppIcon } from '@/components/icons/BrandIcons';
+import ProductLinkedText from '@/components/ProductLinkedText';
 
 const FalconBot = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -14,7 +16,9 @@ const FalconBot = () => {
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [activeProduct, setActiveProduct] = useState(null);
+    const [showQuickWhatsapp, setShowQuickWhatsapp] = useState(false);
     const messagesEndRef = useRef(null);
+    const quickWhatsappTimerRef = useRef(null);
 
     const bot = {
         name: 'Fuxion Assistant',
@@ -53,18 +57,42 @@ const FalconBot = () => {
             .map(message => `${message.sender === 'user' ? 'Cliente' : 'Chatbot'}: ${message.text}`)
             .join('\n');
 
-        return `Hola, vengo derivado desde el chatbot de Fuxion Shop.
+        return `Hola, solicito asesoría desde Fuxion Shop.
 
 Motivo de derivación: ${reason}
 ${activeProduct?.name ? `Producto en consulta: ${activeProduct.name}\n` : ''}
 Resumen de la conversación:
 ${recentConversation}
 
-Quiero hablar con un asesor humano para aclarar mis dudas.`;
+Quedo atento para continuar la atención por WhatsApp.`;
     };
 
     const buildAdvisorUrl = (conversation, reason) =>
         buildWhatsappUrl(buildAdvisorMessage(conversation, reason));
+
+    const showQuickWhatsappAction = () => {
+        setShowQuickWhatsapp(true);
+        if (quickWhatsappTimerRef.current) {
+            clearTimeout(quickWhatsappTimerRef.current);
+        }
+        quickWhatsappTimerRef.current = setTimeout(() => {
+            setShowQuickWhatsapp(false);
+        }, 5000);
+    };
+
+    const hideQuickWhatsappAction = () => {
+        if (quickWhatsappTimerRef.current) {
+            clearTimeout(quickWhatsappTimerRef.current);
+            quickWhatsappTimerRef.current = null;
+        }
+        setShowQuickWhatsapp(false);
+    };
+
+    const handleQuickWhatsapp = (event) => {
+        event.stopPropagation();
+        confirmAndOpenWhatsapp('Hola, quiero hablar con un asesor Fuxion.');
+        hideQuickWhatsappAction();
+    };
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -73,6 +101,14 @@ Quiero hablar con un asesor humano para aclarar mis dudas.`;
     useEffect(() => {
         scrollToBottom();
     }, [messages]);
+
+    useEffect(() => {
+        return () => {
+            if (quickWhatsappTimerRef.current) {
+                clearTimeout(quickWhatsappTimerRef.current);
+            }
+        };
+    }, []);
 
     const getSpecValue = (product, label) => {
         if (!product) return null;
@@ -107,6 +143,8 @@ Puedes preguntarme si es adecuado para tu objetivo, con qué combinarlo o cómo 
             const product = event.detail?.product;
             if (!product?.name) return;
 
+            const advisor = getActiveAdvisor();
+            recordAdvisorEvent(advisor.id, 'product_ai', { productName: product.name });
             setActiveProduct(product);
             setIsOpen(true);
             setMessages([{
@@ -131,6 +169,10 @@ Puedes preguntarme si es adecuado para tu objetivo, con qué combinarlo o cómo 
         }
     };
 
+    const minimizeChat = () => {
+        setIsOpen(false);
+    };
+
     const handleSend = async (e) => {
         e.preventDefault();
         if (!input.trim() || isLoading) return;
@@ -149,7 +191,7 @@ Puedes preguntarme si es adecuado para tu objetivo, con qué combinarlo o cómo 
             const reason = 'El cliente solicitó asesor humano o mencionó una condición que requiere orientación personalizada.';
             setMessages(prev => [...prev, {
                 sender: 'bot',
-                text: 'Te proporcionaré la vía para hablar con un asesor humano. No soy médico y, si estás en tratamiento, tomas medicamentos o tienes una condición de salud, es mejor que un asesor revise tu caso contigo y te oriente con más detalle.',
+                text: 'Te dejaré la vía para continuar con un asesor humano por WhatsApp. Así puede revisar tu caso con más detalle y orientarte mejor.',
                 botType: 'assistant',
                 advisorUrl: buildAdvisorUrl(nextMessages, reason)
             }]);
@@ -230,16 +272,43 @@ Pregunta del usuario: ${userMessage}`
             {/* Botón flotante */}
             <AnimatePresence>
                 {!isOpen && (
-                    <motion.button
+                    <motion.div
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         exit={{ scale: 0 }}
-                        onClick={handleToggle}
-                        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-emerald-600 rounded-full shadow-lg flex items-center justify-center text-white hover:bg-emerald-700 hover:shadow-xl transition-shadow group"
+                        className="fixed bottom-6 right-6 z-50 flex items-center gap-2"
+                        onMouseEnter={showQuickWhatsappAction}
+                        onMouseLeave={hideQuickWhatsappAction}
+                        onFocus={showQuickWhatsappAction}
+                        onBlur={hideQuickWhatsappAction}
+                        onTouchStart={showQuickWhatsappAction}
                     >
-                        <AiRobotIcon className="h-6 w-6 group-hover:scale-110 transition-transform" />
-                        <span className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white animate-pulse"></span>
-                    </motion.button>
+                        <AnimatePresence>
+                            {showQuickWhatsapp && (
+                                <motion.button
+                                    type="button"
+                                    initial={{ opacity: 0, x: 12, scale: 0.9 }}
+                                    animate={{ opacity: 1, x: 0, scale: 1 }}
+                                    exit={{ opacity: 0, x: 12, scale: 0.9 }}
+                                    onClick={handleQuickWhatsapp}
+                                    className="flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition hover:bg-[#1fb85a] focus:outline-none focus:ring-2 focus:ring-[#25D366]/40"
+                                    aria-label="Hablar por WhatsApp con un asesor"
+                                    title="WhatsApp"
+                                >
+                                    <WhatsAppIcon className="h-6 w-6" />
+                                </motion.button>
+                            )}
+                        </AnimatePresence>
+                        <button
+                            type="button"
+                            onClick={handleToggle}
+                            className="relative flex h-14 w-14 items-center justify-center rounded-full bg-emerald-600 text-white shadow-lg transition-shadow hover:bg-emerald-700 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/40 group"
+                            aria-label="Abrir asistente de IA"
+                        >
+                            <AiRobotIcon className="h-6 w-6 group-hover:scale-110 transition-transform" />
+                            <span className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white animate-pulse"></span>
+                        </button>
+                    </motion.div>
                 )}
             </AnimatePresence>
 
@@ -262,14 +331,28 @@ Pregunta del usuario: ${userMessage}`
                                     <p className="text-white/80 text-xs">{bot.subtitle}</p>
                                 </div>
                             </div>
-                            <Button
-                                onClick={handleToggle}
-                                variant="ghost"
-                                size="icon"
-                                className="text-white hover:bg-white/20 rounded-full"
-                            >
-                                <X className="h-5 w-5" />
-                            </Button>
+                            <div className="flex items-center gap-1">
+                                <Button
+                                    onClick={minimizeChat}
+                                    variant="ghost"
+                                    size="icon"
+                                    className="text-white hover:bg-white/20 rounded-full"
+                                    title="Minimizar chat"
+                                    aria-label="Minimizar chat"
+                                >
+                                    <Minus className="h-5 w-5" />
+                                </Button>
+                                <Button
+                                    onClick={handleToggle}
+                                    variant="ghost"
+                                    size="icon"
+                                    className="text-white hover:bg-white/20 rounded-full"
+                                    title="Cerrar chat"
+                                    aria-label="Cerrar chat"
+                                >
+                                    <X className="h-5 w-5" />
+                                </Button>
+                            </div>
                         </div>
 
                         {/* Mensajes */}
@@ -279,7 +362,7 @@ Pregunta del usuario: ${userMessage}`
                                     key={index}
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                                    className={`flex flex-col ${message.sender === 'user' ? 'items-end' : 'items-start'}`}
                                 >
                                     <div
                                         className={`max-w-[80%] p-3 rounded-2xl ${
@@ -298,7 +381,15 @@ Pregunta del usuario: ${userMessage}`
                                                 <span className="text-xs font-semibold">{bot.name}</span>
                                             </div>
                                         )}
-                                        <p className="text-sm whitespace-pre-wrap">{message.text}</p>
+                                        {message.sender === 'bot' && message.botType !== 'system' && message.botType !== 'error' ? (
+                                            <ProductLinkedText
+                                                text={message.text}
+                                                className="text-sm whitespace-pre-wrap"
+                                                onProductClick={minimizeChat}
+                                            />
+                                        ) : (
+                                            <p className="text-sm whitespace-pre-wrap">{message.text}</p>
+                                        )}
                                         {message.advisorUrl && (
                                             <a
                                                 href={message.advisorUrl}
@@ -311,6 +402,11 @@ Pregunta del usuario: ${userMessage}`
                                             </a>
                                         )}
                                     </div>
+                                    {message.sender === 'user' && (
+                                        <span className="mt-1 mr-2 text-[10px] leading-none text-muted-foreground/70">
+                                            Entregado
+                                        </span>
+                                    )}
                                 </motion.div>
                             ))}
 
@@ -320,9 +416,10 @@ Pregunta del usuario: ${userMessage}`
                                     animate={{ opacity: 1 }}
                                     className="flex justify-start"
                                 >
-                                    <div className={`${bot.color} text-white p-3 rounded-2xl flex items-center gap-2`}>
-                                        <Loader2 className="h-4 w-4 animate-spin" />
-                                        <span className="text-sm">Pensando...</span>
+                                    <div className={`${bot.color} text-white px-4 py-3 rounded-2xl flex items-center gap-1.5`} aria-label="El asistente está escribiendo">
+                                        <span className="h-1.5 w-1.5 rounded-full bg-white/90 animate-bounce [animation-delay:-0.24s]" />
+                                        <span className="h-1.5 w-1.5 rounded-full bg-white/90 animate-bounce [animation-delay:-0.12s]" />
+                                        <span className="h-1.5 w-1.5 rounded-full bg-white/90 animate-bounce" />
                                     </div>
                                 </motion.div>
                             )}

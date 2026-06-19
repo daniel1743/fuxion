@@ -1,26 +1,35 @@
 import React, { useState } from 'react';
-import { X } from 'lucide-react';
+import { Eye, EyeOff, Loader2, X } from 'lucide-react';
 import { useAdmin } from '@/context/AdminContext';
 
 const AdminLoginModal = () => {
   const { isLoginModalOpen, login, closeLoginModal } = useAdmin();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   if (!isLoginModalOpen) return null;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setIsSubmitting(true);
 
-    const result = login(username, password);
+    try {
+      const result = await login(username, password);
 
-    if (result.success) {
-      setUsername('');
-      setPassword('');
-    } else {
-      setError(result.error);
+      if (result.success) {
+        setUsername('');
+        setPassword('');
+      } else {
+        setError(result.error || 'No se pudo iniciar sesión');
+      }
+    } catch (loginError) {
+      setError(loginError?.message || 'No se pudo iniciar sesión');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -28,6 +37,7 @@ const AdminLoginModal = () => {
     setUsername('');
     setPassword('');
     setError('');
+    setIsSubmitting(false);
     closeLoginModal();
   };
 
@@ -73,15 +83,25 @@ const AdminLoginModal = () => {
             <label htmlFor="password" className="block text-sm font-medium text-foreground mb-2">
               Contraseña
             </label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-foreground"
-              placeholder="Ingresa tu contraseña"
-              required
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full rounded-lg border border-border bg-background px-4 py-2 pr-11 text-foreground focus:outline-none focus:ring-2 focus:ring-purple-500"
+                placeholder="Ingresa tu contraseña"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword((current) => !current)}
+                className="absolute inset-y-0 right-0 flex w-11 items-center justify-center text-muted-foreground hover:text-foreground"
+                aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
+              >
+                {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+              </button>
+            </div>
           </div>
 
           {error && (
@@ -92,9 +112,11 @@ const AdminLoginModal = () => {
 
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-300 shadow-lg hover:shadow-xl"
+            disabled={isSubmitting}
+            className="w-full bg-emerald-700 text-white font-semibold py-3 rounded-lg hover:bg-emerald-800 transition-all duration-300 shadow-lg hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-70 flex items-center justify-center gap-2"
           >
-            Iniciar Sesión
+            {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
+            {isSubmitting ? 'Verificando...' : 'Iniciar Sesión'}
           </button>
         </form>
       </div>

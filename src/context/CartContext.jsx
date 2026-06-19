@@ -1,7 +1,7 @@
 
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { toast } from "@/components/ui/use-toast";
-import { getActiveAdvisor } from '@/lib/whatsapp';
+import { buildAdvisorContext, getActiveAdvisor } from '@/lib/whatsapp';
 
 const CartContext = createContext(null);
 
@@ -66,12 +66,14 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  const clearCart = () => {
+  const clearCart = (silent = false) => {
     setCartItems([]);
-    toast({
-      title: "🧹 Carrito vaciado",
-      description: "Todos los productos fueron eliminados",
-    });
+    if (!silent) {
+      toast({
+        title: "🧹 Carrito vaciado",
+        description: "Todos los productos fueron eliminados",
+      });
+    }
   };
 
   const getCartTotal = () => {
@@ -87,26 +89,22 @@ export const CartProvider = ({ children }) => {
     return cartItems.reduce((count, item) => count + item.quantity, 0);
   };
 
-  const generateWhatsAppMessage = (customerData) => {
+  const generateWhatsAppMessage = (customerData, selectedGift = null) => {
     const formatPrice = (value) => Number(value || 0).toLocaleString('es-CL');
     const advisor = getActiveAdvisor();
-    let message = `🛒 *NUEVO PEDIDO - FUXION SHOP*\n\n`;
-    message += `Este pedido no ha sido pagado ni cobrado automáticamente. El cliente solicita asesoría para confirmar disponibilidad, resolver dudas, coordinar pago y despacho.\n\n`;
-    message += `🧭 *ASESOR ASIGNADO:*\n`;
-    message += `Nombre: ${advisor.name}\n`;
-    message += `Código: ${advisor.id}\n`;
-    message += `Origen: ${advisor.id === 'daniel' ? 'web / SEO / directo' : 'link personalizado'}\n\n`;
-    message += `👤 *DATOS DEL CLIENTE:*\n`;
+    let message = `*NUEVO PEDIDO | FUXION SHOP*\n\n`;
+    message += `Estado: pendiente de confirmación. Este pedido no fue pagado ni cobrado en la web.\n`;
+    message += `Objetivo: confirmar disponibilidad, resolver dudas, coordinar pago y despacho.\n\n`;
+    message += `${buildAdvisorContext(advisor)}\n\n`;
+    message += `*Datos del cliente*\n`;
     message += `Nombre: ${customerData.name}\n`;
-    message += `Teléfono: ${customerData.phone}\n`;
-    message += `Email: ${customerData.email}\n`;
     if (customerData.address) {
       message += `Dirección: ${customerData.address}\n`;
     }
     if (customerData.commune) {
       message += `Comuna: ${customerData.commune}\n`;
     }
-    message += `\n📦 *PRODUCTOS:*\n`;
+    message += `\n*Productos solicitados*\n`;
 
     cartItems.forEach((item, index) => {
       const price = item.discount
@@ -122,8 +120,13 @@ export const CartProvider = ({ children }) => {
       message += `\n`;
     });
 
-    message += `💰 *TOTAL REFERENCIAL: $${formatPrice(getCartTotal())}*\n\n`;
-    message += `_Pedido generado desde Fuxion Shop_`;
+    if (selectedGift) {
+      message += `*Regalo elegido por programa 4+1: ${selectedGift}*\n\n`;
+    }
+
+    message += `*Total referencial: $${formatPrice(getCartTotal())}*\n\n`;
+    message += `Nota: confirmar datos, disponibilidad y despacho antes de cerrar el pedido.\n`;
+    message += `Pedido generado desde Fuxion Shop.`;
 
     return message;
   };

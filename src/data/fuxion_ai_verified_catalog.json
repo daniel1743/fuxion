@@ -1,0 +1,455 @@
+{
+  "metadata": {
+    "pais": "Chile",
+    "proposito": "Base de conocimiento verificada para respuestas del chatbot. No reemplaza la lista de productos vendibles ni los precios vigentes del catálogo interno.",
+    "regla_general": "Los productos Fuxion son fórmulas alimenticias o bebidas funcionales. La IA debe hablar de bienestar, calidad e ingredientes sin repetir frases defensivas en cada respuesta.",
+    "confianza_y_calidad": {
+      "clean_label": "Los productos Fuxion deben comunicarse como evaluados bajo criterio Clean Label.",
+      "seremi": "Para Chile, comunicar que los productos cuentan con evaluación o autorización sanitaria correspondiente por la SEREMI de Salud cuando el usuario pregunte por seguridad, confianza o regulación.",
+      "sin_conservantes": "No contienen conservantes ni preservantes químicos.",
+      "sin_azucares": "No contienen azúcares añadidos. Si un producto contiene ingredientes naturalmente dulces o fruta, no presentarlo como azúcar refinada agregada.",
+      "tono": "Mencionar estos puntos como respaldo de calidad y regulación alimentaria, sin convertir la respuesta en un aviso médico repetitivo."
+    },
+    "ultima_revision": "2026-06-15",
+    "fuentes": [
+      {
+        "nombre": "Fuxion Chile - Limpieza",
+        "url": "https://fuxion.com/cl/limpieza",
+        "uso": "Ingredientes oficiales de Flora Liv, Liquid Fiber, Berry Balance, Alpha Balance, Prunex 1 y Rexet."
+      },
+      {
+        "nombre": "Fuxion Chile - Nutrición y Regeneración",
+        "url": "https://fuxion.com/cl/nutricion-y-regeneracion",
+        "uso": "Ingredientes oficiales de Biopro+ Tect y Biopro X Active. Requieren verificación comercial antes de venderlos."
+      },
+      {
+        "nombre": "Fuxion Chile - Energía y Revitalización",
+        "url": "https://fuxion.com/cl/energia-y-revitalizacion",
+        "uso": "Ingredientes oficiales de Vitaenergía y Vita Xtra T+."
+      },
+      {
+        "nombre": "Fuxion Chile - Inmunológica",
+        "url": "https://fuxion.com/cl/inmunologica",
+        "uso": "Ingredientes oficiales de Vera+ y Gano+ Cappuccino."
+      },
+      {
+        "nombre": "Fuxion Chile - Control de Peso y Medidas",
+        "url": "https://fuxion.com/cl/control-br-de-peso-y-medidas",
+        "uso": "Ingredientes oficiales de Protein Active Fit, Nocarb-T, Café & Café Fit Cappuccino, Pack 5/14, Thermo T3 y Biopro+ Fit."
+      },
+      {
+        "nombre": "Fuxion Chile - Anti-Edad",
+        "url": "https://fuxion.com/cl/anti-edad",
+        "uso": "Ingredientes oficiales de Golden FLX, Probal, Youth Elixir, Passion y Beauty-In."
+      },
+      {
+        "nombre": "Fuxion Chile - Vigor Mental",
+        "url": "https://fuxion.com/cl/vigor-mental",
+        "uso": "Ingredientes oficiales de On y No Stress."
+      },
+      {
+        "nombre": "Fuxion Chile - Sport",
+        "url": "https://fuxion.com/cl/sport",
+        "uso": "Ingredientes oficiales de Biopro+ Sport, Pre Sport y Post Sport."
+      }
+    ]
+  },
+  "reglas_de_respuesta": [
+    "Si un dato no está en esta base ni en fuxion_database.json, el bot debe decir que lo verificará con un asesor.",
+    "No inventar ingredientes, precios, presentaciones ni beneficios.",
+    "No usar lenguaje médico de cura, tratamiento o diagnóstico.",
+    "No repetir frases como no es medicamento, no es tratamiento, no soy médico o complemento nutracéutico en respuestas normales. La página ya contiene el aviso general.",
+    "Si el usuario menciona condiciones médicas, embarazo, lactancia o medicamentos, derivar a asesor humano con una frase breve y profesional.",
+    "Priorizar la información de fuxion_database.json para productos vendibles y precios.",
+    "Usar este JSON para corregir confusiones entre productos.",
+    "Cuando el usuario pregunte por seguridad, calidad, ingredientes o confianza, indicar que Fuxion trabaja con criterio Clean Label, evaluación sanitaria correspondiente por SEREMI de Salud en Chile, sin conservantes ni preservantes químicos y sin azúcares añadidos.",
+    "No convertir Clean Label o SEREMI en una promesa médica. Debe comunicarse como respaldo de calidad y regulación alimentaria, sin repetir disclaimers."
+  ],
+  "correcciones_criticas": {
+    "PRUNEX 1": {
+      "uso_correcto": "Disolver 1 stick o sobre en agua caliente.",
+      "no_decir": [
+        "agua fría",
+        "cápsulas",
+        "pastillas",
+        "tratamiento médico"
+      ]
+    },
+    "BERRY BALANCE": {
+      "uso_correcto": "Disolver 1 stick en 180 ml de agua fría.",
+      "enfoque_correcto": "Salud del tracto urinario, cranberry, berries, probióticos y antioxidantes.",
+      "no_decir": [
+        "bloqueador de carbohidratos",
+        "control del apetito",
+        "frijol blanco",
+        "cromo",
+        "producto principal para bajar de peso"
+      ],
+      "producto_que_si_corresponde_a_carbohidratos": "NOCARB-T"
+    },
+    "NOCARB-T": {
+      "enfoque_correcto": "Apoyo al manejo de carbohidratos y azúcares dentro de una alimentación equilibrada.",
+      "ingredientes_clave": [
+        "fibra de yacón",
+        "fibra de acacia",
+        "fibra de achicoria",
+        "pectina de manzana",
+        "concentrado de canela",
+        "té verde",
+        "cromo"
+      ]
+    }
+  },
+  "productos_verificados": {
+    "ALPHA BALANCE": {
+      "categoria": "Limpieza y equilibrio",
+      "ingredientes_oficiales": [
+        "chlorella",
+        "espirulina",
+        "alfalfa",
+        "espinaca",
+        "pasto de trigo libre de gluten",
+        "jengibre",
+        "manzana verde",
+        "magnesio",
+        "zinc"
+      ],
+      "respuesta_base": "Bebida funcional de vegetales verdes y minerales orientada a apoyar el equilibrio y la limpieza interna del organismo.",
+      "evitar_confusion": "No describir como fórmula hepática principal; para apoyo hepático corresponde Rexet."
+    },
+    "BERRY BALANCE": {
+      "categoria": "Tracto urinario",
+      "ingredientes_oficiales": [
+        "cranberry",
+        "acerola",
+        "camu camu",
+        "fresa",
+        "mora",
+        "cereza",
+        "concentrado de piña",
+        "probióticos",
+        "calcio",
+        "antioxidantes"
+      ],
+      "respuesta_base": "Bebida funcional para apoyar el cuidado del tracto urinario con cranberry, berries, probióticos y antioxidantes.",
+      "como_tomar": "Disolver 1 stick en 180 ml de agua fría. Consumir preferiblemente entre comidas o con el estómago vacío.",
+      "evitar_confusion": "No asociar a bloqueo de carbohidratos, frijol blanco o control de apetito."
+    },
+    "PRUNEX 1": {
+      "categoria": "Digestión y tránsito intestinal",
+      "ingredientes_oficiales": [
+        "fibra de psyllium",
+        "inulina de achicoria",
+        "guindón",
+        "kelp",
+        "mucílago de linaza"
+      ],
+      "respuesta_base": "Té herbal con fibras solubles y guindón orientado a apoyar el tránsito intestinal.",
+      "como_tomar": "Disolver 1 stick en agua caliente, preferiblemente por la noche.",
+      "evitar_confusion": "No indicar agua fría."
+    },
+    "FLORA LIV": {
+      "categoria": "Flora intestinal",
+      "ingredientes_oficiales": [
+        "inulina de achicoria",
+        "granadilla liofilizada",
+        "aguaymanto",
+        "cultivos probióticos"
+      ],
+      "respuesta_base": "Producto con probióticos y fibra prebiótica para apoyar el equilibrio de la flora intestinal.",
+      "evitar_confusion": "No presentarlo como producto principal para bajar de peso."
+    },
+    "LIQUID FIBER": {
+      "categoria": "Fibra digestiva",
+      "ingredientes_oficiales": [
+        "fibra prebiótica",
+        "vitaminas",
+        "minerales"
+      ],
+      "respuesta_base": "Fibra prebiótica con vitaminas y minerales para apoyar la regularidad intestinal y el bienestar digestivo."
+    },
+    "REXET": {
+      "categoria": "Apoyo hepático",
+      "ingredientes_oficiales": [
+        "tuna roja",
+        "alcachofa",
+        "hierba luisa",
+        "perejil",
+        "acerola",
+        "bicarbonato de sodio",
+        "potasio",
+        "sodio",
+        "zinc",
+        "magnesio",
+        "taurina",
+        "vitaminas del complejo B",
+        "vitamina C",
+        "vitamina D",
+        "cisteína"
+      ],
+      "respuesta_base": "Bebida funcional orientada al apoyo hepático y a la función depurativa dentro de hábitos saludables."
+    },
+    "BIOPROTEIN ACTIVE": {
+      "categoria": "Nutrición y regeneración",
+      "equivalencia_web": "BIOPRO X ACTIVE",
+      "ingredientes_oficiales": [
+        "proteína de arroz germinado",
+        "proteína de arveja",
+        "quinua germinada",
+        "proteína de alga",
+        "DHA",
+        "ARA",
+        "enzimas",
+        "cultivos probióticos"
+      ],
+      "respuesta_base": "Proteína vegetal con ingredientes funcionales para apoyar nutrición y regeneración.",
+      "nota": "Usar el nombre vendible de la tienda si el producto activo es BioProtein Active."
+    },
+    "VITAENERGÍA": {
+      "categoria": "Energía y revitalización",
+      "ingredientes_oficiales": [
+        "aminoácidos",
+        "vitaminas",
+        "minerales",
+        "fibra prebiótica",
+        "luteína de marigold",
+        "camu camu"
+      ],
+      "respuesta_base": "Bebida funcional para apoyar energía diaria, nutrición y revitalización."
+    },
+    "VITA XTRA T+": {
+      "categoria": "Energía y revitalización",
+      "ingredientes_oficiales": [
+        "guayusa",
+        "té verde",
+        "ginseng",
+        "goji berry",
+        "antocianinas"
+      ],
+      "respuesta_base": "Energizante funcional con guayusa, té verde y ginseng para apoyar energía y rendimiento diario."
+    },
+    "VERA+": {
+      "categoria": "Inmunológica",
+      "ingredientes_oficiales": [
+        "beta glucanos Wellmune",
+        "concentrado de oliva",
+        "aloe vera",
+        "aminoácidos",
+        "vitamina C"
+      ],
+      "respuesta_base": "Producto de la línea inmunológica orientado a apoyar defensas y bienestar general."
+    },
+    "GANO+ CAPPUCCINO": {
+      "categoria": "Inmunológica",
+      "ingredientes_oficiales": [
+        "beta-D-glucanos"
+      ],
+      "respuesta_base": "Cappuccino funcional con beta-D-glucanos para apoyo de bienestar general."
+    },
+    "PROTEIN ACTIVE FIT": {
+      "categoria": "Control de peso y medidas",
+      "ingredientes_oficiales": [
+        "proteína de arroz germinado",
+        "proteína de arveja",
+        "quinua germinada",
+        "proteína de alga",
+        "aceite de coco",
+        "enzimas"
+      ],
+      "respuesta_base": "Batido proteico vegetal para apoyar nutrición, saciedad y hábitos de control de peso."
+    },
+    "NOCARB-T": {
+      "categoria": "Control de peso y medidas",
+      "ingredientes_oficiales": [
+        "fibra de yacón",
+        "fibra de acacia",
+        "fibra de achicoria",
+        "pectina de manzana",
+        "concentrado de canela",
+        "té verde",
+        "cromo"
+      ],
+      "respuesta_base": "Bebida funcional para apoyar el manejo de carbohidratos dentro de una alimentación equilibrada."
+    },
+    "CAFÉ & CAFÉ FIT CAPPUCCINO": {
+      "categoria": "Control de peso y medidas",
+      "ingredientes_oficiales": [
+        "café tostado",
+        "leche descremada",
+        "crema para café"
+      ],
+      "respuesta_base": "Café cappuccino funcional para acompañar rutinas de energía y control de peso."
+    },
+    "PACK 5/14": {
+      "categoria": "Control de peso y medidas",
+      "composicion_oficial_web": [
+        "4 PRUNEX 1",
+        "28 BIOPRO+ FIT",
+        "14 VITA XTRA T+",
+        "14 THERMO T3",
+        "14 NOCARB-T"
+      ],
+      "respuesta_base": "Pack orientado a control de peso y medidas. Confirmar disponibilidad y composición vigente con asesor antes de ofrecer."
+    },
+    "THERMO T3": {
+      "categoria": "Control de peso y medidas",
+      "ingredientes_oficiales": [
+        "té negro",
+        "té rojo",
+        "té verde",
+        "L-carnitina",
+        "frambuesa"
+      ],
+      "respuesta_base": "Bebida termogénica para apoyar energía, actividad física y hábitos de control de peso."
+    },
+    "GOLDEN FLX": {
+      "categoria": "Anti-edad",
+      "ingredientes_oficiales": [
+        "leche de coco",
+        "cúrcuma",
+        "jengibre",
+        "cardamomo",
+        "canela",
+        "pimienta negra"
+      ],
+      "respuesta_base": "Bebida funcional con cúrcuma y especias orientada al bienestar articular y antioxidante."
+    },
+    "PROBAL": {
+      "categoria": "Anti-edad",
+      "ingredientes_oficiales": [
+        "extracto de aguaje",
+        "extracto de dong quai",
+        "extracto de orégano",
+        "extracto de té negro",
+        "triptófano",
+        "magnesio",
+        "calcio citrato",
+        "luteína de marigold",
+        "extracto de camu-camu",
+        "extracto de girasol"
+      ],
+      "respuesta_base": "Producto orientado al balance femenino y bienestar general. No presentarlo como tratamiento hormonal."
+    },
+    "YOUTH ELIXIR": {
+      "categoria": "Anti-edad",
+      "ingredientes_oficiales": [
+        "aminoácidos",
+        "mix de berries",
+        "antocianinas",
+        "vitaminas C y E"
+      ],
+      "respuesta_base": "Bebida funcional antioxidante orientada a vitalidad y envejecimiento saludable."
+    },
+    "PASSION": {
+      "categoria": "Anti-edad",
+      "ingredientes_oficiales": [
+        "aminoácidos",
+        "jalea real",
+        "guaraná",
+        "panax ginseng",
+        "té negro",
+        "zinc"
+      ],
+      "respuesta_base": "Bebida funcional orientada a vitalidad y energía. No hacer promesas médicas ni sexuales."
+    },
+    "BEAUTY-IN": {
+      "categoria": "Anti-edad",
+      "ingredientes_oficiales": [
+        "péptidos de colágeno bioactivo I y III",
+        "coenzima Q10",
+        "biotina"
+      ],
+      "respuesta_base": "Bebida funcional para apoyo nutricional de piel, cabello y uñas."
+    },
+    "ON": {
+      "categoria": "Vigor mental",
+      "ingredientes_oficiales": [
+        "taurina",
+        "yerba mate",
+        "camu camu",
+        "vitamina C",
+        "vitaminas del complejo B"
+      ],
+      "respuesta_base": "Bebida funcional para apoyo de energía mental, enfoque y estado de alerta."
+    },
+    "NO STRESS": {
+      "categoria": "Vigor mental",
+      "ingredientes_oficiales": [
+        "aminoácidos",
+        "vitaminas del complejo B",
+        "magnesio"
+      ],
+      "respuesta_base": "Bebida funcional para apoyo de relajación cotidiana y equilibrio nervioso. No presentarlo como tratamiento de ansiedad o depresión."
+    },
+    "PRE SPORT PRO EDITION": {
+      "categoria": "Sport",
+      "ingredientes_oficiales": [
+        "aminoácidos",
+        "citrulina",
+        "betal alanina",
+        "L-creatina",
+        "mix isotónico",
+        "potasio",
+        "sodio",
+        "zinc",
+        "yerba mate",
+        "rhodiola rosea"
+      ],
+      "respuesta_base": "Bebida funcional para preparación antes de actividad física."
+    },
+    "POST SPORT PRO EDITION": {
+      "categoria": "Sport",
+      "ingredientes_oficiales": [
+        "BCAAs",
+        "L-glutamina",
+        "agua de coco",
+        "granada",
+        "acerola",
+        "cromo"
+      ],
+      "respuesta_base": "Bebida funcional para apoyo de recuperación posterior al ejercicio."
+    }
+  },
+  "productos_detectados_en_web_no_activos_en_tienda": {
+    "BIOPRO+ TECT": {
+      "categoria": "Nutrición y regeneración",
+      "ingredientes_oficiales": [
+        "BioProtein+",
+        "Colostrum",
+        "Bioferrin",
+        "aminoácidos",
+        "calcio lácteo",
+        "vitaminas",
+        "DHA",
+        "ARA"
+      ],
+      "estado_para_ia": "No vender ni recomendar como disponible hasta confirmar vigencia comercial en Chile.",
+      "motivo": "Aparece en web oficial Chile, pero no está en la lista vendible actual del proyecto."
+    },
+    "BIOPRO+ FIT": {
+      "categoria": "Control de peso y medidas",
+      "ingredientes_oficiales": [
+        "Prolibra",
+        "aminoácidos",
+        "vitaminas",
+        "DHA",
+        "ARA"
+      ],
+      "estado_para_ia": "No vender ni recomendar como disponible hasta confirmar vigencia comercial en Chile.",
+      "motivo": "Aparece en web oficial Chile y en Pack 5/14 web, pero el proyecto usa Protein Active Fit como producto activo."
+    },
+    "BIOPRO+ SPORT": {
+      "categoria": "Sport",
+      "ingredientes_oficiales": [
+        "BioProtein con Colostrum",
+        "Actinos",
+        "aminoácidos",
+        "calcio lácteo",
+        "DHA",
+        "ARA"
+      ],
+      "estado_para_ia": "No vender ni recomendar como disponible hasta confirmar vigencia comercial en Chile.",
+      "motivo": "Aparece en web oficial Chile, pero no está en la lista vendible actual del proyecto."
+    }
+  }
+}

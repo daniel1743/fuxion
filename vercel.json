@@ -12,6 +12,31 @@
       "dest": "/robots.txt"
     },
     {
+      "src": "/manifest.webmanifest",
+      "dest": "/manifest.webmanifest",
+      "headers": {
+        "Content-Type": "application/manifest+json",
+        "Cache-Control": "public, max-age=0, must-revalidate"
+      }
+    },
+    {
+      "src": "/sw.js",
+      "dest": "/sw.js",
+      "headers": {
+        "Content-Type": "application/javascript; charset=utf-8",
+        "Cache-Control": "public, max-age=0, must-revalidate",
+        "Service-Worker-Allowed": "/"
+      }
+    },
+    {
+      "src": "/googled3d64d2003087905.html",
+      "dest": "/googled3d64d2003087905.html",
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "public, max-age=0, must-revalidate"
+      }
+    },
+    {
       "src": "/api/(.*)",
       "dest": "/api/$1"
     },

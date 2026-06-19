@@ -5,6 +5,8 @@ import Footer from '@/components/Footer';
 import FalconBot from '@/components/FalconBot';
 import AuthModal from '@/components/AuthModal';
 import WhatsAppConfirmDialog from '@/components/WhatsAppConfirmDialog';
+import FloatingWhatsAppButton from '@/components/FloatingWhatsAppButton';
+import PwaInstallPrompt from '@/components/PwaInstallPrompt';
 
 const Layout = ({ children }) => {
   return (
@@ -12,6 +14,8 @@ const Layout = ({ children }) => {
       <Header />
       <main className="flex-grow">{children}</main>
       <Footer />
+      <PwaInstallPrompt />
+      <FloatingWhatsAppButton />
       <FalconBot />
       <AuthModal />
       <WhatsAppConfirmDialog />

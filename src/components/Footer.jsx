@@ -4,16 +4,27 @@ import { Link } from 'react-router-dom';
 import { Leaf, Heart, Instagram, Facebook } from 'lucide-react';
 import { buildWhatsappUrl } from '@/lib/whatsapp';
 import { WhatsAppIcon } from '@/components/icons/BrandIcons';
+import { useSiteSettings } from '@/context/SiteSettingsContext';
 
 const Footer = () => {
+    const { settings } = useSiteSettings();
+
     return (
         <footer className="bg-card border-t border-border mt-20">
             <div className="container mx-auto px-6 py-12">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     <div className="col-span-1 md:col-span-1 flex flex-col items-start">
                          <Link to="/" className="flex items-center gap-2 mb-4">
-                            <Leaf className="text-emerald-600 h-10 w-10" />
-                            <span className="text-xl font-bold text-foreground tracking-tight">Tienda Fuxion</span>
+                            {settings.logo_url ? (
+                                <img
+                                    src={settings.logo_url}
+                                    alt={settings.site_name}
+                                    className="h-10 w-10 rounded-full object-cover ring-1 ring-emerald-200"
+                                />
+                            ) : (
+                                <Leaf className="text-emerald-600 h-10 w-10" />
+                            )}
+                            <span className="text-xl font-bold text-foreground tracking-tight">{settings.site_name}</span>
                         </Link>
                         <p className="text-muted-foreground text-sm">Productos Fuxion para nutrición, bienestar natural, energía, digestión y control de peso. Compra asistida por WhatsApp.</p>
                     </div>
@@ -23,7 +34,7 @@ const Footer = () => {
                         <div className="flex flex-col mt-4 space-y-2">
                             <Link to="/explorar" className="text-muted-foreground hover:text-primary transition-colors">Productos Fuxion</Link>
                             <Link to="/categorias" className="text-muted-foreground hover:text-primary transition-colors">Categorías</Link>
-                            <Link to="/blog" className="text-muted-foreground hover:text-primary transition-colors">Blog</Link>
+                            <Link to="/blog" className="text-muted-foreground hover:text-primary transition-colors">Evidencias</Link>
                             <Link to="/terminos" className="text-muted-foreground hover:text-primary transition-colors">Términos y Condiciones</Link>
                         </div>
                     </div>
@@ -73,7 +84,7 @@ const Footer = () => {
 
                 <div className="mt-12 border-t border-border pt-8 flex flex-col sm:flex-row justify-between items-center">
                     <p className="text-muted-foreground text-sm flex items-center gap-1.5">
-                        © {new Date().getFullYear()} Tienda Fuxion. Atención personalizada por Daniel Falcon.
+                        © {new Date().getFullYear()} {settings.site_name}. Atención personalizada por {settings.owner_name || 'Daniel Falcon'}.
                     </p>
                 </div>
             </div>

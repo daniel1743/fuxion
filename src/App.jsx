@@ -1,6 +1,6 @@
 
-import React, { Suspense, lazy, useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import React, { Suspense, lazy } from 'react';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Layout from '@/components/Layout';
 import { AuthProvider } from '@/context/AuthContext';
@@ -8,7 +8,10 @@ import { CartProvider } from '@/context/CartContext';
 import { ForumProvider } from '@/context/ForumContext';
 import { AdminProvider } from '@/context/AdminContext';
 import { BlogProvider } from '@/context/BlogContext';
+import { SiteSettingsProvider } from '@/context/SiteSettingsContext';
+import { LoyaltyProvider } from '@/context/LoyaltyContext';
 import AdminLoginModal from '@/components/admin/AdminLoginModal';
+import PwaSplashScreen from '@/components/PwaSplashScreen';
 import '@/utils/clearForumData'; // Cargar utilidades del foro
 import '@/utils/testBots'; // Cargar test de bots
 
@@ -17,21 +20,26 @@ const ExplorePage = lazy(() => import('@/pages/ExplorePage'));
 const CategoriesPage = lazy(() => import('@/pages/CategoriesPage'));
 const SupportPage = lazy(() => import('@/pages/SupportPage'));
 const CartPage = lazy(() => import('@/pages/CartPage'));
-const BlogPage = lazy(() => import('@/pages/BlogPage'));
+const EvidencePage = lazy(() => import('@/pages/EvidencePage'));
 const BlogPostPage = lazy(() => import('@/pages/BlogPostPage'));
 const ProductPage = lazy(() => import('@/pages/ProductPage'));
 const PlaceholderPage = lazy(() => import('@/pages/PlaceholderPage'));
+const AccountPage = lazy(() => import('@/pages/AccountPage'));
 
 function App() {
   const location = useLocation();
 
   return (
-    <AuthProvider>
-      <CartProvider>
-        <ForumProvider>
-          <BlogProvider>
-            <AdminProvider>
-              <Layout>
+    <>
+      <PwaSplashScreen />
+      <AuthProvider>
+        <LoyaltyProvider>
+          <CartProvider>
+            <ForumProvider>
+              <BlogProvider>
+                <SiteSettingsProvider>
+                  <AdminProvider>
+                  <Layout>
               <AnimatePresence mode="wait">
                 <Suspense fallback={
                   <div className="w-full h-screen flex items-center justify-center bg-background">
@@ -46,24 +54,28 @@ function App() {
                     <Route path="/producto/:slug" element={<ProductPage />} />
                     <Route path="/carrito" element={<CartPage />} />
                     <Route path="/checkout" element={<PlaceholderPage pageName="Checkout" />} />
-                    <Route path="/cuenta" element={<PlaceholderPage pageName="Mi Cuenta" />} />
+                    <Route path="/cuenta" element={<AccountPage />} />
                     <Route path="/opiniones" element={<SupportPage />} />
-                    <Route path="/blog" element={<BlogPage />} />
+                    <Route path="/blog" element={<EvidencePage />} />
                     <Route path="/blog/:slug" element={<BlogPostPage />} />
                     <Route path="/terminos" element={<PlaceholderPage pageName="Términos y Condiciones" />} />
                     <Route path="/contacto" element={<PlaceholderPage pageName="Contacto" />} />
                     <Route path="/envios" element={<PlaceholderPage pageName="Envíos y Devoluciones" />} />
                     <Route path="/faq" element={<PlaceholderPage pageName="FAQ" />} />
+                    <Route path="*" element={<Navigate to="/" replace />} />
                   </Routes>
                 </Suspense>
               </AnimatePresence>
-              </Layout>
-              <AdminLoginModal />
-            </AdminProvider>
-          </BlogProvider>
-        </ForumProvider>
-      </CartProvider>
-    </AuthProvider>
+                  </Layout>
+                  <AdminLoginModal />
+                  </AdminProvider>
+                </SiteSettingsProvider>
+              </BlogProvider>
+            </ForumProvider>
+          </CartProvider>
+        </LoyaltyProvider>
+      </AuthProvider>
+    </>
   );
 }
 

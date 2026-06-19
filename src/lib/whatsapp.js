@@ -1,5 +1,8 @@
+import { fetchActiveAdvisorById, recordAdvisorEvent } from '@/services/advisorService';
+
 const DEFAULT_WHATSAPP_NUMBER = '56989639088';
 const ADVISOR_STORAGE_KEY = 'fuxion-active-advisor';
+const ADVISOR_CACHE_KEY = 'fuxion-advisors-cache';
 
 export const ADVISORS = {
   daniel: {
@@ -43,6 +46,38 @@ export const ADVISORS = {
 
 const getDefaultAdvisor = () => ADVISORS.daniel;
 
+const mapDbAdvisor = (advisor) => {
+  if (!advisor) return null;
+  return {
+    id: advisor.id,
+    name: advisor.name,
+    whatsappUrl: advisor.whatsapp_url || '',
+    whatsappNumber: advisor.whatsapp_number?.replace(/[^\d]/g, '') || '',
+    photoUrl: advisor.photo_url || '',
+    instagramUrl: advisor.instagram_url || '',
+    facebookUrl: advisor.facebook_url || '',
+    isDefault: Boolean(advisor.is_default),
+    isActive: advisor.is_active !== false
+  };
+};
+
+const getCachedAdvisors = () => {
+  if (typeof window === 'undefined') return {};
+
+  try {
+    return JSON.parse(window.localStorage.getItem(ADVISOR_CACHE_KEY) || '{}');
+  } catch {
+    return {};
+  }
+};
+
+const cacheAdvisor = (advisor) => {
+  if (typeof window === 'undefined' || !advisor?.id) return;
+  const cached = getCachedAdvisors();
+  cached[advisor.id] = advisor;
+  window.localStorage.setItem(ADVISOR_CACHE_KEY, JSON.stringify(cached));
+};
+
 const getAdvisorBaseUrl = (advisor) => {
   if (advisor?.whatsappUrl) {
     return advisor.whatsappUrl;
@@ -62,7 +97,8 @@ const getAdvisorBaseUrl = (advisor) => {
 
 export const getAdvisorById = (advisorId) => {
   const normalizedId = String(advisorId || '').trim().toLowerCase();
-  return ADVISORS[normalizedId] || getDefaultAdvisor();
+  const cached = getCachedAdvisors();
+  return cached[normalizedId] || ADVISORS[normalizedId] || getDefaultAdvisor();
 };
 
 export const getActiveAdvisor = () => {
@@ -81,21 +117,43 @@ export const setActiveAdvisor = (advisorId) => {
   return advisor;
 };
 
-export const initializeAdvisorFromUrl = () => {
+export const initializeAdvisorFromUrl = async () => {
   if (typeof window === 'undefined') return getDefaultAdvisor();
 
   const params = new URLSearchParams(window.location.search);
   const advisorParam = params.get('asesor') || params.get('advisor') || params.get('ref');
+  const normalizedAdvisor = String(advisorParam || '').trim().toLowerCase();
 
-  if (advisorParam && ADVISORS[String(advisorParam).trim().toLowerCase()]) {
-    return setActiveAdvisor(advisorParam);
+  if (normalizedAdvisor) {
+    if (ADVISORS[normalizedAdvisor]) {
+      const advisor = setActiveAdvisor(normalizedAdvisor);
+      recordAdvisorEvent(advisor.id, 'visit', { source: 'url', advisorParam: normalizedAdvisor });
+      return advisor;
+    }
+
+    try {
+      const dbAdvisor = await fetchActiveAdvisorById(normalizedAdvisor);
+      const advisor = mapDbAdvisor(dbAdvisor);
+      if (advisor) {
+        cacheAdvisor(advisor);
+        window.localStorage.setItem(ADVISOR_STORAGE_KEY, advisor.id);
+        recordAdvisorEvent(advisor.id, 'visit', { source: 'url', advisorParam: normalizedAdvisor });
+        return advisor;
+      }
+    } catch (error) {
+      console.warn('No se pudo cargar asesor desde Supabase:', error.message);
+    }
   }
 
   if (!window.localStorage.getItem(ADVISOR_STORAGE_KEY)) {
-    return setActiveAdvisor('daniel');
+    const advisor = setActiveAdvisor('daniel');
+    recordAdvisorEvent(advisor.id, 'visit', { source: 'default' });
+    return advisor;
   }
 
-  return getActiveAdvisor();
+  const advisor = getActiveAdvisor();
+  recordAdvisorEvent(advisor.id, 'visit', { source: 'stored' });
+  return advisor;
 };
 
 export const resolveWhatsappBase = () => {
@@ -118,12 +176,32 @@ export const resolveWhatsappBase = () => {
   return `https://wa.me/${DEFAULT_WHATSAPP_NUMBER}`;
 };
 
+export const getAdvisorChannelLabel = (advisor = getActiveAdvisor()) =>
+  advisor?.id && advisor.id !== 'daniel'
+    ? 'Enlace personalizado de asesor'
+    : 'Sitio web oficial';
+
+export const buildAdvisorContext = (advisor = getActiveAdvisor()) => {
+  const lines = [
+    '*Atención asignada*',
+    `Asesor: ${advisor.name || 'Daniel Falcon'}`,
+    `Canal: ${getAdvisorChannelLabel(advisor)}`
+  ];
+
+  if (advisor?.id && advisor.id !== 'daniel') {
+    lines.push(`Referencia: ${advisor.id}`);
+  }
+
+  return lines.join('\n');
+};
+
 export const buildWhatsappUrl = (message) => {
   const base = resolveWhatsappBase();
   const advisor = getActiveAdvisor();
-  const routedMessage = advisor?.id && advisor.id !== 'daniel'
-    ? `${message}\n\nAsesor asignado: ${advisor.name}\nCódigo de asesor: ${advisor.id}`
-    : `${message}\n\nAsesor asignado: ${advisor.name || 'Daniel Falcon'}\nOrigen: web / SEO / directo`;
+  const alreadyHasAdvisorContext = /Atención asignada|ASESOR ASIGNADO|Asesor asignado/i.test(message);
+  const routedMessage = alreadyHasAdvisorContext
+    ? message
+    : `${message}\n\n${buildAdvisorContext(advisor)}`;
   const encodedMessage = encodeURIComponent(routedMessage);
 
   if (base.includes('/message/')) {
@@ -140,6 +218,8 @@ export const buildWhatsappUrl = (message) => {
 };
 
 export const openWhatsapp = (message) => {
+  const advisor = getActiveAdvisor();
+  recordAdvisorEvent(advisor.id, 'whatsapp_click', { messagePreview: String(message || '').slice(0, 120) });
   window.open(buildWhatsappUrl(message), '_blank');
 };
 

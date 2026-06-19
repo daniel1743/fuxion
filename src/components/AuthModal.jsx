@@ -7,26 +7,66 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Leaf } from 'lucide-react';
+import { Eye, EyeOff, Leaf, Loader2 } from 'lucide-react';
+import { useSiteSettings } from '@/context/SiteSettingsContext';
+import { useAdmin } from '@/context/AdminContext';
 
 const AuthModal = () => {
   const { isAuthModalOpen, closeAuthModal, login, register } = useAuth();
+  const { login: loginAdmin } = useAdmin();
+  const { settings } = useSiteSettings();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showLoginPassword, setShowLoginPassword] = useState(false);
+  const [showRegisterPassword, setShowRegisterPassword] = useState(false);
   const [registerData, setRegisterData] = useState({
     name: '',
     email: '',
     password: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formError, setFormError] = useState('');
+  const [formMessage, setFormMessage] = useState('');
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    login(email, password);
+  const resetFeedback = () => {
+    setFormError('');
+    setFormMessage('');
   };
 
-  const handleRegister = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    register(registerData);
+    resetFeedback();
+    setIsSubmitting(true);
+
+    const cleanEmail = email.trim().toLowerCase();
+    const result = cleanEmail === 'falcondaniel37@gmail.com'
+      ? await loginAdmin(cleanEmail, password)
+      : await login(cleanEmail, password);
+
+    if (!result.success) {
+      setFormError(result.error || 'No se pudo iniciar sesión.');
+    } else if (cleanEmail === 'falcondaniel37@gmail.com') {
+      closeAuthModal();
+      setEmail('');
+      setPassword('');
+    }
+
+    setIsSubmitting(false);
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    resetFeedback();
+    setIsSubmitting(true);
+
+    const result = await register(registerData);
+    if (!result.success) {
+      setFormError(result.error || 'No se pudo crear la cuenta.');
+    } else if (result.needsConfirmation) {
+      setFormMessage('Cuenta creada. Revisa tu correo para confirmar el acceso.');
+    }
+
+    setIsSubmitting(false);
   };
 
   return (
@@ -34,8 +74,12 @@ const AuthModal = () => {
       <DialogContent className="bg-card border-border p-0 max-w-md">
         <DialogHeader className="p-6 pb-0">
           <div className="flex items-center gap-2 mb-2">
-            <Leaf className="text-primary h-6 w-6" />
-            <DialogTitle className="text-2xl font-bold text-foreground">Tienda Fuxion</DialogTitle>
+            {settings.logo_url ? (
+              <img src={settings.logo_url} alt={settings.site_name} className="h-7 w-7 rounded-full object-cover" />
+            ) : (
+              <Leaf className="text-primary h-6 w-6" />
+            )}
+            <DialogTitle className="text-2xl font-bold text-foreground">{settings.site_name}</DialogTitle>
           </div>
           <DialogDescription>
             Accede para guardar tu experiencia en este dispositivo. Los pedidos se siguen coordinando por WhatsApp.
@@ -44,9 +88,19 @@ const AuthModal = () => {
         <div className="p-6">
           <Tabs defaultValue="login" className="w-full">
             <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="login">Iniciar Sesión</TabsTrigger>
-              <TabsTrigger value="register">Registrarse</TabsTrigger>
+              <TabsTrigger value="login" onClick={resetFeedback}>Iniciar Sesión</TabsTrigger>
+              <TabsTrigger value="register" onClick={resetFeedback}>Registrarse</TabsTrigger>
             </TabsList>
+            {formError && (
+              <div className="mt-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+                {formError}
+              </div>
+            )}
+            {formMessage && (
+              <div className="mt-4 rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm text-emerald-700">
+                {formMessage}
+              </div>
+            )}
             <TabsContent value="login">
               <form onSubmit={handleLogin} className="space-y-4 mt-4">
                 <div className="space-y-2">
@@ -55,9 +109,30 @@ const AuthModal = () => {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="login-password">Contraseña</Label>
-                  <Input id="login-password" type="password" placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                  <div className="relative">
+                    <Input
+                      id="login-password"
+                      type={showLoginPassword ? 'text' : 'password'}
+                      placeholder="••••••••"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className="pr-11"
+                      required
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowLoginPassword((current) => !current)}
+                      className="absolute inset-y-0 right-0 flex w-11 items-center justify-center text-muted-foreground hover:text-foreground"
+                      aria-label={showLoginPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
+                    >
+                      {showLoginPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                    </button>
+                  </div>
                 </div>
-                <Button type="submit" className="w-full bg-primary hover:bg-primary/90">Iniciar Sesión</Button>
+                <Button type="submit" disabled={isSubmitting} className="w-full bg-primary hover:bg-primary/90">
+                  {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                  {isSubmitting ? 'Verificando...' : 'Iniciar Sesión'}
+                </Button>
               </form>
             </TabsContent>
             <TabsContent value="register">
@@ -85,16 +160,31 @@ const AuthModal = () => {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="register-password">Contraseña</Label>
-                  <Input
-                    id="register-password"
-                    type="password"
-                    placeholder="••••••••"
-                    value={registerData.password}
-                    onChange={(e) => setRegisterData({ ...registerData, password: e.target.value })}
-                    required
-                  />
+                  <div className="relative">
+                    <Input
+                      id="register-password"
+                      type={showRegisterPassword ? 'text' : 'password'}
+                      placeholder="••••••••"
+                      value={registerData.password}
+                      onChange={(e) => setRegisterData({ ...registerData, password: e.target.value })}
+                      className="pr-11"
+                      required
+                      minLength={6}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowRegisterPassword((current) => !current)}
+                      className="absolute inset-y-0 right-0 flex w-11 items-center justify-center text-muted-foreground hover:text-foreground"
+                      aria-label={showRegisterPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
+                    >
+                      {showRegisterPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                    </button>
+                  </div>
                 </div>
-                <Button type="submit" className="w-full bg-primary hover:bg-primary/90">Crear Cuenta</Button>
+                <Button type="submit" disabled={isSubmitting} className="w-full bg-primary hover:bg-primary/90">
+                  {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                  {isSubmitting ? 'Creando cuenta...' : 'Crear Cuenta'}
+                </Button>
               </form>
             </TabsContent>
           </Tabs>

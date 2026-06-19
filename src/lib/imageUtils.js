@@ -95,11 +95,6 @@ export const getImageUrl = (imagePath) => {
   // Ejemplo: '' + '/img/productos/prunex-1.png' = '/img/productos/prunex-1.png'
   const finalUrl = `${cleanBaseUrl}${normalizedPath}`;
   
-  // Log en desarrollo para debugging
-  if (import.meta.env.DEV) {
-    console.log('getImageUrl:', { imagePath, baseUrl, finalUrl });
-  }
-  
   return finalUrl;
 };
 
@@ -155,10 +150,6 @@ export const getProductImageUrl = (productName) => {
   // Si encontramos en el mapeo, usar esa imagen
   if (mappedFile) {
     const imagePath = getImageUrl(`/img/productos/${mappedFile}`);
-    // Log para debugging
-    if (import.meta.env.DEV) {
-      console.log('getProductImageUrl - Mapeo encontrado:', { productName, cleanName, mappedFile, imagePath });
-    }
     return imagePath;
   }
 
@@ -169,10 +160,6 @@ export const getProductImageUrl = (productName) => {
   const extensions = ['.png', '.jpg'];
   for (const ext of extensions) {
     const imagePath = getImageUrl(`/img/productos/${normalized}${ext}`);
-    // Log para debugging
-    if (import.meta.env.DEV) {
-      console.log('getProductImageUrl - Normalizado:', { productName, cleanName, normalized, ext, imagePath });
-    }
     return imagePath;
   }
 

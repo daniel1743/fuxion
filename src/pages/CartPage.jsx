@@ -1,8 +1,8 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
-import { ShoppingCart, Trash2, Plus, Minus, Send, ShoppingBag, ShieldCheck } from 'lucide-react';
+import { ShoppingCart, Trash2, Plus, Minus, Send, ShoppingBag, ShieldCheck, Gift, LockKeyhole } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -10,8 +10,12 @@ import { useCart } from '@/context/CartContext';
 import { toast } from "@/components/ui/use-toast";
 import { Link } from 'react-router-dom';
 import { getPlaceholderImage } from '@/lib/imageUtils';
-import { buildWhatsappUrl, confirmAndOpenWhatsapp } from '@/lib/whatsapp';
+import { buildWhatsappUrl, confirmAndOpenWhatsapp, getActiveAdvisor } from '@/lib/whatsapp';
+import { recordAdvisorEvent } from '@/services/advisorService';
 import { WhatsAppIcon } from '@/components/icons/BrandIcons';
+import { useAuth } from '@/context/AuthContext';
+import { useLoyalty } from '@/context/LoyaltyContext';
+import { GIFT_PRODUCTS } from '@/services/loyaltyService';
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -21,13 +25,27 @@ const pageVariants = {
 
 const CartPage = () => {
   const { cartItems, removeFromCart, updateQuantity, getCartTotal, getCartCount, generateWhatsAppMessage, clearCart } = useCart();
+  const { isAuthenticated, user, openAuthModal } = useAuth();
+  const { account, registerOrder } = useLoyalty();
+  const [selectedGift, setSelectedGift] = useState('');
+  const [isSending, setIsSending] = useState(false);
   const [customerData, setCustomerData] = useState({
-    name: '',
-    phone: '',
-    email: '',
+    name: user?.name || '',
     address: '',
     commune: '',
   });
+
+  useEffect(() => {
+    if (user?.name) {
+      setCustomerData((current) => ({ ...current, name: current.name || user.name }));
+    }
+  }, [user?.name]);
+
+  const projectedProgress = account.progress_products + getCartCount();
+  const newlyEarnedRewards = Math.floor(projectedProgress / 4);
+  const projectedAvailableRewards = account.available_rewards + newlyEarnedRewards;
+  const projectedRemainder = projectedProgress % 4;
+  const productsNeeded = projectedRemainder === 0 ? 4 : 4 - projectedRemainder;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -41,7 +59,7 @@ const CartPage = () => {
     confirmAndOpenWhatsapp(`Hola, quiero hablar con un asesor sobre ${item.name}.`);
   };
 
-  const handleSendWhatsApp = () => {
+  const handleSendWhatsApp = async () => {
     // Validaciones
     if (!customerData.name.trim()) {
       toast({
@@ -52,10 +70,19 @@ const CartPage = () => {
       return;
     }
 
-    if (!customerData.phone.trim()) {
+    if (!customerData.address.trim()) {
       toast({
-        title: "⚠️ Teléfono requerido",
-        description: "Por favor ingresa tu teléfono",
+        title: "⚠️ Dirección requerida",
+        description: "Por favor ingresa tu dirección",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!customerData.commune.trim()) {
+      toast({
+        title: "⚠️ Comuna requerida",
+        description: "Por favor ingresa tu comuna",
         variant: "destructive",
       });
       return;
@@ -70,11 +97,48 @@ const CartPage = () => {
       return;
     }
 
+    if (isAuthenticated && projectedAvailableRewards > 0 && !selectedGift) {
+      toast({
+        title: "🎁 Elige tu regalo",
+        description: "Ya tienes un regalo disponible. Selecciona uno antes de enviar el pedido.",
+      });
+      return;
+    }
+
+    setIsSending(true);
+
     // Generar mensaje y abrir WhatsApp
-    const message = generateWhatsAppMessage(customerData);
+    const giftName = GIFT_PRODUCTS.find((gift) => gift.id === selectedGift)?.name || '';
+    const message = generateWhatsAppMessage(customerData, giftName);
     const whatsappUrl = buildWhatsappUrl(message);
+    const advisor = getActiveAdvisor();
+    recordAdvisorEvent(advisor.id, 'cart_whatsapp', {
+      customerName: customerData.name,
+      total: getCartTotal(),
+      products: cartItems.map(item => ({ name: item.name, quantity: item.quantity }))
+    });
+
+    if (isAuthenticated) {
+      try {
+        await registerOrder({
+          orderId: crypto.randomUUID(),
+          quantity: getCartCount(),
+          giftProduct: selectedGift || null,
+        });
+      } catch (error) {
+        toast({
+          title: "No se pudo registrar el progreso",
+          description: error.message,
+          variant: "destructive",
+        });
+        setIsSending(false);
+        return;
+      }
+    }
 
     window.open(whatsappUrl, '_blank');
+    setIsSending(false);
+    clearCart(true);
 
     toast({
       title: "✅ Pedido enviado",
@@ -143,6 +207,38 @@ const CartPage = () => {
             <p>
               Este carrito no realiza cobros automáticos. Al enviarlo serás derivado a un asesor por WhatsApp para confirmar disponibilidad, resolver dudas, coordinar pago y despacho.
             </p>
+          </div>
+
+          <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-4 dark:border-amber-900 dark:bg-amber-950/30">
+            <div className="flex gap-3">
+              <Gift className="h-6 w-6 shrink-0 text-amber-700" />
+              <div className="min-w-0">
+                <p className="font-bold text-amber-950 dark:text-amber-100">Programa 4 productos + 1 regalo</p>
+                {isAuthenticated ? (
+                  <>
+                    <p className="mt-1 text-sm text-amber-900 dark:text-amber-200">
+                      Con este carrito quedarás con {projectedRemainder} de 4 productos.
+                      {projectedAvailableRewards > 0
+                        ? ` Tendrás ${projectedAvailableRewards} regalo${projectedAvailableRewards === 1 ? '' : 's'} disponible${projectedAvailableRewards === 1 ? '' : 's'}; puedes usar uno en este pedido.`
+                        : ` Te faltarán ${productsNeeded} para obtener uno gratis.`}
+                    </p>
+                    <div className="mt-3 h-2.5 overflow-hidden rounded-full bg-amber-200">
+                      <div className="h-full rounded-full bg-amber-600" style={{ width: `${(projectedRemainder / 4) * 100}%` }} />
+                    </div>
+                  </>
+                ) : (
+                  <div className="mt-1 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <p className="text-sm text-amber-900 dark:text-amber-200">
+                      Inicia sesión para acumular tus compras aunque sean en meses distintos.
+                    </p>
+                    <Button type="button" size="sm" variant="outline" onClick={openAuthModal}>
+                      <LockKeyhole className="mr-2 h-4 w-4" />
+                      Iniciar sesión
+                    </Button>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
 
@@ -261,32 +357,7 @@ const CartPage = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="phone">Teléfono / WhatsApp *</Label>
-                    <Input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      placeholder="+56 9 1234 5678"
-                      value={customerData.phone}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email</Label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      placeholder="correo@ejemplo.com"
-                      value={customerData.email}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="address">Dirección</Label>
+                    <Label htmlFor="address">Dirección *</Label>
                     <Input
                       id="address"
                       name="address"
@@ -297,17 +368,46 @@ const CartPage = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="commune">Comuna / Ciudad</Label>
+                    <Label htmlFor="commune">Comuna *</Label>
                     <Input
                       id="commune"
                       name="commune"
-                      placeholder="Santiago Centro"
+                      placeholder="Providencia"
                       value={customerData.commune}
                       onChange={handleInputChange}
                     />
                   </div>
                 </div>
               </div>
+
+              {isAuthenticated && projectedAvailableRewards > 0 && (
+                <div className="rounded-xl border border-amber-300 bg-card p-5">
+                  <h2 className="flex items-center gap-2 text-xl font-bold">
+                    <Gift className="h-5 w-5 text-amber-600" />
+                    Elige tu regalo
+                  </h2>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Selecciona uno para incluirlo en este pedido.
+                  </p>
+                  <div className="mt-4 grid grid-cols-2 gap-3">
+                    {GIFT_PRODUCTS.map((gift) => (
+                      <button
+                        type="button"
+                        key={gift.id}
+                        onClick={() => setSelectedGift(gift.id)}
+                        className={`rounded-xl border p-3 text-center transition ${
+                          selectedGift === gift.id
+                            ? 'border-amber-500 bg-amber-50 ring-2 ring-amber-300 dark:bg-amber-950/30'
+                            : 'border-border hover:border-amber-300'
+                        }`}
+                      >
+                        <img src={gift.image} alt={gift.name} className="mx-auto h-20 w-20 object-contain" />
+                        <span className="mt-2 block text-sm font-semibold">{gift.name}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Resumen del pedido */}
               <div className="bg-card border border-border rounded-xl p-6">
@@ -327,11 +427,12 @@ const CartPage = () => {
 
                 <Button
                   onClick={handleSendWhatsApp}
+                  disabled={isSending}
                   className="w-full h-12 text-lg gap-2 bg-green-600 hover:bg-green-700"
                   size="lg"
                 >
                   <Send className="h-5 w-5" />
-                  Enviar pedido a un asesor
+                  {isSending ? 'Registrando pedido...' : 'Enviar pedido a un asesor'}
                 </Button>
 
                 <div className="relative my-4">
