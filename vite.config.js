@@ -8,6 +8,12 @@ import selectionModePlugin from './plugins/selection-mode/vite-plugin-selection-
 
 const isDev = process.env.NODE_ENV !== 'production';
 
+// Solo desarrollo local: la red usa un certificado intermediario no reconocido por Node.
+// Vercel/producción conserva la validación TLS estricta.
+if (isDev) {
+	process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+}
+
 const configHorizonsViteErrorHandler = `
 const observer = new MutationObserver((mutations) => {
 	for (const mutation of mutations) {

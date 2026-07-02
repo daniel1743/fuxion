@@ -16,8 +16,12 @@ CREATE TABLE IF NOT EXISTS public.loyalty_orders (
   user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
   product_quantity INTEGER NOT NULL CHECK (product_quantity > 0),
   gift_product TEXT,
+  products JSONB NOT NULL DEFAULT '[]'::jsonb,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
+ALTER TABLE public.loyalty_orders
+ADD COLUMN IF NOT EXISTS products JSONB NOT NULL DEFAULT '[]'::jsonb;
 
 ALTER TABLE public.loyalty_accounts ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.loyalty_orders ENABLE ROW LEVEL SECURITY;
@@ -32,10 +36,13 @@ CREATE POLICY "loyalty_orders_own_read"
 ON public.loyalty_orders FOR SELECT TO authenticated
 USING (auth.uid() = user_id);
 
+DROP FUNCTION IF EXISTS public.record_loyalty_order(UUID, INTEGER, TEXT);
+
 CREATE OR REPLACE FUNCTION public.record_loyalty_order(
   input_order_id UUID,
   input_product_quantity INTEGER,
-  input_gift_product TEXT DEFAULT NULL
+  input_gift_product TEXT DEFAULT NULL,
+  input_products JSONB DEFAULT '[]'::jsonb
 )
 RETURNS public.loyalty_accounts
 LANGUAGE plpgsql
@@ -98,11 +105,17 @@ BEGIN
   WHERE user_id = auth.uid()
   RETURNING * INTO account;
 
-  INSERT INTO public.loyalty_orders (id, user_id, product_quantity, gift_product)
-  VALUES (input_order_id, auth.uid(), input_product_quantity, input_gift_product);
+  INSERT INTO public.loyalty_orders (id, user_id, product_quantity, gift_product, products)
+  VALUES (
+    input_order_id,
+    auth.uid(),
+    input_product_quantity,
+    input_gift_product,
+    COALESCE(input_products, '[]'::jsonb)
+  );
 
   RETURN account;
 END;
 $$;
 
-GRANT EXECUTE ON FUNCTION public.record_loyalty_order(UUID, INTEGER, TEXT) TO authenticated;
+GRANT EXECUTE ON FUNCTION public.record_loyalty_order(UUID, INTEGER, TEXT, JSONB) TO authenticated;

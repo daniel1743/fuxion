@@ -25,6 +25,13 @@ export const fuxionKnowledgeBase = {
     notas: 'Los pedidos se confirman manualmente por WhatsApp.'
   },
 
+  loyalty: {
+    regla: 'Por cada 4 productos acumulados en pedidos, el cliente obtiene 1 regalo.',
+    requisito: 'El cliente debe iniciar sesión para guardar y acumular su progreso.',
+    acumulacion: 'Las compras pueden acumularse aunque se realicen en meses distintos.',
+    regalos: ['PASSION', 'LIQUID FIBER', 'GOLDEN FLX', 'NOCARB-T']
+  },
+
   categories: products.reduce((acc, product) => {
     const key = product.categoria || 'Productos Fuxion';
     if (!acc[key]) {
@@ -70,6 +77,10 @@ export const fuxionKnowledgeBase = {
     {
       pregunta: 'De donde salen los precios?',
       respuesta: 'Los precios fueron cargados desde el Catalogo Chile.pdf.'
+    },
+    {
+      pregunta: 'Como funciona el regalo por comprar productos?',
+      respuesta: 'Con la sesión iniciada, cada 4 productos acumulados en pedidos obtienes 1 regalo. Puedes elegir PASSION, LIQUID FIBER, GOLDEN FLX o NOCARB-T, y acumular compras realizadas en meses distintos.'
     }
   ],
 

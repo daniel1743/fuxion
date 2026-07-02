@@ -25,6 +25,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthLoading, setIsAuthLoading] = useState(true);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [isPasswordRecovery, setIsPasswordRecovery] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -49,11 +50,16 @@ export const AuthProvider = ({ children }) => {
 
     loadSession();
 
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: listener } = supabase.auth.onAuthStateChange((event, session) => {
       const sessionUser = mapSupabaseUser(session?.user);
       setUser(sessionUser);
       setIsAuthenticated(Boolean(sessionUser));
       setIsAuthLoading(false);
+
+      if (event === 'PASSWORD_RECOVERY') {
+        setIsPasswordRecovery(true);
+        setIsAuthModalOpen(true);
+      }
     });
 
     return () => {
@@ -108,17 +114,19 @@ export const AuthProvider = ({ children }) => {
     return { success: true };
   };
 
-  const register = async ({ name, email, password }) => {
-    const cleanName = name.trim();
+  const register = async ({ firstName, lastName, email, password }) => {
+    const cleanFirstName = firstName.trim();
+    const cleanLastName = lastName.trim();
+    const cleanName = `${cleanFirstName} ${cleanLastName}`.trim();
     const cleanEmail = email.trim().toLowerCase();
 
-    if (!cleanName || !cleanEmail || !password) {
+    if (!cleanFirstName || !cleanLastName || !cleanEmail || !password) {
       toast({
         title: "Datos incompletos",
-        description: "Completa nombre, email y contraseña.",
+        description: "Completa nombre, apellido, email y contraseña.",
         variant: "destructive",
       });
-      return { success: false, error: 'Completa nombre, email y contraseña.' };
+      return { success: false, error: 'Completa nombre, apellido, email y contraseña.' };
     }
 
     if (password.length < 6) {
@@ -137,6 +145,8 @@ export const AuthProvider = ({ children }) => {
         data: {
           name: cleanName,
           full_name: cleanName,
+          first_name: cleanFirstName,
+          last_name: cleanLastName,
         },
         emailRedirectTo: window.location.origin,
       },
@@ -232,6 +242,31 @@ export const AuthProvider = ({ children }) => {
     return { success: true, user: updatedUser };
   };
 
+  const requestPasswordReset = async (email) => {
+    const cleanEmail = email.trim().toLowerCase();
+    if (!cleanEmail) return { success: false, error: 'Ingresa tu email.' };
+
+    const { error } = await supabase.auth.resetPasswordForEmail(cleanEmail, {
+      redirectTo: window.location.origin,
+    });
+
+    if (error) return { success: false, error: error.message };
+    return { success: true };
+  };
+
+  const updatePassword = async (password) => {
+    if (password.length < 6) {
+      return { success: false, error: 'Usa al menos 6 caracteres.' };
+    }
+
+    const { error } = await supabase.auth.updateUser({ password });
+    if (error) return { success: false, error: error.message };
+
+    setIsPasswordRecovery(false);
+    setIsAuthModalOpen(false);
+    return { success: true };
+  };
+
   const openAuthModal = () => setIsAuthModalOpen(true);
   const closeAuthModal = () => setIsAuthModalOpen(false);
 
@@ -242,6 +277,9 @@ export const AuthProvider = ({ children }) => {
     login,
     register,
     updateProfile,
+    requestPasswordReset,
+    updatePassword,
+    isPasswordRecovery,
     logout,
     isAuthModalOpen,
     openAuthModal,

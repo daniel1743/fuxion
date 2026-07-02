@@ -3,27 +3,145 @@
 > vite --host :: --port 3000
 
 
-  [32m[1mVITE[22m v4.5.14[39m  [2mready in [0m[1m825[22m[2m[0m ms[22m
+  [32m[1mVITE[22m v4.5.14[39m  [2mready in [0m[1m1148[22m[2m[0m ms[22m
 
   [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m3000[22m/[39m
   [32m➜[39m  [1mNetwork[22m: [36mhttp://192.168.1.89:[1m3000[22m/[39m
   [32m➜[39m  [1mNetwork[22m: [36mhttp://172.17.176.1:[1m3000[22m/[39m
 [2m[32m  ➜[39m[22m[2m  press [22m[1mh[22m[2m to show help[22m
-[2m5:13:14 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/AuthModal.jsx, /src/index.css[22m
-[2m5:13:14 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/admin/AdminLoginModal.jsx, /src/index.css[22m
-[2m5:14:12 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/AuthModal.jsx, /src/index.css[22m
-[2m5:14:12 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/UserMenu.jsx, /src/index.css[22m
-[2m5:19:48 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/admin/AdminPanel.jsx, /src/index.css[22m
-[2m5:20:09 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/admin/AdminPanel.jsx, /src/index.css[22m
-[2m5:20:31 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/admin/AdminPanel.jsx, /src/index.css[22m
-[2m5:20:41 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/admin/AdminPanel.jsx, /src/index.css[22m
-[2m5:26:47 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
-[2m5:26:47 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/UserMenu.jsx, /src/index.css[22m
-[2m5:27:34 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/context/CartContext.jsx, /src/index.css[22m
-[2m5:27:34 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/CartPage.jsx, /src/index.css[22m
-[2m5:27:34 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/CartContext.jsx[22m Could not Fast Refresh ("useCart" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
-[2m5:27:34 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Header.jsx, /src/index.css, /src/App.jsx, /src/pages/CartPage.jsx[22m
-[2m5:27:53 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/context/CartContext.jsx, /src/index.css[22m
-[2m5:27:53 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/CartPage.jsx, /src/index.css[22m
-[2m5:27:53 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/CartContext.jsx[22m Could not Fast Refresh ("useCart" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
-[2m5:27:53 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Header.jsx, /src/index.css, /src/App.jsx, /src/pages/CartPage.jsx[22m
+🔄 Intentando con DeepSeek API...
+✅ DeepSeek API funcionó correctamente
+[2m6:59:37 p. m.[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mdist/index.html[22m
+🔄 Intentando con DeepSeek API...
+✅ DeepSeek API funcionó correctamente
+[2m7:08:25 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/context/CartContext.jsx, /src/index.css[22m
+[2m7:08:25 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/CartPage.jsx, /src/index.css[22m
+[2m7:08:25 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/context/CartContext.jsx, /src/index.css[22m
+[2m7:08:26 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/CartContext.jsx[22m Could not Fast Refresh ("useCart" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m7:08:26 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css, /src/components/Header.jsx, /src/pages/CartPage.jsx[22m
+[2m7:08:26 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/CartContext.jsx[22m Could not Fast Refresh ("useCart" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m7:08:26 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css, /src/components/Header.jsx, /src/pages/CartPage.jsx[22m
+[2m7:09:26 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/CartPage.jsx, /src/index.css[22m
+[2m7:09:31 p. m.[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mdist/index.html[22m
+[2m7:16:10 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/context/LoyaltyContext.jsx, /src/pages/CartPage.jsx[22m
+[2m7:16:10 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/context/LoyaltyContext.jsx, /src/index.css[22m
+[2m7:16:10 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/CartPage.jsx, /src/index.css[22m
+[2m7:16:11 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/LoyaltyContext.jsx[22m Could not Fast Refresh ("useLoyalty" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m7:16:11 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css, /src/pages/CartPage.jsx[22m
+[2m7:16:11 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/LoyaltyContext.jsx[22m Could not Fast Refresh ("useLoyalty" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m7:16:11 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css, /src/pages/CartPage.jsx[22m
+[2m7:16:37 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FalconBot.jsx, /src/index.css[22m
+[2m7:16:49 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/context/LoyaltyContext.jsx, /src/pages/CartPage.jsx[22m
+[2m7:16:49 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/context/LoyaltyContext.jsx, /src/index.css[22m
+[2m7:16:49 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FalconBot.jsx, /src/index.css[22m
+[2m7:16:50 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/LoyaltyContext.jsx[22m Could not Fast Refresh ("useLoyalty" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m7:16:50 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css, /src/pages/CartPage.jsx, /src/components/FalconBot.jsx[22m
+[2m7:16:50 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/LoyaltyContext.jsx[22m Could not Fast Refresh ("useLoyalty" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m7:16:50 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css, /src/pages/CartPage.jsx, /src/components/FalconBot.jsx[22m
+[2m7:16:50 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/LoyaltyContext.jsx[22m Could not Fast Refresh ("useLoyalty" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m7:16:50 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css, /src/pages/CartPage.jsx, /src/components/FalconBot.jsx[22m
+[2m7:16:50 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/LoyaltyContext.jsx[22m Could not Fast Refresh ("useLoyalty" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m7:16:50 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css, /src/pages/CartPage.jsx, /src/components/FalconBot.jsx[22m
+[2m7:17:08 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FalconBot.jsx, /src/index.css[22m
+[2m7:18:08 p. m.[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mdist/index.html[22m
+[2m7:21:20 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/App.jsx, /src/context/ForumContext.jsx, /src/components/FalconBot.jsx[22m
+[2m7:21:20 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FalconBot.jsx, /src/index.css[22m
+[2m7:21:21 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/ForumContext.jsx[22m Could not Fast Refresh ("useForumContext" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m7:21:21 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[2m7:22:16 p. m.[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mdist/index.html[22m
+🔄 Intentando con DeepSeek API...
+✅ DeepSeek API funcionó correctamente
+🔄 Intentando con DeepSeek API...
+✅ DeepSeek API funcionó correctamente
+🔄 Intentando con DeepSeek API...
+✅ DeepSeek API funcionó correctamente
+[2m7:28:44 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/App.jsx, /src/context/ForumContext.jsx, /src/components/FalconBot.jsx[22m
+[2m7:28:44 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FalconBot.jsx, /src/index.css[22m
+[2m7:28:45 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/ForumContext.jsx[22m Could not Fast Refresh ("useForumContext" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m7:28:45 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[2m7:29:18 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FalconBot.jsx, /src/index.css[22m
+[2m7:30:12 p. m.[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mdist/index.html[22m
+[2m7:38:04 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FalconBot.jsx, /src/index.css[22m
+[2m7:38:05 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/App.jsx, /src/context/ForumContext.jsx, /src/components/FalconBot.jsx[22m
+[2m7:38:05 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/ForumContext.jsx[22m Could not Fast Refresh ("useForumContext" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m7:38:05 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[2m7:38:47 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/FalconBot.jsx, /src/index.css[22m
+[2m7:38:49 p. m.[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mdist/index.html[22m
+[2m7:39:40 p. m.[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mdist/index.html[22m
+🔄 Intentando con DeepSeek API...
+✅ DeepSeek API funcionó correctamente
+🔄 Intentando con DeepSeek API...
+✅ DeepSeek API funcionó correctamente
+🔄 Intentando con DeepSeek API...
+✅ DeepSeek API funcionó correctamente
+🔄 Intentando con DeepSeek API...
+✅ DeepSeek API funcionó correctamente
+[2m7:54:23 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/App.jsx, /src/context/ForumContext.jsx, /src/components/FalconBot.jsx, /src/components/ProductLinkedText.jsx[22m
+[2m7:54:23 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/App.jsx, /src/context/ForumContext.jsx, /src/components/FalconBot.jsx[22m
+[2m7:54:23 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/App.jsx, /src/context/ForumContext.jsx, /src/components/FalconBot.jsx[22m
+[2m7:54:24 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/ForumContext.jsx[22m Could not Fast Refresh ("useForumContext" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m7:54:24 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[2m7:54:24 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/ForumContext.jsx[22m Could not Fast Refresh ("useForumContext" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m7:54:24 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[2m7:54:24 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/ForumContext.jsx[22m Could not Fast Refresh ("useForumContext" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m7:54:24 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[2m7:55:01 p. m.[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mdist/index.html[22m
+[2m8:12:51 p. m.[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mdist/index.html[22m
+[2m8:13:15 p. m.[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/services/wellnessPlanService.js[22m
+[2m8:25:39 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/ui/input.jsx, /src/index.css[22m
+[2m8:26:35 p. m.[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mdist/index.html[22m
+[2m10:20:45 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/EvidencePage.jsx, /src/index.css[22m
+[2m10:20:59 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/EvidenceInteractions.jsx[22m
+[2m10:20:59 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/EvidenceInteractions.jsx, /src/index.css[22m
+[2m10:22:14 p. m.[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mdist/index.html[22m
+[2m10:24:43 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/context/SiteSettingsContext.jsx, /src/context/AdminContext.jsx, /src/components/ProfileEditModal.jsx, /src/components/admin/AdminPanel.jsx, /src/pages/EvidencePage.jsx[22m
+[2m10:24:43 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/EvidencePage.jsx, /src/index.css[22m
+[2m10:24:45 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/SiteSettingsContext.jsx[22m Could not Fast Refresh ("useSiteSettings" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m10:24:45 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css, /src/components/Header.jsx, /src/components/Footer.jsx, /src/components/AuthModal.jsx, /src/components/admin/AdminPanel.jsx[22m
+[2m10:24:45 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/AdminContext.jsx[22m Could not Fast Refresh ("useAdmin" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m10:24:45 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css, /src/components/admin/AdminLoginModal.jsx, /src/context/LoyaltyContext.jsx, /src/components/AuthModal.jsx, /src/components/UserMenu.jsx, /src/components/admin/AdminPanel.jsx, /src/pages/CartPage.jsx, /src/components/FalconBot.jsx, /src/pages/SupportPage.jsx, /src/components/forum/QuestionCard.jsx, /src/components/forum/QuestionDetail.jsx, /src/pages/AccountPage.jsx, /src/pages/EvidencePage.jsx, /src/components/EvidenceInteractions.jsx[22m
+[2m10:24:46 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/LoyaltyContext.jsx[22m Could not Fast Refresh ("useLoyalty" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m10:24:46 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css, /src/pages/CartPage.jsx, /src/components/FalconBot.jsx, /src/pages/AccountPage.jsx[22m
+[2m10:25:42 p. m.[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mdist/index.html[22m
+[2m10:25:52 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css, /src/context/SiteSettingsContext.jsx, /src/context/AdminContext.jsx, /src/components/ProfileEditModal.jsx, /src/components/admin/AdminPanel.jsx, /src/pages/EvidencePage.jsx, /src/components/EvidenceEditorDialog.jsx[22m
+[2m10:25:54 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/SiteSettingsContext.jsx[22m Could not Fast Refresh ("useSiteSettings" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m10:25:54 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css, /src/components/Header.jsx, /src/components/Footer.jsx, /src/components/AuthModal.jsx, /src/components/admin/AdminPanel.jsx[22m
+[2m10:25:54 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/AdminContext.jsx[22m Could not Fast Refresh ("useAdmin" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m10:25:54 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css, /src/components/admin/AdminLoginModal.jsx, /src/context/LoyaltyContext.jsx, /src/components/AuthModal.jsx, /src/components/UserMenu.jsx, /src/components/admin/AdminPanel.jsx, /src/pages/CartPage.jsx, /src/components/FalconBot.jsx, /src/pages/SupportPage.jsx, /src/components/forum/QuestionCard.jsx, /src/components/forum/QuestionDetail.jsx, /src/pages/AccountPage.jsx, /src/pages/EvidencePage.jsx, /src/components/EvidenceInteractions.jsx[22m
+[2m10:25:55 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/LoyaltyContext.jsx[22m Could not Fast Refresh ("useLoyalty" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m10:25:55 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css, /src/pages/CartPage.jsx, /src/components/FalconBot.jsx, /src/pages/AccountPage.jsx[22m
+[2m10:26:57 p. m.[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mdist/index.html[22m
+[2m10:31:02 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/EvidencePage.jsx, /src/index.css[22m
+[2m10:31:02 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/admin/AdminPanel.jsx, /src/index.css[22m
+[2m10:32:18 p. m.[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mdist/index.html[22m
+[2m10:38:29 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/AuthModal.jsx, /src/index.css[22m
+[2m10:38:29 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/context/AdminContext.jsx, /src/index.css[22m
+[2m10:38:29 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/pages/EvidencePage.jsx, /src/index.css[22m
+[2m10:38:29 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/context/AdminContext.jsx, /src/index.css[22m
+[2m10:38:30 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/AdminContext.jsx[22m Could not Fast Refresh ("useAdmin" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m10:38:30 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css, /src/components/admin/AdminLoginModal.jsx, /src/context/LoyaltyContext.jsx, /src/components/AuthModal.jsx, /src/components/UserMenu.jsx, /src/components/admin/AdminPanel.jsx, /src/pages/CartPage.jsx, /src/components/FalconBot.jsx, /src/pages/SupportPage.jsx, /src/components/forum/QuestionCard.jsx, /src/components/forum/QuestionDetail.jsx, /src/pages/AccountPage.jsx, /src/pages/EvidencePage.jsx, /src/components/EvidenceInteractions.jsx[22m
+[2m10:38:30 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/AdminContext.jsx[22m Could not Fast Refresh ("useAdmin" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m10:38:30 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css, /src/components/admin/AdminLoginModal.jsx, /src/context/LoyaltyContext.jsx, /src/components/AuthModal.jsx, /src/components/UserMenu.jsx, /src/components/admin/AdminPanel.jsx, /src/pages/CartPage.jsx, /src/components/FalconBot.jsx, /src/pages/SupportPage.jsx, /src/components/forum/QuestionCard.jsx, /src/components/forum/QuestionDetail.jsx, /src/pages/AccountPage.jsx, /src/pages/EvidencePage.jsx, /src/components/EvidenceInteractions.jsx[22m
+[2m10:38:31 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/LoyaltyContext.jsx[22m Could not Fast Refresh ("useLoyalty" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m10:38:31 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css, /src/pages/CartPage.jsx, /src/components/FalconBot.jsx, /src/pages/AccountPage.jsx[22m
+[2m10:38:31 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/LoyaltyContext.jsx[22m Could not Fast Refresh ("useLoyalty" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m10:38:31 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css, /src/pages/CartPage.jsx, /src/components/FalconBot.jsx, /src/pages/AccountPage.jsx[22m
+[2m10:38:42 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/context/AdminContext.jsx, /src/index.css[22m
+[2m10:38:42 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/AdminContext.jsx[22m Could not Fast Refresh ("useAdmin" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m10:38:42 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css, /src/components/admin/AdminLoginModal.jsx, /src/context/LoyaltyContext.jsx, /src/components/AuthModal.jsx, /src/components/UserMenu.jsx, /src/components/admin/AdminPanel.jsx, /src/pages/CartPage.jsx, /src/components/FalconBot.jsx, /src/pages/SupportPage.jsx, /src/components/forum/QuestionCard.jsx, /src/components/forum/QuestionDetail.jsx, /src/pages/AccountPage.jsx, /src/pages/EvidencePage.jsx, /src/components/EvidenceInteractions.jsx[22m
+[2m10:38:43 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/LoyaltyContext.jsx[22m Could not Fast Refresh ("useLoyalty" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m10:38:43 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css, /src/pages/CartPage.jsx, /src/components/FalconBot.jsx, /src/pages/AccountPage.jsx[22m
+[2m10:39:35 p. m.[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mdist/index.html[22m
+[2m10:39:47 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/context/AdminContext.jsx, /src/index.css[22m
+[2m10:39:47 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/AdminContext.jsx[22m Could not Fast Refresh ("useAdmin" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m10:39:47 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css, /src/components/admin/AdminLoginModal.jsx, /src/context/LoyaltyContext.jsx, /src/components/AuthModal.jsx, /src/components/UserMenu.jsx, /src/components/admin/AdminPanel.jsx, /src/pages/CartPage.jsx, /src/components/FalconBot.jsx, /src/pages/SupportPage.jsx, /src/components/forum/QuestionCard.jsx, /src/components/forum/QuestionDetail.jsx, /src/pages/AccountPage.jsx, /src/pages/EvidencePage.jsx, /src/components/EvidenceInteractions.jsx[22m
+[2m10:39:49 p. m.[22m [36m[1m[vite][22m[39m [33mhmr invalidate [39m[2m/src/context/LoyaltyContext.jsx[22m Could not Fast Refresh ("useLoyalty" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m10:39:49 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css, /src/pages/CartPage.jsx, /src/components/FalconBot.jsx, /src/pages/AccountPage.jsx[22m
+[2m10:49:55 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/context/AuthContext.jsx, /src/index.css[22m
+[2m10:49:55 p. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/AuthModal.jsx, /src/index.css[22m
+[2m10:51:03 p. m.[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mdist/index.html[22m
+[2m11:20:32 a. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[2m11:20:32 a. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Header.jsx, /src/index.css[22m
+[2m11:20:32 a. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Footer.jsx, /src/index.css[22m
+[2m11:21:43 a. m.[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mdist/index.html[22m
+[2m11:54:10 a. m.[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Header.jsx, /src/index.css[22m

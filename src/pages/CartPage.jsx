@@ -1,10 +1,9 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { ShoppingCart, Trash2, Plus, Minus, Send, ShoppingBag, ShieldCheck, Gift, LockKeyhole } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useCart } from '@/context/CartContext';
 import { toast } from "@/components/ui/use-toast";
@@ -16,6 +15,8 @@ import { WhatsAppIcon } from '@/components/icons/BrandIcons';
 import { useAuth } from '@/context/AuthContext';
 import { useLoyalty } from '@/context/LoyaltyContext';
 import { GIFT_PRODUCTS } from '@/services/loyaltyService';
+import { useAdmin } from '@/context/AdminContext';
+import { CHILE_REGIONS } from '@/data/chileRegions';
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -25,33 +26,31 @@ const pageVariants = {
 
 const CartPage = () => {
   const { cartItems, removeFromCart, updateQuantity, getCartTotal, getCartCount, generateWhatsAppMessage, clearCart } = useCart();
-  const { isAuthenticated, user, openAuthModal } = useAuth();
-  const { account, registerOrder } = useLoyalty();
+  const { user, openAuthModal } = useAuth();
+  const { adminData } = useAdmin();
+  const { account, registerOrder, isEligible } = useLoyalty();
+  const customerName = user?.name || adminData?.nombre_completo || 'Daniel Falcon';
   const [selectedGift, setSelectedGift] = useState('');
   const [isSending, setIsSending] = useState(false);
+  const giftSelectorRef = useRef(null);
   const [customerData, setCustomerData] = useState({
-    name: user?.name || '',
-    address: '',
+    region: '',
     commune: '',
   });
-
-  useEffect(() => {
-    if (user?.name) {
-      setCustomerData((current) => ({ ...current, name: current.name || user.name }));
-    }
-  }, [user?.name]);
 
   const projectedProgress = account.progress_products + getCartCount();
   const newlyEarnedRewards = Math.floor(projectedProgress / 4);
   const projectedAvailableRewards = account.available_rewards + newlyEarnedRewards;
   const projectedRemainder = projectedProgress % 4;
   const productsNeeded = projectedRemainder === 0 ? 4 : 4 - projectedRemainder;
+  const selectedGiftDetails = GIFT_PRODUCTS.find((gift) => gift.id === selectedGift);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setCustomerData(prev => ({
       ...prev,
-      [name]: value
+      [name]: value,
+      ...(name === 'region' ? { commune: '' } : {}),
     }));
   };
 
@@ -61,19 +60,10 @@ const CartPage = () => {
 
   const handleSendWhatsApp = async () => {
     // Validaciones
-    if (!customerData.name.trim()) {
+    if (!customerData.region.trim()) {
       toast({
-        title: "⚠️ Nombre requerido",
-        description: "Por favor ingresa tu nombre",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    if (!customerData.address.trim()) {
-      toast({
-        title: "⚠️ Dirección requerida",
-        description: "Por favor ingresa tu dirección",
+        title: "⚠️ Región requerida",
+        description: "Por favor selecciona tu región",
         variant: "destructive",
       });
       return;
@@ -97,7 +87,7 @@ const CartPage = () => {
       return;
     }
 
-    if (isAuthenticated && projectedAvailableRewards > 0 && !selectedGift) {
+    if (isEligible && projectedAvailableRewards > 0 && !selectedGift) {
       toast({
         title: "🎁 Elige tu regalo",
         description: "Ya tienes un regalo disponible. Selecciona uno antes de enviar el pedido.",
@@ -109,21 +99,29 @@ const CartPage = () => {
 
     // Generar mensaje y abrir WhatsApp
     const giftName = GIFT_PRODUCTS.find((gift) => gift.id === selectedGift)?.name || '';
-    const message = generateWhatsAppMessage(customerData, giftName);
+    const orderCustomer = { ...customerData, name: customerName };
+    const message = generateWhatsAppMessage(orderCustomer, giftName);
     const whatsappUrl = buildWhatsappUrl(message);
     const advisor = getActiveAdvisor();
     recordAdvisorEvent(advisor.id, 'cart_whatsapp', {
-      customerName: customerData.name,
+      customerName,
       total: getCartTotal(),
       products: cartItems.map(item => ({ name: item.name, quantity: item.quantity }))
     });
 
-    if (isAuthenticated) {
+    if (isEligible) {
       try {
         await registerOrder({
           orderId: crypto.randomUUID(),
           quantity: getCartCount(),
           giftProduct: selectedGift || null,
+          products: cartItems.map((item) => ({
+            id: item.id,
+            name: item.name,
+            quantity: item.quantity,
+            image: item.image || null,
+            presentation: item.presentation || item.presentacion || null,
+          })),
         });
       } catch (error) {
         toast({
@@ -214,7 +212,7 @@ const CartPage = () => {
               <Gift className="h-6 w-6 shrink-0 text-amber-700" />
               <div className="min-w-0">
                 <p className="font-bold text-amber-950 dark:text-amber-100">Programa 4 productos + 1 regalo</p>
-                {isAuthenticated ? (
+                {isEligible ? (
                   <>
                     <p className="mt-1 text-sm text-amber-900 dark:text-amber-200">
                       Con este carrito quedarás con {projectedRemainder} de 4 productos.
@@ -335,6 +333,47 @@ const CartPage = () => {
                 </motion.div>
               );
             })}
+
+            {selectedGiftDetails && (
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="gift-reward-card w-full rounded-xl bg-amber-50/70 p-4 dark:bg-amber-950/20"
+              >
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="flex min-w-0 items-center gap-4">
+                    <div className="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-white">
+                      <img
+                        src={selectedGiftDetails.image}
+                        alt={selectedGiftDetails.name}
+                        className="h-full w-full object-contain"
+                      />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-amber-700">
+                        <Gift className="h-4 w-4" />
+                        Regalo
+                      </p>
+                      <p className="mt-1 text-lg font-bold text-foreground">
+                        Has elegido {selectedGiftDetails.name}
+                      </p>
+                      <p className="text-sm text-muted-foreground">Gratis con tu beneficio 4 + 1</p>
+                    </div>
+                  </div>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => giftSelectorRef.current?.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'center',
+                    })}
+                    className="shrink-0 border-amber-400 hover:bg-amber-100 dark:hover:bg-amber-950/40"
+                  >
+                    ¿Deseas cambiarlo?
+                  </Button>
+                </div>
+              </motion.div>
+            )}
           </div>
 
           {/* Formulario y resumen */}
@@ -344,44 +383,56 @@ const CartPage = () => {
               <div className="bg-card border border-border rounded-xl p-6">
                 <h2 className="text-xl font-bold text-foreground mb-4">Tus Datos</h2>
                 <div className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="name">Nombre completo *</Label>
-                    <Input
-                      id="name"
-                      name="name"
-                      placeholder="Juan Pérez"
-                      value={customerData.name}
-                      onChange={handleInputChange}
-                      required
-                    />
+                  <div className="rounded-lg bg-secondary/60 px-3 py-2">
+                    <p className="text-xs text-muted-foreground">Nombre del pedido</p>
+                    <p className="font-medium text-foreground">{customerName}</p>
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="address">Dirección *</Label>
-                    <Input
-                      id="address"
-                      name="address"
-                      placeholder="Calle 123, Depto 456"
-                      value={customerData.address}
+                    <Label htmlFor="region">Región *</Label>
+                    <select
+                      id="region"
+                      name="region"
+                      value={customerData.region}
                       onChange={handleInputChange}
-                    />
+                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      required
+                    >
+                      <option value="">Selecciona una región</option>
+                      {CHILE_REGIONS.map((region) => (
+                        <option key={region.name} value={region.name}>
+                          {region.name}
+                        </option>
+                      ))}
+                    </select>
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="commune">Comuna *</Label>
-                    <Input
+                    <select
                       id="commune"
                       name="commune"
-                      placeholder="Providencia"
                       value={customerData.commune}
                       onChange={handleInputChange}
-                    />
+                      disabled={!customerData.region}
+                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                      required
+                    >
+                      <option value="">
+                        {customerData.region ? 'Selecciona una comuna' : 'Primero selecciona una región'}
+                      </option>
+                      {(CHILE_REGIONS.find((region) => region.name === customerData.region)?.communes || []).map((commune) => (
+                        <option key={commune} value={commune}>
+                          {commune}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                 </div>
               </div>
 
-              {isAuthenticated && projectedAvailableRewards > 0 && (
-                <div className="rounded-xl border border-amber-300 bg-card p-5">
+              {isEligible && projectedAvailableRewards > 0 && (
+                <div ref={giftSelectorRef} className="scroll-mt-24 rounded-xl border border-amber-300 bg-card p-5">
                   <h2 className="flex items-center gap-2 text-xl font-bold">
                     <Gift className="h-5 w-5 text-amber-600" />
                     Elige tu regalo

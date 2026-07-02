@@ -98,8 +98,8 @@ export const CartProvider = ({ children }) => {
     message += `${buildAdvisorContext(advisor)}\n\n`;
     message += `*Datos del cliente*\n`;
     message += `Nombre: ${customerData.name}\n`;
-    if (customerData.address) {
-      message += `Dirección: ${customerData.address}\n`;
+    if (customerData.region) {
+      message += `Región: ${customerData.region}\n`;
     }
     if (customerData.commune) {
       message += `Comuna: ${customerData.commune}\n`;

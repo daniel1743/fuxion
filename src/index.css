@@ -235,3 +235,64 @@ body.light {
     animation: none;
   }
 }
+
+@keyframes gift-border-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes gift-card-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(245, 158, 11, 0);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(245, 158, 11, 0.34);
+  }
+}
+
+.gift-reward-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  animation: gift-card-glow 2.2s ease-in-out infinite;
+}
+
+.gift-reward-card::before {
+  position: absolute;
+  z-index: -2;
+  inset: -55%;
+  content: "";
+  background: conic-gradient(
+    from 0deg,
+    #f59e0b,
+    #fde68a,
+    #ffffff,
+    #fbbf24,
+    #d97706,
+    #f59e0b
+  );
+  animation: gift-border-spin 3s linear infinite;
+}
+
+.gift-reward-card::after {
+  position: absolute;
+  z-index: -1;
+  inset: 2px;
+  border-radius: calc(0.75rem - 2px);
+  content: "";
+  background: rgb(255 251 235 / 0.97);
+}
+
+.dark .gift-reward-card::after {
+  background: rgb(69 26 3 / 0.94);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gift-reward-card,
+  .gift-reward-card::before {
+    animation: none;
+  }
+}

@@ -84,6 +84,8 @@ const AdminPanel = ({ isOpen, onClose }) => {
     is_published: true
   });
   const [editingId, setEditingId] = useState(null);
+  const currentAdminEmail = (user?.email || adminData?.email || '').toLowerCase();
+  const isMainAdmin = currentAdminEmail === 'falcondaniel37@gmail.com';
 
   const activeCount = useMemo(() => advisors.filter(item => item.is_active).length, [advisors]);
   const totalEvents = useMemo(() => metrics.reduce((sum, item) => sum + item.total, 0), [metrics]);
@@ -101,7 +103,11 @@ const AdminPanel = ({ isOpen, onClose }) => {
       setAdvisors(advisorData);
       setMetrics(metricData);
       setAdminUsers(adminData);
-      setEvidencePosts(evidenceData);
+      setEvidencePosts(
+        isMainAdmin
+          ? evidenceData
+          : evidenceData.filter((post) => user?.id && post.owner_user_id === user.id)
+      );
     } catch (error) {
       toast({
         title: 'No se pudo cargar el panel',

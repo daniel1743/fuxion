@@ -88,7 +88,7 @@ const UserMenu = () => {
             <span>Panel de administración</span>
           </DropdownMenuItem>
         )}
-        {isAuthenticated && (
+        {(isAuthenticated || isAdmin) && (
           <DropdownMenuItem onSelect={() => window.setTimeout(() => navigate('/cuenta'), 0)}>
             <Gift className="mr-2 h-4 w-4" />
             <span>Mi cuenta y regalos</span>

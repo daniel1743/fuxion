@@ -27,7 +27,11 @@ export const AdminProvider = ({ children }) => {
 
   // Verificar si ya está autenticado al cargar
   useEffect(() => {
-    checkAdminSession();
+    // Las sesiones administrativas locales antiguas no contienen un JWT de
+    // Supabase y no sirven para operaciones protegidas por RLS.
+    localStorage.removeItem('adminToken');
+    localStorage.removeItem('adminExpiry');
+    localStorage.removeItem('adminUsername');
 
     const loadAuthAdmin = async () => {
       await refreshAdminAccess();
@@ -47,7 +51,11 @@ export const AdminProvider = ({ children }) => {
   const refreshAdminAccess = async (emailFromSession) => {
     try {
       const email = emailFromSession || (await supabase.auth.getUser()).data.user?.email;
-      if (!email) return false;
+      if (!email) {
+        setIsAdmin(false);
+        setAdminData(null);
+        return false;
+      }
 
       const allowed = await isAppAdmin(email);
       if (allowed) {
@@ -57,6 +65,9 @@ export const AdminProvider = ({ children }) => {
           email,
           nombre_completo: email.split('@')[0],
         });
+      } else {
+        setIsAdmin(false);
+        setAdminData(null);
       }
 
       return allowed;
@@ -66,24 +77,39 @@ export const AdminProvider = ({ children }) => {
     }
   };
 
-  const checkAdminSession = async () => {
-    const adminToken = localStorage.getItem('adminToken');
-    const adminExpiry = localStorage.getItem('adminExpiry');
-
-    if (adminToken && adminExpiry) {
-      const expiryDate = new Date(adminExpiry);
-      if (expiryDate > new Date()) {
-        setIsAdmin(true);
-      } else {
-        // Token expirado
-        localStorage.removeItem('adminToken');
-        localStorage.removeItem('adminExpiry');
-      }
-    }
-  };
-
   const login = async (username, password) => {
     const cleanUsername = username.trim();
+    const cleanEmail = cleanUsername.toLowerCase() === ADMIN_CREDENTIALS.username
+      ? ADMIN_CREDENTIALS.email
+      : cleanUsername.toLowerCase();
+
+    if (cleanEmail.includes('@')) {
+      const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
+        email: cleanEmail,
+        password,
+      });
+
+      if (!authError && authData.user) {
+        const allowed = await refreshAdminAccess(authData.user.email);
+        if (!allowed) {
+          await supabase.auth.signOut();
+          return { success: false, error: 'Esta cuenta no tiene permisos de administración.' };
+        }
+
+        setIsLoginModalOpen(false);
+        return { success: true };
+      }
+
+      if (authError) {
+        console.warn('No se pudo crear sesión Supabase Auth:', authError.message);
+        return {
+          success: false,
+          error: authError.message?.toLowerCase().includes('invalid login')
+            ? 'Email o contraseña incorrectos en Supabase Auth. Ejecuta nuevamente SQL_CAMBIAR_PASSWORD_ADMIN.sql.'
+            : authError.message || 'No se pudo iniciar una sesión segura.',
+        };
+      }
+    }
 
     // Si Supabase está habilitado, intentar autenticación con Supabase
     if (useSupabase) {
@@ -154,7 +180,13 @@ export const AdminProvider = ({ children }) => {
 
       localStorage.setItem('adminToken', token);
       localStorage.setItem('adminExpiry', expiry.toISOString());
+      localStorage.setItem('adminUsername', ADMIN_CREDENTIALS.email);
       setIsAdmin(true);
+      setAdminData({
+        username: ADMIN_CREDENTIALS.email,
+        email: ADMIN_CREDENTIALS.email,
+        nombre_completo: 'Daniel Falcon',
+      });
       setIsLoginModalOpen(false);
 
       console.log('✅ Autenticación local exitosa');
@@ -167,7 +199,9 @@ export const AdminProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem('adminToken');
     localStorage.removeItem('adminExpiry');
+    localStorage.removeItem('adminUsername');
     setIsAdmin(false);
+    setAdminData(null);
   };
 
   const openLoginModal = () => {

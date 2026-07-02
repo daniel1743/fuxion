@@ -1,4 +1,4 @@
-const CACHE_NAME = 'fuxion-shop-v4';
+const CACHE_NAME = 'fuxion-shop-v5';
 const APP_SHELL = [
   '/',
   '/manifest.webmanifest',
@@ -6,6 +6,8 @@ const APP_SHELL = [
   '/icons/icon-512.png',
   '/icons/icon-maskable-512.png',
   '/icons/favicon-32.png',
+  '/icons/favicon-48.png',
+  '/icons/favicon-64.png',
   '/icons/apple-touch-icon.png'
 ];
 

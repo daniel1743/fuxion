@@ -147,23 +147,33 @@ export const fetchEvidencePosts = async (publishedOnly = false) => {
 };
 
 export const saveEvidencePost = async (post, author) => {
-  const payload = {
+  const { data: authData } = await supabase.auth.getUser();
+  const authUser = authData.user;
+
+  if (!authUser?.id) {
+    throw new Error('Debes iniciar sesión con tu cuenta para publicar o editar evidencias.');
+  }
+
+  const contentPayload = {
     title: post.title?.trim(),
     description: post.description?.trim(),
     image_url: post.image_url?.trim() || null,
     audio_url: post.audio_url?.trim() || null,
-    author_email: author?.email || null,
-    author_name: author?.name || null,
     is_published: Boolean(post.is_published),
   };
 
-  if (!payload.title || !payload.description) {
+  if (!contentPayload.title || !contentPayload.description) {
     throw new Error('Título y descripción son obligatorios.');
   }
 
   const query = post.id
-    ? supabase.from('evidence_posts').update(payload).eq('id', post.id)
-    : supabase.from('evidence_posts').insert([payload]);
+    ? supabase.from('evidence_posts').update(contentPayload).eq('id', post.id)
+    : supabase.from('evidence_posts').insert([{
+        ...contentPayload,
+        owner_user_id: authUser.id,
+        author_email: authUser.email || author?.email || null,
+        author_name: author?.name || authUser.user_metadata?.name || authUser.email?.split('@')[0] || null,
+      }]);
 
   const { data, error } = await query.select().single();
   if (error) throw error;

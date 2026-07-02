@@ -34,6 +34,7 @@ const Footer = () => {
                         <div className="flex flex-col mt-4 space-y-2">
                             <Link to="/explorar" className="text-muted-foreground hover:text-primary transition-colors">Productos Fuxion</Link>
                             <Link to="/categorias" className="text-muted-foreground hover:text-primary transition-colors">Categorías</Link>
+                            <Link to="/opiniones" className="text-muted-foreground hover:text-primary transition-colors">Bienestar</Link>
                             <Link to="/blog" className="text-muted-foreground hover:text-primary transition-colors">Evidencias</Link>
                             <Link to="/terminos" className="text-muted-foreground hover:text-primary transition-colors">Términos y Condiciones</Link>
                         </div>

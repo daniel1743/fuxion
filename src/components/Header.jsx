@@ -11,8 +11,8 @@ import UserMenu from '@/components/UserMenu';
 
 const navLinks = [
   { name: 'Inicio', path: '/' },
-  { name: 'Catálogo', path: '/explorar' },
-  { name: 'Opiniones', path: '/opiniones' },
+  { name: 'Productos', path: '/explorar' },
+  { name: 'Bienestar', path: '/opiniones' },
   { name: 'Evidencias', path: '/blog' },
 ];
 

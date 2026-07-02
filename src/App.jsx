@@ -25,6 +25,8 @@ const BlogPostPage = lazy(() => import('@/pages/BlogPostPage'));
 const ProductPage = lazy(() => import('@/pages/ProductPage'));
 const PlaceholderPage = lazy(() => import('@/pages/PlaceholderPage'));
 const AccountPage = lazy(() => import('@/pages/AccountPage'));
+const WellnessPage = lazy(() => import('@/pages/WellnessPage'));
+const WellnessArticlePage = lazy(() => import('@/pages/WellnessArticlePage'));
 
 function App() {
   const location = useLocation();
@@ -33,12 +35,12 @@ function App() {
     <>
       <PwaSplashScreen />
       <AuthProvider>
-        <LoyaltyProvider>
-          <CartProvider>
-            <ForumProvider>
-              <BlogProvider>
-                <SiteSettingsProvider>
-                  <AdminProvider>
+        <AdminProvider>
+          <LoyaltyProvider>
+            <CartProvider>
+              <ForumProvider>
+                <BlogProvider>
+                  <SiteSettingsProvider>
                   <Layout>
               <AnimatePresence mode="wait">
                 <Suspense fallback={
@@ -55,7 +57,8 @@ function App() {
                     <Route path="/carrito" element={<CartPage />} />
                     <Route path="/checkout" element={<PlaceholderPage pageName="Checkout" />} />
                     <Route path="/cuenta" element={<AccountPage />} />
-                    <Route path="/opiniones" element={<SupportPage />} />
+                    <Route path="/opiniones" element={<WellnessPage />} />
+                    <Route path="/bienestar/:slug" element={<WellnessArticlePage />} />
                     <Route path="/blog" element={<EvidencePage />} />
                     <Route path="/blog/:slug" element={<BlogPostPage />} />
                     <Route path="/terminos" element={<PlaceholderPage pageName="Términos y Condiciones" />} />
@@ -68,12 +71,12 @@ function App() {
               </AnimatePresence>
                   </Layout>
                   <AdminLoginModal />
-                  </AdminProvider>
-                </SiteSettingsProvider>
-              </BlogProvider>
-            </ForumProvider>
-          </CartProvider>
-        </LoyaltyProvider>
+                  </SiteSettingsProvider>
+                </BlogProvider>
+              </ForumProvider>
+            </CartProvider>
+          </LoyaltyProvider>
+        </AdminProvider>
       </AuthProvider>
     </>
   );

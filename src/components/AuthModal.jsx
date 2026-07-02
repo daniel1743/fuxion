@@ -12,21 +12,32 @@ import { useSiteSettings } from '@/context/SiteSettingsContext';
 import { useAdmin } from '@/context/AdminContext';
 
 const AuthModal = () => {
-  const { isAuthModalOpen, closeAuthModal, login, register } = useAuth();
-  const { login: loginAdmin } = useAdmin();
+  const {
+    isAuthModalOpen,
+    closeAuthModal,
+    login,
+    register,
+    requestPasswordReset,
+    updatePassword,
+    isPasswordRecovery,
+  } = useAuth();
+  const { refreshAdminAccess } = useAdmin();
   const { settings } = useSiteSettings();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showLoginPassword, setShowLoginPassword] = useState(false);
   const [showRegisterPassword, setShowRegisterPassword] = useState(false);
   const [registerData, setRegisterData] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formError, setFormError] = useState('');
   const [formMessage, setFormMessage] = useState('');
+  const [showResetRequest, setShowResetRequest] = useState(false);
+  const [newPassword, setNewPassword] = useState('');
 
   const resetFeedback = () => {
     setFormError('');
@@ -39,13 +50,12 @@ const AuthModal = () => {
     setIsSubmitting(true);
 
     const cleanEmail = email.trim().toLowerCase();
-    const result = cleanEmail === 'falcondaniel37@gmail.com'
-      ? await loginAdmin(cleanEmail, password)
-      : await login(cleanEmail, password);
+    const result = await login(cleanEmail, password);
 
     if (!result.success) {
       setFormError(result.error || 'No se pudo iniciar sesión.');
-    } else if (cleanEmail === 'falcondaniel37@gmail.com') {
+    } else {
+      await refreshAdminAccess(cleanEmail);
       closeAuthModal();
       setEmail('');
       setPassword('');
@@ -69,6 +79,36 @@ const AuthModal = () => {
     setIsSubmitting(false);
   };
 
+  const handleResetRequest = async () => {
+    resetFeedback();
+    setIsSubmitting(true);
+    const result = await requestPasswordReset(email);
+    setIsSubmitting(false);
+
+    if (!result.success) {
+      setFormError(result.error || 'No se pudo enviar el enlace.');
+      return;
+    }
+
+    setFormMessage('Revisa tu correo. Abre el enlace recibido para crear una contraseña nueva.');
+  };
+
+  const handlePasswordUpdate = async (event) => {
+    event.preventDefault();
+    resetFeedback();
+    setIsSubmitting(true);
+    const result = await updatePassword(newPassword);
+    setIsSubmitting(false);
+
+    if (!result.success) {
+      setFormError(result.error || 'No se pudo cambiar la contraseña.');
+      return;
+    }
+
+    await refreshAdminAccess();
+    setNewPassword('');
+  };
+
   return (
     <Dialog open={isAuthModalOpen} onOpenChange={closeAuthModal}>
       <DialogContent className="bg-card border-border p-0 max-w-md">
@@ -86,6 +126,27 @@ const AuthModal = () => {
           </DialogDescription>
         </DialogHeader>
         <div className="p-6">
+          {isPasswordRecovery ? (
+            <form onSubmit={handlePasswordUpdate} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="new-password">Nueva contraseña</Label>
+                <Input
+                  id="new-password"
+                  type="password"
+                  value={newPassword}
+                  onChange={(event) => setNewPassword(event.target.value)}
+                  placeholder="Mínimo 6 caracteres"
+                  minLength={6}
+                  required
+                />
+              </div>
+              {formError && <div className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">{formError}</div>}
+              <Button type="submit" disabled={isSubmitting} className="w-full">
+                {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                Guardar contraseña
+              </Button>
+            </form>
+          ) : (
           <Tabs defaultValue="login" className="w-full">
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="login" onClick={resetFeedback}>Iniciar Sesión</TabsTrigger>
@@ -133,19 +194,48 @@ const AuthModal = () => {
                   {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                   {isSubmitting ? 'Verificando...' : 'Iniciar Sesión'}
                 </Button>
+                <button
+                  type="button"
+                  onClick={() => setShowResetRequest((current) => !current)}
+                  className="w-full text-sm text-primary hover:underline"
+                >
+                  ¿Olvidaste o no funciona tu contraseña?
+                </button>
+                {showResetRequest && (
+                  <div className="rounded-lg border border-border bg-secondary/30 p-3">
+                    <p className="mb-3 text-sm text-muted-foreground">
+                      Enviaremos un enlace de recuperación al email escrito arriba.
+                    </p>
+                    <Button type="button" variant="outline" className="w-full" disabled={isSubmitting || !email.trim()} onClick={handleResetRequest}>
+                      Enviar enlace de recuperación
+                    </Button>
+                  </div>
+                )}
               </form>
             </TabsContent>
             <TabsContent value="register">
               <form onSubmit={handleRegister} className="space-y-4 mt-4">
-                <div className="space-y-2">
-                  <Label htmlFor="register-name">Nombre</Label>
-                  <Input
-                    id="register-name"
-                    placeholder="Tu nombre"
-                    value={registerData.name}
-                    onChange={(e) => setRegisterData({ ...registerData, name: e.target.value })}
-                    required
-                  />
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div className="space-y-2">
+                    <Label htmlFor="register-first-name">Nombre *</Label>
+                    <Input
+                      id="register-first-name"
+                      placeholder="Juan"
+                      value={registerData.firstName}
+                      onChange={(e) => setRegisterData({ ...registerData, firstName: e.target.value })}
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="register-last-name">Apellido *</Label>
+                    <Input
+                      id="register-last-name"
+                      placeholder="Pérez"
+                      value={registerData.lastName}
+                      onChange={(e) => setRegisterData({ ...registerData, lastName: e.target.value })}
+                      required
+                    />
+                  </div>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="register-email">Email</Label>
@@ -188,6 +278,7 @@ const AuthModal = () => {
               </form>
             </TabsContent>
           </Tabs>
+          )}
         </div>
       </DialogContent>
     </Dialog>
