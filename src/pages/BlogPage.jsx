@@ -46,7 +46,6 @@ const BlogPage = () => {
       <Helmet>
         <title>Blog de Salud y Bienestar | Consejos para Perder Peso | Tienda Fuxion</title>
         <meta name="description" content="Artículos sobre pérdida de peso, bienestar, nutrición y vida saludable. Consejos prácticos para vivir mejor sin dietas extremas." />
-        <meta name="keywords" content="blog salud, consejos perder peso, bienestar, sobrepeso, nutrición, vida saludable, recetas saludables" />
         <link rel="canonical" href="https://tiendafuxion.space/blog" />
       </Helmet>
 

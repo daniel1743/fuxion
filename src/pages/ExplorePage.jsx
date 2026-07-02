@@ -222,7 +222,6 @@ const ExplorePage = () => {
       <Helmet>
         <title>{categoriaParam ? `${getCategoryName(categoriaParam)} Fuxion | ` : ''}Productos Fuxion Chile | Nutricion y Bienestar Natural</title>
         <meta name="description" content="Catalogo de productos Fuxion en Chile para nutricion, bienestar natural, energia, digestion, control de peso, defensas, deporte y belleza." />
-        <meta name="keywords" content="productos Fuxion, Fuxion Chile, comprar Fuxion, nutricion natural, bienestar natural, productos nutraceuticos, control de peso, energia natural, digestion" />
         <meta name="robots" content="index, follow, max-image-preview:large" />
         <link rel="canonical" href={`${SITE_URL}/explorar${categoriaParam ? `?categoria=${categoriaParam}` : ''}`} />
         <script type="application/ld+json">

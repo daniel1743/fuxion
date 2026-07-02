@@ -6,9 +6,11 @@ import { ArrowLeft, CheckCircle2, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/CartContext';
 import {
-  buildProductKeywords,
+  buildProductFaqSchema,
   buildProductMetaDescription,
   buildProductSchema,
+  buildProductTitle,
+  getProductSeoContent,
   getSeoProductBySlug,
   SITE_URL,
   STORE_NAME
@@ -32,7 +34,7 @@ const ProductPage = () => {
         <div className="max-w-xl">
           <h1 className="text-3xl font-bold text-foreground">Producto no encontrado</h1>
           <p className="mt-4 text-muted-foreground">
-            Este producto no esta disponible en el catalogo actual.
+            Este producto no esta disponible en la lista actual de productos.
           </p>
           <Button asChild className="mt-6">
             <Link to="/explorar">Ver productos Fuxion</Link>
@@ -43,6 +45,17 @@ const ProductPage = () => {
   }
 
   const metaDescription = buildProductMetaDescription(product);
+  const seoContent = getProductSeoContent(product);
+  const faqSchema = buildProductFaqSchema(product);
+  const relatedProducts = (seoContent?.relatedSlugs || [])
+    .map((relatedSlug) => getSeoProductBySlug(relatedSlug))
+    .filter(Boolean);
+  const internalLinkProducts = (seoContent?.internalLinks || [])
+    .map((item) => {
+      const linkedProduct = getSeoProductBySlug(item.slug);
+      return linkedProduct ? { ...linkedProduct, reason: item.reason } : null;
+    })
+    .filter(Boolean);
   const productForCart = {
     id: product.id,
     name: product.name,
@@ -93,33 +106,37 @@ const ProductPage = () => {
       className="container mx-auto px-6 py-28"
     >
       <Helmet>
-        <title>{`${product.name} Fuxion | Precio, Beneficios y Modo de Uso | ${STORE_NAME}`}</title>
+        <title>{buildProductTitle(product)}</title>
         <meta name="description" content={metaDescription} />
-        <meta name="keywords" content={buildProductKeywords(product)} />
         <meta name="robots" content="index, follow, max-image-preview:large" />
         <link rel="canonical" href={product.url} />
 
         <meta property="og:type" content="product" />
         <meta property="og:url" content={product.url} />
-        <meta property="og:title" content={`${product.name} Fuxion | ${STORE_NAME}`} />
+        <meta property="og:title" content={buildProductTitle(product)} />
         <meta property="og:description" content={metaDescription} />
         <meta property="og:image" content={product.imageUrl} />
         <meta property="product:price:amount" content={String(product.price)} />
         <meta property="product:price:currency" content="CLP" />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${product.name} Fuxion | ${STORE_NAME}`} />
+        <meta name="twitter:title" content={buildProductTitle(product)} />
         <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content={product.imageUrl} />
 
         <script type="application/ld+json">
           {JSON.stringify(buildProductSchema(product))}
         </script>
+        {faqSchema && (
+          <script type="application/ld+json">
+            {JSON.stringify(faqSchema)}
+          </script>
+        )}
       </Helmet>
 
       <Link to="/explorar" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary mb-8">
         <ArrowLeft className="h-4 w-4" />
-        Volver al catalogo
+        Volver a productos
       </Link>
 
       <section className="grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-10 items-start">
@@ -142,7 +159,7 @@ const ProductPage = () => {
             {product.name} Fuxion
           </h1>
           <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
-            {metaDescription}
+            {seoContent?.intro || metaDescription}
           </p>
 
           <div className="mt-6 flex flex-wrap items-center gap-4">
@@ -224,7 +241,7 @@ const ProductPage = () => {
             Ingredientes y enfoque natural
           </h2>
           <p className="mt-4 text-muted-foreground leading-relaxed">
-            {product.name} forma parte del catalogo Fuxion de nutricion y bienestar. Su informacion se presenta con enfoque educativo y de asesoria comercial.
+            {product.name} forma parte del listado Fuxion de nutricion y bienestar. Su informacion se presenta con enfoque educativo y de asesoria comercial.
           </p>
           {product.ingredients.length > 0 && (
             <div className="mt-5 flex flex-wrap gap-2">
@@ -240,8 +257,151 @@ const ProductPage = () => {
           </p>
         </div>
       </section>
+      {seoContent && (
+        <section className="mt-14 rounded-3xl border border-primary/15 bg-primary/5 p-6 md:p-8">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-wide text-primary">
+              Guía de compra y uso
+            </p>
+            <h2 className="mt-2 text-3xl font-extrabold text-foreground">
+              {seoContent.seoHeading}
+            </h2>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              Esta guía resume lo más importante antes de comprar {product.name} en Chile: para qué se usa, cómo integrarlo a una rutina real y cuándo pedir asesoría.
+            </p>
+          </div>
+
+          <div className="mt-7 grid gap-4 md:grid-cols-3">
+            {seoContent.searchIntent.map((item) => (
+              <article key={item.title} className="rounded-2xl border border-border bg-background p-5 shadow-sm">
+                <h3 className="text-lg font-bold text-foreground">{item.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
+
+      {seoContent?.deepSections?.length > 0 && (
+        <section className="mt-14">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-wide text-primary">
+              Guía ampliada
+            </p>
+            <h2 className="mt-2 text-3xl font-extrabold text-foreground">
+              Cómo evaluar {product.name} antes de comprar
+            </h2>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              Estos puntos ayudan a comparar ingredientes, uso real, combinaciones y precauciones sin convertir el producto en una promesa médica.
+            </p>
+          </div>
+
+          <div className="mt-7 grid gap-4 md:grid-cols-2">
+            {seoContent.deepSections.map((section) => (
+              <article key={section.title} className="rounded-2xl border border-border bg-card p-5">
+                <h3 className="text-lg font-bold text-foreground">{section.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{section.body}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {seoContent?.semanticTerms?.length > 0 && (
+        <section className="mt-14 rounded-2xl border border-border bg-card p-6">
+          <h2 className="text-2xl font-bold text-foreground">
+            Temas relacionados con {product.name}
+          </h2>
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+            Estos conceptos ayudan a entender mejor el contexto del producto y a compararlo con otras opciones del catálogo Fuxion.
+          </p>
+          <div className="mt-5 flex flex-wrap gap-2">
+            {seoContent.semanticTerms.map((term) => (
+              <span key={term} className="rounded-full bg-secondary px-3 py-1 text-sm text-muted-foreground">
+                {term}
+              </span>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {internalLinkProducts.length > 0 && (
+        <section className="mt-14">
+          <h2 className="text-3xl font-extrabold text-foreground">
+            Cómo combinar o comparar {product.name}
+          </h2>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            {internalLinkProducts.map((linkedProduct) => (
+              <Link
+                key={linkedProduct.slug}
+                to={`/producto/${linkedProduct.slug}`}
+                className="group rounded-2xl border border-border bg-card p-5 transition hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg"
+              >
+                <h3 className="font-bold text-foreground group-hover:text-primary">
+                  {linkedProduct.name}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{linkedProduct.reason}</p>
+                <p className="mt-4 text-sm font-semibold text-primary">Ver ficha de producto</p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {seoContent?.faqs?.length > 0 && (
+        <section className="mt-14">
+          <h2 className="text-3xl font-extrabold text-foreground">
+            Preguntas frecuentes sobre {product.name}
+          </h2>
+          <div className="mt-6 grid gap-4">
+            {seoContent.faqs.map((faq) => (
+              <article key={faq.question} className="rounded-2xl border border-border bg-card p-5">
+                <h3 className="text-lg font-bold text-foreground">{faq.question}</h3>
+                <p className="mt-2 leading-relaxed text-muted-foreground">{faq.answer}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {relatedProducts.length > 0 && (
+        <section className="mt-14">
+          <h2 className="text-3xl font-extrabold text-foreground">
+            Productos relacionados que también puedes revisar
+          </h2>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            {relatedProducts.map((relatedProduct) => (
+              <Link
+                key={relatedProduct.slug}
+                to={`/producto/${relatedProduct.slug}`}
+                className="group rounded-2xl border border-border bg-card p-4 transition hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg"
+              >
+                <img
+                  src={relatedProduct.image || getPlaceholderImage('product')}
+                  alt={`${relatedProduct.name} Fuxion`}
+                  className="h-32 w-full rounded-xl object-cover"
+                  onError={(event) => {
+                    event.currentTarget.src = getPlaceholderImage('product');
+                  }}
+                />
+                <h3 className="mt-4 font-bold text-foreground group-hover:text-primary">
+                  {relatedProduct.name}
+                </h3>
+                <p className="mt-1 text-sm text-muted-foreground">{relatedProduct.category}</p>
+                <p className="mt-2 font-bold text-primary">
+                  ${relatedProduct.price.toLocaleString('es-CL')}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
     </motion.main>
   );
 };
 
 export default ProductPage;
+
+
+

@@ -43,13 +43,13 @@ const solutions = [
   {
     id: 1,
     title: 'Desintoxicación suave y digestión',
-    subtitle: 'Ideales para mujeres con hinchazón, estreñimiento o digestión lenta.',
+    subtitle: 'Ideales para quienes buscan apoyar tránsito intestinal, liviandad abdominal y digestión diaria.',
     products: ['Prunex1', 'Flora Liv', 'Liquid Fiber', 'Balance'],
     benefits: [
       'Abdomen más liviano',
       'Mejor digestión',
       'Menos inflamación',
-      'Eliminación de toxinas'
+      'Apoyo a rutinas de limpieza digestiva'
     ],
     buttonText: 'Quiero mejorar mi digestión',
     icon: <Sparkles className="w-8 h-8" />
@@ -57,21 +57,21 @@ const solutions = [
   {
     id: 2,
     title: 'Control de peso y medidas',
-    subtitle: 'Perfectos para acelerar el metabolismo y controlar ansiedad.',
+    subtitle: 'Pensados para acompañar hábitos de control de peso, comidas y actividad física.',
     products: ['Thermo T3', 'NoCarb-T', 'Protein Active Fit', 'Pack 5/14'],
     benefits: [
       'Apoyo para hábitos de control de peso',
-      'Controla antojos',
-      'Mejora energía',
+      'Apoyo para ordenar antojos',
+      'Acompaña energía diaria',
       'Rutina simple de acompañamiento'
     ],
-    buttonText: 'Quiero bajar de peso',
+    buttonText: 'Quiero apoyo para mi objetivo',
     icon: <Zap className="w-8 h-8" />
   },
   {
     id: 3,
     title: 'Energía limpia y vitalidad diaria',
-    subtitle: 'Para mujeres que se sienten agotadas o sin motivación.',
+    subtitle: 'Para personas que sienten cansancio, baja energía o quieren mejorar su rutina diaria.',
     products: ['Vita Xtra T+', 'VitaEnergía', 'Nutraday'],
     benefits: [
       'Energía estable',
@@ -170,7 +170,6 @@ const HomePage = () => {
       <Helmet>
         <title>Tienda Fuxion Chile | Productos Fuxion para Nutricion y Bienestar Natural</title>
         <meta name="description" content="Tienda Fuxion en Chile con productos nutraceuticos para nutricion, bienestar natural, digestion, energia, control de peso, defensas, deporte y belleza. Asesoria personalizada." />
-        <meta name="keywords" content="Fuxion Chile, tienda Fuxion, productos Fuxion, comprar Fuxion, nutricion natural, bienestar natural, nutraceuticos, control de peso, energia natural, digestion, defensas, belleza natural" />
         <meta name="robots" content="index, follow, max-image-preview:large" />
         <link rel="canonical" href={`${SITE_URL}/`} />
         
@@ -314,7 +313,7 @@ const HomePage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            ¿Te sientes hinchada, cansada o te cuesta bajar de peso aunque lo intentes?
+            ¿Sientes hinchazón, cansancio o te cuesta avanzar con tus objetivos de bienestar?
           </motion.h2>
           <motion.p
             className="text-lg md:text-xl text-center text-muted-foreground mb-8"
@@ -323,7 +322,7 @@ const HomePage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Muchas mujeres comparten lo mismo:
+            Muchas personas comparten lo mismo:
           </motion.p>
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8"
@@ -372,7 +371,7 @@ const HomePage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Fuxion trabaja desde adentro con una combinación de ingredientes naturales, fibras, probióticos, extractos vegetales y súper alimentos que ayudan a tu organismo a funcionar mejor, eliminar lo que sobra y aprovechar mejor lo que comes.
+            Fuxion trabaja desde adentro con una combinación de ingredientes naturales, fibras, probióticos, extractos vegetales y súper alimentos que acompañan digestión, energía, nutrición diaria y hábitos saludables.
           </motion.p>
         </div>
       </section>

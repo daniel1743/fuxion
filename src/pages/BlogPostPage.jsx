@@ -114,7 +114,6 @@ const BlogPostPage = () => {
       <Helmet>
         <title>{post.title} | Blog Tienda Fuxion</title>
         <meta name="description" content={post.excerpt} />
-        <meta name="keywords" content={`${post.category}, salud, bienestar, pérdida de peso`} />
         <link rel="canonical" href={`https://tiendafuxion.space/blog/${post.slug}`} />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.excerpt} />
