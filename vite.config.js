@@ -247,9 +247,17 @@ const vercelApiDevPlugin = () => ({
 							res.statusCode = code;
 							return this;
 						},
+						setHeader(name, value) {
+							res.setHeader(name, value);
+							return this;
+						},
 						json(payload) {
 							res.setHeader('Content-Type', 'application/json');
 							res.end(JSON.stringify(payload));
+							return this;
+						},
+						end(data) {
+							res.end(data);
 							return this;
 						}
 					};

@@ -278,6 +278,33 @@ Puedes preguntarme si es adecuado para tu objetivo, con qué combinarlo o cómo 
         setIsOpen(false);
     };
 
+    const declineAdvisor = (messageIndex) => {
+        const advisor = getActiveAdvisor();
+        if (advisor?.id) {
+            recordAdvisorEvent(advisor.id, 'advisor_decline', {
+                source: 'chat',
+                messageIndex
+            });
+        }
+
+        setMessages(prev => {
+            const updated = prev.map((msg, index) => (
+                index === messageIndex
+                    ? { ...msg, advisorUrl: null }
+                    : msg
+            ));
+
+            return [
+                ...updated,
+                {
+                    sender: 'bot',
+                    text: 'Perfecto, seguimos aquí. Continuaré respondiendo tu consulta dentro del chat. Si en cualquier momento quieres hablar con un asesor por WhatsApp, solo dime y te lo facilito.',
+                    botType: 'assistant'
+                }
+            ];
+        });
+    };
+
     const handleSend = async (e) => {
         e.preventDefault();
         if (!input.trim() || isLoading) return;
@@ -523,15 +550,24 @@ Pregunta del usuario: ${userMessage}`,
                                             <p className="text-sm whitespace-pre-wrap">{message.text}</p>
                                         )}
                                         {message.advisorUrl && (
-                                            <a
-                                                href={message.advisorUrl}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="mt-3 inline-flex items-center gap-2 rounded-full bg-green-600 px-3 py-2 text-xs font-semibold text-white transition hover:bg-green-700"
-                                            >
-                                                <WhatsAppIcon className="h-4 w-4" />
-                                                Hablar con asesor por WhatsApp
-                                            </a>
+                                            <div className="mt-3 flex flex-col gap-2">
+                                                <a
+                                                    href={message.advisorUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="inline-flex items-center gap-2 rounded-full bg-green-600 px-3 py-2 text-xs font-semibold text-white transition hover:bg-green-700"
+                                                >
+                                                    <WhatsAppIcon className="h-4 w-4" />
+                                                    Hablar con asesor por WhatsApp
+                                                </a>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => declineAdvisor(index)}
+                                                    className="inline-flex items-center justify-center rounded-full bg-red-600 px-3 py-2 text-xs font-semibold text-white transition hover:bg-red-700"
+                                                >
+                                                    No, gracias. Prefiero continuar aquí.
+                                                </button>
+                                            </div>
                                         )}
                                     </div>
                                     {message.sender === 'user' && (
