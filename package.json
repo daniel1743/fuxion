@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host :: --port 3000",
-    "build": "vite build",
+    "build": "node scripts/generate-sitemap.js && vite build",
+    "sitemap": "node scripts/generate-sitemap.js",
     "preview": "vite preview --host :: --port 3000",
     "compress-images": "node scripts/compress-product-images.js"
   },

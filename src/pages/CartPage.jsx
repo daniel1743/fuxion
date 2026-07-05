@@ -1,6 +1,5 @@
 
 import React, { useRef, useState } from 'react';
-import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { ShoppingCart, Trash2, Plus, Minus, Send, ShoppingBag, ShieldCheck, Gift, LockKeyhole } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -12,6 +11,7 @@ import { getPlaceholderImage } from '@/lib/imageUtils';
 import { buildWhatsappUrl, confirmAndOpenWhatsapp, getActiveAdvisor } from '@/lib/whatsapp';
 import { recordAdvisorEvent } from '@/services/advisorService';
 import { WhatsAppIcon } from '@/components/icons/BrandIcons';
+import SEO from '@/components/SEO';
 import { useAuth } from '@/context/AuthContext';
 import { useLoyalty } from '@/context/LoyaltyContext';
 import { GIFT_PRODUCTS } from '@/services/loyaltyService';
@@ -154,10 +154,11 @@ const CartPage = () => {
         transition={{ duration: 0.3 }}
         className="min-h-screen flex items-center justify-center bg-background pt-20 pb-12 px-4"
       >
-        <Helmet>
-          <title>Carrito - Fuxion Shop</title>
-          <meta name="description" content="Tu carrito de compras en Fuxion Shop" />
-        </Helmet>
+        <SEO
+          title="Carrito de Compras"
+          description="Tu carrito de compras en Fuxion Shop. Revisa tus productos antes de enviar tu pedido por WhatsApp."
+          noindex
+        />
 
         <div className="text-center max-w-md">
           <div className="mb-6 flex justify-center">
@@ -189,10 +190,11 @@ const CartPage = () => {
       transition={{ duration: 0.3 }}
       className="min-h-screen bg-background pt-24 pb-12 px-4"
     >
-      <Helmet>
-        <title>{`Carrito (${getCartCount()}) - Fuxion Shop`}</title>
-        <meta name="description" content="Revisa tu carrito y envía tu pedido por WhatsApp" />
-      </Helmet>
+      <SEO
+        title={`Carrito de Compras (${getCartCount()})`}
+        description="Revisa tu carrito de productos Fuxion y envía tu pedido por WhatsApp. Envíos a todo Chile."
+        noindex
+      />
 
       <div className="container mx-auto max-w-6xl px-4 sm:px-6">
         <div className="mb-8">

@@ -1,11 +1,22 @@
+# Robots.txt - Tienda Fuxion Chile
+# https://tiendafuxion.space
+
 User-agent: *
 Allow: /
 Allow: /producto/
+Allow: /categoria/
 Allow: /explorar
 Allow: /categorias
 Allow: /blog
+Allow: /blog/
 Allow: /ayuda
 Allow: /opiniones
+Allow: /bienestar/
+Allow: /terminos
+Allow: /contacto
+Allow: /envios
+Allow: /faq
+Allow: /oportunidad-fuxion
 Allow: /img/
 Allow: /assets/
 
@@ -15,5 +26,10 @@ Disallow: /carrito/
 Disallow: /checkout/
 Disallow: /cuenta/
 Disallow: /*?search=
+Disallow: /*?categoria=
 
+# Sitemap
 Sitemap: https://tiendafuxion.space/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 10

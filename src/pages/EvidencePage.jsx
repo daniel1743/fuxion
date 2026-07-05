@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
+import SEO from '@/components/SEO';
 import { motion } from 'framer-motion';
 import { Edit3, FileText, Image, Mic, Plus, RefreshCw, ShieldCheck, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -101,14 +101,11 @@ const EvidencePage = () => {
 
   return (
     <div className="min-h-screen bg-background pt-24">
-      <Helmet>
-        <title>Evidencias Fuxion | Experiencias y Resultados Compartidos</title>
-        <meta
-          name="description"
-          content="Evidencias, experiencias y registros compartidos por la comunidad Fuxion con asesoría personalizada."
-        />
-        <link rel="canonical" href="https://tiendafuxion.space/blog" />
-      </Helmet>
+      <SEO
+        title="Evidencias Fuxion — Experiencias y Resultados"
+        description="Evidencias, experiencias y registros compartidos por la comunidad Fuxion con asesoría personalizada."
+        canonical="/opiniones"
+      />
 
       <section className="container mx-auto px-6 py-12">
         <div className="mx-auto max-w-4xl text-center">

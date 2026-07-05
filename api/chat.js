@@ -15,6 +15,25 @@
 
 import { createClient } from '@supabase/supabase-js';
 import { processChatConversation } from '../lib/chatEvents.js';
+import {
+  processUserMessage,
+  generateProfileContext,
+  getOrCreateProfile,
+  markProductRecommended,
+  markTopicExplained
+} from '../lib/conversation/conversationEngine.js';
+import {
+  generateReasonedContext,
+  generateFullContext
+} from '../lib/conversation/reasoning/reasoningEngine.js';
+import {
+  assessRisk,
+  generateRiskContext,
+  getWarningMessage
+} from '../lib/conversation/reasoning/medicalRiskAssessment.js';
+import {
+  processRecommendation
+} from '../lib/recommendation/recommendationEngine.js';
 
 // ===================================================================
 // MODO DEBUG
@@ -160,7 +179,7 @@ const BENEFIT_TO_PRODUCT_MAP = [
   { pattern: /\b(piel|colageno|colágeno|belleza|anti edad|anti-edad|antiaging|antiaging|arrugas|juvenil|juventud|envejecimiento|pelo|cabello|uñas|cutanea|cutánea)\b/i, products: ['BEAUTY-IN', 'YOUTH ELIXIR'] },
   { pattern: /\b(desintoxicacion|desintoxicación|detox|limpieza|higado|hígado|higado graso|sangre|organos|órganos|depurar|purificar)\b/i, products: ['REXET', 'ALPHA BALANCE', 'PRUNEX 1', 'FLORA LIV'] },
   { pattern: /\b(urinario|urinaria|vias urinarias|vías urinarias|infeccion urinaria|infección urinaria|cistitis|cranberry|berri|berry)\b/i, products: ['BERRY BALANCE'] },
-  { pattern: /\b(sueno|sueño|dormir|insomnio|descansar|relajacion|relajación|relajar|estres|estrés|ansiedad|nervios|calma|tranquilidad)\b/i, products: ['NO STRESS', 'PASSION'] },
+  { pattern: /\b(sueno|sueño|dormir|insomnio|descansar|relajacion|relajación|relajar|estres|estrés|ansiedad|nervios|calma|tranquilidad)\b/i, products: ['NO STRESS'] },
   { pattern: /\b(proteina|proteína|protein|musculo|músculo|muscular|masa muscular|recuperacion|recuperación|post entrenamiento|post workout|pre entrenamiento|pre workout)\b/i, products: ['PROTEIN ACTIVE FIT', 'BIOPROTEIN ACTIVE', 'PRE SPORT PRO EDITION', 'POST SPORT PRO EDITION'] },
   { pattern: /\b(vitamina|vitaminas|multivitaminico|multivitamínico|minerales|nutricion|nutrición|suplemento|suplementos)\b/i, products: ['VITA XTRA T+', 'VITAENERGÍA', 'NUTRADAY'] },
   { pattern: /\b(verdad|verdad+|aloe|aloe vera|sabila|sábila)\b/i, products: ['VERA+'] },
@@ -329,45 +348,285 @@ const getProductDetails = (productName) => {
   };
 };
 
+// ===================================================================
+// CONOCIMIENTO COMERCIAL ENRIQUECIDO POR CATEGORÍA
+// ===================================================================
+const CATEGORY_KNOWLEDGE = {
+  'Limpieza del Colon': {
+    commonQuestions: [
+      '¿Es laxante?',
+      '¿Crea dependencia?',
+      '¿Desde cuándo hace efecto?',
+      '¿Puedo tomarlo todos los días?',
+      '¿Es seguro para uso prolongado?'
+    ],
+    painPoints: [
+      'Estreñimiento crónico o severo',
+      'Hinchazón abdominal',
+      'Sensación de pesadez',
+      'Dificultad para evacuar',
+      'Inflamación después de comer'
+    ],
+    complementaryProducts: ['FLORA LIV', 'LIQUID FIBER'],
+    explanation: 'La salud intestinal es la base del bienestar general. Cuando el colon no funciona bien, afecta la digestión, la absorción de nutrientes y hasta el estado de ánimo.'
+  },
+  'Regeneración Flora Intestinal': {
+    commonQuestions: [
+      '¿Cuánto tiempo debo tomarlo?',
+      '¿Puedo tomarlo con antibióticos?',
+      '¿Ayuda con la gastritis?',
+      '¿Es para toda la familia?'
+    ],
+    painPoints: [
+      'Gastritis frecuente',
+      'Reflujo',
+      'Colitis',
+      'Colon irritable',
+      'Intolerancia a la lactosa',
+      'Malestar después de comer'
+    ],
+    complementaryProducts: ['PRUNEX 1', 'LIQUID FIBER'],
+    explanation: 'La flora intestinal es clave para la digestión y las defensas. Cuando está desequilibrada, aparecen molestias digestivas y baja la inmunidad.'
+  },
+  'Limpieza del Sistema Digestivo': {
+    commonQuestions: [
+      '¿Es lo mismo que un laxante?',
+      '¿Crea dependencia?',
+      '¿Puedo tomarlo a diario?',
+      '¿Sirve para mantener el peso?'
+    ],
+    painPoints: [
+      'Estreñimiento leve o moderado',
+      'Digestión lenta',
+      'Sensación de hinchazón',
+      'Tránsito intestinal irregular'
+    ],
+    complementaryProducts: ['FLORA LIV', 'PRUNEX 1'],
+    explanation: 'Mantener un tránsito intestinal regular es fundamental para sentirse liviano y con energía.'
+  },
+  'Vigor Mental': {
+    commonQuestions: [
+      '¿Da energía como el café?',
+      '¿Se puede tomar todos los días?',
+      '¿Tiene cafeína?',
+      '¿Ayuda a estudiar o trabajar?',
+      '¿Interfiere con el sueño?'
+    ],
+    painPoints: [
+      'Falta de concentración',
+      'Cansancio mental',
+      'Estrés diario',
+      'Dificultad para enfocarse',
+      'Agotamiento por estudio o trabajo'
+    ],
+    complementaryProducts: [],
+    explanation: 'El rendimiento mental depende de la nutrición del cerebro. Con los nutrientes adecuados, la mente funciona con mayor claridad y enfoque.'
+  },
+  'Control de Peso': {
+    commonQuestions: [
+      '¿Baja de peso realmente?',
+      '¿Hay que hacer dieta?',
+      '¿Cuánto se puede bajar?',
+      '¿Es seguro?',
+      '¿Funciona sin ejercicio?'
+    ],
+    painPoints: [
+      'Dificultad para bajar de peso',
+      'Ansiedad por comer',
+      'Metabolismo lento',
+      'Estrés que lleva a comer',
+      'Recuperación de peso perdido'
+    ],
+    complementaryProducts: ['THERMO T3', 'NOCARB-T', 'PROTEIN ACTIVE FIT'],
+    explanation: 'El control de peso es un proceso integral que combina nutrición, actividad física y hábitos saludables.'
+  },
+  'Anti-Edad': {
+    commonQuestions: [
+      '¿Ayuda con la energía?',
+      '¿Es para hombres o mujeres?',
+      '¿Se puede tomar todos los días?',
+      '¿Tiene efectos secundarios?',
+      '¿Ayuda con la circulación?'
+    ],
+    painPoints: [
+      'Falta de energía y vitalidad',
+      'Bajo deseo o apetito sexual',
+      'Problemas de circulación',
+      'Migrañas frecuentes',
+      'Cansancio general'
+    ],
+    complementaryProducts: ['NO STRESS', 'VITA XTRA T+'],
+    explanation: 'La vitalidad y la energía son fundamentales para disfrutar la vida al máximo. PASSION está diseñado para quienes buscan un impulso natural de energía, mejorar su circulación y mantener una vida activa y plena.'
+  },
+  'Sport': {
+    commonQuestions: [
+      '¿Cuándo debo tomarlo?',
+      '¿Antes o después del ejercicio?',
+      '¿Reemplaza una comida?',
+      '¿Es solo para deportistas?'
+    ],
+    painPoints: [
+      'Rendimiento deportivo estancado',
+      'Recuperación lenta después del ejercicio',
+      'Fatiga muscular',
+      'Deshidratación durante el entrenamiento'
+    ],
+    complementaryProducts: [],
+    explanation: 'La nutrición deportiva adecuada marca la diferencia entre un buen rendimiento y resultados excepcionales.'
+  }
+};
+
+// ===================================================================
+// CONSTRUCCIÓN DE CONTEXTO ENRIQUECIDO PARA LA IA
+// ===================================================================
 const buildProductContext = (productNames = []) => {
   if (!productNames || productNames.length === 0) return null;
   const sections = productNames.map((productName) => {
     const { name, product, verified } = getProductDetails(productName);
-    const lines = [`PRODUCTO: ${name}`];
-    if (product?.categoria) lines.push(`Categoría: ${product.categoria}`);
-    if (product?.presentacion || product?.presentation) lines.push(`Presentación: ${product.presentacion || product.presentation}`);
+    const category = product?.categoria || '';
+    const categoryKnowledge = CATEGORY_KNOWLEDGE[category];
+
+    const lines = [`--- INICIO FICHA TECNICA: ${name} ---`];
+    lines.push(`Nombre: ${name}`);
+    if (category) lines.push(`Categoria: ${category}`);
+    if (product?.presentacion) lines.push(`Presentacion: ${product.presentacion}`);
+    if (product?.precio) lines.push(`Precio: $${product.precio.toLocaleString('es-CL')}`);
+    if (product?.sabor) lines.push(`Sabor: ${product.sabor}`);
+    if (product?.ingredientes?.length) lines.push(`Ingredientes: ${product.ingredientes.join(', ')}`);
+    if (product?.beneficios?.length) lines.push(`Beneficios: ${product.beneficios.join(', ')}`);
     if (product?.modo_uso) lines.push(`Modo de uso: ${product.modo_uso}`);
     if (product?.horario) lines.push(`Horario: ${product.horario}`);
-    if (product?.beneficios?.length) lines.push(`Beneficios: ${product.beneficios.join(', ')}`);
-    if (product?.ingredientes?.length) lines.push(`Ingredientes: ${product.ingredientes.join(', ')}`);
+    if (product?.efecto) lines.push(`Efecto: ${product.efecto}`);
+    if (product?.advertencia) lines.push(`Advertencia: ${product.advertencia}`);
+    if (product?.para_toda_familia) lines.push(`Apto para toda la familia: Si`);
     if (verified) {
-      if (verified.respuesta_base) lines.push(`Respuesta base verificada: ${verified.respuesta_base}`);
+      if (verified.respuesta_base) lines.push(`Respuesta base: ${verified.respuesta_base}`);
       if (verified.ingredientes_oficiales?.length) lines.push(`Ingredientes oficiales: ${verified.ingredientes_oficiales.slice(0, 7).join(', ')}`);
     }
-    // Instrucción más flexible: usar datos del catálogo pero permitir conocimiento general
-    lines.push('Usa esta información del catálogo como referencia principal. Si el contexto está incompleto, puedes complementar con tu conocimiento general del producto sin contradecir la información oficial. NUNCA afirmes que un producto no existe solo porque falta contexto.');
+    lines.push(`--- FIN FICHA TECNICA: ${name} ---`);
+
+    // Agregar conocimiento comercial enriquecido
+    if (categoryKnowledge) {
+      lines.push('');
+      lines.push(`--- CONOCIMIENTO COMERCIAL: ${name} ---`);
+      lines.push(`Explicacion de la necesidad: ${categoryKnowledge.explanation}`);
+      if (categoryKnowledge.painPoints.length > 0) {
+        lines.push(`Dolores del cliente que resuelve: ${categoryKnowledge.painPoints.join(', ')}`);
+      }
+      if (categoryKnowledge.commonQuestions.length > 0) {
+        lines.push(`Preguntas frecuentes de clientes: ${categoryKnowledge.commonQuestions.join(', ')}`);
+      }
+      if (categoryKnowledge.complementaryProducts.length > 0) {
+        lines.push(`Productos complementarios sugeridos: ${categoryKnowledge.complementaryProducts.join(', ')}`);
+      }
+      lines.push(`--- FIN CONOCIMIENTO COMERCIAL ---`);
+    }
+
     return lines.join('\n');
   });
-  return [`CONTEXTO DEL PRODUCTO: Información de referencia del catálogo.`, ...sections].join('\n\n');
+  return sections.join('\n\n');
 };
 
 const buildSystemContext = () => {
-  return `Eres el asistente de FUXION Chile. Responde en español, con tono sobrio, claro y cercano. No uses emojis, negritas, títulos, separadores ni símbolos decorativos. Mantén párrafos cortos, sin frases comerciales agresivas.
+  return `Eres el asesor nutricional oficial de FUXION Chile. No eres un catalogo ni Wikipedia. Actuas como un asesor humano con experiencia en nutricion y bienestar.
 
-INSTRUCCIONES IMPORTANTES:
-- Usa la información del catálogo como referencia principal cuando esté disponible.
-- Si el producto fue identificado correctamente pero el contexto está incompleto, puedes usar tu conocimiento general del producto sin contradecir la información oficial.
-- NUNCA afirmes que un producto no existe o que FUXION no tiene algo, a menos que estés completamente seguro después de revisar el catálogo completo.
-- Si hay dudas sobre la existencia de un producto, pide más información al usuario en lugar de negar.
-- Responde exactamente a la intención del usuario. Si hay dudas, pide más información antes de recomendar.
-- Si el usuario menciona síntomas, embarazo, lactancia, medicamentos o enfermedades, no des diagnósticos ni tratamientos; sugiere asesor humano.
+Tu proposito es comprender la necesidad del usuario, educar, explicar, generar confianza, recomendar y cerrar naturalmente.
 
-TODOS los productos Fuxion vienen en SOBRES (sachets) para mezclar con agua. NO son pastillas, cápsulas, jarabes ni líquidos embotellados. Son polvos en sobres individuales que se disuelven en agua.
+PERSONALIDAD:
+- Profesional, calido, humano, cercano y seguro.
+- Hablas como una persona real, no como un bot.
+- Usas lenguaje sencillo, evitas terminos tecnicos innecesarios.
+- No eres robotico ni repetitivo.
+- No usas frases comerciales agresivas ni pareces vendedor presionante.
 
-PRUNEX 1 se disuelve en agua caliente. THERMO T3 se toma 30 minutos antes de hacer ejercicio. BERRY BALANCE es para apoyo del tracto urinario, flora protectora urinaria, cranberry, probióticos y antioxidantes.`;
+REGLAS DE COMUNICACION:
+- Puedes usar emojis con moderacion para dar calidez a la conversacion.
+- Manten parrafos cortos de 2 a 3 lineas maximo.
+- Varia la forma de empezar tus respuestas. Nunca empieces con "Es un producto..." o "Esta formulado..." o "Contiene...".
+- No copies literalmente el catalogo. Usa la informacion tecnica como referencia pero expresala con tus palabras.
+- Responde exactamente a la intencion del usuario. Si pregunta por un sintoma, habla del sintoma. Si pregunta por un producto, habla del producto.
+- Si el usuario menciona sintomas, embarazo, lactancia, medicamentos o condiciones de salud, no des diagnosticos ni tratamientos. No recomiendes suspender ni modificar tratamientos medicos.
+- REGLA ABSOLUTA: NUNCA ofrezcas hablar con un asesor humano ni derivar a WhatsApp. NUNCA. El usuario ya esta hablando contigo. Si necesita un asesor humano, el sistema lo decidira automaticamente.
+- Para condiciones estables como higado graso, colesterol, diabetes controlada, gastritis, etc.: incluye una advertencia de precaucion al inicio y CONTINUA asesorando normalmente. NO cortes la conversacion. NO ofrezcas WhatsApp.
+- Siempre explica que la informacion entregada tiene fines educativos y de bienestar, y no reemplaza la atencion profesional.
+
+ESTRUCTURA OBLIGATORIA PARA RESPUESTAS SOBRE PRODUCTOS:
+
+Paso 1 - Validar la necesidad:
+Reconoce lo que el usuario busca. Ej: "Entiendo, si buscas mejorar tu digestion o sentirte menos pesado..."
+
+Paso 2 - Explicar el problema:
+Explica por que suele ocurrir ese problema de forma sencilla. Ej: "Cuando el colon no funciona bien, los desechos se acumulan y generan hinchazon y molestias."
+
+Paso 3 - Recomendar el producto:
+Explica por que ese producto puede ayudar. No digas solo el nombre, contextualiza.
+
+Paso 4 - Explicar beneficios en lenguaje practico:
+Convierte los beneficios tecnicos en beneficios reales para el dia a dia. No copies la lista del catalogo.
+
+Paso 5 - Explicar ingredientes clave:
+Menciona 1 o 2 ingredientes principales y explica para que sirven en lenguaje sencillo.
+Ej: "El Psyllium es una fibra soluble que ayuda a regular el transito intestinal de forma natural."
+
+Paso 6 - Indicar uso practico:
+Cuando tomarlo, como prepararlo, recomendaciones generales.
+
+Paso 7 - Expectativas realistas:
+Nunca prometas resultados. Usa frases como "los resultados pueden variar segun cada persona" o "muchas personas reportan mejorias en las primeras semanas".
+
+Paso 8 - Continuar la conversacion:
+Haz una pregunta para seguir ayudando. Ej: "Lo buscas para un problema puntual o para mantenerte bien?" o "Quieres que te explique como combinarlo con otros productos?"
+
+COMPORTAMIENTO DINAMICO SEGUN INTENCION:
+
+Si el usuario muestra intencion de compra (quiere comprar, pregunta precio):
+- Se directo con la informacion de precio y disponibilidad.
+- Ofrece ayuda con el proceso de compra.
+
+Si el usuario muestra intencion educativa (pregunta que es, como funciona):
+- Explica con calma y detalle.
+- Enfocate en educar, no en vender.
+
+Si el usuario muestra intencion de comparacion (versus, diferencia, mejor):
+- Compara objetivamente.
+- Explica para que perfil es mejor cada opcion.
+
+FORMATO OBLIGATORIO DE RESPUESTA:
+Todas las respuestas deben generarse en texto plano.
+Nunca utilices:
+- Markdown
+- **negritas**
+- __subrayado__
+- # titulos
+- listas Markdown
+- bloques de codigo
+- tablas Markdown
+- comillas decorativas
+Si deseas destacar un producto, hazlo mediante la redaccion, nunca mediante formato.
+
+Ejemplos:
+- Incorrecto: "**Prunex 1** puede ayudarte..."
+- Correcto: "Prunex 1 puede ayudarte..."
+- Incorrecto: "**Ingredientes:**"
+- Correcto: "Ingredientes principales:"
+- Incorrecto: "## Beneficios"
+- Correcto: "Entre sus principales beneficios se encuentran..."
+
+INSTRUCCION SOBRE PRODUCTOS:
+- Todos los productos Fuxion vienen en sobres (sachets) para mezclar con agua. No son pastillas, capsulas, jarabes ni liquidos embotellados.
+- Cuando recibas una ficha tecnica de producto, esa es tu UNICA fuente de informacion sobre ese producto. No uses tu conocimiento general.
+- Si no recibes ficha tecnica para un producto, NO lo recomiendes. No inventes informacion.
+- Si el usuario pregunta por un producto que no esta en ninguna ficha tecnica, responde: "No tengo informacion sobre ese producto en mi base de datos actual."
+
+CORRECCION CRITICA SOBRE PASSION Y VITAENERGIA:
+- PASSION es un producto de VITALIDAD Y ENERGIA. Contiene ginseng, jalea real, guarana y aminoacidos. Ayuda con la circulacion, la potencia sexual, la energia y las migrañas. NO es para dormir, NO es para relajarse, NO contiene pasiflora ni melatonina.
+- VITAENERGIA es un multivitaminico energizante con vitaminas, minerales, fibra prebiotica, camu camu y luteina. Ayuda a disipar la fatiga y mejorar la energia diaria.
+- NO confundas PASSION con un producto para dormir o relajarse. PASSION es ENERGETICO, no relajante.
+- Si el usuario menciona sueno, insomnio, relajacion o estres, el producto correcto es NO STRESS, NO PASSION.`;
+
 };
 
-const buildDynamicPrompt = (userMessage, conversationHistory = []) => {
+const buildDynamicPrompt = (userMessage, conversationHistory = [], profileContext = '', riskAssessment = null, riskContext = '', preResult = null) => {
   const userProducts = getMentionedProductsFromText(userMessage);
   const benefitProducts = getProductsFromBenefitIntent(userMessage);
   const historyProducts = getMentionedProductsFromHistory(conversationHistory);
@@ -394,12 +653,53 @@ const buildDynamicPrompt = (userMessage, conversationHistory = []) => {
 
   const systemMessages = [{ role: 'system', content: buildSystemContext() }];
 
-  if (includeProducts) {
+  // Inyectar perfil conversacional (CIE) si hay información relevante
+  if (profileContext) {
+    systemMessages.push({
+      role: 'system',
+      content: `PERFIL DE LA CONVERSACION:\n${profileContext}`
+    });
+    debugLog('profileContext', profileContext.substring(0, 200) + '...');
+  }
+
+  // ===================================================================
+  // PRODUCT RECOMMENDATION ENGINE (PRE)
+  // El PRE es el ÚNICO responsable de elegir el producto principal.
+  // La IA SOLO recibe la recomendación, NO la decide.
+  // ===================================================================
+  if (preResult) {
+    // Inyectar la recomendación del PRE como contexto de sistema
+    systemMessages.push({
+      role: 'system',
+      content: preResult.recommendationContext
+    });
+
+    // Inyectar las reglas de negocio que aplicaron
+    if (preResult.businessRulesContext) {
+      systemMessages.push({
+        role: 'system',
+        content: preResult.businessRulesContext
+      });
+    }
+
+    // Inyectar la ficha técnica del producto principal (desde la base de datos)
+    const productContext = buildProductContext([preResult.productoPrincipal, ...preResult.productosSecundarios]);
+    if (productContext) {
+      systemMessages.push({
+        role: 'system',
+        content: `FICHA TECNICA del producto recomendado:\n\n${productContext}`
+      });
+    }
+  } else if (includeProducts) {
+    // Fallback: si el PRE no encontró reglas, usar la detección tradicional
     const uniqueProducts = Array.from(new Set(currentProducts));
     const productContext = buildProductContext(uniqueProducts);
-    debugLog('productContext', productContext ? productContext.substring(0, 300) + '...' : 'null');
+    debugLog('productContext (fallback)', productContext ? productContext.substring(0, 300) + '...' : 'null');
     if (productContext) {
-      systemMessages.push({ role: 'system', content: productContext });
+      systemMessages.push({
+        role: 'system',
+        content: `INFORMACION DE PRODUCTOS:\n\n${productContext}`
+      });
     } else {
       debugLog('WARN', 'productContext es null aunque hay productos detectados');
     }
@@ -413,11 +713,11 @@ const buildDynamicPrompt = (userMessage, conversationHistory = []) => {
     });
   }
 
-  // Agregar contexto médico si aplica
-  if (/\b(enfermedad|s[ií]ntoma|dolor|embarazo|lactancia|medicamento|medicamentos|condici[oó]n m[eé]dica|m[eé]dico|doctor|prescripci[oó]n|hipertensi[oó]n|diabetes|tratamiento)\b/i.test(userMessage)) {
+  // Agregar contexto médico según MRA (Medical Risk Assessment)
+  if (riskAssessment && riskAssessment.level >= 2) {
     systemMessages.push({
       role: 'system',
-      content: `MEDICAL: Si la consulta menciona enfermedades, síntomas, medicamentos, embarazo, lactancia o condiciones de salud, responde con prudencia. No des diagnósticos, no recomiendes tratamientos ni afirmes resultados. Sugiere hablar con un asesor humano para evaluar el caso.`
+      content: riskContext
     });
   }
 
@@ -456,12 +756,49 @@ const buildDynamicPrompt = (userMessage, conversationHistory = []) => {
 };
 
 // ===================================================================
+// DIAGNÓSTICO DE VARIABLES DE ENTORNO (se ejecuta al iniciar el servidor)
+// ===================================================================
+const ENV_VARS_CHECKED = [];
+
+const checkEnvVar = (name) => {
+  const exists = Boolean(process.env[name]);
+  ENV_VARS_CHECKED.push({ name, exists });
+  return exists;
+};
+
+const printEnvDiagnostic = () => {
+  console.log('');
+  console.log('='.repeat(60));
+  console.log('🔍 DIAGNÓSTICO DE VARIABLES DE ENTORNO');
+  console.log('='.repeat(60));
+  const criticalVars = [
+    'DEEPSEEK_API_KEY',
+    'QWEN_API_KEY',
+    'GEMINI_API_KEY',
+    'SUPABASE_URL',
+    'SUPABASE_SERVICE_ROLE_KEY',
+    'SUPABASE_ANON_KEY'
+  ];
+  for (const name of criticalVars) {
+    const exists = checkEnvVar(name);
+    const existsVite = checkEnvVar(`VITE_${name}`);
+    const status = exists ? '✅ PRESENTE' : (existsVite ? '✅ PRESENTE (como VITE_)' : '❌ AUSENTE');
+    console.log(`  ${name.padEnd(35)} ${status}`);
+  }
+  console.log('='.repeat(60));
+  console.log('');
+};
+
+// Ejecutar diagnóstico al cargar el módulo
+printEnvDiagnostic();
+
+// ===================================================================
 // CONFIGURACIÓN DE APIs
 // ===================================================================
 const getApiKey = (name) => {
-  const key = process.env[name];
+  const key = process.env[name] || process.env[`VITE_${name}`];
   if (!key) {
-    console.warn(`⚠️ API key no configurada: ${name}`);
+    console.warn(`⚠️ API key no configurada: ${name} (tampoco con prefijo VITE_)`);
   }
   return key;
 };
@@ -471,13 +808,17 @@ const QWEN_API_KEY = getApiKey('QWEN_API_KEY');
 const GEMINI_API_KEY = getApiKey('GEMINI_API_KEY');
 
 const SUPABASE_URL = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
-const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY;
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY;
 const USE_SUPABASE = Boolean(SUPABASE_URL && SUPABASE_KEY);
 const SUPABASE_CACHE_TABLE = 'chat_memory';
 const SUPABASE_EVENTS_TABLE = 'chat_events';
 
 // Versión del caché para invalidar respuestas antiguas cuando cambia la lógica
-const CACHE_VERSION = 'v2';
+// v3: Prompt reescrito como asesor nutricional humano + contexto enriquecido con conocimiento comercial
+// v4: Conversation Reasoning Engine (CRE) - razonamiento estructurado + plan de bienestar + detección de personalidad
+// v5: Medical Risk Assessment (MRA) - no derivar por enfermedad, continuar conversación
+// v6: Corrección crítica PASSION vs VITAENERGÍA - PASSION es energético, no para dormir
+const CACHE_VERSION = 'v6';
 
 const supabase = USE_SUPABASE
   ? createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: false } })
@@ -724,6 +1065,116 @@ const getProviderOrder = (preferredProvider = 'deepseek') => {
 };
 
 // ===================================================================
+// LOGS ESTRUCTURADOS PARA PROVEEDORES DE IA
+// ===================================================================
+const logProviderAttempt = (providerName, status, errorMessage, elapsedMs, cause) => {
+  const timestamp = new Date().toISOString();
+  const logEntry = {
+    timestamp,
+    provider: providerName,
+    status,
+    errorMessage: errorMessage || null,
+    elapsedMs,
+    cause: cause || null
+  };
+  console.log(`[API-DIAG] ${JSON.stringify(logEntry)}`);
+  return logEntry;
+};
+
+const classifyErrorCause = (providerName, error) => {
+  const msg = String(error.message || '').toLowerCase();
+  const statusMatch = msg.match(/error (\d+)/);
+  const httpStatus = statusMatch ? parseInt(statusMatch[1]) : 0;
+
+  // Causas específicas por código HTTP
+  if (httpStatus === 401 || httpStatus === 403) return 'API_KEY_INVALIDA';
+  if (httpStatus === 429) return 'CUOTA_AGOTADA';
+  if (httpStatus === 402) return 'CUOTA_AGOTADA';
+  if (httpStatus >= 500) return 'ERROR_SERVIDOR_PROVEEDOR';
+
+  // Causas por mensaje de error
+  if (msg.includes('api key') || msg.includes('unauthorized') || msg.includes('forbidden') || msg.includes('invalid')) return 'API_KEY_INVALIDA';
+  if (msg.includes('quota') || msg.includes('rate limit') || msg.includes('too many requests') || msg.includes('insufficient')) return 'CUOTA_AGOTADA';
+  if (msg.includes('timeout') || msg.includes('timed out') || msg.includes('abort')) return 'TIMEOUT';
+  if (msg.includes('econnrefused') || msg.includes('enotfound') || msg.includes('econnreset') || msg.includes('network') || msg.includes('fetch failed')) return 'ERROR_DE_RED';
+  if (msg.includes('api key no configurada') || msg.includes('not configured')) return 'API_KEY_AUSENTE';
+
+  return 'ERROR_DESCONOCIDO';
+};
+
+// ===================================================================
+// SANITIZACIÓN FINAL DE RESPUESTAS (eliminar cualquier Markdown residual)
+// ===================================================================
+const sanitizeOutput = (text = '') => {
+  if (!text) return '';
+  let cleaned = String(text);
+  // Eliminar **negritas**
+  cleaned = cleaned.replace(/\*\*(.*?)\*\*/g, '$1');
+  // Eliminar __subrayado__
+  cleaned = cleaned.replace(/__(.*?)__/g, '$1');
+  // Eliminar *cursivas* (pero no confundir con asteriscos de listas)
+  cleaned = cleaned.replace(/(?<!\*)\*(?!\*)(.*?)(?<!\*)\*(?!\*)/g, '$1');
+  // Eliminar ~~tachado~~
+  cleaned = cleaned.replace(/~~(.*?)~~/g, '$1');
+  // Eliminar # títulos
+  cleaned = cleaned.replace(/^#{1,6}\s*/gm, '');
+  // Eliminar bloques de código (```...```)
+  cleaned = cleaned.replace(/```[\s\S]*?```/g, '');
+  // Eliminar `código inline`
+  cleaned = cleaned.replace(/`([^`]+)`/g, '$1');
+  // Eliminar listas Markdown (- o * al inicio de línea)
+  cleaned = cleaned.replace(/^\s*[-*]\s+/gm, '');
+  // Eliminar listas numeradas Markdown (1. 2. etc)
+  cleaned = cleaned.replace(/^\s*\d+\.\s+/gm, '');
+  // Eliminar tablas Markdown (líneas con |)
+  cleaned = cleaned.replace(/^.*\|.*$/gm, '');
+  // Eliminar líneas de separación (---, ***, ___)
+  cleaned = cleaned.replace(/^[-*_]{3,}\s*$/gm, '');
+  // Eliminar comillas decorativas (>)
+  cleaned = cleaned.replace(/^>\s*/gm, '');
+  // Eliminar espacios duplicados
+  cleaned = cleaned.replace(/[ \t]+/g, ' ');
+  // Eliminar saltos de línea excesivos (más de 2 seguidos)
+  cleaned = cleaned.replace(/\n{3,}/g, '\n\n');
+  return cleaned.trim();
+};
+
+const buildFallbackResponseText = (userMessage = '', riskAssessment = null, preResult = null) => {
+  const intro = 'En este momento el asistente de IA está temporalmente fuera de servicio.';
+  const mentionedProducts = getMentionedProductsFromText(userMessage);
+  const benefitProducts = getProductsFromBenefitIntent(userMessage);
+  const candidateProducts = [...new Set([
+    ...(preResult?.productoPrincipal ? [preResult.productoPrincipal] : []),
+    ...mentionedProducts,
+    ...benefitProducts
+  ])].filter(Boolean);
+
+  if (candidateProducts.length > 0) {
+    const productName = candidateProducts[0];
+    const { name, product } = getProductDetails(productName);
+    if (product) {
+      const presentation = product.presentacion ? `se presenta en ${product.presentacion}` : '';
+      const benefits = Array.isArray(product.beneficios) && product.beneficios.length > 0
+        ? `y está orientado a ${String(product.beneficios[0]).toLowerCase()}`
+        : '';
+      const detailText = [presentation, benefits].filter(Boolean).join(' ');
+      const detailSuffix = detailText ? ` ${detailText}` : '';
+      return `Entiendo que buscas información sobre ${name}. ${intro} La información registrada indica que ${name}${detailSuffix}. Si quieres, puedes decirme otro producto o tu objetivo concreto y te orientaremos mejor cuando el servicio vuelva a estar activo.`;
+    }
+  }
+
+  if (/\b(precio|costo|cuanto cuesta|cuánto cuesta|despacho|envío|entrega|disponibilidad|stock)\b/i.test(userMessage)) {
+    return `${intro} Por ahora no puedo confirmar precios ni disponibilidad en tiempo real, pero puedes escribir el producto que te interesa y te orientaremos cuando vuelva el servicio.`;
+  }
+
+  if (riskAssessment?.level >= 2) {
+    return `${intro} Si tu consulta está relacionada con salud o bienestar, te recomiendo confirmar cualquier decisión con un profesional de la salud.`;
+  }
+
+  return `${intro} Puedes escribir el nombre de un producto o decir qué necesitas para que te ayudemos a revisar opciones de Fuxion.`;
+};
+
+// ===================================================================
 // HANDLER PRINCIPAL (Vercel Serverless Function)
 // ===================================================================
 export default async function handler(req, res) {
@@ -764,11 +1215,36 @@ export default async function handler(req, res) {
     .filter(m => m.role !== 'system')
     .map(m => ({ sender: m.role === 'user' ? 'user' : 'assistant', text: m.content }));
 
-  const optimizedMessages = buildDynamicPrompt(userMessage, conversationHistory);
+  // Conversation Intelligence Engine: procesar perfil del usuario
+  const detectedProducts = getMentionedProductsFromText(userMessage);
+  processUserMessage(sessionId, userMessage, detectedProducts);
 
-  // Verificar caché en Supabase
+  // Medical Risk Assessment: evaluar nivel de riesgo
+  const riskAssessment = assessRisk(userMessage);
+  const riskContext = generateRiskContext(userMessage);
+  debugLog('MRA', `Nivel de riesgo: ${riskAssessment.level}, Accion: ${riskAssessment.action}`);
+
+  // Conversation Reasoning Engine: generar contexto razonado
+  const profile = getOrCreateProfile(sessionId);
+  const reasonedContext = generateFullContext(profile);
+
+  // Product Recommendation Engine (PRE): determinar producto principal
+  // El PRE se ejecuta ANTES del Prompt Builder para que la IA reciba
+  // la recomendación ya definida, no tenga que decidirla.
+  const preResult = processRecommendation(userMessage, conversationHistory);
+  if (preResult) {
+    debugLog('PRE', `Producto principal: ${preResult.productoPrincipal}`);
+    debugLog('PRE', `Productos secundarios: ${preResult.productosSecundarios.join(', ')}`);
+    debugLog('PRE', `Productos complementarios: ${preResult.productosComplementarios.join(', ')}`);
+  } else {
+    debugLog('PRE', 'No se encontró recomendación basada en reglas de negocio');
+  }
+
+  const optimizedMessages = buildDynamicPrompt(userMessage, conversationHistory, reasonedContext, riskAssessment, riskContext, preResult);
+
+  // Verificar caché en Supabase (SOLO si no hay riesgo médico)
   let cachedAnswer = null;
-  if (USE_SUPABASE) {
+  if (USE_SUPABASE && riskAssessment.level < 2) {
     cachedAnswer = await getCachedAnswer(userMessage);
   }
 
@@ -784,21 +1260,37 @@ export default async function handler(req, res) {
 
     // Intentar APIs en orden de preferencia para reformular
     const providerOrder = getProviderOrder(preferredProvider);
+    const cacheProviderLogs = [];
     let lastError = null;
 
     for (const provider of providerOrder) {
       const api = API_PROVIDERS[provider];
-      if (!api || !api.hasKey()) continue;
+      const providerStartTime = Date.now();
+
+      if (!api || !api.hasKey()) {
+        const elapsed = Date.now() - providerStartTime;
+        const logEntry = logProviderAttempt(api?.name || provider, 'SKIPPED', 'API key no configurada', elapsed, 'API_KEY_AUSENTE');
+        cacheProviderLogs.push(logEntry);
+        console.warn(`⏭️ ${api?.name || provider}: API key no configurada (reformulación)`);
+        continue;
+      }
 
       try {
         console.log(`🔄 Reformulando respuesta cacheada con ${api.name}...`);
         result = await api.call(memoryMessages);
         apiUsed = `${provider}_refined`;
-        console.log(`✅ Respuesta reformulada con ${api.name}`);
+        const elapsed = Date.now() - providerStartTime;
+        const logEntry = logProviderAttempt(api.name, 'OK', null, elapsed, null);
+        cacheProviderLogs.push(logEntry);
+        console.log(`✅ Respuesta reformulada con ${api.name} (${elapsed}ms)`);
         break;
       } catch (error) {
+        const elapsed = Date.now() - providerStartTime;
         lastError = error;
-        console.warn(`⚠️ ${api.name} falló al reformular:`, error.message);
+        const cause = classifyErrorCause(provider, error);
+        const logEntry = logProviderAttempt(api.name, 'ERROR', error.message, elapsed, cause);
+        cacheProviderLogs.push(logEntry);
+        console.warn(`⚠️ ${api.name} falló al reformular (${elapsed}ms): [${cause}] ${error.message}`);
       }
     }
 
@@ -810,30 +1302,103 @@ export default async function handler(req, res) {
   } else {
     // Intentar APIs en orden de preferencia
     const providerOrder = getProviderOrder(preferredProvider);
+    const providerLogs = [];
     let lastError = null;
 
     for (const provider of providerOrder) {
       const api = API_PROVIDERS[provider];
-      if (!api || !api.hasKey()) continue;
+      const providerStartTime = Date.now();
+
+      // Verificar si la API tiene key configurada
+      if (!api || !api.hasKey()) {
+        const elapsed = Date.now() - providerStartTime;
+        const logEntry = logProviderAttempt(api?.name || provider, 'SKIPPED', 'API key no configurada', elapsed, 'API_KEY_AUSENTE');
+        providerLogs.push(logEntry);
+        console.warn(`⏭️ ${api?.name || provider}: API key no configurada`);
+        continue;
+      }
 
       try {
         console.log(`🔄 Intentando con ${api.name}...`);
         result = await api.call(optimizedMessages);
         apiUsed = provider;
-        console.log(`✅ Respuesta obtenida de ${api.name}`);
+        const elapsed = Date.now() - providerStartTime;
+        const logEntry = logProviderAttempt(api.name, 'OK', null, elapsed, null);
+        providerLogs.push(logEntry);
+        console.log(`✅ Respuesta obtenida de ${api.name} (${elapsed}ms)`);
         break;
       } catch (error) {
+        const elapsed = Date.now() - providerStartTime;
         lastError = error;
-        console.warn(`⚠️ ${api.name} falló:`, error.message);
+        const cause = classifyErrorCause(provider, error);
+        const logEntry = logProviderAttempt(api.name, 'ERROR', error.message, elapsed, cause);
+        providerLogs.push(logEntry);
+        console.warn(`⚠️ ${api.name} falló (${elapsed}ms): [${cause}] ${error.message}`);
       }
     }
 
     if (!result) {
       console.error('❌ Todas las APIs fallaron');
-      res.status(503).json({
-        error: 'No se pudo obtener respuesta de los proveedores de IA',
-        details: lastError ? [{ api: 'all', error: lastError.message }] : []
-      });
+      // Construir detalles de diagnóstico sin exponer claves secretas
+      const diagnosticDetails = providerLogs.map(log => ({
+        provider: log.provider,
+        status: log.status,
+        elapsedMs: log.elapsedMs,
+        cause: log.cause,
+        errorMessage: log.cause === 'API_KEY_AUSENTE' ? 'API key no configurada en el servidor' : log.errorMessage
+      }));
+      // Agregar diagnóstico de variables de entorno
+      const envSummary = ENV_VARS_CHECKED.map(v => ({
+        var: v.name,
+        present: v.exists
+      }));
+      console.error(`[API-DIAG] Resumen: ${JSON.stringify({ providerLogs, envSummary })}`);
+
+      const fallbackText = buildFallbackResponseText(userMessage, riskAssessment, preResult);
+      const fallbackResponseContract = {
+        text: fallbackText,
+        usage: { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 },
+        model: 'fallback',
+        apiUsed: 'fallback',
+        showWhatsApp: false,
+        advisorReason: null,
+        healthRisk: {
+          level: riskAssessment.level,
+          condition: riskAssessment.condition || null,
+          allowConversation: riskAssessment.level < 3,
+          allowRecommendations: riskAssessment.level < 3,
+          requiresEmergency: riskAssessment.level >= 3,
+          showWhatsApp: riskAssessment.level >= 3
+        },
+        purchaseIntent: null,
+        conversationStage: null,
+        advisorRecommendation: null,
+        fallback: true,
+        fallbackReason: 'No se pudieron contactar los proveedores de IA',
+        details: diagnosticDetails,
+        envCheck: envSummary
+      };
+
+      if (riskAssessment.level >= 3) {
+        fallbackResponseContract.showWhatsApp = true;
+        fallbackResponseContract.advisorReason = 'Se detectó una situación que requiere atención médica inmediata.';
+        fallbackResponseContract.advisorRecommendation = 'emergency';
+      } else if (/\b(asesor|humano|whatsapp|hablar con un asesor|quiero hablar con un asesor|necesito un asesor|contactar con un asesor|asesor humano)\b/i.test(userMessage)) {
+        fallbackResponseContract.showWhatsApp = true;
+        fallbackResponseContract.advisorReason = 'El cliente solicitó hablar con un asesor humano.';
+        fallbackResponseContract.advisorRecommendation = 'user_requested';
+      } else if (/\b(comprar|quiero comprar|como compro|cómo compro|donde compro|dónde compro|quiero pedir|hacer pedido|quiero ordenar)\b/i.test(userMessage)) {
+        fallbackResponseContract.showWhatsApp = true;
+        fallbackResponseContract.advisorReason = 'El cliente manifestó intención de compra y puede necesitar asistencia.';
+        fallbackResponseContract.advisorRecommendation = 'purchase_intent';
+        fallbackResponseContract.purchaseIntent = 'high';
+      } else if (/\b(precio|cuanto cuesta|cuánto cuesta|valor|costo|costos|despacho|envío|entrega|disponibilidad|stock)\b/i.test(userMessage)) {
+        fallbackResponseContract.showWhatsApp = true;
+        fallbackResponseContract.advisorReason = 'El cliente consultó sobre precio, despacho o disponibilidad.';
+        fallbackResponseContract.advisorRecommendation = 'pricing_inquiry';
+      }
+
+      res.status(200).json(fallbackResponseContract);
       return;
     }
 
@@ -874,11 +1439,66 @@ export default async function handler(req, res) {
     console.warn('Error procesando eventos de chat:', error.message);
   }
 
-  // Responder al cliente
-  res.status(200).json({
-    text: result.text,
+  // Sanitizar respuesta final (eliminar cualquier Markdown residual)
+  const sanitizedText = sanitizeOutput(result.text);
+
+  // Response Contract: el backend decide todo
+  // FalconBot solo debe renderizar lo que el backend indique
+  const responseContract = {
+    text: sanitizedText,
     usage: { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 },
     model: result.model,
-    apiUsed: result.apiUsed
-  });
+    apiUsed: result.apiUsed,
+    // --- Response Contract v2.0 ---
+    // showWhatsApp: true SOLO cuando:
+    //   - El usuario solicita explícitamente un asesor humano
+    //   - El usuario quiere comprar y necesita asistencia
+    //   - El usuario solicita precio, despacho o disponibilidad
+    //   - El backend detecta riesgo nivel 3 (urgencia médica)
+    //   - Hay un error técnico que impide continuar
+    showWhatsApp: false,
+    advisorReason: null,
+    // healthRisk: información sobre evaluación de riesgo médico
+    healthRisk: {
+      level: riskAssessment.level,
+      condition: riskAssessment.condition || null,
+      allowConversation: riskAssessment.level < 3,
+      allowRecommendations: riskAssessment.level < 3,
+      requiresEmergency: riskAssessment.level >= 3,
+      showWhatsApp: riskAssessment.level >= 3
+    },
+    // purchaseIntent: señales de intención de compra detectadas
+    purchaseIntent: null,
+    // conversationStage: etapa actual de la conversación
+    conversationStage: null,
+    // advisorRecommendation: recomendación del backend sobre derivación
+    advisorRecommendation: null
+  };
+
+  // Determinar si debe mostrar WhatsApp según las reglas del backend
+  if (riskAssessment.level >= 3) {
+    // Riesgo nivel 3: urgencia médica
+    responseContract.showWhatsApp = true;
+    responseContract.advisorReason = 'Se detectó una situación que requiere atención médica inmediata.';
+    responseContract.advisorRecommendation = 'emergency';
+  } else if (/\b(asesor|humano|whatsapp|hablar con un asesor|quiero hablar con un asesor|necesito un asesor|contactar con un asesor|asesor humano)\b/i.test(userMessage)) {
+    // El usuario solicita explícitamente un asesor humano
+    responseContract.showWhatsApp = true;
+    responseContract.advisorReason = 'El cliente solicitó hablar con un asesor humano.';
+    responseContract.advisorRecommendation = 'user_requested';
+  } else if (/\b(comprar|quiero comprar|como compro|cómo compro|donde compro|dónde compro|quiero pedir|hacer pedido|quiero ordenar)\b/i.test(userMessage)) {
+    // Intención de compra
+    responseContract.showWhatsApp = true;
+    responseContract.advisorReason = 'El cliente manifestó intención de compra y puede necesitar asistencia.';
+    responseContract.advisorRecommendation = 'purchase_intent';
+    responseContract.purchaseIntent = 'high';
+  } else if (/\b(precio|cuanto cuesta|cuánto cuesta|valor|costo|costos|despacho|envío|entrega|disponibilidad|stock)\b/i.test(userMessage)) {
+    // Consulta de precio, despacho o disponibilidad
+    responseContract.showWhatsApp = true;
+    responseContract.advisorReason = 'El cliente consultó sobre precio, despacho o disponibilidad.';
+    responseContract.advisorRecommendation = 'pricing_inquiry';
+  }
+
+  // Responder al cliente con el response contract completo
+  res.status(200).json(responseContract);
 }

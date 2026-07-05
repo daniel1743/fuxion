@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
+import SEO from '@/components/SEO';
 import { ArrowLeft, Clock, Eye, Calendar, User, Share2, MessageCircle } from 'lucide-react';
 import { useBlog } from '@/context/BlogContext';
 import { Button } from '@/components/ui/button';
@@ -111,15 +111,13 @@ const BlogPostPage = () => {
 
   return (
     <>
-      <Helmet>
-        <title>{post.title} | Blog Tienda Fuxion</title>
-        <meta name="description" content={post.excerpt} />
-        <link rel="canonical" href={`https://tiendafuxion.space/blog/${post.slug}`} />
-        <meta property="og:title" content={post.title} />
-        <meta property="og:description" content={post.excerpt} />
-        <meta property="og:image" content={post.image_url || 'https://tiendafuxion.space/img/familia.fuxion.png'} />
-        <meta property="og:type" content="article" />
-      </Helmet>
+      <SEO
+        title={post.title}
+        description={post.excerpt}
+        canonical={`/blog/${post.slug}`}
+        ogType="article"
+        ogImage={post.image_url || undefined}
+      />
 
       <div className="min-h-screen bg-gradient-to-b from-background to-background/95 pt-24 pb-16">
         <article className="container mx-auto px-4 max-w-4xl">

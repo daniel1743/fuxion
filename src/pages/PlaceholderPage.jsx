@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import SEO from '@/components/SEO';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -22,9 +22,11 @@ const PlaceholderPage = ({ pageName }) => {
       transition={{ duration: 0.4 }}
       className="flex flex-col items-center justify-center min-h-[calc(100vh-15rem)] text-center px-6"
     >
-      <Helmet>
-        <title>{pageName} — Fuxion Shop</title>
-      </Helmet>
+      <SEO
+        title={pageName}
+        description={`Página de ${pageName} — Próximamente disponible en Tienda Fuxion Chile.`}
+        noindex
+      />
       <motion.div
         animate={{ rotate: [0, -10, 10, -10, 10, 0] }}
         transition={{ duration: 1, repeat: Infinity, repeatType: 'reverse' }}

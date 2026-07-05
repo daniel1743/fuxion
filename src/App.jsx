@@ -27,6 +27,8 @@ const PlaceholderPage = lazy(() => import('@/pages/PlaceholderPage'));
 const AccountPage = lazy(() => import('@/pages/AccountPage'));
 const WellnessPage = lazy(() => import('@/pages/WellnessPage'));
 const WellnessArticlePage = lazy(() => import('@/pages/WellnessArticlePage'));
+const CategoryPage = lazy(() => import('@/pages/CategoryPage'));
+const OpportunityPage = lazy(() => import('@/pages/OpportunityPage'));
 
 function App() {
   const location = useLocation();
@@ -51,6 +53,7 @@ function App() {
                   <Routes location={location} key={location.pathname}>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/explorar" element={<ExplorePage />} />
+                    <Route path="/categoria/:categorySlug" element={<CategoryPage />} />
                     <Route path="/categorias" element={<CategoriesPage />} />
                     <Route path="/ayuda" element={<SupportPage />} />
                     <Route path="/producto/:slug" element={<ProductPage />} />
@@ -65,6 +68,7 @@ function App() {
                     <Route path="/contacto" element={<PlaceholderPage pageName="Contacto" />} />
                     <Route path="/envios" element={<PlaceholderPage pageName="Envíos y Devoluciones" />} />
                     <Route path="/faq" element={<PlaceholderPage pageName="FAQ" />} />
+                    <Route path="/oportunidad-fuxion" element={<OpportunityPage />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                   </Routes>
                 </Suspense>

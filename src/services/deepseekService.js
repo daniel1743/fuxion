@@ -40,14 +40,33 @@ const ensureSessionMetadata = () => {
 
 const cleanBotResponse = (text = '') => {
   return String(text)
+    // Eliminar **negritas**
     .replace(/\*\*(.*?)\*\*/g, '$1')
-    .replace(/\*(.*?)\*/g, '$1')
-    .replace(/_{1,2}(.*?)_{1,2}/g, '$1')
-    .replace(/`{1,3}/g, '')
+    // Eliminar __subrayado__
+    .replace(/__(.*?)__/g, '$1')
+    // Eliminar *cursivas* (sin confundir con asteriscos de listas)
+    .replace(/(?<!\*)\*(?!\*)(.*?)(?<!\*)\*(?!\*)/g, '$1')
+    // Eliminar ~~tachado~~
+    .replace(/~~(.*?)~~/g, '$1')
+    // Eliminar # títulos
     .replace(/^#{1,6}\s*/gm, '')
+    // Eliminar bloques de código (```...```)
+    .replace(/```[\s\S]*?```/g, '')
+    // Eliminar `código inline`
+    .replace(/`([^`]+)`/g, '$1')
+    // Eliminar listas Markdown (- o * al inicio de línea)
     .replace(/^\s*[-*]\s+/gm, '')
-    .replace(/\p{Extended_Pictographic}/gu, '')
-    .replace(/[⚠️✅❌🎯📋🛍️💡📝💬🟣]/g, '')
+    // Eliminar listas numeradas Markdown (1. 2. etc)
+    .replace(/^\s*\d+\.\s+/gm, '')
+    // Eliminar tablas Markdown (líneas con |)
+    .replace(/^.*\|.*$/gm, '')
+    // Eliminar líneas de separación (---, ***, ___)
+    .replace(/^[-*_]{3,}\s*$/gm, '')
+    // Eliminar comillas decorativas (>)
+    .replace(/^>\s*/gm, '')
+    // Eliminar espacios duplicados
+    .replace(/[ \t]+/g, ' ')
+    // Eliminar saltos de línea excesivos (más de 2 seguidos)
     .replace(/\n{3,}/g, '\n\n')
     .trim();
 };
@@ -91,6 +110,21 @@ export const sendMessageToDeepSeek = async (userMessage, botType = 'ventas', con
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
+      if (errorData?.text) {
+        const cleanedText = cleanBotResponse(errorData.text);
+        return {
+          text: cleanedText,
+          usage: errorData.usage || { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 },
+          model: errorData.model || 'fallback',
+          apiUsed: errorData.apiUsed || 'fallback',
+          showWhatsApp: errorData.showWhatsApp === true,
+          advisorReason: errorData.advisorReason || null,
+          healthRisk: errorData.healthRisk || null,
+          purchaseIntent: errorData.purchaseIntent || null,
+          conversationStage: errorData.conversationStage || null,
+          advisorRecommendation: errorData.advisorRecommendation || null
+        };
+      }
       const details = Array.isArray(errorData.details)
         ? ` ${errorData.details.map(detail => `${detail.api}: ${detail.error}`).join(' | ')}`
         : '';
@@ -104,7 +138,14 @@ export const sendMessageToDeepSeek = async (userMessage, botType = 'ventas', con
       text: cleanedText,
       usage: data.usage,
       model: data.model,
-      apiUsed: data.apiUsed
+      apiUsed: data.apiUsed,
+      // Response Contract: el backend decide cuándo mostrar WhatsApp
+      showWhatsApp: data.showWhatsApp === true,
+      advisorReason: data.advisorReason || null,
+      healthRisk: data.healthRisk || null,
+      purchaseIntent: data.purchaseIntent || null,
+      conversationStage: data.conversationStage || null,
+      advisorRecommendation: data.advisorRecommendation || null
     };
 
   } catch (error) {

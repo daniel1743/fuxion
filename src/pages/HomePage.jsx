@@ -1,14 +1,14 @@
 
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Heart, Sparkles, Zap, CheckCircle2, MessageCircle, ShoppingCart, ShieldCheck, Truck, Leaf } from 'lucide-react';
 import { getImageUrl, getPlaceholderImage } from '@/lib/imageUtils';
-import { buildStoreSchema, SITE_URL, STORE_NAME } from '@/lib/productSeo';
+import { buildStoreSchema, buildLocalBusinessSchema, SITE_URL, STORE_NAME } from '@/lib/productSeo';
 import { confirmAndOpenWhatsapp, openWhatsapp } from '@/lib/whatsapp';
 import ProductNeedSearch from '@/components/ProductNeedSearch';
+import SEO from '@/components/SEO';
 import { AiRobotIcon, WhatsAppIcon } from '@/components/icons/BrandIcons';
 
 const pageVariants = {
@@ -167,34 +167,12 @@ const HomePage = () => {
       transition={{ duration: 0.5 }}
       className="overflow-x-hidden"
     >
-      <Helmet>
-        <title>Tienda Fuxion Chile | Productos Fuxion para Nutricion y Bienestar Natural</title>
-        <meta name="description" content="Tienda Fuxion en Chile con productos nutraceuticos para nutricion, bienestar natural, digestion, energia, control de peso, defensas, deporte y belleza. Asesoria personalizada." />
-        <meta name="robots" content="index, follow, max-image-preview:large" />
-        <link rel="canonical" href={`${SITE_URL}/`} />
-        
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={`${SITE_URL}/`} />
-        <meta property="og:title" content={`${STORE_NAME} | Productos Fuxion para Nutricion y Bienestar`} />
-        <meta property="og:description" content="Catalogo Fuxion en Chile para nutricion, bienestar natural, digestion, energia, control de peso, defensas y belleza." />
-        <meta property="og:image" content={`${SITE_URL}/img/familia.fuxion.png`} />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:image:type" content="image/png" />
-        <meta property="og:site_name" content={STORE_NAME} />
-        <meta property="og:locale" content="es_CL" />
-        
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${STORE_NAME} | Productos Fuxion Chile`} />
-        <meta name="twitter:description" content="Productos Fuxion para nutricion, bienestar natural, digestion, energia y control de peso." />
-        <meta name="twitter:image" content={`${SITE_URL}/img/familia.fuxion.png`} />
-
-        <script type="application/ld+json">
-          {JSON.stringify(buildStoreSchema())}
-        </script>
-      </Helmet>
+      <SEO
+        title="Tienda Fuxion Chile — Productos Fuxion para Nutrición, Bienestar y Control de Peso"
+        description="Tienda Fuxion en Chile con productos nutracéuticos para nutrición, bienestar natural, digestión, energía, control de peso, defensas, deporte y belleza. Asesoría personalizada por WhatsApp. Envíos a todo Chile."
+        canonical="/"
+        schema={[buildStoreSchema(), buildLocalBusinessSchema()]}
+      />
 
       {/* SECCIÓN 1 – HERO */}
       <section className="relative min-h-screen flex items-center overflow-hidden pt-20 bg-gradient-to-br from-[#f7faf4] via-white to-[#edf7ee] dark:from-[#0f1f18] dark:via-[#111827] dark:to-[#1b1630]">
@@ -210,7 +188,7 @@ const HomePage = () => {
                 Tienda Fuxion Chile · Asesoría personalizada
               </motion.p>
               <motion.h1
-                className="text-4xl md:text-6xl font-extrabold text-foreground tracking-tight leading-tight mb-6"
+                className="text-responsive-hero font-extrabold text-foreground tracking-tight mb-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
@@ -249,19 +227,19 @@ const HomePage = () => {
               >
                 <Button
                   size="lg"
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-full shadow-lg text-lg px-8 py-6"
+                  className="btn-mobile-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-full shadow-lg text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 whitespace-normal h-auto"
                   onClick={() => handleWhatsAppClick('Hola, quiero empezar mi cambio con Fuxion')}
                 >
-                  Recibir asesoría <ArrowRight className="ml-2 h-5 w-5" />
+                  <span className="text-balance">Recibir asesoría</span> <ArrowRight className="ml-2 h-5 w-5 shrink-0" />
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
-                  className="font-bold rounded-full text-lg px-8 py-6 border-2"
+                  className="btn-mobile-full font-bold rounded-full text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 border-2 whitespace-normal h-auto"
                   onClick={() => window.location.href = '/explorar'}
                 >
-                  <ShoppingCart className="mr-2 h-5 w-5" />
-                  Ver catálogo
+                  <ShoppingCart className="mr-2 h-5 w-5 shrink-0" />
+                  <span className="text-balance">Ver catálogo</span>
                 </Button>
               </motion.div>
             </div>
@@ -307,7 +285,7 @@ const HomePage = () => {
       <section className="py-20 bg-secondary/30">
         <div className="container mx-auto px-6 max-w-4xl">
           <motion.h2
-            className="text-3xl md:text-4xl font-bold text-center mb-8 text-foreground"
+            className="text-responsive-section font-bold text-center mb-8 text-foreground"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -356,7 +334,7 @@ const HomePage = () => {
       <section className="py-20">
         <div className="container mx-auto px-6 max-w-4xl">
           <motion.h2
-            className="text-3xl md:text-4xl font-bold text-center mb-6 text-foreground"
+            className="text-responsive-section font-bold text-center mb-6 text-foreground"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -380,7 +358,7 @@ const HomePage = () => {
       <section className="py-20 bg-secondary/30">
         <div className="container mx-auto px-6">
           <motion.h2
-            className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground"
+            className="text-responsive-section font-bold text-center mb-12 text-foreground"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -434,7 +412,7 @@ const HomePage = () => {
       <section className="py-20">
         <div className="container mx-auto px-6 max-w-5xl">
           <motion.h2
-            className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground"
+            className="text-responsive-section font-bold text-center mb-4 text-foreground"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -470,19 +448,19 @@ const HomePage = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-full shadow-lg"
+                className="btn-mobile-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-full shadow-lg text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 whitespace-normal h-auto"
                 onClick={() => handleWhatsAppClick('Hola, quiero mi recomendación personalizada')}
               >
-                Quiero mi recomendación personalizada <ArrowRight className="ml-2 h-5 w-5" />
+                <span className="text-balance">Quiero mi recomendación personalizada</span> <ArrowRight className="ml-2 h-5 w-5 shrink-0" />
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="font-bold rounded-full border-2"
+                className="btn-mobile-full font-bold rounded-full text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 border-2 whitespace-normal h-auto"
                 onClick={() => window.location.href = '/explorar'}
               >
-                <ShoppingCart className="mr-2 h-5 w-5" />
-                Ver productos
+                <ShoppingCart className="mr-2 h-5 w-5 shrink-0" />
+                <span className="text-balance">Ver productos</span>
               </Button>
             </div>
           </motion.div>
@@ -493,7 +471,7 @@ const HomePage = () => {
       <section className="py-20 bg-secondary/30">
         <div className="container mx-auto px-6">
           <motion.h2
-            className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground"
+            className="text-responsive-section font-bold text-center mb-12 text-foreground"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -571,6 +549,41 @@ const HomePage = () => {
             <Link to="/explorar">
               <Button variant="outline" className="hover:bg-primary hover:text-primary-foreground">
                 Ver todos los productos <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* SECCIÓN 6.5 – Soft integration banner: Oportunidad Fuxion */}
+      <section className="py-12 bg-gradient-to-r from-emerald-50/60 to-teal-50/60 dark:from-emerald-950/10 dark:to-teal-950/10 border-y border-emerald-100/50 dark:border-emerald-900/30">
+        <div className="container mx-auto px-6 max-w-4xl">
+          <motion.div
+            className="flex flex-col md:flex-row items-center justify-between gap-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="flex items-center gap-4">
+              <div className="hidden md:flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900/40">
+                <Leaf className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
+              </div>
+              <div>
+                <p className="text-lg font-semibold text-foreground">
+                  ¿Te gusta el mundo del bienestar?
+                </p>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Descubre cómo algunas personas también comparten FuXion como oportunidad.
+                </p>
+              </div>
+            </div>
+            <Link to="/oportunidad-fuxion">
+              <Button
+                variant="outline"
+                className="shrink-0 rounded-full border-emerald-300 text-emerald-700 hover:bg-emerald-600 hover:text-white dark:border-emerald-700 dark:text-emerald-300 dark:hover:bg-emerald-600"
+              >
+                Conocer más <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
           </motion.div>
@@ -663,19 +676,20 @@ const HomePage = () => {
           >
             <Button
               size="lg"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-full shadow-lg text-lg px-8 py-6"
+              className="btn-mobile-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-full shadow-lg text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 whitespace-normal h-auto"
               onClick={() => handleWhatsAppClick('Hola, quiero iniciar mi cambio ahora')}
             >
-              Iniciar mi cambio ahora <ArrowRight className="ml-2 h-5 w-5" />
+              <span className="text-balance">Iniciar mi cambio ahora</span>
+              <ArrowRight className="ml-2 h-5 w-5 shrink-0" />
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="font-bold rounded-full text-lg px-8 py-6 border-2"
+              className="btn-mobile-full font-bold rounded-full text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 border-2 whitespace-normal h-auto"
               onClick={() => window.location.href = '/explorar'}
             >
-              <ShoppingCart className="mr-2 h-5 w-5" />
-              Ver catálogo
+              <ShoppingCart className="mr-2 h-5 w-5 shrink-0" />
+              <span className="text-balance">Ver catálogo</span>
             </Button>
           </motion.div>
         </div>

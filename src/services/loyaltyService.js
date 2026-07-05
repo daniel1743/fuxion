@@ -50,14 +50,22 @@ const saveLocalOrder = (userId, order) => {
 export const fetchLoyaltyOrders = async (userId) => {
   if (String(userId).startsWith('admin:')) return readLocalOrders(userId);
 
+  // NOTA: La columna 'products' no existe en la tabla loyalty_orders de Supabase.
+  // Se omite del SELECT para evitar error 42703.
   const { data, error } = await supabase
     .from('loyalty_orders')
-    .select('id, product_quantity, gift_product, products, created_at')
+    .select('id, product_quantity, gift_product, created_at')
     .eq('user_id', userId)
     .order('created_at', { ascending: false })
     .limit(20);
 
-  if (!error) return data?.length ? data : readLocalOrders(userId);
+  if (!error) {
+    const mapped = (data || []).map(order => ({
+      ...order,
+      products: [] // products no existe en la BD, se devuelve array vacío
+    }));
+    return mapped.length ? mapped : readLocalOrders(userId);
+  }
   if (['PGRST204', 'PGRST205', '42P01', '42703'].includes(error.code)) return readLocalOrders(userId);
   throw error;
 };

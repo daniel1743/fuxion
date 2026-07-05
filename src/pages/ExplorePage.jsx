@@ -1,5 +1,4 @@
 import React, { useState, useMemo } from 'react';
-import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { ShoppingCart, Info } from 'lucide-react';
@@ -7,11 +6,12 @@ import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/CartContext';
 import ProductModal from '@/components/ProductModal';
 import fuxionDatabase from '@/data/fuxion_database.json';
-import { buildStoreSchema, SITE_URL, slugifyProduct } from '@/lib/productSeo';
+import { buildStoreSchema, buildBreadcrumbSchema, SITE_URL, slugifyProduct } from '@/lib/productSeo';
 // Importamos las funciones del archivo cerebro que creamos
 import { getPlaceholderImage, getProductImageUrl } from '@/lib/imageUtils';
 import { confirmAndOpenWhatsapp } from '@/lib/whatsapp';
 import ProductNeedSearch from '@/components/ProductNeedSearch';
+import SEO from '@/components/SEO';
 import { getRelatedProducts, searchProductsByNeed } from '@/lib/productSearch';
 import { AiRobotIcon, WhatsAppIcon } from '@/components/icons/BrandIcons';
 
@@ -219,15 +219,24 @@ const ExplorePage = () => {
       transition={{ duration: 0.5 }}
       className="container mx-auto px-6 py-28"
     >
-      <Helmet>
-        <title>{categoriaParam ? `${getCategoryName(categoriaParam)} Fuxion | ` : ''}Productos Fuxion Chile | Nutricion y Bienestar Natural</title>
-        <meta name="description" content="Catalogo de productos Fuxion en Chile para nutricion, bienestar natural, energia, digestion, control de peso, defensas, deporte y belleza." />
-        <meta name="robots" content="index, follow, max-image-preview:large" />
-        <link rel="canonical" href={`${SITE_URL}/explorar${categoriaParam ? `?categoria=${categoriaParam}` : ''}`} />
-        <script type="application/ld+json">
-          {JSON.stringify(buildStoreSchema())}
-        </script>
-      </Helmet>
+      <SEO
+        title={categoriaParam ? `${getCategoryName(categoriaParam)} Fuxion` : 'Productos Fuxion Chile — Nutrición, Bienestar y Salud Natural'}
+        description={categoriaParam
+          ? `Catálogo de productos ${getCategoryName(categoriaParam).toLowerCase()} Fuxion en Chile. Encuentra precios, beneficios y asesoría personalizada.`
+          : 'Catálogo completo de productos Fuxion en Chile para nutrición, bienestar natural, energía, digestión, control de peso, defensas, deporte y belleza. Envíos a todo Chile.'
+        }
+        canonical={categoriaParam ? `/categoria/${categoriaParam}` : '/explorar'}
+        schema={[
+          buildStoreSchema(),
+          ...(categoriaParam
+            ? [buildBreadcrumbSchema([
+                { name: 'Inicio', url: '/' },
+                { name: 'Categorías', url: '/categorias' },
+                { name: getCategoryName(categoriaParam), url: `/categoria/${categoriaParam}` }
+              ])]
+            : [])
+        ]}
+      />
 
       <div className="text-center mb-12">
         <h1 className="text-4xl md:text-6xl font-extrabold text-foreground tracking-tighter">

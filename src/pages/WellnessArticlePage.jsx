@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
+import SEO from '@/components/SEO';
 import { ArrowLeft, Calendar, Clock, Share2, User } from 'lucide-react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -48,14 +48,13 @@ const WellnessArticlePage = () => {
 
   return (
     <main className="min-h-screen bg-background pb-20 pt-24">
-      <Helmet>
-        <title>{article.title} | Bienestar</title>
-        <meta name="description" content={article.excerpt} />
-        <link rel="canonical" href={`https://tiendafuxion.space/bienestar/${article.slug}`} />
-        <meta property="og:title" content={article.title} />
-        <meta property="og:description" content={article.excerpt} />
-        {article.image_url && <meta property="og:image" content={article.image_url} />}
-      </Helmet>
+      <SEO
+        title={`${article.title} — Bienestar`}
+        description={article.excerpt}
+        canonical={`/bienestar/${article.slug}`}
+        ogType="article"
+        ogImage={article.image_url || undefined}
+      />
 
       <article className="container mx-auto max-w-4xl px-4 py-10 sm:px-6">
         <Link to="/opiniones"><Button variant="ghost" size="sm"><ArrowLeft className="mr-2 h-4 w-4" /> Volver a Bienestar</Button></Link>

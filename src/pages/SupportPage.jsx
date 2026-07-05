@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Helmet } from 'react-helmet';
+import SEO from '@/components/SEO';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -81,10 +81,11 @@ const SupportPage = () => {
       transition={{ duration: 0.5 }}
       className="container mx-auto px-4 sm:px-6 py-28 max-w-7xl overflow-x-hidden"
     >
-      <Helmet>
-        <title>Opiniones y Consultas — Fuxion Shop</title>
-        <meta name="description" content="Consultas, respuestas y opiniones sobre productos Fuxion. Comparte tu experiencia o solicita orientación antes de comprar." />
-      </Helmet>
+      <SEO
+        title="Opiniones y Consultas"
+        description="Consultas, respuestas y opiniones sobre productos Fuxion. Comparte tu experiencia o solicita orientación antes de comprar."
+        canonical="/faq"
+      />
 
       {/* Header */}
       <div className="text-center mb-12">

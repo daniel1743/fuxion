@@ -55,8 +55,66 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-x-hidden;
     transition: background-color 0.5s ease, color 0.5s ease;
+  }
+}
+
+/* ── Responsive typography utilities ─────────────────────────── */
+@layer utilities {
+  .text-responsive-hero {
+    font-size: clamp(2rem, 7.36vw, 3.45rem);
+    line-height: 1.25;
+    word-break: break-word;
+    text-wrap: balance;
+  }
+  .text-responsive-section {
+    font-size: clamp(1.5rem, 5vw, 2.25rem);
+    line-height: 1.2;
+    word-break: break-word;
+    text-wrap: balance;
+  }
+  .text-responsive-body {
+    font-size: clamp(0.95rem, 2.5vw, 1.125rem);
+    line-height: 1.6;
+  }
+  .btn-mobile-full {
+    @apply w-full sm:w-auto;
+  }
+  .container-padding {
+    @apply px-4 sm:px-6;
+  }
+  .shadow-premium-soft {
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.04),
+      0 4px 12px rgba(0, 0, 0, 0.04),
+      0 8px 24px rgba(0, 0, 0, 0.03);
+  }
+  .dark .shadow-premium-soft {
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.2),
+      0 4px 12px rgba(0, 0, 0, 0.15),
+      0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+  .btn-scale-hover {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  @media (hover: hover) {
+    .btn-scale-hover:hover {
+      transform: scale(1.02);
+    }
+  }
+  .card-hover-premium {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  @media (hover: hover) {
+    .card-hover-premium:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.05),
+        0 8px 24px rgba(0, 0, 0, 0.06),
+        0 16px 40px rgba(0, 0, 0, 0.04);
+    }
   }
 }
 
@@ -295,4 +353,166 @@ body.light {
   .gift-reward-card::before {
     animation: none;
   }
+}
+
+/* ============================================
+   Chat Bubble Styles - Fuxion Assistant
+   ============================================ */
+
+/* Bot bubble: asymmetric rounded corners (bottom-left flat) */
+.chat-bubble-bot {
+  border-radius: 18px 18px 18px 5px;
+}
+
+/* User bubble: asymmetric rounded corners (bottom-right flat) */
+.chat-bubble-user {
+  border-radius: 18px 18px 5px 18px;
+}
+
+/* Smooth scrollbar for chat messages */
+.flex-1.overflow-y-auto::-webkit-scrollbar {
+  width: 4px;
+}
+
+.flex-1.overflow-y-auto::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.flex-1.overflow-y-auto::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.2);
+  border-radius: 9999px;
+}
+
+.flex-1.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.4);
+}
+
+/* FAB glow animation enhancement */
+@keyframes fab-pulse-glow {
+  0%, 100% {
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+  }
+  50% {
+    box-shadow: 0 4px 30px rgba(16, 185, 129, 0.5);
+  }
+}
+
+/* Quick action chip hover effect */
+@media (hover: hover) {
+  .quick-action-chip:hover {
+    transform: translateY(-1px);
+  }
+}
+
+/* Dark mode adjustments for chat */
+.dark .chat-bubble-user {
+  background: #064E3B !important;
+  color: #F1FDF8 !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+/* ============================================
+   Mobile Drawer Styles - Premium Navigation
+   ============================================ */
+
+/* Drawer panel rounded corners */
+.drawer-panel {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+/* Drawer scrollbar styling */
+.drawer-panel::-webkit-scrollbar {
+  width: 3px;
+}
+
+.drawer-panel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.drawer-panel::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.15);
+  border-radius: 9999px;
+}
+
+/* Drawer item hover lift effect */
+@media (hover: hover) {
+  .drawer-item:hover {
+    transform: translateX(2px);
+  }
+}
+
+/* Status indicator pulse animation */
+@keyframes status-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.15);
+  }
+}
+
+.drawer-status-dot {
+  animation: status-pulse 2s ease-in-out infinite;
+}
+
+/* Drawer backdrop blur for Safari support */
+@supports (backdrop-filter: blur(8px)) {
+  .drawer-overlay {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+}
+
+/* Dark mode drawer adjustments */
+.dark .drawer-panel {
+  background: #0f1f18;
+}
+
+/* Smooth drawer slide shadow */
+.drawer-shadow {
+  box-shadow:
+    -8px 0 24px rgba(0, 0, 0, 0.08),
+    -2px 0 8px rgba(0, 0, 0, 0.04);
+}
+
+.dark .drawer-shadow {
+  box-shadow:
+    -8px 0 24px rgba(0, 0, 0, 0.3),
+    -2px 0 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Active nav item accent */
+.drawer-item-active {
+  border-left: 4px solid hsl(151, 55%, 34%);
+}
+
+/* WhatsApp button hover glow */
+@keyframes whatsapp-glow {
+  0%, 100% {
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.2);
+  }
+  50% {
+    box-shadow: 0 4px 30px rgba(16, 185, 129, 0.4);
+  }
+}
+
+.drawer-whatsapp-btn {
+  animation: whatsapp-glow 3s ease-in-out infinite;
+}
+
+/* Social icon hover transition */
+.drawer-social-icon {
+  transition: all 0.2s ease;
+}
+
+.drawer-social-icon:hover {
+  transform: translateY(-1px);
+}
+
+/* Prevent body scroll when drawer is open */
+body.drawer-open {
+  overflow: hidden;
 }

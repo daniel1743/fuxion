@@ -2,237 +2,272 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://tiendafuxion.space/</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://tiendafuxion.space/explorar</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://tiendafuxion.space/categorias</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://tiendafuxion.space/blog</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
     <loc>https://tiendafuxion.space/opiniones</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.70</priority>
   </url>
   <url>
-    <loc>https://tiendafuxion.space/producto/prunex-1</loc>
-    <lastmod>2026-07-02</lastmod>
+    <loc>https://tiendafuxion.space/ayuda</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.60</priority>
+  </url>
+  <url>
+    <loc>https://tiendafuxion.space/terminos</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.30</priority>
+  </url>
+  <url>
+    <loc>https://tiendafuxion.space/contacto</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.50</priority>
+  </url>
+  <url>
+    <loc>https://tiendafuxion.space/envios</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.40</priority>
+  </url>
+  <url>
+    <loc>https://tiendafuxion.space/faq</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.50</priority>
+  </url>
+  <url>
+    <loc>https://tiendafuxion.space/oportunidad-fuxion</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://tiendafuxion.space/categoria/limpieza-desintoxicacion</loc>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://tiendafuxion.space/categoria/proteinas-nutricion</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://tiendafuxion.space/categoria/energia-natural</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://tiendafuxion.space/categoria/sistema-inmune</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://tiendafuxion.space/categoria/control-peso</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://tiendafuxion.space/categoria/anti-edad-belleza</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://tiendafuxion.space/categoria/vigor-mental</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://tiendafuxion.space/categoria/deportes</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://tiendafuxion.space/producto/prunex-1</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://tiendafuxion.space/producto/liquid-fiber</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://tiendafuxion.space/producto/flora-liv</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://tiendafuxion.space/producto/berry-balance</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://tiendafuxion.space/producto/alpha-balance</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://tiendafuxion.space/producto/rexet</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://tiendafuxion.space/producto/bioprotein-active</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://tiendafuxion.space/producto/vita-xtra-t-plus</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://tiendafuxion.space/producto/vitaenergia</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://tiendafuxion.space/producto/nutraday</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://tiendafuxion.space/producto/vera-plus</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://tiendafuxion.space/producto/gano-plus-cappuccino</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://tiendafuxion.space/producto/thermo-t3</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://tiendafuxion.space/producto/nocarb-t</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
+    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://tiendafuxion.space/producto/protein-active-fit</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://tiendafuxion.space/producto/youth-elixir</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://tiendafuxion.space/producto/beauty-in</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://tiendafuxion.space/producto/probal</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://tiendafuxion.space/producto/passion</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://tiendafuxion.space/producto/golden-flx</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://tiendafuxion.space/producto/on</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://tiendafuxion.space/producto/no-stress</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://tiendafuxion.space/producto/pre-sport-pro-edition</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://tiendafuxion.space/producto/post-sport-pro-edition</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://tiendafuxion.space/producto/cafe-cafe-fit-cappuccino</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://tiendafuxion.space/producto/pack-5-14</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
-  <url>
-    <loc>https://tiendafuxion.space/explorar?categoria=limpieza-desintoxicacion</loc>
-    <lastmod>2026-07-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://tiendafuxion.space/explorar?categoria=proteinas-nutricion</loc>
-    <lastmod>2026-07-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://tiendafuxion.space/explorar?categoria=energia-natural</loc>
-    <lastmod>2026-07-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://tiendafuxion.space/explorar?categoria=sistema-inmune</loc>
-    <lastmod>2026-07-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://tiendafuxion.space/explorar?categoria=control-peso</loc>
-    <lastmod>2026-07-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://tiendafuxion.space/explorar?categoria=anti-edad-belleza</loc>
-    <lastmod>2026-07-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://tiendafuxion.space/explorar?categoria=vigor-mental</loc>
-    <lastmod>2026-07-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://tiendafuxion.space/explorar?categoria=deportes</loc>
-    <lastmod>2026-07-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
-  </url>
 </urlset>
-

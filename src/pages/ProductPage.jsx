@@ -1,8 +1,7 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import { Link, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, CheckCircle2, ShoppingCart } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, Leaf, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/CartContext';
 import {
@@ -10,6 +9,7 @@ import {
   buildProductMetaDescription,
   buildProductSchema,
   buildProductTitle,
+  buildBreadcrumbSchema,
   getProductSeoContent,
   getSeoProductBySlug,
   SITE_URL,
@@ -18,6 +18,7 @@ import {
 import { getPlaceholderImage } from '@/lib/imageUtils';
 import { confirmAndOpenWhatsapp } from '@/lib/whatsapp';
 import { AiRobotIcon, WhatsAppIcon } from '@/components/icons/BrandIcons';
+import SEO from '@/components/SEO';
 
 const ProductPage = () => {
   const { slug } = useParams();
@@ -27,10 +28,11 @@ const ProductPage = () => {
   if (!product) {
     return (
       <main className="container mx-auto px-6 py-32">
-        <Helmet>
-          <title>Producto no encontrado | {STORE_NAME}</title>
-          <meta name="robots" content="noindex, follow" />
-        </Helmet>
+        <SEO
+          title="Producto no encontrado"
+          description="El producto que buscas no está disponible en nuestro catálogo."
+          noindex
+        />
         <div className="max-w-xl">
           <h1 className="text-3xl font-bold text-foreground">Producto no encontrado</h1>
           <p className="mt-4 text-muted-foreground">
@@ -105,34 +107,25 @@ const ProductPage = () => {
       transition={{ duration: 0.4 }}
       className="container mx-auto px-6 py-28"
     >
-      <Helmet>
-        <title>{buildProductTitle(product)}</title>
-        <meta name="description" content={metaDescription} />
-        <meta name="robots" content="index, follow, max-image-preview:large" />
-        <link rel="canonical" href={product.url} />
-
-        <meta property="og:type" content="product" />
-        <meta property="og:url" content={product.url} />
-        <meta property="og:title" content={buildProductTitle(product)} />
-        <meta property="og:description" content={metaDescription} />
-        <meta property="og:image" content={product.imageUrl} />
+      <SEO
+        title={buildProductTitle(product)}
+        description={metaDescription}
+        canonical={`/producto/${product.slug}`}
+        ogType="product"
+        ogImage={product.imageUrl}
+        schema={[
+          buildProductSchema(product),
+          buildBreadcrumbSchema([
+            { name: 'Inicio', url: '/' },
+            { name: 'Productos', url: '/explorar' },
+            { name: product.name, url: `/producto/${product.slug}` }
+          ]),
+          ...(faqSchema ? [faqSchema] : [])
+        ]}
+      >
         <meta property="product:price:amount" content={String(product.price)} />
         <meta property="product:price:currency" content="CLP" />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={buildProductTitle(product)} />
-        <meta name="twitter:description" content={metaDescription} />
-        <meta name="twitter:image" content={product.imageUrl} />
-
-        <script type="application/ld+json">
-          {JSON.stringify(buildProductSchema(product))}
-        </script>
-        {faqSchema && (
-          <script type="application/ld+json">
-            {JSON.stringify(faqSchema)}
-          </script>
-        )}
-      </Helmet>
+      </SEO>
 
       <Link to="/explorar" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary mb-8">
         <ArrowLeft className="h-4 w-4" />
@@ -397,6 +390,33 @@ const ProductPage = () => {
           </div>
         </section>
       )}
+
+      {/* Soft integration banner: Oportunidad Fuxion */}
+      <section className="mt-10 md:mt-14 rounded-2xl border border-emerald-100/50 dark:border-emerald-900/30 bg-gradient-to-r from-emerald-50/60 to-teal-50/60 dark:from-emerald-950/10 dark:to-teal-950/10 p-5 md:p-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-5 md:gap-6">
+          <div className="flex items-center gap-3 md:gap-4">
+            <div className="hidden md:flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900/40">
+              <Leaf className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
+            </div>
+            <div className="text-center md:text-left">
+              <p className="text-base md:text-lg font-semibold text-foreground">
+                ¿Te gusta el mundo del bienestar?
+              </p>
+              <p className="text-sm text-muted-foreground mt-1">
+                Descubre cómo algunas personas también comparten FuXion como oportunidad.
+              </p>
+            </div>
+          </div>
+          <Link to="/oportunidad-fuxion" className="w-full md:w-auto">
+            <Button
+              variant="outline"
+              className="w-full md:w-auto shrink-0 rounded-full border-emerald-300 text-emerald-700 hover:bg-emerald-600 hover:text-white dark:border-emerald-700 dark:text-emerald-300 dark:hover:bg-emerald-600"
+            >
+              Conocer más <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </Link>
+        </div>
+      </section>
     </motion.main>
   );
 };

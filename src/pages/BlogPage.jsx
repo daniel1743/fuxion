@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
+import SEO from '@/components/SEO';
 import { BookOpen, Clock, Eye, ArrowRight, Search, Filter, Settings } from 'lucide-react';
 import { useBlog } from '@/context/BlogContext';
 import { useAdmin } from '@/context/AdminContext';
@@ -43,11 +43,11 @@ const BlogPage = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Blog de Salud y Bienestar | Consejos para Perder Peso | Tienda Fuxion</title>
-        <meta name="description" content="Artículos sobre pérdida de peso, bienestar, nutrición y vida saludable. Consejos prácticos para vivir mejor sin dietas extremas." />
-        <link rel="canonical" href="https://tiendafuxion.space/blog" />
-      </Helmet>
+      <SEO
+        title="Blog de Salud y Bienestar — Consejos para Perder Peso y Nutrición"
+        description="Artículos sobre pérdida de peso, bienestar, nutrición y vida saludable. Consejos prácticos para vivir mejor sin dietas extremas."
+        canonical="/blog"
+      />
 
       <div className="min-h-screen bg-gradient-to-b from-background to-background/95 pt-24 pb-16">
         <div className="container mx-auto px-4">

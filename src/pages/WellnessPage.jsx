@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Helmet } from 'react-helmet';
+import SEO from '@/components/SEO';
 import { Link } from 'react-router-dom';
 import { Edit3, FileText, Plus, RefreshCw, Search, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -88,11 +88,11 @@ const WellnessPage = () => {
 
   return (
     <main className="min-h-screen bg-background pb-20 pt-24">
-      <Helmet>
-        <title>Bienestar | Artículos y hábitos saludables</title>
-        <meta name="description" content="Artículos sobre belleza, bienestar, nutrición, ejercicio, salud digestiva, hepática y hábitos saludables." />
-        <link rel="canonical" href="https://tiendafuxion.space/opiniones" />
-      </Helmet>
+      <SEO
+        title="Bienestar — Artículos y Hábitos Saludables"
+        description="Artículos sobre belleza, bienestar, nutrición, ejercicio, salud digestiva, hepática y hábitos saludables."
+        canonical="/opiniones"
+      />
 
       <section className="container mx-auto px-4 py-12 sm:px-6">
         <div className="mx-auto max-w-4xl text-center">

@@ -1,11 +1,11 @@
 
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { Activity, Flame, Droplets, Sparkles, ShieldCheck, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from "@/components/ui/use-toast";
+import SEO from '@/components/SEO';
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -124,10 +124,11 @@ const CategoriesPage = () => {
       transition={{ duration: 0.5 }}
       className="container mx-auto px-6 py-28"
     >
-      <Helmet>
-        <title>Categorías — Fuxion Shop</title>
-        <meta name="description" content="Explora todas las categorías de productos en Fuxion Shop." />
-      </Helmet>
+      <SEO
+        title="Categorías de Productos Fuxion — Nutrición, Energía, Digestión y Control de Peso"
+        description="Explora todas las categorías de productos Fuxion en Chile: limpieza digestiva, control de peso, energía natural, proteínas, sistema inmune, anti-edad, vigor mental y deportes."
+        canonical="/categorias"
+      />
 
       <div className="text-center mb-16">
         <h1 className="text-4xl md:text-6xl font-extrabold text-foreground tracking-tighter">Categorías</h1>
@@ -153,7 +154,7 @@ const CategoriesPage = () => {
                 <h2 className="text-3xl font-bold text-foreground">{category.name}</h2>
                 <p className="text-muted-foreground mt-2">{category.description}</p>
               </div>
-              <Link to={`/explorar?categoria=${category.slug}`}>
+              <Link to={`/categoria/${category.slug}`}>
                 <Button variant="outline" className="mt-4 md:mt-0">
                   Ver productos <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
