@@ -17,13 +17,14 @@ Allow: /contacto
 Allow: /envios
 Allow: /faq
 Allow: /oportunidad-fuxion
+Allow: /productos-fuxion-chile
 Allow: /img/
 Allow: /assets/
 
 Disallow: /api/
 Disallow: /admin/
 Disallow: /carrito/
-Disallow: /checkout/
+Disallow: /checkout
 Disallow: /cuenta/
 Disallow: /*?search=
 Disallow: /*?categoria=

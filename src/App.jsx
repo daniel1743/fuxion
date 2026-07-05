@@ -29,6 +29,9 @@ const WellnessPage = lazy(() => import('@/pages/WellnessPage'));
 const WellnessArticlePage = lazy(() => import('@/pages/WellnessArticlePage'));
 const CategoryPage = lazy(() => import('@/pages/CategoryPage'));
 const OpportunityPage = lazy(() => import('@/pages/OpportunityPage'));
+const ContactPage = lazy(() => import('@/pages/ContactPage'));
+const HelpCenterPage = lazy(() => import('@/pages/HelpCenterPage'));
+const ProductosFuxionPage = lazy(() => import('@/pages/ProductosFuxionPage'));
 
 function App() {
   const location = useLocation();
@@ -55,7 +58,8 @@ function App() {
                     <Route path="/explorar" element={<ExplorePage />} />
                     <Route path="/categoria/:categorySlug" element={<CategoryPage />} />
                     <Route path="/categorias" element={<CategoriesPage />} />
-                    <Route path="/ayuda" element={<SupportPage />} />
+                    <Route path="/ayuda" element={<HelpCenterPage />} />
+                    <Route path="/comunidad" element={<SupportPage />} />
                     <Route path="/producto/:slug" element={<ProductPage />} />
                     <Route path="/carrito" element={<CartPage />} />
                     <Route path="/checkout" element={<PlaceholderPage pageName="Checkout" />} />
@@ -65,10 +69,11 @@ function App() {
                     <Route path="/blog" element={<EvidencePage />} />
                     <Route path="/blog/:slug" element={<BlogPostPage />} />
                     <Route path="/terminos" element={<PlaceholderPage pageName="Términos y Condiciones" />} />
-                    <Route path="/contacto" element={<PlaceholderPage pageName="Contacto" />} />
+                    <Route path="/contacto" element={<ContactPage />} />
                     <Route path="/envios" element={<PlaceholderPage pageName="Envíos y Devoluciones" />} />
                     <Route path="/faq" element={<PlaceholderPage pageName="FAQ" />} />
                     <Route path="/oportunidad-fuxion" element={<OpportunityPage />} />
+                    <Route path="/productos-fuxion-chile" element={<ProductosFuxionPage />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                   </Routes>
                 </Suspense>

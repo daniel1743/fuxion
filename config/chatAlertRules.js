@@ -5,33 +5,63 @@ export const TELEGRAM_CONFIG = {
   tokenEnvVar: 'TELEGRAM_BOT_TOKEN'
 };
 
-export const CHAT_EVENT_SCORES = {
-  PRODUCT_INTEREST: 10,
-  BENEFITS: 15,
-  INGREDIENTS: 10,
-  PRICE: 20,
-  SHIPPING: 15,
-  STOCK: 15,
-  MULTIPLE_PRODUCT_COMPARISON: 20,
-  REPEATED_PRODUCT: 20,
-  LONG_CONVERSATION: 20,
-  ADVISOR_DECLINED: 30,
-  CART_INTEREST: 40,
-  MEDICAL_WARNING: 30
+// ===================================================================
+// BUY_INTENT_SCORE - Sistema de scoring por intención comercial real
+// ===================================================================
+
+// Señales fuertes (+40)
+export const BUY_INTENT_STRONG = {
+  buyPhrases: /\b(quiero comprar|c[oó]mo compro|d[oó]nde compro|quiero pedir|me interesa|lo quiero|tienen disponible)\b/i,
+  score: 40
 };
 
-export const NOTIFICATION_RULES = {
-  scoreThreshold: 80,
-  alwaysNotifyEvents: [
-    'ADVISOR_DECLINED',
-    'LONG_CONVERSATION',
-    'MEDICAL_WARNING',
-    'REPEATED_PRODUCT',
-    'MULTIPLE_PRODUCT_COMPARISON',
-    'CART_INTEREST'
-  ]
+// Señales fuertes (+30)
+export const BUY_INTENT_PRICE = {
+  priceQuestion: /\b(precio|cu[aá]nto cuesta|valor)\b/i,
+  score: 30
 };
 
+export const BUY_INTENT_LOGISTICS = {
+  logisticsQuestion: /\b(env[ií]an|delivery|despacho|d[oó]nde entregan)\b/i,
+  score: 30
+};
+
+// Señales fuertes (+25)
+export const BUY_INTENT_SPECIFIC_PROBLEM = {
+  specificProblem: /\b(tengo estre[ñn]imiento|quiero energ[ií]a|quiero bajar de peso|necesito algo para)\b/i,
+  score: 25
+};
+
+// Señales fuertes (+20)
+export const BUY_INTENT_REPEATED_PRODUCT = {
+  score: 20
+};
+
+// Señales medias (+10)
+export const BUY_INTENT_MEDIUM = {
+  benefits: /\b(beneficios?|sirve|para qu[eé]|para que|qu[eé] hace|funciona)\b/i,
+  ingredients: /\b(ingredientes?|contiene|composici[oó]n)\b/i,
+  comparison: /\b(vs|versus|comparar|diferencia entre|mejor que)\b/i,
+  score: 10
+};
+
+// ===================================================================
+// BUSINESS_INTENT - Detección de interés en oportunidad de negocio
+// ===================================================================
+export const BUSINESS_INTENT_PATTERNS = /\b(quiero vender|negocio|distribuidor|ganar dinero|emprender|trabajar con fuxion|trabajar con fuXion|vender fuxion|vender fuXion|hacer el negocio|c[oó]mo gano dinero|c[oó]mo ganar dinero|ser distribuidor|oportunidad fuxion|oportunidad fuXion|plan de negocio|ganancias|ingresos extra|ingreso extra|unirme a fuxion|unirme a fuXion|asociarme|ser parte de fuxion|ser parte de fuXion|modelo de negocio|plan de compensaci[oó]n|ganar dinero con fuxion|ganar dinero con fuXion|c[oó]mo funciona el negocio|vender productos|oportunidad de negocio|negocio propio|dinero extra|independencia financiera|libertad financiera|trabajo desde casa|negocio desde casa|ingreso pasivo|ingresos pasivos)\b/i;
+
+// ===================================================================
+// NIVELES DE INTENCIÓN
+// ===================================================================
+export const INTENT_LEVELS = {
+  curious: { min: 0, max: 40, label: 'Curioso', notify: false, save: false },
+  interested: { min: 40, max: 70, label: 'Interesado', notify: false, save: true },
+  hot: { min: 70, max: Infinity, label: '🔥 LEAD CALIENTE', notify: true, save: true }
+};
+
+// ===================================================================
+// PATRONES DE PRODUCTOS (para detección)
+// ===================================================================
 export const CHAT_RULE_PATTERNS = {
   products: [
     'prunex', 'prunex 1',
@@ -70,34 +100,55 @@ export const CHAT_RULE_PATTERNS = {
   cartInterest: /\b(carrito|pedido|comprar|compra|agregar al carrito|hacer pedido|checkout|pedido listo|pagar)\b/i,
   advisorDecline: /\b(no gracias|prefiero continuar|prefiero seguir|sin asesor|me quedo aqu[ií]|seguir aqu[ií])\b/i,
   medicalWarning: /\b(dolor intenso|dificultad respiratoria|p[eé]rdida de conciencia|v[oó]mito con sangre|sangrado abundante|dolor tor[aác]cico intenso|fiebre alta|dolor en el pecho|mareo grave|palpitaciones intensas)\b/i,
-  questionWords: /\b(quien|que|cu[aá]l|d[oó]nde|por qu[eé]|qui[eé]n|c[uú]ando|cu[aá]nto)\b/i
+  questionWords: /\b(quien|que|cu[aá]l|d[oó]nde|por qu[eé]|qui[eé]n|c[uú]ando|cu[aá]nto)\b/i,
+  businessOpportunity: /\b(vender fuxion|vender fuXion|hacer el negocio|c[oó]mo gano dinero|c[oó]mo ganar dinero|quiero emprender|ser distribuidor|oportunidad fuxion|oportunidad fuXion|plan de negocio|ganancias|negocio fuxion|negocio fuXion|ingresos extra|ingreso extra|trabajar con fuxion|trabajar con fuXion|emprender con fuxion|emprender con fuXion|unirme a fuxion|unirme a fuXion|asociarme|ser parte de fuxion|ser parte de fuXion|modelo de negocio|plan de compensaci[oó]n|ganar dinero con fuxion|ganar dinero con fuXion|c[oó]mo funciona el negocio|quiero vender|vender productos|oportunidad de negocio|negocio propio|ingresos|dinero extra|independencia financiera|libertad financiera|trabajo desde casa|negocio desde casa|ingreso pasivo|ingresos pasivos)\b/i
 };
 
-export const TELEGRAM_MESSAGE_TEMPLATE = `🔥 CLIENTE DE ALTO INTERÉS
+// ===================================================================
+// TEMPLATES DE TELEGRAM
+// ===================================================================
+export const TELEGRAM_MESSAGE_TEMPLATE = `🔥 LEAD CALIENTE FUXION
 
-👤 Sesión:
-{session}
+👤 Cliente:
+{nombre}
 
 📦 Producto:
 {product}
 
-⭐ Score:
-{score}
+🎯 Intención compra:
+{score}%
 
-⏱ Tiempo:
-{minutes} minutos
+⏱ Conversación:
+{minutes} min
 
-💬 Preguntas:
+💬 Mensajes:
 {questions}
 
-🚫 Asesor rechazado:
-{advisor_declined}
-
-📋 Resumen:
-
+🧠 Detectado:
 {summary}
 
-----------------------------
+Último mensaje:
+"{lastMessage}"
 
-Hora:
-{datetime}`;
+Acción recomendada:
+Contactar ahora`;
+
+export const TELEGRAM_BUSINESS_TEMPLATE = `🚀 INTERÉS NEGOCIO FUXION
+
+👤 Cliente:
+{nombre}
+
+💬 Mensajes:
+{questions}
+
+⏱ Conversación:
+{minutes} min
+
+🧠 Detectado:
+{summary}
+
+Último mensaje:
+"{lastMessage}"
+
+Acción recomendada:
+Contactar para informar sobre oportunidad`;

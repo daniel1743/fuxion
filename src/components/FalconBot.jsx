@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Minus, X, Send } from 'lucide-react';
+import { Minus, X, Send, MessageCircle, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from "@/components/ui/use-toast";
 import { sendMessageToDeepSeek } from '@/services/deepseekService';
@@ -267,7 +267,7 @@ Puedes preguntarme si es adecuado para tu objetivo, con qué combinarlo o cómo 
         setMessages(prev => {
             const updated = prev.map((msg, index) => (
                 index === messageIndex
-                    ? { ...msg, advisorUrl: null }
+                    ? { ...msg, advisorUrl: null, showContactForm: false }
                     : msg
             ));
             return [
@@ -279,6 +279,19 @@ Puedes preguntarme si es adecuado para tu objetivo, con qué combinarlo o cómo 
                 }
             ];
         });
+    };
+
+    const handleOpenContactForm = () => {
+        minimizeChat();
+        // Pequeño delay para que se cierre el chat antes de navegar
+        setTimeout(() => {
+            window.location.href = '/ayuda';
+        }, 300);
+    };
+
+    const handleOpenWhatsAppContact = () => {
+        confirmAndOpenWhatsapp('Hola, quiero contactar con el equipo de Naturalmente FuXion.');
+        minimizeChat();
     };
 
     const handleQuickAction = (actionText) => {
@@ -620,15 +633,22 @@ Pregunta del usuario: ${userMessage}`,
                                         )}
                                         {message.advisorUrl && (
                                             <div className="mt-3 flex flex-col gap-2">
-                                                <a
-                                                    href={message.advisorUrl}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
+                                                <button
+                                                    type="button"
+                                                    onClick={handleOpenContactForm}
                                                     className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 px-3 py-2 text-xs font-semibold text-white transition hover:shadow-lg hover:from-emerald-600 hover:to-teal-600"
                                                 >
+                                                    <FileText className="h-4 w-4" />
+                                                    📩 Abrir formulario de contacto
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    onClick={handleOpenWhatsAppContact}
+                                                    className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-3 py-2 text-xs font-semibold text-white transition hover:bg-[#1fb85a]"
+                                                >
                                                     <WhatsAppIcon className="h-4 w-4" />
-                                                    Hablar con asesor por WhatsApp
-                                                </a>
+                                                    💬 Hablar por WhatsApp
+                                                </button>
                                                 <button
                                                     type="button"
                                                     onClick={() => declineAdvisor(index)}

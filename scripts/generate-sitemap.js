@@ -2,7 +2,7 @@
  * Dynamic sitemap generator for Tienda Fuxion Chile
  * 
  * Run: node scripts/generate-sitemap.js
- * This generates public/sitemap.xml with all products, categories, and static pages.
+ * This generates public/sitemap.xml with all products, categories, wellness articles, and static pages.
  */
 
 import fs from 'node:fs';
@@ -19,13 +19,14 @@ const staticPages = [
   { loc: '/explorar', priority: '0.95', changefreq: 'weekly' },
   { loc: '/categorias', priority: '0.85', changefreq: 'weekly' },
   { loc: '/blog', priority: '0.75', changefreq: 'weekly' },
-  { loc: '/opiniones', priority: '0.70', changefreq: 'weekly' },
+  { loc: '/opiniones', priority: '0.80', changefreq: 'weekly' },
   { loc: '/ayuda', priority: '0.60', changefreq: 'monthly' },
   { loc: '/terminos', priority: '0.30', changefreq: 'monthly' },
-  { loc: '/contacto', priority: '0.50', changefreq: 'monthly' },
+  { loc: '/contacto', priority: '0.70', changefreq: 'weekly' },
   { loc: '/envios', priority: '0.40', changefreq: 'monthly' },
   { loc: '/faq', priority: '0.50', changefreq: 'monthly' },
-  { loc: '/oportunidad-fuxion', priority: '0.80', changefreq: 'monthly' },
+  { loc: '/oportunidad-fuxion', priority: '0.85', changefreq: 'weekly' },
+  { loc: '/productos-fuxion-chile', priority: '0.90', changefreq: 'weekly' },
 ];
 
 // ── Category pages (clean URLs) ───────────────────────────────
@@ -41,7 +42,6 @@ const categories = [
 ];
 
 // ── Product slugs from database ───────────────────────────────
-// We read the JSON database to get all product names and generate slugs
 function loadProductSlugs() {
   try {
     const dbPath = path.resolve(__dirname, '../src/data/fuxion_database.json');
@@ -66,9 +66,30 @@ function loadProductSlugs() {
   }
 }
 
+// ── Wellness article slugs from Supabase (optional) ───────────
+// If a wellness-articles.json cache exists, include those URLs too
+function loadWellnessArticleSlugs() {
+  try {
+    const cachePath = path.resolve(__dirname, '../public/wellness-articles-cache.json');
+    if (fs.existsSync(cachePath)) {
+      const raw = fs.readFileSync(cachePath, 'utf-8');
+      const articles = JSON.parse(raw);
+      if (Array.isArray(articles)) {
+        return articles
+          .filter((a) => a.slug && a.is_published !== false)
+          .map((a) => ({ slug: a.slug, title: a.title }));
+      }
+    }
+  } catch (err) {
+    // Silently fail - cache may not exist yet
+  }
+  return [];
+}
+
 // ── Generate XML ──────────────────────────────────────────────
 function generateSitemap() {
   const products = loadProductSlugs();
+  const wellnessArticles = loadWellnessArticleSlugs();
   const urls = [];
 
   // Static pages
@@ -102,6 +123,16 @@ function generateSitemap() {
   </url>`);
   }
 
+  // Wellness article pages
+  for (const article of wellnessArticles) {
+    urls.push(`  <url>
+    <loc>${SITE_URL}/bienestar/${article.slug}</loc>
+    <lastmod>${TODAY}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>`);
+  }
+
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.join('\n')}
@@ -110,7 +141,7 @@ ${urls.join('\n')}
   const outputPath = path.resolve(__dirname, '../public/sitemap.xml');
   fs.writeFileSync(outputPath, xml, 'utf-8');
   console.log(`✅ Sitemap generated: ${outputPath}`);
-  console.log(`   ${urls.length} URLs included (${staticPages.length} static, ${categories.length} categories, ${products.length} products)`);
+  console.log(`   ${urls.length} URLs included (${staticPages.length} static, ${categories.length} categories, ${products.length} products, ${wellnessArticles.length} wellness articles)`);
 }
 
 generateSitemap();

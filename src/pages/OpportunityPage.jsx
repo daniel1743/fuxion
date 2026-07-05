@@ -28,6 +28,7 @@ import SEO from '@/components/SEO';
 import { SITE_URL, STORE_NAME } from '@/lib/productSeo';
 import { openWhatsapp } from '@/lib/whatsapp';
 import { toast } from '@/components/ui/use-toast';
+import OpportunityVideo from '@/components/OpportunityVideo';
 
 // ── Page transition variants ──────────────────────────────────
 const pageVariants = {
@@ -249,9 +250,31 @@ const OpportunityPage = () => {
     setFormLoading(true);
 
     try {
-      // Here you would integrate with your backend/email service
-      // For now, we simulate a successful submission
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const payload = {
+        nombre: formData.name.trim(),
+        pais: formData.country || 'No especificado',
+        whatsapp: formData.whatsapp.trim(),
+        interes: formData.interest,
+        fecha: new Date().toLocaleString('es-CL', {
+          timeZone: 'America/Santiago',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        }),
+        origen: 'Oportunidad FuXion'
+      };
+
+      const response = await fetch('/api/contact-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error('Error al enviar los datos');
+      }
 
       setFormSubmitted(true);
       // Track event
@@ -264,11 +287,11 @@ const OpportunityPage = () => {
 
       toast({
         title: '¡Gracias por tu interés!',
-        description: 'Recibirás información pronto. Mientras tanto, puedes explorar los productos.',
+        description: 'Recibimos tus datos. Te contactaremos pronto.',
       });
     } catch (error) {
       toast({
-        title: 'Error al enviar',
+        title: 'No pudimos enviar tus datos',
         description: 'Intenta nuevamente o escríbenos directamente por WhatsApp.',
         variant: 'destructive',
       });
@@ -371,19 +394,19 @@ const OpportunityPage = () => {
               >
                 <Button
                   size="lg"
-                  className="btn-mobile-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-3xl shadow-premium-soft btn-scale-hover text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 whitespace-normal h-auto"
+                  className="btn-mobile-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-[20px] shadow-premium-soft btn-scale-hover text-base px-7 py-0 h-[54px] sm:h-14 max-w-[300px]"
                   onClick={handleOpenForm}
                 >
                   <span className="text-balance">Quiero conocer cómo funciona</span>
-                  <ArrowRight className="ml-2 h-5 w-5 shrink-0" />
+                  <ArrowRight className="ml-2 h-[18px] w-[18px] shrink-0 stroke-[1.75]" />
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
-                  className="btn-mobile-full font-bold rounded-3xl text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 border-2 border-emerald-200 dark:border-emerald-800 whitespace-normal h-auto btn-scale-hover"
+                  className="btn-mobile-full font-bold rounded-[20px] text-base px-7 py-0 h-[54px] sm:h-14 max-w-[300px] border border-emerald-200 dark:border-emerald-800 bg-white/75 dark:bg-transparent btn-scale-hover"
                   onClick={() => navigate('/explorar')}
                 >
-                  <Leaf className="mr-2 h-5 w-5 shrink-0" />
+                  <Leaf className="mr-2 h-[18px] w-[18px] shrink-0 stroke-[1.75]" />
                   <span className="text-balance">Primero quiero conocer los productos</span>
                 </Button>
               </motion.div>
@@ -583,11 +606,11 @@ const OpportunityPage = () => {
               >
                 <Button
                   size="lg"
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-3xl shadow-premium-soft btn-scale-hover text-lg px-10 py-6"
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-[20px] shadow-premium-soft btn-scale-hover text-base px-7 py-0 h-14"
                   onClick={handleStartQuiz}
                 >
                   Comenzar quiz
-                  <ChevronRight className="ml-2 h-5 w-5" />
+                  <ChevronRight className="ml-2 h-[18px] w-[18px] stroke-[1.75]" />
                 </Button>
               </motion.div>
             ) : quizComplete ? (
@@ -704,6 +727,73 @@ const OpportunityPage = () => {
               Los resultados dependen del aprendizaje, constancia,
               dedicación y esfuerzo personal.
             </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════
+         SECTION: VIDEO OPORTUNIDAD
+      ════════════════════════════════════════════════════════════ */}
+      <section className="py-20 bg-gradient-to-br from-emerald-50/30 to-white dark:from-emerald-950/5 dark:to-card">
+        <div className="container mx-auto px-6 max-w-4xl">
+          <motion.div className="text-center mb-10" {...fadeUp}>
+            <Badge className="mb-4 px-4 py-1.5 bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 border-0">
+              <BookOpen className="w-4 h-4 mr-1.5" />
+              Aprende cómo funciona
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Conoce cómo funciona la oportunidad FuXion
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Antes de decidir, puedes ver una explicación sencilla sobre cómo las personas
+              desarrollan su proyecto FuXion a su ritmo.
+            </p>
+          </motion.div>
+
+          <motion.div {...fadeUp} transition={{ duration: 0.6, delay: 0.2 }}>
+            <OpportunityVideo />
+          </motion.div>
+
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 justify-center mt-10"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <Button
+              size="lg"
+              className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-[20px] shadow-premium-soft btn-scale-hover text-base px-7 py-0 h-[54px] sm:h-14"
+              onClick={() => {
+                handleOpenForm();
+                if (typeof window !== 'undefined' && window.gtag) {
+                  window.gtag('event', 'OPPORTUNITY_FORM_SENT', {
+                    event_category: 'opportunity',
+                    event_label: 'Quiero recibir información'
+                  });
+                }
+              }}
+            >
+              Quiero recibir información
+              <ArrowRight className="ml-2 h-[18px] w-[18px] shrink-0 stroke-[1.75]" />
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="font-bold rounded-[20px] text-base px-7 py-0 h-[54px] sm:h-14 border border-emerald-200 dark:border-emerald-800 bg-white/75 dark:bg-transparent btn-scale-hover"
+              onClick={() => {
+                handleWhatsApp('Hola, quiero información sobre la oportunidad FuXion.');
+                if (typeof window !== 'undefined' && window.gtag) {
+                  window.gtag('event', 'OPPORTUNITY_WHATSAPP_CLICK', {
+                    event_category: 'opportunity',
+                    event_label: 'WhatsApp desde video oportunidad'
+                  });
+                }
+              }}
+            >
+              <MessageCircle className="mr-2 h-[18px] w-[18px] shrink-0 stroke-[1.75]" />
+              Hablar por WhatsApp
+            </Button>
           </motion.div>
         </div>
       </section>
@@ -831,9 +921,9 @@ const OpportunityPage = () => {
                     </label>
                     <div className="space-y-2">
                       {[
-                        { value: 'products', label: 'Quiero consumir productos' },
-                        { value: 'opportunity', label: 'Quiero conocer la oportunidad' },
-                        { value: 'both', label: 'Ambas' },
+                        { value: 'products', label: 'Quiere consumir productos' },
+                        { value: 'business', label: 'Quiere conocer el negocio FuXion' },
+                        { value: 'both', label: 'Productos y oportunidad FuXion' },
                       ].map((option) => (
                         <label
                           key={option.value}
@@ -859,7 +949,7 @@ const OpportunityPage = () => {
 
                   <Button
                     type="submit"
-                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-3xl shadow-premium-soft btn-scale-hover py-6 text-lg"
+                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-[20px] shadow-premium-soft btn-scale-hover text-base py-0 h-14"
                     disabled={formLoading}
                   >
                     {formLoading ? (
@@ -870,7 +960,7 @@ const OpportunityPage = () => {
                     ) : (
                       <span className="flex items-center justify-center gap-2">
                         Enviar
-                        <Send className="w-4 h-4" />
+                        <Send className="h-[18px] w-[18px] stroke-[1.75]" />
                       </span>
                     )}
                   </Button>
@@ -897,23 +987,21 @@ const OpportunityPage = () => {
             <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
               <Button
                 size="lg"
-                className="btn-mobile-full bg-white text-emerald-900 hover:bg-emerald-50 font-bold rounded-3xl shadow-premium-soft btn-scale-hover text-base sm:text-lg px-8 sm:px-10 py-5 sm:py-6 whitespace-normal h-auto"
+                className="btn-mobile-full bg-white text-emerald-900 hover:bg-emerald-50 font-bold rounded-[20px] shadow-premium-soft btn-scale-hover text-base px-7 py-0 h-[54px] sm:h-14 max-w-[300px]"
                 onClick={handleOpenForm}
               >
                 <span className="text-balance">Quiero recibir información</span>
-                <ArrowRight className="ml-2 h-5 w-5 shrink-0" />
+                <ArrowRight className="ml-2 h-[18px] w-[18px] shrink-0 stroke-[1.75]" />
               </Button>
-              <div className="inline-flex flex-col items-center gap-2 bg-white/10 backdrop-blur-sm rounded-3xl px-6 sm:px-8 py-5 border border-emerald-300/30 shadow-premium-soft btn-scale-hover cursor-pointer transition-all duration-200 hover:bg-white/15"
+              <Button
+                variant="outline"
+                size="lg"
+                className="btn-mobile-full font-bold rounded-[20px] text-base px-7 py-0 h-[54px] sm:h-14 max-w-[300px] border border-emerald-300/50 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 btn-scale-hover"
                 onClick={() => navigate('/explorar')}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => e.key === 'Enter' && navigate('/explorar')}
               >
-                <Leaf className="w-6 h-6 text-emerald-300" />
-                <span className="text-sm sm:text-base font-semibold text-white text-balance">
-                  Ver productos
-                </span>
-              </div>
+                <Leaf className="mr-2 h-[18px] w-[18px] shrink-0 stroke-[1.75]" />
+                <span className="text-balance">Ver productos</span>
+              </Button>
             </div>
           </motion.div>
         </div>

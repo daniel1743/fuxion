@@ -136,7 +136,10 @@ const ProductPage = () => {
         <div className="bg-secondary rounded-2xl overflow-hidden border border-border">
           <img
             src={product.image || getPlaceholderImage('product')}
-            alt={`${product.name} Fuxion producto nutraceutico`}
+            alt={`${product.name} FuXion Chile — producto nutracéutico para ${product.category?.toLowerCase() || 'bienestar'}`}
+            width="600"
+            height="600"
+            loading="eager"
             className="w-full aspect-square object-cover"
             onError={(event) => {
               event.currentTarget.src = getPlaceholderImage('product');
@@ -274,6 +277,63 @@ const ProductPage = () => {
           </div>
         </section>
       )}
+
+      {/* H2: Precio de {product.name} FuXion en Chile */}
+      <section className="mt-14">
+        <h2 className="text-3xl font-extrabold text-foreground">
+          Precio de {product.name} FuXion en Chile
+        </h2>
+        <div className="mt-6 rounded-2xl border border-border bg-card p-6">
+          <p className="text-muted-foreground leading-relaxed">
+            El precio de <strong>{product.name} FuXion</strong> en Chile es de <strong>${product.price.toLocaleString('es-CL')}</strong> por caja. 
+            Los precios pueden variar según promociones vigentes y disponibilidad de stock. 
+            Para conocer el precio actualizado y las opciones de pago disponibles, te recomendamos consultar directamente con un asesor.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={handleProductWhatsapp}
+              className="h-10 px-4 gap-2 border-green-200 text-green-700 hover:bg-green-600 hover:text-white"
+            >
+              <WhatsAppIcon className="h-4 w-4" />
+              Consultar precio actual
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* H2: Dónde comprar {product.name} FuXion original en Chile */}
+      <section className="mt-14">
+        <h2 className="text-3xl font-extrabold text-foreground">
+          Dónde comprar {product.name} FuXion original en Chile
+        </h2>
+        <div className="mt-6 rounded-2xl border border-border bg-card p-6">
+          <p className="text-muted-foreground leading-relaxed">
+            Puedes comprar <strong>{product.name} FuXion original</strong> a través de nuestra tienda online <strong>Tienda Fuxion Chile</strong>. 
+            Realizamos envíos a todo Chile con coordinación vía WhatsApp. 
+            Para garantizar que recibas un producto 100% original, recomendamos siempre comprar a través de canales oficiales y con asesoría personalizada.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <Button
+              onClick={() => addToCart(productForCart)}
+              className="h-10 px-4 gap-2"
+            >
+              <ShoppingCart className="h-4 w-4" />
+              Agregar al carrito
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={handleProductWhatsapp}
+              className="h-10 px-4 gap-2 border-green-200 text-green-700 hover:bg-green-600 hover:text-white"
+            >
+              <WhatsAppIcon className="h-4 w-4" />
+              Comprar con asesor
+            </Button>
+          </div>
+        </div>
+      </section>
 
 
       {seoContent?.deepSections?.length > 0 && (

@@ -77,7 +77,6 @@ export default async function handler(req, res) {
   const body = {
     chat_id: TELEGRAM_CHAT_ID,
     text: testMessage,
-    parse_mode: 'MarkdownV2',
     disable_web_page_preview: true,
     disable_notification: false
   };

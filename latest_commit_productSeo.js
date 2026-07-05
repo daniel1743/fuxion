@@ -264,11 +264,6 @@ export const getAllSeoProducts = () =>
     normalizeProductForSeo(key, product)
   );
 
-export const getAllProducts = () =>
-  Object.entries(fuxionDatabase.productos || {}).map(([key, product]) =>
-    normalizeProductForSeo(key, product)
-  );
-
 export const getSeoProductBySlug = (slug) =>
   getAllSeoProducts().find((product) => product.slug === slug);
 
@@ -363,22 +358,6 @@ export const buildStoreSchema = () => ({
   brand: {
     '@type': 'Brand',
     name: 'Fuxion'
-  },
-  sameAs: [
-    SITE_URL
-  ]
-});
-
-export const buildOrganizationSchema = () => ({
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: STORE_NAME,
-  url: SITE_URL,
-  logo: `${SITE_URL}/img/familia.fuxion.png`,
-  description: 'Tienda Fuxion en Chile con productos nutraceuticos para nutricion, bienestar, energia, digestion, control de peso y cuidado natural.',
-  areaServed: {
-    '@type': 'Country',
-    name: 'Chile'
   },
   sameAs: [
     SITE_URL

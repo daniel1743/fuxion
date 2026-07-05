@@ -26,6 +26,7 @@ const Footer = () => {
     ];
 
     const ayudaLinks = [
+      { label: 'Centro de ayuda', path: '/ayuda' },
       { label: 'Contacto', path: '/contacto' },
       { label: 'Envíos y Devoluciones', path: '/envios' },
       { label: 'FAQ', path: '/faq' },

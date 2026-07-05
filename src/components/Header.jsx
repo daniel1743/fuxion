@@ -13,7 +13,8 @@ import {
   Sparkles,
   Instagram,
   MessageCircle,
-  ChevronRight
+  ChevronRight,
+  HelpCircle
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/CartContext';
@@ -26,6 +27,7 @@ const navLinks = [
   { name: 'Bienestar', path: '/opiniones' },
   { name: 'Oportunidad', path: '/oportunidad-fuxion' },
   { name: 'Evidencias', path: '/blog' },
+  { name: 'Ayuda', path: '/ayuda' },
 ];
 
 const officialStoreUrl = 'https://ifuxion.com/daniel/enrollment/chooseperson';
@@ -37,6 +39,7 @@ const drawerNavItems = [
   { label: 'Objetivos de bienestar', subtitle: 'Encuentra lo ideal para ti', icon: Leaf, path: '/opiniones' },
   { label: 'Evidencias', subtitle: 'Información y contenido', icon: BookOpen, path: '/blog' },
   { label: 'Oportunidad FuXion', subtitle: 'Conoce el proyecto', icon: Sparkles, path: '/oportunidad-fuxion' },
+  { label: 'Centro de ayuda', subtitle: 'Contacto y soporte', icon: HelpCircle, path: '/ayuda' },
 ];
 
 // ── Social links ───────────────────────────────────────────────

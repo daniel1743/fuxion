@@ -264,11 +264,6 @@ export const getAllSeoProducts = () =>
     normalizeProductForSeo(key, product)
   );
 
-export const getAllProducts = () =>
-  Object.entries(fuxionDatabase.productos || {}).map(([key, product]) =>
-    normalizeProductForSeo(key, product)
-  );
-
 export const getSeoProductBySlug = (slug) =>
   getAllSeoProducts().find((product) => product.slug === slug);
 
@@ -367,67 +362,4 @@ export const buildStoreSchema = () => ({
   sameAs: [
     SITE_URL
   ]
-});
-
-export const buildOrganizationSchema = () => ({
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: STORE_NAME,
-  url: SITE_URL,
-  logo: `${SITE_URL}/img/familia.fuxion.png`,
-  description: 'Tienda Fuxion en Chile con productos nutraceuticos para nutricion, bienestar, energia, digestion, control de peso y cuidado natural.',
-  areaServed: {
-    '@type': 'Country',
-    name: 'Chile'
-  },
-  sameAs: [
-    SITE_URL
-  ]
-});
-
-/**
- * LocalBusiness schema for local SEO (Chile).
- */
-export const buildLocalBusinessSchema = () => ({
-  '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  name: STORE_NAME,
-  url: SITE_URL,
-  image: `${SITE_URL}/img/familia.fuxion.png`,
-  description: 'Tienda Fuxion en Chile con productos nutraceuticos para nutricion, bienestar, energia, digestion, control de peso y cuidado natural.',
-  telephone: '+56912345678',
-  email: 'contacto@tiendafuxion.space',
-  areaServed: [
-    {
-      '@type': 'City',
-      name: 'Santiago'
-    },
-    {
-      '@type': 'Country',
-      name: 'Chile'
-    }
-  ],
-  address: {
-    '@type': 'PostalAddress',
-    addressCountry: 'CL'
-  },
-  priceRange: '$$',
-  openingHours: 'Mo-Fr 09:00-18:00',
-  sameAs: [
-    SITE_URL
-  ]
-});
-
-/**
- * BreadcrumbList schema for a given array of { name, url } items.
- */
-export const buildBreadcrumbSchema = (items) => ({
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: items.map((item, index) => ({
-    '@type': 'ListItem',
-    position: index + 1,
-    name: item.name,
-    item: `${SITE_URL}${item.url}`
-  }))
 });

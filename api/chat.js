@@ -277,6 +277,64 @@ const getMentionedProductsFromHistory = (messages = []) => {
 };
 
 // ===================================================================
+// DETECCIÓN DE INTERÉS EN OPORTUNIDAD DE NEGOCIO
+// ===================================================================
+const BUSINESS_OPPORTUNITY_PATTERNS = [
+  /\b(vender fuxion|vender fuXion)\b/i,
+  /\b(hacer el negocio)\b/i,
+  /\b(c[oó]mo gano dinero|c[oó]mo ganar dinero)\b/i,
+  /\b(quiero emprender)\b/i,
+  /\b(ser distribuidor)\b/i,
+  /\b(oportunidad fuxion|oportunidad fuXion)\b/i,
+  /\b(plan de negocio)\b/i,
+  /\b(ganancias|ingresos extra|ingreso extra)\b/i,
+  /\b(negocio fuxion|negocio fuXion)\b/i,
+  /\b(trabajar con fuxion|trabajar con fuXion)\b/i,
+  /\b(emprender con fuxion|emprender con fuXion)\b/i,
+  /\b(unirme a fuxion|unirme a fuXion|asociarme)\b/i,
+  /\b(ser parte de fuxion|ser parte de fuXion)\b/i,
+  /\b(modelo de negocio|plan de compensaci[oó]n)\b/i,
+  /\b(ganar dinero con fuxion|ganar dinero con fuXion)\b/i,
+  /\b(c[oó]mo funciona el negocio)\b/i,
+  /\b(quiero vender|vender productos)\b/i,
+  /\b(oportunidad de negocio|negocio propio)\b/i,
+  /\b(ingresos|dinero extra)\b/i,
+  /\b(independencia financiera|libertad financiera)\b/i,
+  /\b(trabajo desde casa|negocio desde casa)\b/i,
+  /\b(ingreso pasivo|ingresos pasivos)\b/i
+];
+
+const detectBusinessOpportunityIntent = (text = '') => {
+  if (!text) return false;
+  return BUSINESS_OPPORTUNITY_PATTERNS.some(pattern => pattern.test(text));
+};
+
+const BUSINESS_OPPORTUNITY_RESPONSE = `Si el usuario muestra interés en la oportunidad de negocio FuXion (vender, distribuir, emprender, ganar dinero, plan de negocio, etc.), responde de forma natural e informativa siguiendo estas pautas:
+
+INFORMACION QUE PUEDES COMPARTIR:
+- FuXion es una empresa de bienestar con presencia internacional.
+- Algunas personas deciden compartir los productos y desarrollar un proyecto independiente.
+- Hay acompañamiento, formación y herramientas digitales disponibles.
+- Cada persona avanza a su propio ritmo, sin presión.
+
+REGLAS DE SEGURIDAD (OBLIGATORIAS):
+- NUNCA prometas ingresos, ganancias, ni resultados económicos específicos.
+- NUNCA uses frases como "gana dinero fácil", "hazte rico", "ingreso garantizado" o similares.
+- NUNCA presiones al usuario a unirse o tomar una decisión inmediata.
+- Siempre menciona que los resultados dependen del esfuerzo y dedicación personal.
+- Siempre mantén un tono informativo, no de venta agresiva.
+
+TONO:
+- Informativo, tranquilo, sin presión.
+- Como quien explica una posibilidad, no como quien vende un sueño.
+- Invita a conocer más, no a decidir hoy.
+
+Ejemplo de respuesta:
+"FuXion es una empresa de bienestar con más de 15 años. Algunas personas que conocen los productos deciden compartirlos con otros y desarrollar un proyecto independiente. Hay formación y acompañamiento, y cada persona avanza a su ritmo. Si te interesa conocer más, puedo darte información general sobre cómo funciona."
+
+NO uses este template textualmente. Adáptalo al contexto de la conversación.`;
+
+// ===================================================================
 // CONSTRUCCIÓN DE CONTEXTO MÍNIMO PARA LA IA
 // ===================================================================
 const getProductDetails = (productName) => {
@@ -550,6 +608,26 @@ REGLAS DE COMUNICACION:
 - Para condiciones estables como higado graso, colesterol, diabetes controlada, gastritis, etc.: incluye una advertencia de precaucion al inicio y CONTINUA asesorando normalmente. NO cortes la conversacion. NO ofrezcas WhatsApp.
 - Siempre explica que la informacion entregada tiene fines educativos y de bienestar, y no reemplaza la atencion profesional.
 
+INFORMACION SOBRE EL CENTRO DE AYUDA:
+Naturalmente FuXion cuenta con un Centro de Ayuda propio (/ayuda).
+Puede recibir:
+- consultas generales
+- dudas de productos
+- reclamos
+- inconvenientes con pedidos
+- felicitaciones
+- experiencias
+- solicitudes de contacto
+- oportunidad FuXion
+
+Cuando un usuario solicite hablar con una persona real, pida un asesor, mencione reclamo, queja, problema, inconveniente o contacto:
+- NO debes intentar retener al usuario.
+- NO debes responder "yo puedo reemplazar un asesor humano".
+- Debes responder indicando que puede contactar al equipo de Naturalmente FuXion a traves del Centro de Ayuda en /ayuda o por WhatsApp.
+- Si es un reclamo, debes indicar que para revisarlo correctamente se necesitan sus datos de contacto (WhatsApp o correo electronico).
+- NUNCA envies al usuario a la pagina oficial de FuXion, soporte externo ni correos inventados.
+- La ruta interna es /ayuda.
+
 ESTRUCTURA OBLIGATORIA PARA RESPUESTAS SOBRE PRODUCTOS:
 
 Paso 1 - Validar la necesidad:
@@ -622,8 +700,7 @@ CORRECCION CRITICA SOBRE PASSION Y VITAENERGIA:
 - PASSION es un producto de VITALIDAD Y ENERGIA. Contiene ginseng, jalea real, guarana y aminoacidos. Ayuda con la circulacion, la potencia sexual, la energia y las migrañas. NO es para dormir, NO es para relajarse, NO contiene pasiflora ni melatonina.
 - VITAENERGIA es un multivitaminico energizante con vitaminas, minerales, fibra prebiotica, camu camu y luteina. Ayuda a disipar la fatiga y mejorar la energia diaria.
 - NO confundas PASSION con un producto para dormir o relajarse. PASSION es ENERGETICO, no relajante.
-- Si el usuario menciona sueno, insomnio, relajacion o estres, el producto correcto es NO STRESS, NO PASSION.`;
-
+`;
 };
 
 const buildDynamicPrompt = (userMessage, conversationHistory = [], profileContext = '', riskAssessment = null, riskContext = '', preResult = null) => {
@@ -645,8 +722,9 @@ const buildDynamicPrompt = (userMessage, conversationHistory = [], profileContex
     currentProducts = historyProducts.slice(-2);
   }
 
-  const isGreeting = /\b(hola|buenas|buen dí[aá]|buenos d[ií]as|buenas tardes|buenas noches|gracias|muchas gracias|buenas)\b/i.test(String(userMessage || ''));
-  const includeProducts = currentProducts.length > 0 && !isGreeting;
+  const isGreeting = /\b(hola|buenas|buen dí[aá]|buenos d[ií]as|buenas tardes|buenas noches|buenas)\b/i.test(String(userMessage || ''));
+  const isThanks = /\b(gracias|muchas gracias|muchísimas gracias|te agradezco|agradecido)\b/i.test(String(userMessage || ''));
+  const includeProducts = currentProducts.length > 0 && !isGreeting && !isThanks;
 
   debugLog('currentProducts', currentProducts);
   debugLog('includeProducts', includeProducts);
@@ -683,7 +761,7 @@ const buildDynamicPrompt = (userMessage, conversationHistory = [], profileContex
     }
 
     // Inyectar la ficha técnica del producto principal (desde la base de datos)
-    const productContext = buildProductContext([preResult.productoPrincipal, ...preResult.productosSecundarios]);
+    const productContext = buildProductContext([preResult.productoPrincipal, ...(preResult.productosSecundarios || []), ...(preResult.productosComplementarios || [])]);
     if (productContext) {
       systemMessages.push({
         role: 'system',
@@ -703,6 +781,14 @@ const buildDynamicPrompt = (userMessage, conversationHistory = [], profileContex
     } else {
       debugLog('WARN', 'productContext es null aunque hay productos detectados');
     }
+  }
+
+  // Agregar contexto de oportunidad de negocio si aplica
+  if (detectBusinessOpportunityIntent(userMessage)) {
+    systemMessages.push({
+      role: 'system',
+      content: BUSINESS_OPPORTUNITY_RESPONSE
+    });
   }
 
   // Agregar contexto de promociones si aplica
@@ -1408,7 +1494,11 @@ export default async function handler(req, res) {
     if (USE_SUPABASE && isProductQuestion(userMessage)) {
       // Verificar que la respuesta no sea negativa injustificada
       const hasProductContext = optimizedMessages.some(m => 
-        m.role === 'system' && m.content && m.content.includes('CONTEXTO DEL PRODUCTO')
+        m.role === 'system' && m.content && (
+          m.content.includes('INFORMACION DE PRODUCTOS:') ||
+          m.content.includes('FICHA TECNICA del producto recomendado:') ||
+          m.content.includes('--- INICIO FICHA TECNICA:')
+        )
       );
       if (hasProductContext || !result.text.toLowerCase().includes('no tiene')) {
         await saveCachedAnswer(userMessage, result.text, result.model, result.apiUsed);

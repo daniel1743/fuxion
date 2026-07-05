@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Heart, Sparkles, Zap, CheckCircle2, MessageCircle, ShoppingCart, ShieldCheck, Truck, Leaf } from 'lucide-react';
 import { getImageUrl, getPlaceholderImage } from '@/lib/imageUtils';
-import { buildStoreSchema, buildLocalBusinessSchema, SITE_URL, STORE_NAME } from '@/lib/productSeo';
+import { buildStoreSchema, buildOrganizationSchema, SITE_URL, STORE_NAME } from '@/lib/productSeo';
 import { confirmAndOpenWhatsapp, openWhatsapp } from '@/lib/whatsapp';
 import ProductNeedSearch from '@/components/ProductNeedSearch';
 import SEO from '@/components/SEO';
@@ -168,10 +168,10 @@ const HomePage = () => {
       className="overflow-x-hidden"
     >
       <SEO
-        title="Tienda Fuxion Chile — Productos Fuxion para Nutrición, Bienestar y Control de Peso"
+        title="Tienda Fuxion Chile — Productos para Nutrición y Bienestar Natural"
         description="Tienda Fuxion en Chile con productos nutracéuticos para nutrición, bienestar natural, digestión, energía, control de peso, defensas, deporte y belleza. Asesoría personalizada por WhatsApp. Envíos a todo Chile."
         canonical="/"
-        schema={[buildStoreSchema(), buildLocalBusinessSchema()]}
+        schema={[buildStoreSchema(), buildOrganizationSchema()]}
       />
 
       {/* SECCIÓN 1 – HERO */}
@@ -546,11 +546,18 @@ const HomePage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <Link to="/explorar">
-              <Button variant="outline" className="hover:bg-primary hover:text-primary-foreground">
-                Ver todos los productos <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link to="/explorar">
+                <Button variant="outline" className="hover:bg-primary hover:text-primary-foreground">
+                  Ver todos los productos <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+              <Link to="/productos-fuxion-chile">
+                <Button variant="outline" className="hover:bg-primary hover:text-primary-foreground">
+                  Catálogo completo FuXion Chile <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>
