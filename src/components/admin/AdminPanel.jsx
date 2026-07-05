@@ -985,6 +985,47 @@ const AdminPanel = ({ isOpen, onClose }) => {
                   </div>
                 </div>
               ))}
+
+              {/* Telegram Test Button */}
+              <div className="rounded-lg border border-border bg-background/50 p-4">
+                <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <div>
+                    <h3 className="font-semibold">Telegram</h3>
+                    <p className="text-sm text-muted-foreground">Probar conexión con Telegram</p>
+                  </div>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={async () => {
+                      try {
+                        const res = await fetch('/api/test-telegram', { method: 'POST' });
+                        const data = await res.json();
+                        if (data.status === 'connected') {
+                          toast({
+                            title: '✅ Telegram conectado',
+                            description: 'Revisa tu Telegram, deberías recibir un mensaje de prueba.'
+                          });
+                        } else {
+                          toast({
+                            title: '⚠️ Revisar configuración Telegram',
+                            description: data.reason || 'Error desconocido',
+                            variant: 'destructive'
+                          });
+                        }
+                      } catch (error) {
+                        toast({
+                          title: '⚠️ Revisar configuración Telegram',
+                          description: error.message,
+                          variant: 'destructive'
+                        });
+                      }
+                    }}
+                  >
+                    <MessageCircle className="mr-2 h-4 w-4" />
+                    Enviar prueba Telegram
+                  </Button>
+                </div>
+              </div>
             </div>
           )}
         </div>

@@ -777,7 +777,9 @@ const printEnvDiagnostic = () => {
     'GEMINI_API_KEY',
     'SUPABASE_URL',
     'SUPABASE_SERVICE_ROLE_KEY',
-    'SUPABASE_ANON_KEY'
+    'SUPABASE_ANON_KEY',
+    'TELEGRAM_BOT_TOKEN',
+    'TELEGRAM_CHAT_ID'
   ];
   for (const name of criticalVars) {
     const exists = checkEnvVar(name);
