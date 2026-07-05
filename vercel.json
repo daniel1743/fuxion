@@ -2,68 +2,54 @@
   "version": 2,
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "routes": [
+
+  "headers": [
     {
-      "src": "/sitemap.xml",
-      "dest": "/sitemap.xml"
+      "source": "/manifest.webmanifest",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/manifest+json"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
     },
     {
-      "src": "/robots.txt",
-      "dest": "/robots.txt"
+      "source": "/sw.js",
+      "headers": [
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/"
+        }
+      ]
     },
     {
-      "src": "/manifest.webmanifest",
-      "dest": "/manifest.webmanifest",
-      "headers": {
-        "Content-Type": "application/manifest+json",
-        "Cache-Control": "public, max-age=0, must-revalidate"
-      }
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
-      "src": "/sw.js",
-      "dest": "/sw.js",
-      "headers": {
-        "Content-Type": "application/javascript; charset=utf-8",
-        "Cache-Control": "public, max-age=0, must-revalidate",
-        "Service-Worker-Allowed": "/"
-      }
-    },
+      "source": "/img/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ],
+
+  "rewrites": [
     {
-      "src": "/googled3d64d2003087905.html",
-      "dest": "/googled3d64d2003087905.html",
-      "headers": {
-        "Content-Type": "text/html; charset=utf-8",
-        "Cache-Control": "public, max-age=0, must-revalidate"
-      }
-    },
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
-      "src": "/assets/(.*)",
-      "dest": "/assets/$1",
-      "headers": {
-        "Cache-Control": "public, max-age=31536000, immutable"
-      }
-    },
-    {
-      "src": "/img/(.*)",
-      "dest": "/img/$1",
-      "headers": {
-        "Cache-Control": "public, max-age=31536000, immutable"
-      }
-    },
-    {
-      "src": "/(.*\\.(jpg|jpeg|png|gif|svg|webp|ico|pdf))",
-      "dest": "/$1",
-      "headers": {
-        "Cache-Control": "public, max-age=31536000, immutable"
-      }
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/((?!api/.*).*)",
+      "destination": "/index.html"
     }
   ]
 }
