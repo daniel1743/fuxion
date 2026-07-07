@@ -5,19 +5,23 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { toast } from '@/components/ui/use-toast';
 import SEO from '@/components/SEO';
+import SuccessAnimation from '@/components/SuccessAnimation';
+import { fireElegantConfetti } from '@/lib/confetti';
 import {
   MessageCircle,
   HelpCircle,
   Package,
+  PackageCheck,
   AlertTriangle,
+  FileWarning,
   Star,
   Users,
+  Headphones,
   Send,
   CheckCircle2,
   ChevronRight,
   ArrowRight,
   Mail,
-  Phone,
   Shield,
   Heart,
   Sparkles,
@@ -43,53 +47,43 @@ const fadeUp = {
 const helpCards = [
   {
     id: 'producto',
-    emoji: '💬',
+    icon: MessageCircle,
     title: 'Necesito ayuda con un producto',
     description: 'Orientación sobre productos FuXion.',
-    icon: HelpCircle,
-    gradient: 'from-emerald-500 to-teal-500',
-    lightBg: 'bg-emerald-50 dark:bg-emerald-950/20',
-    borderColor: 'border-emerald-200 dark:border-emerald-800/40',
+    iconBg: 'bg-emerald-100/70 dark:bg-emerald-900/30',
+    iconColor: 'text-emerald-600 dark:text-emerald-400',
   },
   {
     id: 'pedido',
-    emoji: '📦',
+    icon: PackageCheck,
     title: 'Tengo una duda sobre mi pedido',
     description: 'Consultas sobre compra, entrega o disponibilidad.',
-    icon: Package,
-    gradient: 'from-blue-500 to-cyan-500',
-    lightBg: 'bg-blue-50 dark:bg-blue-950/20',
-    borderColor: 'border-blue-200 dark:border-blue-800/40',
+    iconBg: 'bg-emerald-100/70 dark:bg-emerald-900/30',
+    iconColor: 'text-emerald-600 dark:text-emerald-400',
   },
   {
     id: 'reclamo',
-    emoji: '📝',
+    icon: FileWarning,
     title: 'Enviar reclamo',
     description: 'Cuéntanos qué ocurrió para ayudarte.',
-    icon: AlertTriangle,
-    gradient: 'from-amber-500 to-orange-500',
-    lightBg: 'bg-amber-50 dark:bg-amber-950/20',
-    borderColor: 'border-amber-200 dark:border-amber-800/40',
+    iconBg: 'bg-amber-100/70 dark:bg-amber-900/30',
+    iconColor: 'text-amber-600 dark:text-amber-400',
   },
   {
     id: 'felicitacion',
-    emoji: '⭐',
+    icon: Sparkles,
     title: 'Enviar felicitación o sugerencia',
     description: 'Tu opinión nos ayuda a mejorar.',
-    icon: Star,
-    gradient: 'from-purple-500 to-pink-500',
-    lightBg: 'bg-purple-50 dark:bg-purple-950/20',
-    borderColor: 'border-purple-200 dark:border-purple-800/40',
+    iconBg: 'bg-emerald-100/70 dark:bg-emerald-900/30',
+    iconColor: 'text-emerald-600 dark:text-emerald-400',
   },
   {
     id: 'asesor',
-    emoji: '🤝',
+    icon: Headphones,
     title: 'Quiero hablar con un asesor',
     description: 'Contacto directo.',
-    icon: Users,
-    gradient: 'from-emerald-600 to-green-600',
-    lightBg: 'bg-green-50 dark:bg-green-950/20',
-    borderColor: 'border-green-200 dark:border-green-800/40',
+    iconBg: 'bg-emerald-100/70 dark:bg-emerald-900/30',
+    iconColor: 'text-emerald-600 dark:text-emerald-400',
   },
 ];
 
@@ -213,14 +207,19 @@ const HelpCenterPage = () => {
 
       setFormSubmitted(true);
 
+      // Fire confetti for important submissions (oportunidad, felicitacion)
+      if (formData.tipo === 'oportunidad' || formData.tipo === 'felicitacion') {
+        fireElegantConfetti();
+      }
+
       toast({
         title: 'Solicitud enviada',
         description: 'Gracias, recibimos tu solicitud. Te responderemos pronto.',
       });
     } catch (error) {
       toast({
-        title: 'No pudimos enviar tu solicitud',
-        description: 'También puedes contactarnos por WhatsApp.',
+        title: 'No pudimos enviar tu mensaje en este momento',
+        description: 'Intenta nuevamente en unos segundos o escríbenos por WhatsApp.',
         variant: 'destructive',
       });
     } finally {
@@ -262,8 +261,6 @@ const HelpCenterPage = () => {
       document.getElementById('help-form-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 100);
   };
-
-  const getCardById = (id) => helpCards.find(c => c.id === id);
 
   return (
     <motion.div
@@ -311,7 +308,7 @@ const HelpCenterPage = () => {
           >
             ¿En qué podemos{' '}
             <span className="text-emerald-600 dark:text-emerald-400">ayudarte</span>
-            ? 🌱
+            ?
           </motion.h1>
 
           <motion.p
@@ -326,7 +323,7 @@ const HelpCenterPage = () => {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-         SECTION: HELP CARDS
+         SECTION: HELP CARDS — Premium Wellness Style
       ════════════════════════════════════════════════════════════ */}
       <section className="py-16 md:py-20">
         <div className="container mx-auto px-6 max-w-5xl">
@@ -342,30 +339,27 @@ const HelpCenterPage = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.08 }}
                   onClick={() => handleCardClick(card.id)}
-                  className={`relative group text-left w-full rounded-2xl p-6 border-2 transition-all duration-300 ${
+                  className={`relative group text-left w-full rounded-2xl p-6 border transition-all duration-300 shadow-premium-soft card-hover-premium ${
                     isSelected
-                      ? `${card.lightBg} ${card.borderColor} ring-2 ring-offset-2 ring-offset-background ${card.borderColor.replace('border-', 'ring-')}/50`
-                      : 'bg-card border-border hover:shadow-lg hover:-translate-y-1'
+                      ? 'bg-emerald-50/80 dark:bg-emerald-950/20 border-emerald-200 dark:border-emerald-800/40 ring-2 ring-emerald-500/20 ring-offset-2 ring-offset-background'
+                      : 'bg-card border-emerald-100/70 dark:border-border'
                   }`}
                 >
-                  {/* Gradient accent top */}
-                  <div className={`absolute top-0 left-0 right-0 h-1 rounded-t-2xl bg-gradient-to-r ${card.gradient} opacity-60`} />
-
                   <div className="flex items-start gap-4">
-                    {/* Icon */}
-                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${card.gradient} flex items-center justify-center flex-shrink-0 shadow-lg shadow-black/10`}>
-                      <span className="text-2xl">{card.emoji}</span>
+                    {/* Icon — premium wellness: soft brand bg, brand icon */}
+                    <div className={`w-12 h-12 md:w-[52px] md:h-[52px] rounded-xl ${card.iconBg} flex items-center justify-center flex-shrink-0`}>
+                      <IconComponent className={`w-5 h-5 md:w-[22px] md:h-[22px] ${card.iconColor}`} strokeWidth={1.8} />
                     </div>
-                    <div className="flex-1 min-w-0 pt-1">
-                      <h3 className="font-bold text-foreground text-base mb-1.5">
+                    <div className="flex-1 min-w-0 pt-0.5">
+                      <h3 className="font-bold text-foreground text-base mb-1">
                         {card.title}
                       </h3>
                       <p className="text-sm text-muted-foreground leading-relaxed">
                         {card.description}
                       </p>
                     </div>
-                    <ChevronRight className={`w-5 h-5 flex-shrink-0 mt-2 transition-all duration-300 ${
-                      isSelected ? 'text-emerald-500 rotate-90' : 'text-muted-foreground/40 group-hover:text-emerald-400 group-hover:translate-x-1'
+                    <ChevronRight className={`w-5 h-5 flex-shrink-0 mt-1.5 transition-all duration-300 ${
+                      isSelected ? 'text-emerald-500 rotate-90' : 'text-muted-foreground/30 group-hover:text-emerald-400 group-hover:translate-x-0.5'
                     }`} strokeWidth={1.8} />
                   </div>
                 </motion.button>
@@ -419,25 +413,37 @@ const HelpCenterPage = () => {
                 exit={{ opacity: 0, scale: 0.95 }}
                 className="bg-card rounded-2xl p-8 md:p-12 border border-emerald-100 dark:border-border text-center"
               >
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ type: 'spring', stiffness: 200 }}
-                  className="mb-6"
+                <SuccessAnimation size="lg" />
+                <motion.h3
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="text-2xl md:text-3xl font-bold text-foreground mb-4"
                 >
-                  <div className="w-20 h-20 rounded-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center mx-auto">
-                    <CheckCircle2 className="w-10 h-10 text-emerald-600 dark:text-emerald-400" />
-                  </div>
-                </motion.div>
-                <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                  ¡Gracias por contactarnos!
-                </h3>
-                <p className="text-lg text-muted-foreground mb-8 max-w-md mx-auto">
-                  Recibimos tu solicitud. Nuestro equipo la revisará y te responderemos a la brevedad.
-                </p>
+                  {formData.tipo === 'reclamo'
+                    ? 'Tu solicitud fue recibida'
+                    : formData.tipo === 'felicitacion'
+                      ? 'Gracias por compartir tu experiencia 💚'
+                      : formData.tipo === 'oportunidad'
+                        ? 'Tu interés fue recibido 🚀'
+                        : 'Recibimos tu mensaje 🌱'}
+                </motion.h3>
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="text-lg text-muted-foreground mb-8 max-w-md mx-auto"
+                >
+                  {formData.tipo === 'reclamo'
+                    ? 'Gracias por contarnos lo ocurrido. Revisaremos la información para poder ayudarte.'
+                    : formData.tipo === 'felicitacion'
+                      ? 'Nos alegra recibir tu mensaje.'
+                      : formData.tipo === 'oportunidad'
+                        ? 'Un asesor FuXion revisará tu solicitud y podrá orientarte sobre los siguientes pasos.'
+                        : 'Gracias por escribirnos. Revisaremos tu solicitud y te responderemos por el contacto indicado.'}
+                </motion.p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button
-                    className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-3xl shadow-premium-soft btn-scale-hover"
                     onClick={handleReset}
                   >
                     Enviar otra solicitud
@@ -445,7 +451,6 @@ const HelpCenterPage = () => {
                   </Button>
                   <Button
                     variant="outline"
-                    className="font-bold rounded-3xl btn-scale-hover"
                     onClick={() => openWhatsapp('Hola, recibí información sobre mi consulta FuXion y quiero saber más.')}
                   >
                     <MessageCircle className="mr-2 h-4 w-4" />
@@ -529,7 +534,7 @@ const HelpCenterPage = () => {
                     {/* WhatsApp */}
                     <div>
                       <label className="block text-sm font-medium text-foreground mb-2">
-                        WhatsApp <span className="text-xs text-muted-foreground">(obligatorio si no tienes correo)</span>
+                        WhatsApp <span className="text-xs text-muted-foreground">(Opcional si agregas correo)</span>
                       </label>
                       <Input
                         type="tel"
@@ -543,7 +548,7 @@ const HelpCenterPage = () => {
                     {/* Email */}
                     <div>
                       <label className="block text-sm font-medium text-foreground mb-2">
-                        Correo electrónico <span className="text-xs text-muted-foreground">(obligatorio si no tienes WhatsApp)</span>
+                        Correo <span className="text-xs text-muted-foreground">(Opcional si agregas WhatsApp)</span>
                       </label>
                       <Input
                         type="email"
@@ -558,9 +563,10 @@ const HelpCenterPage = () => {
                   <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800/40 rounded-xl p-3">
                     <p className="text-xs text-amber-700 dark:text-amber-400 flex items-center gap-2">
                       <Shield className="w-4 h-4 flex-shrink-0" />
-                      Necesitamos un medio de contacto para poder responderte.
+                      Déjanos un WhatsApp o correo para poder responderte.
                     </p>
                   </div>
+
 
                   {/* Message */}
                   <div>
@@ -579,7 +585,8 @@ const HelpCenterPage = () => {
 
                   <Button
                     type="submit"
-                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-[20px] shadow-premium-soft btn-scale-hover text-base py-0 h-14"
+                    size="lg"
+                    fullWidth
                     disabled={formLoading}
                   >
                     {formLoading ? (
@@ -617,19 +624,20 @@ const HelpCenterPage = () => {
             <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
               <Button
                 size="lg"
-                className="btn-mobile-full bg-white text-emerald-900 hover:bg-emerald-50 font-bold rounded-[20px] shadow-premium-soft btn-scale-hover text-base px-7 py-0 h-[54px] sm:h-14 max-w-[300px]"
+                variant="secondary"
+                fullWidth
                 onClick={() => openWhatsapp('Hola, quiero contactar con un asesor FuXion.')}
               >
-                <MessageCircle className="mr-2 h-[18px] w-[18px] shrink-0 stroke-[1.75]" />
+                <MessageCircle className="mr-2 h-5 w-5 shrink-0" />
                 <span className="text-balance">Hablar por WhatsApp</span>
               </Button>
               <Button
                 variant="outline"
                 size="lg"
-                className="btn-mobile-full font-bold rounded-[20px] text-base px-7 py-0 h-[54px] sm:h-14 max-w-[300px] border border-emerald-300/50 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 btn-scale-hover"
+                fullWidth
                 onClick={() => window.location.href = 'mailto:contacto@naturalmentefuxion.cl'}
               >
-                <Mail className="mr-2 h-[18px] w-[18px] shrink-0 stroke-[1.75]" />
+                <Mail className="mr-2 h-5 w-5 shrink-0" />
                 <span className="text-balance">Enviar correo</span>
               </Button>
             </div>

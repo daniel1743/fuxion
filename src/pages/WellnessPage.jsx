@@ -9,6 +9,7 @@ import { toast } from '@/components/ui/use-toast';
 import { useAdmin } from '@/context/AdminContext';
 import { useAuth } from '@/context/AuthContext';
 import WellnessArticleEditor from '@/components/WellnessArticleEditor';
+import { ArticleSkeleton } from '@/components/skeleton';
 import {
   deleteWellnessArticle,
   fetchWellnessArticles,
@@ -120,7 +121,31 @@ const WellnessPage = () => {
         </div>
 
         {loading ? (
-          <div className="flex justify-center py-24"><RefreshCw className="h-8 w-8 animate-spin text-primary" /></div>
+          <div className="mt-10 space-y-8">
+            {/* Featured skeleton */}
+            <div
+              style={{
+                opacity: 0,
+                animation: `fadeInUp 0.3s ease-out forwards`,
+              }}
+            >
+              <ArticleSkeleton variant="featured" />
+            </div>
+            {/* Grid skeletons */}
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {[1, 2, 3].map((i) => (
+                <div
+                  key={i}
+                  style={{
+                    opacity: 0,
+                    animation: `fadeInUp 0.3s ease-out ${i * 0.08}s forwards`,
+                  }}
+                >
+                  <ArticleSkeleton />
+                </div>
+              ))}
+            </div>
+          </div>
         ) : !featured ? (
           <div className="mx-auto mt-12 max-w-xl rounded-2xl border border-dashed border-border p-10 text-center">
             <FileText className="mx-auto h-10 w-10 text-muted-foreground" />

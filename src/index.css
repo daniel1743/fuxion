@@ -78,8 +78,39 @@
     font-size: clamp(0.95rem, 2.5vw, 1.125rem);
     line-height: 1.6;
   }
+  /* ── Button system utilities ─────────────────────────── */
   .btn-mobile-full {
     @apply w-full sm:w-auto;
+  }
+  .btn-max-w-normal {
+    max-width: 320px;
+  }
+  .btn-max-w-hero {
+    max-width: 420px;
+  }
+  @media (min-width: 768px) {
+    .btn-center-desktop {
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      justify-content: center;
+    }
+  }
+  /* Desktop max-width limits for buttons */
+  .btn-desktop-max-sm {
+    @apply sm:max-w-[200px];
+  }
+  .btn-desktop-max-md {
+    @apply sm:max-w-[280px];
+  }
+  .btn-desktop-max-lg {
+    @apply sm:max-w-[360px];
+  }
+  .btn-desktop-max-hero {
+    @apply sm:max-w-[420px];
+  }
+  .btn-desktop-max-full {
+    @apply sm:max-w-[480px];
   }
   .container-padding {
     @apply px-4 sm:px-6;
@@ -515,4 +546,83 @@ body.light {
 /* Prevent body scroll when drawer is open */
 body.drawer-open {
   overflow: hidden;
+}
+
+/* ============================================
+   Skeleton Loading Animations - Premium Shimmer
+   ============================================ */
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--muted) / 0.5) 25%,
+    hsl(var(--muted-foreground) / 0.15) 50%,
+    hsl(var(--muted) / 0.5) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.dark .animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--muted) / 0.6) 25%,
+    hsl(var(--muted-foreground) / 0.2) 50%,
+    hsl(var(--muted) / 0.6) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .animate-shimmer {
+    animation: none;
+    background: hsl(var(--muted) / 0.5);
+  }
+  
+  .animate-bounce {
+    animation: none;
+  }
+  
+  [style*="animation: fadeInUp"] {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* Image placeholder to prevent layout shift */
+.image-placeholder {
+  @apply bg-muted;
+  aspect-ratio: attr(width) / attr(height);
+  min-height: 100px;
+}
+
+.image-placeholder img {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.image-placeholder img.loaded {
+  opacity: 1;
 }

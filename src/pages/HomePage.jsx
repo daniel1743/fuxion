@@ -8,6 +8,7 @@ import { getImageUrl, getPlaceholderImage } from '@/lib/imageUtils';
 import { buildStoreSchema, buildOrganizationSchema, SITE_URL, STORE_NAME } from '@/lib/productSeo';
 import { confirmAndOpenWhatsapp, openWhatsapp } from '@/lib/whatsapp';
 import ProductNeedSearch from '@/components/ProductNeedSearch';
+import WellnessJourneyCarousel from '@/components/WellnessJourneyCarousel';
 import SEO from '@/components/SEO';
 import { AiRobotIcon, WhatsAppIcon } from '@/components/icons/BrandIcons';
 
@@ -226,16 +227,16 @@ const HomePage = () => {
                 className="flex flex-col sm:flex-row gap-4"
               >
                 <Button
-                  size="lg"
-                  className="btn-mobile-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-full shadow-lg text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 whitespace-normal h-auto"
+                  size="hero"
+                  fullWidth
                   onClick={() => handleWhatsAppClick('Hola, quiero empezar mi cambio con Fuxion')}
                 >
                   <span className="text-balance">Recibir asesoría</span> <ArrowRight className="ml-2 h-5 w-5 shrink-0" />
                 </Button>
                 <Button
-                  size="lg"
+                  size="hero"
                   variant="outline"
-                  className="btn-mobile-full font-bold rounded-full text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 border-2 whitespace-normal h-auto"
+                  fullWidth
                   onClick={() => window.location.href = '/explorar'}
                 >
                   <ShoppingCart className="mr-2 h-5 w-5 shrink-0" />
@@ -264,6 +265,9 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+      {/* SECCIÓN 1.5 – Wellness Journey Carousel */}
+      <WellnessJourneyCarousel />
 
       <section className="py-10 bg-white dark:bg-card border-y border-emerald-100 dark:border-border">
         <div className="container mx-auto px-6">
@@ -397,7 +401,7 @@ const HomePage = () => {
                   </ul>
                 </div>
                 <Button
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-full mt-auto"
+                  fullWidth
                   onClick={() => handleWhatsAppClick(`Hola, me interesa: ${solution.title}`)}
                 >
                   {solution.buttonText} <ArrowRight className="ml-2 h-4 w-4" />
@@ -447,16 +451,16 @@ const HomePage = () => {
           >
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                size="lg"
-                className="btn-mobile-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-full shadow-lg text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 whitespace-normal h-auto"
+                size="hero"
+                fullWidth
                 onClick={() => handleWhatsAppClick('Hola, quiero mi recomendación personalizada')}
               >
                 <span className="text-balance">Quiero mi recomendación personalizada</span> <ArrowRight className="ml-2 h-5 w-5 shrink-0" />
               </Button>
               <Button
-                size="lg"
+                size="hero"
                 variant="outline"
-                className="btn-mobile-full font-bold rounded-full text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 border-2 whitespace-normal h-auto"
+                fullWidth
                 onClick={() => window.location.href = '/explorar'}
               >
                 <ShoppingCart className="mr-2 h-5 w-5 shrink-0" />
@@ -507,31 +511,40 @@ const HomePage = () => {
                       <h3 className="text-xl font-bold text-foreground mb-2">{product.name}</h3>
                       <p className="text-sm text-muted-foreground mb-4">{product.description}</p>
                       <div className="mt-auto flex gap-2">
-                        <span className="flex-1 rounded-md bg-emerald-600 px-3 py-2 text-center text-sm font-semibold text-white">Ver detalles</span>
-                        <button
-                          type="button"
+                        <Button
+                          size="sm"
+                          className="flex-1"
+                          onClick={(event) => {
+                            event.preventDefault();
+                            window.location.href = `/producto/${product.slug}`;
+                          }}
+                        >
+                          Ver detalles
+                        </Button>
+                        <Button
+                          size="icon"
+                          variant="outline"
                           onClick={(event) => {
                             event.preventDefault();
                             handleProductAiClick(product);
                           }}
-                          className="h-9 w-9 rounded-md border border-emerald-200 text-emerald-700 hover:bg-emerald-600 hover:text-white"
                           title={`Preguntar a la IA sobre ${product.name}`}
                           aria-label={`Preguntar a la IA sobre ${product.name}`}
                         >
-                          <AiRobotIcon className="mx-auto h-4 w-4" />
-                        </button>
-                        <button
-                          type="button"
+                          <AiRobotIcon className="h-4 w-4" />
+                        </Button>
+                        <Button
+                          size="icon"
+                          variant="outline"
                           onClick={(event) => {
                             event.preventDefault();
                             handleProductWhatsappClick(product);
                           }}
-                          className="h-9 w-9 rounded-md border border-green-200 text-green-700 hover:bg-green-600 hover:text-white"
                           title="Hablar con asesor"
                           aria-label={`Hablar con asesor por WhatsApp sobre ${product.name}`}
                         >
-                          <WhatsAppIcon className="mx-auto h-4 w-4" />
-                        </button>
+                          <WhatsAppIcon className="h-4 w-4" />
+                        </Button>
                       </div>
                     </div>
                   </div>
@@ -588,7 +601,6 @@ const HomePage = () => {
             <Link to="/oportunidad-fuxion">
               <Button
                 variant="outline"
-                className="shrink-0 rounded-full border-emerald-300 text-emerald-700 hover:bg-emerald-600 hover:text-white dark:border-emerald-700 dark:text-emerald-300 dark:hover:bg-emerald-600"
               >
                 Conocer más <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
@@ -641,8 +653,8 @@ const HomePage = () => {
               transition={{ duration: 0.6, delay: 0.5 }}
             >
               <Button
-                size="lg"
-                className="h-auto w-full max-w-full whitespace-normal bg-primary px-4 py-4 text-center text-base font-bold leading-tight text-primary-foreground shadow-lg hover:bg-primary/90 sm:w-auto sm:px-8 sm:py-6 sm:text-lg"
+                size="hero"
+                fullWidth
                 onClick={() => handleWhatsAppClick('Hola, quiero mi recomendación personalizada')}
               >
                 <span>Quiero mi recomendación</span>
@@ -682,17 +694,17 @@ const HomePage = () => {
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Button
-              size="lg"
-              className="btn-mobile-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-full shadow-lg text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 whitespace-normal h-auto"
+              size="hero"
+              fullWidth
               onClick={() => handleWhatsAppClick('Hola, quiero iniciar mi cambio ahora')}
             >
               <span className="text-balance">Iniciar mi cambio ahora</span>
               <ArrowRight className="ml-2 h-5 w-5 shrink-0" />
             </Button>
             <Button
-              size="lg"
+              size="hero"
               variant="outline"
-              className="btn-mobile-full font-bold rounded-full text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 border-2 whitespace-normal h-auto"
+              fullWidth
               onClick={() => window.location.href = '/explorar'}
             >
               <ShoppingCart className="mr-2 h-5 w-5 shrink-0" />

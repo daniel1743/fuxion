@@ -14,6 +14,7 @@ import ProductNeedSearch from '@/components/ProductNeedSearch';
 import SEO from '@/components/SEO';
 import { getRelatedProducts, searchProductsByNeed } from '@/lib/productSearch';
 import { AiRobotIcon, WhatsAppIcon } from '@/components/icons/BrandIcons';
+import { trackEvent } from '@/lib/userJourneyContext';
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -210,6 +211,20 @@ const ExplorePage = () => {
     return names[slug] || 'Todos los Productos';
   };
 
+  // Track category interest and search queries for Falcon Assistant context
+  React.useEffect(() => {
+    if (categoriaParam) {
+      const categoryName = getCategoryName(categoriaParam);
+      trackEvent('CATEGORY_INTEREST', { category: categoryName });
+    }
+  }, [categoriaParam]);
+
+  React.useEffect(() => {
+    if (searchQuery) {
+      trackEvent('SEARCH_QUERY', { query: searchQuery });
+    }
+  }, [searchQuery]);
+
   return (
     <motion.div
       initial="initial"
@@ -329,7 +344,8 @@ const ExplorePage = () => {
                   <div className="flex gap-2 mt-auto">
                     <Button
                       onClick={() => handleAddToCart(product)}
-                      className="flex-1 h-9 text-sm gap-1 cursor-pointer px-3"
+                      size="sm"
+                      className="flex-1 cursor-pointer"
                       disabled={product.stock === 0}
                     >
                       <ShoppingCart className="h-4 w-4" />
@@ -339,7 +355,7 @@ const ExplorePage = () => {
                       onClick={() => handleAskAi(product)}
                       variant="outline"
                       size="icon"
-                      className="h-9 w-9 cursor-pointer border-emerald-200 text-emerald-700 hover:bg-emerald-600 hover:text-white"
+                      className="cursor-pointer border-emerald-200 text-emerald-700 hover:bg-emerald-600 hover:text-white"
                       title={`Preguntar a la IA sobre ${product.name}`}
                       aria-label={`Preguntar a la IA sobre ${product.name}`}
                     >
@@ -349,7 +365,7 @@ const ExplorePage = () => {
                       onClick={() => handleProductWhatsapp(product)}
                       variant="outline"
                       size="icon"
-                      className="h-9 w-9 cursor-pointer border-green-200 text-green-700 hover:bg-green-600 hover:text-white"
+                      className="cursor-pointer border-green-200 text-green-700 hover:bg-green-600 hover:text-white"
                       title="Hablar con asesor"
                       aria-label={`Hablar con asesor por WhatsApp sobre ${product.name}`}
                     >
@@ -359,7 +375,7 @@ const ExplorePage = () => {
                       onClick={() => handleViewDetails(product)}
                       variant="outline"
                       size="icon"
-                      className="h-9 w-9 cursor-pointer"
+                      className="cursor-pointer"
                     >
                       <Info className="h-4 w-4" />
                     </Button>

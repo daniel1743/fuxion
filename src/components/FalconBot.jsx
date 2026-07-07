@@ -11,6 +11,20 @@ import ProductLinkedText from '@/components/ProductLinkedText';
 import { useAuth } from '@/context/AuthContext';
 import { useAdmin } from '@/context/AdminContext';
 import { useLoyalty } from '@/context/LoyaltyContext';
+import { ChatMessageSkeleton } from '@/components/skeleton';
+import {
+  getContextualGreeting,
+  getSmartSuggestions,
+  getContextForAI,
+  markGreetingShown,
+  getUserJourneyContext
+} from '@/lib/userJourneyContext';
+import {
+  getJourneyGreeting,
+  getJourneyContextForAI,
+  getViewedProductNames,
+  getMainInterest
+} from '@/lib/productJourney';
 
 const FalconBot = () => {
     const { user } = useAuth();
@@ -29,13 +43,8 @@ const FalconBot = () => {
     const customerName = user?.name || adminData?.nombre_completo || '';
     const firstName = customerName.trim().split(/\s+/)[0] || '';
 
-    // Quick action options
-    const quickActions = [
-        { emoji: '🔥', label: 'Controlar peso', text: 'Quiero productos para controlar mi peso' },
-        { emoji: '😴', label: 'Estrés y descanso', text: 'Necesito ayuda para el estrés y dormir mejor' },
-        { emoji: '⚡', label: 'Más energía', text: 'Busco productos para tener más energía' },
-        { emoji: '🌿', label: 'Digestión', text: 'Quiero mejorar mi digestión' }
-    ];
+    // Smart suggestions based on user journey context
+    const quickActions = getSmartSuggestions();
 
     // Load saved messages from localStorage on mount
     useEffect(() => {
@@ -75,11 +84,22 @@ const FalconBot = () => {
     const makeConversationNatural = (text) => {
         if (!messages.length) return text;
         const escapedName = firstName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        const repeatedGreeting = escapedName
-            ? new RegExp(`^\\s*Hola(?:\\s+de\\s+nuevo)?,?\\s+${escapedName}[.!,:;]?\\s*`, 'i')
-            : /^\s*Hola(?:\s+de\s+nuevo)?[.!,:;]?\s*/i;
-        return String(text)
-            .replace(repeatedGreeting, '')
+        // Si ya hay mensajes previos, eliminar cualquier saludo repetido al inicio
+        let cleaned = String(text);
+        if (messages.length > 0) {
+            // Eliminar "Hola [nombre]" o "Hola" al inicio de la respuesta
+            const greetingPattern = escapedName
+                ? new RegExp(`^\\s*Hola(?:\\s+de\\s+nuevo)?,?\\s+${escapedName}[.!,:;]?\\s*`, 'i')
+                : /^\s*Hola(?:,\s*)?[.!,:;]?\s*/i;
+            cleaned = cleaned.replace(greetingPattern, '');
+            // También eliminar "Hola [nombre]" si aparece como frase completa al inicio
+            // (ej: "Hola Daniel. Te recomiendo..." -> "Te recomiendo...")
+            const fullGreetingPattern = escapedName
+                ? new RegExp(`^\\s*Hola(?:\\s+de\\s+nuevo)?,?\\s+${escapedName}[.!,:;]?\\s+`, 'i')
+                : /^\s*Hola(?:,\s*)?[.!,:;]?\s+/i;
+            cleaned = cleaned.replace(fullGreetingPattern, '');
+        }
+        return cleaned
             .replace(/^\s*Gracias por (?:consultarme|tu consulta|tu pregunta|preguntar)[.!,:;]?\s*/i, '')
             .replace(/^\s*Bienvenido(?: de nuevo)?[.!,:;]?\s*/i, '')
             .replace(/^([a-záéíóúñ])/, (letter) => letter.toUpperCase())
@@ -89,7 +109,7 @@ const FalconBot = () => {
     const bot = {
         name: 'Fuxion Assistant',
         subtitle: '🟢 Disponible para ayudarte',
-        typingSubtitle: '🌱 Preparando recomendación...',
+        typingSubtitle: 'Falcon Assistant está escribiendo...',
         color: 'bg-gradient-to-br from-emerald-500 to-teal-500',
         greeting: buildPersonalizedGreeting()
     };
@@ -166,6 +186,43 @@ Quedo atento para continuar la atención por WhatsApp.`;
         };
     }, []);
 
+    // Scroll lock: when chat is open, prevent page scrolling
+    useEffect(() => {
+        if (isOpen) {
+            const scrollY = window.scrollY;
+            document.body.style.position = 'fixed';
+            document.body.style.top = `-${scrollY}px`;
+            document.body.style.left = '0';
+            document.body.style.right = '0';
+            document.body.style.overflow = 'hidden';
+            document.body.style.width = '100%';
+        } else {
+            const scrollY = parseInt(document.body.style.top || '0', 10) * -1;
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.left = '';
+            document.body.style.right = '';
+            document.body.style.overflow = '';
+            document.body.style.width = '';
+            if (scrollY > 0) {
+                window.scrollTo(0, scrollY);
+            }
+        }
+        return () => {
+            // Cleanup in case component unmounts while chat is open
+            const scrollY = parseInt(document.body.style.top || '0', 10) * -1;
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.left = '';
+            document.body.style.right = '';
+            document.body.style.overflow = '';
+            document.body.style.width = '';
+            if (scrollY > 0) {
+                window.scrollTo(0, scrollY);
+            }
+        };
+    }, [isOpen]);
+
     // Click outside to close + Escape key
     useEffect(() => {
         if (!isOpen) return;
@@ -231,7 +288,7 @@ Puedes preguntarme si es adecuado para tu objetivo, con qué combinarlo o cómo 
             recordAdvisorEvent(advisor.id, 'product_ai', { productName: product.name });
             setActiveProduct(product);
             setIsOpen(true);
-            setMessages([{
+            setMessages(prev => [...prev, {
                 sender: 'bot',
                 text: buildProductIntro(product),
                 botType: 'assistant'
@@ -241,14 +298,93 @@ Puedes preguntarme si es adecuado para tu objetivo, con qué combinarlo o cómo 
         return () => window.removeEventListener('fuxion:open-product-ai', handleProductConsultation);
     }, []);
 
+    /**
+     * Añade o reemplaza un mensaje de contexto de producto en el historial.
+     * 
+     * Lógica inteligente:
+     * - Si NO existe contextMessage → agrega normalmente
+     * - Si existe contextMessage y el slug es igual → no hace nada
+     * - Si existe contextMessage pero el slug cambió → reemplaza ese mensaje
+     * 
+     * @param {object} greetingObj - { text, slug } del saludo contextual
+     * @param {object} greetingContext - { page, slug } para markGreetingShown
+     */
+    const addOrUpdateContextMessage = (greetingObj, greetingContext) => {
+        markGreetingShown(greetingContext);
+        
+        setMessages(prev => {
+            // Buscar si ya existe un mensaje de contexto
+            const existingContextIndex = prev.findIndex(
+                m => m.contextMessage === true
+            );
+
+            if (existingContextIndex === -1) {
+                // No existe mensaje de contexto → agregar normalmente
+                return [...prev, {
+                    sender: 'bot',
+                    text: greetingObj.text,
+                    botType: 'assistant',
+                    contextMessage: true,
+                    contextSlug: greetingObj.slug || null
+                }];
+            }
+
+            const existingMsg = prev[existingContextIndex];
+            
+            // Si el slug es el mismo → no hacer nada
+            if (greetingObj.slug && existingMsg.contextSlug === greetingObj.slug) {
+                return prev;
+            }
+
+            // Slug cambió → reemplazar el mensaje de contexto existente
+            const updated = [...prev];
+            updated[existingContextIndex] = {
+                ...existingMsg,
+                text: greetingObj.text,
+                contextSlug: greetingObj.slug || null
+            };
+            return updated;
+        });
+    };
+
     const handleToggle = () => {
         setIsOpen(!isOpen);
-        if (!isOpen && messages.length === 0) {
-            setMessages([{
-                sender: 'bot',
-                text: bot.greeting,
-                botType: 'assistant'
-            }]);
+        if (!isOpen) {
+            // Verificar contexto de producto al abrir el chat
+            const journeyCtx = getUserJourneyContext();
+
+            // Obtener saludo contextual (ahora devuelve { text, slug } o null)
+            const contextualGreeting = getContextualGreeting();
+
+            if (contextualGreeting) {
+                // Determinar el contexto del saludo
+                const greetingContext = journeyCtx && journeyCtx.slug
+                    ? { page: 'product', slug: journeyCtx.slug }
+                    : { page: journeyCtx?.page || 'product', slug: null };
+
+                // Usar la nueva lógica inteligente de contexto
+                addOrUpdateContextMessage(contextualGreeting, greetingContext);
+                return;
+            }
+
+            // Solo mostrar saludo default si no hay mensajes previos
+            if (messages.length === 0) {
+                // PRIORIDAD 2: Smart Product Interest Memory greeting
+                const journeyGreeting = getJourneyGreeting();
+                if (journeyGreeting) {
+                    setMessages(prev => prev.length === 0 ? [{
+                        sender: 'bot',
+                        text: journeyGreeting,
+                        botType: 'assistant'
+                    }] : prev);
+                } else {
+                    setMessages(prev => prev.length === 0 ? [{
+                        sender: 'bot',
+                        text: bot.greeting,
+                        botType: 'assistant'
+                    }] : prev);
+                }
+            }
         }
     };
 
@@ -318,32 +454,83 @@ Puedes preguntarme si es adecuado para tu objetivo, con qué combinarlo o cómo 
         }, 100);
     };
 
+    /**
+     * Obtiene el contexto del producto actual desde userJourneyContext (sessionStorage)
+     * como fallback cuando activeProduct no está disponible.
+     * Esto asegura que la IA siempre sepa en qué producto está el usuario.
+     */
+    const getCurrentProductContext = () => {
+        // Prioridad 1: activeProduct state (producto abierto vía botón "Preguntar a IA")
+        if (activeProduct) {
+            return {
+                name: activeProduct.name,
+                slug: activeProduct.slug,
+                category: activeProduct.categoria || activeProduct.category || 'Fuxion',
+                price: activeProduct.price,
+                presentation: activeProduct.presentation || getSpecValue(activeProduct, 'presentacion'),
+                usage: activeProduct.usage || getSpecValue(activeProduct, 'modo de uso'),
+                schedule: activeProduct.schedule || getSpecValue(activeProduct, 'horario'),
+                benefits: activeProduct.beneficios || activeProduct.benefits || [],
+                ingredients: activeProduct.ingredientes || activeProduct.ingredients || []
+            };
+        }
+
+        // Prioridad 2: userJourneyContext (producto actual de la página)
+        const journeyCtx = getUserJourneyContext();
+        if (journeyCtx && journeyCtx.page === 'product' && journeyCtx.product) {
+            return {
+                name: journeyCtx.product,
+                slug: journeyCtx.slug,
+                category: journeyCtx.category || 'Fuxion'
+            };
+        }
+
+        return null;
+    };
+
+    const buildProductContextForAI = (productCtx) => {
+        if (!productCtx) return '';
+        
+        let context = `\n\nPRODUCTO ACTUAL DEL USUARIO:
+Nombre: ${productCtx.name}`;
+        if (productCtx.slug) context += `\nSlug: ${productCtx.slug}`;
+        if (productCtx.category) context += `\nCategoría: ${productCtx.category}`;
+        if (productCtx.price) context += `\nPrecio: $${productCtx.price.toLocaleString('es-CL')}`;
+        if (productCtx.presentation) context += `\nPresentación: ${productCtx.presentation}`;
+        if (productCtx.usage) context += `\nModo de uso: ${productCtx.usage}`;
+        if (productCtx.schedule) context += `\nHorario: ${productCtx.schedule}`;
+        if (productCtx.benefits?.length) context += `\nBeneficios: ${productCtx.benefits.join(', ')}`;
+        if (productCtx.ingredients?.length) context += `\nIngredientes: ${productCtx.ingredients.join(', ')}`;
+        
+        return context;
+    };
+
     const executeSend = async (userMessage, nextMessages) => {
         try {
             const conversationHistory = messages
                 .filter(m => m.sender && m.botType !== 'system')
                 .slice(-8);
 
+            // Legacy user journey context (page navigation)
+            const journeyContext = getContextForAI();
+            const journeySection = journeyContext ? `\n\nCONTEXTO DE NAVEGACIÓN DEL USUARIO:\n${journeyContext}` : '';
+
+            // Smart Product Interest Memory context (product browsing journey)
+            const productJourneyContext = getJourneyContextForAI();
+            const productJourneySection = productJourneyContext ? `\n\nCONTEXTO DE PRODUCTOS VISTOS:\n${productJourneyContext}` : '';
+
+            // Producto actual: siempre incluir contexto aunque no haya saludo visible
+            const currentProductCtx = getCurrentProductContext();
+            const productSection = buildProductContextForAI(currentProductCtx);
+
             const response = await sendMessageToDeepSeek(
-                activeProduct
-                    ? `${buildCustomerContext()}
-
-Producto en consulta: ${activeProduct.name}
-Precio: ${activeProduct.price ? `$${activeProduct.price.toLocaleString('es-CL')}` : 'Consultar'}
-Categoría: ${activeProduct.categoria || activeProduct.category || 'Fuxion'}
-Presentación: ${activeProduct.presentation || getSpecValue(activeProduct, 'presentacion') || 'Consultar'}
-Modo de uso: ${activeProduct.usage || getSpecValue(activeProduct, 'modo de uso') || 'Consultar'}
-Horario: ${activeProduct.schedule || getSpecValue(activeProduct, 'horario') || 'Consultar'}
-Beneficios: ${(activeProduct.beneficios || activeProduct.benefits || []).join(', ')}
-Ingredientes: ${(activeProduct.ingredientes || activeProduct.ingredients || []).join(', ')}
-
-Pregunta del usuario: ${userMessage}`
-                    : `${buildCustomerContext()}
+                `${buildCustomerContext()}${journeySection}${productJourneySection}${productSection}
 
 Pregunta del usuario: ${userMessage}`,
                 'unificado',
                 conversationHistory
             );
+
 
             setMessages(prev => [...prev, {
                 sender: 'bot',
@@ -352,7 +539,11 @@ Pregunta del usuario: ${userMessage}`,
                 apiUsed: response.apiUsed,
                 advisorUrl: response.showWhatsApp
                     ? buildAdvisorUrl([...nextMessages, { sender: 'bot', text: response.text }], response.advisorReason || 'El cliente solicitó asistencia humana.')
-                    : null
+                    : null,
+                // Business Opportunity flags
+                isBusinessOpportunity: response.isBusinessOpportunity === true,
+                showOpportunityVideo: response.showOpportunityVideo === true,
+                showOpportunityAdvisor: response.showOpportunityAdvisor === true
             }]);
 
             console.log(`💬 Respuesta generada por: ${response.apiUsed}`);
@@ -360,16 +551,16 @@ Pregunta del usuario: ${userMessage}`,
         } catch (error) {
             console.error('Error al enviar mensaje:', error);
 
-            let errorMessage = '❌ Lo siento, tuve un problema al procesar tu mensaje. ';
+            let errorMessage = 'Estoy teniendo dificultad para responder en este momento. ';
 
             if (error.message.includes('Insufficient Balance') || error.message.includes('402')) {
-                errorMessage += 'DeepSeek no tiene saldo disponible. Por favor revisa el saldo de la cuenta o configura una API de respaldo válida.';
+                errorMessage += 'El servicio de IA no está disponible temporalmente. Intenta nuevamente en unos segundos 💚';
             } else if (error.message.includes('API Key') || error.message.includes('API key')) {
-                errorMessage += 'La configuración de la API no está completa.';
+                errorMessage += 'La configuración del servicio no está completa. Intenta nuevamente más tarde 💚';
             } else if (error.message.includes('429')) {
-                errorMessage += 'Se excedió el límite de solicitudes. Intenta en unos momentos.';
+                errorMessage += 'Hay muchas consultas en este momento. Espera unos segundos y vuelve a intentar 💚';
             } else {
-                errorMessage += 'Por favor, intenta de nuevo o contacta por WhatsApp.';
+                errorMessage += 'Intenta nuevamente en unos segundos 💚';
             }
 
             setMessages(prev => [...prev, {
@@ -381,7 +572,7 @@ Pregunta del usuario: ${userMessage}`,
 
             toast({
                 title: "Error de conexión",
-                description: "No pude conectar con el servicio de IA.",
+                description: "Estoy teniendo dificultad para responder. Intenta nuevamente 💚",
                 variant: "destructive"
             });
         } finally {
@@ -410,21 +601,19 @@ Pregunta del usuario: ${userMessage}`,
                 .filter(m => m.sender && m.botType !== 'system')
                 .slice(-8);
 
+            const journeyContext = getContextForAI();
+            const journeySection = journeyContext ? `\n\nCONTEXTO DE NAVEGACIÓN DEL USUARIO:\n${journeyContext}` : '';
+
+            // Smart Product Interest Memory context (product browsing journey)
+            const productJourneyContext = getJourneyContextForAI();
+            const productJourneySection = productJourneyContext ? `\n\nCONTEXTO DE PRODUCTOS VISTOS:\n${productJourneyContext}` : '';
+
+            // Producto actual: siempre incluir contexto aunque no haya saludo visible
+            const currentProductCtx = getCurrentProductContext();
+            const productSection = buildProductContextForAI(currentProductCtx);
+
             const response = await sendMessageToDeepSeek(
-                activeProduct
-                    ? `${buildCustomerContext()}
-
-Producto en consulta: ${activeProduct.name}
-Precio: ${activeProduct.price ? `$${activeProduct.price.toLocaleString('es-CL')}` : 'Consultar'}
-Categoría: ${activeProduct.categoria || activeProduct.category || 'Fuxion'}
-Presentación: ${activeProduct.presentation || getSpecValue(activeProduct, 'presentacion') || 'Consultar'}
-Modo de uso: ${activeProduct.usage || getSpecValue(activeProduct, 'modo de uso') || 'Consultar'}
-Horario: ${activeProduct.schedule || getSpecValue(activeProduct, 'horario') || 'Consultar'}
-Beneficios: ${(activeProduct.beneficios || activeProduct.benefits || []).join(', ')}
-Ingredientes: ${(activeProduct.ingredientes || activeProduct.ingredients || []).join(', ')}
-
-Pregunta del usuario: ${userMessage}`
-                    : `${buildCustomerContext()}
+                `${buildCustomerContext()}${journeySection}${productJourneySection}${productSection}
 
 Pregunta del usuario: ${userMessage}`,
                 'unificado',
@@ -441,7 +630,11 @@ Pregunta del usuario: ${userMessage}`,
                 // Solo mostrar WhatsApp si el backend lo indica explícitamente
                 advisorUrl: response.showWhatsApp
                     ? buildAdvisorUrl([...nextMessages, { sender: 'bot', text: response.text }], response.advisorReason || 'El cliente solicitó asistencia humana.')
-                    : null
+                    : null,
+                // Business Opportunity flags
+                isBusinessOpportunity: response.isBusinessOpportunity === true,
+                showOpportunityVideo: response.showOpportunityVideo === true,
+                showOpportunityAdvisor: response.showOpportunityAdvisor === true
             }]);
 
             console.log(`💬 Respuesta generada por: ${response.apiUsed}`);
@@ -449,16 +642,16 @@ Pregunta del usuario: ${userMessage}`,
         } catch (error) {
             console.error('Error al enviar mensaje:', error);
 
-            let errorMessage = '❌ Lo siento, tuve un problema al procesar tu mensaje. ';
+            let errorMessage = 'Estoy teniendo dificultad para responder en este momento. ';
 
             if (error.message.includes('Insufficient Balance') || error.message.includes('402')) {
-                errorMessage += 'DeepSeek no tiene saldo disponible. Por favor revisa el saldo de la cuenta o configura una API de respaldo válida.';
+                errorMessage += 'El servicio de IA no está disponible temporalmente. Intenta nuevamente en unos segundos 💚';
             } else if (error.message.includes('API Key') || error.message.includes('API key')) {
-                errorMessage += 'La configuración de la API no está completa.';
+                errorMessage += 'La configuración del servicio no está completa. Intenta nuevamente más tarde 💚';
             } else if (error.message.includes('429')) {
-                errorMessage += 'Se excedió el límite de solicitudes. Intenta en unos momentos.';
+                errorMessage += 'Hay muchas consultas en este momento. Espera unos segundos y vuelve a intentar 💚';
             } else {
-                errorMessage += 'Por favor, intenta de nuevo o contacta por WhatsApp.';
+                errorMessage += 'Intenta nuevamente en unos segundos 💚';
             }
 
             setMessages(prev => [...prev, {
@@ -470,7 +663,7 @@ Pregunta del usuario: ${userMessage}`,
 
             toast({
                 title: "Error de conexión",
-                description: "No pude conectar con el servicio de IA.",
+                description: "Estoy teniendo dificultad para responder. Intenta nuevamente 💚",
                 variant: "destructive"
             });
         } finally {
@@ -631,7 +824,33 @@ Pregunta del usuario: ${userMessage}`,
                                         ) : (
                                             <p className="text-sm whitespace-pre-wrap">{message.text}</p>
                                         )}
-                                        {message.advisorUrl && (
+                                        {/* Business Opportunity buttons */}
+                                        {message.isBusinessOpportunity && (
+                                            <div className="mt-3 flex flex-col gap-2">
+                                                {message.showOpportunityVideo && (
+                                                    <a
+                                                        href="https://youtu.be/L_AIXB0MI8A?si=nRhoWh3M9Fwd4_oX"
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 px-3 py-2 text-xs font-semibold text-white transition hover:shadow-lg hover:from-amber-600 hover:to-orange-600"
+                                                    >
+                                                        <span>▶</span>
+                                                        Ver video de oportunidad
+                                                    </a>
+                                                )}
+                                                {message.showOpportunityAdvisor && (
+                                                    <button
+                                                        type="button"
+                                                        onClick={handleOpenWhatsAppContact}
+                                                        className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-3 py-2 text-xs font-semibold text-white transition hover:bg-[#1fb85a]"
+                                                    >
+                                                        <WhatsAppIcon className="h-4 w-4" />
+                                                        💬 Hablar con asesor
+                                                    </button>
+                                                )}
+                                            </div>
+                                        )}
+                                        {message.advisorUrl && !message.isBusinessOpportunity && (
                                             <div className="mt-3 flex flex-col gap-2">
                                                 <button
                                                     type="button"
@@ -696,18 +915,8 @@ Pregunta del usuario: ${userMessage}`,
                                     initial={{ opacity: 0, y: 8 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.2 }}
-                                    className="flex justify-start"
                                 >
-                                    <div className="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800/30 px-4 py-3 rounded-xl shadow-sm" aria-label="El asistente está escribiendo">
-                                        <div className="flex items-center gap-2 mb-1">
-                                            <span className="text-xs text-emerald-700 dark:text-emerald-300 font-medium">🌱 Analizando tu consulta</span>
-                                        </div>
-                                        <div className="flex items-center gap-1.5 pl-0.5">
-                                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-bounce [animation-delay:-0.24s]" />
-                                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-bounce [animation-delay:-0.12s]" />
-                                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-bounce" />
-                                        </div>
-                                    </div>
+                                    <ChatMessageSkeleton text="Falcon Assistant está escribiendo..." />
                                 </motion.div>
                             )}
 

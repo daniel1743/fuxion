@@ -19,6 +19,8 @@ import { getPlaceholderImage } from '@/lib/imageUtils';
 import { confirmAndOpenWhatsapp } from '@/lib/whatsapp';
 import { AiRobotIcon, WhatsAppIcon } from '@/components/icons/BrandIcons';
 import SEO from '@/components/SEO';
+import { trackEvent } from '@/lib/userJourneyContext';
+import { trackProductView } from '@/lib/productJourney';
 
 const ProductPage = () => {
   const { slug } = useParams();
@@ -26,6 +28,10 @@ const ProductPage = () => {
   const product = getSeoProductBySlug(slug);
 
   if (!product) {
+    // Log para depuración: slug no encontrado en el catálogo
+    if (typeof window !== 'undefined') {
+      console.warn(`[ProductPage] Producto no encontrado para slug: "${slug}"`);
+    }
     return (
       <main className="container mx-auto px-6 py-32">
         <SEO
@@ -37,6 +43,9 @@ const ProductPage = () => {
           <h1 className="text-3xl font-bold text-foreground">Producto no encontrado</h1>
           <p className="mt-4 text-muted-foreground">
             Este producto no esta disponible en la lista actual de productos.
+          </p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Slug solicitado: <code className="bg-secondary px-2 py-0.5 rounded text-xs">{slug}</code>
           </p>
           <Button asChild className="mt-6">
             <Link to="/explorar">Ver productos Fuxion</Link>
@@ -98,6 +107,37 @@ const ProductPage = () => {
   const handleProductWhatsapp = () => {
     confirmAndOpenWhatsapp(`Hola, quiero hablar con un asesor sobre ${product.name}.`);
   };
+
+  // Track product view for Falcon Assistant context
+  React.useEffect(() => {
+    if (product) {
+      trackEvent('PRODUCT_VIEW', {
+        product: product.name,
+        category: product.category
+      });
+
+      // Guardar contexto de producto para Falcon Assistant (userJourneyContext)
+      try {
+        const contextData = {
+          page: 'product',
+          product: product.name,
+          slug: product.slug,
+          category: product.category || 'general'
+        };
+        sessionStorage.setItem('userJourneyContext', JSON.stringify(contextData));
+      } catch (e) {
+        // Ignorar errores de sessionStorage
+      }
+
+      // Smart Product Interest Memory: track product journey
+      trackProductView({
+        slug: product.slug,
+        name: product.name,
+        category: product.category || 'general',
+      });
+    }
+  }, [product?.slug]);
+
 
   return (
     <motion.main
@@ -189,7 +229,7 @@ const ProductPage = () => {
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
             <Button
               onClick={() => addToCart(productForCart)}
-              className="h-12 px-6 gap-2"
+              size="lg"
             >
               <ShoppingCart className="h-5 w-5" />
               Agregar al carrito
@@ -198,7 +238,8 @@ const ProductPage = () => {
               type="button"
               variant="outline"
               onClick={handleAskAi}
-              className="h-12 px-5 gap-2 border-emerald-200 text-emerald-700 hover:bg-emerald-600 hover:text-white"
+              className="border-emerald-200 text-emerald-700 hover:bg-emerald-600 hover:text-white"
+              size="lg"
             >
               <AiRobotIcon className="h-4 w-4" />
               Consultar con IA
@@ -207,8 +248,9 @@ const ProductPage = () => {
               type="button"
               variant="outline"
               onClick={handleProductWhatsapp}
-              className="h-12 px-5 gap-2 border-green-200 text-green-700 hover:bg-green-600 hover:text-white"
+              className="border-green-200 text-green-700 hover:bg-green-600 hover:text-white"
               title="Hablar con asesor"
+              size="lg"
             >
               <WhatsAppIcon className="h-4 w-4" />
               Asesor
@@ -223,7 +265,7 @@ const ProductPage = () => {
             Beneficios de {product.name}
           </h2>
           <div className="mt-5 space-y-3">
-            {product.benefits.map((benefit) => (
+            {(product.benefits || []).map((benefit) => (
               <div key={benefit} className="flex gap-3 text-muted-foreground">
                 <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                 <span>{benefit}</span>
@@ -239,9 +281,9 @@ const ProductPage = () => {
           <p className="mt-4 text-muted-foreground leading-relaxed">
             {product.name} forma parte del listado Fuxion de nutricion y bienestar. Su informacion se presenta con enfoque educativo y de asesoria comercial.
           </p>
-          {product.ingredients.length > 0 && (
+          {(product.ingredients || []).length > 0 && (
             <div className="mt-5 flex flex-wrap gap-2">
-              {product.ingredients.map((ingredient) => (
+              {(product.ingredients || []).map((ingredient) => (
                 <span key={ingredient} className="rounded-full bg-secondary px-3 py-1 text-sm text-muted-foreground">
                   {ingredient}
                 </span>
@@ -253,7 +295,7 @@ const ProductPage = () => {
           </p>
         </div>
       </section>
-      {seoContent && (
+      {seoContent?.searchIntent?.length > 0 && (
         <section className="mt-14 rounded-3xl border border-primary/15 bg-primary/5 p-6 md:p-8">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-wide text-primary">

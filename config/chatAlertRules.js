@@ -10,12 +10,15 @@ export const TELEGRAM_CONFIG = {
 // ===================================================================
 
 // Señales fuertes (+40)
+// REGLA: "quiero saber", "quiero información", "quiero conocer" NO son compra.
+// Solo frases explícitas de compra/pedido.
 export const BUY_INTENT_STRONG = {
-  buyPhrases: /\b(quiero comprar|c[oó]mo compro|d[oó]nde compro|quiero pedir|me interesa|lo quiero|tienen disponible)\b/i,
+  buyPhrases: /\b(quiero comprar|c[oó]mo compro|d[oó]nde compro|quiero pedir|quiero hacer pedido|quiero pagarlo|lo quiero|tienen disponible)\b/i,
   score: 40
 };
 
 // Señales fuertes (+30)
+
 export const BUY_INTENT_PRICE = {
   priceQuestion: /\b(precio|cu[aá]nto cuesta|valor)\b/i,
   score: 30
@@ -48,16 +51,22 @@ export const BUY_INTENT_MEDIUM = {
 // ===================================================================
 // BUSINESS_INTENT - Detección de interés en oportunidad de negocio
 // ===================================================================
-export const BUSINESS_INTENT_PATTERNS = /\b(quiero vender|negocio|distribuidor|ganar dinero|emprender|trabajar con fuxion|trabajar con fuXion|vender fuxion|vender fuXion|hacer el negocio|c[oó]mo gano dinero|c[oó]mo ganar dinero|ser distribuidor|oportunidad fuxion|oportunidad fuXion|plan de negocio|ganancias|ingresos extra|ingreso extra|unirme a fuxion|unirme a fuXion|asociarme|ser parte de fuxion|ser parte de fuXion|modelo de negocio|plan de compensaci[oó]n|ganar dinero con fuxion|ganar dinero con fuXion|c[oó]mo funciona el negocio|vender productos|oportunidad de negocio|negocio propio|dinero extra|independencia financiera|libertad financiera|trabajo desde casa|negocio desde casa|ingreso pasivo|ingresos pasivos)\b/i;
+export const BUSINESS_INTENT_PATTERNS = /\b(quiero vender|negocio|distribuidor|ganar dinero|emprender|trabajar con fuxion|trabajar con fuXion|vender fuxion|vender fuXion|hacer el negocio|c[oó]mo gano dinero|c[oó]mo ganar dinero|ser distribuidor|oportunidad fuxion|oportunidad fuXion|plan de negocio|ganancias|ingresos extra|ingreso extra|unirme a fuxion|unirme a fuXion|asociarme|ser parte de fuxion|ser parte de fuXion|modelo de negocio|plan de compensaci[oó]n|ganar dinero con fuxion|ganar dinero con fuXion|c[oó]mo funciona el negocio|vender productos|oportunidad de negocio|negocio propio|dinero extra|independencia financiera|libertad financiera|trabajo desde casa|negocio desde casa|ingreso pasivo|ingresos pasivos|quiero afiliarme|ser socio|negocio desde casa|generar ingresos|ingreso extra|plan de compensaci[oó]n|afiliarme|socio fuxion|socio fuXion)\b/i;
 
 // ===================================================================
 // NIVELES DE INTENCIÓN
 // ===================================================================
+// REGLA TELEGRAM FIX PHASE 1:
+//   explorando (0-39):  no enviar Telegram
+//   interesado (40-69): enviar con título "💡 Posible interés FuXion"
+//   compra (70+):       enviar con título "🔥 Cliente con intención de compra"
 export const INTENT_LEVELS = {
-  curious: { min: 0, max: 40, label: 'Curioso', notify: false, save: false },
-  interested: { min: 40, max: 70, label: 'Interesado', notify: false, save: true },
-  hot: { min: 70, max: Infinity, label: '🔥 LEAD CALIENTE', notify: true, save: true }
+  exploring: { min: 0, max: 40, label: 'Explorando', notify: false, save: false },
+  interested: { min: 40, max: 70, label: 'Interesado', notify: true, save: true },
+  buying: { min: 70, max: Infinity, label: '🔥 Cliente con intención de compra', notify: true, save: true },
+  business: { min: 0, max: Infinity, label: '🚀 OPORTUNIDAD NEGOCIO', notify: true, save: true }
 };
+
 
 // ===================================================================
 // PATRONES DE PRODUCTOS (para detección)
@@ -107,7 +116,36 @@ export const CHAT_RULE_PATTERNS = {
 // ===================================================================
 // TEMPLATES DE TELEGRAM
 // ===================================================================
-export const TELEGRAM_MESSAGE_TEMPLATE = `🔥 LEAD CALIENTE FUXION
+// REGLA TELEGRAM FIX PHASE 1:
+//   interesado (40-69): "💡 Posible interés FuXion"
+//   compra (70+):       "🔥 Cliente con intención de compra"
+export const TELEGRAM_INTERESTED_TEMPLATE = `💡 Posible interés FuXion
+
+👤 Cliente:
+{nombre}
+
+📦 Producto:
+{product}
+
+🎯 Intención compra:
+{score}%
+
+⏱ Conversación:
+{minutes} min
+
+💬 Mensajes:
+{questions}
+
+🧠 Detectado:
+{summary}
+
+Último mensaje:
+"{lastMessage}"
+
+Acción recomendada:
+Seguimiento informativo`;
+
+export const TELEGRAM_BUYING_TEMPLATE = `🔥 Cliente con intención de compra
 
 👤 Cliente:
 {nombre}
@@ -133,22 +171,29 @@ export const TELEGRAM_MESSAGE_TEMPLATE = `🔥 LEAD CALIENTE FUXION
 Acción recomendada:
 Contactar ahora`;
 
-export const TELEGRAM_BUSINESS_TEMPLATE = `🚀 INTERÉS NEGOCIO FUXION
+export const TELEGRAM_BUSINESS_TEMPLATE = `🚀 OPORTUNIDAD NEGOCIO
 
-👤 Cliente:
+👤 Usuario:
 {nombre}
+
+⏱ Tiempo conversación:
+{minutes} min
 
 💬 Mensajes:
 {questions}
 
-⏱ Conversación:
-{minutes} min
+🎯 Interés detectado:
+Negocio FuXion
 
-🧠 Detectado:
-{summary}
+Señales:
+- quiere emprender
+- pregunta ingresos
+- quiere ser distribuidor
 
 Último mensaje:
 "{lastMessage}"
 
-Acción recomendada:
-Contactar para informar sobre oportunidad`;
+Acción:
+Contactar personalmente`;
+
+

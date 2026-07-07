@@ -161,21 +161,44 @@ const CartPage = () => {
         />
 
         <div className="text-center max-w-md">
-          <div className="mb-6 flex justify-center">
-            <div className="w-32 h-32 rounded-full bg-secondary flex items-center justify-center">
-              <ShoppingBag className="h-16 w-16 text-muted-foreground" />
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+            className="mb-6 flex justify-center"
+          >
+            <div className="w-32 h-32 rounded-full bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-950/30 dark:to-emerald-900/20 flex items-center justify-center border border-emerald-200 dark:border-emerald-800/40">
+              <ShoppingBag className="h-16 w-16 text-emerald-400 dark:text-emerald-500" />
             </div>
-          </div>
-          <h1 className="text-3xl font-bold text-foreground mb-4">Tu carrito está vacío</h1>
-          <p className="text-muted-foreground mb-8">
-            Explora nuestro catálogo y encuentra los productos que necesitas
-          </p>
-          <Link to="/explorar">
-            <Button size="lg" className="gap-2">
-              <ShoppingCart className="h-5 w-5" />
-              Explorar Productos
-            </Button>
-          </Link>
+          </motion.div>
+          <motion.h1
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.4 }}
+            className="text-3xl font-bold text-foreground mb-4"
+          >
+            Tu carrito está esperando tus productos favoritos 🌱
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.4 }}
+            className="text-muted-foreground mb-8"
+          >
+            Explora nuestro catálogo y encuentra los productos que necesitas para tu bienestar
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.4 }}
+          >
+            <Link to="/explorar">
+              <Button size="lg" className="gap-2">
+                <ShoppingCart className="h-5 w-5" />
+                Explorar Productos
+              </Button>
+            </Link>
+          </motion.div>
         </div>
       </motion.div>
     );
@@ -312,9 +335,9 @@ const CartPage = () => {
                           <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
                         </Button>
                         <Button
-                          variant="ghost"
+                          variant="outline"
                           size="icon"
-                          className="h-7 w-7 sm:h-8 sm:w-8 text-green-700 hover:bg-green-600/10"
+                          className="h-7 w-7 sm:h-8 sm:w-8"
                           onClick={() => handleProductWhatsapp(item)}
                           title="Hablar con asesor"
                           aria-label={`Hablar con asesor por WhatsApp sobre ${item.name}`}
@@ -481,8 +504,9 @@ const CartPage = () => {
                 <Button
                   onClick={handleSendWhatsApp}
                   disabled={isSending}
-                  className="w-full h-12 text-lg gap-2 bg-green-600 hover:bg-green-700"
+                  variant="whatsapp"
                   size="lg"
+                  fullWidth
                 >
                   <Send className="h-5 w-5" />
                   {isSending ? 'Registrando pedido...' : 'Enviar pedido a un asesor'}

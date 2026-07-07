@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { toast } from '@/components/ui/use-toast';
 import SEO from '@/components/SEO';
+import SuccessAnimation from '@/components/SuccessAnimation';
 import {
   MessageCircle,
   Send,
@@ -20,7 +21,8 @@ import {
   Phone,
   MapPin,
   Clock,
-  ArrowRight
+  ArrowRight,
+  Heart
 } from 'lucide-react';
 import { openWhatsapp } from '@/lib/whatsapp';
 
@@ -194,8 +196,8 @@ const ContactPage = () => {
       });
     } catch (error) {
       toast({
-        title: 'No pudimos enviar tu mensaje',
-        description: 'También puedes contactarnos por WhatsApp.',
+        title: 'No pudimos enviar tu mensaje en este momento',
+        description: 'Intenta nuevamente en unos segundos o escríbenos por WhatsApp.',
         variant: 'destructive',
       });
     } finally {
@@ -268,7 +270,7 @@ const ContactPage = () => {
           >
             Estamos aquí para{' '}
             <span className="text-emerald-600 dark:text-emerald-400">ayudarte</span>
-            {' '}🌱
+            {' '}
           </motion.h1>
 
           <motion.p
@@ -336,25 +338,37 @@ const ContactPage = () => {
                 exit={{ opacity: 0, scale: 0.95 }}
                 className="bg-card rounded-2xl p-8 md:p-12 border border-emerald-100 dark:border-border text-center"
               >
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ type: 'spring', stiffness: 200 }}
-                  className="mb-6"
+                <SuccessAnimation size="lg" />
+                <motion.h3
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="text-2xl md:text-3xl font-bold text-foreground mb-4"
                 >
-                  <div className="w-20 h-20 rounded-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center mx-auto">
-                    <CheckCircle2 className="w-10 h-10 text-emerald-600 dark:text-emerald-400" />
-                  </div>
-                </motion.div>
-                <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                  ¡Gracias por contactarnos!
-                </h3>
-                <p className="text-lg text-muted-foreground mb-8 max-w-md mx-auto">
-                  Recibimos tu mensaje. Nuestro equipo lo revisará y te responderemos a la brevedad.
-                </p>
+                  {formData.tipo === 'reclamo'
+                    ? 'Tu solicitud fue recibida'
+                    : formData.tipo === 'felicitacion'
+                      ? 'Gracias por compartir tu experiencia 💚'
+                      : formData.tipo === 'oportunidad'
+                        ? 'Tu interés fue recibido 🚀'
+                        : 'Mensaje enviado correctamente'}
+                </motion.h3>
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="text-lg text-muted-foreground mb-8 max-w-md mx-auto"
+                >
+                  {formData.tipo === 'reclamo'
+                    ? 'Gracias por contarnos lo ocurrido. Revisaremos la información para poder ayudarte.'
+                    : formData.tipo === 'felicitacion'
+                      ? 'Nos alegra recibir tu mensaje.'
+                      : formData.tipo === 'oportunidad'
+                        ? 'Un asesor FuXion revisará tu solicitud y podrá orientarte sobre los siguientes pasos.'
+                        : 'Pronto nos pondremos en contacto contigo.'}
+                </motion.p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button
-                    className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-3xl shadow-premium-soft btn-scale-hover"
                     onClick={handleReset}
                   >
                     Enviar otro mensaje
@@ -362,7 +376,6 @@ const ContactPage = () => {
                   </Button>
                   <Button
                     variant="outline"
-                    className="font-bold rounded-3xl btn-scale-hover"
                     onClick={() => openWhatsapp('Hola, recibí información sobre mi consulta FuXion y quiero saber más.')}
                   >
                     <MessageCircle className="mr-2 h-4 w-4" />
@@ -459,39 +472,44 @@ const ContactPage = () => {
                     </select>
                   </div>
 
-                  {/* WhatsApp */}
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      WhatsApp
-                    </label>
-                    <Input
-                      type="tel"
-                      placeholder="+56 9 1234 5678"
-                      value={formData.whatsapp}
-                      onChange={(e) => handleChange('whatsapp', e.target.value)}
-                      className="w-full"
-                    />
-                    <p className="text-xs text-muted-foreground mt-1">
-                      Necesitamos un WhatsApp o correo para responderte.
+                  {/* Contact info */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {/* WhatsApp */}
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        WhatsApp <span className="text-xs text-muted-foreground">(Opcional si agregas correo)</span>
+                      </label>
+                      <Input
+                        type="tel"
+                        placeholder="+56 9 1234 5678"
+                        value={formData.whatsapp}
+                        onChange={(e) => handleChange('whatsapp', e.target.value)}
+                        className="w-full"
+                      />
+                    </div>
+
+                    {/* Email */}
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        Correo <span className="text-xs text-muted-foreground">(Opcional si agregas WhatsApp)</span>
+                      </label>
+                      <Input
+                        type="email"
+                        placeholder="tu@correo.com"
+                        value={formData.email}
+                        onChange={(e) => handleChange('email', e.target.value)}
+                        className="w-full"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800/40 rounded-xl p-3">
+                    <p className="text-xs text-amber-700 dark:text-amber-400 flex items-center gap-2">
+                      <Shield className="w-4 h-4 flex-shrink-0" />
+                      Déjanos un WhatsApp o correo para poder responderte.
                     </p>
                   </div>
 
-                  {/* Email */}
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Correo electrónico
-                    </label>
-                    <Input
-                      type="email"
-                      placeholder="tu@correo.com"
-                      value={formData.email}
-                      onChange={(e) => handleChange('email', e.target.value)}
-                      className="w-full"
-                    />
-                    <p className="text-xs text-muted-foreground mt-1">
-                      Necesitamos un correo o WhatsApp para responderte.
-                    </p>
-                  </div>
 
                   {/* Message */}
                   <div>
@@ -510,7 +528,8 @@ const ContactPage = () => {
 
                   <Button
                     type="submit"
-                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-[20px] shadow-premium-soft btn-scale-hover text-base py-0 h-14"
+                    size="lg"
+                    fullWidth
                     disabled={formLoading}
                   >
                     {formLoading ? (
@@ -548,19 +567,20 @@ const ContactPage = () => {
             <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
               <Button
                 size="lg"
-                className="btn-mobile-full bg-white text-emerald-900 hover:bg-emerald-50 font-bold rounded-[20px] shadow-premium-soft btn-scale-hover text-base px-7 py-0 h-[54px] sm:h-14 max-w-[300px]"
+                variant="secondary"
+                fullWidth
                 onClick={() => openWhatsapp('Hola, quiero contactar con un asesor FuXion.')}
               >
-                <MessageCircle className="mr-2 h-[18px] w-[18px] shrink-0 stroke-[1.75]" />
+                <MessageCircle className="mr-2 h-5 w-5 shrink-0" />
                 <span className="text-balance">Hablar por WhatsApp</span>
               </Button>
               <Button
                 variant="outline"
                 size="lg"
-                className="btn-mobile-full font-bold rounded-[20px] text-base px-7 py-0 h-[54px] sm:h-14 max-w-[300px] border border-emerald-300/50 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 btn-scale-hover"
+                fullWidth
                 onClick={() => window.location.href = 'mailto:contacto@naturalmentefuxion.cl'}
               >
-                <Mail className="mr-2 h-[18px] w-[18px] shrink-0 stroke-[1.75]" />
+                <Mail className="mr-2 h-5 w-5 shrink-0" />
                 <span className="text-balance">Enviar correo</span>
               </Button>
             </div>

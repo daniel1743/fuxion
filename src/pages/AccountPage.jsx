@@ -8,6 +8,7 @@ import { GIFT_PRODUCTS } from '@/services/loyaltyService';
 import { useAdmin } from '@/context/AdminContext';
 import WellnessPlanDialog from '@/components/WellnessPlanDialog';
 import { loadWellnessPlan } from '@/services/wellnessPlanService';
+import { AccountSkeleton } from '@/components/skeleton';
 
 const AccountPage = () => {
   const { isAuthLoading, user } = useAuth();
@@ -23,7 +24,7 @@ const AccountPage = () => {
     setWellnessPlan(loadWellnessPlan(planIdentity));
   }, [planIdentity]);
 
-  if (isAuthLoading) return null;
+  if (isAuthLoading) return <AccountSkeleton />;
   if (!isEligible) return <Navigate to="/" replace />;
 
   return (

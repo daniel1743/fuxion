@@ -8,6 +8,7 @@ import { useAdmin } from '@/context/AdminContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import BlogAdminPanel from '@/components/admin/BlogAdminPanel';
+import { ArticleSkeleton } from '@/components/skeleton';
 
 const BlogPage = () => {
   const { posts, loading, categories } = useBlog();
@@ -127,12 +128,24 @@ const BlogPage = () => {
             </div>
           </motion.div>
 
-          {/* Loading State */}
+          {/* Loading State — Skeleton grid premium */}
           {loading && (
-            <div className="flex justify-center items-center py-20">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[1, 2, 3, 4, 5, 6].map((i) => (
+                <div
+                  key={i}
+                  style={{
+                    animationDelay: `${i * 0.05}s`,
+                    opacity: 0,
+                    animation: `fadeInUp 0.3s ease-out ${i * 0.05}s forwards`,
+                  }}
+                >
+                  <ArticleSkeleton />
+                </div>
+              ))}
             </div>
           )}
+
 
           {/* Empty State */}
           {!loading && filteredPosts.length === 0 && (

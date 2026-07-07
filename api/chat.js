@@ -36,9 +36,9 @@ import {
 } from '../lib/recommendation/recommendationEngine.js';
 
 // ===================================================================
-// MODO DEBUG
+// MODO DEBUG - Controlado por variable de entorno
 // ===================================================================
-const DEBUG_CHAT = false;
+const DEBUG_CHAT = process.env.DEBUG_CHAT === "true";
 
 const debugLog = (label, data) => {
   if (!DEBUG_CHAT) return;
@@ -219,11 +219,16 @@ const getMentionedProductsFromText = (text = '') => {
   const index = buildProductSearchIndex();
 
   for (const entry of index) {
+    // Productos con nombre corto (<= 3 caracteres): solo coincidencia exacta de palabra completa
     if (entry.normalized.length <= 3) {
       const escaped = entry.normalized.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       const wordPattern = new RegExp('\\b' + escaped + '\\b');
-      if (!wordPattern.test(normalizedText)) continue;
+      if (wordPattern.test(normalizedText)) {
+        matchedProducts.add(entry.original);
+      }
+      continue;
     }
+    // Productos largos: detección flexible (includes)
     if (normalizedText.includes(entry.normalized) || entry.normalized.includes(normalizedText)) {
       matchedProducts.add(entry.original);
     }
@@ -309,28 +314,47 @@ const detectBusinessOpportunityIntent = (text = '') => {
   return BUSINESS_OPPORTUNITY_PATTERNS.some(pattern => pattern.test(text));
 };
 
-const BUSINESS_OPPORTUNITY_RESPONSE = `Si el usuario muestra interés en la oportunidad de negocio FuXion (vender, distribuir, emprender, ganar dinero, plan de negocio, etc.), responde de forma natural e informativa siguiendo estas pautas:
+const BUSINESS_OPPORTUNITY_RESPONSE = `El usuario ha mostrado interés en la OPORTUNIDAD DE NEGOCIO FuXion (vender, distribuir, emprender, ganar dinero, plan de negocio, etc.). Responde de forma natural, humana y cercana siguiendo estas pautas:
 
 INFORMACION QUE PUEDES COMPARTIR:
 - FuXion es una empresa de bienestar con presencia internacional.
-- Algunas personas deciden compartir los productos y desarrollar un proyecto independiente.
-- Hay acompañamiento, formación y herramientas digitales disponibles.
+- Además de consumir los productos, existe la posibilidad de desarrollar un proyecto independiente compartiendo bienestar.
+- Muchas personas comienzan buscando un ingreso adicional o una forma de emprender con acompañamiento.
+- Hay acompañamiento, formación continua, herramientas digitales y una comunidad que apoya.
+- El modelo se basa en venta directa, con crecimiento por rangos, incentivos según resultados y bonos del plan comercial FuXion.
+- Puedes mencionar conceptos como: bono auto, fondo país, rangos, reconocimientos.
 - Cada persona avanza a su propio ritmo, sin presión.
 
 REGLAS DE SEGURIDAD (OBLIGATORIAS):
 - NUNCA prometas ingresos, ganancias, ni resultados económicos específicos.
-- NUNCA uses frases como "gana dinero fácil", "hazte rico", "ingreso garantizado" o similares.
+- NUNCA uses frases como "gana dinero fácil", "hazte rico", "ingreso garantizado", "todos ganan", "te haces rico", "vas a ganar dinero", "ingresos asegurados", "libertad financiera garantizada" o similares.
 - NUNCA presiones al usuario a unirse o tomar una decisión inmediata.
-- Siempre menciona que los resultados dependen del esfuerzo y dedicación personal.
+- Siempre usa lenguaje condicional: "puedes desarrollar", "existe la posibilidad", "según resultados", "según esfuerzo y plan vigente".
 - Siempre mantén un tono informativo, no de venta agresiva.
 
 TONO:
+- Humano, cercano, simple.
 - Informativo, tranquilo, sin presión.
 - Como quien explica una posibilidad, no como quien vende un sueño.
 - Invita a conocer más, no a decidir hoy.
 
+VIDEO EDUCATIVO:
+- Cuando el usuario pregunte "cómo funciona", "explícame", "quiero saber más", ofrecer el video explicativo.
+- NO mandar el video en el primer mensaje siempre.
+- El video está disponible en: https://youtu.be/L_AIXB0MI8A?si=nRhoWh3M9Fwd4_oX
+
+DERIVACIÓN HUMANA:
+- Si el usuario dice "asesor", "humano", "quiero hablar con alguien", no insistir con IA, derivar.
+- El sistema detectará automáticamente la solicitud de asesor humano.
+
 Ejemplo de respuesta:
-"FuXion es una empresa de bienestar con más de 15 años. Algunas personas que conocen los productos deciden compartirlos con otros y desarrollar un proyecto independiente. Hay formación y acompañamiento, y cada persona avanza a su ritmo. Si te interesa conocer más, puedo darte información general sobre cómo funciona."
+"Qué bueno que quieras conocer la oportunidad FuXion 🌱
+
+Además de consumir los productos, existe la posibilidad de desarrollar un proyecto independiente compartiendo bienestar.
+
+Muchas personas comienzan buscando un ingreso adicional o una forma de emprender con acompañamiento.
+
+Puedo compartirte un video corto donde se explica cómo funciona y también conectarte con un asesor."
 
 NO uses este template textualmente. Adáptalo al contexto de la conversación.`;
 
@@ -557,9 +581,20 @@ const buildProductContext = (productNames = []) => {
     if (product?.efecto) lines.push(`Efecto: ${product.efecto}`);
     if (product?.advertencia) lines.push(`Advertencia: ${product.advertencia}`);
     if (product?.para_toda_familia) lines.push(`Apto para toda la familia: Si`);
+    // NUEVOS CAMPOS ENRIQUECIDOS desde base de datos.json
+    if (product?.objetivo_funcional) lines.push(`Objetivo funcional: ${product.objetivo_funcional}`);
+    if (product?.descripcion_tecnica) lines.push(`Descripcion tecnica: ${product.descripcion_tecnica}`);
+    if (product?.ingredientes_clave) lines.push(`Ingredientes clave: ${product.ingredientes_clave}`);
+    if (product?.pauta_consumo) lines.push(`Pauta de consumo detallada: ${product.pauta_consumo}`);
+    if (product?.inversion_referencial) lines.push(`Inversion referencial: ${product.inversion_referencial}`);
     if (verified) {
       if (verified.respuesta_base) lines.push(`Respuesta base: ${verified.respuesta_base}`);
       if (verified.ingredientes_oficiales?.length) lines.push(`Ingredientes oficiales: ${verified.ingredientes_oficiales.slice(0, 7).join(', ')}`);
+      // NUEVOS CAMPOS ENRIQUECIDOS desde base de datos.json (AI catalog)
+      if (verified.descripcion_tecnica) lines.push(`Descripcion tecnica (verificada): ${verified.descripcion_tecnica}`);
+      if (verified.objetivo_funcional) lines.push(`Objetivo funcional (verificado): ${verified.objetivo_funcional}`);
+      if (verified.pauta_consumo_detallada) lines.push(`Pauta de consumo detallada (verificada): ${verified.pauta_consumo_detallada}`);
+      if (verified.ingredientes_clave_completos) lines.push(`Ingredientes clave completos (verificados): ${verified.ingredientes_clave_completos}`);
     }
     lines.push(`--- FIN FICHA TECNICA: ${name} ---`);
 
@@ -601,7 +636,7 @@ REGLAS DE COMUNICACION:
 - Puedes usar emojis con moderacion para dar calidez a la conversacion.
 - Manten parrafos cortos de 2 a 3 lineas maximo.
 - Varia la forma de empezar tus respuestas. Nunca empieces con "Es un producto..." o "Esta formulado..." o "Contiene...".
-- No copies literalmente el catalogo. Usa la informacion tecnica como referencia pero expresala con tus palabras.
+- REGLA CRITICA DE SALUDO: Solo debes saludar con "Hola" o "Hola [nombre]" UNA UNICA VEZ en toda la conversacion, en tu primer mensaje. En todas las respuestas siguientes, NUNCA repitas "Hola" ni "Hola [nombre]". Puedes usar el nombre del usuario de forma natural en medio de la respuesta (ej: "Daniel, el producto ideal seria...") pero nunca como saludo repetido. Si ya saludaste al inicio, las siguientes respuestas deben comenzar directamente con el contenido util, sin preambulo de saludo.
 - Responde exactamente a la intencion del usuario. Si pregunta por un sintoma, habla del sintoma. Si pregunta por un producto, habla del producto.
 - Si el usuario menciona sintomas, embarazo, lactancia, medicamentos o condiciones de salud, no des diagnosticos ni tratamientos. No recomiendes suspender ni modificar tratamientos medicos.
 - REGLA ABSOLUTA: NUNCA ofrezcas hablar con un asesor humano ni derivar a WhatsApp. NUNCA. El usuario ya esta hablando contigo. Si necesita un asesor humano, el sistema lo decidira automaticamente.
@@ -703,7 +738,7 @@ CORRECCION CRITICA SOBRE PASSION Y VITAENERGIA:
 `;
 };
 
-const buildDynamicPrompt = (userMessage, conversationHistory = [], profileContext = '', riskAssessment = null, riskContext = '', preResult = null) => {
+const buildDynamicPrompt = (userMessage, conversationHistory = [], profileContext = '', riskAssessment = null, riskContext = '', preResult = null, productJourney = null) => {
   const userProducts = getMentionedProductsFromText(userMessage);
   const benefitProducts = getProductsFromBenefitIntent(userMessage);
   const historyProducts = getMentionedProductsFromHistory(conversationHistory);
@@ -738,6 +773,32 @@ const buildDynamicPrompt = (userMessage, conversationHistory = [], profileContex
       content: `PERFIL DE LA CONVERSACION:\n${profileContext}`
     });
     debugLog('profileContext', profileContext.substring(0, 200) + '...');
+  }
+
+  // ===================================================================
+  // SMART PRODUCT INTEREST MEMORY
+  // Inyectar contexto de productos vistos por el usuario durante su navegación
+  // Esto permite que la IA sepa qué productos ha estado mirando el usuario
+  // y cuál es su posible interés inferido.
+  // ===================================================================
+  if (productJourney && productJourney.viewedProducts && productJourney.viewedProducts.length > 0) {
+    const journeyLines = ['CONTEXTO DE NAVEGACION DEL USUARIO (productos vistos en la tienda antes de preguntar):'];
+    journeyLines.push('Productos vistos:');
+    productJourney.viewedProducts.forEach(p => {
+      journeyLines.push(`- ${p.name}`);
+    });
+    if (productJourney.mainInterest) {
+      journeyLines.push('');
+      journeyLines.push('Posible interes:');
+      journeyLines.push(productJourney.mainInterest);
+    }
+    journeyLines.push('');
+    journeyLines.push('Usa esta informacion para contextualizar tu respuesta. Si el usuario pregunta por recomendacion, ten en cuenta los productos que ya ha visto.');
+    systemMessages.push({
+      role: 'system',
+      content: journeyLines.join('\n')
+    });
+    debugLog('PRODUCT_JOURNEY', `Contexto inyectado: ${productJourney.viewedProducts.length} productos, interés: ${productJourney.mainInterest || 'ninguno'}`);
   }
 
   // ===================================================================
@@ -877,8 +938,10 @@ const printEnvDiagnostic = () => {
   console.log('');
 };
 
-// Ejecutar diagnóstico al cargar el módulo
-printEnvDiagnostic();
+// Ejecutar diagnóstico al cargar el módulo (solo si DEBUG_CHAT está activo)
+if (DEBUG_CHAT) {
+  printEnvDiagnostic();
+}
 
 // ===================================================================
 // CONFIGURACIÓN DE APIs
@@ -1214,8 +1277,13 @@ const sanitizeOutput = (text = '') => {
   cleaned = cleaned.replace(/^\s*[-*]\s+/gm, '');
   // Eliminar listas numeradas Markdown (1. 2. etc)
   cleaned = cleaned.replace(/^\s*\d+\.\s+/gm, '');
-  // Eliminar tablas Markdown (líneas con |)
-  cleaned = cleaned.replace(/^.*\|.*$/gm, '');
+  // Eliminar tablas Markdown REALES (formato de tabla con | separadores)
+  // Solo elimina líneas que tengan formato de tabla markdown:
+  // - Líneas que contengan | y tengan al menos 2 pipes (| algo | algo |)
+  // - O líneas de separación de tabla (| --- | --- |)
+  // NO elimina textos normales que contengan | (ej: "opción A | opción B")
+  cleaned = cleaned.replace(/^\s*\|.+\|.+\|?\s*$/gm, '');
+  cleaned = cleaned.replace(/^\s*\|?\s*:?-+:?\s*\|.*$/gm, '');
   // Eliminar líneas de separación (---, ***, ___)
   cleaned = cleaned.replace(/^[-*_]{3,}\s*$/gm, '');
   // Eliminar comillas decorativas (>)
@@ -1282,7 +1350,7 @@ export default async function handler(req, res) {
   }
 
   const startTime = Date.now();
-  const { messages, preferredProvider = 'deepseek', sessionId, startedAt } = req.body;
+  const { messages, preferredProvider = 'deepseek', sessionId, startedAt, productJourney } = req.body;
 
   if (!messages || !Array.isArray(messages) || messages.length === 0) {
     res.status(400).json({ error: 'Mensajes requeridos' });
@@ -1297,6 +1365,12 @@ export default async function handler(req, res) {
   }
 
   debugLog('handler', `Inicio - sessionId: ${sessionId}, preferredProvider: ${preferredProvider}`);
+
+  // Smart Product Interest Memory: log si hay datos de journey
+  if (productJourney && productJourney.viewedProducts && productJourney.viewedProducts.length > 0) {
+    debugLog('PRODUCT_JOURNEY', `Productos vistos: ${productJourney.viewedProducts.map(p => p.name).join(', ')}`);
+    debugLog('PRODUCT_JOURNEY', `Interés inferido: ${productJourney.mainInterest || 'ninguno'}`);
+  }
 
   // Construir el prompt optimizado con contexto de producto
   const conversationHistory = messages
@@ -1328,7 +1402,7 @@ export default async function handler(req, res) {
     debugLog('PRE', 'No se encontró recomendación basada en reglas de negocio');
   }
 
-  const optimizedMessages = buildDynamicPrompt(userMessage, conversationHistory, reasonedContext, riskAssessment, riskContext, preResult);
+  const optimizedMessages = buildDynamicPrompt(userMessage, conversationHistory, reasonedContext, riskAssessment, riskContext, preResult, productJourney);
 
   // Verificar caché en Supabase (SOLO si no hay riesgo médico)
   let cachedAnswer = null;
@@ -1564,8 +1638,26 @@ export default async function handler(req, res) {
     // conversationStage: etapa actual de la conversación
     conversationStage: null,
     // advisorRecommendation: recomendación del backend sobre derivación
-    advisorRecommendation: null
+    advisorRecommendation: null,
+    // Business Opportunity flags
+    isBusinessOpportunity: false,
+    showOpportunityVideo: false,
+    showOpportunityAdvisor: false
   };
+
+  // Detectar intención de oportunidad de negocio
+  const isBusinessOpportunity = detectBusinessOpportunityIntent(userMessage);
+  if (isBusinessOpportunity) {
+    responseContract.isBusinessOpportunity = true;
+    // Si el usuario pide explicación, ofrecer video
+    if (/\b(c[oó]mo funciona|expl[ií]came|quiero saber m[aá]s|cu[eé]ntame m[aá]s|dime m[aá]s|quiero entender|en qu[eé] consiste)\b/i.test(userMessage)) {
+      responseContract.showOpportunityVideo = true;
+    }
+    // Si el usuario solicita asesor humano, ofrecer derivación
+    if (/\b(asesor|humano|quiero hablar con alguien|hablar con un asesor|contactar con un asesor|asesor humano|persona real|atenci[oó]n personalizada)\b/i.test(userMessage)) {
+      responseContract.showOpportunityAdvisor = true;
+    }
+  }
 
   // Determinar si debe mostrar WhatsApp según las reglas del backend
   if (riskAssessment.level >= 3) {

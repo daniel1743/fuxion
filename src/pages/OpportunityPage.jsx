@@ -22,13 +22,25 @@ import {
   Globe,
   BookOpen,
   Target,
-  Star
+  Star,
+  HelpCircle,
+  Minus,
+  Smile,
+  MessageSquare,
+  Clock,
+  Briefcase,
+  HelpingHand,
+  Calendar
 } from 'lucide-react';
+
 import SEO from '@/components/SEO';
 import { SITE_URL, STORE_NAME } from '@/lib/productSeo';
 import { openWhatsapp } from '@/lib/whatsapp';
 import { toast } from '@/components/ui/use-toast';
 import OpportunityVideo from '@/components/OpportunityVideo';
+import SuccessAnimation from '@/components/SuccessAnimation';
+import CelebrationOverlay from '@/components/CelebrationOverlay';
+import { trackEvent } from '@/lib/userJourneyContext';
 
 // ── Page transition variants ──────────────────────────────────
 const pageVariants = {
@@ -76,45 +88,63 @@ const faqSchema = {
   ]
 };
 
+// ── Quiz icon map ─────────────────────────────────────────────
+const quizIconMap = {
+  Leaf: Leaf,
+  HelpCircle: HelpCircle,
+  Minus: Minus,
+  MessageCircle: MessageCircle,
+  Smile: Smile,
+  MessageSquare: MessageSquare,
+  Rocket: Rocket,
+  Clock: Clock,
+  Briefcase: Briefcase,
+  Target: Target,
+  HelpingHand: HelpingHand,
+  Calendar: Calendar,
+};
+
 // ── Quiz questions ────────────────────────────────────────────
 const quizQuestions = [
+
   {
     id: 1,
     question: '¿Te interesa el mundo del bienestar?',
     options: [
-      { value: 'yes', label: 'Sí, me gusta cuidarme', icon: '🌱' },
-      { value: 'curious', label: 'Tengo curiosidad', icon: '🤔' },
-      { value: 'not-sure', label: 'No estoy seguro', icon: '🤷' },
+      { value: 'yes', label: 'Sí, me gusta cuidarme', icon: 'Leaf' },
+      { value: 'curious', label: 'Tengo curiosidad', icon: 'HelpCircle' },
+      { value: 'not-sure', label: 'No estoy seguro', icon: 'Minus' },
     ]
   },
   {
     id: 2,
     question: '¿Te gusta compartir recomendaciones?',
     options: [
-      { value: 'yes', label: 'Sí, siempre recomiendo', icon: '💬' },
-      { value: 'sometimes', label: 'A veces', icon: '😊' },
-      { value: 'not-really', label: 'No mucho', icon: '🤐' },
+      { value: 'yes', label: 'Sí, siempre recomiendo', icon: 'MessageCircle' },
+      { value: 'sometimes', label: 'A veces', icon: 'Smile' },
+      { value: 'not-really', label: 'No mucho', icon: 'MessageSquare' },
     ]
   },
   {
     id: 3,
     question: '¿Quieres aprender sobre emprendimiento?',
     options: [
-      { value: 'yes', label: 'Sí, me interesa', icon: '🚀' },
-      { value: 'maybe', label: 'Quizás más adelante', icon: '⏳' },
-      { value: 'already', label: 'Ya emprendo', icon: '💼' },
+      { value: 'yes', label: 'Sí, me interesa', icon: 'Rocket' },
+      { value: 'maybe', label: 'Quizás más adelante', icon: 'Clock' },
+      { value: 'already', label: 'Ya emprendo', icon: 'Briefcase' },
     ]
   },
   {
     id: 4,
     question: '¿Buscas desarrollar un proyecto flexible?',
     options: [
-      { value: 'yes', label: 'Sí, necesito flexibilidad', icon: '🎯' },
-      { value: 'maybe', label: 'Podría ser', icon: '🤝' },
-      { value: 'not-now', label: 'Ahora no', icon: '📅' },
+      { value: 'yes', label: 'Sí, necesito flexibilidad', icon: 'Target' },
+      { value: 'maybe', label: 'Podría ser', icon: 'HelpingHand' },
+      { value: 'not-now', label: 'Ahora no', icon: 'Calendar' },
     ]
   }
 ];
+
 
 // ── Why cards data ────────────────────────────────────────────
 const whyCards = [
@@ -176,10 +206,13 @@ const OpportunityPage = () => {
     name: '',
     country: '',
     whatsapp: '',
+    email: '',
     interest: ''
   });
+
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formLoading, setFormLoading] = useState(false);
+  const [showCelebration, setShowCelebration] = useState(false);
 
   // ── Quiz handlers ───────────────────────────────────────────
   const handleStartQuiz = () => {
@@ -238,14 +271,33 @@ const OpportunityPage = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.name.trim() || !formData.whatsapp.trim() || !formData.interest) {
+    if (!formData.name.trim()) {
       toast({
-        title: 'Completa los campos requeridos',
-        description: 'Nombre, WhatsApp e interés son necesarios para contactarte.',
+        title: 'Nombre requerido',
+        description: 'Por favor ingresa tu nombre.',
         variant: 'destructive',
       });
       return;
     }
+
+    if (!formData.whatsapp.trim() && !formData.email.trim()) {
+      toast({
+        title: 'Contacto requerido',
+        description: 'Déjanos un WhatsApp o correo para poder responderte.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    if (!formData.interest) {
+      toast({
+        title: 'Interés requerido',
+        description: 'Selecciona qué te interesa.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
 
     setFormLoading(true);
 
@@ -277,6 +329,7 @@ const OpportunityPage = () => {
       }
 
       setFormSubmitted(true);
+      setShowCelebration(true);
       // Track event
       if (typeof window !== 'undefined' && window.gtag) {
         window.gtag('event', 'opportunity_lead_created', {
@@ -309,6 +362,8 @@ const OpportunityPage = () => {
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'opportunity_page_visit', { event_category: 'opportunity' });
     }
+    // Track business interest for Falcon Assistant context
+    trackEvent('BUSINESS_INTEREST');
   }, []);
 
   // ── Quiz result message ─────────────────────────────────────
@@ -393,20 +448,20 @@ const OpportunityPage = () => {
                 transition={{ duration: 0.7, delay: 0.45 }}
               >
                 <Button
-                  size="lg"
-                  className="btn-mobile-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-[20px] shadow-premium-soft btn-scale-hover text-base px-7 py-0 h-[54px] sm:h-14 max-w-[300px]"
+                  size="hero"
+                  fullWidth
                   onClick={handleOpenForm}
                 >
                   <span className="text-balance">Quiero conocer cómo funciona</span>
-                  <ArrowRight className="ml-2 h-[18px] w-[18px] shrink-0 stroke-[1.75]" />
+                  <ArrowRight className="ml-2 h-5 w-5 shrink-0" />
                 </Button>
                 <Button
-                  size="lg"
+                  size="hero"
                   variant="outline"
-                  className="btn-mobile-full font-bold rounded-[20px] text-base px-7 py-0 h-[54px] sm:h-14 max-w-[300px] border border-emerald-200 dark:border-emerald-800 bg-white/75 dark:bg-transparent btn-scale-hover"
+                  fullWidth
                   onClick={() => navigate('/explorar')}
                 >
-                  <Leaf className="mr-2 h-[18px] w-[18px] shrink-0 stroke-[1.75]" />
+                  <Leaf className="mr-2 h-5 w-5 shrink-0" />
                   <span className="text-balance">Primero quiero conocer los productos</span>
                 </Button>
               </motion.div>
@@ -606,11 +661,10 @@ const OpportunityPage = () => {
               >
                 <Button
                   size="lg"
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-[20px] shadow-premium-soft btn-scale-hover text-base px-7 py-0 h-14"
                   onClick={handleStartQuiz}
                 >
                   Comenzar quiz
-                  <ChevronRight className="ml-2 h-[18px] w-[18px] stroke-[1.75]" />
+                  <ChevronRight className="ml-2 h-5 w-5" />
                 </Button>
               </motion.div>
             ) : quizComplete ? (
@@ -647,7 +701,6 @@ const OpportunityPage = () => {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button
-                    className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-3xl shadow-premium-soft btn-scale-hover"
                     onClick={handleOpenForm}
                   >
                     Quiero más información
@@ -655,7 +708,6 @@ const OpportunityPage = () => {
                   </Button>
                   <Button
                     variant="outline"
-                    className="font-bold rounded-3xl btn-scale-hover"
                     onClick={handleQuizRestart}
                   >
                     Volver a intentar
@@ -698,7 +750,9 @@ const OpportunityPage = () => {
                       className="w-full text-left p-4 rounded-xl border border-emerald-100 dark:border-border bg-background hover:border-emerald-300 hover:bg-emerald-50 dark:hover:bg-emerald-950/20 transition-all duration-200 group cursor-pointer"
                     >
                       <span className="flex items-center gap-3">
-                        <span className="text-2xl">{option.icon}</span>
+                        <span className="text-2xl">
+                          {React.createElement(quizIconMap[option.icon] || Leaf)}
+                        </span>
                         <span className="text-foreground font-medium group-hover:text-emerald-700 dark:group-hover:text-emerald-300 transition-colors">
                           {option.label}
                         </span>
@@ -763,7 +817,6 @@ const OpportunityPage = () => {
           >
             <Button
               size="lg"
-              className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-[20px] shadow-premium-soft btn-scale-hover text-base px-7 py-0 h-[54px] sm:h-14"
               onClick={() => {
                 handleOpenForm();
                 if (typeof window !== 'undefined' && window.gtag) {
@@ -775,12 +828,11 @@ const OpportunityPage = () => {
               }}
             >
               Quiero recibir información
-              <ArrowRight className="ml-2 h-[18px] w-[18px] shrink-0 stroke-[1.75]" />
+              <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="font-bold rounded-[20px] text-base px-7 py-0 h-[54px] sm:h-14 border border-emerald-200 dark:border-emerald-800 bg-white/75 dark:bg-transparent btn-scale-hover"
               onClick={() => {
                 handleWhatsApp('Hola, quiero información sobre la oportunidad FuXion.');
                 if (typeof window !== 'undefined' && window.gtag) {
@@ -791,7 +843,7 @@ const OpportunityPage = () => {
                 }
               }}
             >
-              <MessageCircle className="mr-2 h-[18px] w-[18px] shrink-0 stroke-[1.75]" />
+              <MessageCircle className="mr-2 h-5 w-5" />
               Hablar por WhatsApp
             </Button>
           </motion.div>
@@ -811,26 +863,31 @@ const OpportunityPage = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 className="bg-card rounded-2xl p-6 md:p-12 border border-emerald-100 dark:border-border text-center"
               >
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ type: 'spring', stiffness: 200 }}
-                  className="mb-6"
+                <SuccessAnimation size="lg" />
+
+                <motion.h3
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3, duration: 0.4 }}
+                  className="text-2xl font-bold text-foreground mb-4"
                 >
-                  <div className="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center mx-auto">
-                    <CheckCircle2 className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
-                  </div>
-                </motion.div>
-                <h3 className="text-2xl font-bold text-foreground mb-4">
-                  ¡Gracias por tu interés!
-                </h3>
-                <p className="text-lg text-muted-foreground mb-8">
-                  Hemos recibido tu información. Pronto recibirás más detalles
-                  sobre cómo funciona la oportunidad FuXion.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  Tu interés fue recibido 🚀
+                </motion.h3>
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.4 }}
+                  className="text-lg text-muted-foreground mb-8"
+                >
+                  Un asesor FuXion revisará tu solicitud y podrá orientarte sobre los siguientes pasos.
+                </motion.p>
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5, duration: 0.4 }}
+                  className="flex flex-col sm:flex-row gap-4 justify-center"
+                >
                   <Button
-                    className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-3xl shadow-premium-soft btn-scale-hover"
                     onClick={() => navigate('/explorar')}
                   >
                     Explorar productos
@@ -838,13 +895,12 @@ const OpportunityPage = () => {
                   </Button>
                   <Button
                     variant="outline"
-                    className="font-bold rounded-3xl btn-scale-hover"
                     onClick={() => handleWhatsApp('Hola, recibí información sobre la oportunidad FuXion y quiero saber más.')}
                   >
                     <MessageCircle className="mr-2 h-4 w-4" />
                     Hablar por WhatsApp
                   </Button>
-                </div>
+                </motion.div>
               </motion.div>
             ) : (
               <motion.div
@@ -899,20 +955,44 @@ const OpportunityPage = () => {
                     </select>
                   </div>
 
-                  {/* WhatsApp */}
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      WhatsApp <span className="text-red-500">*</span>
-                    </label>
-                    <Input
-                      type="tel"
-                      placeholder="+56 9 1234 5678"
-                      value={formData.whatsapp}
-                      onChange={(e) => handleFormChange('whatsapp', e.target.value)}
-                      className="w-full"
-                      required
-                    />
+                  {/* Contact info */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {/* WhatsApp */}
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        WhatsApp <span className="text-xs text-muted-foreground">(Opcional si agregas correo)</span>
+                      </label>
+                      <Input
+                        type="tel"
+                        placeholder="+56 9 1234 5678"
+                        value={formData.whatsapp}
+                        onChange={(e) => handleFormChange('whatsapp', e.target.value)}
+                        className="w-full"
+                      />
+                    </div>
+
+                    {/* Email */}
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        Correo <span className="text-xs text-muted-foreground">(Opcional si agregas WhatsApp)</span>
+                      </label>
+                      <Input
+                        type="email"
+                        placeholder="tu@correo.com"
+                        value={formData.email}
+                        onChange={(e) => handleFormChange('email', e.target.value)}
+                        className="w-full"
+                      />
+                    </div>
                   </div>
+
+                  <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800/40 rounded-xl p-3">
+                    <p className="text-xs text-amber-700 dark:text-amber-400 flex items-center gap-2">
+                      <Shield className="w-4 h-4 flex-shrink-0" />
+                      Déjanos un WhatsApp o correo para poder responderte.
+                    </p>
+                  </div>
+
 
                   {/* Interest */}
                   <div>
@@ -949,7 +1029,8 @@ const OpportunityPage = () => {
 
                   <Button
                     type="submit"
-                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-[20px] shadow-premium-soft btn-scale-hover text-base py-0 h-14"
+                    size="lg"
+                    fullWidth
                     disabled={formLoading}
                   >
                     {formLoading ? (
@@ -960,7 +1041,7 @@ const OpportunityPage = () => {
                     ) : (
                       <span className="flex items-center justify-center gap-2">
                         Enviar
-                        <Send className="h-[18px] w-[18px] stroke-[1.75]" />
+                        <Send className="h-5 w-5" />
                       </span>
                     )}
                   </Button>
@@ -987,19 +1068,20 @@ const OpportunityPage = () => {
             <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
               <Button
                 size="lg"
-                className="btn-mobile-full bg-white text-emerald-900 hover:bg-emerald-50 font-bold rounded-[20px] shadow-premium-soft btn-scale-hover text-base px-7 py-0 h-[54px] sm:h-14 max-w-[300px]"
+                variant="secondary"
+                fullWidth
                 onClick={handleOpenForm}
               >
                 <span className="text-balance">Quiero recibir información</span>
-                <ArrowRight className="ml-2 h-[18px] w-[18px] shrink-0 stroke-[1.75]" />
+                <ArrowRight className="ml-2 h-5 w-5 shrink-0" />
               </Button>
               <Button
                 variant="outline"
                 size="lg"
-                className="btn-mobile-full font-bold rounded-[20px] text-base px-7 py-0 h-[54px] sm:h-14 max-w-[300px] border border-emerald-300/50 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 btn-scale-hover"
+                fullWidth
                 onClick={() => navigate('/explorar')}
               >
-                <Leaf className="mr-2 h-[18px] w-[18px] shrink-0 stroke-[1.75]" />
+                <Leaf className="mr-2 h-5 w-5 shrink-0" />
                 <span className="text-balance">Ver productos</span>
               </Button>
             </div>
@@ -1030,7 +1112,6 @@ const OpportunityPage = () => {
               </div>
             </div>
             <Button
-              className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-3xl shadow-premium-soft btn-scale-hover whitespace-nowrap flex-shrink-0"
               onClick={() => navigate('/oportunidad-fuxion')}
             >
               Conocer oportunidad
@@ -1039,6 +1120,14 @@ const OpportunityPage = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Celebration overlay for form submission */}
+      <CelebrationOverlay
+        show={showCelebration}
+        onComplete={() => setShowCelebration(false)}
+        title="Tu interés fue recibido 🚀"
+        message="Un asesor FuXion revisará tu solicitud y podrá orientarte sobre los siguientes pasos."
+      />
 
     </motion.div>
   );

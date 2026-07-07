@@ -42,7 +42,12 @@
       "para_toda_familia": true,
       "codigo": "144284",
       "fuente_precio": "Catalogo Chile.pdf",
-      "fuente_catalogo": "Catalogo Chile.pdf"
+      "fuente_catalogo": "Catalogo Chile.pdf",
+      "descripcion_tecnica": "Bebida funcional en formato de té herbal sabor a ciruela que ofrece intervención mecánica y bioquímica altamente efectiva y segura para resolver el estreñimiento ocasional y pesadez estomacal. Su mecanismo se basa en fibras solubles que lubrican el colon y encapsulan desechos.",
+      "objetivo_funcional": "Limpieza profunda del colon, desintoxicación y regulación del tránsito intestinal",
+      "ingredientes_clave": "Mix de fibras solubles (psyllium, inulina de achicoria, mucílago de linaza), alga kelp, anís estrella, extracto de guindón",
+      "pauta_consumo": "Disolver 1 stick (5g) en agua caliente o tibia, preferentemente por la noche antes de dormir, durante periodos de 7 a 14 días",
+      "inversion_referencial": "$23.300"
     },
     "LIQUID FIBER": {
       "nombre": "LIQUID FIBER",
@@ -69,7 +74,12 @@
       "para_toda_familia": true,
       "codigo": "147383",
       "fuente_precio": "Catalogo Chile.pdf",
-      "fuente_catalogo": "Catalogo Chile.pdf"
+      "fuente_catalogo": "Catalogo Chile.pdf",
+      "descripcion_tecnica": "Bebida sabor limón diseñada para ser el mantenedor diario de la homeostasis gástrica. Sus fibras solubles resisten enzimas y llegan intactas al colon sirviendo como sustrato energético (prebióticos) para bacterias beneficiosas, reduciendo picos de glucosa e insulina.",
+      "objetivo_funcional": "Nutrición prebiótica, mantenimiento de la regularidad y equilibrio glucémico",
+      "ingredientes_clave": "Fibras prebióticas (inulina y oligofructosa extraídas de la raíz de achicoria), micronutrientes, vitaminas estabilizadas",
+      "pauta_consumo": "Disolver 1 stick (5g) en un vaso de agua fría (180 ml), consumir preferentemente antes del almuerzo o la cena, seguido de un vaso de agua adicional",
+      "inversion_referencial": "$28.750"
     },
     "FLORA LIV": {
       "nombre": "FLORA LIV",
@@ -99,7 +109,12 @@
       "para_toda_familia": true,
       "codigo": "144274",
       "fuente_precio": "Catalogo Chile.pdf",
-      "fuente_catalogo": "Catalogo Chile.pdf"
+      "fuente_catalogo": "Catalogo Chile.pdf",
+      "descripcion_tecnica": "Formulación simbiótica para repoblar rápidamente la microbiota. Introduce más de 10 mil millones de bacterias probióticas vivas que compiten directamente con virus y bacterias patógenas, desinflamando la mucosa gástrica y reduciendo la acidez.",
+      "objetivo_funcional": "Regeneración integral de la flora intestinal, barrera inmunológica y alivio gástrico",
+      "ingredientes_clave": "10 mil millones de cultivos probióticos liofilizados (Lactobacillus acidophilus, Bifidobacterium bifidum), fibra prebiótica, extracto de pulpa de granadilla, aguaymanto, zinc, magnesio",
+      "pauta_consumo": "Disolver 1 stick (5g) en un vaso de agua fría, consumir una o dos veces al día, idealmente en ayunas por la mañana o una hora después de las comidas",
+      "inversion_referencial": "$43.000"
     },
     "BERRY BALANCE": {
       "nombre": "BERRY BALANCE",
@@ -133,7 +148,12 @@
       "para_toda_familia": true,
       "codigo": "144271",
       "fuente_precio": "Catalogo Chile.pdf",
-      "fuente_catalogo": "Catalogo Chile.pdf"
+      "fuente_catalogo": "Catalogo Chile.pdf",
+      "descripcion_tecnica": "Escudo nutracéutico que previene la adherencia de bacterias uropatógenas gracias a las proantocianidinas (PACs) del cranberry. Actúa como diurético natural, protegiendo y equilibrando la microbiota vaginal e íntima.",
+      "objetivo_funcional": "Protección antioxidante del tracto urinario, equilibrio de pH íntimo y efecto diurético",
+      "ingredientes_clave": "Extracto puro de cranberry, concentrado de berries (arándanos, moras, cerezas), infusión de cáscara de piña, cultivos probióticos, calcio orgánico, vitaminas C y E",
+      "pauta_consumo": "Disolver 1 o 2 sticks en agua fría, consumidos a cualquier hora del día, preferiblemente entre comidas",
+      "inversion_referencial": "$46.500"
     },
     "ALPHA BALANCE": {
       "nombre": "ALPHA BALANCE",
@@ -167,7 +187,12 @@
       "para_toda_familia": true,
       "codigo": "144269",
       "fuente_precio": "Catalogo Chile.pdf",
-      "fuente_catalogo": "Catalogo Chile.pdf"
+      "fuente_catalogo": "Catalogo Chile.pdf",
+      "descripcion_tecnica": "Bebida verde rica en clorofila que actúa como agente quelante eliminando metales pesados y revertiendo la acidosis metabólica silente. Promueve la formación de glóbulos rojos, combatiendo la fatiga celular crónica.",
+      "objetivo_funcional": "Alcalinización del plasma, quelación de metales y limpieza sanguínea intracelular",
+      "ingredientes_clave": "Alfalfa, microalgas (chlorella y espirulina), pasto de trigo libre de gluten, espinaca, manzana verde, limón, jengibre, magnesio, zinc",
+      "pauta_consumo": "Disolver 1 stick en un vaso de agua fría (180 ml), consumido idealmente al despertar en ayunas o junto al jugo del desayuno",
+      "inversion_referencial": "$36.000"
     },
     "REXET": {
       "nombre": "REXET",
@@ -204,7 +229,12 @@
       "para_toda_familia": true,
       "codigo": "146319",
       "fuente_precio": "Catalogo Chile.pdf",
-      "fuente_catalogo": "Catalogo Chile.pdf"
+      "fuente_catalogo": "Catalogo Chile.pdf",
+      "descripcion_tecnica": "Fórmula efervescente avanzada diseñada para salvaguardar y restaurar el hígado. Contiene N-Acetilcisteína (NAC) para neutralizar radicales libres y toxicidad, siendo ideal para recuperarse de asaltos metabólicos y excesos.",
+      "objetivo_funcional": "Regeneración del hepatocito, estimulación del sistema hepatobiliar y alivio del estrés metabólico",
+      "ingredientes_clave": "N-Acetilcisteína (NAC), extractos de tuna roja, alcachofa, hierba luisa y perejil, acerola, clorofila, vitaminas del complejo B, vitamina C, vitamina D, taurina, electrolitos",
+      "pauta_consumo": "Disolver 1 stick en agua fría o temperatura ambiente. Consumir regularmente para mantenimiento, o antes/después de excesos alimenticios o ingesta de alcohol",
+      "inversion_referencial": "$36.000"
     },
     "BIOPROTEIN ACTIVE": {
       "nombre": "BIOPROTEIN ACTIVE",
@@ -246,7 +276,12 @@
         "Chocolate con Avellanas": 40000
       },
       "fuente_precio": "Catalogo Chile.pdf",
-      "fuente_catalogo": "Catalogo Chile.pdf"
+      "fuente_catalogo": "Catalogo Chile.pdf",
+      "descripcion_tecnica": "Matriz proteica de origen vegetal 100% biodisponible lograda mediante germinación controlada. Promueve anabolismo celular puro, desarrollo cognitivo óptimo y respuesta inmunológica robusta sin generar inflamación.",
+      "objetivo_funcional": "Regeneración tisular, hipertrofia celular y soporte del sistema de defensas mediante proteína asimilable al 100%",
+      "ingredientes_clave": "Bioprotein Active® (proteína de quinua orgánica germinada, arroz integral germinado, arveja, algas), enzimas asimiladoras, vitaminas, aminoácidos esenciales, L-glutamina, BCAAs, DHA, ARA, aceite de coco",
+      "pauta_consumo": "Disolver 1 stick (25g) en 250 ml de agua fría, agitando vigorosamente. Consumir en cualquier momento del día para elevar el perfil proteico dietario",
+      "inversion_referencial": "Vainilla: $39.500 | Chocolate: $40.000"
     },
     "VITA XTRA T+": {
       "nombre": "VITA XTRA T+",
@@ -281,7 +316,12 @@
       "combo": "COMBO FIESTA con Rexet",
       "codigo": "147059",
       "fuente_precio": "Catalogo Chile.pdf",
-      "fuente_catalogo": "Catalogo Chile.pdf"
+      "fuente_catalogo": "Catalogo Chile.pdf",
+      "descripcion_tecnica": "Interviene directamente en el ciclo de Krebs a nivel intracelular optimizando la producción de ATP (energía). Mezcla de Guayusa y Té Verde junto a adaptógenos supremos como Cordyceps, Maca y Ginseng para vitalidad prolongada sin caídas metabólicas.",
+      "objetivo_funcional": "Estimulación energética mitocondrial sostenida, vigor físico y neuroprotección antioxidante",
+      "ingredientes_clave": "Extractos de guayusa, té verde, acai berry, goji berry, micelio de cordyceps, maca andina, ginseng, antocianinas de maíz morado, vitaminas y minerales",
+      "pauta_consumo": "Disolver 1 stick (5g) en un vaso de agua fría. Consumir por la mañana o antes de requerir un desempeño físico o cognitivo superior",
+      "inversion_referencial": "$36.000"
     },
     "VITAENERGÍA": {
       "nombre": "VITAENERGÍA",
@@ -313,7 +353,12 @@
       "para_toda_familia": true,
       "codigo": "144286",
       "fuente_precio": "Catalogo Chile.pdf",
-      "fuente_catalogo": "Catalogo Chile.pdf"
+      "fuente_catalogo": "Catalogo Chile.pdf",
+      "descripcion_tecnica": "Mantenimiento nutricional preventivo y eliminación de astenia crónica. Aborda carencias microscópicas de la dieta y aporta luteína purificada para proteger la mácula ocular de la luz azul de pantallas.",
+      "objetivo_funcional": "Suplementación multivitamínica diaria, mitigación de fatiga y preservación de la agudeza visual",
+      "ingredientes_clave": "Aminoácidos, complejo vitamínico completo, minerales orgánicos, fibra prebiótica, camu camu, antocianinas de maíz morado, luteína (extracto de flor de marigold)",
+      "pauta_consumo": "Disolver 1 stick en agua fría, idealmente consumido durante las mañanas",
+      "inversion_referencial": "$36.000"
     },
     "NUTRADAY": {
       "nombre": "NUTRADAY",
@@ -347,7 +392,12 @@
       "para_toda_familia": true,
       "codigo": "144282",
       "fuente_precio": "Catalogo Chile.pdf",
-      "fuente_catalogo": "Catalogo Chile.pdf"
+      "fuente_catalogo": "Catalogo Chile.pdf",
+      "descripcion_tecnica": "Matriz de rehidratación ortomolecular (sabor fresa) que reemplaza jugos envasados. Su núcleo de extracto de Moringa ('el árbol de la vida') previene la anemia al aportar dosis concentradas de hierro biológico y vitaminas.",
+      "objetivo_funcional": "Hidratación funcional, nutrición familiar y fortalecimiento inmunológico basal",
+      "ingredientes_clave": "Súper extracto de moringa, guayaba, limón, albahaca, camu camu, acai berry, acerola, quinua orgánica germinada",
+      "pauta_consumo": "Disolver 1 stick en agua fría y consumir como bebida de hidratación regular a lo largo del día, apta para todas las edades",
+      "inversion_referencial": "$36.000"
     },
     "VERA+": {
       "nombre": "VERA+",
@@ -376,7 +426,12 @@
       "palabra_clave": "SISTEMA RESPIRATORIO, DEFENSAS",
       "codigo": "144281",
       "fuente_precio": "Catalogo Chile.pdf",
-      "fuente_catalogo": "Catalogo Chile.pdf"
+      "fuente_catalogo": "Catalogo Chile.pdf",
+      "descripcion_tecnica": "Nutracéutico diseñado para modular las defensas. Utiliza beta-glucanos para preparar a las células destructoras de patógenos sin causar inflamación, además de N-acetilcisteína como potente mucolítico.",
+      "objetivo_funcional": "Inmunomodulación de precisión, escudo antiviral y profilaxis respiratoria",
+      "ingredientes_clave": "Extracto bioactivo de aloe vera, beta-glucanos, mix de aminoácidos celulares (N-acetilcisteína, glicina, L-glutamina), extracto de hoja de olivo, amalaki (vitamina C natural)",
+      "pauta_consumo": "Disolver 1 stick en agua caliente y tomar como infusión relajante ante episodios de vulnerabilidad climática o síntomas respiratorios tempranos",
+      "inversion_referencial": "$46.500"
     },
     "GANO+ CAPPUCCINO": {
       "nombre": "GANO+ CAPPUCCINO",
@@ -404,7 +459,12 @@
       "palabra_clave": "PRESIÓN ARTERIAL, DEFENSAS",
       "codigo": "144272",
       "fuente_precio": "Catalogo Chile.pdf",
-      "fuente_catalogo": "Catalogo Chile.pdf"
+      "fuente_catalogo": "Catalogo Chile.pdf",
+      "descripcion_tecnica": "Aísla y liofiliza los principios activos del Ganoderma Lucidum en una base de café gourmet. Sus compuestos actúan como inmunomoduladores silenciosos e interceptan radicales libres para prevenir el envejecimiento metabólico.",
+      "objetivo_funcional": "Refuerzo antioxidante profundo, regulación inmunitaria celular y neuroprotección",
+      "ingredientes_clave": "Extracto hiperconcentrado de Ganoderma Lucidum, antioxidantes celulares, micronutrientes, granos de café tostado premium",
+      "pauta_consumo": "Disolver 1 stick en agua caliente, sustituyendo el consumo de café industrial diario",
+      "inversion_referencial": "$23.250"
     },
     "THERMO T3": {
       "nombre": "THERMO T3",
@@ -435,7 +495,12 @@
       "palabra_clave": "METABOLISMO, QUEMA GRASA",
       "codigo": "144280",
       "fuente_precio": "Catalogo Chile.pdf",
-      "fuente_catalogo": "Catalogo Chile.pdf"
+      "fuente_catalogo": "Catalogo Chile.pdf",
+      "descripcion_tecnica": "Catalizador químico de la quema de grasa. Eleva la temperatura basal, incrementa el gasto calórico, y usa L-Carnitina como transbordador para oxidar ácidos grasos dentro de la mitocondria.",
+      "objetivo_funcional": "Termogénesis celular, oxidación de lípidos almacenados y reducción del perímetro abdominal",
+      "ingredientes_clave": "Complejo termogénico de tés (verde, negro y rojo), cetonas de frambuesa, tamarindo malabar (Garcinia Cambogia), L-carnitina, extracto de café verde, ácido alfa lipoico, vitamina B6, cromo orgánico",
+      "pauta_consumo": "Disolver 1 stick en agua caliente o fría, consumido 15-30 minutos antes de realizar actividad física, o en la mañana",
+      "inversion_referencial": "$36.000"
     },
     "NOCARB-T": {
       "nombre": "NOCARB-T",
@@ -464,7 +529,12 @@
       "palabra_clave": "CARBOHIDRATOS, AZÚCAR",
       "codigo": "144279",
       "fuente_precio": "Catalogo Chile.pdf",
-      "fuente_catalogo": "Catalogo Chile.pdf"
+      "fuente_catalogo": "Catalogo Chile.pdf",
+      "descripcion_tecnica": "Bio-blindaje entérico que frena asaltos glucémicos. Inhibe parcialmente la digestión y absorción de almidones y azúcares simples, aplanando la curva de glucosa y forzando su uso como energía en lugar de almacenamiento.",
+      "objetivo_funcional": "Inhibición enzimática de carbohidratos, modulación insulínica y control glucémico postprandial",
+      "ingredientes_clave": "Matriz de fibras solubles de alta densidad (fibra de yacón, acacia, inulina de achicoria, pectina de manzana), verdolaga, canela, extracto de té verde, cromo orgánico",
+      "pauta_consumo": "Disolver 1 stick en agua caliente (como té). Consumir durante o inmediatamente después de comidas con alta carga glucémica",
+      "inversion_referencial": "$36.000"
     },
     "PROTEIN ACTIVE FIT": {
       "nombre": "PROTEIN ACTIVE FIT",
@@ -501,7 +571,12 @@
         "Chocolate con Avellanas": 41500
       },
       "fuente_precio": "Catalogo Chile.pdf",
-      "fuente_catalogo": "Catalogo Chile.pdf"
+      "fuente_catalogo": "Catalogo Chile.pdf",
+      "descripcion_tecnica": "Previene el catabolismo celular de dietas restrictivas manteniendo la masa muscular intacta. Suma activo patentado Svetol® que obliga al cuerpo a sostener déficit calórico quemando exclusivamente tejido adiposo.",
+      "objetivo_funcional": "Sostenimiento del balance nitrogenado, saciedad neuroendocrina y preservación de masa magra durante la reducción de peso",
+      "ingredientes_clave": "Bioprotein Active® (quinua, arroz integral, arveja, algas), L-carnitina, Svetol® (extracto puro de café verde), Garcinia Cambogia",
+      "pauta_consumo": "Disolver 1 stick (25g) en agua fría utilizando un shaker. Ideal para emplear como colación de media tarde",
+      "inversion_referencial": "Vainilla: $41.750 | Chocolate: $41.500"
     },
     "YOUTH ELIXIR HGH": {
       "nombre": "YOUTH ELIXIR",
@@ -530,7 +605,12 @@
       "palabra_clave": "BELLEZA",
       "codigo": "144273",
       "fuente_precio": "Catalogo Chile.pdf",
-      "fuente_catalogo": "Catalogo Chile.pdf"
+      "fuente_catalogo": "Catalogo Chile.pdf",
+      "descripcion_tecnica": "Emplea precursores ortomoleculares para reactivar fisiológicamente la hormona de crecimiento (HGH). Incorpora resveratrol para la reparación celular y propiciar ciclos de sueño reparadores y mayor firmeza dérmica.",
+      "objetivo_funcional": "Estimulación pituitaria natural, secreción de HGH (hormona del crecimiento) y prevención de senectud tisular",
+      "ingredientes_clave": "Complejo de aminoácidos precursores (L-arginina, L-ornitina, L-glutamina), molécula de resveratrol, mix de súper frutas Optiberry® (uvas, arándanos azules, amalaki)",
+      "pauta_consumo": "Disolver 1 stick en agua fría y consumir 30 minutos antes del sueño nocturno",
+      "inversion_referencial": "$36.000"
     },
     "BEAUTY-IN": {
       "nombre": "BEAUTY-IN",
@@ -562,7 +642,12 @@
       "palabra_clave": "COLÁGENO, PIEL",
       "codigo": "144270",
       "fuente_precio": "Catalogo Chile.pdf",
-      "fuente_catalogo": "Catalogo Chile.pdf"
+      "fuente_catalogo": "Catalogo Chile.pdf",
+      "descripcion_tecnica": "Utiliza Péptidos Bioactivos de ultrabajo peso molecular asimilables directamente por el torrente sanguíneo, ordenando a los fibroblastos generar colágeno nuevo endógeno. Refuerza hidratación dérmica profunda.",
+      "objetivo_funcional": "Reestructuración de la matriz dérmica profunda, síntesis de elastina y redensificación de queratina",
+      "ingredientes_clave": "Péptidos bioactivos de Colágeno Hidrolizado (Tipos 1 y 3), ácido hialurónico, Coenzima Q10 celular, biotina profunda, antioxidantes sistémicos, extracto liofilizado de guayaba, toronja y camu camu",
+      "pauta_consumo": "Disolver 1 stick en un vaso de agua fría. Consumir de noche antes del descanso",
+      "inversion_referencial": "$44.750"
     },
     "PROBAL": {
       "nombre": "PROBAL",
@@ -592,7 +677,12 @@
       "palabra_clave": "SISTEMA HORMONAL MUJER",
       "codigo": "144230",
       "fuente_precio": "Catalogo Chile.pdf",
-      "fuente_catalogo": "Catalogo Chile.pdf"
+      "fuente_catalogo": "Catalogo Chile.pdf",
+      "descripcion_tecnica": "Intervención botánica con isoflavonas de soya que actúan como fitoestrógenos para mitigar desbalances hormonales como la menopausia, protegiendo al mismo tiempo la función urogenital y ocular.",
+      "objetivo_funcional": "Equilibrio del eje endocrino, modulación estrogénica y protección profunda del nervio óptico",
+      "ingredientes_clave": "Isoflavonas de soya no transgénica, aminoácidos reguladores, extracto botánico de achiote, luteína extraída de marigold, vitaminas, minerales",
+      "pauta_consumo": "Disolver 1 stick en agua caliente y tomar a cualquier hora del día como una infusión herbal reconfortante",
+      "inversion_referencial": "$44.750"
     },
     "PASSION": {
       "nombre": "PASSION",
@@ -620,7 +710,12 @@
       "palabra_clave": "CIRCULACIÓN, POTENCIA SEXUAL",
       "codigo": "144277",
       "fuente_precio": "Catalogo Chile.pdf",
-      "fuente_catalogo": "Catalogo Chile.pdf"
+      "fuente_catalogo": "Catalogo Chile.pdf",
+      "descripcion_tecnica": "Hemodilatador sistémico con L-Arginina que incrementa flujo sanguíneo orgánico. Contiene jalea real y adaptógenos (Maca y Ginseng) que erradican la fatiga y restauran el deseo biológico.",
+      "objetivo_funcional": "Modulación hormonal gonadal, vasodilatación periférica y vigor sexual",
+      "ingredientes_clave": "Complejo L-Arginina, extracto hiperconcentrado de jalea real, raíz de maca andina, extracto de ginseng asiático, zinc en molécula orgánica",
+      "pauta_consumo": "Disolver 1 stick en agua fría o a temperatura ambiente, consumido en respuesta a demandas energéticas o vitalidad íntima",
+      "inversion_referencial": "$36.000"
     },
     "GOLDEN FLX": {
       "nombre": "GOLDEN FLX",
@@ -650,7 +745,12 @@
       "palabra_clave": "DESINFLAMAR ARTICULACIONES, MOVILIDAD",
       "codigo": "144275",
       "fuente_precio": "Catalogo Chile.pdf",
-      "fuente_catalogo": "Catalogo Chile.pdf"
+      "fuente_catalogo": "Catalogo Chile.pdf",
+      "descripcion_tecnica": "Potente desinflamatorio con extracto patentado Turmipure® altamente biodisponible gracias a la matriz lipídica de la leche de coco y la pimienta negra. Ideal para profilaxis en deportistas o para dolores articulares.",
+      "objetivo_funcional": "Supresión profunda de la cascada inflamatoria, lubricación articular y restauración del cartílago",
+      "ingredientes_clave": "Turmipure® (extracto puro y bioactivo de cúrcuma orgánica certificada), jengibre bioactivo, cardamomo, canela, extracto de pimienta negra, leche de coco liofilizada",
+      "pauta_consumo": "Disolver 1 stick en agua caliente y degustar como el tradicional 'Golden Milk', en cualquier momento del día",
+      "inversion_referencial": "$39.250"
     },
     "ON": {
       "nombre": "ON",
@@ -681,7 +781,12 @@
       "palabra_clave": "CONCENTRACIÓN, MEMORIA",
       "codigo": "144276",
       "fuente_precio": "Catalogo Chile.pdf",
-      "fuente_catalogo": "Catalogo Chile.pdf"
+      "fuente_catalogo": "Catalogo Chile.pdf",
+      "descripcion_tecnica": "Modulación neuronal inteligente sin hiperestimulación tóxica. La Taurina estabiliza membranas celulares cerebrales mientras la Yerba Mate induce vigilia sostenida. Optimiza la memoria y procesamiento.",
+      "objetivo_funcional": "Potenciación cognitiva, neurotransmisión acelerada, concentración aguda y foco analítico",
+      "ingredientes_clave": "L-Taurina, extracto concentrado de yerba mate, complejo B neuroactivo, magnesio, hierro, zinc, aceites esenciales, DHA, ARA",
+      "pauta_consumo": "Disolver 1 stick en un vaso de agua fría. Ideal ante sesiones intensas de estudio o carga laboral profunda",
+      "inversion_referencial": "$28.750"
     },
     "NO STRESS": {
       "nombre": "NO STRESS",
@@ -711,7 +816,12 @@
       "palabra_clave": "ESTRÉS, ANSIEDAD",
       "codigo": "144236",
       "fuente_precio": "Catalogo Chile.pdf",
-      "fuente_catalogo": "Catalogo Chile.pdf"
+      "fuente_catalogo": "Catalogo Chile.pdf",
+      "descripcion_tecnica": "Intervención nutricional que fuerza el apagado ordenado del sistema nervioso simpático, convirtiendo el Triptófano en melatonina. Modifica patrones a ondas alfa para una relajación enfocada libre de estrés químico.",
+      "objetivo_funcional": "Regulación neuro-endocrina, inducción de ondas alfa, inhibición del cortisol y descanso reparador",
+      "ingredientes_clave": "Aminoácidos relajantes (L-teanina, L-glicina, L-triptófano), extracto botánico de ashwagandha, amalaki, limón, magnesio en molécula orgánica, complejo vitamínico B",
+      "pauta_consumo": "Disolver 1 stick en agua fría o caliente. Consumir de noche para apaciguar el cerebro previo al sueño o de día ante ansiedad",
+      "inversion_referencial": "$39.750"
     },
     "PRE SPORT": {
       "nombre": "PRE SPORT PRO EDITION",
@@ -738,7 +848,12 @@
       "horario": "Antes de iniciar rutina de ejercicio",
       "codigo": "144244",
       "fuente_precio": "Catalogo Chile.pdf",
-      "fuente_catalogo": "Catalogo Chile.pdf"
+      "fuente_catalogo": "Catalogo Chile.pdf",
+      "descripcion_tecnica": "Bombeo endotelial inducido mediante extracto liofilizado de betarraga y sandía (donadores de óxido nítrico y L-citrulina). Aumenta flujo sanguíneo al músculo esquelético y previene calambres con Sal de Maras.",
+      "objetivo_funcional": "Vasodilatación periférica exponencial, perfusión tisular de oxígeno y resistencia biomecánica aguda",
+      "ingredientes_clave": "Mix de aminoácidos citosólicos, concentrados vasculares (extracto de sandía y betarraga), yerba mate, minerales isotónicos moleculares, electrolitos de Sal de Maras",
+      "pauta_consumo": "Disolver 1 stick en un shaker con agua fría y consumir 20-30 minutos previos al inicio de la carga física intensa",
+      "inversion_referencial": "$39.250"
     },
     "POST SPORT": {
       "nombre": "POST SPORT PRO EDITION",
@@ -765,7 +880,12 @@
       "horario": "Cuando termines de hacer ejercicio",
       "codigo": "144278",
       "fuente_precio": "Catalogo Chile.pdf",
-      "fuente_catalogo": "Catalogo Chile.pdf"
+      "fuente_catalogo": "Catalogo Chile.pdf",
+      "descripcion_tecnica": "Interrumpe la cascada degenerativa post-entrenamiento suministrando BCAAs puros que ordenan la síntesis de nuevas proteínas. El agua de coco rehidrata a nivel celular mientras la granada neutraliza la acidosis y fatiga.",
+      "objetivo_funcional": "Intercepción de degradación proteica (anti-catabolismo), regeneración miofibrilar y lavado de ácido láctico",
+      "ingredientes_clave": "Alta concentración de BCAAs (Aminoácidos de Cadena Ramificada), agua de coco amazónico liofilizada, antioxidantes derivados de granada",
+      "pauta_consumo": "Disolver 1 stick en agua fría e ingerir inmediatamente finalizada la sesión de entrenamiento aeróbico o anaeróbico",
+      "inversion_referencial": "$39.250"
     },
     "CAFE & CAFE FIT CAPPUCCINO": {
       "nombre": "CAFÉ & CAFÉ FIT CAPPUCCINO",
@@ -789,7 +909,12 @@
       "horario": "Durante el día; evitar en la noche si eres sensible a la cafeína",
       "palabra_clave": "CAFÉ, ENERGÍA, CONTROL DE PESO",
       "fuente_precio": "Catalogo Chile.pdf",
-      "fuente_catalogo": "Catalogo Chile.pdf"
+      "fuente_catalogo": "Catalogo Chile.pdf",
+      "descripcion_tecnica": "Convierte una bebida calórica en herramienta terapéutica gracias a los ácidos clorogénicos conservados del café verde crudo (Svetol®). Bloquea liberación de glucosa hepática, dominando impulsos de hambre.",
+      "objetivo_funcional": "Bloqueo enzimático de almacenamiento de grasa y supresión del apetito en formato gourmet",
+      "ingredientes_clave": "Matriz de granos de café tostado liofilizado, Svetol® (extracto bioactivo de café verde), crema formulada baja en calorías",
+      "pauta_consumo": "Disolver 1 stick en agua caliente, sustituyendo indulgencias calóricas de media mañana o meriendas vespertinas",
+      "inversion_referencial": "$51.500"
     },
     "PACK 5/14": {
       "nombre": "PACK 5/14",
@@ -807,7 +932,12 @@
       "horario": "Según pauta del pack",
       "palabra_clave": "PACK 5/14, CONTROL DE PESO",
       "fuente_precio": "Catalogo Chile.pdf",
-      "fuente_catalogo": "Catalogo Chile.pdf"
+      "fuente_catalogo": "Catalogo Chile.pdf",
+      "descripcion_tecnica": "Protocolo clínico de intervención basado en crononutrición y déficit calórico programado que moviliza activamente grasa sin disparar señales de inanición. Acelera la termogénesis.",
+      "objetivo_funcional": "Reprogramación metabólica intensiva de 14 días para la reducción drástica de grasa corporal y medidas",
+      "ingredientes_clave": "Sistema estructurado: 28 sticks de Protein Active Fit, 14 sticks de Nocarb-T, 14 sticks de Thermo T3, 14 sticks de Vita Xtra T+, 4 sticks de Prunex 1. Incluye régimen dietético",
+      "pauta_consumo": "Seguir el protocolo crononutricional de 14 días, reemplazando meriendas y sincronizando la toma de bebidas",
+      "inversion_referencial": "$111.000"
     }
   }
 }

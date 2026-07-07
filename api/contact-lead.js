@@ -28,15 +28,19 @@ export default async function handler(req, res) {
   }
 
   // ── Validar campos obligatorios ──────────────────────────────
-  const { nombre, pais, whatsapp, interes, fecha, origen } = req.body;
+  const { nombre, pais, whatsapp, email, interes, fecha, origen } = req.body;
 
   if (!nombre || !nombre.trim()) {
     res.status(400).json({ error: 'El campo nombre es obligatorio' });
     return;
   }
 
-  if (!whatsapp || !whatsapp.trim()) {
-    res.status(400).json({ error: 'El campo whatsapp es obligatorio' });
+  // Requiere al menos un medio de contacto: WhatsApp o correo
+  const hasWhatsapp = whatsapp && whatsapp.trim();
+  const hasEmail = email && email.trim();
+
+  if (!hasWhatsapp && !hasEmail) {
+    res.status(400).json({ error: 'Debes proporcionar al menos un medio de contacto: WhatsApp o correo electrónico' });
     return;
   }
 
@@ -64,6 +68,14 @@ export default async function handler(req, res) {
     minute: '2-digit'
   });
 
+  const contactLines = [];
+  if (hasWhatsapp) {
+    contactLines.push('📱 WhatsApp:', whatsapp.trim());
+  }
+  if (hasEmail) {
+    contactLines.push('📧 Correo:', email.trim());
+  }
+
   const message = [
     '🟢 NUEVO INTERESADO FUXION',
     '',
@@ -73,8 +85,7 @@ export default async function handler(req, res) {
     '🌎 País:',
     pais || 'No especificado',
     '',
-    '📱 WhatsApp:',
-    whatsapp.trim(),
+    ...contactLines,
     '',
     '🎯 Interés:',
     readableInterest,

@@ -1,0 +1,813 @@
+{
+  "empresa": {
+    "nombre": "Fuxion Biotech",
+    "tipo": "Empresa latina multinacional de alimentos nutracéuticos",
+    "propuesta": "Fusión Nutracéutica - combina sabiduría ancestral con biotecnología",
+    "filosofia": "Mejoramos tu vida - Salud plena es bienestar físico, emocional y financiero",
+    "principios_activos": 1500,
+    "certificaciones": [
+      "HACCP",
+      "BPM",
+      "Clean Label",
+      "ISO",
+      "Inacal"
+    ],
+    "minerales_organicos": "Absorción hasta 6 veces mayor"
+  },
+  "productos": {
+    "PRUNEX 1": {
+      "nombre": "PRUNEX 1",
+      "categoria": "Limpieza del Colon",
+      "linea": "Sistema Base - Limpia tu Cuerpo",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 23300,
+      "sabor": "Té herbal",
+      "ingredientes": [
+        "Mix de fibras solubles (Psyllium, Inulina de achicoria, Mucílago de linaza)",
+        "Guindón",
+        "Kelp"
+      ],
+      "beneficios": [
+        "Limpia el colon",
+        "Ideal en caso de estreñimiento severo",
+        "Desinflama el abdomen",
+        "Mejora la asimilación de nutrientes",
+        "Siente más liviano sin hinchazón",
+        "Adecuado tránsito intestinal"
+      ],
+      "modo_uso": "Disolver un sobre en agua caliente",
+      "horario": "Antes de acostarte a dormir",
+      "efecto": "Laxante - plan agresivo de desintoxicación",
+      "palabra_clave": "COLON",
+      "para_toda_familia": true,
+      "codigo": "144284",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
+    },
+    "LIQUID FIBER": {
+      "nombre": "LIQUID FIBER",
+      "categoria": "Limpieza del Sistema Digestivo",
+      "linea": "Sistema Base - Limpia tu Cuerpo",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 28750,
+      "ingredientes": [
+        "Fibra Prebiótica",
+        "Vitaminas",
+        "Minerales"
+      ],
+      "beneficios": [
+        "Regula el ritmo de las evacuaciones",
+        "Ayuda en caso de estreñimiento no severo",
+        "Mantiene el funcionamiento normal del sistema digestivo",
+        "Mantiene el balance de la flora intestinal",
+        "Contribuye a mejorar la absorción de minerales"
+      ],
+      "modo_uso": "Tomar un sobre en agua fría",
+      "horario": "Antes de dormir o en ayunas",
+      "efecto": "Plan menos agresivo que Prunex 1",
+      "palabra_clave": "FIBRA DIGESTIVA",
+      "para_toda_familia": true,
+      "codigo": "147383",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
+    },
+    "FLORA LIV": {
+      "nombre": "FLORA LIV",
+      "categoria": "Regeneración Flora Intestinal",
+      "linea": "Sistema Base - Limpia tu Cuerpo",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 43000,
+      "sabor": "Granadilla",
+      "ingredientes": [
+        "10 mil millones de bacterias probióticas",
+        "Fibra Prebiótica",
+        "Pulpa de Granadilla",
+        "Aguayamanto"
+      ],
+      "beneficios": [
+        "Regenera y equilibra la flora intestinal",
+        "Mejora la digestión en intolerantes a lactosa",
+        "Ideal en gastritis, reflujo, colitis, colon irritable",
+        "Previene trastornos digestivos",
+        "Reduce efectos de antibióticos",
+        "Correcta asimilación de nutrientes",
+        "Protección inmunológica del organismo"
+      ],
+      "modo_uso": "Tomar un sobre en agua fría",
+      "horario": "En ayunas o 40 minutos después de las comidas",
+      "palabra_clave": "PROBIÓTICOS",
+      "para_toda_familia": true,
+      "codigo": "144274",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
+    },
+    "BERRY BALANCE": {
+      "nombre": "BERRY BALANCE",
+      "categoria": "Salud del Tracto Urinario",
+      "linea": "Sistema Base - Limpia tu Cuerpo",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 46500,
+      "descripcion": "Bebida funcional elaborada con berries, cranberry, acerola, camu camu, piña, probióticos, calcio y antioxidantes. Está diseñada para apoyar la salud del tracto urinario, favorecer el equilibrio de la flora protectora urinaria y ayudar a prevenir molestias asociadas al sistema urinario.",
+      "descripcion_corta": "Combina cranberry, berries, probióticos y antioxidantes para ayudar a cuidar el sistema urinario de forma natural.",
+      "ingredientes": [
+        "Berries",
+        "Cranberry (arándano rojo)",
+        "Acerola",
+        "Camu Camu",
+        "Piña",
+        "Probióticos",
+        "Calcio",
+        "Antioxidantes"
+      ],
+      "beneficios": [
+        "Ayuda a proteger el tracto urinario",
+        "Contribuye a prevenir molestias urinarias recurrentes",
+        "Favorece el equilibrio del pH y de la flora protectora urinaria",
+        "Aporta antioxidantes naturales provenientes de berries y frutas tropicales",
+        "Contiene probióticos que ayudan al equilibrio del organismo"
+      ],
+      "modo_uso": "Disolver 1 stick en 180 ml de agua fría",
+      "horario": "Consumir 1 o 2 sticks al día, preferiblemente entre comidas o con el estómago vacío",
+      "palabra_clave": "TRACTO URINARIO, CRANBERRY, PROBIÓTICOS, ANTIOXIDANTES",
+      "no_confundir_con": "No es un producto para pérdida de peso ni bloqueo de carbohidratos. Esa función corresponde a NOCARB-T.",
+      "para_toda_familia": true,
+      "codigo": "144271",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
+    },
+    "ALPHA BALANCE": {
+      "nombre": "ALPHA BALANCE",
+      "categoria": "Limpieza de Sangre",
+      "linea": "Sistema Base - Limpia tu Cuerpo",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 36000,
+      "ingredientes": [
+        "Alfalfa",
+        "Algas (Chlorella + Espirulina)",
+        "Pasto de trigo",
+        "Espinaca",
+        "Manzana verde",
+        "Limón",
+        "Jengibre",
+        "Minerales (Magnesio + Zinc)"
+      ],
+      "beneficios": [
+        "Limpia la sangre y órganos internos",
+        "Elimina metales pesados",
+        "Sube las defensas",
+        "Ayuda en caso de acné",
+        "Alcaliniza el organismo",
+        "Promueve la limpieza de toxinas",
+        "Equilibra pH del cuerpo",
+        "Proporciona energía natural"
+      ],
+      "modo_uso": "Tomar un sobre en agua fría",
+      "horario": "En ayunas o cuando tengas sed",
+      "palabra_clave": "SANGRE",
+      "para_toda_familia": true,
+      "codigo": "144269",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
+    },
+    "REXET": {
+      "nombre": "REXET",
+      "categoria": "Limpieza Hígado y Sistema Hepatobiliar",
+      "linea": "Sistema Base - Limpia tu Cuerpo",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 36000,
+      "sabor": "Tuna Roja",
+      "ingredientes": [
+        "Mix de concentrados vegetales (Tuna roja, Alcachofa, Hierba luisa, Perejil, Acerola, Clorofila)",
+        "Bicarbonato de sodio",
+        "Ácido cítrico",
+        "Minerales",
+        "Taurina",
+        "Cafeína natural del café",
+        "Vitaminas B, C, D",
+        "Cisteína"
+      ],
+      "beneficios": [
+        "Limpieza del sistema hepatobiliar",
+        "Libera de toxinas acumuladas en hígado",
+        "Protege el hígado",
+        "Promueve función desintoxicante",
+        "Mantiene óptimas funciones metabólicas del hígado",
+        "Mantiene cuerpo limpio de toxinas",
+        "Promueve función depurativa",
+        "Elimina efectos de resaca"
+      ],
+      "modo_uso": "Tomar un sobre en agua fría - efervescente",
+      "horario": "Cualquier hora del día o después de fiesta con licor",
+      "palabra_clave": "HÍGADO",
+      "efecto_especial": "Cambios de color en orina - se ve casi inmediatamente",
+      "combo": "COMBO FIESTA con Vita Xtra T+",
+      "para_toda_familia": true,
+      "codigo": "146319",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
+    },
+    "BIOPROTEIN ACTIVE": {
+      "nombre": "BIOPROTEIN ACTIVE",
+      "categoria": "Proteína 100% Vegetal",
+      "linea": "Sistema Base - Nutre y Regenera",
+      "presentacion": "Caja 14 x 25g",
+      "precio": 39500,
+      "sabores": [
+        "Vainilla y Canela",
+        "Chocolate con Avellanas"
+      ],
+      "ingredientes": [
+        "Proteína de quinua germinada",
+        "Proteína de arroz integral germinado",
+        "Proteína de arveja",
+        "Proteína de algas",
+        "Aminoácidos",
+        "Vitaminas",
+        "DHA y ARA",
+        "Aceite de coco"
+      ],
+      "valor_biologico": "100% vegetal",
+      "beneficios": [
+        "Asimilación óptima de aminoácidos esenciales",
+        "Regenera tejidos en menor tiempo",
+        "Elevar perfil proteico de forma más eficaz",
+        "Reduce daño oxidativo",
+        "Protege sistema de defensa",
+        "Mejora desempeño mental",
+        "Alimento vivo con nutrientes activos"
+      ],
+      "modo_uso": "Tomar un sobre en agua fría",
+      "horario": "De media mañana o media tarde",
+      "palabra_clave": "PROTEÍNA VEGETAL",
+      "para_toda_familia": true,
+      "codigo": "144686",
+      "precios_sabores": {
+        "Vainilla y Canela": 39500,
+        "Chocolate con Avellanas": 40000
+      },
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
+    },
+    "VITA XTRA T+": {
+      "nombre": "VITA XTRA T+",
+      "categoria": "Energizante Natural",
+      "linea": "Sistema Base - Revitaliza tu Energía",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 36000,
+      "sabor": "Refresco de maíz morado",
+      "ingredientes": [
+        "Guayusa",
+        "Té verde",
+        "Goji Berry",
+        "Ginseng",
+        "Fibra",
+        "Vitaminas",
+        "Minerales"
+      ],
+      "beneficios": [
+        "Energizante natural",
+        "Multivitamínico",
+        "Antioxidante",
+        "Ayuda acelerar metabolismo",
+        "Mantener alerta y buen ánimo",
+        "Mejorar rendimiento físico",
+        "Desempeño diario",
+        "Reduce oxidación celular"
+      ],
+      "modo_uso": "Tomar un sobre en agua fría",
+      "horario": "Durante el día - evitar en la noche",
+      "advertencia": "No recomendado para deficiencias cardiacas",
+      "palabra_clave": "ENERGÍA",
+      "combo": "COMBO FIESTA con Rexet",
+      "codigo": "147059",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
+    },
+    "VITAENERGÍA": {
+      "nombre": "VITAENERGÍA",
+      "categoria": "Multivitamínico Energizante",
+      "linea": "Sistema Base - Revitaliza tu Energía",
+      "presentacion": "Caja 30 x 7.5g",
+      "precio": 36000,
+      "sabor": "Maíz morado",
+      "ingredientes": [
+        "Aminoácidos",
+        "Vitaminas",
+        "Minerales",
+        "Fibra Prebiótica",
+        "Camu Camu",
+        "Luteína (Concentrado de Marigold)"
+      ],
+      "beneficios": [
+        "Disipa sensación de fatiga",
+        "Componentes energéticos comprobados",
+        "Mejora asimilación de proteínas",
+        "Procesos de regeneración celular",
+        "Refuerza sistema inmunológico",
+        "Reduce oxidación de células",
+        "Protege contra radicales libres"
+      ],
+      "modo_uso": "Tomar un sobre en agua fría",
+      "horario": "Cualquier hora del día",
+      "palabra_clave": "ENERGÍA",
+      "para_toda_familia": true,
+      "codigo": "144286",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
+    },
+    "NUTRADAY": {
+      "nombre": "NUTRADAY",
+      "categoria": "Hidratación Nutricional para la Familia",
+      "linea": "Sistema Base - Revitaliza tu Energía",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 36000,
+      "sabor": "Fresa",
+      "ingredientes": [
+        "Guayaba",
+        "Limón",
+        "Albahaca",
+        "Camu Camu",
+        "Acai Berry",
+        "Acerola",
+        "Quinua Germinada",
+        "12 vitaminas",
+        "5 minerales orgánicos"
+      ],
+      "beneficios": [
+        "Complementa nutrición con antioxidantes",
+        "Vitaminas y minerales adecuados",
+        "Mantiene sistema inmunológico óptimo",
+        "Óptimo desarrollo físico",
+        "Óptimo desarrollo mental",
+        "Hidratación completa"
+      ],
+      "modo_uso": "Tomar un sobre en agua fría",
+      "horario": "Cada vez que lo desees",
+      "palabra_clave": "NUTRICIÓN NIÑOS",
+      "para_toda_familia": true,
+      "codigo": "144282",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
+    },
+    "VERA+": {
+      "nombre": "VERA+",
+      "categoria": "Inmunológica - Defensas",
+      "linea": "Línea Inmunológica",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 46500,
+      "sabor": "Menta",
+      "ingredientes": [
+        "Concentrado de Aloe Vera",
+        "Beta Glucanos",
+        "Mix de aminoácidos (Acetilcisteína, Glicina, L-Glutamina)",
+        "Concentrado de hoja de oliva"
+      ],
+      "advertencia": "No recomendado para menores de 8 años, embarazadas y nodrizas sin indicación profesional",
+      "beneficios": [
+        "Sube las defensas",
+        "Aumenta resistencia a enfermedades",
+        "Resistencia especialmente a enfermedades respiratorias",
+        "Apoya el bienestar respiratorio y las defensas dentro de hábitos saludables",
+        "Reduce estrés oxidativo",
+        "Protege sistema inmunológico"
+      ],
+      "modo_uso": "Tomar un sobre en agua caliente",
+      "horario": "Antes de dormir o cada vez que se te antoje",
+      "palabra_clave": "SISTEMA RESPIRATORIO, DEFENSAS",
+      "codigo": "144281",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
+    },
+    "GANO+ CAPPUCCINO": {
+      "nombre": "GANO+ CAPPUCCINO",
+      "categoria": "Inmunológica - Defensas",
+      "linea": "Línea Inmunológica",
+      "presentacion": "Caja 28 x 7.5g",
+      "precio": 23250,
+      "sabor": "Cappuccino",
+      "ingredientes": [
+        "β-D-Glucanos",
+        "Extractos de Quilaya",
+        "Micronutrientes"
+      ],
+      "advertencia": "No recomendado para menores de 8 años, embarazadas y nodrizas sin indicación profesional",
+      "beneficios": [
+        "Sube las defensas",
+        "Apoya el bienestar general con ingredientes funcionales",
+        "Acompaña rutinas de bienestar y cuidado diario",
+        "Protege el hígado",
+        "Refuerza y regula el sistema inmunológico",
+        "Reduce daño oxidativo"
+      ],
+      "modo_uso": "Tomar un sobre en agua caliente",
+      "horario": "A la hora que desees",
+      "palabra_clave": "PRESIÓN ARTERIAL, DEFENSAS",
+      "codigo": "144272",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
+    },
+    "THERMO T3": {
+      "nombre": "THERMO T3",
+      "categoria": "Control de Peso",
+      "linea": "Línea Control de Peso",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 36000,
+      "sabor": "Té Limón",
+      "ingredientes": [
+        "Mix de tés (Verde, Negro y Rojo)",
+        "Cetonas de frambuesa",
+        "L-Carnitina",
+        "Aminoácidos",
+        "Vitamina B6",
+        "Cromo"
+      ],
+      "tipo": "Alimento para deportistas con cafeína",
+      "beneficios": [
+        "Transforma grasa en energía",
+        "Acelera metabolismo",
+        "Reduce acumulación de grasa",
+        "Aumenta resistencia",
+        "Efecto termogénico",
+        "Apoya hábitos de control de peso y metabolismo saludable"
+      ],
+      "modo_uso": "Tomar un sobre en agua caliente",
+      "horario": "30 minutos antes de hacer ejercicio",
+      "palabra_clave": "METABOLISMO, QUEMA GRASA",
+      "codigo": "144280",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
+    },
+    "NOCARB-T": {
+      "nombre": "NOCARB-T",
+      "categoria": "Control de Peso",
+      "linea": "Línea Control de Peso",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 36000,
+      "sabor": "Té Manzana y Canela",
+      "ingredientes": [
+        "Fibras solubles (Yacón, Acacia, Inulina, Pectina de manzana)",
+        "Verdolaga",
+        "Canela",
+        "Té verde",
+        "Cromo"
+      ],
+      "advertencia": "No recomendado para menores de 8 años, embarazadas y nodrizas sin indicación profesional",
+      "beneficios": [
+        "Pon los carbohidratos en raya",
+        "Inhibe parcialmente asimilación de carbohidratos y azúcar",
+        "Ayuda a reducir glucosa en sangre",
+        "Evita formación de reservas de grasa",
+        "Ayuda en caso de azúcar en sangre, diabetes"
+      ],
+      "modo_uso": "Tomar un sobre en agua caliente",
+      "horario": "Antes o con las comidas",
+      "palabra_clave": "CARBOHIDRATOS, AZÚCAR",
+      "codigo": "144279",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
+    },
+    "PROTEIN ACTIVE FIT": {
+      "nombre": "PROTEIN ACTIVE FIT",
+      "categoria": "Control de Peso",
+      "linea": "Línea Control de Peso",
+      "presentacion": "Caja 14 x 25g",
+      "precio": 41500,
+      "sabores": [
+        "Vainilla y Canela",
+        "Chocolate con Avellanas"
+      ],
+      "tipo_batido": "Batido proteico 100% vegetal",
+      "ingredientes": [
+        "BioProtein Active (Quinua germinada, Arveja, Arroz germinado, Algas)",
+        "Enzimas",
+        "Vitaminas",
+        "L-Lisina",
+        "Cromo y Zinc"
+      ],
+      "beneficios": [
+        "La proteína que le cae bien a todos",
+        "Acelera metabolismo",
+        "Quema grasa localizada",
+        "Tonifica músculos",
+        "Reduce sensación de apetito",
+        "Alta biodisponibilidad"
+      ],
+      "modo_uso": "Tomar un sobre en agua fría",
+      "horario": "De media mañana o media tarde",
+      "palabra_clave": "PROTEÍNA VEGETAL FIT",
+      "codigo": "144340",
+      "precios_sabores": {
+        "Vainilla y Canela": 41750,
+        "Chocolate con Avellanas": 41500
+      },
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
+    },
+    "YOUTH ELIXIR HGH": {
+      "nombre": "YOUTH ELIXIR",
+      "categoria": "Anti-Edad",
+      "linea": "Línea Anti-Edad",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 36000,
+      "sabor": "Uva de vino",
+      "ingredientes": [
+        "Aminoácidos",
+        "Antioxidantes",
+        "OptiBerrys®",
+        "Vitamina C",
+        "Super frutas"
+      ],
+      "beneficios": [
+        "Vive tu juventud por más tiempo",
+        "Estimula glándula pituitaria",
+        "Estimula secreción de hormona de la juventud",
+        "Retarda efectos del envejecimiento prematuro",
+        "Aumenta vitalidad",
+        "Mejora calidad del sueño"
+      ],
+      "modo_uso": "Tomar un sobre en agua fría",
+      "horario": "En la noche",
+      "palabra_clave": "BELLEZA",
+      "codigo": "144273",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
+    },
+    "BEAUTY-IN": {
+      "nombre": "BEAUTY-IN",
+      "categoria": "Anti-Edad",
+      "linea": "Línea Anti-Edad",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 44750,
+      "sabor": "Guayaba",
+      "ingredientes": [
+        "Péptidos de colágeno bioactivo optimizado tipos 1 y 3",
+        "CoEnzima Q10",
+        "Sesbania (Biotina natural)",
+        "Vitamina E",
+        "Súper frutas (Guayaba, Toronja, Camu Camu)",
+        "Zinc"
+      ],
+      "caracteristica": "Colágeno 4 veces más potente que hidrolizado convencional",
+      "beneficios": [
+        "El secreto de la verdadera belleza viene desde adentro",
+        "Nutre la piel desde adentro",
+        "Mejora estructura de la dermis",
+        "Más fibras de colágeno y elastina",
+        "Piel más firme, uniforme, sin arrugas",
+        "Protege y repara piel dañada",
+        "Fortalece cabello y uñas"
+      ],
+      "modo_uso": "Tomar un sobre en agua fría",
+      "horario": "Antes de dormir o en ayunas",
+      "palabra_clave": "COLÁGENO, PIEL",
+      "codigo": "144270",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
+    },
+    "PROBAL": {
+      "nombre": "PROBAL",
+      "categoria": "Anti-Edad",
+      "linea": "Línea Anti-Edad",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 44750,
+      "tipo": "Té herbal",
+      "ingredientes": [
+        "Concentrado de Aguaje",
+        "Concentrado de Orégano",
+        "Triptófano",
+        "Magnesio",
+        "Camu-Camu",
+        "Marigold (Luteína)"
+      ],
+      "beneficios": [
+        "Protege tu balance vital",
+        "Reforma la salud femenina",
+        "Equilibra desbalances hormonales",
+        "Controla molestias del período",
+        "Mantiene balance durante menopausia",
+        "Combate cambios de humor"
+      ],
+      "modo_uso": "Tomar un sobre en agua caliente",
+      "horario": "Antes de dormir",
+      "palabra_clave": "SISTEMA HORMONAL MUJER",
+      "codigo": "144230",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
+    },
+    "PASSION": {
+      "nombre": "PASSION",
+      "categoria": "Anti-Edad",
+      "linea": "Línea Anti-Edad",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 36000,
+      "tipo": "Bebida funcional",
+      "ingredientes": [
+        "Aminoácidos",
+        "Concentrado de jalea real",
+        "Ginseng",
+        "Zinc"
+      ],
+      "beneficios": [
+        "La pasión durará una eternidad",
+        "Eleva potencia sexual hombres y mujeres",
+        "Favorece la fertilidad",
+        "Incrementa nivel de energía y vigor",
+        "Ayuda en caso de migraña",
+        "Mejora circulación"
+      ],
+      "modo_uso": "Tomar un sobre en agua fría",
+      "horario": "A la hora que desees",
+      "palabra_clave": "CIRCULACIÓN, POTENCIA SEXUAL",
+      "codigo": "144277",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
+    },
+    "GOLDEN FLX": {
+      "nombre": "GOLDEN FLX",
+      "categoria": "Anti-Edad",
+      "linea": "Línea Anti-Edad",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 39250,
+      "sabor": "Vainilla",
+      "ingredientes": [
+        "Cúrcuma orgánica certificada",
+        "Jengibre",
+        "Cardamomo",
+        "Leche de coco",
+        "Pimienta negra",
+        "Canela"
+      ],
+      "beneficios": [
+        "Disfruta cada paso de la gran carrera de la vida",
+        "Efecto antioxidante",
+        "Antiinflamatorio",
+        "Analgésico natural",
+        "Previene problemas articulares",
+        "Ayuda con artritis, artrosis, dolor articular"
+      ],
+      "modo_uso": "Tomar un sobre en agua caliente",
+      "horario": "A la hora que desees",
+      "palabra_clave": "DESINFLAMAR ARTICULACIONES, MOVILIDAD",
+      "codigo": "144275",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
+    },
+    "ON": {
+      "nombre": "ON",
+      "categoria": "Vigor Mental",
+      "linea": "Línea Vigor Mental",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 28750,
+      "tipo": "Bebida funcional",
+      "ingredientes": [
+        "Taurina",
+        "Concentrado de Yerba Mate",
+        "Camu Camu",
+        "Vitaminas del Complejo B",
+        "Minerales en molécula orgánica",
+        "DHA y ARA"
+      ],
+      "beneficios": [
+        "Mente activa y alerta",
+        "Actúa a nivel neuronal",
+        "Nutre cerebro",
+        "Mejora función neuronal",
+        "Potencia aprendizaje",
+        "Incrementa entusiasmo",
+        "Ayuda en caso de tics nerviosos o dolores de cabeza"
+      ],
+      "modo_uso": "Tomar un sobre en agua fría",
+      "horario": "A la hora que desees",
+      "palabra_clave": "CONCENTRACIÓN, MEMORIA",
+      "codigo": "144276",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
+    },
+    "NO STRESS": {
+      "nombre": "NO STRESS",
+      "categoria": "Vigor Mental",
+      "linea": "Línea Vigor Mental",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 39750,
+      "tipo": "Bebida nutritiva",
+      "ingredientes": [
+        "Aminoácidos (Glicina, Triptófano)",
+        "Concentrado de limón",
+        "Magnesio en molécula orgánica",
+        "Vitaminas del Complejo B"
+      ],
+      "beneficios": [
+        "Empieza a vivir momentos de tensión sin tensión",
+        "Reduce estrés",
+        "Mejora nutrición neuronal",
+        "Mantiene cerebro relajado, enfocado y positivo",
+        "Equilibra sistema nervioso",
+        "Ideal en caso de ansiedad, depresión, ataques de pánico",
+        "Incrementa resistencia ante estrés"
+      ],
+      "modo_uso": "Tomar un sobre en agua fría",
+      "horario": "Antes de dormir o durante el día",
+      "advertencia": "No produce somnolencia",
+      "palabra_clave": "ESTRÉS, ANSIEDAD",
+      "codigo": "144236",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
+    },
+    "PRE SPORT": {
+      "nombre": "PRE SPORT PRO EDITION",
+      "categoria": "Sport",
+      "linea": "Línea Sport",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 39250,
+      "sabor": "Sandía",
+      "tipo": "Bebida isotónica rehidratante energizante",
+      "ingredientes": [
+        "Aminoácidos",
+        "Concentrados vegetales (Sandía, Yerba Mate, Beterraga)",
+        "Minerales en molécula orgánica"
+      ],
+      "beneficios": [
+        "Prepara tu cuerpo para darlo todo",
+        "Prepara cuerpo para actividad deportiva intensa",
+        "Mejora rendimiento durante ejercicio",
+        "Mantiene hidratación corporal",
+        "Aporte de electrolitos",
+        "Aumenta resistencia"
+      ],
+      "modo_uso": "Tomar un sobre en agua fría",
+      "horario": "Antes de iniciar rutina de ejercicio",
+      "codigo": "144244",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
+    },
+    "POST SPORT": {
+      "nombre": "POST SPORT PRO EDITION",
+      "categoria": "Sport",
+      "linea": "Línea Sport",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 39250,
+      "sabor": "Granada",
+      "tipo": "Bebida nutritiva de recuperación",
+      "ingredientes": [
+        "Aminoácidos (BCAAs + Glutamina)",
+        "Acerola",
+        "Granada",
+        "Agua de coco"
+      ],
+      "beneficios": [
+        "Termina el ejercicio de la mejor forma",
+        "Ayuda recuperación muscular",
+        "Protege articulaciones",
+        "Aporta sales minerales que se pierden",
+        "Recupera, incrementa y fortalece fibras musculares"
+      ],
+      "modo_uso": "Tomar un sobre en agua fría",
+      "horario": "Cuando termines de hacer ejercicio",
+      "codigo": "144278",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
+    },
+    "CAFE & CAFE FIT CAPPUCCINO": {
+      "nombre": "CAFÉ & CAFÉ FIT CAPPUCCINO",
+      "categoria": "Control de Peso",
+      "linea": "Línea Control de Peso",
+      "presentacion": "Caja 28 x 15g",
+      "precio": 51500,
+      "codigo": "144202",
+      "sabor": "Cappuccino",
+      "ingredientes": [
+        "Café tostado liofilizado",
+        "Leche descremada",
+        "Crema para café"
+      ],
+      "beneficios": [
+        "Energía diaria",
+        "Apoyo para control de peso",
+        "Formato cappuccino"
+      ],
+      "modo_uso": "Tomar un sobre en agua caliente",
+      "horario": "Durante el día; evitar en la noche si eres sensible a la cafeína",
+      "palabra_clave": "CAFÉ, ENERGÍA, CONTROL DE PESO",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
+    },
+    "PACK 5/14": {
+      "nombre": "PACK 5/14",
+      "categoria": "Control de Peso",
+      "linea": "Línea Control de Peso",
+      "presentacion": "Caja Pack",
+      "precio": 111000,
+      "codigo": "144595",
+      "ingredientes": [],
+      "beneficios": [
+        "Pack de apoyo para control de peso y medidas",
+        "Consultar disponibilidad vigente con un asesor antes de confirmar el pedido"
+      ],
+      "modo_uso": "Seguir la pauta del pack y consultar asesoría personalizada",
+      "horario": "Según pauta del pack",
+      "palabra_clave": "PACK 5/14, CONTROL DE PESO",
+      "fuente_precio": "Catalogo Chile.pdf",
+      "fuente_catalogo": "Catalogo Chile.pdf"
+    }
+  }
+}

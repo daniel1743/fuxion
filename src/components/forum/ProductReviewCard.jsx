@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Star, ThumbsUp, MessageCircle } from 'lucide-react';
+import { Star, ThumbsUp, MessageCircle, Package } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
@@ -70,7 +70,8 @@ const ProductReviewCard = ({ review, onLike }) => {
       {review.productName && (
         <div className="mb-3">
           <Badge variant="outline" className="text-xs">
-            📦 {review.productName}
+            <Package className="w-3 h-3 mr-1 inline-block" />
+            {review.productName}
           </Badge>
         </div>
       )}

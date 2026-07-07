@@ -115,7 +115,11 @@
         "zinc"
       ],
       "respuesta_base": "Bebida funcional de vegetales verdes y minerales orientada a apoyar el equilibrio y la limpieza interna del organismo.",
-      "evitar_confusion": "No describir como fórmula hepática principal; para apoyo hepático corresponde Rexet."
+      "evitar_confusion": "No describir como fórmula hepática principal; para apoyo hepático corresponde Rexet.",
+      "descripcion_tecnica": "Bebida verde rica en clorofila que actúa como agente quelante eliminando metales pesados y revertiendo la acidosis metabólica silente. Promueve la formación de glóbulos rojos, combatiendo la fatiga celular crónica.",
+      "objetivo_funcional": "Alcalinización del plasma, quelación de metales y limpieza sanguínea intracelular",
+      "pauta_consumo_detallada": "Disolver 1 stick en un vaso de agua fría (180 ml), consumido idealmente al despertar en ayunas o junto al jugo del desayuno",
+      "ingredientes_clave_completos": "Alfalfa, microalgas (chlorella y espirulina), pasto de trigo libre de gluten, espinaca, manzana verde, limón, jengibre, magnesio, zinc"
     },
     "BERRY BALANCE": {
       "categoria": "Tracto urinario",
@@ -133,7 +137,11 @@
       ],
       "respuesta_base": "Bebida funcional para apoyar el cuidado del tracto urinario con cranberry, berries, probióticos y antioxidantes.",
       "como_tomar": "Disolver 1 stick en 180 ml de agua fría. Consumir preferiblemente entre comidas o con el estómago vacío.",
-      "evitar_confusion": "No asociar a bloqueo de carbohidratos, frijol blanco o control de apetito."
+      "evitar_confusion": "No asociar a bloqueo de carbohidratos, frijol blanco o control de apetito.",
+      "descripcion_tecnica": "Escudo nutracéutico que previene la adherencia de bacterias uropatógenas gracias a las proantocianidinas (PACs) del cranberry. Actúa como diurético natural, protegiendo y equilibrando la microbiota vaginal e íntima.",
+      "objetivo_funcional": "Protección antioxidante del tracto urinario, equilibrio de pH íntimo y efecto diurético",
+      "pauta_consumo_detallada": "Disolver 1 o 2 sticks en agua fría, consumidos a cualquier hora del día, preferiblemente entre comidas",
+      "ingredientes_clave_completos": "Extracto puro de cranberry, concentrado de berries (arándanos, moras, cerezas), infusión de cáscara de piña, cultivos probióticos, calcio orgánico, vitaminas C y E"
     },
     "PRUNEX 1": {
       "categoria": "Digestión y tránsito intestinal",
@@ -146,7 +154,11 @@
       ],
       "respuesta_base": "Té herbal con fibras solubles y guindón orientado a apoyar el tránsito intestinal.",
       "como_tomar": "Disolver 1 stick en agua caliente, preferiblemente por la noche.",
-      "evitar_confusion": "No indicar agua fría."
+      "evitar_confusion": "No indicar agua fría.",
+      "descripcion_tecnica": "Bebida funcional en formato de té herbal sabor a ciruela que ofrece intervención mecánica y bioquímica altamente efectiva y segura para resolver el estreñimiento ocasional y pesadez estomacal. Su mecanismo se basa en fibras solubles que lubrican el colon y encapsulan desechos.",
+      "objetivo_funcional": "Limpieza profunda del colon, desintoxicación y regulación del tránsito intestinal",
+      "pauta_consumo_detallada": "Disolver 1 stick (5g) en agua caliente o tibia, preferentemente por la noche antes de dormir, durante periodos de 7 a 14 días",
+      "ingredientes_clave_completos": "Mix de fibras solubles (psyllium, inulina de achicoria, mucílago de linaza), alga kelp, anís estrella, extracto de guindón"
     },
     "FLORA LIV": {
       "categoria": "Flora intestinal",
@@ -157,7 +169,11 @@
         "cultivos probióticos"
       ],
       "respuesta_base": "Producto con probióticos y fibra prebiótica para apoyar el equilibrio de la flora intestinal.",
-      "evitar_confusion": "No presentarlo como producto principal para bajar de peso."
+      "evitar_confusion": "No presentarlo como producto principal para bajar de peso.",
+      "descripcion_tecnica": "Formulación simbiótica para repoblar rápidamente la microbiota. Introduce más de 10 mil millones de bacterias probióticas vivas que compiten directamente con virus y bacterias patógenas, desinflamando la mucosa gástrica y reduciendo la acidez.",
+      "objetivo_funcional": "Regeneración integral de la flora intestinal, barrera inmunológica y alivio gástrico",
+      "pauta_consumo_detallada": "Disolver 1 stick (5g) en un vaso de agua fría, consumir una o dos veces al día, idealmente en ayunas por la mañana o una hora después de las comidas",
+      "ingredientes_clave_completos": "10 mil millones de cultivos probióticos liofilizados (Lactobacillus acidophilus, Bifidobacterium bifidum), fibra prebiótica, extracto de pulpa de granadilla, aguaymanto, zinc, magnesio"
     },
     "LIQUID FIBER": {
       "categoria": "Fibra digestiva",
@@ -166,7 +182,11 @@
         "vitaminas",
         "minerales"
       ],
-      "respuesta_base": "Fibra prebiótica con vitaminas y minerales para apoyar la regularidad intestinal y el bienestar digestivo."
+      "respuesta_base": "Fibra prebiótica con vitaminas y minerales para apoyar la regularidad intestinal y el bienestar digestivo.",
+      "descripcion_tecnica": "Bebida sabor limón diseñada para ser el mantenedor diario de la homeostasis gástrica. Sus fibras solubles resisten enzimas y llegan intactas al colon sirviendo como sustrato energético (prebióticos) para bacterias beneficiosas, reduciendo picos de glucosa e insulina.",
+      "objetivo_funcional": "Nutrición prebiótica, mantenimiento de la regularidad y equilibrio glucémico",
+      "pauta_consumo_detallada": "Disolver 1 stick (5g) en un vaso de agua fría (180 ml), consumir preferentemente antes del almuerzo o la cena, seguido de un vaso de agua adicional",
+      "ingredientes_clave_completos": "Fibras prebióticas (inulina y oligofructosa extraídas de la raíz de achicoria), micronutrientes, vitaminas estabilizadas"
     },
     "REXET": {
       "categoria": "Apoyo hepático",
@@ -187,7 +207,11 @@
         "vitamina D",
         "cisteína"
       ],
-      "respuesta_base": "Bebida funcional orientada al apoyo hepático y a la función depurativa dentro de hábitos saludables."
+      "respuesta_base": "Bebida funcional orientada al apoyo hepático y a la función depurativa dentro de hábitos saludables.",
+      "descripcion_tecnica": "Fórmula efervescente avanzada diseñada para salvaguardar y restaurar el hígado. Contiene N-Acetilcisteína (NAC) para neutralizar radicales libres y toxicidad, siendo ideal para recuperarse de asaltos metabólicos y excesos.",
+      "objetivo_funcional": "Regeneración del hepatocito, estimulación del sistema hepatobiliar y alivio del estrés metabólico",
+      "pauta_consumo_detallada": "Disolver 1 stick en agua fría o temperatura ambiente. Consumir regularmente para mantenimiento, o antes/después de excesos alimenticios o ingesta de alcohol",
+      "ingredientes_clave_completos": "N-Acetilcisteína (NAC), extractos de tuna roja, alcachofa, hierba luisa y perejil, acerola, clorofila, vitaminas del complejo B, vitamina C, vitamina D, taurina, electrolitos"
     },
     "BIOPROTEIN ACTIVE": {
       "categoria": "Nutrición y regeneración",
@@ -203,7 +227,11 @@
         "cultivos probióticos"
       ],
       "respuesta_base": "Proteína vegetal con ingredientes funcionales para apoyar nutrición y regeneración.",
-      "nota": "Usar el nombre vendible de la tienda si el producto activo es BioProtein Active."
+      "nota": "Usar el nombre vendible de la tienda si el producto activo es BioProtein Active.",
+      "descripcion_tecnica": "Matriz proteica de origen vegetal 100% biodisponible lograda mediante germinación controlada. Promueve anabolismo celular puro, desarrollo cognitivo óptimo y respuesta inmunológica robusta sin generar inflamación.",
+      "objetivo_funcional": "Regeneración tisular, hipertrofia celular y soporte del sistema de defensas mediante proteína asimilable al 100%",
+      "pauta_consumo_detallada": "Disolver 1 stick (25g) en 250 ml de agua fría, agitando vigorosamente. Consumir en cualquier momento del día para elevar el perfil proteico dietario",
+      "ingredientes_clave_completos": "Bioprotein Active® (proteína de quinua orgánica germinada, arroz integral germinado, arveja, algas), enzimas asimiladoras, vitaminas, aminoácidos esenciales, L-glutamina, BCAAs, DHA, ARA, aceite de coco"
     },
     "VITAENERGÍA": {
       "categoria": "Energía y revitalización",
@@ -215,7 +243,11 @@
         "luteína de marigold",
         "camu camu"
       ],
-      "respuesta_base": "Bebida funcional para apoyar energía diaria, nutrición y revitalización."
+      "respuesta_base": "Bebida funcional para apoyar energía diaria, nutrición y revitalización.",
+      "descripcion_tecnica": "Mantenimiento nutricional preventivo y eliminación de astenia crónica. Aborda carencias microscópicas de la dieta y aporta luteína purificada para proteger la mácula ocular de la luz azul de pantallas.",
+      "objetivo_funcional": "Suplementación multivitamínica diaria, mitigación de fatiga y preservación de la agudeza visual",
+      "pauta_consumo_detallada": "Disolver 1 stick en agua fría, idealmente consumido durante las mañanas",
+      "ingredientes_clave_completos": "Aminoácidos, complejo vitamínico completo, minerales orgánicos, fibra prebiótica, camu camu, antocianinas de maíz morado, luteína (extracto de flor de marigold)"
     },
     "VITA XTRA T+": {
       "categoria": "Energía y revitalización",
@@ -226,7 +258,11 @@
         "goji berry",
         "antocianinas"
       ],
-      "respuesta_base": "Energizante funcional con guayusa, té verde y ginseng para apoyar energía y rendimiento diario."
+      "respuesta_base": "Energizante funcional con guayusa, té verde y ginseng para apoyar energía y rendimiento diario.",
+      "descripcion_tecnica": "Interviene directamente en el ciclo de Krebs a nivel intracelular optimizando la producción de ATP (energía). Mezcla de Guayusa y Té Verde junto a adaptógenos supremos como Cordyceps, Maca y Ginseng para vitalidad prolongada sin caídas metabólicas.",
+      "objetivo_funcional": "Estimulación energética mitocondrial sostenida, vigor físico y neuroprotección antioxidante",
+      "pauta_consumo_detallada": "Disolver 1 stick (5g) en un vaso de agua fría. Consumir por la mañana o antes de requerir un desempeño físico o cognitivo superior",
+      "ingredientes_clave_completos": "Extractos de guayusa, té verde, acai berry, goji berry, micelio de cordyceps, maca andina, ginseng, antocianinas de maíz morado, vitaminas y minerales"
     },
     "VERA+": {
       "categoria": "Inmunológica",
@@ -237,14 +273,22 @@
         "aminoácidos",
         "vitamina C"
       ],
-      "respuesta_base": "Producto de la línea inmunológica orientado a apoyar defensas y bienestar general."
+      "respuesta_base": "Producto de la línea inmunológica orientado a apoyar defensas y bienestar general.",
+      "descripcion_tecnica": "Nutracéutico diseñado para modular las defensas. Utiliza beta-glucanos para preparar a las células destructoras de patógenos sin causar inflamación, además de N-acetilcisteína como potente mucolítico.",
+      "objetivo_funcional": "Inmunomodulación de precisión, escudo antiviral y profilaxis respiratoria",
+      "pauta_consumo_detallada": "Disolver 1 stick en agua caliente y tomar como infusión relajante ante episodios de vulnerabilidad climática o síntomas respiratorios tempranos",
+      "ingredientes_clave_completos": "Extracto bioactivo de aloe vera, beta-glucanos, mix de aminoácidos celulares (N-acetilcisteína, glicina, L-glutamina), extracto de hoja de olivo, amalaki (vitamina C natural)"
     },
     "GANO+ CAPPUCCINO": {
       "categoria": "Inmunológica",
       "ingredientes_oficiales": [
         "beta-D-glucanos"
       ],
-      "respuesta_base": "Cappuccino funcional con beta-D-glucanos para apoyo de bienestar general."
+      "respuesta_base": "Cappuccino funcional con beta-D-glucanos para apoyo de bienestar general.",
+      "descripcion_tecnica": "Aísla y liofiliza los principios activos del Ganoderma Lucidum en una base de café gourmet. Sus compuestos actúan como inmunomoduladores silenciosos e interceptan radicales libres para prevenir el envejecimiento metabólico.",
+      "objetivo_funcional": "Refuerzo antioxidante profundo, regulación inmunitaria celular y neuroprotección",
+      "pauta_consumo_detallada": "Disolver 1 stick en agua caliente, sustituyendo el consumo de café industrial diario",
+      "ingredientes_clave_completos": "Extracto hiperconcentrado de Ganoderma Lucidum, antioxidantes celulares, micronutrientes, granos de café tostado premium"
     },
     "PROTEIN ACTIVE FIT": {
       "categoria": "Control de peso y medidas",
@@ -256,7 +300,11 @@
         "aceite de coco",
         "enzimas"
       ],
-      "respuesta_base": "Batido proteico vegetal para apoyar nutrición, saciedad y hábitos de control de peso."
+      "respuesta_base": "Batido proteico vegetal para apoyar nutrición, saciedad y hábitos de control de peso.",
+      "descripcion_tecnica": "Previene el catabolismo celular de dietas restrictivas manteniendo la masa muscular intacta. Suma activo patentado Svetol® que obliga al cuerpo a sostener déficit calórico quemando exclusivamente tejido adiposo.",
+      "objetivo_funcional": "Sostenimiento del balance nitrogenado, saciedad neuroendocrina y preservación de masa magra durante la reducción de peso",
+      "pauta_consumo_detallada": "Disolver 1 stick (25g) en agua fría utilizando un shaker. Ideal para emplear como colación de media tarde",
+      "ingredientes_clave_completos": "Bioprotein Active® (quinua, arroz integral, arveja, algas), L-carnitina, Svetol® (extracto puro de café verde), Garcinia Cambogia"
     },
     "NOCARB-T": {
       "categoria": "Control de peso y medidas",
@@ -269,7 +317,11 @@
         "té verde",
         "cromo"
       ],
-      "respuesta_base": "Bebida funcional para apoyar el manejo de carbohidratos dentro de una alimentación equilibrada."
+      "respuesta_base": "Bebida funcional para apoyar el manejo de carbohidratos dentro de una alimentación equilibrada.",
+      "descripcion_tecnica": "Bio-blindaje entérico que frena asaltos glucémicos. Inhibe parcialmente la digestión y absorción de almidones y azúcares simples, aplanando la curva de glucosa y forzando su uso como energía en lugar de almacenamiento.",
+      "objetivo_funcional": "Inhibición enzimática de carbohidratos, modulación insulínica y control glucémico postprandial",
+      "pauta_consumo_detallada": "Disolver 1 stick en agua caliente (como té). Consumir durante o inmediatamente después de comidas con alta carga glucémica",
+      "ingredientes_clave_completos": "Matriz de fibras solubles de alta densidad (fibra de yacón, acacia, inulina de achicoria, pectina de manzana), verdolaga, canela, extracto de té verde, cromo orgánico"
     },
     "CAFÉ & CAFÉ FIT CAPPUCCINO": {
       "categoria": "Control de peso y medidas",
@@ -278,7 +330,11 @@
         "leche descremada",
         "crema para café"
       ],
-      "respuesta_base": "Café cappuccino funcional para acompañar rutinas de energía y control de peso."
+      "respuesta_base": "Café cappuccino funcional para acompañar rutinas de energía y control de peso.",
+      "descripcion_tecnica": "Convierte una bebida calórica en herramienta terapéutica gracias a los ácidos clorogénicos conservados del café verde crudo (Svetol®). Bloquea liberación de glucosa hepática, dominando impulsos de hambre.",
+      "objetivo_funcional": "Bloqueo enzimático de almacenamiento de grasa y supresión del apetito en formato gourmet",
+      "pauta_consumo_detallada": "Disolver 1 stick en agua caliente, sustituyendo indulgencias calóricas de media mañana o meriendas vespertinas",
+      "ingredientes_clave_completos": "Matriz de granos de café tostado liofilizado, Svetol® (extracto bioactivo de café verde), crema formulada baja en calorías"
     },
     "PACK 5/14": {
       "categoria": "Control de peso y medidas",
@@ -289,7 +345,11 @@
         "14 THERMO T3",
         "14 NOCARB-T"
       ],
-      "respuesta_base": "Pack orientado a control de peso y medidas. Confirmar disponibilidad y composición vigente con asesor antes de ofrecer."
+      "respuesta_base": "Pack orientado a control de peso y medidas. Confirmar disponibilidad y composición vigente con asesor antes de ofrecer.",
+      "descripcion_tecnica": "Protocolo clínico de intervención basado en crononutrición y déficit calórico programado que moviliza activamente grasa sin disparar señales de inanición. Acelera la termogénesis.",
+      "objetivo_funcional": "Reprogramación metabólica intensiva de 14 días para la reducción drástica de grasa corporal y medidas",
+      "pauta_consumo_detallada": "Seguir el protocolo crononutricional de 14 días, reemplazando meriendas y sincronizando la toma de bebidas",
+      "ingredientes_clave_completos": "Sistema estructurado: 28 sticks de Protein Active Fit, 14 sticks de Nocarb-T, 14 sticks de Thermo T3, 14 sticks de Vita Xtra T+, 4 sticks de Prunex 1. Incluye régimen dietético"
     },
     "THERMO T3": {
       "categoria": "Control de peso y medidas",
@@ -301,7 +361,11 @@
         "frambuesa"
       ],
       "como_tomar": "Tomar 1 sobre 30 minutos antes de hacer ejercicio. No recomendarlo simplemente por la mañana si no está asociado al entrenamiento.",
-      "respuesta_base": "Bebida termogénica para apoyar energía, actividad física y hábitos de control de peso."
+      "respuesta_base": "Bebida termogénica para apoyar energía, actividad física y hábitos de control de peso.",
+      "descripcion_tecnica": "Catalizador químico de la quema de grasa. Eleva la temperatura basal, incrementa el gasto calórico, y usa L-Carnitina como transbordador para oxidar ácidos grasos dentro de la mitocondria.",
+      "objetivo_funcional": "Termogénesis celular, oxidación de lípidos almacenados y reducción del perímetro abdominal",
+      "pauta_consumo_detallada": "Disolver 1 stick en agua caliente o fría, consumido 15-30 minutos antes de realizar actividad física, o en la mañana",
+      "ingredientes_clave_completos": "Complejo termogénico de tés (verde, negro y rojo), cetonas de frambuesa, tamarindo malabar (Garcinia Cambogia), L-carnitina, extracto de café verde, ácido alfa lipoico, vitamina B6, cromo orgánico"
     },
     "GOLDEN FLX": {
       "categoria": "Anti-edad",
@@ -313,7 +377,11 @@
         "canela",
         "pimienta negra"
       ],
-      "respuesta_base": "Bebida funcional con cúrcuma y especias orientada al bienestar articular y antioxidante."
+      "respuesta_base": "Bebida funcional con cúrcuma y especias orientada al bienestar articular y antioxidante.",
+      "descripcion_tecnica": "Potente desinflamatorio con extracto patentado Turmipure® altamente biodisponible gracias a la matriz lipídica de la leche de coco y la pimienta negra. Ideal para profilaxis en deportistas o para dolores articulares.",
+      "objetivo_funcional": "Supresión profunda de la cascada inflamatoria, lubricación articular y restauración del cartílago",
+      "pauta_consumo_detallada": "Disolver 1 stick en agua caliente y degustar como el tradicional 'Golden Milk', en cualquier momento del día",
+      "ingredientes_clave_completos": "Turmipure® (extracto puro y bioactivo de cúrcuma orgánica certificada), jengibre bioactivo, cardamomo, canela, extracto de pimienta negra, leche de coco liofilizada"
     },
     "PROBAL": {
       "categoria": "Anti-edad",
@@ -329,7 +397,11 @@
         "extracto de camu-camu",
         "extracto de girasol"
       ],
-      "respuesta_base": "Producto orientado al balance femenino y bienestar general. No presentarlo como tratamiento hormonal."
+      "respuesta_base": "Producto orientado al balance femenino y bienestar general. No presentarlo como tratamiento hormonal.",
+      "descripcion_tecnica": "Intervención botánica con isoflavonas de soya que actúan como fitoestrógenos para mitigar desbalances hormonales como la menopausia, protegiendo al mismo tiempo la función urogenital y ocular.",
+      "objetivo_funcional": "Equilibrio del eje endocrino, modulación estrogénica y protección profunda del nervio óptico",
+      "pauta_consumo_detallada": "Disolver 1 stick en agua caliente y tomar a cualquier hora del día como una infusión herbal reconfortante",
+      "ingredientes_clave_completos": "Isoflavonas de soya no transgénica, aminoácidos reguladores, extracto botánico de achiote, luteína extraída de marigold, vitaminas, minerales"
     },
     "YOUTH ELIXIR": {
       "categoria": "Anti-edad",
@@ -339,7 +411,11 @@
         "antocianinas",
         "vitaminas C y E"
       ],
-      "respuesta_base": "Bebida funcional antioxidante orientada a vitalidad y envejecimiento saludable."
+      "respuesta_base": "Bebida funcional antioxidante orientada a vitalidad y envejecimiento saludable.",
+      "descripcion_tecnica": "Emplea precursores ortomoleculares para reactivar fisiológicamente la hormona de crecimiento (HGH). Incorpora resveratrol para la reparación celular y propiciar ciclos de sueño reparadores y mayor firmeza dérmica.",
+      "objetivo_funcional": "Estimulación pituitaria natural, secreción de HGH (hormona del crecimiento) y prevención de senectud tisular",
+      "pauta_consumo_detallada": "Disolver 1 stick en agua fría y consumir 30 minutos antes del sueño nocturno",
+      "ingredientes_clave_completos": "Complejo de aminoácidos precursores (L-arginina, L-ornitina, L-glutamina), molécula de resveratrol, mix de súper frutas Optiberry® (uvas, arándanos azules, amalaki)"
     },
     "PASSION": {
       "categoria": "Anti-edad",
@@ -351,7 +427,11 @@
         "té negro",
         "zinc"
       ],
-      "respuesta_base": "Bebida funcional orientada a vitalidad y energía. No hacer promesas médicas ni sexuales."
+      "respuesta_base": "Bebida funcional orientada a vitalidad y energía. No hacer promesas médicas ni sexuales.",
+      "descripcion_tecnica": "Hemodilatador sistémico con L-Arginina que incrementa flujo sanguíneo orgánico. Contiene jalea real y adaptógenos (Maca y Ginseng) que erradican la fatiga y restauran el deseo biológico.",
+      "objetivo_funcional": "Modulación hormonal gonadal, vasodilatación periférica y vigor sexual",
+      "pauta_consumo_detallada": "Disolver 1 stick en agua fría o a temperatura ambiente, consumido en respuesta a demandas energéticas o vitalidad íntima",
+      "ingredientes_clave_completos": "Complejo L-Arginina, extracto hiperconcentrado de jalea real, raíz de maca andina, extracto de ginseng asiático, zinc en molécula orgánica"
     },
     "BEAUTY-IN": {
       "categoria": "Anti-edad",
@@ -360,7 +440,11 @@
         "coenzima Q10",
         "biotina"
       ],
-      "respuesta_base": "Bebida funcional para apoyo nutricional de piel, cabello y uñas."
+      "respuesta_base": "Bebida funcional para apoyo nutricional de piel, cabello y uñas.",
+      "descripcion_tecnica": "Utiliza Péptidos Bioactivos de ultrabajo peso molecular asimilables directamente por el torrente sanguíneo, ordenando a los fibroblastos generar colágeno nuevo endógeno. Refuerza hidratación dérmica profunda.",
+      "objetivo_funcional": "Reestructuración de la matriz dérmica profunda, síntesis de elastina y redensificación de queratina",
+      "pauta_consumo_detallada": "Disolver 1 stick en un vaso de agua fría. Consumir de noche antes del descanso",
+      "ingredientes_clave_completos": "Péptidos bioactivos de Colágeno Hidrolizado (Tipos 1 y 3), ácido hialurónico, Coenzima Q10 celular, biotina profunda, antioxidantes sistémicos, extracto liofilizado de guayaba, toronja y camu camu"
     },
     "ON": {
       "categoria": "Vigor mental",
@@ -371,7 +455,11 @@
         "vitamina C",
         "vitaminas del complejo B"
       ],
-      "respuesta_base": "Bebida funcional para apoyo de energía mental, enfoque y estado de alerta."
+      "respuesta_base": "Bebida funcional para apoyo de energía mental, enfoque y estado de alerta.",
+      "descripcion_tecnica": "Modulación neuronal inteligente sin hiperestimulación tóxica. La Taurina estabiliza membranas celulares cerebrales mientras la Yerba Mate induce vigilia sostenida. Optimiza la memoria y procesamiento.",
+      "objetivo_funcional": "Potenciación cognitiva, neurotransmisión acelerada, concentración aguda y foco analítico",
+      "pauta_consumo_detallada": "Disolver 1 stick en un vaso de agua fría. Ideal ante sesiones intensas de estudio o carga laboral profunda",
+      "ingredientes_clave_completos": "L-Taurina, extracto concentrado de yerba mate, complejo B neuroactivo, magnesio, hierro, zinc, aceites esenciales, DHA, ARA"
     },
     "NO STRESS": {
       "categoria": "Vigor mental",
@@ -380,7 +468,11 @@
         "vitaminas del complejo B",
         "magnesio"
       ],
-      "respuesta_base": "Bebida funcional para apoyo de relajación cotidiana y equilibrio nervioso. No presentarlo como tratamiento de ansiedad o depresión."
+      "respuesta_base": "Bebida funcional para apoyo de relajación cotidiana y equilibrio nervioso. No presentarlo como tratamiento de ansiedad o depresión.",
+      "descripcion_tecnica": "Intervención nutricional que fuerza el apagado ordenado del sistema nervioso simpático, convirtiendo el Triptófano en melatonina. Modifica patrones a ondas alfa para una relajación enfocada libre de estrés químico.",
+      "objetivo_funcional": "Regulación neuro-endocrina, inducción de ondas alfa, inhibición del cortisol y descanso reparador",
+      "pauta_consumo_detallada": "Disolver 1 stick en agua fría o caliente. Consumir de noche para apaciguar el cerebro previo al sueño o de día ante ansiedad",
+      "ingredientes_clave_completos": "Aminoácidos relajantes (L-teanina, L-glicina, L-triptófano), extracto botánico de ashwagandha, amalaki, limón, magnesio en molécula orgánica, complejo vitamínico B"
     },
     "PRE SPORT PRO EDITION": {
       "categoria": "Sport",
@@ -396,7 +488,11 @@
         "yerba mate",
         "rhodiola rosea"
       ],
-      "respuesta_base": "Bebida funcional para preparación antes de actividad física."
+      "respuesta_base": "Bebida funcional para preparación antes de actividad física.",
+      "descripcion_tecnica": "Bombeo endotelial inducido mediante extracto liofilizado de betarraga y sandía (donadores de óxido nítrico y L-citrulina). Aumenta flujo sanguíneo al músculo esquelético y previene calambres con Sal de Maras.",
+      "objetivo_funcional": "Vasodilatación periférica exponencial, perfusión tisular de oxígeno y resistencia biomecánica aguda",
+      "pauta_consumo_detallada": "Disolver 1 stick en un shaker con agua fría y consumir 20-30 minutos previos al inicio de la carga física intensa",
+      "ingredientes_clave_completos": "Mix de aminoácidos citosólicos, concentrados vasculares (extracto de sandía y betarraga), yerba mate, minerales isotónicos moleculares, electrolitos de Sal de Maras"
     },
     "POST SPORT PRO EDITION": {
       "categoria": "Sport",
@@ -408,7 +504,11 @@
         "acerola",
         "cromo"
       ],
-      "respuesta_base": "Bebida funcional para apoyo de recuperación posterior al ejercicio."
+      "respuesta_base": "Bebida funcional para apoyo de recuperación posterior al ejercicio.",
+      "descripcion_tecnica": "Interrumpe la cascada degenerativa post-entrenamiento suministrando BCAAs puros que ordenan la síntesis de nuevas proteínas. El agua de coco rehidrata a nivel celular mientras la granada neutraliza la acidosis y fatiga.",
+      "objetivo_funcional": "Intercepción de degradación proteica (anti-catabolismo), regeneración miofibrilar y lavado de ácido láctico",
+      "pauta_consumo_detallada": "Disolver 1 stick en agua fría e ingerir inmediatamente finalizada la sesión de entrenamiento aeróbico o anaeróbico",
+      "ingredientes_clave_completos": "Alta concentración de BCAAs (Aminoácidos de Cadena Ramificada), agua de coco amazónico liofilizada, antioxidantes derivados de granada"
     }
   },
   "productos_detectados_en_web_no_activos_en_tienda": {

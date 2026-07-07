@@ -80,6 +80,10 @@ const cleanBotResponse = (text = '') => {
  * 4. Llamar a la API de IA (DeepSeek > Qwen > Gemini)
  * 5. Cachear la respuesta en Supabase
  * 6. Registrar eventos de la conversación
+ *
+ * Smart Product Interest Memory:
+ * El frontend envía los productos vistos por el usuario y su posible interés
+ * inferido para que el backend los inyecte en el prompt de la IA.
  */
 export const sendMessageToDeepSeek = async (userMessage, botType = 'ventas', conversationHistory = []) => {
   try {
@@ -97,6 +101,25 @@ export const sendMessageToDeepSeek = async (userMessage, botType = 'ventas', con
       content: String(msg.text || msg.content || '')
     }));
 
+    // Smart Product Interest Memory: obtener productos vistos e interés inferido
+    let productJourneyData = null;
+    try {
+      const { getProductJourney } = await import('@/lib/productJourney');
+      const journey = getProductJourney();
+      if (journey.viewedProducts && journey.viewedProducts.length > 0) {
+        productJourneyData = {
+          viewedProducts: journey.viewedProducts.map(p => ({
+            slug: p.slug,
+            name: p.name,
+            category: p.category
+          })),
+          mainInterest: journey.mainInterest
+        };
+      }
+    } catch (e) {
+      // Ignorar errores de importación (puede fallar en SSR/testing)
+    }
+
     const response = await fetch(BACKEND_API_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -104,7 +127,9 @@ export const sendMessageToDeepSeek = async (userMessage, botType = 'ventas', con
         messages: [...historyMessages, ...messages],
         preferredProvider: 'deepseek',
         sessionId: sessionData.sessionId,
-        startedAt: sessionData.startedAt
+        startedAt: sessionData.startedAt,
+        // Smart Product Interest Memory: enviar journey de productos al backend
+        productJourney: productJourneyData
       })
     });
 
@@ -145,7 +170,11 @@ export const sendMessageToDeepSeek = async (userMessage, botType = 'ventas', con
       healthRisk: data.healthRisk || null,
       purchaseIntent: data.purchaseIntent || null,
       conversationStage: data.conversationStage || null,
-      advisorRecommendation: data.advisorRecommendation || null
+      advisorRecommendation: data.advisorRecommendation || null,
+      // Business Opportunity flags
+      isBusinessOpportunity: data.isBusinessOpportunity === true,
+      showOpportunityVideo: data.showOpportunityVideo === true,
+      showOpportunityAdvisor: data.showOpportunityAdvisor === true
     };
 
   } catch (error) {

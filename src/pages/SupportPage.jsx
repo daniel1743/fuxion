@@ -169,7 +169,7 @@ const SupportPage = () => {
                   <Button
                     onClick={() => setShowAdminPanel(true)}
                     variant="outline"
-                    className="flex items-center gap-2 whitespace-nowrap border-purple-500/50 text-purple-400 hover:bg-purple-500/10"
+                    className="border-purple-500/50 text-purple-400 hover:bg-purple-500/10"
                     size="lg"
                   >
                     <Settings className="w-5 h-5" />

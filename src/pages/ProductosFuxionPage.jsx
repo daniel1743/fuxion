@@ -1,23 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, CheckCircle2, Leaf, Sparkles, ShieldCheck, Truck } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Leaf, Sparkles, ShieldCheck, Truck, Heart, Zap, Target, Dumbbell, Shield, Star, Brain, Footprints } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SEO from '@/components/SEO';
 import { buildStoreSchema, buildOrganizationSchema, getAllProducts, SITE_URL } from '@/lib/productSeo';
+
+const iconMap = {
+  digestion: <Leaf className="w-8 h-8 text-emerald-600" />,
+  energia: <Zap className="w-8 h-8 text-emerald-600" />,
+  peso: <Target className="w-8 h-8 text-emerald-600" />,
+  proteinas: <Dumbbell className="w-8 h-8 text-emerald-600" />,
+  inmune: <Shield className="w-8 h-8 text-emerald-600" />,
+  belleza: <Star className="w-8 h-8 text-emerald-600" />,
+  mental: <Brain className="w-8 h-8 text-emerald-600" />,
+  deportes: <Footprints className="w-8 h-8 text-emerald-600" />,
+};
 
 const ProductosFuxionPage = () => {
   const allProducts = getAllProducts();
 
   const categories = [
-    { name: 'Digestión y Bienestar', slug: 'limpieza-desintoxicacion', icon: '🌿' },
-    { name: 'Energía Natural', slug: 'energia-natural', icon: '⚡' },
-    { name: 'Control de Peso', slug: 'control-peso', icon: '🎯' },
-    { name: 'Proteínas y Nutrición', slug: 'proteinas-nutricion', icon: '💪' },
-    { name: 'Sistema Inmune', slug: 'sistema-inmune', icon: '🛡️' },
-    { name: 'Anti-Edad y Belleza', slug: 'anti-edad-belleza', icon: '✨' },
-    { name: 'Vigor Mental', slug: 'vigor-mental', icon: '🧠' },
-    { name: 'Deportes', slug: 'deportes', icon: '🏃' },
+    { name: 'Digestión y Bienestar', slug: 'limpieza-desintoxicacion', iconKey: 'digestion' },
+    { name: 'Energía Natural', slug: 'energia-natural', iconKey: 'energia' },
+    { name: 'Control de Peso', slug: 'control-peso', iconKey: 'peso' },
+    { name: 'Proteínas y Nutrición', slug: 'proteinas-nutricion', iconKey: 'proteinas' },
+    { name: 'Sistema Inmune', slug: 'sistema-inmune', iconKey: 'inmune' },
+    { name: 'Anti-Edad y Belleza', slug: 'anti-edad-belleza', iconKey: 'belleza' },
+    { name: 'Vigor Mental', slug: 'vigor-mental', iconKey: 'mental' },
+    { name: 'Deportes', slug: 'deportes', iconKey: 'deportes' },
   ];
 
   const featuredProducts = allProducts.slice(0, 6);
@@ -74,12 +85,12 @@ const ProductosFuxionPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.4 }}
             >
-              <Button asChild size="lg" className="h-12 px-6">
+              <Button asChild size="lg">
                 <Link to="/explorar">
                   Ver todos los productos <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="h-12 px-6">
+              <Button asChild variant="outline" size="lg">
                 <Link to="/contacto">
                   Hablar con un asesor
                 </Link>
@@ -125,12 +136,13 @@ const ProductosFuxionPage = () => {
               to={`/categoria/${cat.slug}`}
               className="group rounded-2xl border border-border bg-card p-5 text-center transition hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg"
             >
-              <span className="text-3xl block mb-3">{cat.icon}</span>
+              <span className="flex justify-center mb-3">{iconMap[cat.iconKey]}</span>
               <h3 className="font-bold text-foreground group-hover:text-primary text-sm">
                 {cat.name}
               </h3>
             </Link>
           ))}
+
         </div>
       </section>
 
@@ -213,10 +225,10 @@ const ProductosFuxionPage = () => {
             Envíos a todo Chile con coordinación vía WhatsApp.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button asChild size="lg" variant="secondary" className="h-12 px-6 bg-white text-emerald-700 hover:bg-emerald-50">
+            <Button asChild size="lg" variant="secondary" className="bg-white text-emerald-700 hover:bg-emerald-50">
               <Link to="/explorar">Ver productos</Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="h-12 px-6 border-white/40 text-white hover:bg-white/10">
+            <Button asChild size="lg" variant="outline" className="border-white/40 text-white hover:bg-white/10">
               <Link to="/contacto">Contactar asesor</Link>
             </Button>
           </div>
