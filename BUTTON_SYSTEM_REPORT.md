@@ -1,151 +1,100 @@
-# BUTTON SYSTEM REPORT — Unificación Global de Botones
+# UI Polish Fase Final 1 - Sistema Global de Botones Premium
 
-## 📋 Resumen
+## Resumen
 
-Se completó la **unificación global del sistema de botones** en toda la aplicación FuXion Shop. Se implementó un **Design System Premium** coherente, reemplazando estilos hardcodeados por el componente `<Button />` global con variantes y tamaños estandarizados.
+Se implementó un sistema de botones premium unificado en toda la tienda, con tamaños consistentes, animaciones de hover/click profesionales y comportamiento responsive mejorado.
 
----
+## Cambios Realizados
 
-## 🧩 Componente Base
+### 1. `src/components/ui/button.jsx` — Componente base
 
-**Archivo:** `src/components/ui/button.jsx`
+| Cambio | Antes | Después |
+|--------|-------|---------|
+| **Animación hover** | Sin efecto | `hover:-translate-y-0.5` (lift de 2px) |
+| **Animación click** | Sin efecto | `active:scale-[0.97]` (press) |
+| **Sombra hover (default)** | `shadow-premium-soft` | `shadow-premium-soft hover:shadow-md` |
+| **Sombra hover (outline)** | Sin sombra | `hover:shadow-premium-soft` |
+| **Sombra hover (whatsapp)** | `shadow-premium-soft` | `shadow-premium-soft hover:shadow-md` |
+| **Tamaño sm** | `h-9 text-sm` | `h-9 text-xs` |
+| **Tamaño lg** | `h-14 min-h-[50px]` | `h-[52px] min-h-[52px]` |
+| **Tamaño hero** | `h-16 min-h-[56px] max-h-[64px]` | `h-14 min-h-[56px]` |
+| **fullWidth** | `w-full` | `w-full sm:w-auto sm:max-w-[360px]` |
 
-### Variantes (color/estilo)
+### 2. `src/index.css` — Nuevas utilidades CSS
 
-| Variant     | Uso principal                          | Clases clave                                      |
-|-------------|----------------------------------------|---------------------------------------------------|
-| `default`   | Comprar, enviar, acción principal CTA  | `bg-primary text-primary-foreground shadow-premium-soft hover:shadow-md` |
-| `secondary` | Más información, acciones secundarias  | `bg-secondary text-secondary-foreground shadow-premium-soft` |
-| `outline`   | Cancelar, volver, acciones neutras     | `border border-input bg-background hover:bg-accent` |
-| `whatsapp`  | Contacto WhatsApp (solo donde aplica)  | `bg-green-600 text-white hover:bg-green-700 shadow-premium-soft` |
-| `ghost`     | Acciones sutiles (menús, iconos)       | `hover:bg-accent hover:text-accent-foreground` |
-| `link`      | Navegación tipo enlace                 | `text-primary underline-offset-4 hover:underline` |
-| `destructive` | Eliminar, acciones destructivas      | `bg-destructive text-destructive-foreground shadow-premium-soft` |
+| Utilidad | Propósito |
+|----------|-----------|
+| `.btn-premium-lift` | Efecto hover translateY(-2px) para botones con clases personalizadas |
+| `.btn-group` | Contenedor flex-col sm:flex-row con gap |
+| `.btn-group-center` | Igual que btn-group pero centrado |
+| `.btn-hero-pair` | Par de botones hero: flex-col mobile, flex-row desktop, con min-w y max-w |
+| `.btn-cta` | Botón CTA individual: full width mobile, auto desktop con min-w |
+| `.btn-secondary-action` | Botón secundario compacto |
+
+### 3. `src/pages/HomePage.jsx` — 4 secciones corregidas
+
+| Sección | Cambio |
+|---------|--------|
+| **Hero (Section 1)** | `size="hero" fullWidth` → `size="lg"` dentro de `btn-hero-pair` |
+| **Section 5** | `size="hero" fullWidth` → `size="lg"` dentro de `btn-hero-pair` |
+| **Section 7 (Bonus)** | `size="hero" fullWidth` → `size="lg"` |
+| **Final CTA** | `size="hero" fullWidth` → `size="lg"` dentro de `btn-hero-pair` |
+
+### 4. `src/pages/OpportunityPage.jsx` — 2 secciones corregidas
+
+| Sección | Cambio |
+|---------|--------|
+| **Hero** | `size="hero" fullWidth` → `size="lg"` (x2 botones) |
+| **Final CTA** | `fullWidth` eliminado (x2 botones) |
+
+### 5. `src/pages/HelpCenterPage.jsx` — 1 sección corregida
+
+| Sección | Cambio |
+|---------|--------|
+| **Final CTA** | `fullWidth` eliminado de ambos botones (WhatsApp + Correo) |
+
+### 6. `src/pages/ContactPage.jsx` — 1 sección corregida
+
+| Sección | Cambio |
+|---------|--------|
+| **Final CTA** | `fullWidth` eliminado de ambos botones (WhatsApp + Correo) |
+
+## Especificaciones del Sistema de Botones
 
 ### Tamaños
 
-| Size      | Altura      | Padding | Font   | Gap   | Uso típico                          |
-|-----------|-------------|---------|--------|-------|-------------------------------------|
-| `sm`      | 36-40px     | px-3    | text-sm | 1.5   | Tags, filtros, cards compactas      |
-| `md`      | 44-48px     | px-5    | text-sm | 2     | Default, formularios                |
-| `default` | 44-48px     | px-5    | text-sm | 2     | Alias de `md`                       |
-| `lg`      | 50-56px     | px-6    | text-base | 2   | CTAs principales, formularios importantes |
-| `hero`    | 56-64px     | px-8    | text-base | 2.5 | Landing, Opportunity, hero CTAs     |
-| `icon`    | 40×40px     | -       | -       | -     | Botones de solo icono               |
+| Variante | Altura | Min-Height | Border Radius | Texto | Padding X | Gap |
+|----------|--------|------------|---------------|-------|-----------|-----|
+| **sm** | 36px (h-9) | 36px | xl (12px) | xs (12px) | 12px (px-3) | 6px |
+| **md / default** | 44px (h-11) | 44px | xl (12px) | sm (14px) | 20px (px-5) | 8px |
+| **lg** | 52px (h-[52px]) | 52px | xl (12px) | sm (14px) | 24px (px-6) | 8px |
+| **hero** | 56px (h-14) | 56px | xl (12px) | base (16px) | 32px (px-8) | 10px |
+| **icon** | 40px (h-10 w-10) | — | xl (12px) | — | — | — |
 
-### Propiedades globales
+### Variantes
 
-- `rounded-xl` en todos los tamaños (border-radius consistente)
-- `font-semibold` (font-weight: 600)
-- `transition-all duration-200` (hover/active suaves)
-- `active:scale-[0.97]` (feedback táctil al presionar)
-- `select-none` (mejor UX)
-- `shadow-premium-soft` en variantes con fondo (default, secondary, destructive, whatsapp)
-- `fullWidth` prop para ancho completo (w-full)
+| Variante | BG | Texto | Borde | Hover |
+|----------|-----|-------|-------|-------|
+| **default** | `bg-primary` | `text-primary-foreground` | — | `bg-primary/90` + `shadow-md` |
+| **destructive** | `bg-destructive` | `text-destructive-foreground` | — | `bg-destructive/90` |
+| **outline** | `bg-background` | — | `border-input` | `bg-accent` + `shadow-premium-soft` |
+| **secondary** | `bg-secondary` | `text-secondary-foreground` | — | `bg-secondary/80` |
+| **ghost** | — | — | — | `bg-accent` |
+| **link** | — | `text-primary` | — | `underline` |
+| **whatsapp** | `bg-green-600` | `text-white` | — | `bg-green-700` + `shadow-md` |
 
----
+### Comportamiento fullWidth
 
-## 📐 Utility Classes CSS
+- **Mobile**: 100% del contenedor padre
+- **Desktop (sm:)**: Ancho automático con `max-w-[360px]`
+- Ideal para CTAs en formularios y secciones principales
 
-**Archivo:** `src/index.css`
+### Animaciones
 
-| Clase               | Propósito                                    |
-|---------------------|----------------------------------------------|
-| `.btn-mobile-full`  | `w-full sm:w-auto` — ancho completo en mobile, auto en desktop |
-| `.btn-max-w-normal` | `max-width: 320px` — límite desktop para botones normales |
-| `.btn-max-w-hero`   | `max-width: 420px` — límite desktop para botones hero |
-| `.btn-center-desktop` | Centra el botón horizontalmente en pantallas ≥768px |
-| `.shadow-premium-soft` | Sombra suave premium multi-capa           |
-| `.btn-scale-hover`  | Escala 1.02× al hover (efecto de elevación) |
+- **Hover**: `translateY(-2px)` + sombra elevada (premium lift)
+- **Click/Press**: `scale(0.97)` (feedback táctil)
+- **Transición**: `transition-all duration-200` (suave y rápida)
 
----
+## Build
 
-## ✅ Páginas Migradas
-
-| Página                    | Archivo                    | Estado     | Detalles clave                                      |
-|---------------------------|----------------------------|------------|-----------------------------------------------------|
-| **Home**                  | `HomePage.jsx`             | ✅ Completo | CTAs con `size="hero"` y `fullWidth`                |
-| **Oportunidad FuXion**    | `OpportunityPage.jsx`      | ✅ Completo | CTAs con `size="hero"`, botones secundarios con `size="lg"` |
-| **Productos FuXion**      | `ProductosFuxionPage.jsx`  | ✅ Completo | Hero buttons con `asChild size="lg"`, CTA buttons simplificados |
-| **Producto individual**   | `ProductPage.jsx`          | ✅ Completo | Add to cart con `size="lg"`, AI/Asesor buttons con `size="lg"` y colores personalizados |
-| **Explorar productos**    | `ExplorePage.jsx`          | ✅ Completo | Card "Agregar" con `size="sm"`, icon buttons con `size="icon"` |
-| **Carrito**               | `CartPage.jsx`             | ✅ Completo | Send order con `variant="whatsapp" size="lg"`, quantity con `size="icon"` |
-| **Contacto**              | `ContactPage.jsx`          | ✅ Completo | Form submit con `size="lg" fullWidth`, success state limpio |
-| **Centro de Ayuda**       | `HelpCenterPage.jsx`       | ✅ Completo | Form submit con `size="lg" fullWidth`, CTAs finales con `btn-mobile-full` |
-| **Soporte/Foro**          | `SupportPage.jsx`          | ✅ Completo | Admin panel con `variant="outline" size="lg"`, filtros con `size="sm"` |
-| **Header**                | `Header.jsx`               | ✅ N/A      | Ya usaba `variant="ghost" size="icon"` — sin cambios necesarios |
-
----
-
-## 🎯 Jerarquía Visual por Pantalla
-
-| Pantalla                | CTA Principal (1 por pantalla) | Secundarios               |
-|-------------------------|--------------------------------|---------------------------|
-| HomePage                | `hero` primary                 | `lg` secondary/outline    |
-| OpportunityPage         | `hero` primary                 | `lg` secondary/outline    |
-| ProductosFuxionPage     | `lg` primary                   | `lg` secondary/outline    |
-| ProductPage             | `lg` primary (add to cart)     | `lg` outline (AI/Asesor)  |
-| ExplorePage             | `sm` primary (Agregar)         | `icon` outline            |
-| CartPage                | `lg` whatsapp (Enviar pedido)  | `lg` outline (Tienda oficial) |
-| ContactPage             | `lg` primary (Enviar)          | `lg` outline (Volver)     |
-| HelpCenterPage          | `lg` primary (Enviar)          | `lg` outline/whatsapp     |
-| SupportPage             | `lg` primary (Iniciar tema)    | `lg` outline (Admin)      |
-
----
-
-## 📱 Comportamiento Responsive
-
-### Mobile (< 768px)
-- Botones pueden usar `fullWidth` o clase `btn-mobile-full` para ancho completo
-- Padding cómodo: `px-3` (sm), `px-5` (md/default), `px-6` (lg), `px-8` (hero)
-- Alturas mínimas garantizadas: 36px (sm), 44px (md), 50px (lg), 56px (hero)
-
-### Desktop (≥ 768px)
-- Sin botones gigantes full-width
-- Max-width normal: **320px** (`.btn-max-w-normal`)
-- Max-width hero: **420px** (`.btn-max-w-hero`)
-- Centrado automático con `.btn-center-desktop`
-
----
-
-## 🧪 Build
-
-```
-npm run build
-```
-
-**Resultado:** ✅ Build exitoso — 0 errores, 0 warnings.
-
-```
-✓ built in 28.59s
-dist/index.html                                   6.83 kB │ gzip:   2.25 kB
-dist/assets/index-afae37da.css                   97.69 kB │ gzip:  16.25 kB
-dist/assets/index-7cfa2016.js                   887.66 kB │ gzip: 274.09 kB
-```
-
----
-
-## 📊 Estadísticas
-
-| Métrica                          | Valor  |
-|----------------------------------|--------|
-| Páginas migradas                 | 10     |
-| Variantes de botón               | 7      |
-| Tamaños de botón                 | 6      |
-| Utility classes nuevas           | 3      |
-| Archivos modificados             | 10     |
-| Errores de build                 | 0      |
-
----
-
-## 🔮 Recomendaciones Futuras
-
-1. **Auditar componentes adicionales** — Revisar `AdminPanel.jsx`, `FalconBot.jsx` y otros componentes que puedan tener botones hardcodeados.
-2. **Pruebas visuales** — Verificar en 1366×768 (desktop) y 390px (mobile) que todos los botones se vean proporcionados.
-3. **Modo oscuro** — Verificar que `shadow-premium-soft` se comporte correctamente en dark mode (ya implementado en CSS).
-4. **Animaciones** — Considerar agregar micro-interacciones adicionales (ripple effect) en el futuro.
-5. **Documentación** — Mantener este reporte actualizado si se agregan nuevas variantes o páginas.
-
----
-
-*Generado: 7 de junio, 2026*
+✅ Build exitoso — 0 errores, 0 warnings.

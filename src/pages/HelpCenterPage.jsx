@@ -28,6 +28,7 @@ import {
   ShoppingBag
 } from 'lucide-react';
 import { openWhatsapp } from '@/lib/whatsapp';
+import { validateContact, CONTACT_REQUIRED_MESSAGE } from '@/lib/formValidation';
 
 // ── Page transition variants ──────────────────────────────────
 const pageVariants = {
@@ -128,45 +129,75 @@ const HelpCenterPage = () => {
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formLoading, setFormLoading] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState({});
 
   // ── Form handlers ───────────────────────────────────────────
   const handleChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+    // Clear field error on change
+    if (fieldErrors[field]) {
+      setFieldErrors(prev => {
+        const next = { ...prev };
+        delete next[field];
+        return next;
+      });
+    }
+    // Clear contact error when typing in either contact field
+    if (field === 'whatsapp' || field === 'email') {
+      if (fieldErrors.contact) {
+        setFieldErrors(prev => {
+          const next = { ...prev };
+          delete next.contact;
+          return next;
+        });
+      }
+    }
   };
 
   const validateForm = () => {
+    const newErrors = {};
+
     if (!formData.nombre.trim()) {
-      toast({
-        title: 'Nombre requerido',
-        description: 'Por favor ingresa tu nombre.',
-        variant: 'destructive',
-      });
-      return false;
+      newErrors.nombre = 'Por favor ingresa tu nombre';
     }
+
     if (!formData.tipo) {
-      toast({
-        title: 'Tipo de solicitud requerido',
-        description: 'Selecciona el motivo de tu mensaje.',
-        variant: 'destructive',
-      });
-      return false;
+      newErrors.tipo = 'Selecciona el motivo de tu mensaje';
     }
-    if (!formData.whatsapp.trim() && !formData.email.trim()) {
-      toast({
-        title: 'Contacto requerido',
-        description: 'Necesitamos un medio de contacto para poder responderte.',
-        variant: 'destructive',
-      });
-      return false;
+
+    // Validación de contacto mínimo usando formValidation
+    const contactResult = validateContact({
+      whatsapp: formData.whatsapp,
+      email: formData.email,
+    });
+
+    if (!contactResult.valid) {
+      newErrors.contact = contactResult.message;
+      if (contactResult.whatsappError) newErrors.whatsapp = contactResult.whatsappError;
+      if (contactResult.emailError) newErrors.email = contactResult.emailError;
+    } else {
+      // Even if valid, show format warnings
+      if (contactResult.whatsappError) newErrors.whatsapp = contactResult.whatsappError;
+      if (contactResult.emailError) newErrors.email = contactResult.emailError;
     }
+
     if (!formData.mensaje.trim()) {
+      newErrors.mensaje = 'Cuéntanos cómo podemos ayudarte';
+    }
+
+    setFieldErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) {
+      // Show first error as toast
+      const firstError = newErrors[Object.keys(newErrors)[0]];
       toast({
-        title: 'Mensaje requerido',
-        description: 'Cuéntanos cómo podemos ayudarte.',
+        title: 'Revisa el formulario',
+        description: firstError,
         variant: 'destructive',
       });
       return false;
     }
+
     return true;
   };
 
@@ -237,6 +268,7 @@ const HelpCenterPage = () => {
     });
     setFormSubmitted(false);
     setSelectedCard(null);
+    setFieldErrors({});
   };
 
   const handleCardClick = (cardId) => {
@@ -490,9 +522,12 @@ const HelpCenterPage = () => {
                       placeholder="Tu nombre"
                       value={formData.nombre}
                       onChange={(e) => handleChange('nombre', e.target.value)}
-                      className="w-full"
+                      className={`w-full ${fieldErrors.nombre ? 'border-red-400 focus-visible:ring-red-400' : ''}`}
                       required
                     />
+                    {fieldErrors.nombre && (
+                      <p className="mt-1 text-xs text-red-500">{fieldErrors.nombre}</p>
+                    )}
                   </div>
 
                   {/* Request type */}
@@ -527,6 +562,9 @@ const HelpCenterPage = () => {
                         );
                       })}
                     </div>
+                    {fieldErrors.tipo && (
+                      <p className="mt-1 text-xs text-red-500">{fieldErrors.tipo}</p>
+                    )}
                   </div>
 
                   {/* Contact info */}
@@ -541,8 +579,11 @@ const HelpCenterPage = () => {
                         placeholder="+56 9 1234 5678"
                         value={formData.whatsapp}
                         onChange={(e) => handleChange('whatsapp', e.target.value)}
-                        className="w-full"
+                        className={`w-full ${fieldErrors.whatsapp || fieldErrors.contact ? 'border-red-400 focus-visible:ring-red-400' : ''}`}
                       />
+                      {fieldErrors.whatsapp && (
+                        <p className="mt-1 text-xs text-red-500">{fieldErrors.whatsapp}</p>
+                      )}
                     </div>
 
                     {/* Email */}
@@ -555,18 +596,32 @@ const HelpCenterPage = () => {
                         placeholder="tu@correo.com"
                         value={formData.email}
                         onChange={(e) => handleChange('email', e.target.value)}
-                        className="w-full"
+                        className={`w-full ${fieldErrors.email || fieldErrors.contact ? 'border-red-400 focus-visible:ring-red-400' : ''}`}
                       />
+                      {fieldErrors.email && (
+                        <p className="mt-1 text-xs text-red-500">{fieldErrors.email}</p>
+                      )}
                     </div>
                   </div>
 
-                  <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800/40 rounded-xl p-3">
-                    <p className="text-xs text-amber-700 dark:text-amber-400 flex items-center gap-2">
-                      <Shield className="w-4 h-4 flex-shrink-0" />
-                      Déjanos un WhatsApp o correo para poder responderte.
-                    </p>
-                  </div>
+                  {/* Contact required message */}
+                  {fieldErrors.contact && (
+                    <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800/40 rounded-xl p-3">
+                      <p className="text-xs text-red-700 dark:text-red-400 flex items-center gap-2">
+                        <Shield className="w-4 h-4 flex-shrink-0" />
+                        {fieldErrors.contact}
+                      </p>
+                    </div>
+                  )}
 
+                  {!fieldErrors.contact && (
+                    <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800/40 rounded-xl p-3">
+                      <p className="text-xs text-amber-700 dark:text-amber-400 flex items-center gap-2">
+                        <Shield className="w-4 h-4 flex-shrink-0" />
+                        Déjanos un WhatsApp o correo para poder responderte.
+                      </p>
+                    </div>
+                  )}
 
                   {/* Message */}
                   <div>
@@ -578,9 +633,12 @@ const HelpCenterPage = () => {
                       value={formData.mensaje}
                       onChange={(e) => handleChange('mensaje', e.target.value)}
                       rows={5}
-                      className="w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 resize-y min-h-[120px]"
+                      className={`w-full rounded-lg border ${fieldErrors.mensaje ? 'border-red-400' : 'border-input'} bg-background px-3 py-2.5 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 resize-y min-h-[120px]`}
                       required
                     />
+                    {fieldErrors.mensaje && (
+                      <p className="mt-1 text-xs text-red-500">{fieldErrors.mensaje}</p>
+                    )}
                   </div>
 
                   <Button
@@ -625,7 +683,6 @@ const HelpCenterPage = () => {
               <Button
                 size="lg"
                 variant="secondary"
-                fullWidth
                 onClick={() => openWhatsapp('Hola, quiero contactar con un asesor FuXion.')}
               >
                 <MessageCircle className="mr-2 h-5 w-5 shrink-0" />
@@ -634,7 +691,6 @@ const HelpCenterPage = () => {
               <Button
                 variant="outline"
                 size="lg"
-                fullWidth
                 onClick={() => window.location.href = 'mailto:contacto@naturalmentefuxion.cl'}
               >
                 <Mail className="mr-2 h-5 w-5 shrink-0" />

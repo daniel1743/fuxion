@@ -12,10 +12,9 @@ Allow: /blog/
 Allow: /ayuda
 Allow: /opiniones
 Allow: /bienestar/
-Allow: /terminos
 Allow: /contacto
-Allow: /envios
 Allow: /faq
+
 Allow: /oportunidad-fuxion
 Allow: /productos-fuxion-chile
 Allow: /img/

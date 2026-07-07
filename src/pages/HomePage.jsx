@@ -224,19 +224,17 @@ const HomePage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.65 }}
-                className="flex flex-col sm:flex-row gap-4"
+                className="btn-hero-pair"
               >
                 <Button
-                  size="hero"
-                  fullWidth
+                  size="lg"
                   onClick={() => handleWhatsAppClick('Hola, quiero empezar mi cambio con Fuxion')}
                 >
                   <span className="text-balance">Recibir asesoría</span> <ArrowRight className="ml-2 h-5 w-5 shrink-0" />
                 </Button>
                 <Button
-                  size="hero"
+                  size="lg"
                   variant="outline"
-                  fullWidth
                   onClick={() => window.location.href = '/explorar'}
                 >
                   <ShoppingCart className="mr-2 h-5 w-5 shrink-0" />
@@ -253,7 +251,7 @@ const HomePage = () => {
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-emerald-100 dark:border-emerald-900">
                 <img
                   src={getImageUrl('/img/familia.fuxion.png')}
-                  alt="Bienestar Fuxion y productos para nutrición natural"
+                  alt="Familia FuXion - Nutrición de verdad y bienestar natural"
                   className="w-full h-full object-cover max-h-[560px]"
                   onError={(e) => {
                     e.target.src = getPlaceholderImage('woman');
@@ -449,18 +447,16 @@ const HomePage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.5 }}
           >
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="btn-hero-pair justify-center">
               <Button
-                size="hero"
-                fullWidth
+                size="lg"
                 onClick={() => handleWhatsAppClick('Hola, quiero mi recomendación personalizada')}
               >
                 <span className="text-balance">Quiero mi recomendación personalizada</span> <ArrowRight className="ml-2 h-5 w-5 shrink-0" />
               </Button>
               <Button
-                size="hero"
+                size="lg"
                 variant="outline"
-                fullWidth
                 onClick={() => window.location.href = '/explorar'}
               >
                 <ShoppingCart className="mr-2 h-5 w-5 shrink-0" />
@@ -653,8 +649,7 @@ const HomePage = () => {
               transition={{ duration: 0.6, delay: 0.5 }}
             >
               <Button
-                size="hero"
-                fullWidth
+                size="lg"
                 onClick={() => handleWhatsAppClick('Hola, quiero mi recomendación personalizada')}
               >
                 <span>Quiero mi recomendación</span>
@@ -691,20 +686,18 @@ const HomePage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            className="btn-hero-pair justify-center"
           >
             <Button
-              size="hero"
-              fullWidth
+              size="lg"
               onClick={() => handleWhatsAppClick('Hola, quiero iniciar mi cambio ahora')}
             >
               <span className="text-balance">Iniciar mi cambio ahora</span>
               <ArrowRight className="ml-2 h-5 w-5 shrink-0" />
             </Button>
             <Button
-              size="hero"
+              size="lg"
               variant="outline"
-              fullWidth
               onClick={() => window.location.href = '/explorar'}
             >
               <ShoppingCart className="mr-2 h-5 w-5 shrink-0" />

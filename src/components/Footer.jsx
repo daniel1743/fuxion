@@ -9,6 +9,12 @@ import {
   FileText,
   Instagram,
   Facebook,
+  HelpCircle,
+  MessageCircle,
+  Truck,
+  MessagesSquare,
+  Shield,
+  Cookie,
 } from 'lucide-react';
 import { buildWhatsappUrl } from '@/lib/whatsapp';
 import { WhatsAppIcon } from '@/components/icons/BrandIcons';
@@ -26,10 +32,12 @@ const Footer = () => {
     ];
 
     const ayudaLinks = [
-      { label: 'Centro de ayuda', path: '/ayuda' },
-      { label: 'Contacto', path: '/contacto' },
-      { label: 'Envíos y Devoluciones', path: '/envios' },
-      { label: 'FAQ', path: '/faq' },
+      { label: 'Centro de ayuda', icon: HelpCircle, path: '/ayuda' },
+      { label: 'Contacto', icon: MessageCircle, path: '/contacto' },
+      { label: 'Envíos', icon: Truck, path: '/envios' },
+      { label: 'FAQ', icon: MessagesSquare, path: '/faq' },
+      { label: 'Política de Privacidad', icon: Shield, path: '/privacidad' },
+      { label: 'Política de Cookies', icon: Cookie, path: '/cookies' },
     ];
 
     const socialLinks = [
@@ -104,19 +112,25 @@ const Footer = () => {
                         </div>
                     </div>
 
-                    {/* ── Ayuda Section (clean, no icons) ─────────── */}
+                    {/* ── Ayuda Section (with icons) ──────────────── */}
                     <div>
                         <p className="font-semibold text-foreground tracking-wider text-sm uppercase">Ayuda</p>
                         <div className="flex flex-col mt-4 space-y-2.5">
-                            {ayudaLinks.map((link) => (
-                                <Link
-                                    key={link.path}
-                                    to={link.path}
-                                    className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
-                                >
-                                    {link.label}
-                                </Link>
-                            ))}
+                            {ayudaLinks.map((link) => {
+                                const IconComponent = link.icon;
+                                return (
+                                    <Link
+                                        key={link.path}
+                                        to={link.path}
+                                        className="group flex items-center gap-2.5 text-muted-foreground hover:text-primary transition-colors duration-200"
+                                    >
+                                        <span className="flex items-center justify-center w-5 h-5 shrink-0">
+                                            <IconComponent className="w-[15px] h-[15px] text-muted-foreground/60 group-hover:text-primary transition-colors duration-200" strokeWidth={1.8} />
+                                        </span>
+                                        <span className="text-sm">{link.label}</span>
+                                    </Link>
+                                );
+                            })}
                         </div>
                     </div>
 

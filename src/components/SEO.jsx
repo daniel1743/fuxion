@@ -20,7 +20,7 @@ const SEO = ({
   description,
   canonical,
   ogType = 'website',
-  ogImage = `${SITE_URL}/img/familia.fuxion.png`,
+  ogImage = `${SITE_URL}/icons/android-chrome-512x512.png`,
   noindex = false,
   schema = [],
   children

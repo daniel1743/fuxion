@@ -1,10 +1,11 @@
-# TELEGRAM_FIX_PHASE1 - Task Progress
+# Branding Refresh - FuXion
 
-- [x] Read and analyze all relevant source files
-- [x] Fix 1: Product detection - exact word matching for short products (ON, etc.)
-- [x] Fix 2: Purchase language - exclude "quiero saber/información/conocer" from buy intent
-- [x] Fix 3: Telegram titles - implement 3-tier scoring (exploring/interested/buying)
-- [x] Fix 4: Update INTENT_LEVELS and notification logic
-- [x] Fix 5: Update conversationProfile.js purchase signal detection
-- [x] Run npm build to verify no errors
-- [x] Create TELEGRAM_FIX_PHASE1_REPORT.md
+## Task Progress
+
+- [ ] TAREA 1: Auditar referencias viejas (favicon, logo, iconos PWA antiguos)
+- [ ] TAREA 2: Configurar favicon SEO en index.html
+- [ ] TAREA 3: Actualizar PWA manifest (site.webmanifest)
+- [ ] TAREA 4: Revisar Splash Screen PWA
+- [ ] TAREA 5: Actualizar Service Worker (cache version + assets)
+- [ ] TAREA 6: Validar SEO / Google (rutas públicas accesibles)
+- [ ] TAREA 7: Revisión final y verificación

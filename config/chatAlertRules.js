@@ -54,17 +54,85 @@ export const BUY_INTENT_MEDIUM = {
 export const BUSINESS_INTENT_PATTERNS = /\b(quiero vender|negocio|distribuidor|ganar dinero|emprender|trabajar con fuxion|trabajar con fuXion|vender fuxion|vender fuXion|hacer el negocio|c[oó]mo gano dinero|c[oó]mo ganar dinero|ser distribuidor|oportunidad fuxion|oportunidad fuXion|plan de negocio|ganancias|ingresos extra|ingreso extra|unirme a fuxion|unirme a fuXion|asociarme|ser parte de fuxion|ser parte de fuXion|modelo de negocio|plan de compensaci[oó]n|ganar dinero con fuxion|ganar dinero con fuXion|c[oó]mo funciona el negocio|vender productos|oportunidad de negocio|negocio propio|dinero extra|independencia financiera|libertad financiera|trabajo desde casa|negocio desde casa|ingreso pasivo|ingresos pasivos|quiero afiliarme|ser socio|negocio desde casa|generar ingresos|ingreso extra|plan de compensaci[oó]n|afiliarme|socio fuxion|socio fuXion)\b/i;
 
 // ===================================================================
-// NIVELES DE INTENCIÓN
+// NIVELES DE INTENCIÓN - FASE FINAL 4
 // ===================================================================
-// REGLA TELEGRAM FIX PHASE 1:
-//   explorando (0-39):  no enviar Telegram
-//   interesado (40-69): enviar con título "💡 Posible interés FuXion"
-//   compra (70+):       enviar con título "🔥 Cliente con intención de compra"
+// REGLA TELEGRAM FASE FINAL 4:
+//   nivel_1_curioso (0-30):     NO enviar Telegram, guardar memoria
+//   nivel_2_interesado (31-60): guardar seguimiento, no alertar salvo repetición fuerte
+//   nivel_3_posible_compra (61-80): enviar Telegram
+//   nivel_4_cliente_caliente (81-100): Telegram inmediato
 export const INTENT_LEVELS = {
-  exploring: { min: 0, max: 40, label: 'Explorando', notify: false, save: false },
-  interested: { min: 40, max: 70, label: 'Interesado', notify: true, save: true },
-  buying: { min: 70, max: Infinity, label: '🔥 Cliente con intención de compra', notify: true, save: true },
+  curious: { min: 0, max: 31, label: '🔍 Curioso', notify: false, save: true },
+  interested: { min: 31, max: 61, label: '💡 Interesado', notify: false, save: true },
+  possiblePurchase: { min: 61, max: 81, label: '💭 Posible compra', notify: true, save: true },
+  hotClient: { min: 81, max: Infinity, label: '🔥 Cliente caliente', notify: true, save: true },
   business: { min: 0, max: Infinity, label: '🚀 OPORTUNIDAD NEGOCIO', notify: true, save: true }
+};
+
+// ===================================================================
+// SEÑALES HUMANAS - Solicitud de asesor humano
+// ===================================================================
+export const HUMAN_REQUEST_PATTERNS = /\b(asesor|humano|persona real|whatsapp|necesito ayuda|quiero hablar con alguien|hablar con un asesor|contactar con un asesor|asesor humano|atenci[oó]n personalizada|ayuda humana|quiero que me ayude una persona|hablar con una persona)\b/i;
+
+// ===================================================================
+// SEÑALES DE NEGOCIO FUXION - Separado de compra producto
+// ===================================================================
+export const BUSINESS_OPPORTUNITY_PATTERNS = /\b(vender fuxion|vender fuXion|negocio fuxion|negocio fuXion|oportunidad fuxion|oportunidad fuXion|distribuidor fuxion|distribuidor fuXion|ganar dinero con fuxion|ganar dinero con fuXion|emprender con fuxion|emprender con fuXion|ser distribuidor|hacerme distribuidor|plan de negocio|modelo de negocio|c[oó]mo funciona el negocio|quiero vender|oportunidad de negocio|negocio propio|ganar dinero|ingresos extra|ingreso extra|independencia financiera|libertad financiera|trabajo desde casa|negocio desde casa|ingreso pasivo|ingresos pasivos|afiliarme|ser socio|asociarme|unirme a fuxion|unirme a fuXion|ser parte de fuxion|ser parte de fuXion|plan de compensaci[oó]n|rangos|bonos|bono auto|fondo pa[ií]s)\b/i;
+
+// ===================================================================
+// MAPA DE CATEGORÍAS DE PRODUCTOS PARA RESUMEN INTELIGENTE
+// ===================================================================
+export const PRODUCT_CATEGORY_MAP = {
+  'prunex': 'Bienestar digestivo',
+  'prunex 1': 'Bienestar digestivo',
+  'flora liv': 'Bienestar digestivo',
+  'floraliv': 'Bienestar digestivo',
+  'liquid fiber': 'Bienestar digestivo',
+  'liquid fibre': 'Bienestar digestivo',
+  'liquidfiber': 'Bienestar digestivo',
+  'berry balance': 'Bienestar digestivo',
+  'berrybalance': 'Bienestar digestivo',
+  'rexet': 'Bienestar digestivo',
+  'alpha balance': 'Bienestar digestivo',
+  'alpha': 'Bienestar digestivo',
+  'thermo t3': 'Control de peso',
+  'thermot3': 'Control de peso',
+  'nocarb': 'Control de peso',
+  'nocarb t': 'Control de peso',
+  'nocarb-t': 'Control de peso',
+  'no carb': 'Control de peso',
+  'on': 'Energía y vitalidad',
+  'vita xtra': 'Energía y vitalidad',
+  'vitaextra': 'Energía y vitalidad',
+  'vitaenergía': 'Energía y vitalidad',
+  'vitaenergia': 'Energía y vitalidad',
+  'no stress': 'Energía y vitalidad',
+  'nostress': 'Energía y vitalidad',
+  'passion': 'Energía y vitalidad',
+  'vera': 'Energía y vitalidad',
+  'vera+': 'Energía y vitalidad',
+  'gano': 'Energía y vitalidad',
+  'cafe': 'Energía y vitalidad',
+  'cafe fit': 'Energía y vitalidad',
+  'cappuccino': 'Energía y vitalidad',
+  'nutraday': 'Energía y vitalidad',
+  'beauty in': 'Belleza y cuidado personal',
+  'beauty-in': 'Belleza y cuidado personal',
+  'beautyin': 'Belleza y cuidado personal',
+  'youth elixir': 'Belleza y cuidado personal',
+  'youth elixir hgh': 'Belleza y cuidado personal',
+  'probal': 'Belleza y cuidado personal',
+  'protein active': 'Rendimiento deportivo',
+  'proteinactive': 'Rendimiento deportivo',
+  'protein active fit': 'Rendimiento deportivo',
+  'bioprotein': 'Rendimiento deportivo',
+  'bioprotein active': 'Rendimiento deportivo',
+  'pre sport': 'Rendimiento deportivo',
+  'presport': 'Rendimiento deportivo',
+  'post sport': 'Rendimiento deportivo',
+  'postsport': 'Rendimiento deportivo',
+  'golden flx': 'Rendimiento deportivo',
+  'goldenflx': 'Rendimiento deportivo'
 };
 
 

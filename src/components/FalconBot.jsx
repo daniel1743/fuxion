@@ -12,6 +12,7 @@ import { useAuth } from '@/context/AuthContext';
 import { useAdmin } from '@/context/AdminContext';
 import { useLoyalty } from '@/context/LoyaltyContext';
 import { ChatMessageSkeleton } from '@/components/skeleton';
+import { useScrollAware } from '@/components/ScrollAwareFloating';
 import {
   getContextualGreeting,
   getSmartSuggestions,
@@ -37,11 +38,15 @@ const FalconBot = () => {
     const [activeProduct, setActiveProduct] = useState(null);
     const [showQuickWhatsapp, setShowQuickWhatsapp] = useState(false);
     const [showQuickActions, setShowQuickActions] = useState(true);
+    const [isFloatingHovered, setIsFloatingHovered] = useState(false);
     const messagesEndRef = useRef(null);
     const quickWhatsappTimerRef = useRef(null);
     const chatContainerRef = useRef(null);
     const customerName = user?.name || adminData?.nombre_completo || '';
     const firstName = customerName.trim().split(/\s+/)[0] || '';
+
+    // Scroll awareness — reduce opacidad al hacer scroll
+    const { style: scrollStyle } = useScrollAware();
 
     // Smart suggestions based on user journey context
     const quickActions = getSmartSuggestions();
@@ -690,19 +695,24 @@ Pregunta del usuario: ${userMessage}`,
 
     return (
         <>
-            {/* Botón flotante */}
+            {/* Botón flotante — con scroll awareness */}
             <AnimatePresence>
                 {!isOpen && (
                     <motion.div
                         initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
+                        animate={{
+                            scale: isFloatingHovered ? 1 : scrollStyle.scale,
+                            opacity: isFloatingHovered ? 1 : scrollStyle.opacity,
+                        }}
                         exit={{ scale: 0 }}
+                        transition={{ duration: 0.25, ease: 'easeOut' }}
                         className="fixed bottom-6 right-6 z-50 flex items-center gap-2"
-                        onMouseEnter={showQuickWhatsappAction}
-                        onMouseLeave={hideQuickWhatsappAction}
-                        onFocus={showQuickWhatsappAction}
-                        onBlur={hideQuickWhatsappAction}
-                        onTouchStart={showQuickWhatsappAction}
+                        onMouseEnter={() => { showQuickWhatsappAction(); setIsFloatingHovered(true); }}
+                        onMouseLeave={() => { hideQuickWhatsappAction(); setIsFloatingHovered(false); }}
+                        onFocus={() => { showQuickWhatsappAction(); setIsFloatingHovered(true); }}
+                        onBlur={() => { hideQuickWhatsappAction(); setIsFloatingHovered(false); }}
+                        onTouchStart={() => setIsFloatingHovered(true)}
+                        onTouchEnd={() => setIsFloatingHovered(false)}
                     >
                         <AnimatePresence>
                             {showQuickWhatsapp && (

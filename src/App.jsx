@@ -11,7 +11,7 @@ import { BlogProvider } from '@/context/BlogContext';
 import { SiteSettingsProvider } from '@/context/SiteSettingsContext';
 import { LoyaltyProvider } from '@/context/LoyaltyContext';
 import AdminLoginModal from '@/components/admin/AdminLoginModal';
-import PwaSplashScreen from '@/components/PwaSplashScreen';
+import AppSplashScreen from '@/components/AppSplashScreen';
 import '@/utils/clearForumData'; // Cargar utilidades del foro
 import '@/utils/testBots'; // Cargar test de bots
 
@@ -24,6 +24,7 @@ const EvidencePage = lazy(() => import('@/pages/EvidencePage'));
 const BlogPostPage = lazy(() => import('@/pages/BlogPostPage'));
 const ProductPage = lazy(() => import('@/pages/ProductPage'));
 const PlaceholderPage = lazy(() => import('@/pages/PlaceholderPage'));
+const ShippingPage = lazy(() => import('@/pages/ShippingPage'));
 const AccountPage = lazy(() => import('@/pages/AccountPage'));
 const WellnessPage = lazy(() => import('@/pages/WellnessPage'));
 const WellnessArticlePage = lazy(() => import('@/pages/WellnessArticlePage'));
@@ -32,13 +33,26 @@ const OpportunityPage = lazy(() => import('@/pages/OpportunityPage'));
 const ContactPage = lazy(() => import('@/pages/ContactPage'));
 const HelpCenterPage = lazy(() => import('@/pages/HelpCenterPage'));
 const ProductosFuxionPage = lazy(() => import('@/pages/ProductosFuxionPage'));
+const FaqPage = lazy(() => import('@/pages/FaqPage'));
+const PrivacyPolicyPage = lazy(() => import('@/pages/PrivacyPolicyPage'));
+const CookiesPolicyPage = lazy(() => import('@/pages/CookiesPolicyPage'));
 
 function App() {
+
   const location = useLocation();
+
+  const handleSplashFinish = () => {
+    // Eliminar el splash inicial del DOM (server-rendered en index.html)
+    const initialSplash = document.getElementById('initial-splash');
+    if (initialSplash) {
+      initialSplash.style.opacity = '0';
+      setTimeout(() => initialSplash.remove(), 450);
+    }
+  };
 
   return (
     <>
-      <PwaSplashScreen />
+      <AppSplashScreen onFinish={handleSplashFinish} />
       <AuthProvider>
         <AdminProvider>
           <LoyaltyProvider>
@@ -70,8 +84,11 @@ function App() {
                     <Route path="/blog/:slug" element={<BlogPostPage />} />
                     <Route path="/terminos" element={<PlaceholderPage pageName="Términos y Condiciones" />} />
                     <Route path="/contacto" element={<ContactPage />} />
-                    <Route path="/envios" element={<PlaceholderPage pageName="Envíos y Devoluciones" />} />
-                    <Route path="/faq" element={<PlaceholderPage pageName="FAQ" />} />
+                    <Route path="/envios" element={<ShippingPage />} />
+                    <Route path="/faq" element={<FaqPage />} />
+                    <Route path="/privacidad" element={<PrivacyPolicyPage />} />
+                    <Route path="/cookies" element={<CookiesPolicyPage />} />
+
                     <Route path="/oportunidad-fuxion" element={<OpportunityPage />} />
                     <Route path="/productos-fuxion-chile" element={<ProductosFuxionPage />} />
                     <Route path="*" element={<Navigate to="/" replace />} />

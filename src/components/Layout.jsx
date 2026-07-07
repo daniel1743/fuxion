@@ -7,6 +7,7 @@ import AuthModal from '@/components/AuthModal';
 import WhatsAppConfirmDialog from '@/components/WhatsAppConfirmDialog';
 import FloatingWhatsAppButton from '@/components/FloatingWhatsAppButton';
 import PwaInstallPrompt from '@/components/PwaInstallPrompt';
+import CookieConsentBanner from '@/components/CookieConsentBanner';
 
 const Layout = ({ children }) => {
   return (
@@ -14,6 +15,7 @@ const Layout = ({ children }) => {
       <Header />
       <main className="flex-grow">{children}</main>
       <Footer />
+      <CookieConsentBanner />
       <PwaInstallPrompt />
       <FloatingWhatsAppButton />
       <FalconBot />

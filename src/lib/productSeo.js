@@ -641,7 +641,7 @@ export const buildStoreSchema = () => ({
   '@type': 'Store',
   name: STORE_NAME,
   url: SITE_URL,
-  image: `${SITE_URL}/img/familia.fuxion.png`,
+  image: `${SITE_URL}/icons/android-chrome-512x512.png`,
   description: 'Tienda Fuxion en Chile con productos nutraceuticos para nutricion, bienestar, energia, digestion, control de peso y cuidado natural.',
   areaServed: {
     '@type': 'Country',
@@ -661,7 +661,7 @@ export const buildOrganizationSchema = () => ({
   '@type': 'Organization',
   name: STORE_NAME,
   url: SITE_URL,
-  logo: `${SITE_URL}/img/familia.fuxion.png`,
+  logo: `${SITE_URL}/icons/android-chrome-512x512.png`,
   description: 'Tienda Fuxion en Chile con productos nutraceuticos para nutricion, bienestar, energia, digestion, control de peso y cuidado natural.',
   areaServed: {
     '@type': 'Country',
@@ -680,7 +680,7 @@ export const buildLocalBusinessSchema = () => ({
   '@type': 'LocalBusiness',
   name: STORE_NAME,
   url: SITE_URL,
-  image: `${SITE_URL}/img/familia.fuxion.png`,
+  image: `${SITE_URL}/icons/android-chrome-512x512.png`,
   description: 'Tienda Fuxion en Chile con productos nutraceuticos para nutricion, bienestar, energia, digestion, control de peso y cuidado natural.',
   telephone: '+56912345678',
   email: 'contacto@tiendafuxion.space',

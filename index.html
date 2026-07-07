@@ -2,20 +2,21 @@
 <html lang="es">
 	<head>
 		<meta charset="UTF-8" />
-		<link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png?v=2" />
-		<link rel="shortcut icon" type="image/png" href="/icons/favicon-64.png?v=2" />
+		<link rel="icon" href="/icons/favicon.ico" sizes="any" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
+		<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Tienda Fuxion Chile | Productos Fuxion para Nutricion y Bienestar Natural</title>
-		<meta name="description" content="Tienda Fuxion en Chile con productos nutraceuticos para nutricion, bienestar natural, digestion, energia, control de peso, defensas, deporte y belleza." />
-		<meta name="author" content="Tienda Fuxion Chile" />
+		<title>Tienda FuXion | Nutrición de verdad y bienestar natural</title>
+		<meta name="description" content="Tienda FuXion en Chile con productos nutracéuticos para nutrición, bienestar natural, digestión, energía, control de peso, defensas, deporte y belleza." />
+		<meta name="author" content="Tienda FuXion Chile" />
 		<meta name="robots" content="index, follow, max-image-preview:large" />
-		<meta name="theme-color" content="#059669" />
+		<meta name="theme-color" content="#00C878" />
 		<meta name="mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="default" />
-		<meta name="apple-mobile-web-app-title" content="Fuxion Chile" />
-		<link rel="manifest" href="/manifest.webmanifest" />
-		<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+		<meta name="apple-mobile-web-app-title" content="FuXion" />
+		<link rel="manifest" href="/site.webmanifest" />
 		<link rel="canonical" href="https://tiendafuxion.space/" />
 
 		<!-- Open Graph / Facebook -->
@@ -23,26 +24,69 @@
 		<meta property="og:url" content="https://tiendafuxion.space/" />
 		<meta property="og:title" content="Tienda Fuxion Chile | Productos Fuxion para Nutricion y Bienestar" />
 		<meta property="og:description" content="Catalogo Fuxion en Chile para nutricion, bienestar natural, digestion, energia, control de peso, defensas, deporte y belleza." />
-		<meta property="og:image" content="https://tiendafuxion.space/img/familia.fuxion.png" />
-		<meta property="og:image:secure_url" content="https://tiendafuxion.space/img/familia.fuxion.png" />
-		<meta property="og:image:url" content="https://tiendafuxion.space/img/familia.fuxion.png" />
-		<meta property="og:image:width" content="1200" />
-		<meta property="og:image:height" content="630" />
+		<meta property="og:image" content="https://tiendafuxion.space/icons/android-chrome-512x512.png" />
+		<meta property="og:image:secure_url" content="https://tiendafuxion.space/icons/android-chrome-512x512.png" />
+		<meta property="og:image:url" content="https://tiendafuxion.space/icons/android-chrome-512x512.png" />
+		<meta property="og:image:width" content="512" />
+		<meta property="og:image:height" content="512" />
 		<meta property="og:image:type" content="image/png" />
-		<meta property="og:image:alt" content="Tienda Fuxion Chile - Productos Fuxion para nutricion y bienestar" />
-		<meta property="og:site_name" content="Tienda Fuxion Chile" />
+		<meta property="og:image:alt" content="Logo FuXion - Nutrición de verdad y bienestar natural" />
+		<meta property="og:site_name" content="Tienda FuXion" />
 		<meta property="og:locale" content="es_CL" />
 		
 		<!-- Twitter -->
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:url" content="https://tiendafuxion.space/" />
-		<meta name="twitter:title" content="Tienda Fuxion Chile | Productos Fuxion" />
-		<meta name="twitter:description" content="Productos Fuxion para nutricion, bienestar natural, digestion, energia y control de peso." />
-		<meta name="twitter:image" content="https://tiendafuxion.space/img/familia.fuxion.png" />
-		<meta name="twitter:image:alt" content="Tienda Fuxion Chile - Productos Fuxion para bienestar" />
+		<meta name="twitter:title" content="Tienda FuXion | Nutrición de verdad" />
+		<meta name="twitter:description" content="Productos FuXion para nutrición, bienestar natural, digestión, energía y control de peso." />
+		<meta name="twitter:image" content="https://tiendafuxion.space/icons/android-chrome-512x512.png" />
+		<meta name="twitter:image:alt" content="Logo FuXion - Nutrición de verdad y bienestar natural" />
 	</head>
 	<body>
-		<div id="root"></div>
+		<div id="root">
+			<!-- Splash visible inmediatamente mientras React carga -->
+			<div id="initial-splash" style="position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 40%,rgba(16,185,129,0.08),transparent 40%),radial-gradient(circle at 80% 80%,rgba(52,211,153,0.05),transparent 30%),linear-gradient(165deg,#f0fdf4 0%,#ffffff 45%,#fafdf6 100%);opacity:1;transition:opacity 450ms ease">
+				<div style="position:absolute;width:min(75vw,400px);aspect-ratio:1;border-radius:9999px;background:radial-gradient(circle,rgba(16,185,129,0.15),transparent 70%);filter:blur(32px)"></div>
+				<div style="position:relative;display:flex;width:min(40vw,164px);aspect-ratio:1;align-items:center;justify-content:center;border:1.5px solid rgba(16,185,129,0.2);border-radius:38%;background:linear-gradient(150deg,#ffffff 0%,#f0fdf4 50%,#ecfdf5 100%);box-shadow:0 24px 60px rgba(4,120,87,0.15),0 8px 20px rgba(4,120,87,0.08),inset 0 1px 0 rgba(255,255,255,0.95)">
+					<!-- FuXion X Green Logo SVG inline -->
+					<svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:68%;height:68%;position:relative;z-index:2;display:block">
+						<defs>
+							<linearGradient id="xGradInit" x1="0" y1="0" x2="1" y2="1">
+								<stop offset="0%" stopColor="#059669"/>
+								<stop offset="50%" stopColor="#10B981"/>
+								<stop offset="100%" stopColor="#34D399"/>
+							</linearGradient>
+							<linearGradient id="leafGradInit" x1="0" y1="1" x2="1" y2="0">
+								<stop offset="0%" stopColor="#047857"/>
+								<stop offset="100%" stopColor="#6EE7B7"/>
+							</linearGradient>
+							<filter id="logoShadowInit">
+								<feDropShadow dx="0" dy="4" stdDeviation="8" floodColor="#059669" floodOpacity="0.25"/>
+							</filter>
+						</defs>
+						<g filter="url(#logoShadowInit)">
+							<path d="M160 140 C200 180, 240 230, 256 256 C272 230, 312 180, 352 140" stroke="url(#xGradInit)" strokeWidth="38" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+							<path d="M352 140 C312 190, 280 240, 256 256 C232 240, 200 190, 160 140" stroke="url(#xGradInit)" strokeWidth="38" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+							<path d="M160 372 C200 332, 240 282, 256 256 C272 282, 312 332, 352 372" stroke="url(#xGradInit)" strokeWidth="38" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+							<path d="M352 372 C312 322, 280 272, 256 256 C232 272, 200 322, 160 372" stroke="url(#xGradInit)" strokeWidth="38" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+						</g>
+						<g style="transform-origin:center bottom">
+							<path d="M256 140 C256 140, 220 110, 200 90 C180 70, 190 50, 210 55 C230 60, 256 90, 256 90" fill="url(#leafGradInit)" opacity="0.9"/>
+							<path d="M256 140 C256 140, 292 110, 312 90 C332 70, 322 50, 302 55 C282 60, 256 90, 256 90" fill="url(#leafGradInit)" opacity="0.7"/>
+							<line x1="256" y1="140" x2="256" y2="70" stroke="#047857" strokeWidth="2" strokeLinecap="round" opacity="0.4"/>
+						</g>
+					</svg>
+				</div>
+				<p style="position:relative;margin-top:24px;color:#064e3b;font-size:clamp(1.5rem,6.5vw,2.1rem);font-weight:800;letter-spacing:-0.04em;line-height:1.15;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;text-align:center">Nutrición <span style="font-weight:400;color:#047857;letter-spacing:-0.02em">de verdad</span></p>
+				<p style="position:relative;margin-top:6px;color:#059669;font-size:clamp(0.8rem,2.8vw,0.95rem);font-weight:500;letter-spacing:0.02em;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;opacity:0.85">Bienestar inteligente 🌱</p>
+				<div style="position:relative;width:min(40vw,160px);height:3px;margin-top:28px;overflow:hidden;border-radius:9999px;background:rgba(5,150,105,0.1)">
+					<div style="width:100%;height:100%;border-radius:inherit;background:linear-gradient(90deg,#059669,#10B981,#34D399);animation:splash-progress 1.4s ease-out both;transform-origin:left center"></div>
+				</div>
+			</div>
+			<style>
+				@keyframes splash-progress{from{transform:translateX(-100%)}to{transform:translateX(0)}}
+			</style>
+		</div>
 		<script type="module" src="/src/main.jsx"></script>
 	</body>
 </html>

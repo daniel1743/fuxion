@@ -41,6 +41,7 @@ import OpportunityVideo from '@/components/OpportunityVideo';
 import SuccessAnimation from '@/components/SuccessAnimation';
 import CelebrationOverlay from '@/components/CelebrationOverlay';
 import { trackEvent } from '@/lib/userJourneyContext';
+import { validateContact, CONTACT_REQUIRED_MESSAGE } from '@/lib/formValidation';
 
 // ── Page transition variants ──────────────────────────────────
 const pageVariants = {
@@ -213,6 +214,7 @@ const OpportunityPage = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formLoading, setFormLoading] = useState(false);
   const [showCelebration, setShowCelebration] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState({});
 
   // ── Quiz handlers ───────────────────────────────────────────
   const handleStartQuiz = () => {
@@ -266,38 +268,73 @@ const OpportunityPage = () => {
 
   const handleFormChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+    // Clear field error on change
+    if (fieldErrors[field]) {
+      setFieldErrors(prev => {
+        const next = { ...prev };
+        delete next[field];
+        return next;
+      });
+    }
+    // Clear contact error when typing in either contact field
+    if (field === 'whatsapp' || field === 'email') {
+      if (fieldErrors.contact) {
+        setFieldErrors(prev => {
+          const next = { ...prev };
+          delete next.contact;
+          return next;
+        });
+      }
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!formData.name.trim()) {
+      newErrors.name = 'Por favor ingresa tu nombre';
+    }
+
+    if (!formData.interest) {
+      newErrors.interest = 'Selecciona qué te interesa';
+    }
+
+    // Validación de contacto mínimo usando formValidation
+    const contactResult = validateContact({
+      whatsapp: formData.whatsapp,
+      email: formData.email,
+    });
+
+    if (!contactResult.valid) {
+      newErrors.contact = contactResult.message;
+      if (contactResult.whatsappError) newErrors.whatsapp = contactResult.whatsappError;
+      if (contactResult.emailError) newErrors.email = contactResult.emailError;
+    } else {
+      // Even if valid, show format warnings
+      if (contactResult.whatsappError) newErrors.whatsapp = contactResult.whatsappError;
+      if (contactResult.emailError) newErrors.email = contactResult.emailError;
+    }
+
+    setFieldErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) {
+      // Show first error as toast
+      const firstError = newErrors[Object.keys(newErrors)[0]];
+      toast({
+        title: 'Revisa el formulario',
+        description: firstError,
+        variant: 'destructive',
+      });
+      return false;
+    }
+
+    return true;
   };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.name.trim()) {
-      toast({
-        title: 'Nombre requerido',
-        description: 'Por favor ingresa tu nombre.',
-        variant: 'destructive',
-      });
-      return;
-    }
-
-    if (!formData.whatsapp.trim() && !formData.email.trim()) {
-      toast({
-        title: 'Contacto requerido',
-        description: 'Déjanos un WhatsApp o correo para poder responderte.',
-        variant: 'destructive',
-      });
-      return;
-    }
-
-    if (!formData.interest) {
-      toast({
-        title: 'Interés requerido',
-        description: 'Selecciona qué te interesa.',
-        variant: 'destructive',
-      });
-      return;
-    }
-
+    if (!validateForm()) return;
 
     setFormLoading(true);
 
@@ -306,6 +343,7 @@ const OpportunityPage = () => {
         nombre: formData.name.trim(),
         pais: formData.country || 'No especificado',
         whatsapp: formData.whatsapp.trim(),
+        email: formData.email.trim(),
         interes: formData.interest,
         fecha: new Date().toLocaleString('es-CL', {
           timeZone: 'America/Santiago',
@@ -448,17 +486,15 @@ const OpportunityPage = () => {
                 transition={{ duration: 0.7, delay: 0.45 }}
               >
                 <Button
-                  size="hero"
-                  fullWidth
+                  size="lg"
                   onClick={handleOpenForm}
                 >
                   <span className="text-balance">Quiero conocer cómo funciona</span>
                   <ArrowRight className="ml-2 h-5 w-5 shrink-0" />
                 </Button>
                 <Button
-                  size="hero"
+                  size="lg"
                   variant="outline"
-                  fullWidth
                   onClick={() => navigate('/explorar')}
                 >
                   <Leaf className="mr-2 h-5 w-5 shrink-0" />
@@ -750,387 +786,408 @@ const OpportunityPage = () => {
                       className="w-full text-left p-4 rounded-xl border border-emerald-100 dark:border-border bg-background hover:border-emerald-300 hover:bg-emerald-50 dark:hover:bg-emerald-950/20 transition-all duration-200 group cursor-pointer"
                     >
                       <span className="flex items-center gap-3">
-                        <span className="text-2xl">
-                          {React.createElement(quizIconMap[option.icon] || Leaf)}
+                          <span className="text-2xl">
+                            {React.createElement(quizIconMap[option.icon] || Leaf)}
+                          </span>
+                          <span className="text-foreground font-medium group-hover:text-emerald-700 dark:group-hover:text-emerald-300 transition-colors">
+                            {option.label}
+                          </span>
                         </span>
-                        <span className="text-foreground font-medium group-hover:text-emerald-700 dark:group-hover:text-emerald-300 transition-colors">
-                          {option.label}
-                        </span>
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════
-         SECTION: TRANSPARENCY BLOCK
-      ════════════════════════════════════════════════════════════ */}
-      <section className="py-16 bg-amber-50/60 dark:bg-amber-950/10 border-y border-amber-100 dark:border-amber-900/30">
-        <div className="container mx-auto px-6 max-w-3xl text-center">
-          <motion.div {...fadeUp}>
-            <Shield className="w-12 h-12 text-amber-500 mx-auto mb-4" />
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-              Un proyecto real requiere compromiso
-            </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-              FuXion es una oportunidad de emprendimiento independiente.
-              Los resultados dependen del aprendizaje, constancia,
-              dedicación y esfuerzo personal.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════
-         SECTION: VIDEO OPORTUNIDAD
-      ════════════════════════════════════════════════════════════ */}
-      <section className="py-20 bg-gradient-to-br from-emerald-50/30 to-white dark:from-emerald-950/5 dark:to-card">
-        <div className="container mx-auto px-6 max-w-4xl">
-          <motion.div className="text-center mb-10" {...fadeUp}>
-            <Badge className="mb-4 px-4 py-1.5 bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 border-0">
-              <BookOpen className="w-4 h-4 mr-1.5" />
-              Aprende cómo funciona
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Conoce cómo funciona la oportunidad FuXion
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Antes de decidir, puedes ver una explicación sencilla sobre cómo las personas
-              desarrollan su proyecto FuXion a su ritmo.
-            </p>
-          </motion.div>
-
-          <motion.div {...fadeUp} transition={{ duration: 0.6, delay: 0.2 }}>
-            <OpportunityVideo />
-          </motion.div>
-
-          <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center mt-10"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <Button
-              size="lg"
-              onClick={() => {
-                handleOpenForm();
-                if (typeof window !== 'undefined' && window.gtag) {
-                  window.gtag('event', 'OPPORTUNITY_FORM_SENT', {
-                    event_category: 'opportunity',
-                    event_label: 'Quiero recibir información'
-                  });
-                }
-              }}
-            >
-              Quiero recibir información
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              onClick={() => {
-                handleWhatsApp('Hola, quiero información sobre la oportunidad FuXion.');
-                if (typeof window !== 'undefined' && window.gtag) {
-                  window.gtag('event', 'OPPORTUNITY_WHATSAPP_CLICK', {
-                    event_category: 'opportunity',
-                    event_label: 'WhatsApp desde video oportunidad'
-                  });
-                }
-              }}
-            >
-              <MessageCircle className="mr-2 h-5 w-5" />
-              Hablar por WhatsApp
-            </Button>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════
-         SECTION: LEAD CAPTURE FORM
-      ════════════════════════════════════════════════════════════ */}
-      <section ref={formRef} className="py-20 bg-gradient-to-br from-emerald-50/50 to-white dark:from-emerald-950/10 dark:to-card">
-        <div className="container mx-auto px-6 max-w-xl">
-          <AnimatePresence mode="wait">
-            {formSubmitted ? (
-              <motion.div
-                key="success"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="bg-card rounded-2xl p-6 md:p-12 border border-emerald-100 dark:border-border text-center"
-              >
-                <SuccessAnimation size="lg" />
-
-                <motion.h3
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3, duration: 0.4 }}
-                  className="text-2xl font-bold text-foreground mb-4"
-                >
-                  Tu interés fue recibido 🚀
-                </motion.h3>
-                <motion.p
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4, duration: 0.4 }}
-                  className="text-lg text-muted-foreground mb-8"
-                >
-                  Un asesor FuXion revisará tu solicitud y podrá orientarte sobre los siguientes pasos.
-                </motion.p>
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 0.4 }}
-                  className="flex flex-col sm:flex-row gap-4 justify-center"
-                >
-                  <Button
-                    onClick={() => navigate('/explorar')}
-                  >
-                    Explorar productos
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                  <Button
-                    variant="outline"
-                    onClick={() => handleWhatsApp('Hola, recibí información sobre la oportunidad FuXion y quiero saber más.')}
-                  >
-                    <MessageCircle className="mr-2 h-4 w-4" />
-                    Hablar por WhatsApp
-                  </Button>
+                      </button>
+                    ))}
+                  </div>
                 </motion.div>
-              </motion.div>
-            ) : (
-              <motion.div
-                key="form"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
+              )}
+            </AnimatePresence>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════
+           SECTION: TRANSPARENCY BLOCK
+        ════════════════════════════════════════════════════════════ */}
+        <section className="py-16 bg-amber-50/60 dark:bg-amber-950/10 border-y border-amber-100 dark:border-amber-900/30">
+          <div className="container mx-auto px-6 max-w-3xl text-center">
+            <motion.div {...fadeUp}>
+              <Shield className="w-12 h-12 text-amber-500 mx-auto mb-4" />
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                Un proyecto real requiere compromiso
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+                FuXion es una oportunidad de emprendimiento independiente.
+                Los resultados dependen del aprendizaje, constancia,
+                dedicación y esfuerzo personal.
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════
+           SECTION: VIDEO OPORTUNIDAD
+        ════════════════════════════════════════════════════════════ */}
+        <section className="py-20 bg-gradient-to-br from-emerald-50/30 to-white dark:from-emerald-950/5 dark:to-card">
+          <div className="container mx-auto px-6 max-w-4xl">
+            <motion.div className="text-center mb-10" {...fadeUp}>
+              <Badge className="mb-4 px-4 py-1.5 bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 border-0">
+                <BookOpen className="w-4 h-4 mr-1.5" />
+                Aprende cómo funciona
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                Conoce cómo funciona la oportunidad FuXion
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Antes de decidir, puedes ver una explicación sencilla sobre cómo las personas
+                desarrollan su proyecto FuXion a su ritmo.
+              </p>
+            </motion.div>
+
+            <motion.div {...fadeUp} transition={{ duration: 0.6, delay: 0.2 }}>
+              <OpportunityVideo />
+            </motion.div>
+
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 justify-center mt-10"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <Button
+                size="lg"
+                onClick={() => {
+                  handleOpenForm();
+                  if (typeof window !== 'undefined' && window.gtag) {
+                    window.gtag('event', 'OPPORTUNITY_FORM_SENT', {
+                      event_category: 'opportunity',
+                      event_label: 'Quiero recibir información'
+                    });
+                  }
+                }}
               >
-                <div className="text-center mb-10">
-                  <Badge className="mb-4 px-4 py-1.5 bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 border-0">
-                    <Send className="w-4 h-4 mr-1.5" />
-                    Recibe más información
-                  </Badge>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                    ¿Te gustaría saber más?
-                  </h2>
-                  <p className="text-lg text-muted-foreground">
-                    Déjanos tus datos y te contactamos sin compromiso.
-                  </p>
-                </div>
+                Quiero recibir información
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                onClick={() => {
+                  handleWhatsApp('Hola, quiero información sobre la oportunidad FuXion.');
+                  if (typeof window !== 'undefined' && window.gtag) {
+                    window.gtag('event', 'OPPORTUNITY_WHATSAPP_CLICK', {
+                      event_category: 'opportunity',
+                      event_label: 'WhatsApp desde video oportunidad'
+                    });
+                  }
+                }}
+              >
+                <MessageCircle className="mr-2 h-5 w-5" />
+                Hablar por WhatsApp
+              </Button>
+            </motion.div>
+          </div>
+        </section>
 
-                <form onSubmit={handleFormSubmit} className="bg-card rounded-2xl p-6 md:p-8 border border-emerald-100 dark:border-border space-y-6">
-                  {/* Name */}
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Nombre <span className="text-red-500">*</span>
-                    </label>
-                    <Input
-                      type="text"
-                      placeholder="Tu nombre"
-                      value={formData.name}
-                      onChange={(e) => handleFormChange('name', e.target.value)}
-                      className="w-full"
-                      required
-                    />
-                  </div>
+        {/* ═══════════════════════════════════════════════════════════
+           SECTION: LEAD CAPTURE FORM
+        ════════════════════════════════════════════════════════════ */}
+        <section ref={formRef} className="py-20 bg-gradient-to-br from-emerald-50/50 to-white dark:from-emerald-950/10 dark:to-card">
+          <div className="container mx-auto px-6 max-w-xl">
+            <AnimatePresence mode="wait">
+              {formSubmitted ? (
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="bg-card rounded-2xl p-6 md:p-12 border border-emerald-100 dark:border-border text-center"
+                >
+                  <SuccessAnimation size="lg" />
 
-                  {/* Country */}
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      País
-                    </label>
-                    <select
-                      value={formData.country}
-                      onChange={(e) => handleFormChange('country', e.target.value)}
-                      className="w-full rounded-lg border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  <motion.h3
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3, duration: 0.4 }}
+                    className="text-2xl font-bold text-foreground mb-4"
+                  >
+                    Tu interés fue recibido 🚀
+                  </motion.h3>
+                  <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4, duration: 0.4 }}
+                    className="text-lg text-muted-foreground mb-8"
+                  >
+                    Un asesor FuXion revisará tu solicitud y podrá orientarte sobre los siguientes pasos.
+                  </motion.p>
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5, duration: 0.4 }}
+                    className="flex flex-col sm:flex-row gap-4 justify-center"
+                  >
+                    <Button
+                      onClick={() => navigate('/explorar')}
                     >
-                      <option value="">Selecciona tu país</option>
-                      {countries.map((country) => (
-                        <option key={country} value={country}>{country}</option>
-                      ))}
-                    </select>
-                  </div>
-
-                  {/* Contact info */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {/* WhatsApp */}
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
-                        WhatsApp <span className="text-xs text-muted-foreground">(Opcional si agregas correo)</span>
-                      </label>
-                      <Input
-                        type="tel"
-                        placeholder="+56 9 1234 5678"
-                        value={formData.whatsapp}
-                        onChange={(e) => handleFormChange('whatsapp', e.target.value)}
-                        className="w-full"
-                      />
-                    </div>
-
-                    {/* Email */}
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
-                        Correo <span className="text-xs text-muted-foreground">(Opcional si agregas WhatsApp)</span>
-                      </label>
-                      <Input
-                        type="email"
-                        placeholder="tu@correo.com"
-                        value={formData.email}
-                        onChange={(e) => handleFormChange('email', e.target.value)}
-                        className="w-full"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800/40 rounded-xl p-3">
-                    <p className="text-xs text-amber-700 dark:text-amber-400 flex items-center gap-2">
-                      <Shield className="w-4 h-4 flex-shrink-0" />
-                      Déjanos un WhatsApp o correo para poder responderte.
+                      Explorar productos
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="outline"
+                      onClick={() => handleWhatsApp('Hola, recibí información sobre la oportunidad FuXion y quiero saber más.')}
+                    >
+                      <MessageCircle className="mr-2 h-4 w-4" />
+                      Hablar por WhatsApp
+                    </Button>
+                  </motion.div>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="form"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                >
+                  <div className="text-center mb-10">
+                    <Badge className="mb-4 px-4 py-1.5 bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 border-0">
+                      <Send className="w-4 h-4 mr-1.5" />
+                      Recibe más información
+                    </Badge>
+                    <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                      ¿Te gustaría saber más?
+                    </h2>
+                    <p className="text-lg text-muted-foreground">
+                      Déjanos tus datos y te contactamos sin compromiso.
                     </p>
                   </div>
 
-
-                  {/* Interest */}
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      ¿Qué te interesa? <span className="text-red-500">*</span>
-                    </label>
-                    <div className="space-y-2">
-                      {[
-                        { value: 'products', label: 'Quiere consumir productos' },
-                        { value: 'business', label: 'Quiere conocer el negocio FuXion' },
-                        { value: 'both', label: 'Productos y oportunidad FuXion' },
-                      ].map((option) => (
-                        <label
-                          key={option.value}
-                          className={`flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-all duration-200 ${
-                            formData.interest === option.value
-                              ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-950/20'
-                              : 'border-border hover:border-emerald-200'
-                          }`}
-                        >
-                          <input
-                            type="radio"
-                            name="interest"
-                            value={option.value}
-                            checked={formData.interest === option.value}
-                            onChange={(e) => handleFormChange('interest', e.target.value)}
-                            className="w-4 h-4 text-emerald-600"
-                          />
-                          <span className="text-foreground">{option.label}</span>
-                        </label>
-                      ))}
+                  <form onSubmit={handleFormSubmit} className="bg-card rounded-2xl p-6 md:p-8 border border-emerald-100 dark:border-border space-y-6">
+                    {/* Name */}
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        Nombre <span className="text-red-500">*</span>
+                      </label>
+                      <Input
+                        type="text"
+                        placeholder="Tu nombre"
+                        value={formData.name}
+                        onChange={(e) => handleFormChange('name', e.target.value)}
+                        className={`w-full ${fieldErrors.name ? 'border-red-400 focus-visible:ring-red-400' : ''}`}
+                        required
+                      />
+                      {fieldErrors.name && (
+                        <p className="mt-1 text-xs text-red-500">{fieldErrors.name}</p>
+                      )}
                     </div>
-                  </div>
 
-                  <Button
-                    type="submit"
-                    size="lg"
-                    fullWidth
-                    disabled={formLoading}
-                  >
-                    {formLoading ? (
-                      <span className="flex items-center gap-2">
-                        <span className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full" />
-                        Enviando...
-                      </span>
-                    ) : (
-                      <span className="flex items-center justify-center gap-2">
-                        Enviar
-                        <Send className="h-5 w-5" />
-                      </span>
+                    {/* Country */}
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        País
+                      </label>
+                      <select
+                        value={formData.country}
+                        onChange={(e) => handleFormChange('country', e.target.value)}
+                        className="w-full rounded-lg border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      >
+                        <option value="">Selecciona tu país</option>
+                        {countries.map((country) => (
+                          <option key={country} value={country}>{country}</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    {/* Contact info */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {/* WhatsApp */}
+                      <div>
+                        <label className="block text-sm font-medium text-foreground mb-2">
+                          WhatsApp <span className="text-xs text-muted-foreground">(Opcional si agregas correo)</span>
+                        </label>
+                        <Input
+                          type="tel"
+                          placeholder="+56 9 1234 5678"
+                          value={formData.whatsapp}
+                          onChange={(e) => handleFormChange('whatsapp', e.target.value)}
+                          className={`w-full ${fieldErrors.whatsapp || fieldErrors.contact ? 'border-red-400 focus-visible:ring-red-400' : ''}`}
+                        />
+                        {fieldErrors.whatsapp && (
+                          <p className="mt-1 text-xs text-red-500">{fieldErrors.whatsapp}</p>
+                        )}
+                      </div>
+
+                      {/* Email */}
+                      <div>
+                        <label className="block text-sm font-medium text-foreground mb-2">
+                          Correo <span className="text-xs text-muted-foreground">(Opcional si agregas WhatsApp)</span>
+                        </label>
+                        <Input
+                          type="email"
+                          placeholder="tu@correo.com"
+                          value={formData.email}
+                          onChange={(e) => handleFormChange('email', e.target.value)}
+                          className={`w-full ${fieldErrors.email || fieldErrors.contact ? 'border-red-400 focus-visible:ring-red-400' : ''}`}
+                        />
+                        {fieldErrors.email && (
+                          <p className="mt-1 text-xs text-red-500">{fieldErrors.email}</p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Contact required message */}
+                    {fieldErrors.contact && (
+                      <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800/40 rounded-xl p-3">
+                        <p className="text-xs text-red-700 dark:text-red-400 flex items-center gap-2">
+                          <Shield className="w-4 h-4 flex-shrink-0" />
+                          {fieldErrors.contact}
+                        </p>
+                      </div>
                     )}
-                  </Button>
-                </form>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </section>
 
-      {/* ═══════════════════════════════════════════════════════════
-         SECTION: FINAL CTA
-      ════════════════════════════════════════════════════════════ */}
-      <section className="py-20 bg-gradient-to-br from-emerald-800 to-teal-900 text-white">
-        <div className="container mx-auto px-6 max-w-3xl text-center">
-          <motion.div {...fadeUp}>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              ¿Listo para explorar esta posibilidad?
-            </h2>
-            <p className="text-lg md:text-xl text-emerald-100 mb-10 max-w-2xl mx-auto">
-              No necesitas decidir hoy. Solo queremos que conozcas cómo funciona.
-              El resto lo decides tú, a tu ritmo.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
-              <Button
-                size="lg"
-                variant="secondary"
-                fullWidth
-                onClick={handleOpenForm}
-              >
-                <span className="text-balance">Quiero recibir información</span>
-                <ArrowRight className="ml-2 h-5 w-5 shrink-0" />
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                fullWidth
-                onClick={() => navigate('/explorar')}
-              >
-                <Leaf className="mr-2 h-5 w-5 shrink-0" />
-                <span className="text-balance">Ver productos</span>
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+                    {!fieldErrors.contact && (
+                      <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800/40 rounded-xl p-3">
+                        <p className="text-xs text-amber-700 dark:text-amber-400 flex items-center gap-2">
+                          <Shield className="w-4 h-4 flex-shrink-0" />
+                          Déjanos un WhatsApp o correo para poder responderte.
+                        </p>
+                      </div>
+                    )}
 
-      {/* ═══════════════════════════════════════════════════════════
-         SECTION: PRODUCT INTEGRATION BANNER (soft)
-      ════════════════════════════════════════════════════════════ */}
-      <section className="py-12 bg-card border-t border-emerald-100 dark:border-border">
-        <div className="container mx-auto px-6 max-w-4xl">
-          <motion.div
-            className="flex flex-col sm:flex-row items-center justify-between gap-6"
-            {...fadeUp}
-          >
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center shrink-0">
-                <Leaf className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
+                    {/* Interest */}
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        ¿Qué te interesa? <span className="text-red-500">*</span>
+                      </label>
+                      <div className="space-y-2">
+                        {[
+                          { value: 'products', label: 'Quiere consumir productos' },
+                          { value: 'business', label: 'Quiere conocer el negocio FuXion' },
+                          { value: 'both', label: 'Productos y oportunidad FuXion' },
+                        ].map((option) => (
+                          <label
+                            key={option.value}
+                            className={`flex items-center gap-3 p-3 rounded-xl border cursor-pointer transition-all duration-200 ${
+                              formData.interest === option.value
+                                ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-950/20'
+                                : 'border-border hover:border-emerald-200'
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="interest"
+                              value={option.value}
+                              checked={formData.interest === option.value}
+                              onChange={(e) => handleFormChange('interest', e.target.value)}
+                              className="w-4 h-4 text-emerald-600"
+                            />
+                            <span className="text-foreground">{option.label}</span>
+                          </label>
+                        ))}
+                      </div>
+                      {fieldErrors.interest && (
+                        <p className="mt-1 text-xs text-red-500">{fieldErrors.interest}</p>
+                      )}
+                    </div>
+
+                    <Button
+                      type="submit"
+                      size="lg"
+                      fullWidth
+                      disabled={formLoading}
+                    >
+                      {formLoading ? (
+                        <span className="flex items-center gap-2">
+                          <span className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full" />
+                          Enviando...
+                        </span>
+                      ) : (
+                        <span className="flex items-center justify-center gap-2">
+                          Enviar
+                          <Send className="h-5 w-5" />
+                        </span>
+                      )}
+                    </Button>
+                  </form>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════
+           SECTION: FINAL CTA
+        ════════════════════════════════════════════════════════════ */}
+        <section className="py-20 bg-gradient-to-br from-emerald-800 to-teal-900 text-white">
+          <div className="container mx-auto px-6 max-w-3xl text-center">
+            <motion.div {...fadeUp}>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                ¿Listo para explorar esta posibilidad?
+              </h2>
+              <p className="text-lg md:text-xl text-emerald-100 mb-10 max-w-2xl mx-auto">
+                No necesitas decidir hoy. Solo queremos que conozcas cómo funciona.
+                El resto lo decides tú, a tu ritmo.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
+                <Button
+                  size="lg"
+                  variant="secondary"
+                  onClick={handleOpenForm}
+                >
+                  <span className="text-balance">Quiero recibir información</span>
+                  <ArrowRight className="ml-2 h-5 w-5 shrink-0" />
+                </Button>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  onClick={() => navigate('/explorar')}
+                >
+                  <Leaf className="mr-2 h-5 w-5 shrink-0" />
+                  <span className="text-balance">Ver productos</span>
+                </Button>
               </div>
-              <div>
-                <p className="text-foreground font-semibold">
-                  ¿Te gusta el mundo del bienestar?
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  Descubre cómo algunas personas también comparten FuXion.
-                </p>
-              </div>
-            </div>
-            <Button
-              onClick={() => navigate('/oportunidad-fuxion')}
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════
+           SECTION: PRODUCT INTEGRATION BANNER (soft)
+        ════════════════════════════════════════════════════════════ */}
+        <section className="py-12 bg-card border-t border-emerald-100 dark:border-border">
+          <div className="container mx-auto px-6 max-w-4xl">
+            <motion.div
+              className="flex flex-col sm:flex-row items-center justify-between gap-6"
+              {...fadeUp}
             >
-              Conocer oportunidad
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </motion.div>
-        </div>
-      </section>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center shrink-0">
+                  <Leaf className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
+                </div>
+                <div>
+                  <p className="text-foreground font-semibold">
+                    ¿Te gusta el mundo del bienestar?
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    Descubre cómo algunas personas también comparten FuXion.
+                  </p>
+                </div>
+              </div>
+              <Button
+                onClick={() => navigate('/oportunidad-fuxion')}
+              >
+                Conocer oportunidad
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </motion.div>
+          </div>
+        </section>
 
-      {/* Celebration overlay for form submission */}
-      <CelebrationOverlay
-        show={showCelebration}
-        onComplete={() => setShowCelebration(false)}
-        title="Tu interés fue recibido 🚀"
-        message="Un asesor FuXion revisará tu solicitud y podrá orientarte sobre los siguientes pasos."
-      />
+        {/* Celebration overlay for form submission */}
+        <CelebrationOverlay
+          show={showCelebration}
+          onComplete={() => setShowCelebration(false)}
+          title="Tu interés fue recibido 🚀"
+          message="Un asesor FuXion revisará tu solicitud y podrá orientarte sobre los siguientes pasos."
+        />
 
-    </motion.div>
-  );
-};
+      </motion.div>
+    );
+  };
 
-export default OpportunityPage;
+  export default OpportunityPage;

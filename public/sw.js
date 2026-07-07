@@ -1,14 +1,14 @@
-const CACHE_NAME = 'fuxion-shop-v5';
+const CACHE_NAME = 'fuxion-v2-brand-refresh';
+
 const APP_SHELL = [
   '/',
-  '/manifest.webmanifest',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png',
-  '/icons/icon-maskable-512.png',
-  '/icons/favicon-32.png',
-  '/icons/favicon-48.png',
-  '/icons/favicon-64.png',
-  '/icons/apple-touch-icon.png'
+  '/site.webmanifest',
+  '/icons/favicon.ico',
+  '/icons/favicon-16x16.png',
+  '/icons/favicon-32x32.png',
+  '/icons/apple-touch-icon.png',
+  '/icons/android-chrome-192x192.png',
+  '/icons/android-chrome-512x512.png'
 ];
 
 self.addEventListener('install', (event) => {

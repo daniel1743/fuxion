@@ -112,6 +112,41 @@
   .btn-desktop-max-full {
     @apply sm:max-w-[480px];
   }
+  /* Premium button hover lift effect */
+  .btn-premium-lift {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  @media (hover: hover) {
+    .btn-premium-lift:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.08),
+        0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+  }
+  /* Button group spacing utility */
+  .btn-group {
+    @apply flex flex-col sm:flex-row gap-3 sm:gap-4;
+  }
+  .btn-group-center {
+    @apply btn-group items-center justify-center;
+  }
+  /* Hero button pair - desktop side by side, mobile stacked */
+  .btn-hero-pair {
+    @apply flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto;
+  }
+  .btn-hero-pair > * {
+    @apply w-full sm:w-auto sm:min-w-[200px] sm:max-w-[320px];
+  }
+  /* CTA button - full width mobile, auto desktop */
+  .btn-cta {
+    @apply w-full sm:w-auto sm:min-w-[200px];
+  }
+  /* Secondary action button - smaller on desktop */
+  .btn-secondary-action {
+    @apply w-full sm:w-auto;
+  }
+
   .container-padding {
     @apply px-4 sm:px-6;
   }
@@ -177,6 +212,160 @@ body.light {
   background-image: radial-gradient(circle at center, rgba(167, 139, 250, 0.15) 0%, transparent 70%);
   pointer-events: none;
 }
+/* ── Premium PWA Splash Screen 2026 ─────────────────────── */
+.app-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(16, 185, 129, 0.08), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(52, 211, 153, 0.05), transparent 30%),
+    linear-gradient(165deg, #f0fdf4 0%, #ffffff 45%, #fafdf6 100%);
+}
+
+.app-splash__glow {
+  position: absolute;
+  width: min(75vw, 400px);
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.15), transparent 70%);
+  filter: blur(32px);
+  will-change: transform, opacity;
+}
+
+.app-splash__logo {
+  position: relative;
+  display: flex;
+  width: min(40vw, 164px);
+  aspect-ratio: 1;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid rgba(16, 185, 129, 0.2);
+  border-radius: 38%;
+  background: linear-gradient(150deg, #ffffff 0%, #f0fdf4 50%, #ecfdf5 100%);
+  box-shadow:
+    0 24px 60px rgba(4, 120, 87, 0.15),
+    0 8px 20px rgba(4, 120, 87, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  will-change: transform, opacity, filter;
+}
+
+.app-splash__logo-svg {
+  width: 68%;
+  height: 68%;
+  position: relative;
+  z-index: 2;
+}
+
+.app-splash__breath {
+  position: absolute;
+  inset: -4px;
+  border-radius: 38%;
+  background: radial-gradient(circle at center, rgba(16, 185, 129, 0.06), transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Light sweep animation */
+.splash-light-sweep {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+  mix-blend-mode: overlay;
+  opacity: 0.6;
+}
+
+/* Leaf animation */
+.splash-leaf {
+  transform-origin: center bottom;
+}
+
+/* ── Text group ─────────────────────────────────────────── */
+.app-splash__text-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.app-splash__title {
+  color: #064e3b;
+  font-size: clamp(1.5rem, 6.5vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  text-align: center;
+}
+
+.app-splash__title-accent {
+  font-weight: 400;
+  color: #047857;
+  letter-spacing: -0.02em;
+}
+
+.app-splash__subtitle {
+  margin-top: 6px;
+  color: #059669;
+  font-size: clamp(0.8rem, 2.8vw, 0.95rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  opacity: 0.85;
+}
+
+.app-splash__emoji {
+  display: inline-block;
+  font-size: 0.9em;
+}
+
+/* ── Loader minimalista ─────────────────────────────────── */
+.app-splash__loader {
+  position: relative;
+  width: min(40vw, 160px);
+  height: 3px;
+  margin-top: 28px;
+  border-radius: 9999px;
+  overflow: hidden;
+  background: rgba(5, 150, 105, 0.1);
+  transform-origin: left center;
+}
+
+.app-splash__loader-bar {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #059669, #10B981, #34D399);
+  transform-origin: left center;
+  will-change: transform;
+}
+
+/* ── Reduced motion ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .app-splash__glow,
+  .app-splash__breath,
+  .splash-light-sweep,
+  .splash-leaf {
+    animation: none !important;
+  }
+  .app-splash__glow {
+    opacity: 0.3;
+  }
+  .app-splash__loader-bar {
+    transition: none;
+  }
+}
+
+/* ── Legacy splash (keep for backward compat) ──────────── */
 @keyframes pwa-splash-enter {
   0% {
     opacity: 0;

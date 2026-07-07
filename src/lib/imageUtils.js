@@ -195,7 +195,7 @@ export const getPlaceholderImage = (type = 'product') => {
   const placeholders = {
     // Usar una imagen de producto local por defecto (vitaenergia que sabemos que funciona)
     product: `${cleanBaseUrl}/img/productos/vitaenergia.png`,
-    woman: `${cleanBaseUrl}/img/familia.fuxion.png`,
+    woman: `${cleanBaseUrl}/icons/android-chrome-512x512.png`,
     wellness: `${cleanBaseUrl}/img/productos/vitaenergia.png`
   };
   
