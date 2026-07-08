@@ -8,7 +8,7 @@ import {
   Leaf01Icon,
   WeightScaleIcon,
   EnergyIcon,
-  ShieldCheck02Icon,
+  ShieldCheck,
   DeliveryTruck02Icon,
   ShoppingBag03Icon,
   ArrowRight02Icon,
@@ -147,7 +147,7 @@ const painPoints = [
 
 const trustItems = [
   {
-    icon: <PremiumIcon icon={<HugeiconsIcon icon={ShieldCheck02Icon} size={24} />} size="md" />,
+    icon: <PremiumIcon icon={<HugeiconsIcon icon={ShieldCheck} size={24} />} size="md" />,
     title: 'Compra asistida',
     text: 'Te orientamos antes de comprar para elegir productos según tu objetivo.'
   },

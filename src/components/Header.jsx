@@ -6,8 +6,8 @@ import {
   Home03Icon,
   ShoppingBag03Icon,
   Leaf01Icon,
-  BookOpenIcon,
-  RocketIcon,
+  BookOpen02Icon,
+  Rocket01Icon,
   HelpCircleIcon,
   Store01Icon,
 } from '@hugeicons/core-free-icons';
@@ -51,8 +51,8 @@ const drawerNavItems = [
   { label: 'Inicio', icon: Home03Icon, path: '/' },
   { label: 'Productos', subtitle: 'Catálogo FuXion', icon: ShoppingBag03Icon, path: '/explorar' },
   { label: 'Objetivos de bienestar', subtitle: 'Encuentra lo ideal para ti', icon: Leaf01Icon, path: '/opiniones' },
-  { label: 'Evidencias', subtitle: 'Información y contenido', icon: BookOpenIcon, path: '/blog' },
-  { label: 'Oportunidad FuXion', subtitle: 'Conoce el proyecto', icon: RocketIcon, path: '/oportunidad-fuxion' },
+  { label: 'Evidencias', subtitle: 'Información y contenido', icon: BookOpen02Icon, path: '/blog' },
+  { label: 'Oportunidad FuXion', subtitle: 'Conoce el proyecto', icon: Rocket01Icon, path: '/oportunidad-fuxion' },
   { label: 'Centro de ayuda', subtitle: 'Contacto y soporte', icon: HelpCircleIcon, path: '/ayuda' },
 ];
 
