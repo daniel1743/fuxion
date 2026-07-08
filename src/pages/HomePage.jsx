@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { HugeiconsIcon } from '@hugeicons/react';
 import {
   Leaf01Icon,
+  LeafIcon,
   WeightScaleIcon,
   EnergyIcon,
   Shield02Icon,
@@ -577,7 +578,7 @@ const HomePage = () => {
             transition={{ duration: 0.6 }}
           >
             <div className="flex items-center gap-4">
-              <PremiumIcon icon={<Leaf />} size="md" className="hidden md:inline-flex" />
+              <PremiumIcon icon={<LeafIcon />} size="md" className="hidden md:inline-flex" />
               <div>
                 <p className="text-lg font-semibold text-foreground">
                   ¿Te gusta el mundo del bienestar?
