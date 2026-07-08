@@ -77,14 +77,14 @@ const ProductNeedSearch = ({
             type="search"
             value={value}
             onChange={(event) => setValue(event.target.value)}
-            placeholder="¿Qué objetivo quieres mejorar?"
+            placeholder=""
             className={`w-full rounded-xl border border-transparent bg-emerald-50/70 pl-12 pr-4 text-foreground outline-none transition focus:border-emerald-300 focus:bg-white dark:bg-secondary/60 dark:focus:bg-card ${
               compact ? 'h-12 text-sm' : 'h-14 text-base'
             }`}
             aria-label="Buscar productos por necesidad"
           />
           {/* Infinite scroll suggestions inside the input */}
-          {!compact && !value && (
+          {!compact && (
             <div className="pointer-events-none absolute inset-y-0 left-12 right-4 flex items-center overflow-hidden">
               <div
                 ref={scrollRef}
