@@ -512,16 +512,42 @@ export const slugifyProduct = (value = '') =>
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/\+/g, ' plus ')
     .replace(/[^a-z0-9]+/g, '-')
+    .replace(/-+/g, '-')
     .replace(/^-|-$/g, '');
 
 export const normalizeProductForSeo = (productKey, productData) => {
+  if (!productData) {
+    const fallbackSlug = slugifyProduct(productKey);
+    return {
+      id: productKey,
+      slug: fallbackSlug,
+      name: productKey,
+      category: '',
+      line: '',
+      presentation: '',
+      price: 0,
+      flavor: '',
+      flavors: [],
+      ingredients: [],
+      benefits: [],
+      usage: '',
+      schedule: '',
+      effect: '',
+      keyword: '',
+      image: '',
+      imageUrl: `${SITE_URL}/icons/android-chrome-512x512.png`,
+      url: `${SITE_URL}/producto/${fallbackSlug}`,
+      description: `${productKey} de Fuxion Biotech para nutricion, bienestar y habitos saludables.`
+    };
+  }
+
   const name = productData.nombre || productKey;
   const slug = slugifyProduct(name);
   const benefits = productData.beneficios || [];
   const description = benefits.length
     ? benefits.join('. ')
     : `${name} de Fuxion Biotech para nutricion, bienestar y habitos saludables.`;
-  const image = getProductImageUrl(name);
+  const image = getProductImageUrl(name) || '';
 
   return {
     id: productKey,
@@ -547,14 +573,18 @@ export const normalizeProductForSeo = (productKey, productData) => {
 };
 
 export const getAllSeoProducts = () =>
-  Object.entries(fuxionDatabase.productos || {}).map(([key, product]) =>
-    normalizeProductForSeo(key, product)
-  );
+  Object.entries(fuxionDatabase.productos || {})
+    .filter(([, product]) => product != null)
+    .map(([key, product]) =>
+      normalizeProductForSeo(key, product)
+    );
 
 export const getAllProducts = () =>
-  Object.entries(fuxionDatabase.productos || {}).map(([key, product]) =>
-    normalizeProductForSeo(key, product)
-  );
+  Object.entries(fuxionDatabase.productos || {})
+    .filter(([, product]) => product != null)
+    .map(([key, product]) =>
+      normalizeProductForSeo(key, product)
+    );
 
 export const getSeoProductBySlug = (slug) =>
   getAllSeoProducts().find((product) => product.slug === slug);
@@ -574,49 +604,64 @@ export const getProductSeoContent = (product) => {
 };
 
 export const buildProductMetaDescription = (product) => {
+  if (!product) return '';
+
   const seoContent = getProductSeoContent(product);
   if (seoContent?.metaDescription) {
     return seoContent.metaDescription;
   }
 
-  const firstBenefit = product.benefits[0] || 'nutricion y bienestar natural';
-  return `${product.name} Fuxion en Chile: ${firstBenefit}. Precio $${product.price.toLocaleString('es-CL')}, presentacion ${product.presentation || 'en sobres'} y asesoria personalizada.`;
+  const firstBenefit = product.benefits?.[0] || 'nutricion y bienestar natural';
+  const price = product.price || 0;
+  const presentation = product.presentation || 'en sobres';
+  return `${product.name} Fuxion en Chile: ${firstBenefit}. Precio $${price.toLocaleString('es-CL')}, presentacion ${presentation} y asesoria personalizada.`;
 };
 
 export const buildProductTitle = (product) => {
+  if (!product) return STORE_NAME;
+
   const seoContent = getProductSeoContent(product);
-  return seoContent?.seoTitle || `${product.name} Fuxion | Precio, Beneficios y Modo de Uso | ${STORE_NAME}`;
+  const productName = product.name || product.slug || 'Producto';
+  return seoContent?.seoTitle || `${productName} Fuxion | Precio, Beneficios y Modo de Uso | ${STORE_NAME}`;
 };
 
 
-export const buildProductSchema = (product) => ({
-  '@context': 'https://schema.org',
-  '@type': 'Product',
-  name: product.name,
-  image: [product.imageUrl],
-  description: buildProductMetaDescription(product),
-  sku: product.slug,
-  brand: {
-    '@type': 'Brand',
-    name: 'Fuxion'
-  },
-  category: product.category,
-  offers: {
-    '@type': 'Offer',
-    url: product.url,
-    priceCurrency: 'CLP',
-    price: product.price,
-    availability: 'https://schema.org/InStock',
-    itemCondition: 'https://schema.org/NewCondition',
-    seller: {
-      '@type': 'Organization',
-      name: STORE_NAME,
-      url: SITE_URL
+export const buildProductSchema = (product) => {
+  if (!product) return null;
+
+  const imageUrl = product.imageUrl || `${SITE_URL}/icons/android-chrome-512x512.png`;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name || product.slug,
+    image: [imageUrl],
+    description: buildProductMetaDescription(product),
+    sku: product.slug,
+    brand: {
+      '@type': 'Brand',
+      name: 'Fuxion'
+    },
+    category: product.category,
+    offers: {
+      '@type': 'Offer',
+      url: product.url,
+      priceCurrency: 'CLP',
+      price: product.price || 0,
+      availability: 'https://schema.org/InStock',
+      itemCondition: 'https://schema.org/NewCondition',
+      seller: {
+        '@type': 'Organization',
+        name: STORE_NAME,
+        url: SITE_URL
+      }
     }
-  }
-});
+  };
+};
 
 export const buildProductFaqSchema = (product) => {
+  if (!product) return null;
+
   const seoContent = getProductSeoContent(product);
   if (!seoContent?.faqs?.length) {
     return null;
