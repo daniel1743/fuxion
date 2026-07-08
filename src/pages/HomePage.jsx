@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Heart, Sparkles, Zap, CheckCircle2, MessageCircle, ShoppingCart, ShieldCheck, Truck, Leaf } from 'lucide-react';
+import PremiumIcon from '@/components/ui/PremiumIcon';
 import { getImageUrl, getPlaceholderImage } from '@/lib/imageUtils';
 import { buildStoreSchema, buildOrganizationSchema, SITE_URL, STORE_NAME } from '@/lib/productSeo';
 import { confirmAndOpenWhatsapp, openWhatsapp } from '@/lib/whatsapp';
@@ -53,7 +54,7 @@ const solutions = [
       'Apoyo a rutinas de limpieza digestiva'
     ],
     buttonText: 'Quiero mejorar mi digestión',
-    icon: <Sparkles className="w-8 h-8" />
+    icon: <PremiumIcon icon={<Sparkles />} size="md" />
   },
   {
     id: 2,
@@ -67,7 +68,7 @@ const solutions = [
       'Rutina simple de acompañamiento'
     ],
     buttonText: 'Quiero apoyo para mi objetivo',
-    icon: <Zap className="w-8 h-8" />
+    icon: <PremiumIcon icon={<Zap />} size="md" />
   },
   {
     id: 3,
@@ -81,7 +82,7 @@ const solutions = [
       'Vitalidad durante el día'
     ],
     buttonText: 'Quiero más energía',
-    icon: <Heart className="w-8 h-8" />
+    icon: <PremiumIcon icon={<Heart />} size="md" />
   }
 ];
 
@@ -136,17 +137,17 @@ const painPoints = [
 
 const trustItems = [
   {
-    icon: <ShieldCheck className="h-6 w-6" />,
+    icon: <PremiumIcon icon={<ShieldCheck />} size="md" />,
     title: 'Compra asistida',
     text: 'Te orientamos antes de comprar para elegir productos según tu objetivo.'
   },
   {
-    icon: <Leaf className="h-6 w-6" />,
+    icon: <PremiumIcon icon={<Leaf />} size="md" />,
     title: 'Fuxion Biotech',
     text: 'Productos nutracéuticos con enfoque en nutrición, bienestar y hábitos saludables.'
   },
   {
-    icon: <Truck className="h-6 w-6" />,
+    icon: <PremiumIcon icon={<Truck />} size="md" />,
     title: 'Pedido por WhatsApp',
     text: 'Agregas al carrito, envías tu pedido y coordinamos la atención directamente.'
   }
@@ -224,21 +225,12 @@ const HomePage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.65 }}
-                className="btn-hero-pair"
               >
                 <Button
                   size="lg"
                   onClick={() => handleWhatsAppClick('Hola, quiero empezar mi cambio con Fuxion')}
                 >
                   <span className="text-balance">Recibir asesoría</span> <ArrowRight className="ml-2 h-5 w-5 shrink-0" />
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  onClick={() => window.location.href = '/explorar'}
-                >
-                  <ShoppingCart className="mr-2 h-5 w-5 shrink-0" />
-                  <span className="text-balance">Ver catálogo</span>
                 </Button>
               </motion.div>
             </div>
@@ -313,7 +305,7 @@ const HomePage = () => {
           >
             {painPoints.map((point, i) => (
               <div key={i} className="flex items-center gap-3 text-foreground">
-                <div className="w-2 h-2 rounded-full bg-primary"></div>
+                <div className="w-3 h-3 rounded-full bg-primary shadow-sm shadow-primary/30 ring-1 ring-primary/20 shrink-0"></div>
                 <span className="text-lg">{point}</span>
               </div>
             ))}
@@ -432,8 +424,8 @@ const HomePage = () => {
                 transition={{ duration: 0.5, delay: i * 0.15 }}
                 className="bg-card p-6 rounded-lg border border-border flex flex-col items-center text-center hover:border-primary transition-all duration-300"
               >
-                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
-                  <span className="text-sm font-bold">{i + 1}</span>
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 shadow-sm shadow-emerald-200/50 ring-1 ring-emerald-200 dark:bg-emerald-900/40 dark:text-emerald-300 dark:shadow-emerald-900/20 dark:ring-emerald-800">
+                  <span className="text-base font-bold">{i + 1}</span>
                 </div>
                 <p className="font-bold text-foreground">{step.title}</p>
                 <p className="mt-3 text-sm text-muted-foreground">{step.text}</p>
@@ -555,18 +547,11 @@ const HomePage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/explorar">
-                <Button variant="outline" className="hover:bg-primary hover:text-primary-foreground">
-                  Ver todos los productos <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-              <Link to="/productos-fuxion-chile">
-                <Button variant="outline" className="hover:bg-primary hover:text-primary-foreground">
-                  Catálogo completo FuXion Chile <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-            </div>
+            <Link to="/explorar">
+              <Button variant="outline" className="hover:bg-primary hover:text-primary-foreground">
+                Ver todos los productos <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -582,9 +567,7 @@ const HomePage = () => {
             transition={{ duration: 0.6 }}
           >
             <div className="flex items-center gap-4">
-              <div className="hidden md:flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900/40">
-                <Leaf className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
-              </div>
+              <PremiumIcon icon={<Leaf />} size="md" className="hidden md:inline-flex" />
               <div>
                 <p className="text-lg font-semibold text-foreground">
                   ¿Te gusta el mundo del bienestar?
@@ -616,13 +599,13 @@ const HomePage = () => {
             transition={{ duration: 0.6 }}
           >
             <motion.div
-              className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/20 mb-6"
               initial={{ opacity: 0, scale: 0 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2, type: 'spring' }}
+              className="mb-6 inline-flex"
             >
-              <WhatsAppIcon className="w-8 h-8 text-primary" />
+              <PremiumIcon icon={<WhatsAppIcon />} size="lg" variant="glow" />
             </motion.div>
             <motion.h2
               className="text-3xl md:text-4xl font-bold mb-4 text-foreground"

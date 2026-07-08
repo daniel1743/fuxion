@@ -112,7 +112,7 @@ const CategoriesPage = () => {
 
   const handleNotImplemented = (e) => {
     e.preventDefault();
-    toast({ description: "🚧 ¡Esta función aún no está implementada! 🚀" });
+    toast({ description: "Esta función aún no está implementada" });
   };
 
   return (

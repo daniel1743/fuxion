@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Minus, X, Send, MessageCircle, FileText } from 'lucide-react';
+import { Minus, X, Send, MessageCircle, FileText, Play, Heart, Leaf } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from "@/components/ui/use-toast";
 import { sendMessageToDeepSeek } from '@/services/deepseekService';
@@ -39,11 +39,21 @@ const FalconBot = () => {
     const [showQuickWhatsapp, setShowQuickWhatsapp] = useState(false);
     const [showQuickActions, setShowQuickActions] = useState(true);
     const [isFloatingHovered, setIsFloatingHovered] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const messagesEndRef = useRef(null);
     const quickWhatsappTimerRef = useRef(null);
     const chatContainerRef = useRef(null);
     const customerName = user?.name || adminData?.nombre_completo || '';
     const firstName = customerName.trim().split(/\s+/)[0] || '';
+
+    // Listen for mobile menu open/close events from Header
+    useEffect(() => {
+        const handleMobileMenu = (event) => {
+            setIsMobileMenuOpen(event.detail?.isOpen || false);
+        };
+        window.addEventListener('fuxion:mobile-menu', handleMobileMenu);
+        return () => window.removeEventListener('fuxion:mobile-menu', handleMobileMenu);
+    }, []);
 
     // Scroll awareness — reduce opacidad al hacer scroll
     const { style: scrollStyle } = useScrollAware();
@@ -113,7 +123,12 @@ const FalconBot = () => {
 
     const bot = {
         name: 'Fuxion Assistant',
-        subtitle: '🟢 Disponible para ayudarte',
+        subtitle: (
+            <>
+                <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 mr-1.5 align-middle" />
+                Disponible para ayudarte
+            </>
+        ),
         typingSubtitle: 'Falcon Assistant está escribiendo...',
         color: 'bg-gradient-to-br from-emerald-500 to-teal-500',
         greeting: buildPersonalizedGreeting()
@@ -559,13 +574,13 @@ Pregunta del usuario: ${userMessage}`,
             let errorMessage = 'Estoy teniendo dificultad para responder en este momento. ';
 
             if (error.message.includes('Insufficient Balance') || error.message.includes('402')) {
-                errorMessage += 'El servicio de IA no está disponible temporalmente. Intenta nuevamente en unos segundos 💚';
+                errorMessage += 'El servicio de IA no está disponible temporalmente. Intenta nuevamente en unos segundos.';
             } else if (error.message.includes('API Key') || error.message.includes('API key')) {
-                errorMessage += 'La configuración del servicio no está completa. Intenta nuevamente más tarde 💚';
+                errorMessage += 'La configuración del servicio no está completa. Intenta nuevamente más tarde.';
             } else if (error.message.includes('429')) {
-                errorMessage += 'Hay muchas consultas en este momento. Espera unos segundos y vuelve a intentar 💚';
+                errorMessage += 'Hay muchas consultas en este momento. Espera unos segundos y vuelve a intentar.';
             } else {
-                errorMessage += 'Intenta nuevamente en unos segundos 💚';
+                errorMessage += 'Intenta nuevamente en unos segundos.';
             }
 
             setMessages(prev => [...prev, {
@@ -577,7 +592,7 @@ Pregunta del usuario: ${userMessage}`,
 
             toast({
                 title: "Error de conexión",
-                description: "Estoy teniendo dificultad para responder. Intenta nuevamente 💚",
+                description: "Estoy teniendo dificultad para responder. Intenta nuevamente",
                 variant: "destructive"
             });
         } finally {
@@ -650,13 +665,13 @@ Pregunta del usuario: ${userMessage}`,
             let errorMessage = 'Estoy teniendo dificultad para responder en este momento. ';
 
             if (error.message.includes('Insufficient Balance') || error.message.includes('402')) {
-                errorMessage += 'El servicio de IA no está disponible temporalmente. Intenta nuevamente en unos segundos 💚';
+                errorMessage += 'El servicio de IA no está disponible temporalmente. Intenta nuevamente en unos segundos.';
             } else if (error.message.includes('API Key') || error.message.includes('API key')) {
-                errorMessage += 'La configuración del servicio no está completa. Intenta nuevamente más tarde 💚';
+                errorMessage += 'La configuración del servicio no está completa. Intenta nuevamente más tarde.';
             } else if (error.message.includes('429')) {
-                errorMessage += 'Hay muchas consultas en este momento. Espera unos segundos y vuelve a intentar 💚';
+                errorMessage += 'Hay muchas consultas en este momento. Espera unos segundos y vuelve a intentar.';
             } else {
-                errorMessage += 'Intenta nuevamente en unos segundos 💚';
+                errorMessage += 'Intenta nuevamente en unos segundos.';
             }
 
             setMessages(prev => [...prev, {
@@ -668,7 +683,7 @@ Pregunta del usuario: ${userMessage}`,
 
             toast({
                 title: "Error de conexión",
-                description: "Estoy teniendo dificultad para responder. Intenta nuevamente 💚",
+                description: "Estoy teniendo dificultad para responder. Intenta nuevamente",
                 variant: "destructive"
             });
         } finally {
@@ -701,12 +716,12 @@ Pregunta del usuario: ${userMessage}`,
                     <motion.div
                         initial={{ scale: 0 }}
                         animate={{
-                            scale: isFloatingHovered ? 1 : scrollStyle.scale,
-                            opacity: isFloatingHovered ? 1 : scrollStyle.opacity,
+                            scale: isMobileMenuOpen ? 0.8 : (isFloatingHovered ? 1 : scrollStyle.scale),
+                            opacity: isMobileMenuOpen ? 0 : (isFloatingHovered ? 1 : scrollStyle.opacity),
                         }}
                         exit={{ scale: 0 }}
                         transition={{ duration: 0.25, ease: 'easeOut' }}
-                        className="fixed bottom-6 right-6 z-50 flex items-center gap-2"
+                        className={`fixed bottom-6 right-6 z-50 flex items-center gap-2 ${isMobileMenuOpen ? 'pointer-events-none md:pointer-events-auto' : ''}`}
                         onMouseEnter={() => { showQuickWhatsappAction(); setIsFloatingHovered(true); }}
                         onMouseLeave={() => { hideQuickWhatsappAction(); setIsFloatingHovered(false); }}
                         onFocus={() => { showQuickWhatsappAction(); setIsFloatingHovered(true); }}
@@ -749,10 +764,15 @@ Pregunta del usuario: ${userMessage}`,
                     <motion.div
                         ref={chatContainerRef}
                         initial={{ opacity: 0, y: 20, scale: 0.95, filter: 'blur(4px)' }}
-                        animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+                        animate={{
+                            opacity: isMobileMenuOpen ? 0 : 1,
+                            y: isMobileMenuOpen ? 10 : 0,
+                            scale: isMobileMenuOpen ? 0.96 : 1,
+                            filter: isMobileMenuOpen ? 'blur(4px)' : 'blur(0px)'
+                        }}
                         exit={{ opacity: 0, y: 10, scale: 0.96 }}
                         transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                        className="fixed inset-x-3 bottom-3 z-50 h-[min(600px,calc(100dvh-24px))] bg-card border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden sm:inset-x-auto sm:bottom-6 sm:right-6 sm:w-96 sm:h-[min(600px,calc(100dvh-48px))]"
+                        className={`fixed inset-x-3 bottom-3 z-50 h-[min(600px,calc(100dvh-24px))] bg-card border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden sm:inset-x-auto sm:bottom-6 sm:right-6 sm:w-96 sm:h-[min(600px,calc(100dvh-48px))] ${isMobileMenuOpen ? 'pointer-events-none md:pointer-events-auto' : ''}`}
                     >
                         {/* Header */}
                         <div className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 p-4 flex justify-between items-center shadow-emerald-500/20 relative overflow-hidden">
@@ -844,7 +864,7 @@ Pregunta del usuario: ${userMessage}`,
                                                         rel="noopener noreferrer"
                                                         className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 px-3 py-2 text-xs font-semibold text-white transition hover:shadow-lg hover:from-amber-600 hover:to-orange-600"
                                                     >
-                                                        <span>▶</span>
+                                                    <Play className="h-4 w-4" />
                                                         Ver video de oportunidad
                                                     </a>
                                                 )}
@@ -854,8 +874,9 @@ Pregunta del usuario: ${userMessage}`,
                                                         onClick={handleOpenWhatsAppContact}
                                                         className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-3 py-2 text-xs font-semibold text-white transition hover:bg-[#1fb85a]"
                                                     >
-                                                        <WhatsAppIcon className="h-4 w-4" />
-                                                        💬 Hablar con asesor
+                                                    <WhatsAppIcon className="h-4 w-4" />
+                                                        <MessageCircle className="h-4 w-4" />
+                                                        Hablar con asesor
                                                     </button>
                                                 )}
                                             </div>
@@ -868,7 +889,7 @@ Pregunta del usuario: ${userMessage}`,
                                                     className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 px-3 py-2 text-xs font-semibold text-white transition hover:shadow-lg hover:from-emerald-600 hover:to-teal-600"
                                                 >
                                                     <FileText className="h-4 w-4" />
-                                                    📩 Abrir formulario de contacto
+                                                    Abrir formulario de contacto
                                                 </button>
                                                 <button
                                                     type="button"
@@ -876,7 +897,8 @@ Pregunta del usuario: ${userMessage}`,
                                                     className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-3 py-2 text-xs font-semibold text-white transition hover:bg-[#1fb85a]"
                                                 >
                                                     <WhatsAppIcon className="h-4 w-4" />
-                                                    💬 Hablar por WhatsApp
+                                                    <MessageCircle className="h-4 w-4" />
+                                                    Hablar por WhatsApp
                                                 </button>
                                                 <button
                                                     type="button"
@@ -940,7 +962,7 @@ Pregunta del usuario: ${userMessage}`,
                                     type="text"
                                     value={input}
                                     onChange={(e) => setInput(e.target.value)}
-                                    placeholder="Cuéntame qué quieres mejorar 🌱"
+                                    placeholder="Cuéntame qué quieres mejorar"
                                     className="flex-1 bg-white dark:bg-card border border-emerald-200 dark:border-emerald-800/40 rounded-full px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-400 placeholder:text-muted-foreground/50 transition-all"
                                     disabled={isLoading}
                                 />
@@ -954,7 +976,8 @@ Pregunta del usuario: ${userMessage}`,
                                 </Button>
                             </div>
                             <p className="text-[11px] text-muted-foreground/70 mt-2 text-center">
-                                🌱 Orientación sobre productos FuXion. No reemplaza una consulta médica.
+                                <Leaf className="h-3 w-3 inline-block mr-0.5" aria-hidden="true" />
+                                Orientación sobre productos FuXion. No reemplaza una consulta médica.
                             </p>
                         </form>
                     </motion.div>

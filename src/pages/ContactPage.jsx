@@ -377,9 +377,9 @@ const ContactPage = () => {
                   {formData.tipo === 'reclamo'
                     ? 'Tu solicitud fue recibida'
                     : formData.tipo === 'felicitacion'
-                      ? 'Gracias por compartir tu experiencia 💚'
+                      ? 'Gracias por compartir tu experiencia'
                       : formData.tipo === 'oportunidad'
-                        ? 'Tu interés fue recibido 🚀'
+                        ? 'Tu interés fue recibido'
                         : 'Mensaje enviado correctamente'}
                 </motion.h3>
                 <motion.p

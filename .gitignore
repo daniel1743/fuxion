@@ -61,3 +61,4 @@ nul
 # Las imágenes optimizadas WebP también se suben
 # !public/img/productos-mini/*.webp
 # !public/img/productos-tiny/*.webp
+.aider*

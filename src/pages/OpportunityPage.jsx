@@ -32,6 +32,7 @@ import {
   HelpingHand,
   Calendar
 } from 'lucide-react';
+import PremiumIcon from '@/components/ui/PremiumIcon';
 
 import SEO from '@/components/SEO';
 import { SITE_URL, STORE_NAME } from '@/lib/productSeo';
@@ -571,11 +572,15 @@ const OpportunityPage = () => {
                 transition={{ duration: 0.6, delay: i * 0.15 }}
                 className="bg-card rounded-2xl p-6 md:p-8 border border-emerald-100 dark:border-border shadow-premium-soft card-hover-premium flex flex-col items-center text-center"
               >
-                <div className="w-14 h-14 rounded-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center mb-5">
-                  {card.icon === 'Leaf' && <Leaf className="w-7 h-7 text-emerald-600 dark:text-emerald-400" />}
-                  {card.icon === 'HeartHandshake' && <HeartHandshake className="w-7 h-7 text-emerald-600 dark:text-emerald-400" />}
-                  {card.icon === 'TrendingUp' && <TrendingUp className="w-7 h-7 text-emerald-600 dark:text-emerald-400" />}
-                </div>
+                <PremiumIcon
+                  icon={
+                    card.icon === 'Leaf' ? <Leaf /> :
+                    card.icon === 'HeartHandshake' ? <HeartHandshake /> :
+                    card.icon === 'TrendingUp' ? <TrendingUp /> : <Leaf />
+                  }
+                  size="md"
+                  className="mb-5"
+                />
                 <h3 className="text-xl font-bold text-foreground mb-3">{card.title}</h3>
                 <p className="text-muted-foreground">{card.description}</p>
               </motion.div>
@@ -907,7 +912,7 @@ const OpportunityPage = () => {
                     transition={{ delay: 0.3, duration: 0.4 }}
                     className="text-2xl font-bold text-foreground mb-4"
                   >
-                    Tu interés fue recibido 🚀
+                    Tu interés fue recibido
                   </motion.h3>
                   <motion.p
                     initial={{ opacity: 0, y: 10 }}
@@ -1182,7 +1187,7 @@ const OpportunityPage = () => {
         <CelebrationOverlay
           show={showCelebration}
           onComplete={() => setShowCelebration(false)}
-          title="Tu interés fue recibido 🚀"
+          title="Tu interés fue recibido"
           message="Un asesor FuXion revisará tu solicitud y podrá orientarte sobre los siguientes pasos."
         />
 

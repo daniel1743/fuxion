@@ -62,7 +62,7 @@ const CartPage = () => {
     // Validaciones
     if (!customerData.region.trim()) {
       toast({
-        title: "⚠️ Región requerida",
+        title: "Región requerida",
         description: "Por favor selecciona tu región",
         variant: "destructive",
       });
@@ -71,7 +71,7 @@ const CartPage = () => {
 
     if (!customerData.commune.trim()) {
       toast({
-        title: "⚠️ Comuna requerida",
+        title: "Comuna requerida",
         description: "Por favor ingresa tu comuna",
         variant: "destructive",
       });
@@ -80,7 +80,7 @@ const CartPage = () => {
 
     if (cartItems.length === 0) {
       toast({
-        title: "⚠️ Carrito vacío",
+        title: "Carrito vacío",
         description: "Agrega productos antes de enviar el pedido",
         variant: "destructive",
       });
@@ -89,7 +89,7 @@ const CartPage = () => {
 
     if (isEligible && projectedAvailableRewards > 0 && !selectedGift) {
       toast({
-        title: "🎁 Elige tu regalo",
+        title: "Elige tu regalo",
         description: "Ya tienes un regalo disponible. Selecciona uno antes de enviar el pedido.",
       });
       return;
@@ -139,7 +139,7 @@ const CartPage = () => {
     clearCart(true);
 
     toast({
-      title: "✅ Pedido enviado",
+      title: "Pedido enviado",
       description: "Se abrió WhatsApp con tu pedido para coordinar con un asesor",
     });
   };
@@ -177,7 +177,7 @@ const CartPage = () => {
             transition={{ delay: 0.2, duration: 0.4 }}
             className="text-3xl font-bold text-foreground mb-4"
           >
-            Tu carrito está esperando tus productos favoritos 🌱
+            Tu carrito está esperando tus productos favoritos
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 10 }}

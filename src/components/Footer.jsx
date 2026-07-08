@@ -103,7 +103,7 @@ const Footer = () => {
                                         className="group flex items-center gap-2.5 text-muted-foreground hover:text-primary transition-colors duration-200"
                                     >
                                         <span className="flex items-center justify-center w-5 h-5 shrink-0">
-                                            <IconComponent className="w-[15px] h-[15px] text-muted-foreground/60 group-hover:text-primary transition-colors duration-200" strokeWidth={1.8} />
+                                            <IconComponent className="w-4 h-4 text-muted-foreground/60 group-hover:text-primary transition-colors duration-200" strokeWidth={1.5} />
                                         </span>
                                         <span className="text-sm">{link.label}</span>
                                     </Link>
@@ -125,7 +125,7 @@ const Footer = () => {
                                         className="group flex items-center gap-2.5 text-muted-foreground hover:text-primary transition-colors duration-200"
                                     >
                                         <span className="flex items-center justify-center w-5 h-5 shrink-0">
-                                            <IconComponent className="w-[15px] h-[15px] text-muted-foreground/60 group-hover:text-primary transition-colors duration-200" strokeWidth={1.8} />
+                                            <IconComponent className="w-4 h-4 text-muted-foreground/60 group-hover:text-primary transition-colors duration-200" strokeWidth={1.5} />
                                         </span>
                                         <span className="text-sm">{link.label}</span>
                                     </Link>
@@ -146,11 +146,11 @@ const Footer = () => {
                                         href={social.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="w-10 h-10 rounded-full border border-emerald-200 dark:border-emerald-800/40 flex items-center justify-center text-emerald-600 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-900/30 hover:border-emerald-300 dark:hover:border-emerald-700 transition-all duration-200"
+                                        className="group w-10 h-10 rounded-full border border-emerald-200 dark:border-emerald-800/40 flex items-center justify-center text-emerald-600 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-900/30 hover:border-emerald-300 dark:hover:border-emerald-700 hover:shadow-sm hover:shadow-emerald-200/50 dark:hover:shadow-emerald-900/20 hover:scale-105 transition-all duration-200"
                                         aria-label={social.name}
                                         title={social.name}
                                     >
-                                        <IconComponent className="w-[18px] h-[18px]" strokeWidth={1.8} />
+                                        <IconComponent className="w-5 h-5" strokeWidth={1.8} />
                                     </a>
                                 );
                             })}

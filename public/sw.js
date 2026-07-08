@@ -3,6 +3,7 @@ const CACHE_NAME = 'fuxion-v2-brand-refresh';
 const APP_SHELL = [
   '/',
   '/site.webmanifest',
+  '/manifest.json',
   '/icons/favicon.ico',
   '/icons/favicon-16x16.png',
   '/icons/favicon-32x32.png',

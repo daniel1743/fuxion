@@ -455,10 +455,10 @@ const HelpCenterPage = () => {
                   {formData.tipo === 'reclamo'
                     ? 'Tu solicitud fue recibida'
                     : formData.tipo === 'felicitacion'
-                      ? 'Gracias por compartir tu experiencia 💚'
+                      ? 'Gracias por compartir tu experiencia'
                       : formData.tipo === 'oportunidad'
-                        ? 'Tu interés fue recibido 🚀'
-                        : 'Recibimos tu mensaje 🌱'}
+                        ? 'Tu interés fue recibido'
+                        : 'Recibimos tu mensaje'}
                 </motion.h3>
                 <motion.p
                   initial={{ opacity: 0, y: 10 }}

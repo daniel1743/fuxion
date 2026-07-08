@@ -1,6 +1,17 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { HugeiconsIcon } from '@hugeicons/react';
+import {
+  Home11Icon,
+  ShoppingBag03Icon,
+  WellnessIcon,
+  BookOpen02Icon,
+  Rocket01Icon,
+  CustomerSupportIcon,
+  Store04Icon,
+} from '@hugeicons/core-free-icons';
+
 import {
   ShoppingCart,
   Menu,
@@ -14,11 +25,14 @@ import {
   Instagram,
   MessageCircle,
   ChevronRight,
-  HelpCircle
+  HelpCircle,
+  User,
+  LogOut
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/CartContext';
 import { useSiteSettings } from '@/context/SiteSettingsContext';
+import { useAuth } from '@/context/AuthContext';
 import UserMenu from '@/components/UserMenu';
 
 const navLinks = [
@@ -34,12 +48,12 @@ const officialStoreUrl = 'https://ifuxion.com/daniel/enrollment/chooseperson';
 
 // ── Drawer navigation items ────────────────────────────────────
 const drawerNavItems = [
-  { label: 'Inicio', icon: Home, path: '/' },
-  { label: 'Productos', subtitle: 'Catálogo FuXion', icon: Package, path: '/explorar' },
-  { label: 'Objetivos de bienestar', subtitle: 'Encuentra lo ideal para ti', icon: Leaf, path: '/opiniones' },
-  { label: 'Evidencias', subtitle: 'Información y contenido', icon: BookOpen, path: '/blog' },
-  { label: 'Oportunidad FuXion', subtitle: 'Conoce el proyecto', icon: Sparkles, path: '/oportunidad-fuxion' },
-  { label: 'Centro de ayuda', subtitle: 'Contacto y soporte', icon: HelpCircle, path: '/ayuda' },
+  { label: 'Inicio', icon: Home11Icon, path: '/' },
+  { label: 'Productos', subtitle: 'Catálogo FuXion', icon: ShoppingBag03Icon, path: '/explorar' },
+  { label: 'Objetivos de bienestar', subtitle: 'Encuentra lo ideal para ti', icon: WellnessIcon, path: '/opiniones' },
+  { label: 'Evidencias', subtitle: 'Información y contenido', icon: BookOpen02Icon, path: '/blog' },
+  { label: 'Oportunidad FuXion', subtitle: 'Conoce el proyecto', icon: Rocket01Icon, path: '/oportunidad-fuxion' },
+  { label: 'Centro de ayuda', subtitle: 'Contacto y soporte', icon: CustomerSupportIcon, path: '/ayuda' },
 ];
 
 // ── Social links ───────────────────────────────────────────────
@@ -61,6 +75,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { getCartCount } = useCart();
   const { settings } = useSiteSettings();
+  const { isAuthenticated, user, openAuthModal, logout } = useAuth();
   const navigate = useNavigate();
   const drawerPanelRef = useRef(null);
 
@@ -80,6 +95,11 @@ const Header = () => {
     const message = encodeURIComponent('Hola, quiero hablar con un asesor Fuxion.');
     window.open(`https://wa.me/${phone}?text=${message}`, '_blank', 'noopener,noreferrer');
   }, []);
+
+  // ── Dispatch custom event for FalconBot visibility ──────────
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent('fuxion:mobile-menu', { detail: { isOpen: isMenuOpen } }));
+  }, [isMenuOpen]);
 
   // ── Click outside drawer to close ────────────────────────────
   useEffect(() => {
@@ -320,7 +340,7 @@ const Header = () => {
                           ? 'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400'
                           : 'bg-secondary text-muted-foreground group-hover:bg-emerald-100 dark:group-hover:bg-emerald-900/30 group-hover:text-emerald-600 dark:group-hover:text-emerald-400'
                       }`}>
-                        <IconComponent className="w-[18px] h-[18px]" strokeWidth={1.8} />
+                        <HugeiconsIcon icon={IconComponent} size={18} />
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className={`text-sm font-semibold ${
@@ -353,7 +373,7 @@ const Header = () => {
                   className="w-full flex items-center gap-3 px-3 py-3 rounded-xl text-left transition-all duration-200 group hover:bg-emerald-50/60 dark:hover:bg-emerald-900/10 border-l-[3px] border-transparent"
                 >
                   <div className="flex-shrink-0 w-9 h-9 rounded-full bg-secondary flex items-center justify-center text-muted-foreground group-hover:bg-emerald-100 dark:group-hover:bg-emerald-900/30 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-200">
-                    <ExternalLink className="w-[18px] h-[18px]" strokeWidth={1.8} />
+                    <HugeiconsIcon icon={Store04Icon} size={18} />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-semibold text-foreground">
@@ -367,8 +387,44 @@ const Header = () => {
                 </motion.button>
               </div>
 
-              {/* ── Footer: WhatsApp + Social ──────────────────── */}
+              {/* ── Footer: Auth + WhatsApp + Social ──────────── */}
               <div className="px-5 py-4 border-t border-emerald-100 dark:border-emerald-900/30 space-y-4 shrink-0">
+                {/* Auth section — moved to bottom zone */}
+                <div>
+                  <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-2.5">
+                    Cuenta
+                  </p>
+                  {isAuthenticated || user ? (
+                    <button
+                      onClick={() => { setIsMenuOpen(false); logout(); }}
+                      className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all duration-200 group hover:bg-emerald-50/60 dark:hover:bg-emerald-900/10 border-l-[3px] border-transparent"
+                    >
+                      <div className="flex-shrink-0 w-9 h-9 rounded-full bg-secondary flex items-center justify-center text-muted-foreground group-hover:bg-emerald-100 dark:group-hover:bg-emerald-900/30 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-200">
+                        <LogOut className="w-[18px] h-[18px]" strokeWidth={1.8} />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-semibold text-foreground">
+                          Cerrar sesión
+                        </p>
+                      </div>
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => { setIsMenuOpen(false); openAuthModal(); }}
+                      className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all duration-200 group hover:bg-emerald-50/60 dark:hover:bg-emerald-900/10 border-l-[3px] border-transparent"
+                    >
+                      <div className="flex-shrink-0 w-9 h-9 rounded-full bg-secondary flex items-center justify-center text-muted-foreground group-hover:bg-emerald-100 dark:group-hover:bg-emerald-900/30 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-200">
+                        <User className="w-[18px] h-[18px]" strokeWidth={1.8} />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-semibold text-foreground">
+                          Iniciar sesión
+                        </p>
+                      </div>
+                    </button>
+                  )}
+                </div>
+
                 {/* WhatsApp CTA */}
                 <div>
                   <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-2.5">
@@ -383,7 +439,7 @@ const Header = () => {
                   </button>
                 </div>
 
-                {/* Social networks */}
+                {/* Social networks — larger icons for premium feel */}
                 <div>
                   <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-2.5">
                     Síguenos
@@ -397,11 +453,11 @@ const Header = () => {
                           href={social.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-9 h-9 rounded-full border border-emerald-200 dark:border-emerald-800/50 flex items-center justify-center text-emerald-600 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-900/30 hover:border-emerald-300 dark:hover:border-emerald-700 transition-all duration-200"
+                          className="w-10 h-10 rounded-full border border-emerald-200 dark:border-emerald-800/50 flex items-center justify-center text-emerald-600 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-900/30 hover:border-emerald-300 dark:hover:border-emerald-700 transition-all duration-200"
                           aria-label={social.name}
                           title={social.name}
                         >
-                          <IconComponent className="w-[18px] h-[18px]" />
+                          <IconComponent className="w-[22px] h-[22px]" strokeWidth={2.0} />
                         </a>
                       );
                     })}
