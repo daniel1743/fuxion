@@ -9,7 +9,7 @@ import { HugeiconsIcon } from '@hugeicons/react';
  * con sombra suave, hover elegante y estilo wellness app.
  *
  * Props:
- *   icon      - Definición de icono HugeIcons (ej: LeafIcon) o elemento JSX (ej: <WhatsAppIcon />)
+ *   icon      - Definición de icono HugeIcons (ej: Leaf01Icon) o componente React (ej: WhatsAppIcon)
  *   size      - 'sm' | 'md' | 'lg' | 'xl' (default: 'md')
  *   variant   - 'default' | 'ghost' | 'outline' | 'glow' (default: 'default')
  *   className - clases adicionales para el contenedor
@@ -55,21 +55,13 @@ const PremiumIcon = ({
   const renderIcon = () => {
     if (!icon) return null;
 
-    const isReactElement = React.isValidElement(icon);
-
-    if (isReactElement) {
-      const type = icon.type;
-      // Si type es una función, es un componente React válido (ej: WhatsAppIcon, AiRobotIcon)
-      if (typeof type === 'function') {
-        return React.cloneElement(icon, {
-          className: `${sizes.icon} ${icon.props.className || ''}`,
-        });
-      }
-      // Si type es un objeto (definición de HugeIcons), usar HugeiconsIcon
-      return <HugeiconsIcon icon={type} size={24} />;
+    // Si icon es una función (componente React como WhatsAppIcon), renderizarlo directamente
+    if (typeof icon === 'function') {
+      const IconComponent = icon;
+      return <IconComponent className={sizes.icon} />;
     }
 
-    // Si icon es una definición directa (no elemento JSX)
+    // Si icon es una definición de HugeIcons (objeto), usar HugeiconsIcon
     return <HugeiconsIcon icon={icon} size={24} />;
   };
 

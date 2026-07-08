@@ -65,7 +65,7 @@ const solutions = [
       'Apoyo a rutinas de limpieza digestiva'
     ],
     buttonText: 'Quiero mejorar mi digestión',
-    icon: <PremiumIcon icon={<HugeiconsIcon icon={Leaf01Icon} size={24} />} size="md" />
+    icon: <PremiumIcon icon={Leaf01Icon} size="md" />
   },
   {
     id: 2,
@@ -79,7 +79,7 @@ const solutions = [
       'Rutina simple de acompañamiento'
     ],
     buttonText: 'Quiero apoyo para mi objetivo',
-    icon: <PremiumIcon icon={<HugeiconsIcon icon={WeightScaleIcon} size={24} />} size="md" />
+    icon: <PremiumIcon icon={WeightScaleIcon} size="md" />
   },
   {
     id: 3,
@@ -93,7 +93,7 @@ const solutions = [
       'Vitalidad durante el día'
     ],
     buttonText: 'Quiero más energía',
-    icon: <PremiumIcon icon={<HugeiconsIcon icon={EnergyIcon} size={24} />} size="md" />
+    icon: <PremiumIcon icon={EnergyIcon} size="md" />
   }
 ];
 
@@ -148,17 +148,17 @@ const painPoints = [
 
 const trustItems = [
   {
-    icon: <PremiumIcon icon={<HugeiconsIcon icon={Shield02Icon} size={24} />} size="md" />,
+    icon: <PremiumIcon icon={Shield02Icon} size="md" />,
     title: 'Compra asistida',
     text: 'Te orientamos antes de comprar para elegir productos según tu objetivo.'
   },
   {
-    icon: <PremiumIcon icon={<HugeiconsIcon icon={Leaf01Icon} size={24} />} size="md" />,
+    icon: <PremiumIcon icon={Leaf01Icon} size="md" />,
     title: 'Fuxion Biotech',
     text: 'Productos nutracéuticos con enfoque en nutrición, bienestar y hábitos saludables.'
   },
   {
-    icon: <PremiumIcon icon={<HugeiconsIcon icon={DeliveryTruck02Icon} size={24} />} size="md" />,
+    icon: <PremiumIcon icon={DeliveryTruck02Icon} size="md" />,
     title: 'Pedido por WhatsApp',
     text: 'Agregas al carrito, envías tu pedido y coordinamos la atención directamente.'
   }
@@ -578,7 +578,7 @@ const HomePage = () => {
             transition={{ duration: 0.6 }}
           >
             <div className="flex items-center gap-4">
-              <PremiumIcon icon={<LeafIcon />} size="md" className="hidden md:inline-flex" />
+              <PremiumIcon icon={LeafIcon} size="md" className="hidden md:inline-flex" />
               <div>
                 <p className="text-lg font-semibold text-foreground">
                   ¿Te gusta el mundo del bienestar?
@@ -616,7 +616,7 @@ const HomePage = () => {
               transition={{ duration: 0.6, delay: 0.2, type: 'spring' }}
               className="mb-6 inline-flex"
             >
-              <PremiumIcon icon={<WhatsAppIcon />} size="lg" variant="glow" />
+              <PremiumIcon icon={WhatsAppIcon} size="lg" variant="glow" />
             </motion.div>
             <motion.h2
               className="text-3xl md:text-4xl font-bold mb-4 text-foreground"
