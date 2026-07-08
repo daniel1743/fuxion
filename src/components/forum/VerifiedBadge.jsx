@@ -1,21 +1,26 @@
 import React from 'react';
-import { BadgeCheck } from 'lucide-react';
+import { HugeiconsIcon } from '@hugeicons/react';
+import { CheckmarkBadge02Icon } from '@hugeicons/core-free-icons';
 
 /**
  * Badge de verificación para el dueño de la página
  * Se muestra junto al nombre "Fuxion Shop"
  */
 const VerifiedBadge = ({ size = 'sm' }) => {
-  const sizeClasses = {
-    xs: 'w-3 h-3',
-    sm: 'w-4 h-4',
-    md: 'w-5 h-5',
-    lg: 'w-6 h-6'
+  const sizeMap = {
+    xs: 12,
+    sm: 16,
+    md: 20,
+    lg: 24
   };
 
+  const iconSize = sizeMap[size] || 16;
+
   return (
-    <BadgeCheck
-      className={`${sizeClasses[size]} text-blue-500 fill-blue-500/20 inline-block`}
+    <HugeiconsIcon
+      icon={CheckmarkBadge02Icon}
+      size={iconSize}
+      className="text-blue-500 inline-block"
       title="Cuenta Oficial Verificada"
     />
   );
