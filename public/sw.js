@@ -9,7 +9,8 @@ const APP_SHELL = [
   '/icons/favicon-32x32.png',
   '/icons/apple-touch-icon.png',
   '/icons/android-chrome-192x192.png',
-  '/icons/android-chrome-512x512.png'
+  '/icons/android-chrome-512x512.png',
+  '/img/productos/vitaenergia.png'
 ];
 
 self.addEventListener('install', (event) => {
