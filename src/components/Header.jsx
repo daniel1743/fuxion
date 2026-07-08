@@ -3,13 +3,13 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HugeiconsIcon } from '@hugeicons/react';
 import {
-  Home11Icon,
+  Home03Icon,
   ShoppingBag03Icon,
-  WellnessIcon,
-  BookOpen02Icon,
-  Rocket01Icon,
-  CustomerSupportIcon,
-  Store04Icon,
+  Leaf01Icon,
+  BookOpenIcon,
+  RocketIcon,
+  HelpCircleIcon,
+  Store01Icon,
 } from '@hugeicons/core-free-icons';
 
 import {
@@ -48,12 +48,12 @@ const officialStoreUrl = 'https://ifuxion.com/daniel/enrollment/chooseperson';
 
 // ── Drawer navigation items ────────────────────────────────────
 const drawerNavItems = [
-  { label: 'Inicio', icon: Home11Icon, path: '/' },
+  { label: 'Inicio', icon: Home03Icon, path: '/' },
   { label: 'Productos', subtitle: 'Catálogo FuXion', icon: ShoppingBag03Icon, path: '/explorar' },
-  { label: 'Objetivos de bienestar', subtitle: 'Encuentra lo ideal para ti', icon: WellnessIcon, path: '/opiniones' },
-  { label: 'Evidencias', subtitle: 'Información y contenido', icon: BookOpen02Icon, path: '/blog' },
-  { label: 'Oportunidad FuXion', subtitle: 'Conoce el proyecto', icon: Rocket01Icon, path: '/oportunidad-fuxion' },
-  { label: 'Centro de ayuda', subtitle: 'Contacto y soporte', icon: CustomerSupportIcon, path: '/ayuda' },
+  { label: 'Objetivos de bienestar', subtitle: 'Encuentra lo ideal para ti', icon: Leaf01Icon, path: '/opiniones' },
+  { label: 'Evidencias', subtitle: 'Información y contenido', icon: BookOpenIcon, path: '/blog' },
+  { label: 'Oportunidad FuXion', subtitle: 'Conoce el proyecto', icon: RocketIcon, path: '/oportunidad-fuxion' },
+  { label: 'Centro de ayuda', subtitle: 'Contacto y soporte', icon: HelpCircleIcon, path: '/ayuda' },
 ];
 
 // ── Social links ───────────────────────────────────────────────
@@ -373,7 +373,7 @@ const Header = () => {
                   className="w-full flex items-center gap-3 px-3 py-3 rounded-xl text-left transition-all duration-200 group hover:bg-emerald-50/60 dark:hover:bg-emerald-900/10 border-l-[3px] border-transparent"
                 >
                   <div className="flex-shrink-0 w-9 h-9 rounded-full bg-secondary flex items-center justify-center text-muted-foreground group-hover:bg-emerald-100 dark:group-hover:bg-emerald-900/30 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-200">
-                    <HugeiconsIcon icon={Store04Icon} size={18} />
+                    <HugeiconsIcon icon={Store01Icon} size={18} />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-semibold text-foreground">
