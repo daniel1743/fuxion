@@ -1,14 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { HugeiconsIcon } from '@hugeicons/react';
 
 /**
  * PremiumIcon — Wrapper visual premium para iconos importantes.
  *
- * Envuelve cualquier icono (Lucide, SVG, etc.) en un círculo verde pastel
+ * Envuelve cualquier icono (HugeIcons, SVG, etc.) en un círculo verde pastel
  * con sombra suave, hover elegante y estilo wellness app.
  *
  * Props:
- *   icon      - Componente React del icono (ej: <Leaf className="w-6 h-6" />)
+ *   icon      - Definición de icono HugeIcons (ej: LeafIcon) o elemento JSX (ej: <WhatsAppIcon />)
  *   size      - 'sm' | 'md' | 'lg' | 'xl' (default: 'md')
  *   variant   - 'default' | 'ghost' | 'outline' | 'glow' (default: 'default')
  *   className - clases adicionales para el contenedor
@@ -51,6 +52,27 @@ const PremiumIcon = ({
 }) => {
   const sizes = sizeMap[size] || sizeMap.md;
 
+  const renderIcon = () => {
+    if (!icon) return null;
+
+    const isReactElement = React.isValidElement(icon);
+
+    if (isReactElement) {
+      const type = icon.type;
+      // Si type es una función, es un componente React válido (ej: WhatsAppIcon, AiRobotIcon)
+      if (typeof type === 'function') {
+        return React.cloneElement(icon, {
+          className: `${sizes.icon} ${icon.props.className || ''}`,
+        });
+      }
+      // Si type es un objeto (definición de HugeIcons), usar HugeiconsIcon
+      return <HugeiconsIcon icon={type} size={24} />;
+    }
+
+    // Si icon es una definición directa (no elemento JSX)
+    return <HugeiconsIcon icon={icon} size={24} />;
+  };
+
   return (
     <motion.div
       whileHover={{ scale: 1.08 }}
@@ -68,10 +90,7 @@ const PremiumIcon = ({
       role="img"
       aria-hidden="true"
     >
-      {icon &&
-        React.cloneElement(icon, {
-          className: `${sizes.icon} ${icon.props.className || ''}`,
-        })}
+      {renderIcon()}
     </motion.div>
   );
 };
