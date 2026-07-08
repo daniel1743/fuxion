@@ -3,7 +3,17 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Heart, Sparkles, Zap, CheckCircle2, MessageCircle, ShoppingCart, ShieldCheck, Truck, Leaf } from 'lucide-react';
+import { HugeiconsIcon } from '@hugeicons/react';
+import {
+  Leaf01Icon,
+  WeightScaleIcon,
+  EnergyIcon,
+  ShieldCheckIcon,
+  DeliveryTruck02Icon,
+  ShoppingBag03Icon,
+  ArrowRight02Icon,
+  CheckmarkCircle02Icon,
+} from '@hugeicons/core-free-icons';
 import PremiumIcon from '@/components/ui/PremiumIcon';
 import { getImageUrl, getPlaceholderImage } from '@/lib/imageUtils';
 import { buildStoreSchema, buildOrganizationSchema, SITE_URL, STORE_NAME } from '@/lib/productSeo';
@@ -54,7 +64,7 @@ const solutions = [
       'Apoyo a rutinas de limpieza digestiva'
     ],
     buttonText: 'Quiero mejorar mi digestión',
-    icon: <PremiumIcon icon={<Sparkles />} size="md" />
+    icon: <PremiumIcon icon={<HugeiconsIcon icon={Leaf01Icon} size={24} />} size="md" />
   },
   {
     id: 2,
@@ -68,7 +78,7 @@ const solutions = [
       'Rutina simple de acompañamiento'
     ],
     buttonText: 'Quiero apoyo para mi objetivo',
-    icon: <PremiumIcon icon={<Zap />} size="md" />
+    icon: <PremiumIcon icon={<HugeiconsIcon icon={WeightScaleIcon} size={24} />} size="md" />
   },
   {
     id: 3,
@@ -82,7 +92,7 @@ const solutions = [
       'Vitalidad durante el día'
     ],
     buttonText: 'Quiero más energía',
-    icon: <PremiumIcon icon={<Heart />} size="md" />
+    icon: <PremiumIcon icon={<HugeiconsIcon icon={EnergyIcon} size={24} />} size="md" />
   }
 ];
 
@@ -137,17 +147,17 @@ const painPoints = [
 
 const trustItems = [
   {
-    icon: <PremiumIcon icon={<ShieldCheck />} size="md" />,
+    icon: <PremiumIcon icon={<HugeiconsIcon icon={ShieldCheckIcon} size={24} />} size="md" />,
     title: 'Compra asistida',
     text: 'Te orientamos antes de comprar para elegir productos según tu objetivo.'
   },
   {
-    icon: <PremiumIcon icon={<Leaf />} size="md" />,
+    icon: <PremiumIcon icon={<HugeiconsIcon icon={Leaf01Icon} size={24} />} size="md" />,
     title: 'Fuxion Biotech',
     text: 'Productos nutracéuticos con enfoque en nutrición, bienestar y hábitos saludables.'
   },
   {
-    icon: <PremiumIcon icon={<Truck />} size="md" />,
+    icon: <PremiumIcon icon={<HugeiconsIcon icon={DeliveryTruck02Icon} size={24} />} size="md" />,
     title: 'Pedido por WhatsApp',
     text: 'Agregas al carrito, envías tu pedido y coordinamos la atención directamente.'
   }
@@ -230,7 +240,7 @@ const HomePage = () => {
                   size="lg"
                   onClick={() => handleWhatsAppClick('Hola, quiero empezar mi cambio con Fuxion')}
                 >
-                  <span className="text-balance">Recibir asesoría</span> <ArrowRight className="ml-2 h-5 w-5 shrink-0" />
+                  <span className="text-balance">Recibir asesoría</span> <HugeiconsIcon icon={ArrowRight02Icon} size={20} className="ml-2 shrink-0" />
                 </Button>
               </motion.div>
             </div>
@@ -384,7 +394,7 @@ const HomePage = () => {
                   <ul className="space-y-2">
                     {solution.benefits.map((benefit, idx) => (
                       <li key={idx} className="flex items-start gap-2 text-sm text-foreground">
-                        <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                        <HugeiconsIcon icon={CheckmarkCircle02Icon} size={20} className="text-primary flex-shrink-0 mt-0.5" />
                         <span>{benefit}</span>
                       </li>
                     ))}
@@ -394,7 +404,7 @@ const HomePage = () => {
                   fullWidth
                   onClick={() => handleWhatsAppClick(`Hola, me interesa: ${solution.title}`)}
                 >
-                  {solution.buttonText} <ArrowRight className="ml-2 h-4 w-4" />
+                  {solution.buttonText} <HugeiconsIcon icon={ArrowRight02Icon} size={16} className="ml-2" />
                 </Button>
               </motion.div>
             ))}
@@ -444,14 +454,14 @@ const HomePage = () => {
                 size="lg"
                 onClick={() => handleWhatsAppClick('Hola, quiero mi recomendación personalizada')}
               >
-                <span className="text-balance">Quiero mi recomendación personalizada</span> <ArrowRight className="ml-2 h-5 w-5 shrink-0" />
+                <span className="text-balance">Quiero mi recomendación personalizada</span> <HugeiconsIcon icon={ArrowRight02Icon} size={20} className="ml-2 shrink-0" />
               </Button>
               <Button
                 size="lg"
                 variant="outline"
                 onClick={() => window.location.href = '/explorar'}
               >
-                <ShoppingCart className="mr-2 h-5 w-5 shrink-0" />
+                <HugeiconsIcon icon={ShoppingBag03Icon} size={20} className="mr-2 shrink-0" />
                 <span className="text-balance">Ver productos</span>
               </Button>
             </div>
@@ -549,7 +559,7 @@ const HomePage = () => {
           >
             <Link to="/explorar">
               <Button variant="outline" className="hover:bg-primary hover:text-primary-foreground">
-                Ver todos los productos <ArrowRight className="ml-2 h-4 w-4" />
+                Ver todos los productos <HugeiconsIcon icon={ArrowRight02Icon} size={16} className="ml-2" />
               </Button>
             </Link>
           </motion.div>
@@ -581,7 +591,7 @@ const HomePage = () => {
               <Button
                 variant="outline"
               >
-                Conocer más <ArrowRight className="ml-2 h-4 w-4" />
+                Conocer más <HugeiconsIcon icon={ArrowRight02Icon} size={16} className="ml-2" />
               </Button>
             </Link>
           </motion.div>
@@ -676,14 +686,14 @@ const HomePage = () => {
               onClick={() => handleWhatsAppClick('Hola, quiero iniciar mi cambio ahora')}
             >
               <span className="text-balance">Iniciar mi cambio ahora</span>
-              <ArrowRight className="ml-2 h-5 w-5 shrink-0" />
+              <HugeiconsIcon icon={ArrowRight02Icon} size={20} className="ml-2 shrink-0" />
             </Button>
             <Button
               size="lg"
               variant="outline"
               onClick={() => window.location.href = '/explorar'}
             >
-              <ShoppingCart className="mr-2 h-5 w-5 shrink-0" />
+              <HugeiconsIcon icon={ShoppingBag03Icon} size={20} className="mr-2 shrink-0" />
               <span className="text-balance">Ver catálogo</span>
             </Button>
           </motion.div>
