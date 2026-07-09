@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -198,6 +199,20 @@ const countries = [
 // ── Component ─────────────────────────────────────────────────
 const OpportunityPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      setTimeout(() => {
+        document
+          .querySelector(location.hash)
+          ?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+          });
+      }, 300);
+    }
+  }, [location]);
   const quizRef = useRef(null);
   const formRef = useRef(null);
 
@@ -850,7 +865,7 @@ const OpportunityPage = () => {
               </p>
             </motion.div>
 
-            <motion.div {...fadeUp} transition={{ duration: 0.6, delay: 0.2 }}>
+            <motion.div id="video-oportunidad" {...fadeUp} transition={{ duration: 0.6, delay: 0.2 }}>
               <OpportunityVideo />
             </motion.div>
 
