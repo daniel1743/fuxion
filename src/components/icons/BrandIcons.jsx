@@ -20,6 +20,6 @@ export const WhatsAppIcon = ({ className = 'h-4 w-4' }) => (
   <img
     src="/icons/whatsapp_logo.svg"
     alt="WhatsApp"
-    className={`${className} object-contain`}
+    className={`${className} object-contain brightness-0 invert`}
   />
 );

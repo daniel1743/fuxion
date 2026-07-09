@@ -609,7 +609,7 @@ const HomePage = () => {
                           title="Hablar con asesor"
                           aria-label={`Hablar con asesor por WhatsApp sobre ${product.name}`}
                         >
-                          <WhatsAppIcon className="h-4 w-4" />
+                          <WhatsAppIcon className="h-5 w-5" />
                         </Button>
                       </div>
                     </div>
@@ -714,7 +714,7 @@ const HomePage = () => {
                 onClick={() => handleWhatsAppClick('Hola, quiero mi recomendación personalizada')}
               >
                 <span>Quiero mi recomendación</span>
-                <WhatsAppIcon className="ml-2 h-5 w-5 shrink-0" />
+                <WhatsAppIcon className="ml-2 h-6 w-6 shrink-0" />
               </Button>
             </motion.div>
           </motion.div>
