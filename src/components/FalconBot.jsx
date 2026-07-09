@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Minus, X, Send, MessageCircle, FileText, Play, Heart, Leaf } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -28,6 +29,7 @@ import {
 } from '@/lib/productJourney';
 
 const FalconBot = () => {
+    const navigate = useNavigate();
     const { user } = useAuth();
     const { adminData } = useAdmin();
     const { account, orders, isEligible } = useLoyalty();
