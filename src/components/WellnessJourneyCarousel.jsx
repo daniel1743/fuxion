@@ -288,7 +288,7 @@ const WellnessJourneyCarousel = () => {
                   </div>
 
                   {/* ── Content side ── */}
-                  <div className="relative flex flex-col justify-center p-6 md:p-10 lg:p-12">
+                  <div className="relative flex flex-col justify-between p-6 md:p-10 lg:p-12 h-full">
                     {/* Category badge (desktop) */}
                     <div className="hidden md:flex items-center gap-2 mb-4">
                       <span
@@ -299,18 +299,21 @@ const WellnessJourneyCarousel = () => {
                       </span>
                     </div>
 
-                    {/* Title */}
-                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-foreground leading-tight mb-3">
-                      {slide.title}
-                    </h3>
+                    {/* Content wrapper - takes available space */}
+                    <div className="flex-1">
+                      {/* Title */}
+                      <h3 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-foreground leading-tight mb-3">
+                        {slide.title}
+                      </h3>
 
-                    {/* Description */}
-                    <p className="text-sm md:text-base text-muted-foreground leading-relaxed mb-6 max-w-lg">
-                      {slide.description}
-                    </p>
+                      {/* Description */}
+                      <p className="text-sm md:text-base text-muted-foreground leading-relaxed mb-6 max-w-lg">
+                        {slide.description}
+                      </p>
+                    </div>
 
-                    {/* Action button */}
-                    <div className="flex flex-col sm:flex-row gap-3">
+                    {/* Action button - pushed to bottom */}
+                    <div className="flex flex-col sm:flex-row gap-3 mt-auto">
                       <Button
                         size="lg"
                         onClick={handleAction}
