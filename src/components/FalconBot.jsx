@@ -935,7 +935,7 @@ Pregunta del usuario: ${userMessage}`,
                                                     onClick={() => {
                                                         minimizeChat();
                                                         setTimeout(() => {
-                                                            window.location.href = '/oportunidad#video-oportunidad';
+                                                            navigate('/oportunidad#video-oportunidad');
                                                         }, 300);
                                                     }}
                                                     className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 px-3 py-2 text-xs font-semibold text-white transition hover:shadow-lg hover:from-emerald-600 hover:to-teal-600"
