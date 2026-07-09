@@ -3,6 +3,7 @@ import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { Search, ShoppingCart, MessageCircle } from 'lucide-react';
 import { HugeiconsIcon } from '@hugeicons/react';
 import {
   Leaf01Icon,
@@ -103,36 +104,48 @@ const featuredProducts = [
     name: 'PRUNEX 1',
     description: 'Digestión + liviandad',
     image: getImageUrl('/img/productos/prunex-1.png'),
-    slug: 'prunex-1'
+    slug: 'prunex-1',
+    price: 28500,
+    badge: 'Más elegido'
   },
   {
     id: 'thermo-t3',
     name: 'THERMO T3',
     description: 'Metabolismo + energía',
     image: getImageUrl('/img/productos/thermo-t3.png'),
-    slug: 'thermo-t3'
+    slug: 'thermo-t3',
+    price: 32500,
+    badge: null
   },
   {
     id: 'vita-xtra-t-plus',
     name: 'VITA XTRA T+',
     description: 'Energía + rendimiento',
     image: getImageUrl('/img/productos/vita-xtra-t+.png'),
-    slug: 'vita-xtra-t-plus'
+    slug: 'vita-xtra-t-plus',
+    price: 29800,
+    badge: null
   }
 ];
 
 const purchaseSteps = [
   {
-    title: 'Busca por objetivo',
-    text: 'Encuentra productos por digestión, energía, control de peso, defensas o bienestar general.'
+    title: 'Busca',
+    subtitle: 'Encuentra por objetivo',
+    text: 'Digestión, energía, control de peso, defensas o bienestar general.',
+    icon: Search
   },
   {
-    title: 'Agrega al carrito',
-    text: 'Revisa precios, presentación y modo de uso antes de enviar tu pedido.'
+    title: 'Elige',
+    subtitle: 'Revisa y agrega',
+    text: 'Precios, presentación y modo de uso antes de enviar tu pedido.',
+    icon: ShoppingCart
   },
   {
-    title: 'Coordina por WhatsApp',
-    text: 'Un asesor confirma disponibilidad, resuelve dudas y coordina pago y despacho.'
+    title: 'Coordina',
+    subtitle: 'Con asesor',
+    text: 'Un asesor confirma disponibilidad, resuelve dudas y coordina pago y despacho.',
+    icon: MessageCircle
   }
 ];
 
@@ -294,21 +307,28 @@ const HomePage = () => {
       <section className="py-10 bg-white dark:bg-card border-y border-emerald-100 dark:border-border">
         <div className="container mx-auto px-6">
           <div className="grid gap-4 md:grid-cols-3">
-            {trustItems.map((item) => (
-              <div key={item.title} className="flex gap-4 rounded-xl border border-emerald-100 bg-emerald-50/60 p-5 dark:border-border dark:bg-secondary/40">
-                <div className="text-emerald-700 dark:text-emerald-300">{item.icon}</div>
+            {trustItems.map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.15 }}
+                className="flex gap-4 rounded-2xl border border-white/30 bg-white/70 backdrop-blur-sm p-5 shadow-sm hover:shadow-md transition-all duration-300 dark:border-emerald-900/30 dark:bg-card/70"
+              >
+                <div className="text-emerald-600 dark:text-emerald-400">{item.icon}</div>
                 <div>
                   <h2 className="font-bold text-foreground">{item.title}</h2>
                   <p className="mt-1 text-sm text-muted-foreground">{item.text}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* SECCIÓN 2 – Dolor real del público */}
-      <section className="py-20 bg-secondary/30">
+      <section className="py-12 md:py-20 bg-secondary/30">
         <div className="container mx-auto px-6 max-w-4xl">
           <motion.h2
             className="text-responsive-section font-bold text-center mb-8 text-foreground"
@@ -357,7 +377,7 @@ const HomePage = () => {
       </section>
 
       {/* SECCIÓN 3 – La promesa Fuxion */}
-      <section className="py-20">
+      <section className="py-12 md:py-20">
         <div className="container mx-auto px-6 max-w-4xl">
           <motion.h2
             className="text-responsive-section font-bold text-center mb-6 text-foreground"
@@ -381,7 +401,7 @@ const HomePage = () => {
       </section>
 
       {/* SECCIÓN 4 – Las 3 soluciones principales */}
-      <section className="py-20 bg-secondary/30">
+      <section className="py-12 md:py-20 bg-secondary/30">
         <div className="container mx-auto px-6">
           <motion.h2
             className="text-responsive-section font-bold text-center mb-12 text-foreground"
@@ -438,7 +458,7 @@ const HomePage = () => {
       </section>
 
       {/* SECCIÓN 5 – Cómo funciona */}
-      <section className="py-20">
+      <section className="py-12 md:py-20">
         <div className="container mx-auto px-6 max-w-5xl">
           <motion.h2
             className="text-responsive-section font-bold text-center mb-4 text-foreground"
@@ -450,22 +470,26 @@ const HomePage = () => {
             Compra simple, asistida y sin cobro automático.
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-            {purchaseSteps.map((step, i) => (
-              <motion.div
-                key={step.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.15 }}
-                className="bg-card p-6 rounded-lg border border-border flex flex-col items-center text-center hover:border-primary transition-all duration-300"
-              >
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 shadow-sm shadow-emerald-200/50 ring-1 ring-emerald-200 dark:bg-emerald-900/40 dark:text-emerald-300 dark:shadow-emerald-900/20 dark:ring-emerald-800">
-                  <span className="text-base font-bold">{i + 1}</span>
-                </div>
-                <p className="font-bold text-foreground">{step.title}</p>
-                <p className="mt-3 text-sm text-muted-foreground">{step.text}</p>
-              </motion.div>
-            ))}
+            {purchaseSteps.map((step, i) => {
+              const StepIcon = step.icon;
+              return (
+                <motion.div
+                  key={step.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.15 }}
+                  className="bg-card p-6 rounded-2xl border border-border/60 flex flex-col items-center text-center hover:border-emerald-300 hover:shadow-md transition-all duration-300"
+                >
+                  <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-50 to-emerald-100 text-emerald-600 shadow-sm dark:from-emerald-900/30 dark:to-emerald-900/20 dark:text-emerald-400">
+                    <StepIcon className="h-6 w-6" strokeWidth={1.5} />
+                  </div>
+                  <p className="font-bold text-foreground text-lg">{step.title}</p>
+                  <p className="text-sm font-medium text-emerald-600 dark:text-emerald-400 mt-0.5">{step.subtitle}</p>
+                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{step.text}</p>
+                </motion.div>
+              );
+            })}
           </div>
           <motion.div
             className="text-center mt-12"
@@ -495,7 +519,7 @@ const HomePage = () => {
       </section>
 
       {/* SECCIÓN 6 – Productos destacados */}
-      <section className="py-20 bg-secondary/30">
+      <section className="py-12 md:py-20 bg-secondary/30">
         <div className="container mx-auto px-6">
           <motion.h2
             className="text-responsive-section font-bold text-center mb-12 text-foreground"
@@ -531,8 +555,20 @@ const HomePage = () => {
                       />
                     </div>
                     <div className="p-6 flex flex-col flex-grow">
-                      <h3 className="text-xl font-bold text-foreground mb-2">{product.name}</h3>
-                      <p className="text-sm text-muted-foreground mb-4">{product.description}</p>
+                      <div className="flex items-start justify-between mb-2">
+                        <h3 className="text-xl font-bold text-foreground">{product.name}</h3>
+                        {product.badge && (
+                          <span className="shrink-0 rounded-full bg-emerald-100 px-2.5 py-0.5 text-[10px] font-semibold text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300">
+                            {product.badge}
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-sm text-muted-foreground mb-2">{product.description}</p>
+                      {product.price && (
+                        <p className="text-lg font-bold text-foreground mb-4">
+                          ${product.price.toLocaleString('es-CL')}
+                        </p>
+                      )}
                       <div className="mt-auto flex gap-2">
                         <Button
                           size="sm"
@@ -624,7 +660,7 @@ const HomePage = () => {
       </section>
 
       {/* SECCIÓN 7 – Bonus irresistible */}
-      <section className="py-20">
+      <section className="py-12 md:py-20">
         <div className="container mx-auto px-6 max-w-4xl">
           <motion.div
             className="rounded-2xl border border-emerald-100 bg-emerald-50 p-8 text-center dark:border-emerald-900 dark:bg-emerald-950/20 md:p-12"
@@ -679,7 +715,7 @@ const HomePage = () => {
       </section>
 
       {/* SECCIÓN FINAL – Cierre emocional */}
-      <section className="py-20 bg-secondary/30">
+      <section className="py-12 md:py-20 bg-secondary/30">
         <div className="container mx-auto px-6 max-w-4xl text-center">
           <motion.h2
             className="text-3xl md:text-5xl font-bold mb-6 text-foreground"
@@ -852,6 +888,9 @@ const CertificationsCarousel = () => {
   return (
     <section className="py-8 bg-white dark:bg-card border-y border-emerald-100 dark:border-border overflow-hidden">
       <div className="container mx-auto px-6">
+        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4 text-center">
+          Sellos y certificaciones de calidad
+        </p>
         <div
           ref={scrollRef}
           className="flex items-center gap-12 overflow-x-hidden whitespace-nowrap"
@@ -862,12 +901,12 @@ const CertificationsCarousel = () => {
           {[...certifications, ...certifications].map((cert, i) => (
             <div
               key={`${cert.id}-${i}`}
-              className="shrink-0 flex items-center gap-2 opacity-40 hover:opacity-80 transition-opacity duration-300"
+              className="shrink-0 flex items-center gap-2 opacity-70 hover:opacity-100 transition-opacity duration-300"
             >
-              <span className="text-emerald-600/60 dark:text-emerald-400/60">
+              <span className="text-emerald-600/80 dark:text-emerald-400/80">
                 {cert.icon}
               </span>
-              <span className="text-xs text-muted-foreground/60 font-medium whitespace-nowrap">
+              <span className="text-xs text-muted-foreground/80 font-medium whitespace-nowrap">
                 {cert.name}
               </span>
             </div>
