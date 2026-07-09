@@ -434,7 +434,7 @@ const Header = () => {
                     onClick={handleWhatsApp}
                     className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-bold rounded-full py-3 px-5 shadow-lg shadow-emerald-500/20 transition-all duration-200 hover:shadow-xl hover:shadow-emerald-500/30 active:scale-[0.98]"
                   >
-                    <MessageCircle className="w-[18px] h-[18px]" strokeWidth={1.8} />
+                    <WhatsAppIcon className="h-5 w-5 text-white" />
                     <span className="text-sm">Hablar con asesor</span>
                   </button>
                 </div>

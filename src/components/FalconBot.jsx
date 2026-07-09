@@ -897,7 +897,7 @@ Pregunta del usuario: ${userMessage}`,
                                                     className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-3 py-2 text-xs font-semibold text-white transition hover:bg-[#1fb85a]"
                                                 >
                                                     <WhatsAppIcon className="h-5 w-5 text-white" />
-                                                    <MessageCircle className="h-4 w-4" />
+                                                    <WhatsAppIcon className="h-5 w-5 text-white" />
                                                     Hablar por WhatsApp
                                                 </button>
                                                 <button
