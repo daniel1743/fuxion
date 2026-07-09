@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Search, ArrowRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 
 const SUGGESTIONS = [
@@ -22,6 +23,7 @@ const ProductNeedSearch = ({
   className = ''
 }) => {
   const [value, setValue] = useState(initialValue);
+  const [isFocused, setIsFocused] = useState(false);
   const scrollRef = useRef(null);
 
   useEffect(() => {
@@ -70,6 +72,8 @@ const ProductNeedSearch = ({
             type="search"
             value={value}
             onChange={(event) => setValue(event.target.value)}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
             placeholder=""
             className={`w-full rounded-xl border border-transparent bg-emerald-50/70 pl-12 pr-4 text-foreground outline-none transition focus:border-emerald-300 focus:bg-white dark:bg-secondary/60 dark:focus:bg-card ${
               compact ? 'h-12 text-sm' : 'h-14 text-base'
@@ -78,26 +82,34 @@ const ProductNeedSearch = ({
           />
           {/* Infinite scroll suggestions inside the input - decorative only */}
           {!compact && (
-            <div
-              className="pointer-events-none absolute inset-y-0 left-12 right-4 flex items-center overflow-hidden select-none"
-              aria-hidden="true"
-            >
-              <div
-                ref={scrollRef}
-                className="flex items-center gap-3 overflow-x-hidden whitespace-nowrap text-xs text-emerald-600/45 font-light"
-                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-              >
-                {/* Duplicate for seamless loop */}
-                {[...SUGGESTIONS, ...SUGGESTIONS].map((suggestion, i) => (
-                  <span
-                    key={`${suggestion}-${i}`}
-                    className="shrink-0"
+            <AnimatePresence>
+              {!isFocused && !value && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.25 }}
+                  className="pointer-events-none absolute inset-y-0 left-12 right-4 flex items-center overflow-hidden select-none"
+                  aria-hidden="true"
+                >
+                  <div
+                    ref={scrollRef}
+                    className="flex items-center gap-3 overflow-x-hidden whitespace-nowrap text-xs text-emerald-600/45 font-light"
+                    style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                   >
-                    {suggestion}
-                  </span>
-                ))}
-              </div>
-            </div>
+                    {/* Duplicate for seamless loop */}
+                    {[...SUGGESTIONS, ...SUGGESTIONS].map((suggestion, i) => (
+                      <span
+                        key={`${suggestion}-${i}`}
+                        className="shrink-0"
+                      >
+                        {suggestion}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           )}
         </div>
         <Button type="submit" className={`${compact ? 'h-12' : 'h-14'} bg-emerald-600 hover:bg-emerald-700 text-white gap-2 rounded-xl px-5`}>
