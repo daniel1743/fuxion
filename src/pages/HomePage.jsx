@@ -784,66 +784,18 @@ const HomePage = () => {
 // <CertificationsCarousel /> en HomePage.
 // ═══════════════════════════════════════════════════════════════════
 const certifications = [
-  {
-    id: 'cert-1',
-    name: 'Certificación 1',
-    imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.41 PM (1).png'
-  },
-  {
-    id: 'cert-2',
-    name: 'Certificación 2',
-    imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.41 PM (2).png'
-  },
-  {
-    id: 'cert-3',
-    name: 'Certificación 3',
-    imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.41 PM (3).png'
-  },
-  {
-    id: 'cert-4',
-    name: 'Certificación 4',
-    imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.41 PM (4).png'
-  },
-  {
-    id: 'cert-5',
-    name: 'Certificación 5',
-    imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.41 PM (5).png'
-  },
-  {
-    id: 'cert-6',
-    name: 'Certificación 6',
-    imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.41 PM (6).png'
-  },
-  {
-    id: 'cert-7',
-    name: 'Certificación 7',
-    imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.42 PM (1).png'
-  },
-  {
-    id: 'cert-8',
-    name: 'Certificación 8',
-    imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.42 PM (2).png'
-  },
-  {
-    id: 'cert-9',
-    name: 'Certificación 9',
-    imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.42 PM (3).png'
-  },
-  {
-    id: 'cert-10',
-    name: 'Certificación 10',
-    imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.42 PM (4).png'
-  },
-  {
-    id: 'cert-11',
-    name: 'Certificación 11',
-    imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.42 PM (5).png'
-  },
-  {
-    id: 'cert-12',
-    name: 'Certificación 12',
-    imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.42 PM (6).png'
-  }
+  { id: 'cert-1', imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.41 PM (1).jpeg' },
+  { id: 'cert-2', imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.41 PM (2).jpeg' },
+  { id: 'cert-3', imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.41 PM (3).jpeg' },
+  { id: 'cert-4', imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.41 PM (4).jpeg' },
+  { id: 'cert-5', imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.41 PM (5).jpeg' },
+  { id: 'cert-6', imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.41 PM (6).jpeg' },
+  { id: 'cert-7', imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.42 PM (1).jpeg' },
+  { id: 'cert-8', imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.42 PM (2).jpeg' },
+  { id: 'cert-9', imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.42 PM (3).jpeg' },
+  { id: 'cert-10', imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.42 PM (4).jpeg' },
+  { id: 'cert-11', imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.42 PM (5).jpeg' },
+  { id: 'cert-12', imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.42 PM (6).jpeg' }
 ];
 
 const CertificationsCarousel = () => {
@@ -909,7 +861,7 @@ const CertificationsCarousel = () => {
         </p>
         <div
           ref={scrollRef}
-          className="flex items-center gap-12 overflow-x-hidden whitespace-nowrap"
+          className="flex items-center gap-16 overflow-x-hidden whitespace-nowrap"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           aria-hidden="true"
         >
@@ -919,7 +871,7 @@ const CertificationsCarousel = () => {
             return (
               <div
                 key={`${cert.id}-${i}`}
-                className="shrink-0 flex items-center gap-2 opacity-70 hover:opacity-100 transition-all duration-300 ease-out"
+                className="shrink-0 opacity-70 hover:opacity-100 transition-all duration-300 ease-out"
                 style={{
                   transform: isHovered ? 'scale(1.15)' : 'scale(1)',
                   transition: 'transform 300ms ease-out, opacity 300ms ease-out'
@@ -931,13 +883,10 @@ const CertificationsCarousel = () => {
               >
                 <img
                   src={cert.imageSrc}
-                  alt={cert.name}
-                  className="h-8 w-8 object-contain"
+                  alt=""
+                  className="h-20 w-20 object-contain"
                   loading="lazy"
                 />
-                <span className="text-xs text-muted-foreground/80 font-medium whitespace-nowrap">
-                  {cert.name}
-                </span>
               </div>
             );
           })}
