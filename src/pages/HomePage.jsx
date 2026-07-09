@@ -280,7 +280,7 @@ const HomePage = () => {
          
          CÓMO ELIMINAR ESTA SECCIÓN:
          - Elimina todo el bloque desde "SECCIÓN 1.6" hasta el cierre de </section>
-         - O simplemente comenta el bloque con {/* ... */}
+         - O simplemente comenta o elimina este bloque completo.
          
          CÓMO AJUSTAR VELOCIDAD:
          - Cambia el valor de `speed` en el useEffect (actualmente 0.3)
