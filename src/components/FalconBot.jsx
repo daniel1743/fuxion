@@ -6,7 +6,8 @@ import { toast } from "@/components/ui/use-toast";
 import { sendMessageToDeepSeek } from '@/services/deepseekService';
 import { confirmAndOpenWhatsapp, getActiveAdvisor } from '@/lib/whatsapp';
 import { recordAdvisorEvent } from '@/services/advisorService';
-import { AiRobotIcon, WhatsAppIcon } from '@/components/icons/BrandIcons';
+import { Robot } from '@phosphor-icons/react';
+import { WhatsAppIcon } from '@/components/icons/BrandIcons';
 import ProductLinkedText from '@/components/ProductLinkedText';
 import { useAuth } from '@/context/AuthContext';
 import { useAdmin } from '@/context/AdminContext';
@@ -751,7 +752,7 @@ Pregunta del usuario: ${userMessage}`,
                             className="relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 hover:scale-105 active:scale-92 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 group"
                             aria-label="Abrir asistente de IA"
                         >
-                            <AiRobotIcon className="h-6 w-6 group-hover:scale-110 transition-transform" />
+                            <Robot size={26} weight="duotone" className="group-hover:scale-110 transition-transform" />
                             <span className="absolute -top-1 -right-1 w-4 h-4 bg-emerald-400 rounded-full border-2 border-white shadow-lg shadow-emerald-400/50 animate-pulse"></span>
                         </button>
                     </motion.div>
