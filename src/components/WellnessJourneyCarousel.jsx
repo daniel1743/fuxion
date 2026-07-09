@@ -317,7 +317,7 @@ const WellnessJourneyCarousel = () => {
                       <Button
                         size="lg"
                         onClick={handleAction}
-                        className="shadow-premium-soft hover:shadow-md transition-all duration-300"
+                        className="bg-emerald-600 hover:bg-emerald-700 text-white shadow-premium-soft hover:shadow-md transition-all duration-300"
                       >
                         {slide.action}
                         <ArrowRight className="ml-2 h-4 w-4" />

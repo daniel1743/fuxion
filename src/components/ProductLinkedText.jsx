@@ -66,7 +66,7 @@ const ProductLinkedText = ({ text, className = '', onProductClick }) => {
             key={`${part}-${index}`}
             to={`/producto/${match.slug}`}
             onClick={() => onProductClick?.(match)}
-            className="font-semibold underline decoration-current/40 underline-offset-4 transition hover:decoration-current"
+            className="font-semibold underline decoration-current/40 underline-offset-4 transition hover:decoration-current text-emerald-600 hover:text-emerald-700"
           >
             {part}
           </Link>

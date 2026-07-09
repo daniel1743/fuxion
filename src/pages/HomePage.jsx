@@ -295,7 +295,7 @@ const HomePage = () => {
         <div className="container mx-auto px-6">
           <div className="grid gap-4 md:grid-cols-3">
             {trustItems.map((item) => (
-              <div key={item.title} className="flex gap-4 rounded-xl border border-emerald-100 bg-[#f7faf4] p-5 dark:border-border dark:bg-secondary/40">
+              <div key={item.title} className="flex gap-4 rounded-xl border border-emerald-100 bg-emerald-50/60 p-5 dark:border-border dark:bg-secondary/40">
                 <div className="text-emerald-700 dark:text-emerald-300">{item.icon}</div>
                 <div>
                   <h2 className="font-bold text-foreground">{item.title}</h2>

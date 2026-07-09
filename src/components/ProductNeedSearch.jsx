@@ -100,7 +100,7 @@ const ProductNeedSearch = ({
             </div>
           )}
         </div>
-        <Button type="submit" className={`${compact ? 'h-12' : 'h-14'} gap-2 rounded-xl px-5`}>
+        <Button type="submit" className={`${compact ? 'h-12' : 'h-14'} bg-emerald-600 hover:bg-emerald-700 text-white gap-2 rounded-xl px-5`}>
           Ver productos
           <ArrowRight className="h-4 w-4" />
         </Button>
