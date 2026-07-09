@@ -5,7 +5,6 @@ import Footer from '@/components/Footer';
 import FalconBot from '@/components/FalconBot';
 import AuthModal from '@/components/AuthModal';
 import WhatsAppConfirmDialog from '@/components/WhatsAppConfirmDialog';
-import FloatingWhatsAppButton from '@/components/FloatingWhatsAppButton';
 import PwaInstallPrompt from '@/components/PwaInstallPrompt';
 import CookieConsentBanner from '@/components/CookieConsentBanner';
 
@@ -17,7 +16,6 @@ const Layout = ({ children }) => {
       <Footer />
       <CookieConsentBanner />
       <PwaInstallPrompt />
-      <FloatingWhatsAppButton />
       <FalconBot />
       <AuthModal />
       <WhatsAppConfirmDialog />
