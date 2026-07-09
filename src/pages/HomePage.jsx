@@ -18,7 +18,7 @@ import {
 } from '@hugeicons/core-free-icons';
 import PremiumIcon from '@/components/ui/PremiumIcon';
 import { getImageUrl, getPlaceholderImage } from '@/lib/imageUtils';
-import { buildStoreSchema, buildOrganizationSchema, SITE_URL, STORE_NAME } from '@/lib/productSeo';
+import { buildStoreSchema, buildOrganizationSchema, SITE_URL, STORE_NAME, getAllSeoProducts } from '@/lib/productSeo';
 import { confirmAndOpenWhatsapp, openWhatsapp } from '@/lib/whatsapp';
 import ProductNeedSearch from '@/components/ProductNeedSearch';
 import WellnessJourneyCarousel from '@/components/WellnessJourneyCarousel';
@@ -98,6 +98,13 @@ const solutions = [
   }
 ];
 
+// Obtener precios reales desde la base de datos de productos
+const allSeoProducts = getAllSeoProducts();
+const getProductPrice = (slug) => {
+  const product = allSeoProducts.find(p => p.slug === slug);
+  return product?.price || product?.precio || null;
+};
+
 const featuredProducts = [
   {
     id: 'prunex-1',
@@ -105,7 +112,7 @@ const featuredProducts = [
     description: 'Digestión + liviandad',
     image: getImageUrl('/img/productos/prunex-1.png'),
     slug: 'prunex-1',
-    price: 28500,
+    price: getProductPrice('prunex-1'),
     badge: 'Más elegido'
   },
   {
@@ -114,7 +121,7 @@ const featuredProducts = [
     description: 'Metabolismo + energía',
     image: getImageUrl('/img/productos/thermo-t3.png'),
     slug: 'thermo-t3',
-    price: 32500,
+    price: getProductPrice('thermo-t3'),
     badge: null
   },
   {
@@ -123,7 +130,7 @@ const featuredProducts = [
     description: 'Energía + rendimiento',
     image: getImageUrl('/img/productos/vita-xtra-t+.png'),
     slug: 'vita-xtra-t-plus',
-    price: 29800,
+    price: getProductPrice('vita-xtra-t-plus'),
     badge: null
   }
 ];
@@ -564,7 +571,7 @@ const HomePage = () => {
                         )}
                       </div>
                       <p className="text-sm text-muted-foreground mb-2">{product.description}</p>
-                      {product.price && (
+                      {product.price != null && (
                         <p className="text-lg font-bold text-foreground mb-4">
                           ${product.price.toLocaleString('es-CL')}
                         </p>
