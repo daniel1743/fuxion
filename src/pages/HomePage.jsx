@@ -789,8 +789,7 @@ const certifications = [
   { id: 'cert-8', imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.42 PM (2).jpeg' },
   { id: 'cert-9', imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.42 PM (3).jpeg' },
   { id: 'cert-10', imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.42 PM (4).jpeg' },
-  { id: 'cert-11', imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.42 PM (5).jpeg' },
-  { id: 'cert-12', imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.42 PM (6).jpeg' }
+  { id: 'cert-11', imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.42 PM.jpeg' }
 ];
 
 const CertificationsCarousel = () => {
