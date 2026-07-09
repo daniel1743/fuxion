@@ -751,7 +751,7 @@ Pregunta del usuario: ${userMessage}`,
                             className="relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 hover:scale-105 active:scale-92 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 group"
                             aria-label="Abrir asistente de IA"
                         >
-                            <AiRobotIcon className="h-6 w-6 group-hover:scale-110 transition-transform" />
+                            <AiRobotIcon className="h-9 w-9 group-hover:scale-110 transition-transform object-contain" />
                             <span className="absolute -top-1 -right-1 w-4 h-4 bg-emerald-400 rounded-full border-2 border-white shadow-lg shadow-emerald-400/50 animate-pulse"></span>
                         </button>
                     </motion.div>
@@ -779,7 +779,7 @@ Pregunta del usuario: ${userMessage}`,
                             <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none"></div>
                             <div className="flex items-center gap-2 relative z-10">
                                 <div className="bg-white/15 rounded-full p-1.5">
-                                    <AiRobotIcon className="h-5 w-5" />
+                                    <AiRobotIcon className="h-8 w-8 object-contain" />
                                 </div>
                                 <div>
                                     <h3 className="text-white font-bold text-sm">{bot.name}</h3>
@@ -840,7 +840,7 @@ Pregunta del usuario: ${userMessage}`,
                                         {message.sender === 'bot' && message.botType !== 'system' && message.botType !== 'error' && (
                                             <div className="flex items-center gap-2 mb-1.5">
                                                 <div className="bg-white/20 rounded-full p-0.5">
-                                                    <AiRobotIcon className="h-3.5 w-3.5" />
+                                                    <AiRobotIcon className="h-5 w-5 object-contain" />
                                                 </div>
                                                 <span className="text-[11px] font-semibold text-white/90">{bot.name}</span>
                                             </div>
