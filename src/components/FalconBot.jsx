@@ -779,7 +779,7 @@ Pregunta del usuario: ${userMessage}`,
                             <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none"></div>
                             <div className="flex items-center gap-2 relative z-10">
                                 <div className="bg-white/15 rounded-full p-1.5">
-                                    <AiRobotIcon className="h-5 w-5 text-white" />
+                                    <AiRobotIcon className="h-5 w-5" />
                                 </div>
                                 <div>
                                     <h3 className="text-white font-bold text-sm">{bot.name}</h3>
@@ -840,7 +840,7 @@ Pregunta del usuario: ${userMessage}`,
                                         {message.sender === 'bot' && message.botType !== 'system' && message.botType !== 'error' && (
                                             <div className="flex items-center gap-2 mb-1.5">
                                                 <div className="bg-white/20 rounded-full p-0.5">
-                                                    <AiRobotIcon className="h-3.5 w-3.5 text-white" />
+                                                    <AiRobotIcon className="h-3.5 w-3.5" />
                                                 </div>
                                                 <span className="text-[11px] font-semibold text-white/90">{bot.name}</span>
                                             </div>
