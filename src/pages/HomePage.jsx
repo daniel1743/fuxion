@@ -385,24 +385,27 @@ const HomePage = () => {
                   {solution.icon}
                   <h3 className="text-2xl font-bold text-foreground">{solution.title}</h3>
                 </div>
-                <p className="text-muted-foreground mb-6">{solution.subtitle}</p>
-                <div className="mb-6">
-                  <p className="text-sm font-semibold text-foreground mb-2">Productos:</p>
-                  <p className="text-sm text-muted-foreground">{solution.products.join(', ')}</p>
-                </div>
-                <div className="mb-6">
-                  <p className="text-sm font-semibold text-foreground mb-3">Beneficios:</p>
-                  <ul className="space-y-2">
-                    {solution.benefits.map((benefit, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-sm text-foreground">
-                        <HugeiconsIcon icon={CheckmarkCircle02Icon} size={20} className="text-primary flex-shrink-0 mt-0.5" />
-                        <span>{benefit}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="flex-1">
+                  <p className="text-muted-foreground mb-6">{solution.subtitle}</p>
+                  <div className="mb-6">
+                    <p className="text-sm font-semibold text-foreground mb-2">Productos:</p>
+                    <p className="text-sm text-muted-foreground">{solution.products.join(', ')}</p>
+                  </div>
+                  <div className="mb-6">
+                    <p className="text-sm font-semibold text-foreground mb-3">Beneficios:</p>
+                    <ul className="space-y-2">
+                      {solution.benefits.map((benefit, idx) => (
+                        <li key={idx} className="flex items-start gap-2 text-sm text-foreground">
+                          <HugeiconsIcon icon={CheckmarkCircle02Icon} size={20} className="text-primary flex-shrink-0 mt-0.5" />
+                          <span>{benefit}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
                 <Button
                   fullWidth
+                  className="mt-auto"
                   onClick={() => handleWhatsAppClick(`Hola, me interesa: ${solution.title}`)}
                 >
                   {solution.buttonText} <HugeiconsIcon icon={ArrowRight02Icon} size={16} className="ml-2" />
