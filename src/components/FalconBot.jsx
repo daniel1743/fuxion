@@ -408,6 +408,20 @@ Puedes preguntarme si es adecuado para tu objetivo, con qué combinarlo o cómo 
         }
     };
 
+    const handleNewConversation = () => {
+        // Limpiar solo el estado visual de mensajes del frontend
+        // Mantener intacta la memoria interna, customerMemory, Supabase, etc.
+        setMessages([
+            {
+                sender: 'bot',
+                text: bot.greeting,
+                botType: 'assistant'
+            }
+        ]);
+        setShowQuickActions(true);
+        setActiveProduct(null);
+    };
+
     const minimizeChat = () => {
         setIsOpen(false);
     };
@@ -794,6 +808,16 @@ Pregunta del usuario: ${userMessage}`,
                                 </div>
                             </div>
                             <div className="flex items-center gap-1 relative z-10">
+                                <Button
+                                    onClick={handleNewConversation}
+                                    variant="ghost"
+                                    size="icon"
+                                    className="text-white hover:bg-white/20 rounded-full h-8 w-8"
+                                    title="Nueva conversación"
+                                    aria-label="Nueva conversación"
+                                >
+                                    <MessageCircle className="h-4 w-4" />
+                                </Button>
                                 <Button
                                     onClick={minimizeChat}
                                     variant="ghost"
