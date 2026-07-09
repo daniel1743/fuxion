@@ -541,6 +541,29 @@ Nombre: ${productCtx.name}`;
 
     const executeSend = async (userMessage, nextMessages) => {
         try {
+            // Detectar intención de video de oportunidad
+            const videoOpportunityPatterns = [
+                /\b(quiero ver el video|ver video|video explicativo|pásame el video|pásame el vídeo)\b/i,
+                /\b(quiero conocer el negocio|cómo funciona fuxion|cómo funciona fuXion|como funciona fuxion)\b/i,
+                /\b(oportunidad fuxion|oportunidad fuXion|modelo de negocio|plan de compensación|plan de compensacion)\b/i,
+                /\b(quiero saber más sobre la oportunidad|cuéntame sobre la oportunidad|cuentame sobre la oportunidad)\b/i,
+                /\b(ver oportunidad|video de oportunidad|video oportunidad)\b/i
+            ];
+
+            const isVideoOpportunity = videoOpportunityPatterns.some(pattern => pattern.test(userMessage));
+
+            if (isVideoOpportunity) {
+                setMessages(prev => [...prev, {
+                    sender: 'bot',
+                    text: 'Claro, te muestro el video explicativo donde conocerás cómo funciona la oportunidad FuXion y cómo puedes iniciar tu proyecto.',
+                    botType: 'assistant',
+                    showOpportunityVideo: true,
+                    opportunityVideoUrl: '/oportunidad'
+                }]);
+                setIsLoading(false);
+                return;
+            }
+
             const conversationHistory = messages
                 .filter(m => m.sender && m.botType !== 'system')
                 .slice(-8);
@@ -903,6 +926,23 @@ Pregunta del usuario: ${userMessage}`,
                                                         Hablar con asesor
                                                     </button>
                                                 )}
+                                            </div>
+                                        )}
+                                        {message.showOpportunityVideo && message.opportunityVideoUrl && (
+                                            <div className="mt-3 flex flex-col gap-2">
+                                                <button
+                                                    type="button"
+                                                    onClick={() => {
+                                                        minimizeChat();
+                                                        setTimeout(() => {
+                                                            window.location.href = message.opportunityVideoUrl;
+                                                        }, 300);
+                                                    }}
+                                                    className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 px-3 py-2 text-xs font-semibold text-white transition hover:shadow-lg hover:from-emerald-600 hover:to-teal-600"
+                                                >
+                                                    <Play className="h-4 w-4" />
+                                                    Ver video explicativo
+                                                </button>
                                             </div>
                                         )}
                                         {message.advisorUrl && !message.isBusinessOpportunity && (
