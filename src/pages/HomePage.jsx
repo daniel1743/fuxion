@@ -785,44 +785,64 @@ const HomePage = () => {
 // ═══════════════════════════════════════════════════════════════════
 const certifications = [
   {
-    id: 'calidad',
-    name: 'Sello de Calidad',
-    imageSrc: '/carrussel certificaciones/calidad.png'
+    id: 'cert-1',
+    name: 'Certificación 1',
+    imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.41 PM (1).png'
   },
   {
-    id: 'organico',
-    name: 'Certificación Orgánica',
-    imageSrc: '/carrussel certificaciones/organico.png'
+    id: 'cert-2',
+    name: 'Certificación 2',
+    imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.41 PM (2).png'
   },
   {
-    id: 'gluten-free',
-    name: 'Libre de Gluten',
-    imageSrc: '/carrussel certificaciones/gluten-free.png'
+    id: 'cert-3',
+    name: 'Certificación 3',
+    imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.41 PM (3).png'
   },
   {
-    id: 'no-transgenico',
-    name: 'No Transgénico',
-    imageSrc: '/carrussel certificaciones/no-transgenico.png'
+    id: 'cert-4',
+    name: 'Certificación 4',
+    imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.41 PM (4).png'
   },
   {
-    id: 'profesionales',
-    name: 'Avalado por Profesionales',
-    imageSrc: '/carrussel certificaciones/profesionales.png'
+    id: 'cert-5',
+    name: 'Certificación 5',
+    imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.41 PM (5).png'
   },
   {
-    id: 'hecho-en-chile',
-    name: 'Hecho en Chile',
-    imageSrc: '/carrussel certificaciones/hecho-en-chile.png'
+    id: 'cert-6',
+    name: 'Certificación 6',
+    imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.41 PM (6).png'
   },
   {
-    id: 'iso',
-    name: 'Certificación ISO',
-    imageSrc: '/carrussel certificaciones/iso.png'
+    id: 'cert-7',
+    name: 'Certificación 7',
+    imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.42 PM (1).png'
   },
   {
-    id: 'natural',
-    name: 'Ingredientes Naturales',
-    imageSrc: '/carrussel certificaciones/natural.png'
+    id: 'cert-8',
+    name: 'Certificación 8',
+    imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.42 PM (2).png'
+  },
+  {
+    id: 'cert-9',
+    name: 'Certificación 9',
+    imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.42 PM (3).png'
+  },
+  {
+    id: 'cert-10',
+    name: 'Certificación 10',
+    imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.42 PM (4).png'
+  },
+  {
+    id: 'cert-11',
+    name: 'Certificación 11',
+    imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.42 PM (5).png'
+  },
+  {
+    id: 'cert-12',
+    name: 'Certificación 12',
+    imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.42 PM (6).png'
   }
 ];
 
