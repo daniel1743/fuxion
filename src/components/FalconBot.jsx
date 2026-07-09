@@ -919,23 +919,6 @@ Pregunta del usuario: ${userMessage}`,
                                                 )}
                                             </div>
                                         )}
-                                        {message.showOpportunityVideo && message.opportunityVideoUrl && (
-                                            <div className="mt-3 flex flex-col gap-2">
-                                                <button
-                                                    type="button"
-                                                    onClick={() => {
-                                                        minimizeChat();
-                                                        setTimeout(() => {
-                                                            navigate('/oportunidad#video-oportunidad');
-                                                        }, 300);
-                                                    }}
-                                                    className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 px-3 py-2 text-xs font-semibold text-white transition hover:shadow-lg hover:from-emerald-600 hover:to-teal-600"
-                                                >
-                                                    <Play className="h-4 w-4" />
-                                                    Ver video explicativo
-                                                </button>
-                                            </div>
-                                        )}
                                         {message.advisorUrl && !message.isBusinessOpportunity && (
                                             <div className="mt-3 flex flex-col gap-2">
                                                 <button
