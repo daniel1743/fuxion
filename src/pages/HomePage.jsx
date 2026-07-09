@@ -270,6 +270,26 @@ const HomePage = () => {
       {/* SECCIÓN 1.5 – Wellness Journey Carousel */}
       <WellnessJourneyCarousel />
 
+      {/* ═══════════════════════════════════════════════════════════
+         SECCIÓN 1.6 – Sellos y certificaciones (scroll infinito)
+         
+         CÓMO REEMPLAZAR ICONOS:
+         - Cada certificación tiene un `icon` que actualmente es un SVG inline genérico.
+         - Para usar imágenes reales, reemplaza el SVG por:
+             icon: <img src="/ruta/al/logo.png" alt="Nombre" className="h-8 w-8 object-contain" />
+         
+         CÓMO ELIMINAR ESTA SECCIÓN:
+         - Elimina todo el bloque desde "SECCIÓN 1.6" hasta el cierre de </section>
+         - O simplemente comenta el bloque con {/* ... */}
+         
+         CÓMO AJUSTAR VELOCIDAD:
+         - Cambia el valor de `speed` en el useEffect (actualmente 0.3)
+         
+         CÓMO AGREGAR MÁS SELLOS:
+         - Agrega objetos al array `certifications` siguiendo la misma estructura
+      ════════════════════════════════════════════════════════════ */}
+      <CertificationsCarousel />
+
       <section className="py-10 bg-white dark:bg-card border-y border-emerald-100 dark:border-border">
         <div className="container mx-auto px-6">
           <div className="grid gap-4 md:grid-cols-3">
@@ -705,6 +725,155 @@ const HomePage = () => {
       </section>
 
     </motion.div>
+  );
+};
+
+// ═══════════════════════════════════════════════════════════════════
+// COMPONENTE: CertificationsCarousel
+// Carrusel de scroll infinito de derecha a izquierda para sellos
+// y certificaciones de calidad.
+//
+// Para reemplazar iconos genéricos por imágenes reales, cambia el
+// SVG inline por un <img> con la ruta de tu imagen.
+//
+// Para eliminar este componente, borra esta función y la línea
+// <CertificationsCarousel /> en HomePage.
+// ═══════════════════════════════════════════════════════════════════
+const certifications = [
+  {
+    id: 'calidad',
+    name: 'Sello de Calidad',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+      </svg>
+    )
+  },
+  {
+    id: 'organico',
+    name: 'Certificación Orgánica',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      </svg>
+    )
+  },
+  {
+    id: 'gluten-free',
+    name: 'Libre de Gluten',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M4.93 4.93l14.14 14.14" />
+      </svg>
+    )
+  },
+  {
+    id: 'no-transgenico',
+    name: 'No Transgénico',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8">
+        <path d="M12 2L2 7l10 5 10-5-10-5z" />
+        <path d="M2 17l10 5 10-5" />
+        <path d="M2 12l10 5 10-5" />
+      </svg>
+    )
+  },
+  {
+    id: 'profesionales',
+    name: 'Avalado por Profesionales',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8">
+        <path d="M9 12l2 2 4-4" />
+        <path d="M12 2a10 10 0 1 0 10 10h-10V2z" />
+      </svg>
+    )
+  },
+  {
+    id: 'hecho-en-chile',
+    name: 'Hecho en Chile',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8">
+        <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+        <line x1="8" y1="21" x2="16" y2="21" />
+        <line x1="12" y1="17" x2="12" y2="21" />
+      </svg>
+    )
+  },
+  {
+    id: 'iso',
+    name: 'Certificación ISO',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+        <polyline points="22 4 12 14.01 9 11.01" />
+      </svg>
+    )
+  },
+  {
+    id: 'natural',
+    name: 'Ingredientes Naturales',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <path d="M12 8v4" />
+        <path d="M12 16h.01" />
+      </svg>
+    )
+  }
+];
+
+const CertificationsCarousel = () => {
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    let animationId;
+    let scrollPos = 0;
+    const speed = 0.3; // pixels per frame — ajusta para cambiar velocidad
+
+    const scroll = () => {
+      scrollPos += speed;
+      if (scrollPos >= el.scrollWidth / 2) {
+        scrollPos = 0;
+      }
+      el.scrollLeft = scrollPos;
+      animationId = requestAnimationFrame(scroll);
+    };
+
+    animationId = requestAnimationFrame(scroll);
+
+    return () => cancelAnimationFrame(animationId);
+  }, []);
+
+  return (
+    <section className="py-8 bg-white dark:bg-card border-y border-emerald-100 dark:border-border overflow-hidden">
+      <div className="container mx-auto px-6">
+        <div
+          ref={scrollRef}
+          className="flex items-center gap-12 overflow-x-hidden whitespace-nowrap"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          aria-hidden="true"
+        >
+          {/* Duplicado para loop infinito */}
+          {[...certifications, ...certifications].map((cert, i) => (
+            <div
+              key={`${cert.id}-${i}`}
+              className="shrink-0 flex items-center gap-2 opacity-40 hover:opacity-80 transition-opacity duration-300"
+            >
+              <span className="text-emerald-600/60 dark:text-emerald-400/60">
+                {cert.icon}
+              </span>
+              <span className="text-xs text-muted-foreground/60 font-medium whitespace-nowrap">
+                {cert.name}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
 
