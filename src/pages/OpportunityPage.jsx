@@ -32,6 +32,11 @@ import {
   HelpingHand,
   Calendar
 } from 'lucide-react';
+import {
+  LeafIcon,
+  HeartIcon,
+  ArrowUpIcon,
+} from '@hugeicons/core-free-icons';
 import PremiumIcon from '@/components/ui/PremiumIcon';
 
 import SEO from '@/components/SEO';
@@ -574,9 +579,9 @@ const OpportunityPage = () => {
               >
                 <PremiumIcon
                   icon={
-                    card.icon === 'Leaf' ? <Leaf /> :
-                    card.icon === 'HeartHandshake' ? <HeartHandshake /> :
-                    card.icon === 'TrendingUp' ? <TrendingUp /> : <Leaf />
+                    card.icon === 'Leaf' ? LeafIcon :
+                    card.icon === 'HeartHandshake' ? HeartIcon :
+                    card.icon === 'TrendingUp' ? ArrowUpIcon : LeafIcon
                   }
                   size="md"
                   className="mb-5"
