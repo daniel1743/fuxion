@@ -737,7 +737,7 @@ Pregunta del usuario: ${userMessage}`,
                                     animate={{ opacity: 1, x: 0, scale: 1 }}
                                     exit={{ opacity: 0, x: 12, scale: 0.9 }}
                                     onClick={handleQuickWhatsapp}
-                                    className="flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition hover:bg-[#1fb85a] focus:outline-none focus:ring-2 focus:ring-[#25D366]/40"
+                                    className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#25D366] to-[#00b894] text-white shadow-lg shadow-[#25D366]/30 transition-all hover:shadow-xl hover:shadow-[#25D366]/40 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#25D366]/40"
                                     aria-label="Hablar por WhatsApp con un asesor"
                                     title="WhatsApp"
                                 >
