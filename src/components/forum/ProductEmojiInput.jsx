@@ -1,10 +1,13 @@
 import React, { useState, useRef } from 'react';
 import { Smile } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import PremiumInput from '../ui/PremiumInput';
 import ProductEmojiPicker, { ProductEmoji } from './ProductEmojiPicker';
 
 // ============================================
 // COMPONENTE: ProductEmojiInput
 // Input de texto con selector de emojis de productos
+// Versión premium con PremiumInput
 // ============================================
 const ProductEmojiInput = ({
   value,
@@ -61,66 +64,88 @@ const ProductEmojiInput = ({
 
   return (
     <div className={`relative ${className}`}>
-      {/* Textarea */}
+      {/* Textarea premium */}
       <div className="relative">
-        <textarea
+        <PremiumInput
           ref={textareaRef}
+          as="textarea"
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
           maxLength={maxLength}
-          className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-          rows={4}
+          className="w-full"
+          inputClassName="pr-12 min-h-[120px]"
+          floatingLabel={false}
         />
 
-        {/* Botón de emojis */}
-        <button
+        {/* Botón de emojis premium */}
+        <motion.button
           type="button"
           onClick={() => setShowPicker(!showPicker)}
-          className="absolute right-3 top-3 text-gray-400 hover:text-blue-500 transition-colors"
+          className="absolute right-3 top-3 p-2 rounded-full text-gray-400 hover:text-emerald-500 transition-colors bg-white/50 backdrop-blur-sm shadow-sm hover:shadow-md"
           title="Agregar producto Fuxion"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
         >
           <Smile size={20} />
-        </button>
+        </motion.button>
       </div>
 
-      {/* Contador de caracteres */}
+      {/* Contador de caracteres premium */}
       <div className="flex items-center justify-between mt-2">
-        <div className="text-xs text-gray-500">
-          Usa <code className="bg-gray-100 px-1 rounded">:product-nombre:</code> o click en 😊
+        <div className="text-xs text-gray-400 font-light">
+          Usa <code className="bg-gray-100/50 px-1.5 py-0.5 rounded text-emerald-600">:product-nombre:</code> o click en 😊
         </div>
-        <div
+        <motion.div
           className={`text-sm font-medium ${
             isAtLimit
-              ? 'text-red-600'
+              ? 'text-red-500'
               : isNearLimit
-              ? 'text-yellow-600'
-              : 'text-gray-500'
+              ? 'text-amber-500'
+              : 'text-gray-400'
           }`}
+          animate={{ scale: isNearLimit ? [1, 1.05, 1] : 1 }}
+          transition={{ duration: 0.3 }}
         >
           {remainingChars} caracteres restantes
-        </div>
+        </motion.div>
       </div>
 
       {/* Preview con emojis renderizados */}
-      {value && (
-        <div className="mt-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
-          <div className="text-xs text-gray-500 mb-1">Vista previa:</div>
-          <div className="text-sm text-gray-800 whitespace-pre-wrap">
-            {renderTextWithEmojis(value)}
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {value && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="mt-3 p-4 bg-white/50 backdrop-blur-sm rounded-2xl border border-white/30 shadow-sm"
+          >
+            <div className="text-xs text-gray-400 font-light mb-1.5">Vista previa:</div>
+            <div className="text-sm text-gray-700 whitespace-pre-wrap leading-relaxed">
+              {renderTextWithEmojis(value)}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Picker de productos */}
-      {showPicker && (
-        <div className="absolute bottom-full mb-2 left-0 z-50">
-          <ProductEmojiPicker
-            onSelect={handleSelectProduct}
-            onClose={() => setShowPicker(false)}
-          />
-        </div>
-      )}
+      <AnimatePresence>
+        {showPicker && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ duration: 0.2 }}
+            className="absolute bottom-full mb-2 left-0 z-50"
+          >
+            <ProductEmojiPicker
+              onSelect={handleSelectProduct}
+              onClose={() => setShowPicker(false)}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
