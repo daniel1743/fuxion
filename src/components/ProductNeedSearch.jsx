@@ -58,13 +58,6 @@ const ProductNeedSearch = ({
     }
   };
 
-  const handleSuggestionClick = (suggestion) => {
-    setValue(suggestion);
-    if (onSearch) {
-      onSearch(suggestion);
-    }
-  };
-
   return (
     <form
       onSubmit={handleSubmit}
@@ -83,27 +76,25 @@ const ProductNeedSearch = ({
             }`}
             aria-label="Buscar productos por necesidad"
           />
-          {/* Infinite scroll suggestions inside the input */}
+          {/* Infinite scroll suggestions inside the input - decorative only */}
           {!compact && (
-            <div className="pointer-events-none absolute inset-y-0 left-12 right-4 flex items-center overflow-hidden">
+            <div
+              className="pointer-events-none absolute inset-y-0 left-12 right-4 flex items-center overflow-hidden select-none"
+              aria-hidden="true"
+            >
               <div
                 ref={scrollRef}
-                className="pointer-events-auto flex items-center gap-3 overflow-x-hidden whitespace-nowrap text-xs text-muted-foreground/70"
+                className="flex items-center gap-3 overflow-x-hidden whitespace-nowrap text-xs text-emerald-600/45 font-light"
                 style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
               >
                 {/* Duplicate for seamless loop */}
                 {[...SUGGESTIONS, ...SUGGESTIONS].map((suggestion, i) => (
-                  <button
+                  <span
                     key={`${suggestion}-${i}`}
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleSuggestionClick(suggestion);
-                    }}
-                    className="shrink-0 rounded-full border border-emerald-200/60 bg-emerald-50/60 px-2.5 py-0.5 transition hover:border-emerald-400 hover:bg-emerald-100 hover:text-emerald-700 dark:border-emerald-800/60 dark:bg-emerald-900/20 dark:hover:border-emerald-600 dark:hover:text-emerald-300"
+                    className="shrink-0"
                   >
                     {suggestion}
-                  </button>
+                  </span>
                 ))}
               </div>
             </div>
