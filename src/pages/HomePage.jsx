@@ -287,7 +287,8 @@ const HomePage = () => {
          
          CÓMO AGREGAR MÁS SELLOS:
          - Agrega objetos al array `certifications` siguiendo la misma estructura
-      ════════════════════════════════════════════════════════════ */}
+      ════════════════════════════════════════════════════════════
+      */}
       <CertificationsCarousel />
 
       <section className="py-10 bg-white dark:bg-card border-y border-emerald-100 dark:border-border">
