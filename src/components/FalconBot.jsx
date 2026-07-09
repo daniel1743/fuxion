@@ -963,7 +963,9 @@ Pregunta del usuario: ${userMessage}`,
                                     transition={{ delay: 0.3 }}
                                     className="flex flex-wrap gap-2 mt-2 justify-center"
                                 >
-                                    {quickActions.map((action, idx) => (
+                                    {quickActions
+                                        .filter(action => action.label !== 'Ver video' && action.text !== 'Ver video')
+                                        .map((action, idx) => (
                                         <motion.button
                                             key={idx}
                                             initial={{ opacity: 0, scale: 0.9 }}
