@@ -1,5 +1,5 @@
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -787,89 +787,50 @@ const certifications = [
   {
     id: 'calidad',
     name: 'Sello de Calidad',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8">
-        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-      </svg>
-    )
+    imageSrc: '/carrussel certificaciones/calidad.png'
   },
   {
     id: 'organico',
     name: 'Certificación Orgánica',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-      </svg>
-    )
+    imageSrc: '/carrussel certificaciones/organico.png'
   },
   {
     id: 'gluten-free',
     name: 'Libre de Gluten',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8">
-        <circle cx="12" cy="12" r="10" />
-        <path d="M4.93 4.93l14.14 14.14" />
-      </svg>
-    )
+    imageSrc: '/carrussel certificaciones/gluten-free.png'
   },
   {
     id: 'no-transgenico',
     name: 'No Transgénico',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8">
-        <path d="M12 2L2 7l10 5 10-5-10-5z" />
-        <path d="M2 17l10 5 10-5" />
-        <path d="M2 12l10 5 10-5" />
-      </svg>
-    )
+    imageSrc: '/carrussel certificaciones/no-transgenico.png'
   },
   {
     id: 'profesionales',
     name: 'Avalado por Profesionales',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8">
-        <path d="M9 12l2 2 4-4" />
-        <path d="M12 2a10 10 0 1 0 10 10h-10V2z" />
-      </svg>
-    )
+    imageSrc: '/carrussel certificaciones/profesionales.png'
   },
   {
     id: 'hecho-en-chile',
     name: 'Hecho en Chile',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8">
-        <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-        <line x1="8" y1="21" x2="16" y2="21" />
-        <line x1="12" y1="17" x2="12" y2="21" />
-      </svg>
-    )
+    imageSrc: '/carrussel certificaciones/hecho-en-chile.png'
   },
   {
     id: 'iso',
     name: 'Certificación ISO',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8">
-        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-        <polyline points="22 4 12 14.01 9 11.01" />
-      </svg>
-    )
+    imageSrc: '/carrussel certificaciones/iso.png'
   },
   {
     id: 'natural',
     name: 'Ingredientes Naturales',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-        <path d="M12 8v4" />
-        <path d="M12 16h.01" />
-      </svg>
-    )
+    imageSrc: '/carrussel certificaciones/natural.png'
   }
 ];
 
 const CertificationsCarousel = () => {
   const scrollRef = useRef(null);
   const animationRef = useRef(null);
+  const [hoveredId, setHoveredId] = useState(null);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -879,6 +840,10 @@ const CertificationsCarousel = () => {
     const speed = 0.5; // pixels per frame — ajusta para cambiar velocidad
 
     const scroll = () => {
+      if (isPaused) {
+        animationRef.current = requestAnimationFrame(scroll);
+        return;
+      }
       scrollPos += speed;
       if (scrollPos >= el.scrollWidth / 2) {
         scrollPos = 0;
@@ -894,7 +859,27 @@ const CertificationsCarousel = () => {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, []);
+  }, [isPaused]);
+
+  const handleMouseEnter = (id) => {
+    setHoveredId(id);
+    setIsPaused(true);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredId(null);
+    setIsPaused(false);
+  };
+
+  const handleTouchStart = (id) => {
+    setHoveredId(id);
+    setIsPaused(true);
+  };
+
+  const handleTouchEnd = () => {
+    setHoveredId(null);
+    setIsPaused(false);
+  };
 
   return (
     <section className="py-8 bg-white dark:bg-card border-y border-emerald-100 dark:border-border overflow-hidden">
@@ -909,19 +894,33 @@ const CertificationsCarousel = () => {
           aria-hidden="true"
         >
           {/* Duplicado para loop infinito */}
-          {[...certifications, ...certifications].map((cert, i) => (
-            <div
-              key={`${cert.id}-${i}`}
-              className="shrink-0 flex items-center gap-2 opacity-70 hover:opacity-100 transition-opacity duration-300"
-            >
-              <span className="text-emerald-600/80 dark:text-emerald-400/80">
-                {cert.icon}
-              </span>
-              <span className="text-xs text-muted-foreground/80 font-medium whitespace-nowrap">
-                {cert.name}
-              </span>
-            </div>
-          ))}
+          {[...certifications, ...certifications].map((cert, i) => {
+            const isHovered = hoveredId === `${cert.id}-${i}`;
+            return (
+              <div
+                key={`${cert.id}-${i}`}
+                className="shrink-0 flex items-center gap-2 opacity-70 hover:opacity-100 transition-all duration-300 ease-out"
+                style={{
+                  transform: isHovered ? 'scale(1.15)' : 'scale(1)',
+                  transition: 'transform 300ms ease-out, opacity 300ms ease-out'
+                }}
+                onMouseEnter={() => handleMouseEnter(`${cert.id}-${i}`)}
+                onMouseLeave={handleMouseLeave}
+                onTouchStart={() => handleTouchStart(`${cert.id}-${i}`)}
+                onTouchEnd={handleTouchEnd}
+              >
+                <img
+                  src={cert.imageSrc}
+                  alt={cert.name}
+                  className="h-8 w-8 object-contain"
+                  loading="lazy"
+                />
+                <span className="text-xs text-muted-foreground/80 font-medium whitespace-nowrap">
+                  {cert.name}
+                </span>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
