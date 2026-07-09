@@ -906,17 +906,6 @@ Pregunta del usuario: ${userMessage}`,
                                         {/* Business Opportunity buttons */}
                                         {message.isBusinessOpportunity && (
                                             <div className="mt-3 flex flex-col gap-2">
-                                                {message.showOpportunityVideo && (
-                                                    <a
-                                                        href="https://youtu.be/L_AIXB0MI8A?si=nRhoWh3M9Fwd4_oX"
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 px-3 py-2 text-xs font-semibold text-white transition hover:shadow-lg hover:from-amber-600 hover:to-orange-600"
-                                                    >
-                                                    <Play className="h-4 w-4" />
-                                                        Ver video de oportunidad
-                                                    </a>
-                                                )}
                                                 {message.showOpportunityAdvisor && (
                                                     <button
                                                         type="button"
