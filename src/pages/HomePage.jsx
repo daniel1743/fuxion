@@ -869,14 +869,14 @@ const certifications = [
 
 const CertificationsCarousel = () => {
   const scrollRef = useRef(null);
+  const animationRef = useRef(null);
 
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
 
-    let animationId;
     let scrollPos = 0;
-    const speed = 0.3; // pixels per frame — ajusta para cambiar velocidad
+    const speed = 0.5; // pixels per frame — ajusta para cambiar velocidad
 
     const scroll = () => {
       scrollPos += speed;
@@ -884,12 +884,16 @@ const CertificationsCarousel = () => {
         scrollPos = 0;
       }
       el.scrollLeft = scrollPos;
-      animationId = requestAnimationFrame(scroll);
+      animationRef.current = requestAnimationFrame(scroll);
     };
 
-    animationId = requestAnimationFrame(scroll);
+    animationRef.current = requestAnimationFrame(scroll);
 
-    return () => cancelAnimationFrame(animationId);
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
   }, []);
 
   return (
