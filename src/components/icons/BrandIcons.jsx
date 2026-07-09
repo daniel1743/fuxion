@@ -1,13 +1,13 @@
 import React from 'react';
 
 /**
- * AiRobotIcon — Icono personalizado del asistente Falcon IA.
- * Usa el logo oficial desde public/icons/svg_bot_falcon.svg
+ * AiRobotIcon — Avatar oficial del asistente FalconBot.
+ * Usa la imagen local desde public/icons/cartoon-robot-avatar-vector-illustration.png
  */
-export const AiRobotIcon = ({ className = 'h-4 w-4' }) => (
+export const AiRobotIcon = ({ className = '' }) => (
   <img
-    src="/icons/svg_bot_falcon.svg"
-    alt="Falcon IA"
+    src="/icons/cartoon-robot-avatar-vector-illustration.png"
+    alt="Falcon Bot"
     className={`${className} object-contain`}
   />
 );

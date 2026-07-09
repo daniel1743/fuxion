@@ -751,7 +751,7 @@ Pregunta del usuario: ${userMessage}`,
                             className="relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 hover:scale-105 active:scale-92 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 group"
                             aria-label="Abrir asistente de IA"
                         >
-                            <AiRobotIcon className="h-9 w-9 group-hover:scale-110 transition-transform object-contain" />
+                            <AiRobotIcon className="h-8 w-8 group-hover:scale-110 transition-transform object-contain" />
                             <span className="absolute -top-1 -right-1 w-4 h-4 bg-emerald-400 rounded-full border-2 border-white shadow-lg shadow-emerald-400/50 animate-pulse"></span>
                         </button>
                     </motion.div>
