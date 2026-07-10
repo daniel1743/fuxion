@@ -1,4 +1,3 @@
-
 import React, { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
@@ -779,17 +778,90 @@ const HomePage = () => {
 //
 // ═══════════════════════════════════════════════════════════════════
 const certifications = [
-  { id: 'cert-1', imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.41 PM (1).jpeg' },
-  { id: 'cert-2', imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.41 PM (2).jpeg' },
-  { id: 'cert-3', imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.41 PM (3).jpeg' },
-  { id: 'cert-4', imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.41 PM (4).jpeg' },
-  { id: 'cert-5', imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.41 PM (5).jpeg' },
-  { id: 'cert-6', imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.41 PM (6).jpeg' },
-  { id: 'cert-7', imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.42 PM (1).jpeg' },
-  { id: 'cert-8', imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.42 PM (2).jpeg' },
-  { id: 'cert-9', imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.42 PM (3).jpeg' },
-  { id: 'cert-10', imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.42 PM (4).jpeg' },
-  { id: 'cert-11', imageSrc: '/carrussel certificaciones/WhatsApp Image 2026-07-09 at 4.22.42 PM.jpeg' }
+  {
+    id: 'actigenos',
+    imageSrc: '/carrussel certificaciones/actigenos.png',
+    name: 'Actigenos',
+    type: 'Tecnología nutracéutica',
+    description: 'Complejo de péptidos naturales derivados del lactosuero.'
+  },
+  {
+    id: 'bc-certificacion',
+    imageSrc: '/carrussel certificaciones/bc certificacion.png',
+    name: 'Baltic Control',
+    type: 'Certificación internacional',
+    description: 'Auditoría internacional de calidad y cadena de suministro.'
+  },
+  {
+    id: 'bioferrin',
+    imageSrc: '/carrussel certificaciones/bioferrin.png',
+    name: 'Bioferrin',
+    type: 'Biotecnología funcional',
+    description: 'Lactoferrina bioactiva obtenida de matrices de lactosuero.'
+  },
+  {
+    id: 'bioprotein-active',
+    imageSrc: '/carrussel certificaciones/bioprotein active.png',
+    name: 'BioProtein Active',
+    type: 'Formulación nutricional',
+    description: 'Proteína vegetal con ingredientes como quinua, arroz y arveja.'
+  },
+  {
+    id: 'bioprotein',
+    imageSrc: '/carrussel certificaciones/bioprotein.png',
+    name: 'BioProtein Colostrum',
+    type: 'Formulación nutricional',
+    description: 'Combinación de proteínas y calostro bovino.'
+  },
+  {
+    id: 'bpm',
+    imageSrc: '/carrussel certificaciones/bpm.png',
+    name: 'BPM',
+    type: 'Buenas Prácticas de Manufactura',
+    description: 'Procesos controlados de producción y calidad.'
+  },
+  {
+    id: 'ciencia-natural',
+    imageSrc: '/carrussel certificaciones/ciencia natural.png',
+    name: 'Avanzando en Ciencia, Regresando a lo Natural',
+    type: 'Filosofía I+D',
+    description: 'Integración entre investigación científica e ingredientes naturales.'
+  },
+  {
+    id: 'clean-label',
+    imageSrc: '/carrussel certificaciones/cleam label.png',
+    name: 'Clean Label',
+    type: 'Filosofía de formulación',
+    description: 'Enfoque en ingredientes de origen natural.'
+  },
+  {
+    id: 'haccp',
+    imageSrc: '/carrussel certificaciones/haccp.png',
+    name: 'HACCP',
+    type: 'Seguridad alimentaria',
+    description: 'Sistema preventivo de análisis de riesgos y puntos críticos de control.'
+  },
+  {
+    id: 'humanitas',
+    imageSrc: '/carrussel certificaciones/humanitas.png',
+    name: 'Humanitas',
+    type: 'Certificación corporativa',
+    description: 'Reconocimiento asociado a prácticas empresariales responsables.'
+  },
+  {
+    id: 'prolibra',
+    imageSrc: '/carrussel certificaciones/prolibra.png',
+    name: 'Prolibra',
+    type: 'Ingrediente patentado',
+    description: 'Fracción bioactiva derivada del suero lácteo.'
+  },
+  {
+    id: 'svetol',
+    imageSrc: '/carrussel certificaciones/svetol.png',
+    name: 'Svetol',
+    type: 'Extracto natural patentado',
+    description: 'Extracto estandarizado de café verde.'
+  }
 ];
 
 const CertificationsCarousel = () => {
@@ -847,6 +919,13 @@ const CertificationsCarousel = () => {
     setIsPaused(false);
   };
 
+  const getCertificationData = (id) => {
+    const match = id.match(/^([a-z0-9-]+)-(\d+)$/);
+    if (!match) return null;
+    const baseId = match[1];
+    return certifications.find(c => c.id === baseId) || null;
+  };
+
   return (
     <section className="py-8 bg-white dark:bg-card border-y border-emerald-100 dark:border-border overflow-hidden">
       <div className="container mx-auto px-6">
@@ -861,26 +940,37 @@ const CertificationsCarousel = () => {
         >
           {/* Duplicado para loop infinito */}
           {[...certifications, ...certifications].map((cert, i) => {
-            const isHovered = hoveredId === `${cert.id}-${i}`;
+            const uniqueId = `${cert.id}-${i}`;
+            const isHovered = hoveredId === uniqueId;
+            const certData = getCertificationData(uniqueId);
+            
             return (
               <div
-                key={`${cert.id}-${i}`}
-                className="shrink-0 opacity-70 hover:opacity-100 transition-all duration-300 ease-out"
+                key={uniqueId}
+                className="shrink-0 opacity-70 hover:opacity-100 transition-all duration-300 ease-out relative"
                 style={{
                   transform: isHovered ? 'scale(1.15)' : 'scale(1)',
                   transition: 'transform 300ms ease-out, opacity 300ms ease-out'
                 }}
-                onMouseEnter={() => handleMouseEnter(`${cert.id}-${i}`)}
+                onMouseEnter={() => handleMouseEnter(uniqueId)}
                 onMouseLeave={handleMouseLeave}
-                onTouchStart={() => handleTouchStart(`${cert.id}-${i}`)}
+                onTouchStart={() => handleTouchStart(uniqueId)}
                 onTouchEnd={handleTouchEnd}
               >
                 <img
                   src={cert.imageSrc}
-                  alt=""
+                  alt={cert.name}
                   className="h-20 w-20 object-contain"
                   loading="lazy"
                 />
+                {isHovered && certData && (
+                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-56 bg-white dark:bg-gray-900 rounded-lg shadow-xl border border-emerald-100 dark:border-emerald-900 p-3 z-50 pointer-events-none">
+                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-3 h-3 bg-white dark:bg-gray-900 border-r border-b border-emerald-100 dark:border-emerald-900 rotate-45" />
+                    <p className="text-sm font-bold text-foreground mb-1">{certData.name}</p>
+                    <p className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 mb-1">{certData.type}</p>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{certData.description}</p>
+                  </div>
+                )}
               </div>
             );
           })}
