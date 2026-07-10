@@ -312,8 +312,8 @@ const HomePage = () => {
       <CertificationsCarousel />
 
       <TestimonialsSection
-        title="Lo que dicen nuestros clientes"
-        subtitle="Más de 500 clientes satisfechos en todo Chile confían en nuestros productos y asesoría personalizada."
+        title="Experiencias de consumidores FuXion"
+        subtitle="Opiniones compartidas por consumidores que han probado productos FuXion y publicado sus experiencias en diferentes plataformas públicas."
       />
 
       <section className="py-10 bg-white dark:bg-card border-y border-emerald-100 dark:border-border">

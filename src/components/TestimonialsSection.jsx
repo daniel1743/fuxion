@@ -84,7 +84,7 @@ const TestimonialsSection = ({ title, subtitle, variant = 'default' }) => {
           viewport={{ once: true }}
           className={`text-xs text-center ${colors.muted} mb-8 max-w-2xl mx-auto italic`}
         >
-          Las experiencias corresponden a consumidores individuales recopiladas desde plataformas públicas. Los resultados pueden variar según cada persona.
+          Las experiencias corresponden a consumidores individuales. Los resultados pueden variar según cada persona.
         </motion.p>
 
         <motion.div
