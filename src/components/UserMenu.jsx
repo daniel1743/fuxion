@@ -69,7 +69,7 @@ const UserMenu = () => {
           {avatar}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56" align="end" forceMount>
+      <DropdownMenuContent className="w-56 rounded-2xl bg-white dark:bg-gray-900 shadow-xl border border-emerald-100 dark:border-emerald-900/30 p-3" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex items-center gap-3">
             {avatar}
@@ -81,56 +81,71 @@ const UserMenu = () => {
             </div>
           </div>
         </DropdownMenuLabel>
-        <DropdownMenuSeparator />
         {isAdmin && (
-          <DropdownMenuItem onSelect={openAdminPanel}>
-            <Shield className="mr-2 h-4 w-4" />
+          <DropdownMenuItem onSelect={openAdminPanel} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-800 shrink-0">
+              <Shield className="h-4 w-4" />
+            </div>
             <span>Panel de administración</span>
           </DropdownMenuItem>
         )}
         {(isAuthenticated || isAdmin) && (
-          <DropdownMenuItem onSelect={() => window.setTimeout(() => navigate('/cuenta'), 0)}>
-            <Gift className="mr-2 h-4 w-4" />
+          <DropdownMenuItem onSelect={() => window.setTimeout(() => navigate('/cuenta'), 0)} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-800 shrink-0">
+              <Gift className="h-4 w-4" />
+            </div>
             <span>Mi cuenta y regalos</span>
           </DropdownMenuItem>
         )}
         {isAuthenticated && (
-          <DropdownMenuItem onSelect={openProfileModal}>
-            <Settings className="mr-2 h-4 w-4" />
+          <DropdownMenuItem onSelect={openProfileModal} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-800 shrink-0">
+              <Settings className="h-4 w-4" />
+            </div>
             <span>Editar perfil</span>
           </DropdownMenuItem>
         )}
         <DropdownMenuSub>
-          <DropdownMenuSubTrigger>
-            <Sun className="mr-2 h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-            <Moon className="absolute mr-2 h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <DropdownMenuSubTrigger className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-800 shrink-0">
+              <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            </div>
             <span>Cambiar Tema</span>
           </DropdownMenuSubTrigger>
           <DropdownMenuPortal>
-            <DropdownMenuSubContent>
-              <DropdownMenuItem onClick={() => setTheme("light")}>
-                <Sun className="mr-2 h-4 w-4" />
+            <DropdownMenuSubContent className="rounded-2xl bg-white dark:bg-gray-900 shadow-xl border border-emerald-100 dark:border-emerald-900/30 p-3">
+              <DropdownMenuItem onClick={() => setTheme("light")} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-800 shrink-0">
+                  <Sun className="h-4 w-4" />
+                </div>
                 <span>Claro</span>
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTheme("dark")}>
-                <Moon className="mr-2 h-4 w-4" />
+              <DropdownMenuItem onClick={() => setTheme("dark")} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-800 shrink-0">
+                  <Moon className="h-4 w-4" />
+                </div>
                 <span>Oscuro</span>
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTheme("system")}>
-                <Monitor className="mr-2 h-4 w-4" />
+              <DropdownMenuItem onClick={() => setTheme("system")} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-800 shrink-0">
+                  <Monitor className="h-4 w-4" />
+                </div>
                 <span>Sistema</span>
               </DropdownMenuItem>
             </DropdownMenuSubContent>
           </DropdownMenuPortal>
         </DropdownMenuSub>
-        <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={() => {
             if (isAdmin) logoutAdmin();
             if (isAuthenticated) logoutUser();
           }}
+          className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
         >
-          <LogOut className="mr-2 h-4 w-4" />
+          <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-800 shrink-0">
+            <LogOut className="h-4 w-4" />
+          </div>
           <span>Cerrar sesión</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
