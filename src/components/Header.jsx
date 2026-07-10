@@ -38,6 +38,7 @@ import UserMenu from '@/components/UserMenu';
 const navLinks = [
   { name: 'Inicio', path: '/' },
   { name: 'Productos', path: '/explorar' },
+  { name: 'Sobre Nosotros', path: '/sobre-nosotros' },
   { name: 'Bienestar', path: '/opiniones' },
   { name: 'Oportunidad', path: '/oportunidad-fuxion' },
   { name: 'Evidencias', path: '/blog' },
@@ -50,7 +51,8 @@ const officialStoreUrl = 'https://ifuxion.com/daniel/enrollment/chooseperson';
 const drawerNavItems = [
   { label: 'Inicio', icon: Home03Icon, path: '/' },
   { label: 'Productos', subtitle: 'Catálogo FuXion', icon: ShoppingBag03Icon, path: '/explorar' },
-  { label: 'Objetivos de bienestar', subtitle: 'Encuentra lo ideal para ti', icon: Leaf01Icon, path: '/opiniones' },
+  { label: 'Sobre Nosotros', subtitle: 'Nuestra historia y valores', icon: Leaf01Icon, path: '/sobre-nosotros' },
+  { label: 'Objetivos de bienestar', subtitle: 'Encuentra lo ideal para ti', icon: BookOpen02Icon, path: '/opiniones' },
   { label: 'Evidencias', subtitle: 'Información y contenido', icon: BookOpen02Icon, path: '/blog' },
   { label: 'Oportunidad FuXion', subtitle: 'Conoce el proyecto', icon: Rocket01Icon, path: '/oportunidad-fuxion' },
   { label: 'Centro de ayuda', subtitle: 'Contacto y soporte', icon: HelpCircleIcon, path: '/ayuda' },
@@ -434,7 +436,7 @@ const Header = () => {
                     onClick={handleWhatsApp}
                     className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-bold rounded-full py-3 px-5 shadow-lg shadow-emerald-500/20 transition-all duration-200 hover:shadow-xl hover:shadow-emerald-500/30 active:scale-[0.98]"
                   >
-                    <WhatsAppIcon className="h-5 w-5 text-white" />
+                    <MessageCircle className="h-5 w-5 text-white" />
                     <span className="text-sm">Hablar con asesor</span>
                   </button>
                 </div>

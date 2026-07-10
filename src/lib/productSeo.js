@@ -751,6 +751,20 @@ export const buildLocalBusinessSchema = () => ({
 });
 
 /**
+ * Person schema for E-E-A-T signals (founder, author, expert).
+ */
+export const buildPersonSchema = (person) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: person?.name || 'Daniel Falcon',
+  jobTitle: person?.role || 'Asesor Independiente Fuxion',
+  url: `${SITE_URL}/sobre-nosotros`,
+  description: person?.bio || 'Emprendedor chileno apasionado por la nutricion y el bienestar natural.',
+  image: `${SITE_URL}/icons/android-chrome-192x192.png`,
+  sameAs: [SITE_URL]
+});
+
+/**
  * BreadcrumbList schema for a given array of { name, url } items.
  */
 export const buildBreadcrumbSchema = (items) => ({

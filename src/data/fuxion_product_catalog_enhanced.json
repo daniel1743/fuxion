@@ -1,0 +1,583 @@
+{
+  "metadata": {
+    "titulo": "Catálogo Especializado de Soluciones Nutracéuticas Fuxion",
+    "version": "2.0",
+    "descripcion": "Informe técnico detallado del ecosistema de productos Fuxion, estructurado bajo la filosofía de la 'Fusión Nutracéutica'",
+    "filosofia": "Recuperar y potenciar los conocimientos ancestrales de las culturas andinas, amazónicas, mesoamericanas y asiáticas, integrando extractos botánicos de altísima pureza con los últimos avances en biotecnología nutricional.",
+    "certificacion": "Clean Label - Ingredientes 100% naturales, libres de aditivos químicos, edulcorantes sintéticos y colorantes artificiales.",
+    "biodisponibilidad": "Tecnología de encapsulación orgánica que envuelve los minerales en moléculas orgánicas, asegurando una absorción hasta 6 veces mayor en el tracto gastrointestinal.",
+    "ultima_actualizacion": "2026-04-07"
+  },
+  "sistema_base": {
+    "titulo": "El Sistema Base: Limpieza, Nutrición y Revitalización Celular",
+    "descripcion": "La medicina ortomolecular y la fisiología moderna establecen que el cuerpo humano no puede regenerarse ni defenderse adecuadamente si sus vías de eliminación están obstruidas y sus células carecen de energía. Los programas de desintoxicación celular son fundamentales, ya que apoyan la limpieza del hígado, promueven la pérdida de peso al reducir el ingreso calórico y mejorar la termogénesis, y optimizan la salud de la piel y la claridad mental al disminuir la saturación de toxinas en el torrente sanguíneo.",
+    "recomendacion_dietetica": "Para maximizar estos efectos, se recomienda evitar lácteos convencionales, azúcares, alcohol y gluten, priorizando una dieta rica en frutas hidratantes, vegetales crucíferos y especias termogénicas como la cúrcuma y el jengibre."
+  },
+  "lineas_potenciadoras": {
+    "inmunologica": {
+      "titulo": "Línea Inmunológica - Defensas",
+      "descripcion": "Formulaciones de precisión para modular y fortalecer la respuesta inmunológica del organismo."
+    },
+    "control_peso": {
+      "titulo": "Línea Control de Peso y Medidas",
+      "descripcion": "Fitoquímicos para reprogramar la manera en que el cuerpo procesa los macronutrientes, transformando al organismo en una máquina oxidativa."
+    },
+    "anti_edad": {
+      "titulo": "Sistema Anti-Edad y Rejuvenecimiento Celular",
+      "descripcion": "Interrumpe la cascada degenerativa del envejecimiento a nivel molecular, previniendo el daño del ADN, el colapso del tejido conectivo y la claudicación de la glándula pituitaria."
+    },
+    "vigor_mental": {
+      "titulo": "Línea Vigor Mental y Enfoque",
+      "descripcion": "Suministra los sustratos exactos para el neurodesarrollo, combatiendo el estrés oxidativo neuronal y el agotamiento sináptico."
+    },
+    "sport": {
+      "titulo": "Rendimiento Deportivo (Línea Sport)",
+      "descripcion": "Previene la caída del rendimiento aportando factores de oxigenación y bloqueando el catabolismo celular pos-ejercicio."
+    }
+  },
+  "productos": {
+    "PRUNEX 1": {
+      "nombre": "PRUNEX 1",
+      "categoria": "Limpieza del Colon",
+      "linea": "Sistema Base - Limpia tu Cuerpo",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 23300,
+      "sabor": "Té herbal - Ciruela",
+      "objetivo_funcional": "Limpieza profunda del colon, desintoxicación y regulación del tránsito intestinal",
+      "mecanismo_accion": "El sistema digestivo es el canal primario de desintoxicación metabólica. Prunex 1 es una bebida funcional en formato de té herbal que ofrece una intervención mecánica y bioquímica altamente efectiva para resolver el estreñimiento ocasional y la pesadez estomacal. El psyllium y el mucílago de linaza actúan como agentes biológicos de volumen; al entrar en contacto con los fluidos gástricos, forman una matriz gelatinosa que lubrica las paredes del colon y encapsula los desechos endurecidos. El extracto natural de guindón estimula suavemente la contracción de la musculatura lisa intestinal, facilitando la evacuación fluida. El anís estrella proporciona un efecto carminativo que previene la distensión abdominal, mientras que el alga kelp repone oligoelementos críticos perdidos durante la limpieza profunda.",
+      "ingredientes_clave": [
+        "Mix de fibras solubles (Psyllium, Inulina de achicoria, Mucílago de linaza)",
+        "Alga Kelp",
+        "Anís estrella",
+        "Extracto de guindón"
+      ],
+      "beneficios": [
+        "Limpia el colon en profundidad",
+        "Ideal en caso de estreñimiento ocasional",
+        "Desinflama el abdomen",
+        "Mejora la asimilación de nutrientes",
+        "Siente más liviano sin hinchazón",
+        "Adecuado tránsito intestinal",
+        "Efecto carminativo que previene distensión abdominal"
+      ],
+      "modo_uso": "Disolver 1 stick (5g) en agua caliente o tibia",
+      "horario": "Preferentemente por la noche antes de dormir, durante periodos de 7 a 14 días",
+      "efecto": "Laxante suave - plan de desintoxicación profunda",
+      "palabra_clave": "COLON",
+      "para_toda_familia": true,
+      "codigo": "144284",
+      "fuente_precio": "Catalogo Chile.pdf"
+    },
+    "LIQUID FIBER": {
+      "nombre": "LIQUID FIBER",
+      "categoria": "Limpieza del Sistema Digestivo",
+      "linea": "Sistema Base - Limpia tu Cuerpo",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 28750,
+      "sabor": "Limón",
+      "objetivo_funcional": "Nutrición prebiótica, mantenimiento de la regularidad y equilibrio glucémico",
+      "mecanismo_accion": "Liquid Fiber está diseñado biotecnológicamente para ser el mantenedor diario de la homeostasis gástrica. Las fibras solubles como la inulina y la oligofructosa derivadas de la raíz de achicoria resisten la hidrólisis de las enzimas digestivas en el estómago, llegando intactas al colon donde sirven como sustrato energético exclusivo (prebióticos) para la fermentación de las bacterias beneficiosas. La fermentación produce ácidos grasos de cadena corta (AGCC) que reducen el pH del lumen intestinal, creando un entorno inhóspito para bacterias patógenas e incrementando la asimilación de minerales como calcio y magnesio. La matriz de fibra soluble ralentiza el vaciado gástrico, retrasando la absorción de carbohidratos simples y lípidos, lo que se traduce en una reducción fisiológica de los picos de glucosa e insulina postprandiales.",
+      "ingredientes_clave": [
+        "Fibras prebióticas (Inulina y oligofructosa extraídas de la raíz de achicoria)",
+        "Micronutrientes",
+        "Vitaminas estabilizadas"
+      ],
+      "beneficios": [
+        "Regula el ritmo de las evacuaciones",
+        "Ayuda en caso de estreñimiento no severo",
+        "Mantiene el funcionamiento normal del sistema digestivo",
+        "Mantiene el balance de la flora intestinal",
+        "Contribuye a mejorar la absorción de minerales",
+        "Reduce los picos de glucosa e insulina postprandiales",
+        "Depuración intestinal continua"
+      ],
+      "modo_uso": "Disolver 1 stick (5g) en un vaso de agua fría (180 ml)",
+      "horario": "Preferentemente antes del almuerzo o la cena, seguido de un vaso de agua adicional",
+      "efecto": "Plan de mantenimiento - menos agresivo que Prunex 1",
+      "palabra_clave": "FIBRA DIGESTIVA",
+      "para_toda_familia": true,
+      "codigo": "147383",
+      "fuente_precio": "Catalogo Chile.pdf"
+    },
+    "FLORA LIV": {
+      "nombre": "FLORA LIV",
+      "categoria": "Regeneración Flora Intestinal",
+      "linea": "Sistema Base - Limpia tu Cuerpo",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 43000,
+      "sabor": "Granadilla",
+      "objetivo_funcional": "Regeneración integral de la flora intestinal, barrera inmunológica y alivio gástrico",
+      "mecanismo_accion": "La microbiota intestinal regula procesos que van desde la inmunidad sistémica (albergando cerca del 70% de las células inmunes) hasta la síntesis de neurotransmisores. Flora Liv es una formulación simbiótica magistral que introduce más de 10 mil millones de bacterias probióticas vivas por dosis, protegidas mediante liofilización para garantizar su viabilidad al atravesar la acidez estomacal. Al llegar al colon, los prebióticos incorporados aseguran su inmediata colonización y proliferación. Este ejército celular compite con virus, bacterias patógenas y parásitos, ejerciendo una potente acción antimicrobiana. Los extractos de granadilla y aguaymanto proporcionan fitoquímicos que desinflaman la mucosa gástrica, reducen la acidez, mitigan los síntomas de la gastritis y aceleran la cicatrización de úlceras.",
+      "ingredientes_clave": [
+        "10 mil millones de cultivos probióticos liofilizados (Lactobacillus acidophilus, Bifidobacterium bifidum)",
+        "Fibra prebiótica (Inulina de achicoria)",
+        "Extracto de pulpa de granadilla",
+        "Aguaymanto",
+        "Zinc",
+        "Magnesio"
+      ],
+      "beneficios": [
+        "Regenera y equilibra la flora intestinal",
+        "Mejora la digestión en intolerantes a lactosa",
+        "Ideal en gastritis, reflujo, colitis, colon irritable",
+        "Previene trastornos digestivos",
+        "Reduce efectos de antibióticos",
+        "Correcta asimilación de nutrientes",
+        "Protección inmunológica del organismo (70% de células inmunes en el intestino)",
+        "Acción antimicrobiana y vermífuga natural"
+      ],
+      "modo_uso": "Disolver 1 stick (5g) en un vaso de agua fría",
+      "horario": "Una o dos veces al día, idealmente en ayunas por la mañana o una hora después de las comidas",
+      "palabra_clave": "PROBIÓTICOS",
+      "para_toda_familia": true,
+      "codigo": "144274",
+      "fuente_precio": "Catalogo Chile.pdf"
+    },
+    "BERRY BALANCE": {
+      "nombre": "BERRY BALANCE",
+      "categoria": "Salud del Tracto Urinario",
+      "linea": "Sistema Base - Limpia tu Cuerpo",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 46500,
+      "sabor": "Berries",
+      "objetivo_funcional": "Protección antioxidante del tracto urinario, equilibrio de pH íntimo y efecto diurético",
+      "mecanismo_accion": "Berry Balance constituye un escudo nutracéutico integral para preservar la esterilidad del sistema urinario. El núcleo de su eficacia radica en la altísima concentración de extracto de cranberry (arándano rojo), el cual contiene proantocianidinas tipo A (PACs) que operan mediante un mecanismo antiadherente físico: se unen a las fimbrias de las bacterias, impidiendo que se adhieran a las paredes de la vejiga y la uretra. Las cepas probióticas específicas migran para proteger la microbiota vaginal e íntima. La infusión de cáscara de piña aporta bromelina y actúa como diurético natural, estimulando la perfusión renal para evitar la retención de líquidos patológica.",
+      "ingredientes_clave": [
+        "Extracto puro de cranberry (arándano rojo) - rico en proantocianidinas tipo A (PACs)",
+        "Concentrado de berries (arándanos, moras, cerezas)",
+        "Infusión de cáscara de piña (bromelina)",
+        "Cultivos probióticos",
+        "Calcio orgánico",
+        "Vitaminas C y E"
+      ],
+      "beneficios": [
+        "Ayuda a proteger el tracto urinario",
+        "Contribuye a prevenir molestias urinarias recurrentes",
+        "Favorece el equilibrio del pH y de la flora protectora urinaria",
+        "Aporta antioxidantes naturales provenientes de berries y frutas tropicales",
+        "Contiene probióticos que ayudan al equilibrio del organismo",
+        "Efecto diurético natural que evita la retención de líquidos",
+        "Mecanismo antiadherente que impide la fijación bacteriana en la vejiga"
+      ],
+      "modo_uso": "Disolver 1 o 2 sticks en agua fría",
+      "horario": "A cualquier hora del día, preferiblemente entre comidas",
+      "palabra_clave": "TRACTO URINARIO, CRANBERRY, PROBIÓTICOS, ANTIOXIDANTES",
+      "no_confundir_con": "No es un producto para pérdida de peso ni bloqueo de carbohidratos. Esa función corresponde a NOCARB-T.",
+      "para_toda_familia": true,
+      "codigo": "144271",
+      "fuente_precio": "Catalogo Chile.pdf"
+    },
+    "ALPHA BALANCE": {
+      "nombre": "ALPHA BALANCE",
+      "categoria": "Limpieza de Sangre",
+      "linea": "Sistema Base - Limpia tu Cuerpo",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 36000,
+      "sabor": "Verde intenso",
+      "objetivo_funcional": "Alcalinización del plasma, quelación de metales y limpieza sanguínea intracelular",
+      "mecanismo_accion": "La fisiología humana requiere que el pH de la sangre se mantenga en un margen ligeramente alcalino (7.35 a 7.45). El estrés crónico y el consumo excesivo de proteínas animales generan una sobrecarga ácida que deprime el sistema inmunológico. Alpha Balance extrae su poder purificador de la clorofila concentrada de superalimentos como el pasto de trigo, la alfalfa y la espinaca. La molécula de clorofila, estructuralmente análoga a la hemoglobina humana, actúa como un eficiente agente quelante que atrapa y elimina metales pesados. Las microalgas espirulina y chlorella aportan aminoácidos y micronutrientes que promueven la hematopoyesis, combatiendo la anemia y la fatiga celular crónica.",
+      "ingredientes_clave": [
+        "Alfalfa",
+        "Microalgas (Chlorella y Espirulina)",
+        "Pasto de trigo libre de gluten",
+        "Espinaca",
+        "Manzana verde",
+        "Limón",
+        "Jengibre",
+        "Magnesio",
+        "Zinc"
+      ],
+      "beneficios": [
+        "Limpia la sangre y órganos internos",
+        "Elimina metales pesados (acción quelante natural)",
+        "Sube las defensas",
+        "Ayuda en caso de acné",
+        "Alcaliniza el organismo",
+        "Promueve limpieza de toxinas",
+        "Equilibra pH del cuerpo",
+        "Proporciona energía natural",
+        "Combate la anemia y la fatiga celular crónica",
+        "Oxigena masivamente los tejidos"
+      ],
+      "modo_uso": "Disolver 1 stick en un vaso de agua fría (180 ml)",
+      "horario": "Idealmente al despertar en ayunas o junto al jugo del desayuno",
+      "palabra_clave": "SANGRE",
+      "para_toda_familia": true,
+      "codigo": "144269",
+      "fuente_precio": "Catalogo Chile.pdf"
+    },
+    "REXET": {
+      "nombre": "REXET",
+      "categoria": "Limpieza Hígado y Sistema Hepatobiliar",
+      "linea": "Sistema Base - Limpia tu Cuerpo",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 36000,
+      "sabor": "Tuna Roja",
+      "objetivo_funcional": "Regeneración del hepatocito, estimulación del sistema hepatobiliar y alivio del estrés metabólico",
+      "mecanismo_accion": "Rexet es una fórmula efervescente avanzada diseñada para salvaguardar el parénquima hepático. El componente central es la N-Acetilcisteína (NAC), un aminoácido azufrado que actúa como precursor directo del glutatión intracelular, el antioxidante endógeno más poderoso del cuerpo y pilar de la fase II de conjugación hepática. Esta acción se potencia con el extracto de alcachofa y perejil, que ejercen un profundo efecto colerético y colagogo, estimulando la producción de bilis y facilitando la digestión de lípidos. La matriz efervescente rica en electrolitos y vitaminas B amortigua la hiperacidez gástrica, rehidrata los tejidos y repone los cofactores vitamínicos agotados durante el estrés celular intenso.",
+      "ingredientes_clave": [
+        "N-Acetilcisteína (NAC) - precursor del glutatión intracelular",
+        "Extractos de tuna roja",
+        "Alcachofa (efecto colerético y colagogo)",
+        "Hierba luisa",
+        "Perejil",
+        "Acerola",
+        "Clorofila",
+        "Vitaminas del complejo B, C, D",
+        "Taurina",
+        "Electrolitos"
+      ],
+      "beneficios": [
+        "Limpieza del sistema hepatobiliar",
+        "Libera de toxinas acumuladas en hígado",
+        "Protege el hígado",
+        "Promueve función desintoxicante",
+        "Mantiene óptimas funciones metabólicas del hígado",
+        "Mantiene cuerpo limpio de toxinas",
+        "Promueve función depurativa",
+        "Ayuda a recuperar el estado fisiológico óptimo después de excesos"
+      ],
+      "modo_uso": "Disolver 1 stick en agua fría o temperatura ambiente - efervescente",
+      "horario": "Consumir regularmente para mantenimiento, o antes/después de excesos alimenticios o ingesta de alcohol",
+      "palabra_clave": "HÍGADO",
+      "efecto_especial": "Cambios de color en orina - se ve casi inmediatamente",
+      "combo": "COMBO FIESTA con Vita Xtra T+",
+      "para_toda_familia": true,
+      "codigo": "146319",
+      "fuente_precio": "Catalogo Chile.pdf"
+    },
+    "BIOPROTEIN ACTIVE": {
+      "nombre": "BIOPROTEIN ACTIVE",
+      "categoria": "Proteína 100% Vegetal",
+      "linea": "Sistema Base - Nutre y Regenera",
+      "presentacion": "Caja 14 x 25g",
+      "precio": 39500,
+      "sabores": ["Vainilla y Canela", "Chocolate con Avellanas"],
+      "objetivo_funcional": "Regeneración tisular, hipertrofia celular y soporte del sistema de defensas mediante proteína asimilable al 100%",
+      "mecanismo_accion": "Fuxion revoluciona el paradigma de las proteínas vegetales con Bioprotein Active®, una matriz que somete a los granos de quinua, arroz integral y arveja a una fase de germinación controlada a bajas temperaturas. Este tratamiento transforma las semillas latentes en un 'alimento vivo', desactivando bloqueadores enzimáticos y disparando los niveles de vitaminas y enzimas digestivas endógenas. El sistema gastrointestinal asimila la totalidad de los nutrientes sin generar inflamación, pesadez o reacciones alérgicas. Enriquecida con DHA, ARA y aceite de coco, promueve un anabolismo celular puro, desarrollo cognitivo óptimo y respuesta inmunológica robusta.",
+      "ingredientes_clave": [
+        "Bioprotein Active® (proteína de quinua orgánica germinada, arroz integral germinado, arveja, algas)",
+        "Enzimas asimiladoras",
+        "Vitaminas",
+        "Aminoácidos esenciales",
+        "L-glutamina",
+        "BCAAs",
+        "DHA",
+        "ARA",
+        "Aceite de coco"
+      ],
+      "beneficios": [
+        "Asimilación óptima de aminoácidos esenciales (100% biodisponible)",
+        "Regenera tejidos en menor tiempo",
+        "Eleva el perfil proteico de forma más eficaz",
+        "Reduce daño oxidativo",
+        "Protege sistema de defensa",
+        "Mejora desempeño mental",
+        "Alimento vivo con nutrientes activos",
+        "Sin inflamación, pesadez o reacciones alérgicas",
+        "Segura para toda la familia"
+      ],
+      "modo_uso": "Disolver 1 stick (25g) en 250 ml de agua fría, agitando vigorosamente",
+      "horario": "En cualquier momento del día para elevar el perfil proteico dietario",
+      "palabra_clave": "PROTEÍNA VEGETAL",
+      "para_toda_familia": true,
+      "codigo": "144686",
+      "precios_sabores": {
+        "Vainilla y Canela": 39500,
+        "Chocolate con Avellanas": 40000
+      },
+      "fuente_precio": "Catalogo Chile.pdf"
+    },
+    "VITA XTRA T+": {
+      "nombre": "VITA XTRA T+",
+      "categoria": "Energizante Natural",
+      "linea": "Sistema Base - Revitaliza tu Energía",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 36000,
+      "sabor": "Refresco de maíz morado",
+      "objetivo_funcional": "Estimulación energética mitocondrial sostenida, vigor físico y neuroprotección antioxidante",
+      "mecanismo_accion": "Vita Xtra T+ interviene directamente en el ciclo de Krebs a nivel intracelular, optimizando la capacidad de las mitocondrias para producir ATP de forma fluida y prolongada. La infusión sinérgica de Guayusa amazónica y Té Verde aporta teína y L-teanina que promueven un estado de alerta neurológico enfocado sin ansiedad ni taquicardia. Los adaptógenos biológicos como el micelio de Cordyceps aumentan la captación pulmonar de oxígeno y la resistencia muscular; la Maca andina y el Ginseng equilibran el eje hipotálamo-hipofisario mejorando la resiliencia sistémica frente al estrés físico. Los superfrutos (Acai, Goji y Maíz Morado) despliegan un blindaje de antocianinas contra el estrés oxidativo celular.",
+      "ingredientes_clave": [
+        "Extractos de Guayusa amazónica",
+        "Té verde (L-teanina)",
+        "Acai berry",
+        "Goji berry",
+        "Micelio de Cordyceps",
+        "Maca andina",
+        "Ginseng",
+        "Antocianinas de maíz morado",
+        "Vitaminas y minerales"
+      ],
+      "beneficios": [
+        "Energizante natural sin caídas metabólicas",
+        "Multivitamínico",
+        "Antioxidante",
+        "Ayuda a acelerar el metabolismo",
+        "Mantiene alerta y buen ánimo",
+        "Mejora rendimiento físico",
+        "Optimiza el desempeño diario",
+        "Reduce oxidación celular",
+        "Estado de alerta neurológico enfocado sin ansiedad ni taquicardia"
+      ],
+      "modo_uso": "Disolver 1 stick (5g) en un vaso de agua fría",
+      "horario": "Por la mañana o antes de requerir un desempeño físico o cognitivo superior - evitar en la noche",
+      "advertencia": "No recomendado para deficiencias cardiacas",
+      "palabra_clave": "ENERGÍA",
+      "combo": "COMBO FIESTA con Rexet",
+      "codigo": "147059",
+      "fuente_precio": "Catalogo Chile.pdf"
+    },
+    "VITAENERGÍA": {
+      "nombre": "VITAENERGÍA",
+      "categoria": "Multivitamínico Energizante",
+      "linea": "Sistema Base - Revitaliza tu Energía",
+      "presentacion": "Caja 30 x 7.5g",
+      "precio": 36000,
+      "sabor": "Maíz morado (Chicha morada)",
+      "objetivo_funcional": "Suplementación multivitamínica diaria, mitigación de fatiga y preservación de la agudeza visual",
+      "mecanismo_accion": "Vitaenergía se posiciona como el arquitecto del mantenimiento nutricional preventivo. La densa carga de antocianinas del extracto de maíz morado opera como estabilizador del endotelio vascular, previniendo la senescencia celular temprana y mejorando la microcirculación tisular. Un valor clínico distintivo es la inclusión de luteína purificada extraída de los pétalos de la flor de marigold, que se acumula en la mácula de la retina actuando como filtro biológico que absorbe las longitudes de onda nocivas de la luz azul emitida por pantallas digitales, previniendo la degeneración macular y la fatiga visual.",
+      "ingredientes_clave": [
+        "Aminoácidos",
+        "Complejo vitamínico completo",
+        "Minerales orgánicos",
+        "Fibra prebiótica",
+        "Camu camu",
+        "Antocianinas de maíz morado",
+        "Luteína (extracto de flor de marigold)"
+      ],
+      "beneficios": [
+        "Disipa sensación de fatiga",
+        "Componentes energéticos comprobados",
+        "Mejora asimilación de proteínas",
+        "Procesos de regeneración celular",
+        "Refuerza sistema inmunológico",
+        "Reduce oxidación de células",
+        "Protege contra radicales libres",
+        "Preserva la agudeza visual (filtro de luz azul por luteína)",
+        "Estabiliza el endotelio vascular"
+      ],
+      "modo_uso": "Disolver 1 stick en agua fría",
+      "horario": "Idealmente consumido durante las mañanas",
+      "palabra_clave": "ENERGÍA",
+      "para_toda_familia": true,
+      "codigo": "144286",
+      "fuente_precio": "Catalogo Chile.pdf"
+    },
+    "NUTRADAY": {
+      "nombre": "NUTRADAY",
+      "categoria": "Hidratación Nutricional para la Familia",
+      "linea": "Sistema Base - Revitaliza tu Energía",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 36000,
+      "sabor": "Fresa",
+      "objetivo_funcional": "Hidratación funcional, nutrición familiar y fortalecimiento inmunológico basal",
+      "mecanismo_accion": "El déficit de nutrientes esenciales en dietas altas en calorías vacías (fenómeno conocido como 'hambre oculta') compromete silenciosamente el desarrollo cognitivo infantil y la homeostasis inmunitaria. Nutraday es una matriz de rehidratación ortomolecular que reemplaza los jugos envasados y gaseosas, aportando 12 vitaminas y 5 minerales orgánicos fundamentales. El ingrediente biológicamente más activo es el extracto liofilizado de Moringa oleifera, que concentra hasta 25 veces más hierro biodisponible que la espinaca y 17 veces más calcio que la leche bovina. La vitamina C hiperconcentrada del camu camu y la acerola asegura una síntesis adecuada de glóbulos blancos y colágeno.",
+      "ingredientes_clave": [
+        "Súper extracto de Moringa oleifera",
+        "Guayaba",
+        "Limón",
+        "Albahaca",
+        "Camu camu",
+        "Acai berry",
+        "Acerola",
+        "Quinua orgánica germinada",
+        "12 vitaminas",
+        "5 minerales orgánicos"
+      ],
+      "beneficios": [
+        "Complementa nutrición con antioxidantes",
+        "Vitaminas y minerales adecuados",
+        "Mantiene sistema inmunológico óptimo",
+        "Óptimo desarrollo físico",
+        "Óptimo desarrollo mental",
+        "Hidratación completa",
+        "Aporta 25 veces más hierro que la espinaca",
+        "Aporta 17 veces más calcio que la leche bovina"
+      ],
+      "modo_uso": "Disolver 1 stick en agua fría y consumir como bebida de hidratación regular",
+      "horario": "A lo largo del día, apta para todas las edades",
+      "palabra_clave": "NUTRICIÓN NIÑOS",
+      "para_toda_familia": true,
+      "codigo": "144282",
+      "fuente_precio": "Catalogo Chile.pdf"
+    },
+    "VERA+": {
+      "nombre": "VERA+",
+      "categoria": "Inmunológica - Defensas",
+      "linea": "Línea Inmunológica",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 46500,
+      "sabor": "Menta",
+      "objetivo_funcional": "Inmunomodulación de precisión, escudo antiviral y profilaxis respiratoria",
+      "mecanismo_accion": "Vera+ es un nutracéutico diseñado para modular las defensas corporales. Los beta-glucanos actúan como modificadores de la respuesta biológica, adhiriéndose a los receptores de macrófagos y células Natural Killers (NK), preparándolas para destruir patógenos sin desencadenar una tormenta de citoquinas inflamatorias. El extracto estandarizado de hoja de olivo, rico en oleuropeína, despliega actividad bactericida y antiviral que inhibe la replicación de agentes infecciosos. La N-acetilcisteína (NAC) actúa como potente agente mucolítico, rompiendo los puentes disulfuro del moco bronquial espeso y facilitando la expectoración. El Aloe Vera proporciona efecto cicatrizante tisular sobre las mucosas.",
+      "ingredientes_clave": [
+        "Extracto bioactivo de Aloe Vera",
+        "Beta-glucanos (modificadores de respuesta biológica)",
+        "Mix de aminoácidos celulares (N-acetilcisteína, Glicina, L-glutamina)",
+        "Extracto de hoja de olivo (oleuropeína)",
+        "Amalaki (vitamina C natural)"
+      ],
+      "advertencia": "No recomendado para menores de 8 años, embarazadas y nodrizas sin indicación profesional",
+      "beneficios": [
+        "Sube las defensas",
+        "Aumenta resistencia a enfermedades",
+        "Resistencia especialmente a enfermedades respiratorias",
+        "Apoya el bienestar respiratorio y las defensas dentro de hábitos saludables",
+        "Reduce estrés oxidativo",
+        "Protege sistema inmunológico",
+        "Efecto mucolítico que facilita la expectoración"
+      ],
+      "modo_uso": "Disolver 1 stick en agua caliente y tomar como infusión relajante",
+      "horario": "Ante episodios de vulnerabilidad climática o síntomas respiratorios tempranos",
+      "palabra_clave": "SISTEMA RESPIRATORIO, DEFENSAS",
+      "codigo": "144281",
+      "fuente_precio": "Catalogo Chile.pdf"
+    },
+    "GANO+ CAPPUCCINO": {
+      "nombre": "GANO+ CAPPUCCINO",
+      "categoria": "Inmunológica - Defensas",
+      "linea": "Línea Inmunológica",
+      "presentacion": "Caja 28 x 7.5g",
+      "precio": 23250,
+      "sabor": "Cappuccino",
+      "objetivo_funcional": "Refuerzo antioxidante profundo, regulación inmunitaria celular y neuroprotección",
+      "mecanismo_accion": "Gano+ Cappuccino aísla y liofiliza los principios activos del Ganoderma Lucidum (Reishi) -triterpenoides y polisacáridos beta-glucanos- que actúan como inmunomoduladores biológicos. Los triterpenoides del Reishi inhiben la liberación de histamina y modulan la respuesta inflamatoria, mientras que los beta-glucanos activan los macrófagos y células dendríticas. El extracto de Quillay (Quilaya) aporta saponinas triterpénicas con propiedades antimicrobianas y antiinflamatorias. Los micronutrientes adicionales completan el perfil antioxidante, protegiendo las membranas celulares del daño oxidativo y apoyando la función hepática.",
+      "ingredientes_clave": [
+        "Ganoderma Lucidum (Reishi) liofilizado",
+        "β-D-Glucanos (polisacáridos bioactivos)",
+        "Triterpenoides del Reishi",
+        "Extracto de Quillay (saponinas)",
+        "Micronutrientes antioxidantes"
+      ],
+      "beneficios": [
+        "Sube las defensas",
+        "Apoya el bienestar general con ingredientes funcionales",
+        "Acompaña rutinas de bienestar y cuidado diario",
+        "Protege el hígado",
+        "Refuerza y regula el sistema inmunológico",
+        "Reduce daño oxidativo",
+        "Efecto inmunomodulador sin sobreestimulación"
+      ],
+      "modo_uso": "Disolver 1 stick en agua caliente y disfrutar como infusión",
+      "horario": "A la hora que desees, ideal como acompañamiento matutino o nocturno",
+      "palabra_clave": "PRESIÓN ARTERIAL, DEFENSAS, INMUNOMODULADOR",
+      "codigo": "144272",
+      "fuente_precio": "Catalogo Chile.pdf"
+    },
+    "THERMO T3": {
+      "nombre": "THERMO T3",
+      "categoria": "Control de Peso",
+      "linea": "Línea Control de Peso",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 36000,
+      "sabor": "Té Limón",
+      "objetivo_funcional": "Termogénesis inducida, oxidación de grasas y metabolismo energético para entrenamiento",
+      "mecanismo_accion": "THERMO T3 es un potenciador metabólico que actúa a través de tres mecanismos sinérgicos. Primero, la combinación de té verde (EGCG), té negro (teaflavinas) y té rojo (teabrowninas) genera un efecto termogénico que eleva la temperatura corporal basal, incrementando el gasto calórico en reposo. Segundo, la L-Carnitina actúa como transportador mitocondrial de ácidos grasos de cadena larga, facilitando su oxidación para producción de energía en lugar de almacenamiento. Tercero, las cetonas de frambuesa activan la lipólisis al inhibir la lipasa pancreática y estimular la adiponectina. El cromo picolinato mejora la sensibilidad a la insulina, estabilizando los niveles de glucosa sanguínea durante el ejercicio.",
+      "ingredientes_clave": [
+        "Mix de tés (Verde EGCG, Negro teaflavinas, Rojo teabrowninas)",
+        "Cetonas de frambuesa (activadores de lipólisis)",
+        "L-Carnitina (transportador mitocondrial de ácidos grasos)",
+        "Aminoácidos",
+        "Vitamina B6",
+        "Cromo picolinato"
+      ],
+      "beneficios": [
+        "Transforma grasa en energía",
+        "Acelera metabolismo",
+        "Reduce acumulación de grasa",
+        "Aumenta resistencia física",
+        "Efecto termogénico",
+        "Apoya hábitos de control de peso y metabolismo saludable",
+        "Mejora sensibilidad a la insulina"
+      ],
+      "modo_uso": "Disolver 1 stick en agua caliente y consumir 30 minutos antes del ejercicio",
+      "horario": "30 minutos antes de hacer ejercicio",
+      "palabra_clave": "METABOLISMO, QUEMA GRASA, TERMOGÉNESIS",
+      "codigo": "144280",
+      "fuente_precio": "Catalogo Chile.pdf"
+    },
+    "NOCARB-T": {
+      "nombre": "NOCARB-T",
+      "categoria": "Control de Peso",
+      "linea": "Línea Control de Peso",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 36000,
+      "sabor": "Té Manzana y Canela",
+      "objetivo_funcional": "Bloqueo parcial de carbohidratos, regulación glucémica y control de antojos",
+      "mecanismo_accion": "NOCARB-T es un inhibidor natural de la alfa-amilasa y alfa-glucosidasa, enzimas pancreáticas e intestinales responsables de descomponer los carbohidratos complejos en glucosa. Las fibras solubles del Yacón (ricos en FOS - fructooligosacáridos), Acacia (goma arábiga), Inulina y Pectina de manzana forman una matriz viscosa en el tracto digestivo que atrapa físicamente las moléculas de carbohidratos, reduciendo su velocidad de absorción y el pico glucémico postprandial. La Verdolaga (Portulaca oleracea) aporta ácidos grasos omega-3 (ALA) y melatonina natural con efecto modulador del metabolismo de la glucosa. La Canela (Cinnamomum cassia) contiene MHCP (metilhidroxicalcona polimérica) que mimetiza la acción de la insulina, facilitando el transporte de glucosa a las células.",
+      "ingredientes_clave": [
+        "Fibras solubles (Yacón FOS, Acacia, Inulina, Pectina de manzana)",
+        "Verdolaga (Portulaca oleracea - omega-3 ALA)",
+        "Canela (MHCP - mimetizador de insulina)",
+        "Té verde (EGCG)",
+        "Cromo picolinato"
+      ],
+      "beneficios": [
+        "Pon los carbohidratos en raya",
+        "Inhibe parcialmente asimilación de carbohidratos y azúcar",
+        "Ayuda a reducir glucosa en sangre",
+        "Evita formación de reservas de grasa",
+        "Ayuda en caso de azúcar en sangre, diabetes",
+        "Reduce picos glucémicos postprandiales",
+        "Controla antojos de carbohidratos"
+      ],
+      "modo_uso": "Disolver 1 stick en agua caliente y consumir antes o durante las comidas principales",
+      "horario": "Antes o con las comidas que contengan carbohidratos",
+      "palabra_clave": "CARBOHIDRATOS, AZÚCAR, GLUCEMIA",
+      "codigo": "144279",
+      "fuente_precio": "Catalogo Chile.pdf"
+    },
+    "PROTEIN ACTIVE FIT": {
+      "nombre": "PROTEIN ACTIVE FIT",
+      "categoria": "Control de Peso",
+      "linea": "Línea Control de Peso",
+      "presentacion": "Caja 14 x 25g",
+      "precio": 41500,
+      "sabores": ["Vainilla y Canela", "Chocolate con Avellanas"],
+      "objetivo_funcional": "Saciedad proteica, tonificación muscular y metabolismo acelerado",
+      "mecanismo_accion": "Protein Active Fit es un batido proteico 100% vegetal formulado con una matriz de proteínas de alta biodisponibilidad: quinua germinada (perfil completo de aminoácidos esenciales), arveja (rica en arginina y lisina), arroz integral germinado (hipoalergénica) y algas (DHA y EPA). La germinación de los granos activa enzimas que predigieren las proteínas, liberando péptidos bioactivos y aminoácidos libres que se absorben más rápidamente. Las enzimas digestivas añadidas (bromelina, papaína) facilitan aún más la proteólisis. El cromo y zinc actúan como cofactores enzimáticos del metabolismo de macronutrientes, mientras que la L-Lisina promueve la síntesis de carnitina endógena para la oxidación de grasas.",
+      "ingredientes_clave": [
+        "BioProtein Active (Quinua germinada, Arveja, Arroz germinado, Algas)",
+        "Enzimas digestivas (bromelina, papaína)",
+        "Vitaminas del complejo B",
+        "L-Lisina",
+        "Cromo y Zinc"
+      ],
+      "beneficios": [
+        "La proteína que le cae bien a todos",
+        "Acelera metabolismo",
+        "Quema grasa localizada",
+        "Tonifica músculos",
+        "Reduce sensación de apetito",
+        "Alta biodisponibilidad",
+        "100% vegetal, fácil digestión"
+      ],
+      "modo_uso": "Disolver 1 stick en 250ml de agua fría y agitar",
+      "horario": "De media mañana o media tarde como snack proteico",
+      "palabra_clave": "PROTEÍNA VEGETAL FIT, SACIDAD",
+      "codigo": "144340",
+      "fuente_precio": "Catalogo Chile.pdf"
+    },
+    "YOUTH ELIXIR HGH": {
+      "nombre": "YOUTH ELIXIR",
+      "categoria": "Anti-Edad",
+      "linea": "Línea Anti-Edad",
+      "presentacion": "Caja 28 x 5g",
+      "precio": 36000,
+      "sabor": "Uva de vino",
+      "objetivo_funcional": "Estimulación de la hormona del crecimiento (HGH), regeneración celular y longevidad",
+      "mecanismo_accion": "Youth Elixir HGH está diseñado para estimular la glándula pituitaria anterior para incrementar la secreción fisiológica de la Hormona del Crecimiento Humano (HGH). El complejo de aminoácidos específicos (L-Arginina, L-Omitina, L-Lisina, L-Glutamina) actúa como secretagogos naturales que atraviesan la barrera hematoencefálica y estimulan los receptores somatotrópicos hipotalámicos. Los OptiBerrys® proporcionan una matriz de polifenoles antocianínicos que protegen el ADN mitocondrial del daño oxidativo acumulativo. La vitamina C y las superfrutas aportan cofactores para la síntesis de colágeno y la reparación tisular nocturna, cuando el pico de HGH es más alto.",
+      "ingredientes_clave": [
+        "Complejo de aminoácidos (L-Arginina, L-Omitina, L-Lisina, L-Glutamina)",
+        "OptiBerrys® (matriz de polifenoles antocianínicos)",
+        "Vitamina C",
+        "Super frutas liofilizadas",
+        "Antioxidantes de espectro completo"
+      ],
+      "beneficios": [
+        "Vive tu juventud por más tiempo",
+        "Estimula glándula pituitaria",
+        "Estimula secreción de hormona de la juventud (HGH)",
+        "Retarda efectos del envejecimiento prematuro",
+        "Aumenta vitalidad",
+        "Mejora calidad del sueño" 

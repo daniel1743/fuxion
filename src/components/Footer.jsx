@@ -26,6 +26,7 @@ const Footer = () => {
     const tiendaLinks = [
       { label: 'Productos FuXion', icon: Package, path: '/explorar' },
       { label: 'Categorías', icon: Tags, path: '/categorias' },
+      { label: 'Sobre Nosotros', icon: Heart, path: '/sobre-nosotros' },
       { label: 'Bienestar', icon: Heart, path: '/opiniones' },
       { label: 'Evidencias', icon: BookOpen, path: '/blog' },
       { label: 'Términos y Condiciones', icon: FileText, path: '/terminos' },

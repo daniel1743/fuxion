@@ -12,8 +12,48 @@ const shouldShowSplash = () => {
   return openedAsApp || launchedFromPwa;
 };
 
+/* ── Particle system ────────────────────────────────────────── */
+const ParticleField = () => {
+  const particles = Array.from({ length: 24 }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 2.5 + 1,
+    delay: Math.random() * 1.8,
+    duration: Math.random() * 2 + 2,
+    opacity: Math.random() * 0.25 + 0.05,
+  }));
+
+  return (
+    <div className="splash-particles" aria-hidden="true">
+      {particles.map((p) => (
+        <motion.span
+          key={p.id}
+          className="splash-particle"
+          style={{
+            left: `${p.x}%`,
+            top: `${p.y}%`,
+            width: p.size,
+            height: p.size,
+          }}
+          animate={{
+            opacity: [0, p.opacity, 0],
+            y: [0, -20 - Math.random() * 15],
+          }}
+          transition={{
+            delay: p.delay,
+            duration: p.duration,
+            repeat: Infinity,
+            ease: 'easeOut',
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
 /* ── FuXion X Green Logo como SVG inline ─────────────────── */
-const FuxionXLogo = ({ className }) => (
+const FuxionXLogo = ({ className, isActive = true }) => (
   <svg
     className={className}
     viewBox="0 0 512 512"
@@ -34,56 +74,120 @@ const FuxionXLogo = ({ className }) => (
       <filter id="logoSoftShadow">
         <feDropShadow dx="0" dy="4" stdDeviation="8" floodColor="#059669" floodOpacity="0.25" />
       </filter>
+      <linearGradient id="energyGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#34D399" stopOpacity="0" />
+        <stop offset="50%" stopColor="#10B981" stopOpacity="0.6" />
+        <stop offset="100%" stopColor="#34D399" stopOpacity="0" />
+      </linearGradient>
     </defs>
 
     {/* X principal - trazo caligráfico premium */}
     <motion.g filter="url(#logoSoftShadow)">
       {/* Trazo 1: diagonal principal \ */}
-      <path
+      <motion.path
         d="M160 140 C200 180, 240 230, 256 256 C272 230, 312 180, 352 140"
         stroke="url(#xGrad)"
         strokeWidth="38"
         strokeLinecap="round"
         strokeLinejoin="round"
         fill="none"
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={isActive ? { pathLength: 1, opacity: 1 } : {}}
+        transition={{
+          duration: 0.7,
+          delay: 0.2,
+          ease: [0.25, 0.1, 0.25, 1],
+        }}
       />
       {/* Trazo 2: diagonal secundaria / */}
-      <path
+      <motion.path
         d="M352 140 C312 190, 280 240, 256 256 C232 240, 200 190, 160 140"
         stroke="url(#xGrad)"
         strokeWidth="38"
         strokeLinecap="round"
         strokeLinejoin="round"
         fill="none"
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={isActive ? { pathLength: 1, opacity: 1 } : {}}
+        transition={{
+          duration: 0.7,
+          delay: 0.35,
+          ease: [0.25, 0.1, 0.25, 1],
+        }}
       />
       {/* Trazo 3: diagonal inversa \ (parte inferior) */}
-      <path
+      <motion.path
         d="M160 372 C200 332, 240 282, 256 256 C272 282, 312 332, 352 372"
         stroke="url(#xGrad)"
         strokeWidth="38"
         strokeLinecap="round"
         strokeLinejoin="round"
         fill="none"
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={isActive ? { pathLength: 1, opacity: 1 } : {}}
+        transition={{
+          duration: 0.7,
+          delay: 0.5,
+          ease: [0.25, 0.1, 0.25, 1],
+        }}
       />
       {/* Trazo 4: diagonal inversa / (parte inferior) */}
-      <path
+      <motion.path
         d="M352 372 C312 322, 280 272, 256 256 C232 272, 200 322, 160 372"
         stroke="url(#xGrad)"
         strokeWidth="38"
         strokeLinecap="round"
         strokeLinejoin="round"
         fill="none"
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={isActive ? { pathLength: 1, opacity: 1 } : {}}
+        transition={{
+          duration: 0.7,
+          delay: 0.65,
+          ease: [0.25, 0.1, 0.25, 1],
+        }}
       />
     </motion.g>
+
+    {/* Flujo de energía que cruza el centro */}
+    <motion.line
+      x1="160" y1="140" x2="352" y2="372"
+      stroke="url(#energyGrad)"
+      strokeWidth="2"
+      strokeLinecap="round"
+      initial={{ pathLength: 0, opacity: 0 }}
+      animate={isActive ? { pathLength: 1, opacity: 1 } : {}}
+      transition={{
+        duration: 0.5,
+        delay: 1.0,
+        ease: [0.4, 0, 0.6, 1],
+      }}
+      style={{ pointerEvents: 'none' }}
+    />
+    <motion.line
+      x1="352" y1="140" x2="160" y2="372"
+      stroke="url(#energyGrad)"
+      strokeWidth="2"
+      strokeLinecap="round"
+      initial={{ pathLength: 0, opacity: 0 }}
+      animate={isActive ? { pathLength: 1, opacity: 1 } : {}}
+      transition={{
+        duration: 0.5,
+        delay: 1.15,
+        ease: [0.4, 0, 0.6, 1],
+      }}
+      style={{ pointerEvents: 'none' }}
+    />
 
     {/* Hoja / brote en la intersección superior */}
     <motion.g
       className="splash-leaf"
+      style={{ transformOrigin: 'center bottom' }}
       initial={{ scale: 0, rotate: -15, opacity: 0 }}
-      animate={{ scale: 1, rotate: 0, opacity: 1 }}
+      animate={isActive ? { scale: 1, rotate: 0, opacity: 1 } : {}}
       transition={{
         duration: 0.6,
-        delay: 0.25,
+        delay: 0.85,
         ease: [0.34, 1.56, 0.64, 1], // spring suave
       }}
     >
@@ -97,7 +201,6 @@ const FuxionXLogo = ({ className }) => (
         fill="url(#leafGrad)"
         opacity="0.7"
       />
-      {/* Vena central de la hoja */}
       <line
         x1="256" y1="140" x2="256" y2="70"
         stroke="#047857"
@@ -113,10 +216,10 @@ const FuxionXLogo = ({ className }) => (
       fill="url(#sweepGrad)"
       className="splash-light-sweep"
       initial={{ x: '-100%' }}
-      animate={{ x: '200%' }}
+      animate={isActive ? { x: '200%' } : {}}
       transition={{
         duration: 0.8,
-        delay: 0.5,
+        delay: 1.1,
         ease: [0.25, 0.1, 0.25, 1],
       }}
       style={{ pointerEvents: 'none' }}
@@ -174,6 +277,7 @@ const AppSplashScreen = ({ onFinish }) => {
   const [visible, setVisible] = useState(shouldShowSplash);
   const [closing, setClosing] = useState(false);
   const [showText, setShowText] = useState(false);
+  const [logoActive, setLogoActive] = useState(true);
   const logoRef = useRef(null);
 
   useEffect(() => {
@@ -190,6 +294,7 @@ const AppSplashScreen = ({ onFinish }) => {
     // Iniciar cierre
     const closeTimer = window.setTimeout(() => {
       setClosing(true);
+      setLogoActive(false);
     }, 1800);
 
     // Remover del DOM
@@ -219,6 +324,9 @@ const AppSplashScreen = ({ onFinish }) => {
           role="status"
           aria-label="Abriendo Nutrición de Verdad"
         >
+          {/* Partículas de naturaleza */}
+          <ParticleField />
+
           {/* Glow de fondo pulsante */}
           <motion.div
             className="app-splash__glow"
@@ -243,7 +351,10 @@ const AppSplashScreen = ({ onFinish }) => {
             animate="visible"
             aria-hidden="true"
           >
-            <FuxionXLogo className="app-splash__logo-svg" />
+            <FuxionXLogo
+              className="app-splash__logo-svg"
+              isActive={logoActive}
+            />
 
             {/* Breathing sutil del logo */}
             <motion.div

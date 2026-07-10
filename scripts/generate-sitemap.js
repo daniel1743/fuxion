@@ -16,17 +16,27 @@ const TODAY = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
 // ── Static pages ──────────────────────────────────────────────
 const staticPages = [
   { loc: '/', priority: '1.0', changefreq: 'weekly' },
-  { loc: '/explorar', priority: '0.95', changefreq: 'weekly' },
+  { loc: '/sobre-nosotros', priority: '0.85', changefreq: 'monthly' },
+  { loc: '/asesor-fuxion', priority: '0.75', changefreq: 'monthly' },
+  { loc: '/centro-de-ayuda', priority: '0.60', changefreq: 'monthly' },
+  { loc: '/productos-fuxion', priority: '0.90', changefreq: 'weekly' },
+  { loc: '/opiniones', priority: '0.80', changefreq: 'weekly' },
+  { loc: '/bienestar', priority: '0.75', changefreq: 'weekly' },
   { loc: '/categorias', priority: '0.85', changefreq: 'weekly' },
   { loc: '/blog', priority: '0.75', changefreq: 'weekly' },
-  { loc: '/opiniones', priority: '0.80', changefreq: 'weekly' },
   { loc: '/ayuda', priority: '0.60', changefreq: 'monthly' },
   { loc: '/terminos', priority: '0.30', changefreq: 'monthly' },
+  { loc: '/privacidad', priority: '0.30', changefreq: 'monthly' },
+  { loc: '/cookies', priority: '0.30', changefreq: 'monthly' },
   { loc: '/contacto', priority: '0.70', changefreq: 'weekly' },
   { loc: '/envios', priority: '0.40', changefreq: 'monthly' },
   { loc: '/faq', priority: '0.50', changefreq: 'monthly' },
   { loc: '/oportunidad-fuxion', priority: '0.85', changefreq: 'weekly' },
   { loc: '/productos-fuxion-chile', priority: '0.90', changefreq: 'weekly' },
+  { loc: '/mejores-productos-fuxion-chile', priority: '0.85', changefreq: 'monthly' },
+  { loc: '/productos-fuxion-para-perder-peso', priority: '0.85', changefreq: 'monthly' },
+  { loc: '/proteina-vegetal-fuxion-chile', priority: '0.85', changefreq: 'monthly' },
+  { loc: '/fuxion-buenas-o-malas-opinion', priority: '0.80', changefreq: 'monthly' },
 ];
 
 // ── Category pages (clean URLs) ───────────────────────────────

@@ -34,6 +34,8 @@ const ContactPage = lazy(() => import('@/pages/ContactPage'));
 const HelpCenterPage = lazy(() => import('@/pages/HelpCenterPage'));
 const ProductosFuxionPage = lazy(() => import('@/pages/ProductosFuxionPage'));
 const FaqPage = lazy(() => import('@/pages/FaqPage'));
+const ReviewsPage = lazy(() => import('@/pages/ReviewsPage'));
+const AboutPage = lazy(() => import('@/pages/AboutPage'));
 const PrivacyPolicyPage = lazy(() => import('@/pages/PrivacyPolicyPage'));
 const CookiesPolicyPage = lazy(() => import('@/pages/CookiesPolicyPage'));
 
@@ -78,10 +80,12 @@ function App() {
                     <Route path="/carrito" element={<CartPage />} />
                     <Route path="/checkout" element={<PlaceholderPage pageName="Checkout" />} />
                     <Route path="/cuenta" element={<AccountPage />} />
-                    <Route path="/opiniones" element={<WellnessPage />} />
+                    <Route path="/opiniones" element={<ReviewsPage />} />
+                    <Route path="/opiniones/wellness" element={<WellnessPage />} />
                     <Route path="/bienestar/:slug" element={<WellnessArticlePage />} />
                     <Route path="/blog" element={<EvidencePage />} />
                     <Route path="/blog/:slug" element={<BlogPostPage />} />
+                    <Route path="/sobre-nosotros" element={<AboutPage />} />
                     <Route path="/terminos" element={<PlaceholderPage pageName="Términos y Condiciones" />} />
                     <Route path="/contacto" element={<ContactPage />} />
                     <Route path="/envios" element={<ShippingPage />} />

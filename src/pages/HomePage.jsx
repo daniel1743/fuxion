@@ -21,6 +21,7 @@ import { buildStoreSchema, buildOrganizationSchema, SITE_URL, STORE_NAME, getAll
 import { confirmAndOpenWhatsapp, openWhatsapp } from '@/lib/whatsapp';
 import ProductNeedSearch from '@/components/ProductNeedSearch';
 import WellnessJourneyCarousel from '@/components/WellnessJourneyCarousel';
+import TestimonialsSection from '@/components/TestimonialsSection';
 import SEO from '@/components/SEO';
 import { AiRobotIcon, WhatsAppIcon } from '@/components/icons/BrandIcons';
 
@@ -309,6 +310,11 @@ const HomePage = () => {
       ════════════════════════════════════════════════════════════
       */}
       <CertificationsCarousel />
+
+      <TestimonialsSection
+        title="Lo que dicen nuestros clientes"
+        subtitle="Más de 500 clientes satisfechos en todo Chile confían en nuestros productos y asesoría personalizada."
+      />
 
       <section className="py-10 bg-white dark:bg-card border-y border-emerald-100 dark:border-border">
         <div className="container mx-auto px-6">
@@ -780,87 +786,87 @@ const HomePage = () => {
 const certifications = [
   {
     id: 'actigenos',
-    imageSrc: '/carrussel certificaciones/actigenos.png',
-    name: 'Actigenos',
-    type: 'Tecnología nutracéutica',
-    description: 'Complejo de péptidos naturales derivados del lactosuero.'
+    imageSrc: '/carrussel certificaciones/actigenos.jpeg',
+    name: 'Actinos',
+    type: 'Péptidos naturales del lactosuero',
+    description: 'Complejo de péptidos naturales extraídos del lactosuero. Induce la producción endógena de óxido nítrico, provocando profunda vasodilatación que acelera la depuración del ácido láctico y retrasa la fatiga muscular.'
   },
   {
     id: 'bc-certificacion',
-    imageSrc: '/carrussel certificaciones/bc certificacion.png',
+    imageSrc: '/carrussel certificaciones/bc certificaion.jpeg',
     name: 'Baltic Control',
-    type: 'Certificación internacional',
-    description: 'Auditoría internacional de calidad y cadena de suministro.'
+    type: 'Inspección internacional',
+    description: 'Firma de inspección internacional que audita cadenas de suministro desde el origen botánico agrícola hasta el envasado nutracéutico, respaldando la pureza y potencia de los productos.'
   },
   {
     id: 'bioferrin',
-    imageSrc: '/carrussel certificaciones/bioferrin.png',
+    imageSrc: '/carrussel certificaciones/bioferrin.jpeg',
     name: 'Bioferrin',
-    type: 'Biotecnología funcional',
-    description: 'Lactoferrina bioactiva obtenida de matrices de lactosuero.'
+    type: 'Lactoferrina bioactiva',
+    description: 'Lactoferrina pura bioactiva extraída de matrices de lactosuero bovino. Actúa como agente antimicrobiano que secuestra el hierro libre, eliminando el sustrato vital de patógenos invasores.'
   },
   {
     id: 'bioprotein-active',
-    imageSrc: '/carrussel certificaciones/bioprotein active.png',
+    imageSrc: '/carrussel certificaciones/bioprotein active.jpeg',
     name: 'BioProtein Active',
-    type: 'Formulación nutricional',
-    description: 'Proteína vegetal con ingredientes como quinua, arroz y arveja.'
+    type: 'Proteína vegetal viva',
+    description: 'Matriz de proteína vegetal viva que integra quinua orgánica germinada, arvejas, arroz integral y algas. Su proceso de germinación pre-digiere la proteína, brindando alto valor biológico.'
   },
   {
     id: 'bioprotein',
-    imageSrc: '/carrussel certificaciones/bioprotein.png',
+    imageSrc: '/carrussel certificaciones/bioprotein.jpeg',
     name: 'BioProtein Colostrum',
-    type: 'Formulación nutricional',
-    description: 'Combinación de proteínas y calostro bovino.'
+    type: 'Proteínas + Calostro',
+    description: 'Amalgama de ingeniería alimentaria que fusiona proteínas de distinta tasa de absorción cinética con calostro bovino. Aporta inmunoglobulinas que recubren las mucosas gastrointestinales.'
   },
   {
     id: 'bpm',
-    imageSrc: '/carrussel certificaciones/bpm.png',
+    imageSrc: '/carrussel certificaciones/bpm.jpeg',
     name: 'BPM',
     type: 'Buenas Prácticas de Manufactura',
-    description: 'Procesos controlados de producción y calidad.'
+    description: 'Estándar que exige rediseño total de la arquitectura de producción para prohibir la variabilidad lote a lote. Asegura concentración declarada exacta e impone protocolos de limpieza anti-contaminación cruzada.'
   },
   {
     id: 'ciencia-natural',
-    imageSrc: '/carrussel certificaciones/ciencia natural.png',
-    name: 'Avanzando en Ciencia, Regresando a lo Natural',
+    imageSrc: '/carrussel certificaciones/ciencia natural.jpeg',
+    name: 'Ciencia y Naturaleza',
     type: 'Filosofía I+D',
-    description: 'Integración entre investigación científica e ingredientes naturales.'
+    description: 'Directriz de investigación y desarrollo que busca mapear, aislar y potenciar perfiles fitoquímicos ancestrales. Representa la "Fusión Nutracéutica" con tecnologías de estabilización para extraer principios activos puros.'
   },
   {
     id: 'clean-label',
-    imageSrc: '/carrussel certificaciones/cleam label.png',
+    imageSrc: '/carrussel certificaciones/cleam label.jpeg',
     name: 'Clean Label',
-    type: 'Filosofía de formulación',
-    description: 'Enfoque en ingredientes de origen natural.'
+    type: 'Ingredientes naturales',
+    description: 'Garantiza ingredientes 100% de origen natural y una reingeniería de sistemas de entrega de nutrientes con tecnología de microencapsulación lipídica para proteger los principios activos.'
   },
   {
     id: 'haccp',
-    imageSrc: '/carrussel certificaciones/haccp.png',
+    imageSrc: '/carrussel certificaciones/haccp.jpeg',
     name: 'HACCP',
-    type: 'Seguridad alimentaria',
-    description: 'Sistema preventivo de análisis de riesgos y puntos críticos de control.'
+    type: 'Seguridad alimentaria preventiva',
+    description: 'Sistema que eleva la seguridad alimentaria a un modelo predictivo. Requiere mapeo exhaustivo de cada etapa del procesamiento industrial para identificar Puntos Críticos de Control con límites de monitoreo en tiempo real.'
   },
   {
     id: 'humanitas',
-    imageSrc: '/carrussel certificaciones/humanitas.png',
+    imageSrc: '/carrussel certificaciones/humanitas.jpeg',
     name: 'Humanitas',
-    type: 'Certificación corporativa',
-    description: 'Reconocimiento asociado a prácticas empresariales responsables.'
+    type: 'Prácticas corporativas',
+    description: 'Sello que avala el modelo de negocio, las prácticas laborales éticas, la sostenibilidad del abastecimiento y la transparencia comercial de la corporación.'
   },
   {
     id: 'prolibra',
-    imageSrc: '/carrussel certificaciones/prolibra.png',
+    imageSrc: '/carrussel certificaciones/prolibra.jpeg',
     name: 'Prolibra',
-    type: 'Ingrediente patentado',
-    description: 'Fracción bioactiva derivada del suero lácteo.'
+    type: 'Fracción bioactiva del suero',
+    description: 'Ingrediente de fracción bioactiva derivado del suero lácteo. Altera favorablemente la partición de nutrientes, dirigiendo aminoácidos hacia la síntesis de proteínas musculares y acelerando la movilización de grasa.'
   },
   {
     id: 'svetol',
-    imageSrc: '/carrussel certificaciones/svetol.png',
+    imageSrc: '/carrussel certificaciones/svetol.jpeg',
     name: 'Svetol',
-    type: 'Extracto natural patentado',
-    description: 'Extracto estandarizado de café verde.'
+    type: 'Extracto de café verde',
+    description: 'Extracto natural estandarizado de granos de café verde Robusta. Compuesto bioactivo de acción metabólica reconocida.'
   }
 ];
 
@@ -964,11 +970,11 @@ const CertificationsCarousel = () => {
                   loading="lazy"
                 />
                 {isHovered && certData && (
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-56 bg-white dark:bg-gray-900 rounded-lg shadow-xl border border-emerald-100 dark:border-emerald-900 p-3 z-50 pointer-events-none">
-                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-3 h-3 bg-white dark:bg-gray-900 border-r border-b border-emerald-100 dark:border-emerald-900 rotate-45" />
-                    <p className="text-sm font-bold text-foreground mb-1">{certData.name}</p>
-                    <p className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 mb-1">{certData.type}</p>
-                    <p className="text-xs text-muted-foreground leading-relaxed">{certData.description}</p>
+                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-72 sm:w-80 bg-white dark:bg-gray-900 rounded-xl shadow-2xl border border-emerald-200 dark:border-emerald-800 p-4 z-50 pointer-events-none">
+                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-3 h-3 bg-white dark:bg-gray-900 border-r border-b border-emerald-200 dark:border-emerald-800 rotate-45" />
+                    <p className="text-base font-bold text-foreground mb-1">{certData.name}</p>
+                    <p className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 mb-2">{certData.type}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{certData.description}</p>
                   </div>
                 )}
               </div>

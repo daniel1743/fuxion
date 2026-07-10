@@ -119,7 +119,7 @@ export const recordAdvisorEvent = async (advisorId, eventType, metadata = {}) =>
       ? `${window.location.pathname}${window.location.search}`
       : null;
 
-    const { error } = await supabase.from('advisor_events').insert([{
+    const { error } = await supabase.from('chat_events').insert([{
       advisor_id: normalizeAdvisorId(advisorId) || 'daniel',
       event_type: eventType,
       page_path: path,
@@ -139,7 +139,7 @@ export const fetchAdvisorMetrics = async () => {
   const [advisorsResult, eventsResult] = await Promise.all([
     fetchAdvisors(),
     supabase
-      .from('advisor_events')
+      .from('chat_events')
       .select('advisor_id, event_type, created_at, product_name')
       .order('created_at', { ascending: false })
       .limit(1000)
