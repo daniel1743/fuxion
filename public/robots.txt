@@ -31,5 +31,3 @@ Disallow: /*?categoria=
 # Sitemap
 Sitemap: https://tiendafuxion.space/sitemap.xml
 
-# Crawl-delay
-Crawl-delay: 10

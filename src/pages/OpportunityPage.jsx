@@ -1162,6 +1162,7 @@ const OpportunityPage = () => {
                   variant="outline"
                   size="lg"
                   onClick={() => navigate('/explorar')}
+                  className="text-emerald-950 dark:text-emerald-50 border-transparent sm:border-white/20"
                 >
                   <Leaf className="mr-2 h-5 w-5 shrink-0" />
                   <span className="text-balance">Ver productos</span>

@@ -12,6 +12,7 @@ import { SiteSettingsProvider } from '@/context/SiteSettingsContext';
 import { LoyaltyProvider } from '@/context/LoyaltyContext';
 import AdminLoginModal from '@/components/admin/AdminLoginModal';
 import AppSplashScreen from '@/components/AppSplashScreen';
+import ScrollToTop from '@/components/ScrollToTop';
 import '@/utils/clearForumData'; // Cargar utilidades del foro
 import '@/utils/testBots'; // Cargar test de bots
 
@@ -54,6 +55,7 @@ function App() {
 
   return (
     <>
+      <ScrollToTop />
       <AppSplashScreen onFinish={handleSplashFinish} />
       <AuthProvider>
         <AdminProvider>

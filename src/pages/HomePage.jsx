@@ -209,12 +209,12 @@ const HomePage = () => {
       />
 
       {/* SECCIÓN 1 – HERO */}
-      <section className="relative min-h-screen flex items-center overflow-hidden pt-20 bg-gradient-to-br from-[#f7faf4] via-white to-[#edf7ee] dark:from-[#0f1f18] dark:via-[#111827] dark:to-[#1b1630]">
-        <div className="relative z-10 w-full max-w-[1440px] mx-auto px-8 xl:px-16 py-16">
-          <div className="grid lg:grid-cols-[55fr_45fr] gap-16 xl:gap-24 items-center">
-            <div className="text-center lg:text-left">
+      <section className="relative lg:min-h-screen flex items-center overflow-hidden pt-24 lg:pt-20 pb-12 lg:pb-0 bg-gradient-to-br from-[#f7faf4] via-white to-[#edf7ee] dark:from-[#0f1f18] dark:via-[#111827] dark:to-[#1b1630]">
+        <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 lg:px-8 xl:px-16 py-4 lg:py-16">
+          <div className="flex flex-col lg:grid lg:grid-cols-[55fr_45fr] gap-10 lg:gap-16 xl:gap-24 items-center">
+            <div className="text-center lg:text-left flex flex-col items-center lg:items-start">
               <motion.p
-                className="inline-flex items-center rounded-full border border-emerald-200 bg-white/80 px-4 py-2 text-sm font-semibold text-emerald-700 shadow-sm dark:border-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 mb-6"
+                className="inline-flex items-center rounded-full border border-emerald-200 bg-white/80 px-4 py-2 text-xs md:text-sm font-semibold text-emerald-700 shadow-sm dark:border-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 mb-4 lg:mb-6"
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -222,7 +222,7 @@ const HomePage = () => {
                 Tienda Fuxion Chile · Asesoría personalizada
               </motion.p>
               <motion.h1
-                className="text-responsive-hero font-extrabold text-foreground tracking-tight mb-6"
+                className="text-4xl md:text-5xl lg:text-responsive-hero font-extrabold text-foreground tracking-tight mb-4 lg:mb-6 leading-tight"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
@@ -230,7 +230,7 @@ const HomePage = () => {
                 Productos Fuxion para <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-emerald-400">nutrición y bienestar natural.</span>
               </motion.h1>
               <motion.p
-                className="text-xl md:text-2xl font-medium text-emerald-800/80 dark:text-emerald-300/80 mb-6"
+                className="text-lg md:text-2xl font-medium text-emerald-800/80 dark:text-emerald-300/80 mb-4 lg:mb-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.35 }}
@@ -238,7 +238,7 @@ const HomePage = () => {
                 Te ayudamos a elegir según tu objetivo: energía, digestión, control de peso o defensas.
               </motion.p>
               <motion.p
-                className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0 mb-8"
+                className="mt-2 lg:mt-6 text-base md:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0 mb-6 lg:mb-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.5 }}
@@ -264,7 +264,7 @@ const HomePage = () => {
               >
                 <Button
                   onClick={() => handleWhatsAppClick('Hola, quiero empezar mi cambio con Fuxion')}
-                  className="h-14 px-8 rounded-2xl bg-emerald-800 hover:bg-emerald-900 text-white font-semibold flex items-center gap-2 shadow-lg shadow-emerald-900/10 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 text-base"
+                  className="w-full sm:w-auto justify-center h-14 px-8 rounded-2xl bg-emerald-800 hover:bg-emerald-900 text-white font-semibold flex items-center gap-2 shadow-lg shadow-emerald-900/10 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 text-base"
                 >
                   <span>Recibir asesoría</span>
                   <HugeiconsIcon icon={ArrowRight02Icon} size={20} className="shrink-0" />

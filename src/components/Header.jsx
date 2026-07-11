@@ -489,6 +489,7 @@ const Header = () => {
                   <div className="flex items-center gap-2">
                     {socialLinks.map((social) => {
                       const IconComponent = social.icon;
+                      const isHugeicon = typeof IconComponent !== 'function';
                       return (
                         <a
                           key={social.name}
@@ -499,7 +500,11 @@ const Header = () => {
                           aria-label={social.name}
                           title={social.name}
                         >
-                          <IconComponent className="w-[18px] h-[18px]" strokeWidth={2.0} />
+                          {isHugeicon ? (
+                            <HugeiconsIcon icon={IconComponent} className="w-[18px] h-[18px]" size={18} />
+                          ) : (
+                            <IconComponent className="w-[18px] h-[18px]" strokeWidth={2.0} />
+                          )}
                         </a>
                       );
                     })}

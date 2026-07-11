@@ -33,10 +33,6 @@ const staticPages = [
   { loc: '/faq', priority: '0.50', changefreq: 'monthly' },
   { loc: '/oportunidad-fuxion', priority: '0.85', changefreq: 'weekly' },
   { loc: '/productos-fuxion-chile', priority: '0.90', changefreq: 'weekly' },
-  { loc: '/mejores-productos-fuxion-chile', priority: '0.85', changefreq: 'monthly' },
-  { loc: '/productos-fuxion-para-perder-peso', priority: '0.85', changefreq: 'monthly' },
-  { loc: '/proteina-vegetal-fuxion-chile', priority: '0.85', changefreq: 'monthly' },
-  { loc: '/fuxion-buenas-o-malas-opinion', priority: '0.80', changefreq: 'monthly' },
 ];
 
 // ── Category pages (clean URLs) ───────────────────────────────
