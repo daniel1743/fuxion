@@ -174,7 +174,7 @@ const BENEFIT_TO_PRODUCT_MAP = [
   { pattern: /\b(energia|energía|energizante|vitalidad|activarme|activar|despertar|cansancio|fatiga|agotamiento|sin energia|sin energías|rendimiento fisico|rendimiento físico)\b/i, products: ['VITA XTRA T+', 'VITAENERGÍA'] },
   { pattern: /\b(digestion|digestión|digestivo|estomago|estómago|hinchazon|hinchazón|pesadez|gastritis|reflujo|colitis|colon irritable|intolerancia|probiótico|probióticos|flora intestinal|intestinal)\b/i, products: ['FLORA LIV', 'PRUNEX 1', 'LIQUID FIBER'] },
   { pattern: /\b(colon|estreñimiento|estrenimiento|constipacion|constipación|limpieza colon|limpiar colon|transito intestinal|tránsito intestinal|ir al baño|evacuar)\b/i, products: ['PRUNEX 1', 'LIQUID FIBER'] },
-  { pattern: /\b(peso|bajar de peso|perder peso|adelgazar|control de peso|dieta|rebajar|obesidad|sobrepeso|grasa|quemar grasa|cardio|ejercicio|entrenar|entrenamiento|fit|fitness)\b/i, products: ['THERMO T3', 'NOCARB-T', 'PROTEIN ACTIVE FIT'] },
+  { pattern: /\b(bajar de peso|perder peso|adelgazar|control de peso|dieta|rebajar|obesidad|sobrepeso|grasa|quemar grasa|cardio|ejercicio|entrenar|entrenamiento|fit|fitness)\b/i, products: ['THERMO T3', 'NOCARB-T', 'PROTEIN ACTIVE FIT'] },
   { pattern: /\b(defensas|inmunidad|inmunologico|inmunológico|sistema inmunologico|sistema inmunológico|proteccion|protección|resfriado|gripe|defensa natural)\b/i, products: ['VERA+', 'GANO+ CAPPUCCINO'] },
   { pattern: /\b(piel|colageno|colágeno|belleza|anti edad|anti-edad|antiaging|antiaging|arrugas|juvenil|juventud|envejecimiento|pelo|cabello|uñas|cutanea|cutánea)\b/i, products: ['BEAUTY-IN', 'YOUTH ELIXIR'] },
   { pattern: /\b(desintoxicacion|desintoxicación|detox|limpieza|higado|hígado|higado graso|sangre|organos|órganos|depurar|purificar)\b/i, products: ['REXET', 'ALPHA BALANCE', 'PRUNEX 1', 'FLORA LIV'] },
@@ -286,27 +286,20 @@ const getMentionedProductsFromHistory = (messages = []) => {
 // ===================================================================
 const BUSINESS_OPPORTUNITY_PATTERNS = [
   /\b(vender fuxion|vender fuXion)\b/i,
-  /\b(hacer el negocio)\b/i,
-  /\b(c[oó]mo gano dinero|c[oó]mo ganar dinero)\b/i,
-  /\b(quiero emprender)\b/i,
-  /\b(ser distribuidor)\b/i,
-  /\b(oportunidad fuxion|oportunidad fuXion)\b/i,
-  /\b(plan de negocio)\b/i,
-  /\b(ganancias|ingresos extra|ingreso extra)\b/i,
-  /\b(negocio fuxion|negocio fuXion)\b/i,
-  /\b(trabajar con fuxion|trabajar con fuXion)\b/i,
-  /\b(emprender con fuxion|emprender con fuXion)\b/i,
-  /\b(unirme a fuxion|unirme a fuXion|asociarme)\b/i,
-  /\b(ser parte de fuxion|ser parte de fuXion)\b/i,
-  /\b(modelo de negocio|plan de compensaci[oó]n)\b/i,
-  /\b(ganar dinero con fuxion|ganar dinero con fuXion)\b/i,
-  /\b(c[oó]mo funciona el negocio)\b/i,
-  /\b(quiero vender|vender productos)\b/i,
-  /\b(oportunidad de negocio|negocio propio)\b/i,
-  /\b(ingresos|dinero extra)\b/i,
-  /\b(independencia financiera|libertad financiera)\b/i,
-  /\b(trabajo desde casa|negocio desde casa)\b/i,
-  /\b(ingreso pasivo|ingresos pasivos)\b/i
+  /\b(quiero ser distribuidor|distribuidor fuXion|distribuidor de fuxion)\b/i,
+  /\b(oportunidad fuXion|oportunidad fuxion)\b/i,
+  /\b(plan de negocio fuXion|plan de negocio de fuxion)\b/i,
+  /\b(trabajar con fuXion|trabajar con fuxion)\b/i,
+  /\b(emprender con fuXion|emprender con fuxion)\b/i,
+  /\b(unirme a fuXion|unirme a fuxion)\b/i,
+  /\b(aser parte de fuXion|aser parte de fuxion)\b/i,
+  /\b(ganar dinero con fuXion|ganar dinero con fuxion)\b/i,
+  /\b(c[oó]mo funciona el negocio fuXion|c[oó]mo funciona el negocio de fuxion)\b/i,
+  /\b(socio fuXion|socio fuxion)\b/i,
+  /\b(quiero vender fuXion|quiero vender fuxion)\b/i,
+  /\b(oportunidad de negocio fuXion|oportunidad de negocio de fuxion)\b/i,
+  /\b(vender productos fuXion|vender productos de fuxion)\b/i,
+  /\b(hacerme distribuidor)\b/i,
 ];
 
 const detectBusinessOpportunityIntent = (text = '') => {
@@ -688,22 +681,22 @@ Paso 4 - Explicar diferencias entre opciones
 Ejemplo de recomendacion premium para energia:
 "Dentro de vitalidad existen diferentes alternativas:
 
-Vita Xtra T+: pensado para personas que buscan activacion y energia diaria.
+- Vita Xtra T+: pensado para personas que buscan activacion y energia diaria.
 
-Vitaenergia: orientado al aporte nutricional con vitaminas, minerales y aminoacidos.
+- Vitaenergia: orientado al aporte nutricional con vitaminas, minerales y aminoacidos.
 
-Nutraday: apoyo nutricional diario.
+- Nutraday: apoyo nutricional diario.
 
 La mejor alternativa depende de tu rutina."
 
 Ejemplo de recomendacion premium para digestion:
 "Depende de lo que estes buscando:
 
-Prunex: apoyo al transito intestinal y sensacion de ligereza.
+- Prunex: apoyo al transito intestinal y sensacion de ligereza.
 
-Flora Liv: equilibrio de microbiota con prebioticos y probioticos.
+- Flora Liv: equilibrio de microbiota con prebioticos y probioticos.
 
-Liquid Fiber: aporte diario de fibra."
+- Liquid Fiber: aporte diario de fibra."
 
 COMPORTAMIENTO POR MODO:
 
@@ -741,6 +734,7 @@ Nunca utilices:
 - tablas Markdown
 - comillas decorativas
 Si deseas destacar un producto, hazlo mediante la redaccion, nunca mediante formato.
+- REGLA DE LEGIBILIDAD EN MOVILES: Al enumerar opciones, productos o pasos, organízalos siempre utilizando guiones sencillos (-) seguidos de un espacio. Deja siempre un salto de línea doble (una línea vacía completa) entre cada párrafo u opción de la lista para garantizar que la respuesta sea muy cómoda de leer en pantallas de teléfonos.
 
 INSTRUCCION SOBRE PRODUCTOS:
 - Todos los productos Fuxion vienen en sobres (sachets) para mezclar con agua. No son pastillas, capsulas, jarabes ni liquidos embotellados.
@@ -755,7 +749,7 @@ CORRECCION CRITICA SOBRE PASSION Y VITAENERGIA:
 `;
 };
 
-const buildDynamicPrompt = (userMessage, conversationHistory = [], profileContext = '', riskAssessment = null, riskContext = '', preResult = null, productJourney = null) => {
+const buildDynamicPrompt = (userMessage, conversationHistory = [], profileContext = '', riskAssessment = null, riskContext = '', preResult = null, productJourney = null, frontendContext = '') => {
   const userProducts = getMentionedProductsFromText(userMessage);
   const benefitProducts = getProductsFromBenefitIntent(userMessage);
   const historyProducts = getMentionedProductsFromHistory(conversationHistory);
@@ -804,18 +798,20 @@ const buildDynamicPrompt = (userMessage, conversationHistory = [], profileContex
     productJourney.viewedProducts.forEach(p => {
       journeyLines.push(`- ${p.name}`);
     });
-    if (productJourney.mainInterest) {
-      journeyLines.push('');
-      journeyLines.push('Posible interes:');
-      journeyLines.push(productJourney.mainInterest);
-    }
     journeyLines.push('');
     journeyLines.push('Usa esta informacion para contextualizar tu respuesta. Si el usuario pregunta por recomendacion, ten en cuenta los productos que ya ha visto.');
     systemMessages.push({
       role: 'system',
       content: journeyLines.join('\n')
     });
-    debugLog('PRODUCT_JOURNEY', `Contexto inyectado: ${productJourney.viewedProducts.length} productos, interés: ${productJourney.mainInterest || 'ninguno'}`);
+    debugLog('PRODUCT_JOURNEY', `Contexto inyectado: ${productJourney.viewedProducts.length} productos`);
+  }
+
+  if (frontendContext) {
+    systemMessages.push({
+      role: 'system',
+      content: frontendContext
+    });
   }
 
   // ===================================================================
@@ -1367,7 +1363,7 @@ export default async function handler(req, res) {
   }
 
   const startTime = Date.now();
-  const { messages, preferredProvider = 'deepseek', sessionId, startedAt, productJourney } = req.body;
+  const { messages, preferredProvider = 'deepseek', sessionId, startedAt, productJourney, frontendContext } = req.body;
 
   if (!messages || !Array.isArray(messages) || messages.length === 0) {
     res.status(400).json({ error: 'Mensajes requeridos' });
@@ -1419,7 +1415,7 @@ export default async function handler(req, res) {
     debugLog('PRE', 'No se encontró recomendación basada en reglas de negocio');
   }
 
-  const optimizedMessages = buildDynamicPrompt(userMessage, conversationHistory, reasonedContext, riskAssessment, riskContext, preResult, productJourney);
+  const optimizedMessages = buildDynamicPrompt(userMessage, conversationHistory, reasonedContext, riskAssessment, riskContext, preResult, productJourney, frontendContext);
 
   // Verificar caché en Supabase (SOLO si no hay riesgo médico)
   let cachedAnswer = null;

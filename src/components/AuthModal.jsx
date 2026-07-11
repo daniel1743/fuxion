@@ -114,11 +114,11 @@ const AuthModal = () => {
       <DialogContent className="bg-card border-border p-0 max-w-md">
         <DialogHeader className="p-6 pb-0">
           <div className="flex items-center gap-2 mb-2">
-            {settings.logo_url ? (
-              <img src={settings.logo_url} alt={settings.site_name} className="h-7 w-7 rounded-full object-cover" />
-            ) : (
-              <Leaf className="text-primary h-6 w-6" />
-            )}
+            <img
+              src="/hoja-te-transparente.svg"
+              alt={settings.site_name}
+              className="h-7 w-7 rounded-full object-contain bg-transparent"
+            />
             <DialogTitle className="text-2xl font-bold text-foreground">{settings.site_name}</DialogTitle>
           </div>
           <DialogDescription>

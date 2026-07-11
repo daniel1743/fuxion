@@ -6,10 +6,10 @@ export const STORE_NAME = 'Tienda Fuxion Chile';
 
 export const PRIORITY_PRODUCT_SEO = {
   'thermo-t3': {
-    seoTitle: 'THERMO T3 Fuxion Chile | Precio, cómo tomarlo y apoyo para entrenar',
-    metaDescription: 'THERMO T3 Fuxion en Chile: apoyo para rutinas de control de peso, metabolismo y entrenamiento. Precio, modo de uso y asesoría personalizada por WhatsApp.',
+    seoTitle: 'Bebida Natural para Quemar Grasa y Energía al Entrenar | Thermo T3 Chile',
+    metaDescription: 'Descubre cómo quemar grasa de forma natural con Thermo T3 en Chile. Acelera tu metabolismo, controla tu peso y aumenta tu energía para entrenar. Asesoría por WhatsApp.',
     intro: 'THERMO T3 es una opción Fuxion orientada a personas que entrenan o quieren acompañar una rutina activa de control de peso. Su uso correcto es clave: se toma 30 minutos antes de hacer ejercicio, dentro de un plan con alimentación, hidratación y constancia.',
-    seoHeading: 'THERMO T3 Fuxion para control de peso y entrenamiento',
+    seoHeading: 'Bebida Natural para Control de Peso y Energía',
     searchIntent: [
       { title: '¿Para qué sirve THERMO T3?', body: 'Está enfocado en apoyar rutinas activas, metabolismo saludable y energía durante el ejercicio. Es más útil cuando la persona ya está caminando, entrenando o retomando actividad física.' },
       { title: 'Cómo tomar THERMO T3', body: 'La referencia de uso es tomar un sobre 30 minutos antes de hacer ejercicio. No conviene presentarlo como producto de mañana genérico, porque su contexto principal es previo al entrenamiento.' },
@@ -23,10 +23,10 @@ export const PRIORITY_PRODUCT_SEO = {
     relatedSlugs: ['nocarb-t', 'protein-active-fit', 'pre-sport-pro-edition']
   },
   'nocarb-t': {
-    seoTitle: 'NOCARB-T Fuxion Chile | Precio, beneficios y cómo tomarlo',
-    metaDescription: 'NOCARB-T Fuxion en Chile: apoyo para hábitos de control de peso y comidas con carbohidratos. Revisa precio, beneficios, modo de uso y asesoría.',
+    seoTitle: 'Té Natural para Bloquear Carbohidratos y Controlar el Azúcar | Nocarb-T Chile',
+    metaDescription: 'Controla tu peso y reduce la asimilación de azúcar con Nocarb-T en Chile. Ideal para acompañar comidas altas en carbohidratos. Revisa beneficios y cómo tomarlo.',
     intro: 'NOCARB-T está pensado para personas que quieren ordenar su alimentación y acompañar comidas donde suelen aparecer carbohidratos. Su valor está en integrarlo con hábitos reales, no en usarlo como permiso para comer sin control.',
-    seoHeading: 'NOCARB-T Fuxion para acompañar el control de carbohidratos',
+    seoHeading: 'Té Natural para el Control de Carbohidratos y Azúcar',
     searchIntent: [
       { title: '¿Para qué sirve NOCARB-T?', body: 'Acompaña rutinas de control de peso y hábitos alimentarios, especialmente cuando la persona quiere mejorar su relación con carbohidratos y azúcar.' },
       { title: 'Cuándo conviene usarlo', body: 'Puede ser útil dentro de una estrategia donde también se revise porción, horarios, hidratación y actividad física.' },
@@ -40,10 +40,10 @@ export const PRIORITY_PRODUCT_SEO = {
     relatedSlugs: ['thermo-t3', 'prunex-1', 'flora-liv']
   },
   'prunex-1': {
-    seoTitle: 'PRUNEX 1 Fuxion Chile | Precio, beneficios y tránsito intestinal',
-    metaDescription: 'PRUNEX 1 Fuxion en Chile: producto de apoyo digestivo para tránsito intestinal y bienestar abdominal. Precio, ingredientes, cómo tomarlo y asesoría.',
+    seoTitle: 'Té Natural para el Estreñimiento y Tránsito Intestinal | Prunex 1 Chile',
+    metaDescription: 'Alivia el estreñimiento y limpia tu colon naturalmente con Prunex 1 en Chile. Descubre cómo mejorar tu tránsito intestinal y bienestar digestivo. Asesoría personalizada.',
     intro: 'PRUNEX 1 es uno de los productos más buscados de Fuxion para personas que quieren apoyar su bienestar digestivo y tránsito intestinal. La recomendación debe adaptarse a cada caso, especialmente si existe estreñimiento persistente o una condición digestiva diagnosticada.',
-    seoHeading: 'PRUNEX 1 Fuxion para bienestar digestivo',
+    seoHeading: 'Té Natural para el Bienestar Digestivo y Tránsito Intestinal',
     searchIntent: [
       { title: '¿Para qué sirve PRUNEX 1?', body: 'Se usa como apoyo para tránsito intestinal y sensación de bienestar abdominal, dentro de una rutina con agua, fibra, movimiento y alimentación ordenada.' },
       { title: 'Cómo tomar PRUNEX 1', body: 'Su modo de uso en la ficha del producto indica tomar un sobre en agua caliente. Si tienes molestias frecuentes, es mejor recibir orientación personalizada.' },
@@ -57,10 +57,10 @@ export const PRIORITY_PRODUCT_SEO = {
     relatedSlugs: ['liquid-fiber', 'flora-liv', 'rexet']
   },
   'flora-liv': {
-    seoTitle: 'FLORA LIV Fuxion Chile | Probióticos, precio y bienestar digestivo',
-    metaDescription: 'FLORA LIV Fuxion en Chile: apoyo para flora intestinal, digestión y bienestar gástrico. Revisa precio, ingredientes, beneficios y asesoría.',
+    seoTitle: 'Probióticos Naturales para la Flora Intestinal y Digestión | Flora Liv Chile',
+    metaDescription: 'Regenera tu flora intestinal y mejora tu digestión con probióticos naturales Flora Liv en Chile. Apoyo ideal para gastritis y bienestar gástrico. Conoce sus beneficios.',
     intro: 'FLORA LIV está orientado al equilibrio de la flora intestinal y bienestar digestivo. Es una alternativa relevante cuando la persona busca apoyo gástrico, digestión más cómoda o reconstruir hábitos después de desórdenes alimentarios o uso de antibióticos.',
-    seoHeading: 'FLORA LIV Fuxion para flora intestinal y digestión',
+    seoHeading: 'Probióticos Naturales para la Flora Intestinal',
     searchIntent: [
       { title: '¿Para qué sirve FLORA LIV?', body: 'Acompaña el equilibrio de la flora intestinal y rutinas de bienestar digestivo. Incluye probióticos y fibra prebiótica.' },
       { title: 'Cuándo considerar FLORA LIV', body: 'Puede interesar a personas con digestión sensible, cambios de alimentación o necesidad de apoyar su microbiota. No reemplaza tratamiento médico.' },
@@ -74,10 +74,10 @@ export const PRIORITY_PRODUCT_SEO = {
     relatedSlugs: ['prunex-1', 'liquid-fiber', 'rexet']
   },
   rexet: {
-    seoTitle: 'REXET Fuxion Chile | Precio, beneficios y bienestar hepático',
-    metaDescription: 'REXET Fuxion en Chile: apoyo para bienestar hepático y sistema hepatobiliar dentro de hábitos saludables. Precio, ingredientes y asesoría.',
+    seoTitle: 'Bebida Natural para Limpiar el Hígado y Bienestar Hepático | Rexet Chile',
+    metaDescription: 'Protege y desintoxica tu hígado naturalmente con Rexet en Chile. Apoyo ideal para el sistema hepatobiliar después de excesos. Revisa precio e ingredientes.',
     intro: 'REXET se relaciona con bienestar hepático y rutinas de limpieza del sistema hepatobiliar según la línea Fuxion. Para comunicarlo bien, conviene hablar de apoyo y hábitos, no de cura de enfermedades.',
-    seoHeading: 'REXET Fuxion para bienestar hepático',
+    seoHeading: 'Bebida Natural para el Bienestar Hepático',
     searchIntent: [
       { title: '¿Para qué sirve REXET?', body: 'Se enfoca en acompañar rutinas de bienestar hepático y cuidado del sistema hepatobiliar, junto con alimentación ordenada, agua y menor carga de ultraprocesados.' },
       { title: 'REXET y hábitos saludables', body: 'Tiene más sentido cuando la persona también quiere ordenar comidas, descanso, actividad física y consumo de agua.' },
@@ -91,10 +91,10 @@ export const PRIORITY_PRODUCT_SEO = {
     relatedSlugs: ['flora-liv', 'prunex-1', 'nutraday']
   },
   nutraday: {
-    seoTitle: 'NUTRADAY Fuxion Chile | Precio, vitaminas y nutrición diaria',
-    metaDescription: 'NUTRADAY Fuxion en Chile: hidratación nutricional con vitaminas, minerales y antioxidantes para la familia. Precio, beneficios y asesoría.',
+    seoTitle: 'Vitaminas y Minerales Naturales para la Nutrición Diaria | Nutraday Chile',
+    metaDescription: 'Refuerza las defensas y nutrición de tu familia con Nutraday en Chile. Vitaminas, minerales y antioxidantes 100% naturales. Hidratación sin azúcar.',
     intro: 'NUTRADAY es una alternativa de hidratación nutricional para el día a día. Su búsqueda suele venir de personas que quieren mejorar energía, nutrición básica, antioxidantes y hábitos familiares sin partir por productos más específicos.',
-    seoHeading: 'NUTRADAY Fuxion para nutrición diaria e hidratación',
+    seoHeading: 'Vitaminas y Antioxidantes para Nutrición Diaria',
     searchIntent: [
       { title: '¿Para qué sirve NUTRADAY?', body: 'Acompaña la nutrición diaria con vitaminas, minerales y antioxidantes, especialmente cuando se quiere una opción simple para incorporar al día.' },
       { title: 'NUTRADAY para la familia', body: 'Está pensado como apoyo nutricional general. La recomendación debe considerar edad, rutina y necesidades de cada persona.' },
@@ -108,10 +108,10 @@ export const PRIORITY_PRODUCT_SEO = {
     relatedSlugs: ['vita-xtra-t-plus', 'vera-plus', 'flora-liv']
   },
   'vita-xtra-t-plus': {
-    seoTitle: 'VITA XTRA T+ Fuxion Chile | Precio, energía natural y beneficios',
-    metaDescription: 'VITA XTRA T+ Fuxion en Chile: apoyo de energía natural, antioxidantes y vitalidad diaria. Revisa precio, ingredientes, modo de uso y asesoría.',
+    seoTitle: 'Bebida Energética Natural sin Azúcar | Vita Xtra T+ Chile',
+    metaDescription: 'Aumenta tu energía y vitalidad diaria de forma 100% natural con Vita Xtra T+ en Chile. Bebida energética sin azúcar ni químicos. Revisa sus beneficios.',
     intro: 'VITA XTRA T+ es una opción Fuxion para quienes buscan energía natural y apoyo antioxidante en la rutina diaria. Es diferente a productos deportivos o de control de peso: su foco es vitalidad y bienestar general.',
-    seoHeading: 'VITA XTRA T+ Fuxion para energía natural',
+    seoHeading: 'Bebida Energética Natural para Vitalidad Diaria',
     searchIntent: [
       { title: '¿Para qué sirve VITA XTRA T+?', body: 'Acompaña la energía diaria, vitalidad y protección antioxidante dentro de una rutina equilibrada.' },
       { title: 'Cuándo elegir VITA XTRA T+', body: 'Puede ser una opción cuando la persona siente baja energía, quiere mejorar su rutina diaria o busca un producto de apoyo general.' },
@@ -686,7 +686,7 @@ export const buildStoreSchema = () => ({
   '@type': 'Store',
   name: STORE_NAME,
   url: SITE_URL,
-  image: `${SITE_URL}/icons/android-chrome-512x512.png`,
+  image: `${SITE_URL}/prunex-principal.jpeg`,
   description: 'Tienda Fuxion en Chile con productos nutraceuticos para nutricion, bienestar, energia, digestion, control de peso y cuidado natural.',
   areaServed: {
     '@type': 'Country',
@@ -725,7 +725,7 @@ export const buildLocalBusinessSchema = () => ({
   '@type': 'LocalBusiness',
   name: STORE_NAME,
   url: SITE_URL,
-  image: `${SITE_URL}/icons/android-chrome-512x512.png`,
+  image: `${SITE_URL}/prunex-principal.jpeg`,
   description: 'Tienda Fuxion en Chile con productos nutraceuticos para nutricion, bienestar, energia, digestion, control de peso y cuidado natural.',
   telephone: '+56912345678',
   email: 'contacto@tiendafuxion.space',
@@ -760,7 +760,7 @@ export const buildPersonSchema = (person) => ({
   jobTitle: person?.role || 'Asesor Independiente Fuxion',
   url: `${SITE_URL}/sobre-nosotros`,
   description: person?.bio || 'Emprendedor chileno apasionado por la nutricion y el bienestar natural.',
-  image: `${SITE_URL}/icons/android-chrome-192x192.png`,
+  image: person?.image ? `${SITE_URL}${person.image}` : `${SITE_URL}/icons/android-chrome-192x192.png`,
   sameAs: [SITE_URL]
 });
 

@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Search, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
+import { HugeiconsIcon } from '@hugeicons/react';
+import { Search01Icon, ArrowRight02Icon } from '@hugeicons/core-free-icons';
 
 const SUGGESTIONS = [
   'bienestar hepático',
@@ -63,11 +64,11 @@ const ProductNeedSearch = ({
   return (
     <form
       onSubmit={handleSubmit}
-      className={`mx-auto w-full max-w-3xl rounded-2xl border border-emerald-100 bg-white p-2 shadow-lg shadow-emerald-900/5 dark:border-emerald-900 dark:bg-card ${className}`}
+      className={`w-full rounded-2xl border border-emerald-100 bg-white p-2 shadow-lg shadow-emerald-900/5 dark:border-emerald-900 dark:bg-card ${className}`}
     >
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
         <div className="relative flex-1">
-          <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-emerald-700 dark:text-emerald-300" />
+          <HugeiconsIcon icon={Search01Icon} className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-emerald-700 dark:text-emerald-300" />
           <input
             type="search"
             value={value}
@@ -112,9 +113,9 @@ const ProductNeedSearch = ({
             </AnimatePresence>
           )}
         </div>
-        <Button type="submit" className={`${compact ? 'h-12' : 'h-14'} bg-emerald-600 hover:bg-emerald-700 text-white gap-2 rounded-xl px-5`}>
+        <Button type="submit" className={`${compact ? 'h-12' : 'h-14'} bg-emerald-600 hover:bg-emerald-700 text-white gap-2 rounded-xl px-5 shrink-0`}>
           Ver productos
-          <ArrowRight className="h-4 w-4" />
+          <HugeiconsIcon icon={ArrowRight02Icon} className="h-4 w-4" />
         </Button>
       </div>
     </form>

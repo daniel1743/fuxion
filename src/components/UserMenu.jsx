@@ -16,7 +16,17 @@ import {
   DropdownMenuSubContent,
   DropdownMenuPortal,
 } from '@/components/ui/dropdown-menu';
-import { User, LogOut, Settings, Sun, Moon, Monitor, Shield, Gift } from 'lucide-react';
+import { HugeiconsIcon } from '@hugeicons/react';
+import {
+  UserIcon,
+  Logout01Icon,
+  Settings01Icon,
+  Sun01Icon,
+  MoonIcon,
+  ComputerIcon,
+  Shield01Icon,
+  GiftIcon,
+} from '@hugeicons/core-free-icons';
 import { useNavigate } from 'react-router-dom';
 import AdminPanel from '@/components/admin/AdminPanel';
 import ProfileEditModal from '@/components/ProfileEditModal';
@@ -40,7 +50,7 @@ const UserMenu = () => {
   if (!isAuthenticated && !isAdmin) {
     return (
       <Button variant="ghost" size="icon" onClick={openAuthModal} className="text-muted-foreground">
-        <User />
+        <HugeiconsIcon icon={UserIcon} />
       </Button>
     );
   }
@@ -82,56 +92,56 @@ const UserMenu = () => {
           </div>
         </DropdownMenuLabel>
         {isAdmin && (
-          <DropdownMenuItem onSelect={openAdminPanel} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-800 shrink-0">
-              <Shield className="h-4 w-4" />
+          <DropdownMenuItem onSelect={openAdminPanel} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold cursor-pointer hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors group">
+            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-secondary dark:bg-white/5 group-hover:bg-emerald-100 dark:group-hover:bg-emerald-900/40 text-muted-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-150 shrink-0">
+              <HugeiconsIcon icon={Shield01Icon} className="h-4 w-4" />
             </div>
-            <span>Panel de administración</span>
+            <span className="group-hover:text-emerald-700 dark:group-hover:text-emerald-300 transition-colors duration-150">Panel de administración</span>
           </DropdownMenuItem>
         )}
         {(isAuthenticated || isAdmin) && (
-          <DropdownMenuItem onSelect={() => window.setTimeout(() => navigate('/cuenta'), 0)} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-800 shrink-0">
-              <Gift className="h-4 w-4" />
+          <DropdownMenuItem onSelect={() => window.setTimeout(() => navigate('/cuenta'), 0)} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold cursor-pointer hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors group">
+            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-secondary dark:bg-white/5 group-hover:bg-emerald-100 dark:group-hover:bg-emerald-900/40 text-muted-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-150 shrink-0">
+              <HugeiconsIcon icon={GiftIcon} className="h-4 w-4" />
             </div>
-            <span>Mi cuenta y regalos</span>
+            <span className="group-hover:text-emerald-700 dark:group-hover:text-emerald-300 transition-colors duration-150">Mi cuenta y regalos</span>
           </DropdownMenuItem>
         )}
         {isAuthenticated && (
-          <DropdownMenuItem onSelect={openProfileModal} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-800 shrink-0">
-              <Settings className="h-4 w-4" />
+          <DropdownMenuItem onSelect={openProfileModal} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold cursor-pointer hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors group">
+            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-secondary dark:bg-white/5 group-hover:bg-emerald-100 dark:group-hover:bg-emerald-900/40 text-muted-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-150 shrink-0">
+              <HugeiconsIcon icon={Settings01Icon} className="h-4 w-4" />
             </div>
-            <span>Editar perfil</span>
+            <span className="group-hover:text-emerald-700 dark:group-hover:text-emerald-300 transition-colors duration-150">Editar perfil</span>
           </DropdownMenuItem>
         )}
         <DropdownMenuSub>
-          <DropdownMenuSubTrigger className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-800 shrink-0">
-              <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <DropdownMenuSubTrigger className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold cursor-pointer hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors group">
+            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-secondary dark:bg-white/5 group-hover:bg-emerald-100 dark:group-hover:bg-emerald-900/40 text-muted-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-150 shrink-0 relative">
+              <HugeiconsIcon icon={Sun01Icon} className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <HugeiconsIcon icon={MoonIcon} className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
             </div>
-            <span>Cambiar Tema</span>
+            <span className="group-hover:text-emerald-700 dark:group-hover:text-emerald-300 transition-colors duration-150">Cambiar Tema</span>
           </DropdownMenuSubTrigger>
           <DropdownMenuPortal>
             <DropdownMenuSubContent className="rounded-2xl bg-white dark:bg-gray-900 shadow-xl border border-emerald-100 dark:border-emerald-900/30 p-3">
-              <DropdownMenuItem onClick={() => setTheme("light")} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-800 shrink-0">
-                  <Sun className="h-4 w-4" />
+              <DropdownMenuItem onClick={() => setTheme("light")} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold cursor-pointer hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors group">
+                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-secondary dark:bg-white/5 group-hover:bg-emerald-100 dark:group-hover:bg-emerald-900/40 text-muted-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-150 shrink-0">
+                  <HugeiconsIcon icon={Sun01Icon} className="h-4 w-4" />
                 </div>
-                <span>Claro</span>
+                <span className="group-hover:text-emerald-700 dark:group-hover:text-emerald-300 transition-colors duration-150">Claro</span>
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTheme("dark")} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-800 shrink-0">
-                  <Moon className="h-4 w-4" />
+              <DropdownMenuItem onClick={() => setTheme("dark")} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold cursor-pointer hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors group">
+                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-secondary dark:bg-white/5 group-hover:bg-emerald-100 dark:group-hover:bg-emerald-900/40 text-muted-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-150 shrink-0">
+                  <HugeiconsIcon icon={MoonIcon} className="h-4 w-4" />
                 </div>
-                <span>Oscuro</span>
+                <span className="group-hover:text-emerald-700 dark:group-hover:text-emerald-300 transition-colors duration-150">Oscuro</span>
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTheme("system")} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-800 shrink-0">
-                  <Monitor className="h-4 w-4" />
+              <DropdownMenuItem onClick={() => setTheme("system")} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold cursor-pointer hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors group">
+                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-secondary dark:bg-white/5 group-hover:bg-emerald-100 dark:group-hover:bg-emerald-900/40 text-muted-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-150 shrink-0">
+                  <HugeiconsIcon icon={ComputerIcon} className="h-4 w-4" />
                 </div>
-                <span>Sistema</span>
+                <span className="group-hover:text-emerald-700 dark:group-hover:text-emerald-300 transition-colors duration-150">Sistema</span>
               </DropdownMenuItem>
             </DropdownMenuSubContent>
           </DropdownMenuPortal>
@@ -141,12 +151,12 @@ const UserMenu = () => {
             if (isAdmin) logoutAdmin();
             if (isAuthenticated) logoutUser();
           }}
-          className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold cursor-pointer hover:bg-rose-50 dark:hover:bg-rose-950/20 transition-colors group"
         >
-          <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-800 shrink-0">
-            <LogOut className="h-4 w-4" />
+          <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-secondary dark:bg-white/5 group-hover:bg-rose-100 dark:group-hover:bg-rose-900/45 text-rose-500 group-hover:text-rose-600 dark:group-hover:text-rose-400 transition-colors duration-150 shrink-0">
+            <HugeiconsIcon icon={Logout01Icon} className="h-4 w-4" />
           </div>
-          <span>Cerrar sesión</span>
+          <span className="group-hover:text-rose-700 dark:group-hover:text-rose-300 transition-colors duration-150">Cerrar sesión</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
       {showAdminPanel && (

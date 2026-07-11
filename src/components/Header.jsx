@@ -10,40 +10,25 @@ import {
   Rocket01Icon,
   HelpCircleIcon,
   Store01Icon,
+  Logout01Icon,
+  UserIcon,
+  Message01Icon,
+  ChevronRightIcon,
+  ShoppingCart01Icon,
+  Menu01Icon,
+  Cancel01Icon,
+  LinkSquare01Icon,
+  PackageIcon,
+  HeartIcon,
+  TrendingUp,
+  InstagramIcon,
+  ChevronDownIcon,
 } from '@hugeicons/core-free-icons';
-
-import {
-  ShoppingCart,
-  Menu,
-  X,
-  Leaf,
-  ExternalLink,
-  Home,
-  Package,
-  BookOpen,
-  Sparkles,
-  Instagram,
-  MessageCircle,
-  ChevronRight,
-  HelpCircle,
-  User,
-  LogOut
-} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/CartContext';
 import { useSiteSettings } from '@/context/SiteSettingsContext';
 import { useAuth } from '@/context/AuthContext';
 import UserMenu from '@/components/UserMenu';
-
-const navLinks = [
-  { name: 'Inicio', path: '/' },
-  { name: 'Productos', path: '/explorar' },
-  { name: 'Sobre Nosotros', path: '/sobre-nosotros' },
-  { name: 'Bienestar', path: '/opiniones' },
-  { name: 'Oportunidad', path: '/oportunidad-fuxion' },
-  { name: 'Evidencias', path: '/blog' },
-  { name: 'Ayuda', path: '/ayuda' },
-];
 
 const officialStoreUrl = 'https://ifuxion.com/daniel/enrollment/chooseperson';
 
@@ -60,7 +45,7 @@ const drawerNavItems = [
 
 // ── Social links ───────────────────────────────────────────────
 const socialLinks = [
-  { name: 'Instagram', icon: Instagram, url: 'https://www.instagram.com/naturalmentefuxion/' },
+  { name: 'Instagram', icon: InstagramIcon, url: 'https://www.instagram.com/naturalmentefuxion/' },
   { name: 'TikTok', icon: ({ className }) => (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
       <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.9 2.89 2.89 0 0 1-2.88-2.89 2.89 2.89 0 0 1 2.88-2.89c.32 0 .63.06.92.16V8.77a6.35 6.35 0 0 0-.92-.07A6.34 6.34 0 0 0 3 15.04a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.95a8.24 8.24 0 0 0 4.58 1.5v-3.4a4.87 4.87 0 0 1-.67-.36Z"/>
@@ -72,6 +57,92 @@ const socialLinks = [
     </svg>
   ) },
 ];
+
+// ── Desktop dropdown component ─────────────────────────────────
+const DesktopDropdown = ({ label, items, navigate }) => {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const handleClick = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
+    };
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, [open]);
+
+  return (
+    <div
+      ref={ref}
+      className="relative"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      <button
+        onClick={() => setOpen((v) => !v)}
+        className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+          open
+            ? 'text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-900/20'
+            : 'text-muted-foreground hover:text-foreground hover:bg-secondary/60'
+        }`}
+      >
+        {label}
+        <HugeiconsIcon
+          icon={ChevronDownIcon}
+          className={`h-3.5 w-3.5 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+        />
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: 6, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 4, scale: 0.97 }}
+            transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute top-full left-1/2 -translate-x-1/2 z-50 pt-2 min-w-[220px]"
+          >
+            <div className="bg-white dark:bg-[#0f1f18] border border-emerald-100/80 dark:border-emerald-800/40 rounded-2xl shadow-[0_8px_32px_-4px_rgba(0,0,0,0.12),0_2px_8px_-2px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_-4px_rgba(0,0,0,0.4)] overflow-hidden p-1.5 space-y-0.5">
+              {items.map((item) => {
+                const Icon = item.icon;
+                const handleSelect = () => {
+                  setOpen(false);
+                  if (item.href) {
+                    window.open(item.href, '_blank', 'noopener,noreferrer');
+                  } else {
+                    navigate(item.path);
+                  }
+                };
+                return (
+                  <button
+                    key={item.label}
+                    onClick={handleSelect}
+                    className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left group transition-all duration-150 hover:bg-emerald-50 dark:hover:bg-emerald-900/20"
+                  >
+                    <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-secondary dark:bg-white/5 flex items-center justify-center text-muted-foreground group-hover:bg-emerald-100 dark:group-hover:bg-emerald-900/40 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-150">
+                      <HugeiconsIcon icon={Icon} className="h-4 w-4" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium text-foreground group-hover:text-emerald-700 dark:group-hover:text-emerald-300 transition-colors duration-150 leading-tight">
+                        {item.label}
+                      </p>
+                      {item.desc && (
+                        <p className="text-[11px] text-muted-foreground mt-0.5 truncate">
+                          {item.desc}
+                        </p>
+                      )}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -161,45 +232,62 @@ const Header = () => {
       <nav className="container mx-auto flex items-center justify-between gap-1 px-3 py-2 sm:px-6 sm:py-3">
         {/* ── Left: Brand ─────────────────────────────────────── */}
         <Link to="/" className="flex shrink items-center gap-2 min-w-0">
-          {settings.logo_url ? (
-            <img
-              src={settings.logo_url}
-              alt={settings.site_name}
-              className="h-[42px] w-[42px] shrink-0 rounded-full object-cover ring-1 ring-emerald-200 shadow-sm"
-            />
-          ) : (
-            <div className="h-[42px] w-[42px] shrink-0 rounded-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center ring-1 ring-emerald-200 shadow-sm">
-              <Leaf className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
-            </div>
-          )}
+          <img
+            src="/hoja-te-transparente.svg"
+            alt={settings.site_name || 'FuXion'}
+            className="h-[42px] w-[42px] shrink-0 rounded-full object-contain ring-1 ring-emerald-200/50 dark:ring-emerald-800/50 shadow-sm bg-transparent"
+          />
           <span className="text-sm font-bold tracking-tight text-foreground sm:text-xl whitespace-nowrap">
             {settings.site_name || 'Naturalmente FuXion'}
           </span>
         </Link>
 
         {/* ── Center: Desktop nav ─────────────────────────────── */}
-        <div className="hidden md:flex items-center space-x-6">
-          {navLinks.map((link) => (
-            <NavLink
-              key={link.name}
-              to={link.path}
-              className={({ isActive }) =>
-                `text-muted-foreground hover:text-primary transition-colors duration-300 ${
-                  isActive ? 'text-primary font-semibold' : ''
-                }`
-              }
-            >
-              {link.name}
-            </NavLink>
-          ))}
+        <div className="hidden md:flex items-center gap-1">
+          {/* Inicio */}
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                isActive
+                  ? 'text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-900/20'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-secondary/60'
+              }`
+            }
+          >
+            Inicio
+          </NavLink>
+
+          {/* Productos dropdown */}
+          <DesktopDropdown
+            label="Productos"
+            items={[
+              { label: 'Catálogo de productos', path: '/explorar', icon: PackageIcon, desc: 'Explora toda la línea FuXion' },
+              { label: 'Objetivos de bienestar', path: '/opiniones', icon: HeartIcon, desc: 'Encuentra lo ideal para ti' },
+            ]}
+            navigate={navigate}
+          />
+
+          {/* Conócenos dropdown */}
+          <DesktopDropdown
+            label="Conócenos"
+            items={[
+              { label: 'Sobre Nosotros', path: '/sobre-nosotros', icon: Leaf01Icon, desc: 'Nuestra historia y valores' },
+              { label: 'Oportunidad FuXion', path: '/oportunidad-fuxion', icon: TrendingUp, desc: 'Únete al proyecto' },
+              { label: 'Evidencias', path: '/blog', icon: BookOpen02Icon, desc: 'Información y contenido' },
+              { label: 'Ayuda', path: '/ayuda', icon: HelpCircleIcon, desc: 'Contacto y soporte' },
+            ]}
+            navigate={navigate}
+          />
+
+          {/* Tienda oficial */}
           <a
             href={officialStoreUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors duration-300"
+            className="px-4 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary/60 transition-all duration-200"
           >
             Tienda oficial
-            <ExternalLink className="h-3.5 w-3.5" />
           </a>
         </div>
 
@@ -211,7 +299,7 @@ const Header = () => {
             className="relative text-muted-foreground hover:text-foreground transition-colors p-1.5"
             aria-label="Carrito de compras"
           >
-            <ShoppingCart className="h-[26px] w-[26px]" strokeWidth={1.8} />
+            <HugeiconsIcon icon={ShoppingCart01Icon} className="h-[26px] w-[26px]" />
             {cartCount > 0 && (
               <span className="absolute -top-0.5 -right-0.5 bg-emerald-600 text-white text-[10px] rounded-full h-[18px] w-[18px] flex items-center justify-center font-bold shadow-sm">
                 {cartCount > 9 ? '9+' : cartCount}
@@ -234,9 +322,9 @@ const Header = () => {
               aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
             >
               {isMenuOpen ? (
-                <X className="h-[26px] w-[26px]" strokeWidth={1.8} />
+                <HugeiconsIcon icon={Cancel01Icon} className="h-[26px] w-[26px]" />
               ) : (
-                <Menu className="h-[26px] w-[26px]" strokeWidth={1.8} />
+                <HugeiconsIcon icon={Menu01Icon} className="h-[26px] w-[26px]" />
               )}
             </Button>
           </div>
@@ -268,7 +356,7 @@ const Header = () => {
               initial="closed"
               animate="open"
               exit="closed"
-              className="fixed top-0 right-0 z-50 h-dvh w-[85vw] max-w-[380px] bg-white dark:bg-[#0f1f18] shadow-2xl md:hidden flex flex-col overflow-y-auto rounded-l-[20px]"
+              className="fixed top-0 right-0 z-50 h-dvh w-[80vw] max-w-[320px] bg-white dark:bg-[#0f1f18] shadow-2xl md:hidden flex flex-col overflow-y-auto rounded-l-[20px]"
             >
               {/* Close button — top right */}
               <button
@@ -277,49 +365,54 @@ const Header = () => {
                 className="absolute top-4 right-4 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-white dark:bg-[#1a2e25] shadow-md hover:shadow-lg transition-shadow duration-200"
                 aria-label="Cerrar menú"
               >
-                <X className="w-[22px] h-[22px] text-foreground" strokeWidth={1.8} />
+                <HugeiconsIcon icon={Cancel01Icon} className="w-[22px] h-[22px] text-foreground" />
               </button>
 
               {/* ── Profile Header ─────────────────────────────── */}
-              <div className="flex flex-col items-center pt-[env(safe-area-inset-top,16px)] pt-8 pb-5 px-6 border-b border-emerald-100 dark:border-emerald-900/30 shrink-0">
-                {/* Avatar */}
-                <div className="relative mt-3 mb-3.5">
-                  <div className="w-[76px] h-[76px] rounded-full ring-2 ring-emerald-300 dark:ring-emerald-600 shadow-lg overflow-hidden">
-                    {settings.logo_url ? (
+              <div className="flex flex-col items-center pt-[env(safe-area-inset-top,16px)] pt-6 pb-4 px-6 shrink-0">
+                {/* Avatar — reduced size by ~25% */}
+                <div className="relative mt-2 mb-2">
+                  <div className="w-[56px] h-[56px] rounded-full ring-2 ring-emerald-200 dark:ring-emerald-700 shadow-md overflow-hidden">
+                    {isAuthenticated && user?.avatar ? (
                       <img
-                        src={settings.logo_url}
-                        alt={settings.site_name || 'Asesor FuXion'}
+                        src={user.avatar}
+                        alt={user.name || 'Mi cuenta'}
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <div className="w-full h-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center">
-                        <Leaf className="h-8 w-8 text-emerald-600 dark:text-emerald-400" />
-                      </div>
+                      <img
+                        src="/hoja-te-transparente.svg"
+                        alt={settings.site_name || 'FuXion'}
+                        className="w-full h-full object-contain"
+                      />
                     )}
                   </div>
-                  {/* Status indicator */}
-                  <span className="absolute bottom-0.5 right-0.5 w-[14px] h-[14px] bg-emerald-500 rounded-full border-2 border-white dark:border-[#0f1f18] shadow-sm" />
                 </div>
 
-                {/* Title */}
-                <h2 className="text-base font-extrabold text-foreground tracking-tight">
-                  {settings.site_name || 'Naturalmente FuXion'}
-                </h2>
-                <p className="text-xs text-muted-foreground mt-0.5">
-                  {settings.tagline || 'Asesoría personalizada'}
-                </p>
-
-                {/* Status text */}
-                <div className="flex items-center gap-1.5 mt-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="text-[11px] text-emerald-600 dark:text-emerald-400 font-medium">
-                    {settings.owner_name ? `Disponible — ${settings.owner_name}` : 'Disponible para ayudarte'}
-                  </span>
-                </div>
+                {/* User info or welcome */}
+                {isAuthenticated && user ? (
+                  <>
+                    <h2 className="text-sm font-bold text-foreground tracking-tight">
+                      {user.name}
+                    </h2>
+                    <p className="text-[11px] text-muted-foreground mt-0.5">
+                      Mi cuenta
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <h2 className="text-sm font-bold text-foreground tracking-tight">
+                      Bienvenido
+                    </h2>
+                    <p className="text-[11px] text-muted-foreground mt-0.5">
+                      Explora nuestra tienda
+                    </p>
+                  </>
+                )}
               </div>
 
               {/* ── Navigation Items ───────────────────────────── */}
-              <div className="flex-1 px-3 py-3 space-y-0.5 overflow-y-auto">
+              <div className="flex-1 px-3 py-2 space-y-0.5 overflow-y-auto">
                 {drawerNavItems.map((item, i) => {
                   const IconComponent = item.icon;
                   const isActive = window.location.pathname === item.path;
@@ -331,7 +424,7 @@ const Header = () => {
                       initial="closed"
                       animate="open"
                       onClick={() => handleNavClick(item.path)}
-                      className={`w-full flex items-center gap-3 px-3 py-3 rounded-xl text-left transition-all duration-200 group ${
+                      className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all duration-200 group ${
                         isActive
                           ? 'bg-emerald-50 dark:bg-emerald-900/20 border-l-[3px] border-emerald-500'
                           : 'hover:bg-emerald-50/60 dark:hover:bg-emerald-900/10 border-l-[3px] border-transparent'
@@ -346,7 +439,7 @@ const Header = () => {
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className={`text-sm font-semibold ${
-                          isActive ? 'text-emerald-700 dark:text-emerald-300' : 'text-foreground'
+                          isActive ? 'text-emerald-700 dark:text-emerald-300' : 'text-[#2d2d2d] dark:text-gray-300'
                         }`}>
                           {item.label}
                         </p>
@@ -356,11 +449,11 @@ const Header = () => {
                           </p>
                         )}
                       </div>
-                      <ChevronRight className={`w-3.5 h-3.5 flex-shrink-0 transition-colors duration-200 ${
+                      <HugeiconsIcon icon={ChevronRightIcon} className={`transition-colors duration-200 ${
                         isActive
                           ? 'text-emerald-500'
                           : 'text-muted-foreground/40 group-hover:text-emerald-400'
-                      }`} strokeWidth={1.8} />
+                      }`} size={14} />
                     </motion.button>
                   );
                 })}
@@ -372,81 +465,28 @@ const Header = () => {
                   initial="closed"
                   animate="open"
                   onClick={handleOfficialStore}
-                  className="w-full flex items-center gap-3 px-3 py-3 rounded-xl text-left transition-all duration-200 group hover:bg-emerald-50/60 dark:hover:bg-emerald-900/10 border-l-[3px] border-transparent"
+                  className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all duration-200 group hover:bg-emerald-50/60 dark:hover:bg-emerald-900/10 border-l-[3px] border-transparent"
                 >
                   <div className="flex-shrink-0 w-9 h-9 rounded-full bg-secondary flex items-center justify-center text-muted-foreground group-hover:bg-emerald-100 dark:group-hover:bg-emerald-900/30 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-200">
                     <HugeiconsIcon icon={Store01Icon} size={18} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-foreground">
+                    <p className="text-sm font-semibold text-[#2d2d2d] dark:text-gray-300">
                       Tienda oficial
                     </p>
                     <p className="text-[11px] text-muted-foreground mt-0.5 truncate">
                       Compra directa en FuXion
                     </p>
                   </div>
-                  <ChevronRight className="w-3.5 h-3.5 flex-shrink-0 text-muted-foreground/40 group-hover:text-emerald-400 transition-colors duration-200" strokeWidth={1.8} />
+                  <HugeiconsIcon icon={ChevronRightIcon} className="text-muted-foreground/40 group-hover:text-emerald-400 transition-colors duration-200" size={14} />
                 </motion.button>
               </div>
 
-              {/* ── Footer: Auth + WhatsApp + Social ──────────── */}
-              <div className="px-5 py-4 border-t border-emerald-100 dark:border-emerald-900/30 space-y-4 shrink-0">
-                {/* Auth section — moved to bottom zone */}
-                <div>
-                  <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-2.5">
-                    Cuenta
-                  </p>
-                  {isAuthenticated || user ? (
-                    <button
-                      onClick={() => { setIsMenuOpen(false); logout(); }}
-                      className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all duration-200 group hover:bg-emerald-50/60 dark:hover:bg-emerald-900/10 border-l-[3px] border-transparent"
-                    >
-                      <div className="flex-shrink-0 w-9 h-9 rounded-full bg-secondary flex items-center justify-center text-muted-foreground group-hover:bg-emerald-100 dark:group-hover:bg-emerald-900/30 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-200">
-                        <LogOut className="w-[18px] h-[18px]" strokeWidth={1.8} />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-semibold text-foreground">
-                          Cerrar sesión
-                        </p>
-                      </div>
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => { setIsMenuOpen(false); openAuthModal(); }}
-                      className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all duration-200 group hover:bg-emerald-50/60 dark:hover:bg-emerald-900/10 border-l-[3px] border-transparent"
-                    >
-                      <div className="flex-shrink-0 w-9 h-9 rounded-full bg-secondary flex items-center justify-center text-muted-foreground group-hover:bg-emerald-100 dark:group-hover:bg-emerald-900/30 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-200">
-                        <User className="w-[18px] h-[18px]" strokeWidth={1.8} />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-semibold text-foreground">
-                          Iniciar sesión
-                        </p>
-                      </div>
-                    </button>
-                  )}
-                </div>
-
-                {/* WhatsApp CTA */}
-                <div>
-                  <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-2.5">
-                    ¿Necesitas ayuda?
-                  </p>
-                  <button
-                    onClick={handleWhatsApp}
-                    className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-bold rounded-full py-3 px-5 shadow-lg shadow-emerald-500/20 transition-all duration-200 hover:shadow-xl hover:shadow-emerald-500/30 active:scale-[0.98]"
-                  >
-                    <MessageCircle className="h-5 w-5 text-white" />
-                    <span className="text-sm">Hablar con asesor</span>
-                  </button>
-                </div>
-
-                {/* Social networks — larger icons for premium feel */}
-                <div>
-                  <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-2.5">
-                    Síguenos
-                  </p>
-                  <div className="flex items-center gap-3">
+              {/* ── Footer: Social + WhatsApp + Logout ─────────── */}
+              <div className="px-5 pt-4 pb-3 shrink-0 shadow-[0_-1px_0_rgba(0,0,0,0.05)] dark:shadow-[0_-1px_0_rgba(255,255,255,0.05)] space-y-3">
+                {/* Social + WhatsApp row */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
                     {socialLinks.map((social) => {
                       const IconComponent = social.icon;
                       return (
@@ -455,15 +495,43 @@ const Header = () => {
                           href={social.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-10 h-10 rounded-full border border-emerald-200 dark:border-emerald-800/50 flex items-center justify-center text-emerald-600 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-900/30 hover:border-emerald-300 dark:hover:border-emerald-700 transition-all duration-200"
+                          className="w-9 h-9 rounded-full border border-emerald-200 dark:border-emerald-800/50 flex items-center justify-center text-emerald-600 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-900/30 hover:border-emerald-300 dark:hover:border-emerald-700 transition-all duration-200"
                           aria-label={social.name}
                           title={social.name}
                         >
-                          <IconComponent className="w-[22px] h-[22px]" strokeWidth={2.0} />
+                          <IconComponent className="w-[18px] h-[18px]" strokeWidth={2.0} />
                         </a>
                       );
                     })}
                   </div>
+                  <button
+                    onClick={handleWhatsApp}
+                    className="flex items-center gap-1.5 text-xs font-medium text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors px-3 py-1.5 rounded-full hover:bg-emerald-50 dark:hover:bg-emerald-900/20"
+                  >
+                    <HugeiconsIcon icon={Message01Icon} className="w-4 h-4" size={16} />
+                    <span>WhatsApp</span>
+                  </button>
+                </div>
+
+                {/* Logout / Login — always at the very end, secondary */}
+                <div className="pt-1">
+                  {isAuthenticated || user ? (
+                    <button
+                      onClick={() => { setIsMenuOpen(false); logout(); }}
+                      className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-xs text-muted-foreground/70 hover:text-muted-foreground hover:bg-secondary/50 transition-all duration-200"
+                    >
+                      <HugeiconsIcon icon={Logout01Icon} className="w-3.5 h-3.5" size={14} />
+                      <span>Cerrar sesión</span>
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => { setIsMenuOpen(false); openAuthModal(); }}
+                      className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-xs text-muted-foreground/70 hover:text-muted-foreground hover:bg-secondary/50 transition-all duration-200"
+                    >
+                      <HugeiconsIcon icon={UserIcon} className="w-3.5 h-3.5" size={14} />
+                      <span>Iniciar sesión</span>
+                    </button>
+                  )}
                 </div>
               </div>
             </motion.div>

@@ -3,7 +3,8 @@
     "allow": [
       "Bash(cd:*)",
       "Bash(tail:*)",
-      "Bash(cd \"C:\\\\Users\\\\Lenovo\\\\Desktop\\\\proyectos desplegados importante\\\\de daniel falcon\" && node scripts/generate-sitemap.js 2>&1)"
+      "Bash(cd \"C:\\\\Users\\\\Lenovo\\\\Desktop\\\\proyectos desplegados importante\\\\de daniel falcon\" && node scripts/generate-sitemap.js 2>&1)",
+      "Bash(node:*)"
     ]
   }
 }

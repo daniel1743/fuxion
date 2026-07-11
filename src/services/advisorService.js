@@ -13,7 +13,8 @@ const canRecordMetrics = () => {
 };
 
 const pauseMissingMetricsTable = (error) => {
-  if (error?.code !== 'PGRST205') return false;
+  // PGRST205 = table not found, PGRST204 = column not found in schema cache
+  if (error?.code !== 'PGRST205' && error?.code !== 'PGRST204') return false;
 
   metricsAvailable = false;
   if (typeof window !== 'undefined') {
@@ -140,12 +141,19 @@ export const fetchAdvisorMetrics = async () => {
     fetchAdvisors(),
     supabase
       .from('chat_events')
-      .select('advisor_id, event_type, created_at, product_name')
+      .select('event_type, created_at, product_name')
       .order('created_at', { ascending: false })
       .limit(1000)
   ]);
 
-  if (eventsResult.error) throw eventsResult.error;
+  // If the events query fails due to schema mismatch (e.g. missing column), skip gracefully
+  if (eventsResult.error) {
+    if (eventsResult.error.code === 'PGRST204' || eventsResult.error.code === 'PGRST205') {
+      console.warn('chat_events schema mismatch — skipping metrics:', eventsResult.error.message);
+      return Object.values({});
+    }
+    throw eventsResult.error;
+  }
 
   const metricsByAdvisor = {};
   advisorsResult.forEach((advisor) => {

@@ -446,8 +446,8 @@ const OpportunityPage = () => {
       className="overflow-x-hidden"
     >
       <SEO
-        title="Oportunidad FuXion | Comparte Bienestar y Desarrolla un Proyecto Propio"
-        description="Descubre cómo algunas personas convierten su interés por el bienestar en un proyecto independiente junto a FuXion. Sin presión, sin promesas de riqueza rápida."
+        title="Oportunidad de Negocio FuXion | Emprende y Trabaja desde Casa"
+        description="Emprende desde casa con la oportunidad de negocio FuXion. Genera ingresos extra compartiendo productos naturales de bienestar. Trabajo independiente y flexible."
         canonical="/oportunidad-fuxion"
         schema={[faqSchema]}
       />
@@ -484,9 +484,9 @@ const OpportunityPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.15 }}
               >
-                Convierte tu interés por el{' '}
-                <span className="text-emerald-600 dark:text-emerald-400">bienestar</span>{' '}
-                en algo más
+                Emprende desde casa con una{' '}
+                <span className="text-emerald-600 dark:text-emerald-400">Oportunidad de Negocio</span>{' '}
+                flexible y natural
               </motion.h1>
 
               <motion.p

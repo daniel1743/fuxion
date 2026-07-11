@@ -6,7 +6,7 @@ const SITE_MEDIA_BUCKET = 'site-media';
 export const defaultSiteSettings = {
   id: 'main',
   site_name: 'Tienda Fuxion',
-  logo_url: '',
+  logo_url: '/hoja-te-transparente.svg',
   owner_name: 'Daniel Falcon',
   tagline: 'Asesoría personalizada en productos Fuxion',
 };

@@ -85,7 +85,7 @@ const cleanBotResponse = (text = '') => {
  * El frontend envía los productos vistos por el usuario y su posible interés
  * inferido para que el backend los inyecte en el prompt de la IA.
  */
-export const sendMessageToDeepSeek = async (userMessage, botType = 'ventas', conversationHistory = []) => {
+export const sendMessageToDeepSeek = async (userMessage, botType = 'ventas', conversationHistory = [], frontendContext = '') => {
   try {
     const sessionData = ensureSessionMetadata();
 
@@ -129,7 +129,8 @@ export const sendMessageToDeepSeek = async (userMessage, botType = 'ventas', con
         sessionId: sessionData.sessionId,
         startedAt: sessionData.startedAt,
         // Smart Product Interest Memory: enviar journey de productos al backend
-        productJourney: productJourneyData
+        productJourney: productJourneyData,
+        frontendContext
       })
     });
 

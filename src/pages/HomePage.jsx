@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Search, ShoppingCart, MessageCircle } from 'lucide-react';
@@ -14,6 +14,7 @@ import {
   ShoppingBag03Icon,
   ArrowRight02Icon,
   CheckmarkCircle02Icon,
+  BadgeCheckIcon,
 } from '@hugeicons/core-free-icons';
 import PremiumIcon from '@/components/ui/PremiumIcon';
 import { getImageUrl, getPlaceholderImage } from '@/lib/imageUtils';
@@ -209,8 +210,8 @@ const HomePage = () => {
 
       {/* SECCIÓN 1 – HERO */}
       <section className="relative min-h-screen flex items-center overflow-hidden pt-20 bg-gradient-to-br from-[#f7faf4] via-white to-[#edf7ee] dark:from-[#0f1f18] dark:via-[#111827] dark:to-[#1b1630]">
-        <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-12">
-          <div className="grid gap-16 lg:grid-cols-2 items-center">
+        <div className="relative z-10 w-full max-w-[1440px] mx-auto px-8 xl:px-16 py-16">
+          <div className="grid lg:grid-cols-[55fr_45fr] gap-16 xl:gap-24 items-center">
             <div className="text-center lg:text-left">
               <motion.p
                 className="inline-flex items-center rounded-full border border-emerald-200 bg-white/80 px-4 py-2 text-sm font-semibold text-emerald-700 shadow-sm dark:border-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 mb-6"
@@ -226,10 +227,10 @@ const HomePage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
               >
-                Productos Fuxion para nutrición y bienestar natural.
+                Productos Fuxion para <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-emerald-400">nutrición y bienestar natural.</span>
               </motion.h1>
               <motion.p
-                className="text-2xl md:text-3xl font-semibold text-emerald-700 dark:text-emerald-300 mb-6"
+                className="text-xl md:text-2xl font-medium text-emerald-800/80 dark:text-emerald-300/80 mb-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.35 }}
@@ -237,32 +238,40 @@ const HomePage = () => {
                 Te ayudamos a elegir según tu objetivo: energía, digestión, control de peso o defensas.
               </motion.p>
               <motion.p
-                className="mt-6 text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-8"
+                className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0 mb-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.5 }}
               >
                 Explora el catálogo Fuxion y recibe orientación directa antes de comprar. Agrega tus productos al carrito y envía el pedido por WhatsApp para coordinar atención y despacho.
               </motion.p>
+              {/* ── Row 1: buscador a ancho completo ── */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.58 }}
-                className="mb-8"
+                className="w-full mb-5"
               >
-                <ProductNeedSearch onSearch={handleNeedSearch} />
+                <ProductNeedSearch onSearch={handleNeedSearch} className="max-w-none" />
               </motion.div>
+
+              {/* ── Row 2: CTA separada con aire y texto de apoyo ── */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.65 }}
+                transition={{ duration: 0.6, delay: 0.72 }}
+                className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-8"
               >
                 <Button
-                  size="lg"
                   onClick={() => handleWhatsAppClick('Hola, quiero empezar mi cambio con Fuxion')}
+                  className="h-14 px-8 rounded-2xl bg-emerald-800 hover:bg-emerald-900 text-white font-semibold flex items-center gap-2 shadow-lg shadow-emerald-900/10 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 text-base"
                 >
-                  <span className="text-balance">Recibir asesoría</span> <HugeiconsIcon icon={ArrowRight02Icon} size={20} className="ml-2 shrink-0" />
+                  <span>Recibir asesoría</span>
+                  <HugeiconsIcon icon={ArrowRight02Icon} size={20} className="shrink-0" />
                 </Button>
+                <p className="text-sm text-muted-foreground leading-snug hidden sm:block">
+                  Un asesor te ayuda a elegir<br className="hidden lg:block" /> el producto ideal para tu objetivo.
+                </p>
               </motion.div>
             </div>
             <motion.div
@@ -273,15 +282,50 @@ const HomePage = () => {
             >
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-emerald-100 dark:border-emerald-900">
                 <img
-                  src={getImageUrl('/img/familia.fuxion.png')}
-                  alt="Familia FuXion - Nutrición de verdad y bienestar natural"
+                  src={getImageUrl('/prunex-principal.jpeg')}
+                  alt="Prunex 1 FuXion - Limpieza de colon y tránsito intestinal natural"
+                  title="Prunex 1 FuXion - Limpieza de colon y tránsito intestinal natural"
                   className="w-full h-full object-cover max-h-[560px]"
                   onError={(e) => {
                     e.target.src = getPlaceholderImage('woman');
                   }}
                   loading="eager"
+                  width="800"
+                  height="560"
                 />
               </div>
+
+              {/* ── Glassmorphism Badge 1 (Top Left) ── */}
+              <motion.div
+                initial={{ opacity: 0, x: -20, y: 10 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ delay: 0.8, type: 'spring', stiffness: 100 }}
+                className="absolute -top-6 -left-6 z-20 bg-white/85 dark:bg-gray-900/85 backdrop-blur-xl border border-emerald-100/50 dark:border-emerald-800/50 rounded-2xl p-3.5 shadow-xl flex items-center gap-3 hidden sm:flex"
+              >
+                <div className="bg-emerald-100 dark:bg-emerald-900/50 p-2 rounded-full">
+                  <HugeiconsIcon icon={Leaf01Icon} className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
+                </div>
+                <div>
+                  <p className="text-sm font-extrabold text-foreground leading-none">100% Natural</p>
+                  <p className="text-[11px] font-medium text-muted-foreground mt-1">Origen vegetal</p>
+                </div>
+              </motion.div>
+
+              {/* ── Glassmorphism Badge 2 (Bottom Right) ── */}
+              <motion.div
+                initial={{ opacity: 0, x: 20, y: -10 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ delay: 1, type: 'spring', stiffness: 100 }}
+                className="absolute -bottom-6 -right-4 lg:-right-8 z-20 bg-white/85 dark:bg-gray-900/85 backdrop-blur-xl border border-emerald-100/50 dark:border-emerald-800/50 rounded-2xl p-3.5 shadow-xl flex items-center gap-3 hidden sm:flex"
+              >
+                <div className="bg-emerald-500 p-2 rounded-full shadow-inner border-2 border-white dark:border-gray-800">
+                  <HugeiconsIcon icon={CheckmarkCircle02Icon} className="h-5 w-5 text-white" />
+                </div>
+                <div>
+                  <p className="text-sm font-extrabold text-foreground leading-none">Calidad Premium</p>
+                  <p className="text-[11px] font-medium text-muted-foreground mt-1">Fórmulas patentadas</p>
+                </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
@@ -314,6 +358,7 @@ const HomePage = () => {
       <TestimonialsSection
         title="Experiencias de consumidores FuXion"
         subtitle="Opiniones compartidas por consumidores que han probado productos FuXion y publicado sus experiencias en diferentes plataformas públicas."
+        showForm={false}
       />
 
       <section className="py-10 bg-white dark:bg-card border-y border-emerald-100 dark:border-border">
@@ -871,117 +916,169 @@ const certifications = [
 ];
 
 const CertificationsCarousel = () => {
-  const scrollRef = useRef(null);
-  const animationRef = useRef(null);
-  const [hoveredId, setHoveredId] = useState(null);
-  const [isPaused, setIsPaused] = useState(false);
+  const [activeId, setActiveId]   = useState(null);
+  const [isPaused, setIsPaused]   = useState(false);
+  const [tipStyle, setTipStyle]   = useState({});   // fixed-position coords
 
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
+  const activeCert = activeId
+    ? certifications.find(c => c.id === activeId.replace(/-\d+$/, ''))
+    : null;
 
-    let scrollPos = 0;
-    const speed = 0.5; // pixels per frame — ajusta para cambiar velocidad
+  const handleEnter = (uniqueId, e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    // Center tooltip above the card, staying within viewport
+    const TOOLTIP_W = 320; // px — max tooltip width
+    const leftIdeal = rect.left + rect.width / 2 - TOOLTIP_W / 2;
+    const leftClamped = Math.max(12, Math.min(leftIdeal, window.innerWidth - TOOLTIP_W - 12));
 
-    const scroll = () => {
-      if (isPaused) {
-        animationRef.current = requestAnimationFrame(scroll);
-        return;
-      }
-      scrollPos += speed;
-      if (scrollPos >= el.scrollWidth / 2) {
-        scrollPos = 0;
-      }
-      el.scrollLeft = scrollPos;
-      animationRef.current = requestAnimationFrame(scroll);
-    };
-
-    animationRef.current = requestAnimationFrame(scroll);
-
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
-  }, [isPaused]);
-
-  const handleMouseEnter = (id) => {
-    setHoveredId(id);
+    setTipStyle({
+      position:  'fixed',
+      bottom:    window.innerHeight - rect.top + 14,
+      left:      leftClamped,
+      width:     TOOLTIP_W,
+      zIndex:    9999,
+    });
+    setActiveId(uniqueId);
     setIsPaused(true);
   };
 
-  const handleMouseLeave = () => {
-    setHoveredId(null);
+  const handleLeave = () => {
+    setActiveId(null);
     setIsPaused(false);
-  };
-
-  const handleTouchStart = (id) => {
-    setHoveredId(id);
-    setIsPaused(true);
-  };
-
-  const handleTouchEnd = () => {
-    setHoveredId(null);
-    setIsPaused(false);
-  };
-
-  const getCertificationData = (id) => {
-    const match = id.match(/^([a-z0-9-]+)-(\d+)$/);
-    if (!match) return null;
-    const baseId = match[1];
-    return certifications.find(c => c.id === baseId) || null;
   };
 
   return (
-    <section className="py-8 bg-white dark:bg-card border-y border-emerald-100 dark:border-border overflow-hidden">
-      <div className="container mx-auto px-6">
-        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4 text-center">
-          Sellos y certificaciones de calidad
-        </p>
-        <div
-          ref={scrollRef}
-          className="flex items-center gap-16 overflow-x-hidden whitespace-nowrap"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          aria-hidden="true"
-        >
-          {/* Duplicado para loop infinito */}
-          {[...certifications, ...certifications].map((cert, i) => {
-            const uniqueId = `${cert.id}-${i}`;
-            const isHovered = hoveredId === uniqueId;
-            const certData = getCertificationData(uniqueId);
-            
-            return (
-              <div
-                key={uniqueId}
-                className="shrink-0 opacity-70 hover:opacity-100 transition-all duration-300 ease-out relative"
+    <section
+      className="relative py-10 bg-white dark:bg-card overflow-hidden border-y border-emerald-100/60 dark:border-border"
+      onMouseLeave={handleLeave}
+      onTouchEnd={handleLeave}
+    >
+      {/* CSS keyframes */}
+      <style>{`
+        @keyframes certs-scroll {
+          from { transform: translateX(0%); }
+          to   { transform: translateX(-50%); }
+        }
+        .certs-track {
+          animation: certs-scroll 40s linear infinite;
+          animation-play-state: var(--scroll-state, running);
+        }
+      `}</style>
+
+      {/* Section header */}
+      <div className="container mx-auto px-6 mb-8">
+        <div className="flex items-center gap-3 justify-center">
+          <div className="h-px flex-1 max-w-[80px] bg-gradient-to-r from-transparent to-emerald-200 dark:to-emerald-800" />
+          <p className="text-xs font-semibold text-emerald-700 dark:text-emerald-400 uppercase tracking-[0.18em]">
+            Sellos y certificaciones de calidad
+          </p>
+          <div className="h-px flex-1 max-w-[80px] bg-gradient-to-l from-transparent to-emerald-200 dark:to-emerald-800" />
+        </div>
+      </div>
+
+      {/* Edge fades */}
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white dark:from-card to-transparent z-10" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white dark:from-card to-transparent z-10" />
+
+      {/* Scrolling track */}
+      <div
+        className="certs-track flex items-center gap-10 w-max px-6 py-3"
+        style={{ '--scroll-state': isPaused ? 'paused' : 'running' }}
+      >
+        {[...certifications, ...certifications].map((cert, i) => {
+          const uniqueId = `${cert.id}-${i}`;
+          const isActive = activeId === uniqueId;
+          return (
+            <div
+              key={uniqueId}
+              className="relative shrink-0"
+              onMouseEnter={(e) => handleEnter(uniqueId, e)}
+              onTouchStart={(e) => handleEnter(uniqueId, e)}
+              role="button"
+              tabIndex={0}
+              aria-label={`Ver información: ${cert.name}`}
+              onKeyDown={(e) => e.key === 'Enter' && handleEnter(uniqueId, e)}
+            >
+              <motion.div
+                className="flex items-center justify-center w-[100px] h-[100px] rounded-2xl border border-emerald-100 dark:border-emerald-900/40 bg-white dark:bg-gray-900 cursor-pointer select-none"
                 style={{
-                  transform: isHovered ? 'scale(1.15)' : 'scale(1)',
-                  transition: 'transform 300ms ease-out, opacity 300ms ease-out'
+                  boxShadow: isActive
+                    ? '0 8px 32px rgba(16,185,129,0.18), 0 2px 8px rgba(0,0,0,0.08)'
+                    : '0 2px 8px rgba(0,0,0,0.05)',
                 }}
-                onMouseEnter={() => handleMouseEnter(uniqueId)}
-                onMouseLeave={handleMouseLeave}
-                onTouchStart={() => handleTouchStart(uniqueId)}
-                onTouchEnd={handleTouchEnd}
+                animate={{ scale: isActive ? 1.12 : 1, y: isActive ? -6 : 0 }}
+                transition={{ type: 'spring', stiffness: 350, damping: 24 }}
               >
                 <img
                   src={cert.imageSrc}
                   alt={cert.name}
-                  className="h-20 w-20 object-contain"
+                  className="h-14 w-14 object-contain"
                   loading="lazy"
+                  draggable={false}
                 />
-                {isHovered && certData && (
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-72 sm:w-80 bg-white dark:bg-gray-900 rounded-xl shadow-2xl border border-emerald-200 dark:border-emerald-800 p-4 z-50 pointer-events-none">
-                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-3 h-3 bg-white dark:bg-gray-900 border-r border-b border-emerald-200 dark:border-emerald-800 rotate-45" />
-                    <p className="text-base font-bold text-foreground mb-1">{certData.name}</p>
-                    <p className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 mb-2">{certData.type}</p>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{certData.description}</p>
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
+              </motion.div>
+            </div>
+          );
+        })}
       </div>
+
+      {/* ─── Tooltip rendered via portal (position:fixed) to escape overflow ─── */}
+      <AnimatePresence>
+        {activeCert && (
+          <motion.div
+            key="cert-tooltip"
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0,  scale: 1    }}
+            exit={{    opacity: 0, y: 10, scale: 0.95 }}
+            transition={{ type: 'spring', stiffness: 420, damping: 30 }}
+            style={tipStyle}
+            className="pointer-events-none"
+          >
+            {/* Arrow pointing down toward the card */}
+            <div className="absolute bottom-[-6px] left-1/2 -translate-x-1/2 w-3 h-3 rotate-45 bg-white dark:bg-gray-900 border-r border-b border-emerald-200 dark:border-emerald-800" />
+
+            <div className="rounded-2xl border border-emerald-200 dark:border-emerald-800 bg-white/98 dark:bg-gray-900/98 backdrop-blur-2xl shadow-2xl p-5">
+              {/* Logo + name + badge */}
+              <div className="flex items-start gap-3 mb-3">
+                <img
+                  src={activeCert.imageSrc}
+                  alt={activeCert.name}
+                  className="h-10 w-10 object-contain rounded-xl border border-emerald-100 dark:border-emerald-900 bg-white dark:bg-gray-800 p-1 shrink-0 shadow-sm"
+                />
+                <div>
+                  <div className="flex items-center gap-1.5">
+                    <p className="text-sm font-bold text-foreground leading-snug">{activeCert.name}</p>
+                    <HugeiconsIcon
+                      icon={BadgeCheckIcon}
+                      className="h-4 w-4 text-emerald-500 shrink-0"
+                      aria-label="Verificado"
+                    />
+                  </div>
+                  <span className="inline-block mt-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300">
+                    {activeCert.type}
+                  </span>
+                </div>
+              </div>
+
+              <div className="h-px bg-emerald-100 dark:bg-emerald-900/40 mb-3" />
+
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                {activeCert.description}
+              </p>
+
+              <div className="mt-3 flex items-center gap-1.5">
+                <HugeiconsIcon
+                  icon={CheckmarkCircle02Icon}
+                  className="h-3.5 w-3.5 text-emerald-500 shrink-0"
+                />
+                <p className="text-[10px] font-medium text-emerald-600 dark:text-emerald-400">
+                  Sello de calidad verificado por FuXion
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

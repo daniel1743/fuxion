@@ -549,7 +549,8 @@ Nombre: ${productCtx.name}`;
                 /\b(quiero conocer el negocio|cómo funciona fuxion|cómo funciona fuXion|como funciona fuxion)\b/i,
                 /\b(oportunidad fuxion|oportunidad fuXion|modelo de negocio|plan de compensación|plan de compensacion)\b/i,
                 /\b(quiero saber más sobre la oportunidad|cuéntame sobre la oportunidad|cuentame sobre la oportunidad)\b/i,
-                /\b(ver oportunidad|video de oportunidad|video oportunidad)\b/i
+                /\b(ver oportunidad|video de oportunidad|video oportunidad)\b/i,
+                /\b(video de negocio|video del negocio|hay video|tienes video|tienen video)\b/i
             ];
 
             const isVideoOpportunity = videoOpportunityPatterns.some(pattern => pattern.test(userMessage));
@@ -557,10 +558,8 @@ Nombre: ${productCtx.name}`;
             if (isVideoOpportunity) {
                 setMessages(prev => [...prev, {
                     sender: 'bot',
-                    text: 'Claro, te muestro el video explicativo donde conocerás cómo funciona la oportunidad FuXion y cómo puedes iniciar tu proyecto.',
-                    botType: 'assistant',
-                    showOpportunityVideo: true,
-                    opportunityVideoUrl: '/oportunidad'
+                    text: 'Claro, para ver el video explicativo y conocer cómo funciona la oportunidad FuXion, dirígete a la sección "Oportunidad" en el menú principal (arriba) y desliza hacia abajo. Allí encontrarás el video con todos los detalles.',
+                    botType: 'assistant'
                 }]);
                 setIsLoading(false);
                 return;
@@ -582,12 +581,13 @@ Nombre: ${productCtx.name}`;
             const currentProductCtx = getCurrentProductContext();
             const productSection = buildProductContextForAI(currentProductCtx);
 
-            const response = await sendMessageToDeepSeek(
-                `${buildCustomerContext()}${journeySection}${productJourneySection}${productSection}
+            const frontendContext = `${buildCustomerContext()}${journeySection}${productSection}`;
 
-Pregunta del usuario: ${userMessage}`,
+            const response = await sendMessageToDeepSeek(
+                userMessage,
                 'unificado',
-                conversationHistory
+                conversationHistory,
+                frontendContext
             );
 
 
@@ -654,80 +654,7 @@ Pregunta del usuario: ${userMessage}`,
         const nextMessages = [...messages, { sender: 'user', text: userMessage }];
 
         setIsLoading(true);
-
-        try {
-            const conversationHistory = messages
-                .filter(m => m.sender && m.botType !== 'system')
-                .slice(-8);
-
-            const journeyContext = getContextForAI();
-            const journeySection = journeyContext ? `\n\nCONTEXTO DE NAVEGACIÓN DEL USUARIO:\n${journeyContext}` : '';
-
-            // Smart Product Interest Memory context (product browsing journey)
-            const productJourneyContext = getJourneyContextForAI();
-            const productJourneySection = productJourneyContext ? `\n\nCONTEXTO DE PRODUCTOS VISTOS:\n${productJourneyContext}` : '';
-
-            // Producto actual: siempre incluir contexto aunque no haya saludo visible
-            const currentProductCtx = getCurrentProductContext();
-            const productSection = buildProductContextForAI(currentProductCtx);
-
-            const response = await sendMessageToDeepSeek(
-                `${buildCustomerContext()}${journeySection}${productJourneySection}${productSection}
-
-Pregunta del usuario: ${userMessage}`,
-                'unificado',
-                conversationHistory
-            );
-
-            // El backend ahora devuelve toda la información de contexto
-            // incluyendo si debe mostrar WhatsApp o no
-            setMessages(prev => [...prev, {
-                sender: 'bot',
-                text: makeConversationNatural(response.text),
-                botType: 'assistant',
-                apiUsed: response.apiUsed,
-                // Solo mostrar WhatsApp si el backend lo indica explícitamente
-                advisorUrl: response.showWhatsApp
-                    ? buildAdvisorUrl([...nextMessages, { sender: 'bot', text: response.text }], response.advisorReason || 'El cliente solicitó asistencia humana.')
-                    : null,
-                // Business Opportunity flags
-                isBusinessOpportunity: response.isBusinessOpportunity === true,
-                showOpportunityVideo: response.showOpportunityVideo === true,
-                showOpportunityAdvisor: response.showOpportunityAdvisor === true
-            }]);
-
-            console.log(`💬 Respuesta generada por: ${response.apiUsed}`);
-
-        } catch (error) {
-            console.error('Error al enviar mensaje:', error);
-
-            let errorMessage = 'Estoy teniendo dificultad para responder en este momento. ';
-
-            if (error.message.includes('Insufficient Balance') || error.message.includes('402')) {
-                errorMessage += 'El servicio de IA no está disponible temporalmente. Intenta nuevamente en unos segundos.';
-            } else if (error.message.includes('API Key') || error.message.includes('API key')) {
-                errorMessage += 'La configuración del servicio no está completa. Intenta nuevamente más tarde.';
-            } else if (error.message.includes('429')) {
-                errorMessage += 'Hay muchas consultas en este momento. Espera unos segundos y vuelve a intentar.';
-            } else {
-                errorMessage += 'Intenta nuevamente en unos segundos.';
-            }
-
-            setMessages(prev => [...prev, {
-                sender: 'bot',
-                text: errorMessage,
-                botType: 'error',
-                advisorUrl: buildAdvisorUrl(nextMessages, 'El chatbot tuvo un error técnico y derivó la conversación a asesor humano.')
-            }]);
-
-            toast({
-                title: "Error de conexión",
-                description: "Estoy teniendo dificultad para responder. Intenta nuevamente",
-                variant: "destructive"
-            });
-        } finally {
-            setIsLoading(false);
-        }
+        await executeSend(userMessage, nextMessages);
     };
 
     const buildCustomerContext = () => {

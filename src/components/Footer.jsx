@@ -5,14 +5,13 @@ import {
   Heart,
   Package,
   Tags,
-  BookOpen,
   FileText,
+  TrendingUp,
   Instagram,
   Facebook,
-  HelpCircle,
+  MessagesSquare,
   MessageCircle,
   Truck,
-  MessagesSquare,
   Shield,
   Cookie,
 } from 'lucide-react';
@@ -26,14 +25,14 @@ const Footer = () => {
     const tiendaLinks = [
       { label: 'Productos FuXion', icon: Package, path: '/explorar' },
       { label: 'Categorías', icon: Tags, path: '/categorias' },
-      { label: 'Sobre Nosotros', icon: Heart, path: '/sobre-nosotros' },
+      { label: 'Sobre Nosotros', icon: Leaf, path: '/sobre-nosotros' },
       { label: 'Bienestar', icon: Heart, path: '/opiniones' },
-      { label: 'Evidencias', icon: BookOpen, path: '/blog' },
+      { label: 'Evidencias', icon: FileText, path: '/blog' },
       { label: 'Términos y Condiciones', icon: FileText, path: '/terminos' },
     ];
 
     const ayudaLinks = [
-      { label: 'Centro de ayuda', icon: HelpCircle, path: '/ayuda' },
+      { label: 'Centro de ayuda', icon: MessagesSquare, path: '/ayuda' },
       { label: 'Contacto', icon: MessageCircle, path: '/contacto' },
       { label: 'Envíos', icon: Truck, path: '/envios' },
       { label: 'FAQ', icon: MessagesSquare, path: '/faq' },
@@ -66,17 +65,11 @@ const Footer = () => {
                     {/* ── Brand Section ───────────────────────────── */}
                     <div className="col-span-1 md:col-span-1 flex flex-col items-start">
                         <Link to="/" className="flex items-center gap-3 mb-4">
-                            {settings.logo_url ? (
-                                <img
-                                    src={settings.logo_url}
-                                    alt={settings.site_name}
-                                    className="h-12 w-12 rounded-full object-cover ring-2 ring-emerald-200 shadow-sm"
-                                />
-                            ) : (
-                                <div className="h-12 w-12 rounded-full bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center ring-2 ring-emerald-200 shadow-sm">
-                                    <Leaf className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
-                                </div>
-                            )}
+                            <img
+                                src="/hoja-te-transparente.svg"
+                                alt={settings.site_name}
+                                className="h-12 w-12 rounded-full object-contain ring-2 ring-emerald-200/50 shadow-sm bg-transparent"
+                            />
                             <div className="flex flex-col">
                                 <span className="text-xl font-bold text-foreground tracking-tight leading-tight">
                                     Naturalmente FuXion

@@ -51,7 +51,16 @@ export const BUY_INTENT_MEDIUM = {
 // ===================================================================
 // BUSINESS_INTENT - Detección de interés en oportunidad de negocio
 // ===================================================================
-export const BUSINESS_INTENT_PATTERNS = /\b(quiero vender|negocio|distribuidor|ganar dinero|emprender|trabajar con fuxion|trabajar con fuXion|vender fuxion|vender fuXion|hacer el negocio|c[oó]mo gano dinero|c[oó]mo ganar dinero|ser distribuidor|oportunidad fuxion|oportunidad fuXion|plan de negocio|ganancias|ingresos extra|ingreso extra|unirme a fuxion|unirme a fuXion|asociarme|ser parte de fuxion|ser parte de fuXion|modelo de negocio|plan de compensaci[oó]n|ganar dinero con fuxion|ganar dinero con fuXion|c[oó]mo funciona el negocio|vender productos|oportunidad de negocio|negocio propio|dinero extra|independencia financiera|libertad financiera|trabajo desde casa|negocio desde casa|ingreso pasivo|ingresos pasivos|quiero afiliarme|ser socio|negocio desde casa|generar ingresos|ingreso extra|plan de compensaci[oó]n|afiliarme|socio fuxion|socio fuXion)\b/i;
+// Patrón único de intención de negocio para notificaciones Telegram.
+// REGLA CRÍTICA: Solo términos específicos o con contexto FuXion.
+// Se eliminaron términos genéricos sueltos que generaban falsos positivos:
+//   - "negocio" solo, "ingresos" solo, "dinero extra" solo
+//   - "ganar dinero", "trabajo desde casa", "ingreso pasivo"
+//   - "independencia financiera", "libertad financiera"
+//   - "ser socio", "afiliarme", "oportunidad de negocio"
+//   - "plan de compensación", "generar ingresos"
+// Estos términos aparecen en videos y descripciones sin relación con FuXion.
+export const BUSINESS_INTENT_PATTERNS = /\b(quiero vender fuXion|quiero vender fuxion|hacer el negocio|c[oó]mo gano dinero con fuXion|c[oó]mo gano dinero con fuxion|c[oó]mo ganar dinero con fuXion|c[oó]mo ganar dinero con fuxion|quiero emprender con fuXion|quiero emprender con fuxion|emprender con fuXion|emprender con fuxion|ser distribuidor fuXion|ser distribuidor de fuxion|quiero ser distribuidor|distribuidor fuXion|distribuidor de fuxion|oportunidad fuXion|oportunidad fuxion|unirme a fuXion|unirme a fuxion|afiliarme a fuXion|afiliarme a fuxion|ser parte de fuXion|ser parte de fuxion|trabajar con fuXion|trabajar con fuxion|ganar dinero con fuXion|ganar dinero con fuxion|c[oó]mo funciona el negocio fuXion|c[oó]mo funciona el negocio de fuxion|vender fuXion|vender fuxion|oportunidad de negocio fuXion|oportunidad de negocio de fuxion|socio fuXion|socio fuxion|plan de negocio fuXion|plan de negocio de fuxion|negocio fuXion|negocio de fuxion|bonos fuXion|rangos fuXion|bono auto fuXion|fondo pa[ií]s fuXion)\b/i;
 
 // ===================================================================
 // NIVELES DE INTENCIÓN - FASE FINAL 4
@@ -77,7 +86,10 @@ export const HUMAN_REQUEST_PATTERNS = /\b(asesor|humano|persona real|whatsapp|ne
 // ===================================================================
 // SEÑALES DE NEGOCIO FUXION - Separado de compra producto
 // ===================================================================
-export const BUSINESS_OPPORTUNITY_PATTERNS = /\b(vender fuxion|vender fuXion|negocio fuxion|negocio fuXion|oportunidad fuxion|oportunidad fuXion|distribuidor fuxion|distribuidor fuXion|ganar dinero con fuxion|ganar dinero con fuXion|emprender con fuxion|emprender con fuXion|ser distribuidor|hacerme distribuidor|plan de negocio|modelo de negocio|c[oó]mo funciona el negocio|quiero vender|oportunidad de negocio|negocio propio|ganar dinero|ingresos extra|ingreso extra|independencia financiera|libertad financiera|trabajo desde casa|negocio desde casa|ingreso pasivo|ingresos pasivos|afiliarme|ser socio|asociarme|unirme a fuxion|unirme a fuXion|ser parte de fuxion|ser parte de fuXion|plan de compensaci[oó]n|rangos|bonos|bono auto|fondo pa[ií]s)\b/i;
+// BUSINESS_OPPORTUNITY_PATTERNS: usado para sugerencias internas y recomendaciones.
+// Más permisivo que BUSINESS_INTENT_PATTERNS (permite detectar interés sin notificar).
+// Versión ampliada para recomendaciones, versión estricta para alertas Telegram.
+export const BUSINESS_OPPORTUNITY_PATTERNS = /\b(vender fuxion|vender fuXion|oportunidad fuXion|oportunidad fuxion|distribuidor fuXion|distribuidor de fuxion|ganar dinero con fuXion|ganar dinero con fuxion|emprender con fuXion|emprender con fuxion|ser distribuidor fuXion|ser distribuidor de fuxion|hacerme distribuidor|plan de negocio fuXion|plan de negocio de fuxion|c[oó]mo funciona el negocio fuXion|c[oó]mo funciona el negocio de fuxion|quiero vender fuXion|quiero vender fuxion|oportunidad de negocio fuXion|oportunidad de negocio de fuxion|socio fuXion|socio fuxion|unirme a fuXion|unirme a fuxion|ser parte de fuXion|ser parte de fuxion|plan de compensaci[oó]n fuXion|plan de compensaci[oó]n de fuxion|bonos fuXion|rangos fuXion|bono auto fuXion|fondo pa[ií]s fuXion|trabajar con fuXion|trabajar con fuxion|vender productos fuXion|vender productos de fuxion)\b/i;
 
 // ===================================================================
 // MAPA DE CATEGORÍAS DE PRODUCTOS PARA RESUMEN INTELIGENTE
@@ -159,13 +171,12 @@ export const CHAT_RULE_PATTERNS = {
     'protein active', 'proteinactive', 'protein active fit',
     'bioprotein', 'bioprotein active',
     'vitamina', 'vita xtra', 'vitaextra', 'vita xtra t+', 'vitaenergia',
-    'vera', 'vera+',
-    'gano',
-    'cafe', 'cafe fit', 'cappuccino',
+    'beta', 'beta+',
+    'cafe fit', 'cappuccino',
     'youth elixir', 'youth elixir hgh',
-    'digestivo', 'digestion', 'probiotico', 'probioticos', 'colon',
+    'digestivo', 'digestion', 'probiotico', 'probioticos',
     'producto digestivo', 'salud intestinal',
-    'energia', 'energia', 'defensas', 'inmunologico',
+    'energia vital', 'vitalidad', 'defensas', 'inmunologico',
     'control peso', 'bajar de peso', 'perder peso'
   ],
   price: /\b(precio|cuesta|valor|cu[eé]nto vale|cu[eé]nto sale|cost[oa]|tarifa)\b/i,
@@ -178,7 +189,7 @@ export const CHAT_RULE_PATTERNS = {
   advisorDecline: /\b(no gracias|prefiero continuar|prefiero seguir|sin asesor|me quedo aqu[ií]|seguir aqu[ií])\b/i,
   medicalWarning: /\b(dolor intenso|dificultad respiratoria|p[eé]rdida de conciencia|v[oó]mito con sangre|sangrado abundante|dolor tor[aác]cico intenso|fiebre alta|dolor en el pecho|mareo grave|palpitaciones intensas)\b/i,
   questionWords: /\b(quien|que|cu[aá]l|d[oó]nde|por qu[eé]|qui[eé]n|c[uú]ando|cu[aá]nto)\b/i,
-  businessOpportunity: /\b(vender fuxion|vender fuXion|hacer el negocio|c[oó]mo gano dinero|c[oó]mo ganar dinero|quiero emprender|ser distribuidor|oportunidad fuxion|oportunidad fuXion|plan de negocio|ganancias|negocio fuxion|negocio fuXion|ingresos extra|ingreso extra|trabajar con fuxion|trabajar con fuXion|emprender con fuxion|emprender con fuXion|unirme a fuxion|unirme a fuXion|asociarme|ser parte de fuxion|ser parte de fuXion|modelo de negocio|plan de compensaci[oó]n|ganar dinero con fuxion|ganar dinero con fuXion|c[oó]mo funciona el negocio|quiero vender|vender productos|oportunidad de negocio|negocio propio|ingresos|dinero extra|independencia financiera|libertad financiera|trabajo desde casa|negocio desde casa|ingreso pasivo|ingresos pasivos)\b/i
+  businessOpportunity: /\b(vender fuxion|vender fuXion|hacer el negocio fuxion|hacer el negocio fuXion|c[oó]mo gano dinero con fuxion|c[oó]mo gano dinero con fuXion|c[oó]mo ganar dinero con fuxion|c[oó]mo ganar dinero con fuXion|quiero emprender con fuxion|quiero emprender con fuXion|ser distribuidor fuxion|ser distribuidor de fuxion|oportunidad fuxion|oportunidad fuXion|plan de negocio fuxion|plan de negocio de fuxion|negocio fuxion|negocio fuXion|trabajar con fuxion|trabajar con fuXion|emprender con fuxion|emprender con fuXion|unirme a fuxion|unirme a fuXion|ser parte de fuxion|ser parte de fuXion|plan de compensaci[oó]n fuxion|plan de compensaci[oó]n de fuxion|ganar dinero con fuxion|ganar dinero con fuXion|c[oó]mo funciona el negocio fuxion|c[oó]mo funciona el negocio de fuxion|quiero vender fuxion|quiero vender fuXion|vender productos fuxion|vender productos de fuxion|socio fuxion|socio fuXion|bonos fuxion|rangos fuxion|bono auto fuxion|fondo pa[ií]s fuxion)\b/i
 };
 
 // ===================================================================
