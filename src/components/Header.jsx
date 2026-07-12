@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HugeiconsIcon } from '@hugeicons/react';
 import {
@@ -28,6 +28,7 @@ import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/CartContext';
 import { useSiteSettings } from '@/context/SiteSettingsContext';
 import { useAuth } from '@/context/AuthContext';
+import { useNotifications } from '@/context/NotificationContext';
 import UserMenu from '@/components/UserMenu';
 
 const officialStoreUrl = 'https://ifuxion.com/daniel/enrollment/chooseperson';
@@ -162,6 +163,16 @@ const Header = () => {
     window.open(officialStoreUrl, '_blank', 'noopener,noreferrer');
   }, []);
 
+  // Listen for custom event from MobileHomeHeroSurface
+  useEffect(() => {
+    const handleOpenMenu = () => setIsMenuOpen(true);
+    window.addEventListener('open-mobile-menu', handleOpenMenu);
+    return () => window.removeEventListener('open-mobile-menu', handleOpenMenu);
+  }, []);
+
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+
   const handleWhatsApp = useCallback(() => {
     setIsMenuOpen(false);
     const phone = '56912345678';
@@ -226,12 +237,14 @@ const Header = () => {
   };
 
   const cartCount = getCartCount();
+  const { unreadCount = 0 } = useNotifications() || {};
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 glassmorphism">
-      <nav className="container mx-auto flex items-center justify-between gap-1 px-3 py-2 sm:px-6 sm:py-3">
-        {/* ── Left: Brand ─────────────────────────────────────── */}
-        <Link to="/" className="flex shrink items-center gap-2 min-w-0">
+    <header className="fixed top-0 left-0 right-0 z-50 md:glassmorphism pointer-events-none md:pointer-events-auto">
+      <nav className="container mx-auto hidden md:flex items-center justify-between gap-1 px-3 py-2 sm:px-6 sm:py-3 pointer-events-auto">
+        {/* ── Left: Brand / Mobile user greeting ──────────────── */}
+        {/* Desktop brand — always visible on md+ */}
+        <Link to="/" className="hidden md:flex shrink items-center gap-2 min-w-0">
           <img
             src="/hoja-te-transparente.svg"
             alt={settings.site_name || 'FuXion'}
@@ -241,6 +254,36 @@ const Header = () => {
             {settings.site_name || 'Naturalmente FuXion'}
           </span>
         </Link>
+
+        {/* Mobile brand / user greeting — only visible below md */}
+        <div className="flex md:hidden shrink items-center gap-2.5 min-w-0">
+          {isAuthenticated && user ? (
+            <>
+              <div className="w-[38px] h-[38px] rounded-full ring-2 ring-emerald-200 dark:ring-emerald-700 shadow-sm overflow-hidden shrink-0">
+                <img
+                  src={user.avatar}
+                  alt={user.name || 'Mi cuenta'}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="min-w-0">
+                <p className="text-[11px] text-muted-foreground leading-none">Hola,</p>
+                <p className="text-sm font-bold text-foreground leading-tight truncate">{user.name?.split(' ')[0] || 'Cliente'}</p>
+              </div>
+            </>
+          ) : (
+            <Link to="/" className="flex items-center gap-2 min-w-0">
+              <img
+                src="/hoja-te-transparente.svg"
+                alt={settings.site_name || 'FuXion'}
+                className="h-[36px] w-[36px] shrink-0 rounded-full object-contain ring-1 ring-emerald-200/50 shadow-sm bg-transparent"
+              />
+              <span className="text-sm font-bold tracking-tight text-foreground whitespace-nowrap">
+                {settings.site_name || 'Nutrición de Verdad'}
+              </span>
+            </Link>
+          )}
+        </div>
 
         {/* ── Center: Desktop nav ─────────────────────────────── */}
         <div className="hidden md:flex items-center gap-1">
@@ -344,7 +387,7 @@ const Header = () => {
               initial="closed"
               animate="open"
               exit="closed"
-              className="fixed inset-0 z-40 bg-black/30 backdrop-blur-[6px] md:hidden"
+              className="fixed inset-0 z-40 bg-black/30 backdrop-blur-[6px] md:hidden pointer-events-auto"
               onClick={() => setIsMenuOpen(false)}
             />
 
@@ -356,7 +399,7 @@ const Header = () => {
               initial="closed"
               animate="open"
               exit="closed"
-              className="fixed top-0 right-0 z-50 h-dvh w-[80vw] max-w-[320px] bg-white dark:bg-[#0f1f18] shadow-2xl md:hidden flex flex-col overflow-y-auto rounded-l-[20px]"
+              className="fixed top-0 right-0 z-50 h-dvh w-[80vw] max-w-[320px] bg-white dark:bg-[#0f1f18] shadow-2xl md:hidden flex flex-col overflow-y-auto rounded-l-[20px] pointer-events-auto"
             >
               {/* Close button — top right */}
               <button
@@ -370,9 +413,14 @@ const Header = () => {
 
               {/* ── Profile Header ─────────────────────────────── */}
               <div className="flex flex-col items-center pt-[env(safe-area-inset-top,16px)] pt-6 pb-4 px-6 shrink-0">
-                {/* Avatar — reduced size by ~25% */}
+                {/* Avatar — reduced size by ~25% and made clickable to go to /cuenta */}
                 <div className="relative mt-2 mb-2">
-                  <div className="w-[56px] h-[56px] rounded-full ring-2 ring-emerald-200 dark:ring-emerald-700 shadow-md overflow-hidden">
+                  <button
+                    type="button"
+                    onClick={() => handleNavClick('/cuenta')}
+                    className="w-[56px] h-[56px] rounded-full ring-2 ring-emerald-200 dark:ring-emerald-700 shadow-md overflow-hidden focus:outline-none focus:ring-4 transition-shadow cursor-pointer block"
+                    aria-label="Ir a mi cuenta y notificaciones"
+                  >
                     {isAuthenticated && user?.avatar ? (
                       <img
                         src={user.avatar}
@@ -386,7 +434,7 @@ const Header = () => {
                         className="w-full h-full object-contain"
                       />
                     )}
-                  </div>
+                  </button>
                 </div>
 
                 {/* User info or welcome */}

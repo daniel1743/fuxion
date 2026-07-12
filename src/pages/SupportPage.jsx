@@ -25,6 +25,7 @@ import QuestionDetail from '@/components/forum/QuestionDetail';
 import ProductReviewForm from '@/components/forum/ProductReviewForm';
 import ProductReviewCard from '@/components/forum/ProductReviewCard';
 import AdminPanel from '@/components/admin/AdminPanel';
+import MobileAppShell from '@/components/mobile/MobileAppShell';
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -79,7 +80,7 @@ const SupportPage = () => {
       exit="out"
       variants={pageVariants}
       transition={{ duration: 0.5 }}
-      className="container mx-auto px-4 sm:px-6 py-28 max-w-7xl overflow-x-hidden"
+      className="container mx-auto px-4 sm:px-6 pt-0 md:pt-28 pb-28 max-w-7xl overflow-x-hidden"
     >
       <SEO
         title="Opiniones y Consultas"
@@ -87,8 +88,17 @@ const SupportPage = () => {
         canonical="/faq"
       />
 
+      {/* ── MOBILE SHELL ── */}
+      <div className="md:hidden">
+        <MobileAppShell 
+          variant="compact"
+          title="Soporte"
+          description="Consultas y opiniones."
+        />
+      </div>
+
       {/* Header */}
-      <div className="text-center mb-12">
+      <div className="hidden md:block text-center mb-12 mt-6 md:mt-0">
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -179,16 +189,18 @@ const SupportPage = () => {
               </div>
 
         {/* Filters */}
-        <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
           {/* Filter by status */}
-          <div className="flex items-center gap-2 flex-wrap">
+          <div className="flex items-center gap-2">
             <Filter className="w-4 h-4 text-muted-foreground flex-shrink-0" />
             <span className="text-xs sm:text-sm text-muted-foreground whitespace-nowrap">Filtrar:</span>
-            <div className="flex gap-1.5 sm:gap-2 flex-wrap">
+            {/* Contenedor scroll horizontal en móvil */}
+            <div className="flex overflow-x-auto gap-2 pb-2 scrollbar-hide snap-x before:content-[''] before:w-1 before:shrink-0 before:block after:content-[''] after:w-1 after:shrink-0 after:block -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
               <Button
                 variant={filter === 'all' ? 'default' : 'outline'}
                 size="sm"
                 onClick={() => setFilter('all')}
+                className="rounded-full snap-start shrink-0"
               >
                 Todas
               </Button>
@@ -196,23 +208,22 @@ const SupportPage = () => {
                 variant={filter === 'solved' ? 'default' : 'outline'}
                 size="sm"
                 onClick={() => setFilter('solved')}
-                className="flex items-center gap-1"
+                className="flex items-center gap-1 rounded-full snap-start shrink-0"
               >
-                <CheckCircle2 className="w-3 h-3" />
+                <CheckCircle2 className="w-3.5 h-3.5" />
                 Resueltas
               </Button>
               <Button
                 variant={filter === 'unsolved' ? 'default' : 'outline'}
                 size="sm"
                 onClick={() => setFilter('unsolved')}
-                className="flex items-center gap-1"
+                className="flex items-center gap-1 rounded-full snap-start shrink-0"
               >
-                <HelpCircle className="w-3 h-3" />
+                <HelpCircle className="w-3.5 h-3.5" />
                 Sin resolver
               </Button>
             </div>
           </div>
-
           <div className="hidden sm:block h-6 w-px bg-border" />
 
           {/* Sort */}
@@ -244,10 +255,10 @@ const SupportPage = () => {
             </div>
           </div>
         </div>
-      </div>
+        </div>
 
-            {/* Questions List */}
-            {filteredQuestions.length === 0 ? (
+      {/* Questions List */}
+      {filteredQuestions.length === 0 ? (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}

@@ -3,8 +3,10 @@ import { motion } from 'framer-motion';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import SEO from '@/components/SEO';
 import { ArrowLeft, Clock, Eye, Calendar, User, Share2, MessageCircle } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/icons/BrandIcons';
 import { useBlog } from '@/context/BlogContext';
 import { Button } from '@/components/ui/button';
+import MobileAppShell from '@/components/mobile/MobileAppShell';
 import { toast } from '@/components/ui/use-toast';
 
 const BlogPostPage = () => {
@@ -119,14 +121,25 @@ const BlogPostPage = () => {
         ogImage={post.image_url || undefined}
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-background to-background/95 pt-24 pb-16">
-        <article className="container mx-auto px-4 max-w-4xl">
+      <div className="min-h-screen bg-gradient-to-b from-background to-background/95 pt-0 md:pt-24 pb-16">
+        
+        {/* ── MOBILE SHELL ── */}
+        <div className="md:hidden">
+          <MobileAppShell 
+            variant="compact"
+            title="Artículo"
+            description={post.title}
+            showBack={true}
+          />
+        </div>
 
-          {/* Volver */}
+        <article className="container mx-auto px-4 max-w-4xl mt-6 md:mt-0">
+
+          {/* Volver (Desktop) */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="mb-8"
+            className="hidden md:block mb-8"
           >
             <Link to="/blog">
               <Button variant="ghost" size="sm">

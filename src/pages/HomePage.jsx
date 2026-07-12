@@ -16,12 +16,14 @@ import {
   CheckmarkCircle02Icon,
   BadgeCheckIcon,
 } from '@hugeicons/core-free-icons';
-import PremiumIcon from '@/components/ui/PremiumIcon';
-import { getImageUrl, getPlaceholderImage } from '@/lib/imageUtils';
 import { buildStoreSchema, buildOrganizationSchema, SITE_URL, STORE_NAME, getAllSeoProducts } from '@/lib/productSeo';
 import { confirmAndOpenWhatsapp, openWhatsapp } from '@/lib/whatsapp';
+import { getImageUrl } from '@/lib/imageUtils';
+import PremiumIcon from '@/components/ui/PremiumIcon';
 import ProductNeedSearch from '@/components/ProductNeedSearch';
 import WellnessJourneyCarousel from '@/components/WellnessJourneyCarousel';
+import MobileAppShell from '@/components/mobile/MobileAppShell';
+import MobileCategoryGrid from '@/components/mobile/MobileCategoryGrid';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import SEO from '@/components/SEO';
 import { AiRobotIcon, WhatsAppIcon } from '@/components/icons/BrandIcons';
@@ -208,13 +210,55 @@ const HomePage = () => {
         schema={[buildStoreSchema(), buildOrganizationSchema()]}
       />
 
-      {/* SECCIÓN 1 – HERO */}
-      <section className="relative lg:min-h-screen flex items-center overflow-hidden pt-24 lg:pt-20 pb-12 lg:pb-0 bg-gradient-to-br from-[#f7faf4] via-white to-[#edf7ee] dark:from-[#0f1f18] dark:via-[#111827] dark:to-[#1b1630]">
+      {/* ═══════════════════════════════════════════════════════════
+         MOBILE-ONLY: Premium App Experience
+         Solo visible en pantallas menores a md (< 768px)
+      ════════════════════════════════════════════════════════════ */}
+      <div className="md:hidden bg-gray-50 dark:bg-gray-950 pb-6">
+        <MobileAppShell variant="large">
+          <div className="w-[68%] flex flex-col items-start pt-1 pb-4">
+            <motion.h1 
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
+              className="text-[32px] sm:text-[36px] font-extrabold text-white leading-[1.1] mb-3 tracking-tight drop-shadow-sm"
+            >
+              Nutrición natural<br />para sentirte<br />mejor
+            </motion.h1>
+            
+            <motion.p 
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+              className="text-[15px] text-emerald-50 leading-relaxed font-medium mb-7 max-w-[95%] drop-shadow-sm opacity-90"
+            >
+              Encuentra bebidas activas para energía, digestión, y control de peso.
+            </motion.p>
+            
+            <motion.button
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              whileTap={{ scale: 0.94 }}
+              transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
+              onClick={() => navigate('/explorar')}
+              className="bg-white text-[#0E5C53] px-6 py-3.5 rounded-full text-[15px] font-bold shadow-lg shadow-black/10 flex items-center gap-2 active:bg-gray-50 transition-colors"
+            >
+              Explorar productos
+            </motion.button>
+          </div>
+        </MobileAppShell>
+        <div className="pt-6">
+          <MobileCategoryGrid />
+        </div>
+      </div>
+
+      {/* SECCIÓN 1 – HERO (Desktop only) */}
+      <section className="relative lg:min-h-screen hidden md:flex items-center overflow-hidden pt-12 sm:pt-16 lg:pt-20 pb-12 lg:pb-0 bg-gradient-to-br from-[#f7faf4] via-white to-[#edf7ee] dark:from-[#0f1f18] dark:via-[#111827] dark:to-[#1b1630]">
         <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 lg:px-8 xl:px-16 py-4 lg:py-16">
-          <div className="flex flex-col lg:grid lg:grid-cols-[55fr_45fr] gap-10 lg:gap-16 xl:gap-24 items-center">
+          <div className="flex flex-col lg:grid lg:grid-cols-[55fr_45fr] gap-8 lg:gap-16 xl:gap-24 items-center">
             <div className="text-center lg:text-left flex flex-col items-center lg:items-start">
               <motion.p
-                className="inline-flex items-center rounded-full border border-emerald-200 bg-white/80 px-4 py-2 text-xs md:text-sm font-semibold text-emerald-700 shadow-sm dark:border-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 mb-4 lg:mb-6"
+                className="hidden md:inline-flex items-center rounded-full border border-emerald-200 bg-white/80 px-4 py-2 text-xs md:text-sm font-semibold text-emerald-700 shadow-sm dark:border-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 mb-4 lg:mb-6"
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -222,7 +266,7 @@ const HomePage = () => {
                 Tienda Fuxion Chile · Asesoría personalizada
               </motion.p>
               <motion.h1
-                className="text-4xl md:text-5xl lg:text-responsive-hero font-extrabold text-foreground tracking-tight mb-4 lg:mb-6 leading-tight"
+                className="text-[2rem] sm:text-4xl md:text-5xl lg:text-responsive-hero font-extrabold text-foreground tracking-tight mb-4 lg:mb-6 leading-[1.15]"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
@@ -238,7 +282,7 @@ const HomePage = () => {
                 Te ayudamos a elegir según tu objetivo: energía, digestión, control de peso o defensas.
               </motion.p>
               <motion.p
-                className="mt-2 lg:mt-6 text-base md:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0 mb-6 lg:mb-8"
+                className="hidden md:block mt-2 lg:mt-6 text-base md:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0 mb-6 lg:mb-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.5 }}

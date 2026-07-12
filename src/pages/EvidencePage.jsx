@@ -10,6 +10,7 @@ import EvidenceInteractions from '@/components/EvidenceInteractions';
 import EvidenceEditorDialog from '@/components/EvidenceEditorDialog';
 import { useAuth } from '@/context/AuthContext';
 import { toast } from '@/components/ui/use-toast';
+import MobileAppShell from '@/components/mobile/MobileAppShell';
 
 const EvidencePage = () => {
   const { isAdmin, adminData } = useAdmin();
@@ -100,25 +101,36 @@ const EvidencePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background pt-24">
+    <div className="min-h-screen bg-background pt-0 md:pt-24">
       <SEO
         title="Experiencias FuXion — Casos, fotos y resultados compartidos"
         description="Evidencias, experiencias y registros compartidos por la comunidad Fuxion con asesoría personalizada."
         canonical="/opiniones"
       />
 
-      <section className="container mx-auto px-6 py-12">
+      {/* ── MOBILE SHELL ── */}
+      <div className="md:hidden">
+        <MobileAppShell 
+          variant="compact"
+          title="Experiencias FuXion"
+          description="Casos, fotos y resultados de la comunidad."
+        />
+      </div>
+
+      <section className="container mx-auto px-6 py-12 md:py-12 mt-4 md:mt-0">
         <div className="mx-auto max-w-4xl text-center">
-          <Badge className="mb-4 bg-emerald-100 text-emerald-800 hover:bg-emerald-100">
-            <ShieldCheck className="mr-2 h-4 w-4" />
-            Experiencias FuXion
-          </Badge>
-          <h1 className="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
-            Experiencias, fotos y audios compartidos por la comunidad
-          </h1>
-          <p className="mt-4 text-lg text-muted-foreground">
-            Publicaciones informativas para conocer experiencias reales de la comunidad FuXion, acompañadas por asesoría personalizada.
-          </p>
+          <div className="hidden md:block">
+            <Badge className="mb-4 bg-emerald-100 text-emerald-800 hover:bg-emerald-100">
+              <ShieldCheck className="mr-2 h-4 w-4" />
+              Experiencias FuXion
+            </Badge>
+            <h1 className="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+              Experiencias, fotos y audios compartidos por la comunidad
+            </h1>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Publicaciones informativas para conocer experiencias reales de la comunidad FuXion, acompañadas por asesoría personalizada.
+            </p>
+          </div>
           {isAdmin && (
             <Button className="mt-6" onClick={openNewEvidence}>
               <Plus className="mr-2 h-4 w-4" />

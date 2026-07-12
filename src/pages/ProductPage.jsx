@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight, CheckCircle2, Leaf, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/CartContext';
+import MobileAppShell from '@/components/mobile/MobileAppShell';
 import {
   buildProductFaqSchema,
   buildProductMetaDescription,
@@ -166,6 +167,20 @@ const ProductPage = () => {
         <meta property="product:price:amount" content={String(product.price)} />
         <meta property="product:price:currency" content="CLP" />
       </SEO>
+
+      {/* ── MOBILE SHELL ── */}
+      <div className="md:hidden">
+        <MobileAppShell 
+          variant="compact"
+          title="Detalle del producto"
+          description={product.name}
+          showSearch={true}
+        />
+      </div>
+
+      {/* ── CONTENIDO PRINCIPAL ── */}
+      <div className="container mx-auto px-4 sm:px-6 pt-6 md:pt-28">
+
 
       <Link to="/explorar" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary mb-8">
         <ArrowLeft className="h-4 w-4" />
@@ -519,11 +534,11 @@ const ProductPage = () => {
           </Link>
         </div>
       </section>
+      </div>
     </motion.main>
   );
 };
 
 export default ProductPage;
-
 
 

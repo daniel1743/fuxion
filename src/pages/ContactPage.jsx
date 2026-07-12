@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { toast } from '@/components/ui/use-toast';
 import SEO from '@/components/SEO';
+import MobileAppShell from '@/components/mobile/MobileAppShell';
 import SuccessAnimation from '@/components/SuccessAnimation';
 import {
   MessageCircle,
@@ -268,10 +269,19 @@ const ContactPage = () => {
         canonical="/contacto"
       />
 
+      {/* ── MOBILE SHELL ── */}
+      <div className="md:hidden">
+        <MobileAppShell 
+          variant="compact"
+          title="Atención al Cliente"
+          description="Estamos aquí para ayudarte"
+        />
+      </div>
+
       {/* ═══════════════════════════════════════════════════════════
          HERO SECTION
       ════════════════════════════════════════════════════════════ */}
-      <section className="relative min-h-[60vh] flex items-center overflow-hidden pt-24 bg-gradient-to-br from-[#f0faf4] via-white to-[#e8f5e9] dark:from-[#0a1a12] dark:via-[#0f1f18] dark:to-[#0d2818]">
+      <section className="hidden md:flex relative min-h-[60vh] items-center overflow-hidden pt-24 bg-gradient-to-br from-[#f0faf4] via-white to-[#e8f5e9] dark:from-[#0a1a12] dark:via-[#0f1f18] dark:to-[#0d2818]">
         {/* Decorative background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-emerald-100/40 dark:bg-emerald-900/20 blur-3xl" />

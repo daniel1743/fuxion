@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { toast } from '@/components/ui/use-toast';
 import { fetchWellnessArticleBySlug } from '@/services/wellnessArticleService';
+import MobileAppShell from '@/components/mobile/MobileAppShell';
 
 const WellnessArticlePage = () => {
   const { slug } = useParams();
@@ -47,7 +48,7 @@ const WellnessArticlePage = () => {
   };
 
   return (
-    <main className="min-h-screen bg-background pb-20 pt-24">
+    <main className="min-h-screen bg-background pb-20 pt-0 md:pt-24">
       <SEO
         title={`${article.title} — Bienestar`}
         description={article.excerpt}
@@ -56,8 +57,20 @@ const WellnessArticlePage = () => {
         ogImage={article.image_url || undefined}
       />
 
-      <article className="container mx-auto max-w-4xl px-4 py-10 sm:px-6">
-        <Link to="/opiniones"><Button variant="ghost" size="sm"><ArrowLeft className="mr-2 h-4 w-4" /> Volver a Bienestar</Button></Link>
+      {/* ── MOBILE SHELL ── */}
+      <div className="md:hidden">
+        <MobileAppShell 
+          variant="compact"
+          title="Artículo"
+          description={article.title}
+          showBack={true}
+        />
+      </div>
+
+      <article className="container mx-auto max-w-4xl px-4 py-6 md:py-10 sm:px-6 mt-4 md:mt-0">
+        <div className="hidden md:block">
+          <Link to="/opiniones"><Button variant="ghost" size="sm"><ArrowLeft className="mr-2 h-4 w-4" /> Volver a Bienestar</Button></Link>
+        </div>
         <header className="mt-8">
           <Badge>{article.category}</Badge>
           <h1 className="mt-5 text-4xl font-extrabold leading-tight sm:text-5xl">{article.title}</h1>

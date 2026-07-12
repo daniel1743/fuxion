@@ -1,0 +1,199 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import { HugeiconsIcon } from '@hugeicons/react';
+import { Search01Icon, ShoppingCart01Icon, Menu11Icon } from '@hugeicons/core-free-icons';
+import { useAuth } from '@/context/AuthContext';
+import { useCart } from '@/context/CartContext';
+import { useSiteSettings } from '@/context/SiteSettingsContext';
+import SmartSearchAutocomplete from '@/components/SmartSearchAutocomplete';
+import fuxionDatabase from '@/data/fuxion_database.json';
+import { getProductImageUrl } from '@/lib/imageUtils';
+
+const defaultProductsDataset = Object.entries(fuxionDatabase.productos || {}).map(([key, value]) => ({
+  id: key,
+  name: value.nombre,
+  categoria: value.categoria,
+  image: getProductImageUrl(value.nombre || key)
+}));
+
+const MobileAppShell = ({ 
+  variant = 'compact', // 'large' (Home) or 'compact' (other pages)
+  title,
+  description,
+  showSearch = false,
+  onSearchClick,
+  searchDataset = null,
+  children 
+}) => {
+  const navigate = useNavigate();
+  const { isAuthenticated, user } = useAuth();
+  const { getCartCount } = useCart();
+  const { settings } = useSiteSettings();
+  
+  const cartCount = getCartCount();
+
+  const handleOpenMenu = () => {
+    window.dispatchEvent(new Event('open-mobile-menu'));
+  };
+
+
+  
+  const isLarge = variant === 'large';
+
+  // Animation for elements inside the surface
+  const itemVariants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } }
+  };
+
+  return (
+    <div className={`relative w-full pt-[env(safe-area-inset-top,1rem)] pb-6 px-5 z-20 ${isLarge ? 'pb-8' : ''}`}>
+      {/* Background layers with hidden overflow */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0E5C53] to-[#136a64] rounded-b-[28px] shadow-[0_12px_30px_-10px_rgba(14,92,83,0.4)] overflow-hidden border-b border-emerald-600/30 -z-10">
+        {/* Glow Effect / Lighting */}
+        <div className="absolute top-0 left-[20%] right-0 h-[300px] bg-emerald-400/20 blur-[80px] rounded-full pointer-events-none"></div>
+
+        {/* Decorative large Hexagon */}
+        {isLarge && (
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
+          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute right-[-8%] top-[55%] -translate-y-1/2 w-[48%] max-w-[200px] aspect-square bg-gradient-to-tr from-white/5 to-white/15 backdrop-blur-sm flex flex-col items-center justify-center pointer-events-none shadow-2xl shadow-black/20 ring-1 ring-white/20"
+          style={{
+            clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)'
+          }}
+        >
+          <div className="w-[70%] h-[70%] bg-black/10 rounded-full blur-md absolute top-[15%] left-[15%]"></div>
+          <img 
+            src="/prunex-principal.jpeg" 
+            alt="Producto FuXion" 
+            className="w-full h-full object-cover opacity-90 scale-110 relative z-10"
+          />
+        </motion.div>
+      )}
+      </div>
+
+      <motion.div 
+        initial="hidden" 
+        animate="visible" 
+        transition={{ staggerChildren: 0.1 }}
+        className="relative z-10 max-w-full"
+      >
+        
+        {/* HEADER INTEGRADO */}
+        <motion.div variants={itemVariants} className={`flex items-center justify-between pt-3 ${isLarge ? 'pb-8' : 'pb-6'}`}>
+          {/* Left: User / Brand */}
+          <div className="flex items-center gap-3">
+            {isAuthenticated && user ? (
+              <>
+                {/* Premium Animated Avatar Ring */}
+                <div className="relative flex items-center justify-center w-[48px] h-[48px] rounded-full shrink-0 overflow-hidden shadow-md">
+                  {/* Spinning Gradient Background */}
+                  <div className="absolute inset-[-50%] bg-[conic-gradient(from_0deg,transparent_0%,#fbbf24_20%,#34d399_50%,#fbbf24_80%,transparent_100%)] animate-[spin_3s_linear_infinite]" />
+                  {/* Inner Mask (matches Hero background to hide center of gradient) */}
+                  <div className="absolute inset-[2px] bg-[#0E5C53] rounded-full" />
+                  {/* Avatar Image */}
+                  <img
+                    src={user.avatar}
+                    alt={user.name || 'Mi cuenta'}
+                    className="w-[44px] h-[44px] rounded-full object-cover relative z-10 ring-1 ring-white/10"
+                  />
+                </div>
+                <div className="flex flex-col justify-center h-full pt-1">
+                  <span className="text-[12px] text-emerald-100/80 font-medium leading-[1]">Hola,</span>
+                  <span className="text-[15px] font-bold text-white leading-tight truncate mt-[2px]">
+                    {user.name?.split(' ')[0] || 'Cliente'}
+                  </span>
+                </div>
+              </>
+            ) : (
+              <div className="flex items-center gap-2.5">
+                <div className="w-[40px] h-[40px] rounded-full bg-white flex items-center justify-center shadow-md p-1.5 shrink-0">
+                  <img
+                    src="/hoja-te-transparente.svg"
+                    alt="FuXion"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <span className="text-lg font-bold tracking-tight text-white whitespace-nowrap">
+                  {settings?.site_name || 'FuXion'}
+                </span>
+              </div>
+            )}
+          </div>
+
+          {/* Right: Actions */}
+          <div className="flex items-center gap-1.5 bg-black/10 rounded-full p-1 border border-white/10 backdrop-blur-md">
+            <button
+              onClick={() => navigate('/carrito')}
+              className="relative text-white p-2 rounded-full hover:bg-white/10 active:scale-95 transition-all"
+              aria-label="Carrito"
+            >
+              <HugeiconsIcon icon={ShoppingCart01Icon} className="h-5 w-5" />
+              {cartCount > 0 && (
+                <span className="absolute top-0 right-0 bg-orange-500 text-white text-[10px] rounded-full h-[18px] w-[18px] flex items-center justify-center font-bold shadow-sm ring-2 ring-[#0E5C53]">
+                  {cartCount > 9 ? '9+' : cartCount}
+                </span>
+              )}
+            </button>
+            <div className="w-[1px] h-5 bg-white/20"></div>
+            <button
+              onClick={handleOpenMenu}
+              className="text-white p-2 rounded-full hover:bg-white/10 active:scale-95 transition-all"
+              aria-label="Menú"
+            >
+              <HugeiconsIcon icon={Menu11Icon} className="h-5 w-5" />
+            </button>
+          </div>
+        </motion.div>
+
+        {/* SEARCH BAR INTEGRADA */}
+        {showSearch && (
+          <motion.div variants={itemVariants} className={`w-full relative group ${isLarge ? 'mb-8' : 'mb-2'}`}>
+            <div className="absolute inset-0 bg-white/20 blur-md rounded-full group-focus-within:blur-sm transition-all"></div>
+            <SmartSearchAutocomplete 
+              dataset={searchDataset || defaultProductsDataset}
+              placeholder="Buscar productos, objetivos..."
+              onSelect={(result) => {
+                const query = result.isCustomQuery ? result.query : result.name;
+                if (onSearchClick) {
+                  onSearchClick(query);
+                } else {
+                  navigate(`/explorar?search=${encodeURIComponent(query)}`);
+                }
+              }}
+            />
+          </motion.div>
+        )}
+
+        {/* TITLE & DESC FOR COMPACT (If not large and has text) */}
+        {!isLarge && (title || description) && (
+          <motion.div variants={itemVariants} className="w-full pt-2">
+            {title && (
+              <h1 className="text-2xl font-bold text-white tracking-tight drop-shadow-sm leading-tight">
+                {title}
+              </h1>
+            )}
+            {description && (
+              <p className="text-[15px] text-emerald-50 mt-1 font-medium drop-shadow-sm opacity-90">
+                {description}
+              </p>
+            )}
+          </motion.div>
+        )}
+
+        {/* CUSTOM CHILDREN OR LARGE HERO CONTENT */}
+        {children && (
+          <motion.div variants={itemVariants} className="w-full mt-4">
+            {children}
+          </motion.div>
+        )}
+
+      </motion.div>
+    </div>
+  );
+};
+
+export default MobileAppShell;

@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import BlogAdminPanel from '@/components/admin/BlogAdminPanel';
 import { ArticleSkeleton } from '@/components/skeleton';
+import MobileAppShell from '@/components/mobile/MobileAppShell';
 
 const BlogPage = () => {
   const { posts, loading, categories } = useBlog();
@@ -50,14 +51,24 @@ const BlogPage = () => {
         canonical="/blog"
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-background to-background/95 pt-24 pb-16">
-        <div className="container mx-auto px-4">
+      <div className="min-h-screen bg-gradient-to-b from-background to-background/95 pt-0 md:pt-24 pb-16">
+        
+        {/* ── MOBILE SHELL ── */}
+        <div className="md:hidden">
+          <MobileAppShell 
+            variant="compact"
+            title="Blog de Bienestar"
+            description="Consejos para una vida saludable"
+          />
+        </div>
 
-          {/* Header */}
+        <div className="container mx-auto px-4 mt-6 md:mt-0">
+
+          {/* Header (Desktop) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-12"
+            className="hidden md:block text-center mb-12"
           >
             <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-4">
               <BookOpen className="w-4 h-4" />
@@ -105,12 +116,13 @@ const BlogPage = () => {
                 />
               </div>
 
-              {/* Categorías */}
-              <div className="flex flex-wrap gap-2">
+              {/* Categorías (Scroll horizontal en móvil) */}
+              <div className="flex overflow-x-auto gap-2 pb-2 scrollbar-hide snap-x before:content-[''] before:w-1 before:shrink-0 before:block after:content-[''] after:w-1 after:shrink-0 after:block -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap">
                 <Button
                   variant={selectedCategory === 'all' ? 'default' : 'outline'}
                   size="sm"
                   onClick={() => setSelectedCategory('all')}
+                  className="rounded-full snap-start shrink-0"
                 >
                   Todos
                 </Button>
@@ -120,6 +132,7 @@ const BlogPage = () => {
                     variant={selectedCategory === cat.name ? 'default' : 'outline'}
                     size="sm"
                     onClick={() => setSelectedCategory(cat.name)}
+                    className="rounded-full snap-start shrink-0"
                   >
                     {cat.name}
                   </Button>

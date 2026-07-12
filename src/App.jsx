@@ -10,6 +10,7 @@ import { AdminProvider } from '@/context/AdminContext';
 import { BlogProvider } from '@/context/BlogContext';
 import { SiteSettingsProvider } from '@/context/SiteSettingsContext';
 import { LoyaltyProvider } from '@/context/LoyaltyContext';
+import { NotificationProvider } from '@/context/NotificationContext';
 import AdminLoginModal from '@/components/admin/AdminLoginModal';
 import AppSplashScreen from '@/components/AppSplashScreen';
 import ScrollToTop from '@/components/ScrollToTop';
@@ -58,6 +59,7 @@ function App() {
       <ScrollToTop />
       <AppSplashScreen onFinish={handleSplashFinish} />
       <AuthProvider>
+        <NotificationProvider>
         <AdminProvider>
           <LoyaltyProvider>
             <CartProvider>
@@ -109,6 +111,7 @@ function App() {
             </CartProvider>
           </LoyaltyProvider>
         </AdminProvider>
+        </NotificationProvider>
       </AuthProvider>
     </>
   );

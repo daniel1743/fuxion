@@ -16,6 +16,7 @@ import {
   Info,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import MobileAppShell from '@/components/mobile/MobileAppShell';
 import SEO from '@/components/SEO';
 import {
   buildLocalBusinessSchema,
@@ -75,7 +76,13 @@ const AboutPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <motion.main
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      className="min-h-screen bg-gray-50 dark:bg-gray-950 md:bg-background pb-20"
+    >
       <SEO
         title="Tienda FuXion Chile | Distribuidor Independiente — Daniel Falcon"
         description="Tienda gestionada por Daniel Falcon, distribuidor independiente FuXion en Chile. Asesoría personalizada, información clara y acompañamiento en productos FuXion."
@@ -84,8 +91,17 @@ const AboutPage = () => {
         schema={[buildLocalBusinessSchema(), personSchema]}
       />
 
-      {/* ── Hero ─────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-emerald-50 via-white to-green-50 py-20 sm:py-28">
+      {/* ── MOBILE SHELL ── */}
+      <div className="md:hidden">
+        <MobileAppShell 
+          variant="compact"
+          title="Acerca de Nosotros"
+          description="Nuestra misión y filosofía"
+        />
+      </div>
+
+      {/* ── Hero / Encabezado (Desktop) ───────────────────────────── */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-emerald-50 via-white to-green-50 py-20 sm:py-28 hidden md:block">
         <div className="absolute inset-0 opacity-30">
           <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-200 rounded-full blur-3xl" />
           <div className="absolute bottom-10 right-10 w-96 h-96 bg-green-200 rounded-full blur-3xl" />
@@ -305,7 +321,7 @@ const AboutPage = () => {
           </motion.div>
         </div>
       </section>
-    </div>
+    </motion.main>
   );
 };
 

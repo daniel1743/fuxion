@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Construction } from 'lucide-react';
+import MobileAppShell from '@/components/mobile/MobileAppShell';
 
 const pageVariants = {
   initial: { opacity: 0, scale: 0.95 },
@@ -22,6 +23,9 @@ const PlaceholderPage = ({ pageName }) => {
       transition={{ duration: 0.4 }}
       className="flex flex-col items-center justify-center min-h-[calc(100vh-15rem)] text-center px-6"
     >
+      <div className="md:hidden">
+        <MobileAppShell variant="compact" title={pageName} description="En construcción" />
+      </div>
       <SEO
         title={pageName}
         description={`Página de ${pageName} — Próximamente disponible en Tienda Fuxion Chile.`}

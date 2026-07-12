@@ -9,6 +9,7 @@ import { useAdmin } from '@/context/AdminContext';
 import WellnessPlanDialog from '@/components/WellnessPlanDialog';
 import { loadWellnessPlan } from '@/services/wellnessPlanService';
 import { AccountSkeleton } from '@/components/skeleton';
+import MobileAppShell from '@/components/mobile/MobileAppShell';
 
 const AccountPage = () => {
   const { isAuthLoading, user } = useAuth();
@@ -28,12 +29,23 @@ const AccountPage = () => {
   if (!isEligible) return <Navigate to="/" replace />;
 
   return (
-    <main className="min-h-screen bg-background px-4 pb-16 pt-24">
-      <div className="mx-auto max-w-4xl">
+    <main className="min-h-screen bg-gray-50 dark:bg-gray-950 md:bg-background pb-16">
+      {/* ── MOBILE SHELL ── */}
+      <div className="md:hidden">
+        <MobileAppShell 
+          variant="compact"
+          title="Mi cuenta"
+          description={displayEmail}
+        />
+      </div>
+
+      <div className="mx-auto max-w-4xl px-4 pt-6 md:pt-24">
         <div className="rounded-2xl border border-border bg-card p-5 sm:p-8">
-          <p className="text-sm text-muted-foreground">Mi cuenta</p>
-          <h1 className="mt-1 text-3xl font-bold">{displayName}</h1>
-          <p className="mt-1 text-muted-foreground">{displayEmail}</p>
+          <div className="hidden md:block">
+            <p className="text-sm text-muted-foreground">Mi cuenta</p>
+            <h1 className="mt-1 text-3xl font-bold">{displayName}</h1>
+            <p className="mt-1 text-muted-foreground">{displayEmail}</p>
+          </div>
 
           <div className="mt-8 overflow-hidden rounded-2xl border border-emerald-200 bg-gradient-to-br from-emerald-50 to-white p-5 dark:border-emerald-900 dark:from-emerald-950/40 dark:to-card sm:p-6">
             <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center">

@@ -687,7 +687,7 @@ Nombre: ${productCtx.name}`;
                         }}
                         exit={{ scale: 0 }}
                         transition={{ duration: 0.25, ease: 'easeOut' }}
-                        className={`fixed bottom-6 right-6 z-50 flex items-center gap-2 ${isMobileMenuOpen ? 'pointer-events-none md:pointer-events-auto' : ''}`}
+                        className={`fixed bottom-[100px] right-4 md:bottom-6 md:right-6 z-50 flex items-center gap-2 ${isMobileMenuOpen ? 'pointer-events-none md:pointer-events-auto' : ''}`}
                         onMouseEnter={() => { showQuickWhatsappAction(); setIsFloatingHovered(true); }}
                         onMouseLeave={() => { hideQuickWhatsappAction(); setIsFloatingHovered(false); }}
                         onFocus={() => { showQuickWhatsappAction(); setIsFloatingHovered(true); }}
@@ -738,7 +738,7 @@ Nombre: ${productCtx.name}`;
                         }}
                         exit={{ opacity: 0, y: 10, scale: 0.96 }}
                         transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                        className={`fixed inset-x-3 bottom-3 z-50 h-[min(600px,calc(100dvh-24px))] bg-card border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden sm:inset-x-auto sm:bottom-6 sm:right-6 sm:w-96 sm:h-[min(600px,calc(100dvh-48px))] ${isMobileMenuOpen ? 'pointer-events-none md:pointer-events-auto' : ''}`}
+                        className={`fixed inset-x-3 bottom-[80px] md:bottom-3 z-50 h-[min(600px,calc(100dvh-100px))] md:h-[min(600px,calc(100dvh-24px))] bg-card border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden sm:inset-x-auto sm:bottom-6 sm:right-6 sm:w-96 sm:h-[min(600px,calc(100dvh-48px))] ${isMobileMenuOpen ? 'pointer-events-none md:pointer-events-auto' : ''}`}
                     >
                         {/* Header */}
                         <div className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 p-4 flex justify-between items-center shadow-emerald-500/20 relative overflow-hidden">

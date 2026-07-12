@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import SEO from '@/components/SEO';
 import { SITE_URL, STORE_NAME } from '@/lib/productSeo';
 import { openWhatsapp } from '@/lib/whatsapp';
+import MobileAppShell from '@/components/mobile/MobileAppShell';
 import {
   ChevronDown,
   Search,
@@ -1263,8 +1264,17 @@ const FaqPage = () => {
         canonical="/faq"
       />
 
+      {/* ── MOBILE SHELL ── */}
+      <div className="md:hidden">
+        <MobileAppShell 
+          variant="compact"
+          title="Preguntas Frecuentes"
+          description="Resolvemos tus dudas sobre FuXion."
+        />
+      </div>
+
       {/* ── HERO ─────────────────────────────────────────────── */}
-      <section className="relative min-h-[50vh] flex items-center overflow-hidden pt-28 bg-gradient-to-br from-[#f0faf4] via-white to-[#e8f5e9] dark:from-[#0f1f18] dark:via-[#111827] dark:to-[#1b1630]">
+      <section className="hidden md:flex relative min-h-[50vh] items-center overflow-hidden pt-28 bg-gradient-to-br from-[#f0faf4] via-white to-[#e8f5e9] dark:from-[#0f1f18] dark:via-[#111827] dark:to-[#1b1630]">
         <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-12">
           <div className="max-w-3xl">
             <motion.p

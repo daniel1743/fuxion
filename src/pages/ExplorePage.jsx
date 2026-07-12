@@ -11,6 +11,7 @@ import { buildStoreSchema, buildBreadcrumbSchema, SITE_URL, slugifyProduct } fro
 import { getPlaceholderImage, getProductImageUrl } from '@/lib/imageUtils';
 import { confirmAndOpenWhatsapp } from '@/lib/whatsapp';
 import ProductNeedSearch from '@/components/ProductNeedSearch';
+import MobileAppShell from '@/components/mobile/MobileAppShell';
 import SEO from '@/components/SEO';
 import { getRelatedProducts, searchProductsByNeed } from '@/lib/productSearch';
 import { AiRobotIcon, WhatsAppIcon } from '@/components/icons/BrandIcons';
@@ -232,7 +233,7 @@ const ExplorePage = () => {
       exit="out"
       variants={pageVariants}
       transition={{ duration: 0.5 }}
-      className="container mx-auto px-6 py-28"
+      className="min-h-screen bg-gray-50 dark:bg-gray-950 md:bg-background pb-20"
     >
       <SEO
         title={categoriaParam ? `${getCategoryName(categoriaParam)} Fuxion` : 'Productos Fuxion Chile — Nutrición, Bienestar y Salud Natural'}
@@ -253,32 +254,79 @@ const ExplorePage = () => {
         ]}
       />
 
-      <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-6xl font-extrabold text-foreground tracking-tighter">
-          {searchQuery
-            ? `Resultados para "${searchQuery}"`
-            : categoriaParam
-            ? getCategoryName(categoriaParam)
-            : 'Todos los Productos'}
-        </h1>
-        {searchQuery && (
-          <p className="mt-4 text-muted-foreground">
-            {filteredProducts.length} producto{filteredProducts.length !== 1 ? 's' : ''} encontrado{filteredProducts.length !== 1 ? 's' : ''}
-          </p>
-        )}
-        <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground">
-          {categoriaParam 
+      {/* ── MOBILE SHELL ── */}
+      <div className="md:hidden">
+        <MobileAppShell 
+          variant="compact"
+          title={categoriaParam ? getCategoryName(categoriaParam) : 'Explora nuestros productos'}
+          description={categoriaParam 
             ? `Explora ${filteredProducts.length} productos de ${getCategoryName(categoriaParam).toLowerCase()}.`
-            : `Sumérgete en nuestro catálogo de ${filteredProducts.length} productos Fuxion Biotech.`
-          }
-        </p>
-        <ProductNeedSearch
-          initialValue={searchQuery || ''}
-          onSearch={handleNeedSearch}
-          compact
-          className="mt-8"
-        />
+            : `Descubre nuestro catálogo de ${filteredProducts.length} productos.`}
+          showSearch={true}
+          onSearchClick={() => {
+            // Focus or scroll to a search bar, or just let it navigate/open a modal
+            // For now, it will use the default navigation to /explorar which is fine
+          }}
+        >
+          {/* Categorías Pills (Scroll horizontal) */}
+          <div className="flex overflow-x-auto gap-2 pb-2 mt-4 scrollbar-hide -mx-5 snap-x before:content-[''] before:w-5 before:shrink-0 before:block after:content-[''] after:w-5 after:shrink-0 after:block">
+            <button
+              onClick={() => navigate('/explorar')}
+              className={`whitespace-nowrap px-4 py-1.5 rounded-full text-[13px] font-bold border transition-colors snap-start shrink-0 ${
+                !categoriaParam 
+                  ? 'bg-white text-emerald-900 border-white shadow-sm' 
+                  : 'bg-white/10 text-white border-white/20 hover:bg-white/20'
+              }`}
+            >
+              Todos
+            </button>
+            {Object.keys(categoryMapping).map(slug => (
+              <button
+                key={slug}
+                onClick={() => navigate(`/categoria/${slug}`)}
+                className={`whitespace-nowrap px-4 py-1.5 rounded-full text-[13px] font-bold border transition-colors snap-start shrink-0 ${
+                  categoriaParam === slug 
+                    ? 'bg-white text-emerald-900 border-white shadow-sm' 
+                    : 'bg-white/10 text-white border-white/20 hover:bg-white/20'
+                }`}
+              >
+                {getCategoryName(slug)}
+              </button>
+            ))}
+          </div>
+        </MobileAppShell>
       </div>
+
+      {/* ── CONTENIDO PRINCIPAL ── */}
+      <div className="container mx-auto px-4 sm:px-6 pt-6 md:pt-28">
+        
+        {/* DESKTOP HEADER (Oculto en móvil) */}
+        <div className="hidden md:block text-center mb-12">
+          <h1 className="text-4xl md:text-6xl font-extrabold text-foreground tracking-tighter">
+            {searchQuery
+              ? `Resultados para "${searchQuery}"`
+              : categoriaParam
+              ? getCategoryName(categoriaParam)
+              : 'Todos los Productos'}
+          </h1>
+          {searchQuery && (
+            <p className="mt-4 text-muted-foreground">
+              {filteredProducts.length} producto{filteredProducts.length !== 1 ? 's' : ''} encontrado{filteredProducts.length !== 1 ? 's' : ''}
+            </p>
+          )}
+          <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground">
+            {categoriaParam 
+              ? `Explora ${filteredProducts.length} productos de ${getCategoryName(categoriaParam).toLowerCase()}.`
+              : `Sumérgete en nuestro catálogo de ${filteredProducts.length} productos Fuxion Biotech.`
+            }
+          </p>
+          <ProductNeedSearch
+            initialValue={searchQuery || ''}
+            onSearch={handleNeedSearch}
+            compact
+            className="mt-8"
+          />
+        </div>
 
       {filteredProducts.length === 0 ? (
         <div className="text-center py-20">
@@ -433,6 +481,7 @@ const ExplorePage = () => {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
       />
+      </div>
     </motion.div>
   );
 };

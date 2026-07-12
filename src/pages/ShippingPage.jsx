@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Truck, ShieldCheck, MessageCircle, Package, MapPin, ExternalLink } from 'lucide-react';
 import { buildWhatsappUrl } from '@/lib/whatsapp';
+import MobileAppShell from '@/components/mobile/MobileAppShell';
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -54,8 +55,17 @@ const ShippingPage = () => {
         description="Recibe tus productos FuXion de forma simple y segura. Asesoría personalizada por Daniel Falcón, coordinación de entrega y envíos a todo Chile."
       />
 
+      {/* ── MOBILE SHELL ── */}
+      <div className="md:hidden">
+        <MobileAppShell 
+          variant="compact"
+          title="Envíos"
+          description="Información de entregas."
+        />
+      </div>
+
       {/* ── Hero Section ─────────────────────────────── */}
-      <section className="relative overflow-hidden px-5 sm:px-6 pt-16 sm:pt-20 pb-12 sm:pb-16">
+      <section className="hidden md:block relative overflow-hidden px-5 sm:px-6 pt-16 sm:pt-20 pb-12 sm:pb-16 mt-20">
         {/* Background decoration */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute -top-24 -right-24 w-64 h-64 bg-emerald-100/60 dark:bg-emerald-900/20 rounded-full blur-3xl" />

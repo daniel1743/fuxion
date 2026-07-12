@@ -1,11 +1,11 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
-import { Activity, Flame, Droplets, Sparkles, ShieldCheck, ArrowRight } from 'lucide-react';
+import { ShoppingCart, Leaf, Flame, Activity, ShieldCheck, Heart, ArrowRight, Droplets, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { toast } from "@/components/ui/use-toast";
+import { toast } from '@/components/ui/use-toast';
 import SEO from '@/components/SEO';
+import MobileAppShell from '@/components/mobile/MobileAppShell';
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -130,7 +130,16 @@ const CategoriesPage = () => {
         canonical="/categorias"
       />
 
-      <div className="text-center mb-16">
+      {/* ── MOBILE SHELL ── */}
+      <div className="md:hidden -mt-28 mb-8">
+        <MobileAppShell 
+          variant="compact"
+          title="Categorías"
+          description="Encuentra lo que buscas."
+        />
+      </div>
+
+      <div className="hidden md:block text-center mb-16">
         <h1 className="text-4xl md:text-6xl font-extrabold text-foreground tracking-tighter">Categorías</h1>
         <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground">
           Encuentra exactamente lo que buscas navegando por nuestras colecciones.

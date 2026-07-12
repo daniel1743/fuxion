@@ -11,6 +11,7 @@ import { getPlaceholderImage } from '@/lib/imageUtils';
 import { buildWhatsappUrl, confirmAndOpenWhatsapp, getActiveAdvisor } from '@/lib/whatsapp';
 import { recordAdvisorEvent } from '@/services/advisorService';
 import { WhatsAppIcon } from '@/components/icons/BrandIcons';
+import MobileAppShell from '@/components/mobile/MobileAppShell';
 import SEO from '@/components/SEO';
 import { useAuth } from '@/context/AuthContext';
 import { useLoyalty } from '@/context/LoyaltyContext';
@@ -152,7 +153,8 @@ const CartPage = () => {
         animate="in"
         exit="out"
         transition={{ duration: 0.3 }}
-        className="min-h-screen flex items-center justify-center bg-background pt-20 pb-12 px-4"
+        transition={{ duration: 0.3 }}
+        className="min-h-screen bg-gray-50 dark:bg-gray-950 md:bg-background flex flex-col"
       >
         <SEO
           title="Carrito de Compras"
@@ -160,7 +162,16 @@ const CartPage = () => {
           noindex
         />
 
-        <div className="text-center max-w-md">
+        {/* ── MOBILE SHELL ── */}
+        <div className="md:hidden">
+          <MobileAppShell 
+            variant="compact"
+            title="Carrito de Compras"
+            description="Tu carrito está vacío"
+          />
+        </div>
+
+        <div className="flex-1 flex flex-col items-center justify-center pt-8 md:pt-20 pb-12 px-4 text-center max-w-md mx-auto">
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
@@ -211,7 +222,8 @@ const CartPage = () => {
       animate="in"
       exit="out"
       transition={{ duration: 0.3 }}
-      className="min-h-screen bg-background pt-24 pb-12 px-4"
+      transition={{ duration: 0.3 }}
+      className="min-h-screen bg-gray-50 dark:bg-gray-950 md:bg-background pb-12"
     >
       <SEO
         title={`Carrito de Compras (${getCartCount()})`}
@@ -219,12 +231,23 @@ const CartPage = () => {
         noindex
       />
 
-      <div className="container mx-auto max-w-6xl px-4 sm:px-6">
+      {/* ── MOBILE SHELL ── */}
+      <div className="md:hidden">
+        <MobileAppShell 
+          variant="compact"
+          title="Tu Carrito"
+          description={`${getCartCount()} ${getCartCount() === 1 ? 'producto' : 'productos'}`}
+        />
+      </div>
+
+      <div className="container mx-auto max-w-6xl px-4 sm:px-6 pt-6 md:pt-24">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-foreground mb-2">Tu Carrito</h1>
-          <p className="text-muted-foreground">
-            {getCartCount()} {getCartCount() === 1 ? 'producto' : 'productos'} en tu carrito
-          </p>
+          <div className="hidden md:block">
+            <h1 className="text-4xl font-bold text-foreground mb-2">Tu Carrito</h1>
+            <p className="text-muted-foreground">
+              {getCartCount()} {getCartCount() === 1 ? 'producto' : 'productos'} en tu carrito
+            </p>
+          </div>
           <div className="mt-4 flex gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-left text-sm text-emerald-900 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-100">
             <ShieldCheck className="h-5 w-5 flex-shrink-0 text-emerald-700 dark:text-emerald-300" />
             <p>

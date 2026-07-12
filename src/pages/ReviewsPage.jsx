@@ -3,6 +3,7 @@ import { Star, Quote, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SEO from '@/components/SEO';
 import { buildOrganizationSchema, SITE_URL } from '@/lib/productSeo';
+import MobileAppShell from '@/components/mobile/MobileAppShell';
 
 const publicReviews = [
   {
@@ -93,8 +94,17 @@ const ReviewsPage = () => {
         schema={[buildOrganizationSchema(), reviewSchema]}
       />
 
+      {/* ── MOBILE SHELL ── */}
+      <div className="md:hidden">
+        <MobileAppShell 
+          variant="compact"
+          title="Experiencias de Consumidores"
+          description="Opiniones compartidas sobre los productos FuXion."
+        />
+      </div>
+
       {/* ── Header ── */}
-      <section className="bg-gradient-to-br from-emerald-50 via-white to-green-50 py-16 sm:py-20">
+      <section className="hidden md:block bg-gradient-to-br from-emerald-50 via-white to-green-50 py-16 sm:py-20">
         <div className="container mx-auto px-5 text-center">
           <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
             Experiencias de consumidores FuXion

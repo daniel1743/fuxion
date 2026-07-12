@@ -5,6 +5,7 @@ import { ArrowRight, CheckCircle2, Leaf, Sparkles, ShieldCheck, Truck, Heart, Za
 import { Button } from '@/components/ui/button';
 import SEO from '@/components/SEO';
 import { buildStoreSchema, buildOrganizationSchema, getAllProducts, SITE_URL } from '@/lib/productSeo';
+import MobileAppShell from '@/components/mobile/MobileAppShell';
 
 const iconMap = {
   digestion: <Leaf className="w-8 h-8 text-emerald-600" />,
@@ -48,8 +49,18 @@ const ProductosFuxionPage = () => {
         schema={[buildStoreSchema(), buildOrganizationSchema()]}
       />
 
+      {/* ── MOBILE SHELL ── */}
+      <div className="md:hidden">
+        <MobileAppShell 
+          variant="compact"
+          title="Catálogo FuXion"
+          description="Encuentra nutracéuticos para tu bienestar."
+          showSearch={true}
+        />
+      </div>
+
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center overflow-hidden pt-28 bg-gradient-to-br from-[#f0faf4] via-white to-[#e8f5e9] dark:from-[#0f1f18] dark:via-[#111827] dark:to-[#1b1630]">
+      <section className="hidden md:flex relative min-h-[60vh] items-center overflow-hidden pt-28 bg-gradient-to-br from-[#f0faf4] via-white to-[#e8f5e9] dark:from-[#0f1f18] dark:via-[#111827] dark:to-[#1b1630]">
         <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-12">
           <div className="max-w-3xl">
             <motion.p

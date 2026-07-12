@@ -121,11 +121,14 @@ export const recordAdvisorEvent = async (advisorId, eventType, metadata = {}) =>
       : null;
 
     const { error } = await supabase.from('chat_events').insert([{
-      advisor_id: normalizeAdvisorId(advisorId) || 'daniel',
+      session_id: `adv_${normalizeAdvisorId(advisorId) || 'daniel'}`,
       event_type: eventType,
-      page_path: path,
       product_name: metadata.productName || metadata.product_name || null,
-      metadata
+      metadata: {
+        ...metadata,
+        advisor_id: normalizeAdvisorId(advisorId) || 'daniel',
+        page_path: path
+      }
     }]);
 
     if (error && !pauseMissingMetricsTable(error)) {
@@ -141,7 +144,7 @@ export const fetchAdvisorMetrics = async () => {
     fetchAdvisors(),
     supabase
       .from('chat_events')
-      .select('event_type, created_at, product_name')
+      .select('event_type, created_at, product_name, metadata')
       .order('created_at', { ascending: false })
       .limit(1000)
   ]);
@@ -169,7 +172,7 @@ export const fetchAdvisorMetrics = async () => {
   });
 
   (eventsResult.data || []).forEach((event) => {
-    const advisorId = event.advisor_id || 'daniel';
+    const advisorId = event.metadata?.advisor_id || 'daniel';
     if (!metricsByAdvisor[advisorId]) {
       metricsByAdvisor[advisorId] = {
         advisor: { id: advisorId, name: advisorId },

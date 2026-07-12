@@ -41,12 +41,17 @@ const ProductModal = ({ product, isOpen, onClose }) => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ type: "spring", duration: 0.5 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 z-[100] flex flex-col justify-end md:justify-center p-0 md:p-4 pointer-events-none"
           >
-            <div className="bg-card border border-border rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+            <div className="bg-card border-t md:border border-border rounded-t-[32px] md:rounded-2xl max-w-4xl w-full h-[90vh] md:h-auto md:max-h-[90vh] overflow-y-auto shadow-2xl pointer-events-auto mx-auto flex flex-col relative pb-[env(safe-area-inset-bottom,1rem)]">
+              {/* Drag Handle for mobile */}
+              <div className="md:hidden w-full flex justify-center pt-3 pb-1 sticky top-0 bg-card z-20" onClick={onClose}>
+                <div className="w-12 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full" />
+              </div>
+              
               {/* Header */}
-              <div className="sticky top-0 bg-card/95 backdrop-blur-sm border-b border-border p-6 flex justify-between items-center z-10">
-                <h2 className="text-2xl font-bold text-foreground">Detalles del Producto</h2>
+              <div className="sticky top-0 md:top-auto bg-card/95 backdrop-blur-sm border-b border-border p-4 md:p-6 flex justify-between items-center z-10">
+                <h2 className="text-xl md:text-2xl font-bold text-foreground truncate max-w-[80%]">{product.name}</h2>
                 <Button
                   variant="ghost"
                   size="icon"

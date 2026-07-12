@@ -10,6 +10,7 @@ import { useAdmin } from '@/context/AdminContext';
 import { useAuth } from '@/context/AuthContext';
 import WellnessArticleEditor from '@/components/WellnessArticleEditor';
 import { ArticleSkeleton } from '@/components/skeleton';
+import MobileAppShell from '@/components/mobile/MobileAppShell';
 import {
   deleteWellnessArticle,
   fetchWellnessArticles,
@@ -88,15 +89,24 @@ const WellnessPage = () => {
   };
 
   return (
-    <main className="min-h-screen bg-background pb-20 pt-24">
+    <main className="min-h-screen bg-background pb-20 pt-0 md:pt-24">
       <SEO
         title="Bienestar — Artículos y Hábitos Saludables"
         description="Artículos sobre belleza, bienestar, nutrición, ejercicio, salud digestiva, hepática y hábitos saludables."
         canonical="/opiniones"
       />
 
-      <section className="container mx-auto px-4 py-12 sm:px-6">
-        <div className="mx-auto max-w-4xl text-center">
+      {/* ── MOBILE SHELL ── */}
+      <div className="md:hidden">
+        <MobileAppShell 
+          variant="compact"
+          title="Bienestar"
+          description="Artículos y hábitos saludables."
+        />
+      </div>
+
+      <section className="container mx-auto px-4 py-6 md:py-12 sm:px-6 mt-4 md:mt-0">
+        <div className="hidden md:block mx-auto max-w-4xl text-center">
           <Badge variant="outline" className="mb-4">Editorial de bienestar</Badge>
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">Bienestar para tu día a día</h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
