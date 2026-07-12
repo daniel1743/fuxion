@@ -64,7 +64,7 @@ const ProductNeedSearch = ({
   return (
     <form
       onSubmit={handleSubmit}
-      className={`w-full rounded-2xl border border-emerald-100 bg-white p-2 shadow-lg shadow-emerald-900/5 dark:border-emerald-900 dark:bg-card ${className}`}
+      className={`w-full rounded-full border border-emerald-100 bg-white p-2 shadow-lg shadow-emerald-900/5 dark:border-emerald-900 dark:bg-card ${className}`}
     >
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
         <div className="relative flex-1">
@@ -75,8 +75,8 @@ const ProductNeedSearch = ({
             onChange={(event) => setValue(event.target.value)}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
-            placeholder=""
-            className={`w-full rounded-xl border border-transparent bg-emerald-50/70 pl-12 pr-4 text-foreground outline-none transition focus:border-emerald-300 focus:bg-white dark:bg-secondary/60 dark:focus:bg-card ${
+            placeholder="Buscar productos, beneficios o ingredientes..."
+            className={`w-full rounded-full border border-transparent bg-emerald-50/70 pl-12 pr-4 text-foreground outline-none transition focus:border-emerald-300 focus:bg-white dark:bg-secondary/60 dark:focus:bg-card ${
               compact ? 'h-12 text-sm' : 'h-14 text-base'
             }`}
             aria-label="Buscar productos por necesidad"

@@ -399,7 +399,7 @@ const Header = () => {
               initial="closed"
               animate="open"
               exit="closed"
-              className="fixed top-0 right-0 z-50 h-dvh w-[80vw] max-w-[320px] bg-white dark:bg-[#0f1f18] shadow-2xl md:hidden flex flex-col overflow-y-auto rounded-l-[20px] pointer-events-auto"
+              className="fixed top-0 right-0 z-50 h-[calc(100dvh-68px-env(safe-area-inset-bottom))] w-[80vw] max-w-[320px] bg-white dark:bg-[#0f1f18] shadow-2xl md:hidden flex flex-col overflow-hidden rounded-l-[20px] pointer-events-auto"
             >
               {/* Close button — top right */}
               <button

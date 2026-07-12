@@ -172,16 +172,19 @@ const painPoints = [
 const trustItems = [
   {
     icon: <PremiumIcon icon={Shield02Icon} size="md" />,
+    rawIcon: Shield02Icon,
     title: 'Compra asistida',
     text: 'Te orientamos antes de comprar para elegir productos según tu objetivo.'
   },
   {
     icon: <PremiumIcon icon={Leaf01Icon} size="md" />,
+    rawIcon: Leaf01Icon,
     title: 'Fuxion Biotech',
     text: 'Productos nutracéuticos con enfoque en nutrición, bienestar y hábitos saludables.'
   },
   {
     icon: <PremiumIcon icon={DeliveryTruck02Icon} size="md" />,
+    rawIcon: DeliveryTruck02Icon,
     title: 'Pedido por WhatsApp',
     text: 'Agregas al carrito, envías tu pedido y coordinamos la atención directamente.'
   }
@@ -215,36 +218,60 @@ const HomePage = () => {
          Solo visible en pantallas menores a md (< 768px)
       ════════════════════════════════════════════════════════════ */}
       <div className="md:hidden bg-gray-50 dark:bg-gray-950 pb-6">
-        <MobileAppShell variant="large">
-          <div className="w-[68%] flex flex-col items-start pt-1 pb-4">
-            <motion.h1 
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: 'easeOut' }}
-              className="text-[32px] sm:text-[36px] font-extrabold text-white leading-[1.1] mb-3 tracking-tight drop-shadow-sm"
-            >
-              Nutrición natural<br />para sentirte<br />mejor
-            </motion.h1>
-            
-            <motion.p 
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
-              className="text-[15px] text-emerald-50 leading-relaxed font-medium mb-7 max-w-[95%] drop-shadow-sm opacity-90"
-            >
-              Encuentra bebidas activas para energía, digestión, y control de peso.
-            </motion.p>
-            
-            <motion.button
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              whileTap={{ scale: 0.94 }}
-              transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
-              onClick={() => navigate('/explorar')}
-              className="bg-white text-[#0E5C53] px-6 py-3.5 rounded-full text-[15px] font-bold shadow-lg shadow-black/10 flex items-center gap-2 active:bg-gray-50 transition-colors"
-            >
-              Explorar productos
-            </motion.button>
+        <MobileAppShell variant="large" showSearch={true} onSearchClick={handleNeedSearch}>
+          <div className="w-full flex items-center justify-between gap-4 pt-1 pb-1">
+            {/* Columna Izquierda (Textos y Botón) */}
+            <div className="w-[60%] flex flex-col gap-2.5">
+              <div>
+                <motion.h1 
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, ease: 'easeOut' }}
+                  className="text-[22px] sm:text-[25px] font-bold uppercase text-white leading-[1.15] mb-1 tracking-wide drop-shadow-sm"
+                >
+                  Nutrición natural<br />para sentirte<br />mejor
+                </motion.h1>
+                
+                <motion.p 
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+                  className="text-[11px] text-emerald-50/70 leading-relaxed font-normal max-w-[95%] drop-shadow-sm"
+                >
+                  Encuentra bebidas activas para energía, digestión y control de peso.
+                </motion.p>
+              </div>
+              
+              <motion.button
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                whileTap={{ scale: 0.94 }}
+                transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
+                onClick={() => navigate('/explorar')}
+                className="bg-white text-[#0E5C53] px-5 py-2.5 rounded-full text-[13px] font-bold shadow-lg shadow-black/10 flex items-center gap-2 active:bg-gray-50 transition-colors w-fit shrink-0 mt-0.5"
+              >
+                Explorar productos
+              </motion.button>
+            </div>
+
+            {/* Columna Derecha (Contenedor 3:4 Proporcional sin distorsión) */}
+            <div className="w-[36%] flex justify-end">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.85 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.15, ease: 'easeOut' }}
+                className="w-full aspect-[3/4] bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 overflow-hidden shadow-xl"
+                style={{
+                  filter: 'drop-shadow(0 10px 18px rgba(0, 0, 0, 0.22))'
+                }}
+              >
+                <img 
+                  src="/para el hero.jpeg" 
+                  alt="Producto FuXion" 
+                  className="w-full h-full object-cover opacity-90"
+                />
+              </motion.div>
+            </div>
           </div>
         </MobileAppShell>
         <div className="pt-6">
@@ -253,7 +280,7 @@ const HomePage = () => {
       </div>
 
       {/* SECCIÓN 1 – HERO (Desktop only) */}
-      <section className="relative lg:min-h-screen hidden md:flex items-center overflow-hidden pt-12 sm:pt-16 lg:pt-20 pb-12 lg:pb-0 bg-gradient-to-br from-[#f7faf4] via-white to-[#edf7ee] dark:from-[#0f1f18] dark:via-[#111827] dark:to-[#1b1630]">
+      <section className="relative min-h-[55vh] hidden md:flex items-center overflow-hidden pt-8 sm:pt-10 lg:pt-12 pb-6 lg:pb-0 bg-gradient-to-br from-[#f7faf4] via-white to-[#edf7ee] dark:from-[#0f1f18] dark:via-[#111827] dark:to-[#1b1630]">
         <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 lg:px-8 xl:px-16 py-4 lg:py-16">
           <div className="flex flex-col lg:grid lg:grid-cols-[55fr_45fr] gap-8 lg:gap-16 xl:gap-24 items-center">
             <div className="text-center lg:text-left flex flex-col items-center lg:items-start">
@@ -266,7 +293,7 @@ const HomePage = () => {
                 Tienda Fuxion Chile · Asesoría personalizada
               </motion.p>
               <motion.h1
-                className="text-[2rem] sm:text-4xl md:text-5xl lg:text-responsive-hero font-extrabold text-foreground tracking-tight mb-4 lg:mb-6 leading-[1.15]"
+                className="text-[1.4rem] sm:text-2xl md:text-3xl lg:text-responsive-hero font-bold uppercase text-foreground tracking-wide mb-3 lg:mb-4 leading-[1.2]"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
@@ -274,20 +301,12 @@ const HomePage = () => {
                 Productos Fuxion para <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-emerald-400">nutrición y bienestar natural.</span>
               </motion.h1>
               <motion.p
-                className="text-lg md:text-2xl font-medium text-emerald-800/80 dark:text-emerald-300/80 mb-4 lg:mb-6"
+                className="text-sm md:text-base font-normal text-emerald-800/70 dark:text-emerald-300/70 mb-3 lg:mb-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.35 }}
               >
-                Te ayudamos a elegir según tu objetivo: energía, digestión, control de peso o defensas.
-              </motion.p>
-              <motion.p
-                className="hidden md:block mt-2 lg:mt-6 text-base md:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0 mb-6 lg:mb-8"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.5 }}
-              >
-                Explora el catálogo Fuxion y recibe orientación directa antes de comprar. Agrega tus productos al carrito y envía el pedido por WhatsApp para coordinar atención y despacho.
+                Explora nuestro catálogo y recibe asesoría directa antes de comprar.
               </motion.p>
               {/* ── Row 1: buscador a ancho completo ── */}
               <motion.div
@@ -308,7 +327,7 @@ const HomePage = () => {
               >
                 <Button
                   onClick={() => handleWhatsAppClick('Hola, quiero empezar mi cambio con Fuxion')}
-                  className="w-full sm:w-auto justify-center h-14 px-8 rounded-2xl bg-emerald-800 hover:bg-emerald-900 text-white font-semibold flex items-center gap-2 shadow-lg shadow-emerald-900/10 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 text-base"
+                  className="w-full sm:w-auto justify-center h-12 px-8 rounded-full bg-emerald-800 hover:bg-emerald-900 text-white font-semibold flex items-center gap-2 shadow-lg shadow-emerald-900/10 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 text-base"
                 >
                   <span>Recibir asesoría</span>
                   <HugeiconsIcon icon={ArrowRight02Icon} size={20} className="shrink-0" />
@@ -326,7 +345,7 @@ const HomePage = () => {
             >
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-emerald-100 dark:border-emerald-900">
                 <img
-                  src={getImageUrl('/prunex-principal.jpeg')}
+                  src={getImageUrl('/para el hero.jpeg')}
                   alt="Prunex 1 FuXion - Limpieza de colon y tránsito intestinal natural"
                   title="Prunex 1 FuXion - Limpieza de colon y tránsito intestinal natural"
                   className="w-full h-full object-cover max-h-[560px]"
@@ -405,9 +424,35 @@ const HomePage = () => {
         showForm={false}
       />
 
-      <section className="py-10 bg-white dark:bg-card border-y border-emerald-100 dark:border-border">
-        <div className="container mx-auto px-6">
-          <div className="grid gap-4 md:grid-cols-3">
+      <section className="py-8 md:py-10 bg-white dark:bg-card border-y border-emerald-100 dark:border-border">
+        <div className="container mx-auto px-4 md:px-6">
+          {/* Mobile Layout: 3 columns of small cards matching MobileCategoryGrid style */}
+          <div className="grid grid-cols-3 gap-3 md:hidden">
+            {trustItems.map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                className="flex flex-col items-start rounded-2xl border border-gray-100/80 bg-white p-3.5 text-left shadow-md shadow-gray-200/50 dark:border-emerald-950/30 dark:bg-card dark:shadow-none"
+              >
+                {/* Icon wrapper - small rounded-xl container styled like category grid */}
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400">
+                  <HugeiconsIcon icon={item.rawIcon} size={20} />
+                </div>
+                <h4 className="text-[11px] font-bold text-gray-900 dark:text-white leading-tight">
+                  {item.title}
+                </h4>
+                <p className="mt-1 text-[9px] text-gray-500 dark:text-gray-400 leading-snug">
+                  {item.text}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Desktop Layout: 3 columns of horizontal cards */}
+          <div className="hidden md:grid gap-4 grid-cols-3">
             {trustItems.map((item, i) => (
               <motion.div
                 key={item.title}
@@ -417,7 +462,7 @@ const HomePage = () => {
                 transition={{ duration: 0.5, delay: i * 0.15 }}
                 className="flex gap-4 rounded-2xl border border-white/30 bg-white/70 backdrop-blur-sm p-5 shadow-sm hover:shadow-md transition-all duration-300 dark:border-emerald-900/30 dark:bg-card/70"
               >
-                <div className="text-emerald-600 dark:text-emerald-400">{item.icon}</div>
+                <div className="text-emerald-600 dark:text-emerald-400 shrink-0">{item.icon}</div>
                 <div>
                   <h2 className="font-bold text-foreground">{item.title}</h2>
                   <p className="mt-1 text-sm text-muted-foreground">{item.text}</p>

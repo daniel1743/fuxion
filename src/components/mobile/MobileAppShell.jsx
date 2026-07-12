@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { HugeiconsIcon } from '@hugeicons/react';
-import { Search01Icon, ShoppingCart01Icon, Menu11Icon } from '@hugeicons/core-free-icons';
+import { Search01Icon, ShoppingCart01Icon, Menu11Icon, ArrowLeft02Icon } from '@hugeicons/core-free-icons';
 import { useAuth } from '@/context/AuthContext';
 import { useCart } from '@/context/CartContext';
 import { useSiteSettings } from '@/context/SiteSettingsContext';
@@ -24,6 +24,8 @@ const MobileAppShell = ({
   showSearch = false,
   onSearchClick,
   searchDataset = null,
+  searchPlaceholder = 'Buscar productos, beneficios o ingredientes...',
+  showBack = variant === 'compact',
   children 
 }) => {
   const navigate = useNavigate();
@@ -55,24 +57,6 @@ const MobileAppShell = ({
         <div className="absolute top-0 left-[20%] right-0 h-[300px] bg-emerald-400/20 blur-[80px] rounded-full pointer-events-none"></div>
 
         {/* Decorative large Hexagon */}
-        {isLarge && (
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute right-[-8%] top-[55%] -translate-y-1/2 w-[48%] max-w-[200px] aspect-square bg-gradient-to-tr from-white/5 to-white/15 backdrop-blur-sm flex flex-col items-center justify-center pointer-events-none shadow-2xl shadow-black/20 ring-1 ring-white/20"
-          style={{
-            clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)'
-          }}
-        >
-          <div className="w-[70%] h-[70%] bg-black/10 rounded-full blur-md absolute top-[15%] left-[15%]"></div>
-          <img 
-            src="/prunex-principal.jpeg" 
-            alt="Producto FuXion" 
-            className="w-full h-full object-cover opacity-90 scale-110 relative z-10"
-          />
-        </motion.div>
-      )}
       </div>
 
       <motion.div 
@@ -83,10 +67,24 @@ const MobileAppShell = ({
       >
         
         {/* HEADER INTEGRADO */}
-        <motion.div variants={itemVariants} className={`flex items-center justify-between pt-3 ${isLarge ? 'pb-8' : 'pb-6'}`}>
+        <motion.div variants={itemVariants} className={`flex items-center justify-between pt-3 ${isLarge ? 'pb-4' : 'pb-6'}`}>
           {/* Left: User / Brand */}
           <div className="flex items-center gap-3">
-            {isAuthenticated && user ? (
+            {showBack ? (
+              <button
+                onClick={() => {
+                  if (window.history.length > 2) {
+                    navigate(-1);
+                  } else {
+                    navigate('/');
+                  }
+                }}
+                className="text-white hover:bg-white/10 p-2 rounded-full active:scale-95 transition-all"
+                aria-label="Volver"
+              >
+                <HugeiconsIcon icon={ArrowLeft02Icon} className="h-6 w-6" />
+              </button>
+            ) : isAuthenticated && user ? (
               <>
                 {/* Premium Animated Avatar Ring */}
                 <div className="relative flex items-center justify-center w-[48px] h-[48px] rounded-full shrink-0 overflow-hidden shadow-md">
@@ -151,11 +149,11 @@ const MobileAppShell = ({
 
         {/* SEARCH BAR INTEGRADA */}
         {showSearch && (
-          <motion.div variants={itemVariants} className={`w-full relative group ${isLarge ? 'mb-8' : 'mb-2'}`}>
+          <motion.div variants={itemVariants} className={`w-full relative group ${isLarge ? 'mb-4' : 'mb-2'}`}>
             <div className="absolute inset-0 bg-white/20 blur-md rounded-full group-focus-within:blur-sm transition-all"></div>
             <SmartSearchAutocomplete 
               dataset={searchDataset || defaultProductsDataset}
-              placeholder="Buscar productos, objetivos..."
+              placeholder={searchPlaceholder}
               onSelect={(result) => {
                 const query = result.isCustomQuery ? result.query : result.name;
                 if (onSearchClick) {
