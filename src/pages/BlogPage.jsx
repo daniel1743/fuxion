@@ -191,7 +191,7 @@ const BlogPage = () => {
                   className="group bg-card border border-border rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-300"
                 >
                   {/* Imagen */}
-                  <Link to={`/blog/${post.slug}`}>
+                  <Link to={`/articulos/${post.slug}`}>
                     <div className="relative h-48 overflow-hidden">
                       {post.image_url ? (
                         <img
@@ -213,7 +213,7 @@ const BlogPage = () => {
 
                   {/* Contenido */}
                   <div className="p-5">
-                    <Link to={`/blog/${post.slug}`}>
+                    <Link to={`/articulos/${post.slug}`}>
                       <h2 className="text-lg font-semibold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
                         {post.title}
                       </h2>
@@ -238,7 +238,7 @@ const BlogPage = () => {
                     </div>
 
                     {/* CTA */}
-                    <Link to={`/blog/${post.slug}`}>
+                    <Link to={`/articulos/${post.slug}`}>
                       <Button variant="ghost" size="sm" className="w-full mt-4 group-hover:bg-primary/10">
                         Leer artículo
                         <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />

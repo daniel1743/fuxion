@@ -326,7 +326,7 @@ const PrivacyPolicyPage = () => {
           <div className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full bg-emerald-50/50 dark:bg-emerald-800/10 blur-2xl" />
         </div>
 
-        <div className="relative z-10 w-full max-w-4xl mx-auto px-6 py-16 md:py-24 text-center">
+        <div className="relative z-content w-full max-w-4xl mx-auto px-6 py-16 md:py-24 text-center">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -430,7 +430,7 @@ const PrivacyPolicyPage = () => {
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2" />
 
-            <div className="relative z-10">
+            <div className="relative z-content">
               <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-white/15 backdrop-blur-sm flex items-center justify-center">
                 <MessageCircle className="w-8 h-8" strokeWidth={1.5} />
               </div>

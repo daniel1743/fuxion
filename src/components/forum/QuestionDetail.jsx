@@ -139,7 +139,7 @@ const QuestionDetail = ({ questionId, onClose }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 overflow-y-auto overflow-x-hidden"
+      className="fixed inset-0 bg-black/80 backdrop-blur-sm z-modal overflow-y-auto overflow-x-hidden"
       onClick={onClose}
     >
       <div className="min-h-screen p-3 sm:p-4 md:p-8 w-full">

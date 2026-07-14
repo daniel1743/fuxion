@@ -9,6 +9,7 @@ import { useSiteSettings } from '@/context/SiteSettingsContext';
 import SmartSearchAutocomplete from '@/components/SmartSearchAutocomplete';
 import fuxionDatabase from '@/data/fuxion_database.json';
 import { getProductImageUrl } from '@/lib/imageUtils';
+import { useScrollDirection } from '@/hooks/useScrollDirection';
 
 const defaultProductsDataset = Object.entries(fuxionDatabase.productos || {}).map(([key, value]) => ({
   id: key,
@@ -32,6 +33,7 @@ const MobileAppShell = ({
   const { isAuthenticated, user } = useAuth();
   const { getCartCount } = useCart();
   const { settings } = useSiteSettings();
+  const { scrollDirection, isAtTop } = useScrollDirection();
   
   const cartCount = getCartCount();
 
@@ -39,9 +41,10 @@ const MobileAppShell = ({
     window.dispatchEvent(new Event('open-mobile-menu'));
   };
 
-
-  
   const isLarge = variant === 'large';
+
+  // Smart sticky: hide nav on scroll down, show on scroll up
+  const navHidden = scrollDirection === 'down' && !isAtTop;
 
   // Animation for elements inside the surface
   const itemVariants = {
@@ -49,148 +52,169 @@ const MobileAppShell = ({
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } }
   };
 
-  return (
-    <div className={`relative w-full pt-[env(safe-area-inset-top,1rem)] pb-6 px-5 z-20 ${isLarge ? 'pb-8' : ''}`}>
-      {/* Background layers with hidden overflow */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0E5C53] to-[#136a64] rounded-b-[28px] shadow-[0_12px_30px_-10px_rgba(14,92,83,0.4)] overflow-hidden border-b border-emerald-600/30 -z-10">
-        {/* Glow Effect / Lighting */}
-        <div className="absolute top-0 left-[20%] right-0 h-[300px] bg-emerald-400/20 blur-[80px] rounded-full pointer-events-none"></div>
-
-        {/* Decorative large Hexagon */}
+  // ── NAV BAR CONTENT (shared between fixed overlay and inline) ──
+  const NavBarContent = () => (
+    <div className={`flex items-center justify-between pt-3 ${isLarge ? 'pb-4' : 'pb-3'}`}>
+      {/* Left: User / Brand */}
+      <div className="flex items-center gap-3">
+        {showBack ? (
+          <button
+            onClick={() => {
+              if (window.history.length > 2) {
+                navigate(-1);
+              } else {
+                navigate('/');
+              }
+            }}
+            className="text-white hover:bg-white/10 p-2 rounded-full active:scale-95 transition-all"
+            aria-label="Volver"
+          >
+            <HugeiconsIcon icon={ArrowLeft02Icon} className="h-6 w-6" />
+          </button>
+        ) : isAuthenticated && user ? (
+          <>
+            {/* Premium Animated Avatar Ring */}
+            <div className="relative flex items-center justify-center w-[48px] h-[48px] rounded-full shrink-0 overflow-hidden shadow-md">
+              {/* Spinning Gradient Background */}
+              <div className="absolute inset-[-50%] bg-[conic-gradient(from_0deg,transparent_0%,#fbbf24_20%,#34d399_50%,#fbbf24_80%,transparent_100%)] animate-[spin_3s_linear_infinite]" />
+              {/* Inner Mask (matches Hero background to hide center of gradient) */}
+              <div className="absolute inset-[2px] bg-[#0E5C53] rounded-full" />
+              {/* Avatar Image */}
+              <img
+                src={user.avatar}
+                alt={user.name || 'Mi cuenta'}
+                className="w-[44px] h-[44px] rounded-full object-cover relative z-content ring-1 ring-white/10"
+              />
+            </div>
+            <div className="flex flex-col justify-center h-full pt-1">
+              <span className="text-[12px] text-emerald-100/80 font-medium leading-[1]">Hola,</span>
+              <span className="text-[15px] font-bold text-white leading-tight truncate mt-[2px]">
+                {user.name?.split(' ')[0] || 'Cliente'}
+              </span>
+            </div>
+          </>
+        ) : (
+          <div className="flex items-center gap-2.5">
+            <div className="w-[40px] h-[40px] rounded-full bg-white flex items-center justify-center shadow-md p-1.5 shrink-0">
+              <img
+                src="/hoja-te-transparente.svg"
+                alt="FuXion"
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <span className="text-lg font-bold tracking-tight text-white whitespace-nowrap">
+              {settings?.site_name || 'FuXion'}
+            </span>
+          </div>
+        )}
       </div>
 
-      <motion.div 
-        initial="hidden" 
-        animate="visible" 
-        transition={{ staggerChildren: 0.1 }}
-        className="relative z-10 max-w-full"
+      {/* Right: Actions */}
+      <div className="flex items-center gap-1.5 bg-black/10 rounded-full p-1 border border-white/10 backdrop-blur-md">
+        <button
+          onClick={() => navigate('/carrito')}
+          className="relative text-white p-2 rounded-full hover:bg-white/10 active:scale-95 transition-all"
+          aria-label="Carrito"
+        >
+          <HugeiconsIcon icon={ShoppingCart01Icon} className="h-5 w-5" />
+          {cartCount > 0 && (
+            <span className="absolute top-0 right-0 bg-orange-500 text-white text-[10px] rounded-full h-[18px] w-[18px] flex items-center justify-center font-bold shadow-sm ring-2 ring-[#0E5C53]">
+              {cartCount > 9 ? '9+' : cartCount}
+            </span>
+          )}
+        </button>
+        <div className="w-[1px] h-5 bg-white/20"></div>
+        <button
+          onClick={handleOpenMenu}
+          className="text-white p-2 rounded-full hover:bg-white/10 active:scale-95 transition-all"
+          aria-label="Menú"
+        >
+          <HugeiconsIcon icon={Menu11Icon} className="h-5 w-5" />
+        </button>
+      </div>
+    </div>
+  );
+
+  return (
+    <>
+      {/* ═══════════════════════════════════════════════════════════
+         FIXED SMART STICKY NAV — hides on scroll down, shows on scroll up
+      ════════════════════════════════════════════════════════════ */}
+      <div
+        className={`fixed top-0 left-0 right-0 z-header md:hidden bg-gradient-to-br from-[#0E5C53] to-[#136a64] shadow-lg px-5 pt-[env(safe-area-inset-top,0px)] transition-transform duration-300 ease-out ${
+          navHidden ? '-translate-y-full' : 'translate-y-0'
+        }`}
       >
-        
-        {/* HEADER INTEGRADO */}
-        <motion.div variants={itemVariants} className={`flex items-center justify-between pt-3 ${isLarge ? 'pb-4' : 'pb-6'}`}>
-          {/* Left: User / Brand */}
-          <div className="flex items-center gap-3">
-            {showBack ? (
-              <button
-                onClick={() => {
-                  if (window.history.length > 2) {
-                    navigate(-1);
+        <NavBarContent />
+      </div>
+
+      {/* ═══════════════════════════════════════════════════════════
+         MAIN SURFACE — scrolls normally with the page
+      ════════════════════════════════════════════════════════════ */}
+      <div className={`relative w-full pt-[env(safe-area-inset-top,1rem)] pb-6 px-5 z-sticky ${isLarge ? 'pb-8' : ''}`}>
+        {/* Background layers with hidden overflow */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0E5C53] to-[#136a64] rounded-b-[28px] shadow-[0_12px_30px_-10px_rgba(14,92,83,0.4)] overflow-hidden border-b border-emerald-600/30 -z-content">
+          {/* Glow Effect / Lighting */}
+          <div className="absolute top-0 left-[20%] right-0 h-[300px] bg-emerald-400/20 blur-[80px] rounded-full pointer-events-none"></div>
+        </div>
+
+        <motion.div 
+          initial="hidden" 
+          animate="visible" 
+          transition={{ staggerChildren: 0.1 }}
+          className="relative z-content max-w-full"
+        >
+          
+          {/* INLINE NAV (part of the scrollable green surface — visible initially) */}
+          <motion.div variants={itemVariants}>
+            <NavBarContent />
+          </motion.div>
+
+          {/* SEARCH BAR INTEGRADA */}
+          {showSearch && (
+            <motion.div variants={itemVariants} className={`w-full relative group ${isLarge ? 'mb-4' : 'mb-2'}`}>
+              <div className="absolute inset-0 bg-white/20 blur-md rounded-full group-focus-within:blur-sm transition-all"></div>
+              <SmartSearchAutocomplete 
+                dataset={searchDataset || defaultProductsDataset}
+                placeholder={searchPlaceholder}
+                onSelect={(result) => {
+                  const query = result.isCustomQuery ? result.query : result.name;
+                  if (onSearchClick) {
+                    onSearchClick(query);
                   } else {
-                    navigate('/');
+                    navigate(`/explorar?search=${encodeURIComponent(query)}`);
                   }
                 }}
-                className="text-white hover:bg-white/10 p-2 rounded-full active:scale-95 transition-all"
-                aria-label="Volver"
-              >
-                <HugeiconsIcon icon={ArrowLeft02Icon} className="h-6 w-6" />
-              </button>
-            ) : isAuthenticated && user ? (
-              <>
-                {/* Premium Animated Avatar Ring */}
-                <div className="relative flex items-center justify-center w-[48px] h-[48px] rounded-full shrink-0 overflow-hidden shadow-md">
-                  {/* Spinning Gradient Background */}
-                  <div className="absolute inset-[-50%] bg-[conic-gradient(from_0deg,transparent_0%,#fbbf24_20%,#34d399_50%,#fbbf24_80%,transparent_100%)] animate-[spin_3s_linear_infinite]" />
-                  {/* Inner Mask (matches Hero background to hide center of gradient) */}
-                  <div className="absolute inset-[2px] bg-[#0E5C53] rounded-full" />
-                  {/* Avatar Image */}
-                  <img
-                    src={user.avatar}
-                    alt={user.name || 'Mi cuenta'}
-                    className="w-[44px] h-[44px] rounded-full object-cover relative z-10 ring-1 ring-white/10"
-                  />
-                </div>
-                <div className="flex flex-col justify-center h-full pt-1">
-                  <span className="text-[12px] text-emerald-100/80 font-medium leading-[1]">Hola,</span>
-                  <span className="text-[15px] font-bold text-white leading-tight truncate mt-[2px]">
-                    {user.name?.split(' ')[0] || 'Cliente'}
-                  </span>
-                </div>
-              </>
-            ) : (
-              <div className="flex items-center gap-2.5">
-                <div className="w-[40px] h-[40px] rounded-full bg-white flex items-center justify-center shadow-md p-1.5 shrink-0">
-                  <img
-                    src="/hoja-te-transparente.svg"
-                    alt="FuXion"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-                <span className="text-lg font-bold tracking-tight text-white whitespace-nowrap">
-                  {settings?.site_name || 'FuXion'}
-                </span>
-              </div>
-            )}
-          </div>
+              />
+            </motion.div>
+          )}
 
-          {/* Right: Actions */}
-          <div className="flex items-center gap-1.5 bg-black/10 rounded-full p-1 border border-white/10 backdrop-blur-md">
-            <button
-              onClick={() => navigate('/carrito')}
-              className="relative text-white p-2 rounded-full hover:bg-white/10 active:scale-95 transition-all"
-              aria-label="Carrito"
-            >
-              <HugeiconsIcon icon={ShoppingCart01Icon} className="h-5 w-5" />
-              {cartCount > 0 && (
-                <span className="absolute top-0 right-0 bg-orange-500 text-white text-[10px] rounded-full h-[18px] w-[18px] flex items-center justify-center font-bold shadow-sm ring-2 ring-[#0E5C53]">
-                  {cartCount > 9 ? '9+' : cartCount}
-                </span>
+          {/* TITLE & DESC FOR COMPACT (If not large and has text) */}
+          {!isLarge && (title || description) && (
+            <motion.div variants={itemVariants} className="w-full pt-2">
+              {title && (
+                <h1 className="text-2xl font-bold text-white tracking-tight drop-shadow-sm leading-tight">
+                  {title}
+                </h1>
               )}
-            </button>
-            <div className="w-[1px] h-5 bg-white/20"></div>
-            <button
-              onClick={handleOpenMenu}
-              className="text-white p-2 rounded-full hover:bg-white/10 active:scale-95 transition-all"
-              aria-label="Menú"
-            >
-              <HugeiconsIcon icon={Menu11Icon} className="h-5 w-5" />
-            </button>
-          </div>
+              {description && (
+                <p className="text-[15px] text-emerald-50 mt-1 font-medium drop-shadow-sm opacity-90">
+                  {description}
+                </p>
+              )}
+            </motion.div>
+          )}
+
+          {/* CUSTOM CHILDREN OR LARGE HERO CONTENT */}
+          {children && (
+            <motion.div variants={itemVariants} className="w-full mt-4">
+              {children}
+            </motion.div>
+          )}
+
         </motion.div>
-
-        {/* SEARCH BAR INTEGRADA */}
-        {showSearch && (
-          <motion.div variants={itemVariants} className={`w-full relative group ${isLarge ? 'mb-4' : 'mb-2'}`}>
-            <div className="absolute inset-0 bg-white/20 blur-md rounded-full group-focus-within:blur-sm transition-all"></div>
-            <SmartSearchAutocomplete 
-              dataset={searchDataset || defaultProductsDataset}
-              placeholder={searchPlaceholder}
-              onSelect={(result) => {
-                const query = result.isCustomQuery ? result.query : result.name;
-                if (onSearchClick) {
-                  onSearchClick(query);
-                } else {
-                  navigate(`/explorar?search=${encodeURIComponent(query)}`);
-                }
-              }}
-            />
-          </motion.div>
-        )}
-
-        {/* TITLE & DESC FOR COMPACT (If not large and has text) */}
-        {!isLarge && (title || description) && (
-          <motion.div variants={itemVariants} className="w-full pt-2">
-            {title && (
-              <h1 className="text-2xl font-bold text-white tracking-tight drop-shadow-sm leading-tight">
-                {title}
-              </h1>
-            )}
-            {description && (
-              <p className="text-[15px] text-emerald-50 mt-1 font-medium drop-shadow-sm opacity-90">
-                {description}
-              </p>
-            )}
-          </motion.div>
-        )}
-
-        {/* CUSTOM CHILDREN OR LARGE HERO CONTENT */}
-        {children && (
-          <motion.div variants={itemVariants} className="w-full mt-4">
-            {children}
-          </motion.div>
-        )}
-
-      </motion.div>
-    </div>
+      </div>
+    </>
   );
 };
 

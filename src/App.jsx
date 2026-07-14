@@ -23,6 +23,7 @@ const CategoriesPage = lazy(() => import('@/pages/CategoriesPage'));
 const SupportPage = lazy(() => import('@/pages/SupportPage'));
 const CartPage = lazy(() => import('@/pages/CartPage'));
 const EvidencePage = lazy(() => import('@/pages/EvidencePage'));
+const BlogPage = lazy(() => import('@/pages/BlogPage'));
 const BlogPostPage = lazy(() => import('@/pages/BlogPostPage'));
 const ProductPage = lazy(() => import('@/pages/ProductPage'));
 const PlaceholderPage = lazy(() => import('@/pages/PlaceholderPage'));
@@ -88,7 +89,8 @@ function App() {
                     <Route path="/opiniones/wellness" element={<WellnessPage />} />
                     <Route path="/bienestar/:slug" element={<WellnessArticlePage />} />
                     <Route path="/blog" element={<EvidencePage />} />
-                    <Route path="/blog/:slug" element={<BlogPostPage />} />
+                    <Route path="/articulos" element={<BlogPage />} />
+                    <Route path="/articulos/:slug" element={<BlogPostPage />} />
                     <Route path="/sobre-nosotros" element={<AboutPage />} />
                     <Route path="/terminos" element={<PlaceholderPage pageName="Términos y Condiciones" />} />
                     <Route path="/contacto" element={<ContactPage />} />

@@ -27,6 +27,7 @@ const Footer = () => {
       { label: 'Categorías', icon: Tags, path: '/categorias' },
       { label: 'Sobre Nosotros', icon: Leaf, path: '/sobre-nosotros' },
       { label: 'Bienestar', icon: Heart, path: '/opiniones' },
+      { label: 'Artículos', icon: FileText, path: '/articulos' },
       { label: 'Evidencias', icon: FileText, path: '/blog' },
       { label: 'Términos y Condiciones', icon: FileText, path: '/terminos' },
     ];
@@ -66,21 +67,13 @@ const Footer = () => {
                     <div className="col-span-1 md:col-span-1 flex flex-col items-start">
                         <Link to="/" className="flex items-center gap-3 mb-4">
                             <img
-                                src="/hoja-te-transparente.svg"
+                                src="/branding/logo-horizontal.png"
                                 alt={settings.site_name}
-                                className="h-12 w-12 rounded-full object-contain ring-2 ring-emerald-200/50 shadow-sm bg-transparent"
+                                className="h-12 object-contain bg-transparent"
                             />
-                            <div className="flex flex-col">
-                                <span className="text-xl font-bold text-foreground tracking-tight leading-tight">
-                                    Naturalmente FuXion
-                                </span>
-                                <span className="text-[11px] text-muted-foreground mt-0.5">
-                                    Bienestar natural y asesoría personalizada
-                                </span>
-                            </div>
                         </Link>
                         <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
-                            Productos Fuxion para nutrición, bienestar natural, energía, digestión y control de peso. Compra asistida por WhatsApp.
+                            Bienestar en Claro: Información basada en evidencia científica y nutrición inteligente.
                         </p>
                     </div>
 
@@ -155,7 +148,7 @@ const Footer = () => {
                 {/* ── Copyright ──────────────────────────────────── */}
                 <div className="mt-10 sm:mt-14 border-t border-border pt-6 sm:pt-8 flex flex-col sm:flex-row justify-between items-center gap-3">
                     <p className="text-muted-foreground text-xs sm:text-sm text-center sm:text-left flex items-center gap-1.5">
-                        © {new Date().getFullYear()} {settings.site_name || 'Naturalmente FuXion'}. Atención personalizada por {settings.owner_name || 'Daniel Falcon'}.
+                        © {new Date().getFullYear()} {settings.site_name || 'Bienestar en Claro'}. Investigación y desarrollo por {settings.owner_name || 'Daniel Falcon'}.
                     </p>
                 </div>
             </div>

@@ -138,7 +138,7 @@ const CookieConsentBanner = () => {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: '100%', opacity: 0 }}
             transition={{ type: 'spring', damping: 28, stiffness: 300 }}
-            className="fixed bottom-0 left-0 right-0 z-[9999] p-4 sm:p-6 pointer-events-none"
+            className="fixed bottom-0 left-0 right-0 z-max p-4 sm:p-6 pointer-events-none"
           >
             <div className="max-w-2xl mx-auto pointer-events-auto">
               <div
@@ -203,7 +203,7 @@ const CookieConsentBanner = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[99999] flex items-center justify-center p-4"
+            className="fixed inset-0 z-max flex items-center justify-center p-4"
           >
             {/* Backdrop */}
             <div

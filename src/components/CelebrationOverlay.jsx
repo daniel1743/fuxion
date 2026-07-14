@@ -27,7 +27,7 @@ const CelebrationOverlay = ({ show, onComplete, title, message }) => {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.9 }}
           transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none"
+          className="fixed inset-0 z-max flex items-center justify-center pointer-events-none"
         >
           <motion.div
             initial={{ opacity: 0, y: 20 }}

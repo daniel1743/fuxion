@@ -30,6 +30,7 @@ import { useSiteSettings } from '@/context/SiteSettingsContext';
 import { useAuth } from '@/context/AuthContext';
 import { useNotifications } from '@/context/NotificationContext';
 import UserMenu from '@/components/UserMenu';
+import { useScrollDirection } from '@/hooks/useScrollDirection';
 
 const officialStoreUrl = 'https://ifuxion.com/daniel/enrollment/chooseperson';
 
@@ -39,6 +40,7 @@ const drawerNavItems = [
   { label: 'Productos', subtitle: 'Catálogo FuXion', icon: ShoppingBag03Icon, path: '/explorar' },
   { label: 'Sobre Nosotros', subtitle: 'Nuestra historia y valores', icon: Leaf01Icon, path: '/sobre-nosotros' },
   { label: 'Objetivos de bienestar', subtitle: 'Encuentra lo ideal para ti', icon: BookOpen02Icon, path: '/opiniones' },
+  { label: 'Artículos', subtitle: 'Ciencia y salud', icon: BookOpen02Icon, path: '/articulos' },
   { label: 'Evidencias', subtitle: 'Información y contenido', icon: BookOpen02Icon, path: '/blog' },
   { label: 'Oportunidad FuXion', subtitle: 'Conoce el proyecto', icon: Rocket01Icon, path: '/oportunidad-fuxion' },
   { label: 'Centro de ayuda', subtitle: 'Contacto y soporte', icon: HelpCircleIcon, path: '/ayuda' },
@@ -102,7 +104,7 @@ const DesktopDropdown = ({ label, items, navigate }) => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 4, scale: 0.97 }}
             transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute top-full left-1/2 -translate-x-1/2 z-50 pt-2 min-w-[220px]"
+            className="absolute top-full left-1/2 -translate-x-1/2 z-dropdown pt-2 min-w-[220px]"
           >
             <div className="bg-white dark:bg-[#0f1f18] border border-emerald-100/80 dark:border-emerald-800/40 rounded-2xl shadow-[0_8px_32px_-4px_rgba(0,0,0,0.12),0_2px_8px_-2px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_-4px_rgba(0,0,0,0.4)] overflow-hidden p-1.5 space-y-0.5">
               {items.map((item) => {
@@ -173,6 +175,10 @@ const Header = () => {
   const location = useLocation();
   const isHome = location.pathname === '/';
 
+  // Smart sticky: hide on scroll down, show on scroll up
+  const { scrollDirection, isAtTop } = useScrollDirection();
+  const headerHidden = scrollDirection === 'down' && !isAtTop;
+
   const handleWhatsApp = useCallback(() => {
     setIsMenuOpen(false);
     const phone = '56912345678';
@@ -240,19 +246,16 @@ const Header = () => {
   const { unreadCount = 0 } = useNotifications() || {};
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 md:glassmorphism pointer-events-none md:pointer-events-auto">
+    <header className={`fixed top-0 left-0 right-0 z-header pointer-events-none md:pointer-events-auto md:glassmorphism h-0 md:h-auto overflow-visible transition-transform duration-300 ease-out ${headerHidden ? 'md:-translate-y-full' : 'md:translate-y-0'}`}>
       <nav className="container mx-auto hidden md:flex items-center justify-between gap-1 px-3 py-2 sm:px-6 sm:py-3 pointer-events-auto">
         {/* ── Left: Brand / Mobile user greeting ──────────────── */}
         {/* Desktop brand — always visible on md+ */}
         <Link to="/" className="hidden md:flex shrink items-center gap-2 min-w-0">
           <img
-            src="/hoja-te-transparente.svg"
-            alt={settings.site_name || 'FuXion'}
-            className="h-[42px] w-[42px] shrink-0 rounded-full object-contain ring-1 ring-emerald-200/50 dark:ring-emerald-800/50 shadow-sm bg-transparent"
+            src="/branding/logo-horizontal.png"
+            alt={settings.site_name || 'Bienestar en Claro'}
+            className="h-[42px] shrink-0 object-contain bg-transparent"
           />
-          <span className="text-sm font-bold tracking-tight text-foreground sm:text-xl whitespace-nowrap">
-            {settings.site_name || 'Naturalmente FuXion'}
-          </span>
         </Link>
 
         {/* Mobile brand / user greeting — only visible below md */}
@@ -274,13 +277,10 @@ const Header = () => {
           ) : (
             <Link to="/" className="flex items-center gap-2 min-w-0">
               <img
-                src="/hoja-te-transparente.svg"
-                alt={settings.site_name || 'FuXion'}
-                className="h-[36px] w-[36px] shrink-0 rounded-full object-contain ring-1 ring-emerald-200/50 shadow-sm bg-transparent"
+                src="/branding/logo-horizontal.png"
+                alt={settings.site_name || 'Bienestar en Claro'}
+                className="h-[36px] shrink-0 object-contain bg-transparent"
               />
-              <span className="text-sm font-bold tracking-tight text-foreground whitespace-nowrap">
-                {settings.site_name || 'Nutrición de Verdad'}
-              </span>
             </Link>
           )}
         </div>
@@ -317,7 +317,8 @@ const Header = () => {
             items={[
               { label: 'Sobre Nosotros', path: '/sobre-nosotros', icon: Leaf01Icon, desc: 'Nuestra historia y valores' },
               { label: 'Oportunidad FuXion', path: '/oportunidad-fuxion', icon: TrendingUp, desc: 'Únete al proyecto' },
-              { label: 'Evidencias', path: '/blog', icon: BookOpen02Icon, desc: 'Información y contenido' },
+              { label: 'Artículos', path: '/articulos', icon: BookOpen02Icon, desc: 'Ciencia y salud' },
+              { label: 'Evidencias', path: '/blog', icon: BookOpen02Icon, desc: 'Testimonios reales' },
               { label: 'Ayuda', path: '/ayuda', icon: HelpCircleIcon, desc: 'Contacto y soporte' },
             ]}
             navigate={navigate}
@@ -387,7 +388,7 @@ const Header = () => {
               initial="closed"
               animate="open"
               exit="closed"
-              className="fixed inset-0 z-40 bg-black/30 backdrop-blur-[6px] md:hidden pointer-events-auto"
+              className="fixed inset-0 z-backdrop bg-black/30 backdrop-blur-[6px] md:hidden pointer-events-auto"
               onClick={() => setIsMenuOpen(false)}
             />
 
@@ -399,13 +400,13 @@ const Header = () => {
               initial="closed"
               animate="open"
               exit="closed"
-              className="fixed top-0 right-0 z-50 h-[calc(100dvh-68px-env(safe-area-inset-bottom))] w-[80vw] max-w-[320px] bg-white dark:bg-[#0f1f18] shadow-2xl md:hidden flex flex-col overflow-hidden rounded-l-[20px] pointer-events-auto"
+              className="fixed top-0 right-0 z-modal h-[calc(100dvh-68px-env(safe-area-inset-bottom))] w-[80vw] max-w-[320px] bg-white dark:bg-[#0f1f18] shadow-2xl md:hidden flex flex-col overflow-hidden rounded-l-[20px] pointer-events-auto"
             >
               {/* Close button — top right */}
               <button
                 type="button"
                 onClick={() => setIsMenuOpen(false)}
-                className="absolute top-4 right-4 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-white dark:bg-[#1a2e25] shadow-md hover:shadow-lg transition-shadow duration-200"
+                className="absolute top-4 right-4 z-content flex items-center justify-center w-10 h-10 rounded-full bg-white dark:bg-[#1a2e25] shadow-md hover:shadow-lg transition-shadow duration-200"
                 aria-label="Cerrar menú"
               >
                 <HugeiconsIcon icon={Cancel01Icon} className="w-[22px] h-[22px] text-foreground" />

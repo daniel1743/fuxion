@@ -473,7 +473,7 @@ const OpportunityPage = () => {
           <div className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full bg-emerald-50/50 dark:bg-emerald-800/10 blur-2xl" />
         </div>
 
-        <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-16 md:py-24">
+        <div className="relative z-content w-full max-w-6xl mx-auto px-6 py-16 md:py-24">
           <div className="grid gap-12 lg:grid-cols-2 items-center">
             {/* Left column — text */}
             <div className="text-center lg:text-left">
@@ -659,7 +659,7 @@ const OpportunityPage = () => {
                   </div>
 
                   {/* Number circle */}
-                  <div className="relative z-10 flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full bg-emerald-100 dark:bg-emerald-900/50 border-4 border-white dark:border-card flex items-center justify-center md:absolute md:left-1/2 md:-translate-x-1/2">
+                  <div className="relative z-content flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full bg-emerald-100 dark:bg-emerald-900/50 border-4 border-white dark:border-card flex items-center justify-center md:absolute md:left-1/2 md:-translate-x-1/2">
                     <span className="text-xs md:text-sm font-bold text-emerald-700 dark:text-emerald-300">{step.number}</span>
                   </div>
 

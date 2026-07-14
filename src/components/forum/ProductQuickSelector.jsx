@@ -76,7 +76,7 @@ const ProductQuickSelector = ({ onActionSelect }) => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="absolute top-full mt-2 w-[600px] bg-white rounded-xl shadow-2xl border border-gray-200 z-50 overflow-hidden"
+            className="absolute top-full mt-2 w-[600px] bg-white rounded-xl shadow-2xl border border-gray-200 z-dropdown overflow-hidden"
           >
             {/* Header con búsqueda */}
             <div className="p-4 bg-gradient-to-r from-blue-50 to-purple-50 border-b">

@@ -76,6 +76,19 @@
     }
   ],
 
+  "redirects": [
+    {
+      "source": "/sobre-mi",
+      "destination": "/sobre-nosotros",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:slug",
+      "destination": "/articulos/:slug",
+      "permanent": true
+    }
+  ],
+
   "rewrites": [
     {
       "source": "/((?!api/.*).*)",

@@ -193,15 +193,15 @@ body.light {
 }
 
 .glassmorphism {
-  background: rgba(15, 31, 24, 0.72);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(15, 31, 24, 1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .light .glassmorphism {
-  background: rgba(255, 255, 255, 0.86);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .neon-glow {
@@ -216,7 +216,7 @@ body.light {
 .app-splash {
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  @apply z-max;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -259,7 +259,7 @@ body.light {
   width: 68%;
   height: 68%;
   position: relative;
-  z-index: 2;
+  @apply z-sticky;
 }
 
 .app-splash__breath {
@@ -268,7 +268,7 @@ body.light {
   border-radius: 38%;
   background: radial-gradient(circle at center, rgba(16, 185, 129, 0.06), transparent 70%);
   pointer-events: none;
-  z-index: 1;
+  @apply z-content;
 }
 
 /* Light sweep animation */
@@ -278,7 +278,7 @@ body.light {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 3;
+  @apply z-header;
   mix-blend-mode: overlay;
   opacity: 0.6;
 }
@@ -413,7 +413,7 @@ body.light {
 .pwa-splash {
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  @apply z-max;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -540,7 +540,7 @@ body.light {
 
 .gift-reward-card::before {
   position: absolute;
-  z-index: -2;
+  @apply z-hide;
   inset: -55%;
   content: "";
   background: conic-gradient(
@@ -557,7 +557,7 @@ body.light {
 
 .gift-reward-card::after {
   position: absolute;
-  z-index: -1;
+  @apply z-hide;
   inset: 2px;
   border-radius: calc(0.75rem - 2px);
   content: "";

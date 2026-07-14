@@ -61,7 +61,7 @@ const ProductosFuxionPage = () => {
 
       {/* Hero Section */}
       <section className="hidden md:flex relative min-h-[60vh] items-center overflow-hidden pt-28 bg-gradient-to-br from-[#f0faf4] via-white to-[#e8f5e9] dark:from-[#0f1f18] dark:via-[#111827] dark:to-[#1b1630]">
-        <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-12">
+        <div className="relative z-content w-full max-w-6xl mx-auto px-6 py-12">
           <div className="max-w-3xl">
             <motion.p
               className="inline-flex items-center rounded-full border border-emerald-200 bg-white/80 px-4 py-2 text-sm font-semibold text-emerald-700 shadow-sm dark:border-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300 mb-6"
@@ -112,7 +112,7 @@ const ProductosFuxionPage = () => {
       </section>
 
       {/* Trust badges */}
-      <section className="w-full max-w-6xl mx-auto px-6 -mt-8 relative z-20">
+      <section className="w-full max-w-6xl mx-auto px-6 -mt-8 relative z-sticky">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
             { icon: <ShieldCheck className="h-5 w-5 text-emerald-600" />, title: 'Compra asistida', text: 'Te orientamos antes de comprar para elegir el producto adecuado.' },

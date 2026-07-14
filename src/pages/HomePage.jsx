@@ -281,7 +281,7 @@ const HomePage = () => {
 
       {/* SECCIÓN 1 – HERO (Desktop only) */}
       <section className="relative min-h-[55vh] hidden md:flex items-center overflow-hidden pt-8 sm:pt-10 lg:pt-12 pb-6 lg:pb-0 bg-gradient-to-br from-[#f7faf4] via-white to-[#edf7ee] dark:from-[#0f1f18] dark:via-[#111827] dark:to-[#1b1630]">
-        <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 lg:px-8 xl:px-16 py-4 lg:py-16">
+        <div className="relative z-content w-full max-w-[1440px] mx-auto px-6 lg:px-8 xl:px-16 py-4 lg:py-16">
           <div className="flex flex-col lg:grid lg:grid-cols-[55fr_45fr] gap-8 lg:gap-16 xl:gap-24 items-center">
             <div className="text-center lg:text-left flex flex-col items-center lg:items-start">
               <motion.p
@@ -363,7 +363,7 @@ const HomePage = () => {
                 initial={{ opacity: 0, x: -20, y: 10 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{ delay: 0.8, type: 'spring', stiffness: 100 }}
-                className="absolute -top-6 -left-6 z-20 bg-white/85 dark:bg-gray-900/85 backdrop-blur-xl border border-emerald-100/50 dark:border-emerald-800/50 rounded-2xl p-3.5 shadow-xl flex items-center gap-3 hidden sm:flex"
+                className="absolute -top-6 -left-6 z-sticky bg-white/85 dark:bg-gray-900/85 backdrop-blur-xl border border-emerald-100/50 dark:border-emerald-800/50 rounded-2xl p-3.5 shadow-xl flex items-center gap-3 hidden sm:flex"
               >
                 <div className="bg-emerald-100 dark:bg-emerald-900/50 p-2 rounded-full">
                   <HugeiconsIcon icon={Leaf01Icon} className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
@@ -379,7 +379,7 @@ const HomePage = () => {
                 initial={{ opacity: 0, x: 20, y: -10 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{ delay: 1, type: 'spring', stiffness: 100 }}
-                className="absolute -bottom-6 -right-4 lg:-right-8 z-20 bg-white/85 dark:bg-gray-900/85 backdrop-blur-xl border border-emerald-100/50 dark:border-emerald-800/50 rounded-2xl p-3.5 shadow-xl flex items-center gap-3 hidden sm:flex"
+                className="absolute -bottom-6 -right-4 lg:-right-8 z-sticky bg-white/85 dark:bg-gray-900/85 backdrop-blur-xl border border-emerald-100/50 dark:border-emerald-800/50 rounded-2xl p-3.5 shadow-xl flex items-center gap-3 hidden sm:flex"
               >
                 <div className="bg-emerald-500 p-2 rounded-full shadow-inner border-2 border-white dark:border-gray-800">
                   <HugeiconsIcon icon={CheckmarkCircle02Icon} className="h-5 w-5 text-white" />
@@ -1025,7 +1025,6 @@ const CertificationsCarousel = () => {
       bottom:    window.innerHeight - rect.top + 14,
       left:      leftClamped,
       width:     TOOLTIP_W,
-      zIndex:    9999,
     });
     setActiveId(uniqueId);
     setIsPaused(true);
@@ -1066,8 +1065,8 @@ const CertificationsCarousel = () => {
       </div>
 
       {/* Edge fades */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white dark:from-card to-transparent z-10" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white dark:from-card to-transparent z-10" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white dark:from-card to-transparent z-content" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white dark:from-card to-transparent z-content" />
 
       {/* Scrolling track */}
       <div
@@ -1121,7 +1120,7 @@ const CertificationsCarousel = () => {
             exit={{    opacity: 0, y: 10, scale: 0.95 }}
             transition={{ type: 'spring', stiffness: 420, damping: 30 }}
             style={tipStyle}
-            className="pointer-events-none"
+            className="pointer-events-none z-max"
           >
             {/* Arrow pointing down toward the card */}
             <div className="absolute bottom-[-6px] left-1/2 -translate-x-1/2 w-3 h-3 rotate-45 bg-white dark:bg-gray-900 border-r border-b border-emerald-200 dark:border-emerald-800" />

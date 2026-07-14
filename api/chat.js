@@ -113,10 +113,22 @@ const levenshteinDistance = (a, b) => {
   return matrix[b.length][a.length];
 };
 
-const isFuzzyMatch = (userWord, productName) => {
+const isFuzzyMatch = (userWord, productName, fullText = '') => {
   if (!userWord || !productName) return false;
+  // Productos cortos (<=3 chars): exigir coincidencia de palabra completa
+  if (productName.length <= 3) {
+    if (userWord === productName) {
+      // Si hay texto completo disponible, verificar word boundary
+      if (fullText) {
+        const escaped = productName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const wbPattern = new RegExp('\\b' + escaped + '\\b');
+        return wbPattern.test(fullText);
+      }
+      return true;
+    }
+    return false;
+  }
   if (productName.includes(userWord) || userWord.includes(productName)) {
-    if (productName.length <= 3 && userWord.length > productName.length + 2) return false;
     return true;
   }
   const maxLen = Math.max(userWord.length, productName.length);
@@ -240,12 +252,12 @@ const getMentionedProductsFromText = (text = '') => {
       for (const userWord of userWords) {
         if (userWord.length <= 2) continue;
         if (['que', 'para', 'como', 'con', 'por', 'del', 'las', 'los', 'una', 'uno'].includes(userWord)) continue;
-        if (isFuzzyMatch(userWord, entry.normalized)) {
+        if (isFuzzyMatch(userWord, entry.normalized, normalizedText)) {
           matchedProducts.add(entry.original);
           break;
         }
         for (const productWord of productWords) {
-          if (isFuzzyMatch(userWord, productWord)) {
+          if (isFuzzyMatch(userWord, productWord, normalizedText)) {
             matchedProducts.add(entry.original);
             break;
           }
@@ -746,6 +758,15 @@ CORRECCION CRITICA SOBRE PASSION Y VITAENERGIA:
 - PASSION es un producto de VITALIDAD Y ENERGIA. Contiene ginseng, jalea real, guarana y aminoacidos. Ayuda con la circulacion, la potencia sexual, la energia y las migranas. NO es para dormir, NO es para relajarse, NO contiene pasiflora ni melatonina.
 - VITAENERGIA es un multivitaminico energizante con vitaminas, minerales, fibra prebiotica, camu camu y luteina. Ayuda a disipar la fatiga y mejorar la energia diaria.
 - NO confundas PASSION con un producto para dormir o relajarse. PASSION es ENERGETICO, no relajante.
+
+MODO EDUCATIVO DE INGREDIENTES:
+Si el usuario pregunta sobre un ingrediente natural de forma conceptual (por ejemplo: "¿Que es la chlorella?", "¿Para que sirve el camu camu?", "Beneficios del jengibre"), puedes explicar las propiedades generales del ingrediente usando tu conocimiento, siempre que:
+- Dejes claro que la informacion es educativa y de bienestar general.
+- NO prometas curas, tratamientos ni resultados medicos.
+- Menciones que ese ingrediente esta presente en los productos FuXion correspondientes (si aplica).
+- NO inventes ingredientes que no aparezcan en las fichas tecnicas de los productos.
+- Ejemplo: "La chlorella es una microalga rica en clorofila y nutrientes. En la linea FuXion, esta presente en Alpha Balance, orientado al equilibrio y la limpieza interna."
+Esto te permite educar al usuario sin salirte de tu rol de asesor de bienestar.
 `;
 };
 
@@ -982,7 +1003,8 @@ const SUPABASE_EVENTS_TABLE = 'chat_events';
 // v4: Conversation Reasoning Engine (CRE) - razonamiento estructurado + plan de bienestar + detección de personalidad
 // v5: Medical Risk Assessment (MRA) - no derivar por enfermedad, continuar conversación
 // v6: Corrección crítica PASSION vs VITAENERGÍA - PASSION es energético, no para dormir
-const CACHE_VERSION = 'v6';
+// v7: Modo educativo de ingredientes + sanitización de listas preserva guiones + word boundary en fuzzy match + MRA dinámico + detección de insistencia
+const CACHE_VERSION = 'v7';
 
 const supabase = USE_SUPABASE
   ? createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: false } })
@@ -1267,6 +1289,65 @@ const classifyErrorCause = (providerName, error) => {
 };
 
 // ===================================================================
+// DETECCIÓN DE INSISTENCIA DE SOPORTE HUMANO
+// Cuenta mensajes consecutivos donde el usuario pide hablar con un humano,
+// expresa queja o solicita soporte. Si alcanza el umbral, se activa
+// la derivación directa a WhatsApp sin que el bot intente retener.
+// ===================================================================
+const SUPPORT_INSISTENCE_PATTERNS = [
+  /\b(asesor|humano|persona real|hablar con alguien|hablar con una persona|necesito ayuda real|quiero hablar con un asesor|contactar con un asesor|asesor humano|atenci[oó]n personalizada)\b/i,
+  /\b(reclamo|queja|problema con mi pedido|inconveniente|no me llego|no me llegó|pedido malo|pedido incorrecto|devoluci[oó]n|reembolso)\b/i,
+  /\b(no me sirve|no funciona|no me ayudas|no entiendes|quiero hablar con daniel|hablar con daniel falcon|necesito que me responda una persona)\b/i
+];
+
+const SUPPORT_INSISTENCE_THRESHOLD = 2;
+
+// Mapa de sesiones con su contador de insistencia
+const sessionInsistenceTracker = new Map();
+
+// Limpieza periódica de registros de insistencia (cada 30 minutos)
+setInterval(() => {
+  const now = Date.now();
+  for (const [key, data] of sessionInsistenceTracker.entries()) {
+    if (now - data.lastActivity > 60 * 60 * 1000) { // 1 hora
+      sessionInsistenceTracker.delete(key);
+    }
+  }
+}, 30 * 60 * 1000);
+
+/**
+ * Evalúa la insistencia de soporte del usuario.
+ * @param {string} sessionId - ID de sesión
+ * @param {string} userMessage - Mensaje del usuario
+ * @returns {{ count: number, shouldEscalate: boolean }} Estado de insistencia
+ */
+const evaluateSupportInsistence = (sessionId, userMessage) => {
+  if (!sessionId) return { count: 0, shouldEscalate: false };
+
+  const isInsistent = SUPPORT_INSISTENCE_PATTERNS.some(pattern => pattern.test(userMessage));
+
+  let tracker = sessionInsistenceTracker.get(sessionId);
+  if (!tracker) {
+    tracker = { count: 0, lastActivity: Date.now() };
+    sessionInsistenceTracker.set(sessionId, tracker);
+  }
+
+  tracker.lastActivity = Date.now();
+
+  if (isInsistent) {
+    tracker.count += 1;
+  } else {
+    // Si el usuario cambia de tema, reiniciar el contador
+    tracker.count = 0;
+  }
+
+  return {
+    count: tracker.count,
+    shouldEscalate: tracker.count >= SUPPORT_INSISTENCE_THRESHOLD
+  };
+};
+
+// ===================================================================
 // SANITIZACIÓN FINAL DE RESPUESTAS (eliminar cualquier Markdown residual)
 // ===================================================================
 const sanitizeOutput = (text = '') => {
@@ -1286,10 +1367,11 @@ const sanitizeOutput = (text = '') => {
   cleaned = cleaned.replace(/```[\s\S]*?```/g, '');
   // Eliminar `código inline`
   cleaned = cleaned.replace(/`([^`]+)`/g, '$1');
-  // Eliminar listas Markdown (- o * al inicio de línea)
-  cleaned = cleaned.replace(/^\s*[-*]\s+/gm, '');
-  // Eliminar listas numeradas Markdown (1. 2. etc)
-  cleaned = cleaned.replace(/^\s*\d+\.\s+/gm, '');
+  // Limpiar asteriscos de lista Markdown convirtiéndolos a guiones planos
+  // (se preservan los guiones porque el prompt instruye a la IA a usarlos)
+  cleaned = cleaned.replace(/^\s*\*\s+/gm, '- ');
+  // Eliminar listas numeradas Markdown (1. 2. etc) convirtiéndolas a guiones
+  cleaned = cleaned.replace(/^\s*\d+\.\s+/gm, '- ');
   // Eliminar tablas Markdown REALES (formato de tabla con | separadores)
   // Solo elimina líneas que tengan formato de tabla markdown:
   // - Líneas que contengan | y tengan al menos 2 pipes (| algo | algo |)
@@ -1395,9 +1477,13 @@ export default async function handler(req, res) {
   processUserMessage(sessionId, userMessage, detectedProducts);
 
   // Medical Risk Assessment: evaluar nivel de riesgo
-  const riskAssessment = assessRisk(userMessage);
-  const riskContext = generateRiskContext(userMessage);
+  const riskAssessment = assessRisk(userMessage, sessionId);
+  const riskContext = generateRiskContext(userMessage, sessionId);
   debugLog('MRA', `Nivel de riesgo: ${riskAssessment.level}, Accion: ${riskAssessment.action}`);
+
+  // Insistence Detection: evaluar si el usuario insiste en soporte humano
+  const insistence = evaluateSupportInsistence(sessionId, userMessage);
+  debugLog('INSISTENCE', `Count: ${insistence.count}, Escalate: ${insistence.shouldEscalate}`);
 
   // Conversation Reasoning Engine: generar contexto razonado
   const profile = getOrCreateProfile(sessionId);
@@ -1640,6 +1726,7 @@ export default async function handler(req, res) {
     //   - El backend detecta riesgo nivel 3 (urgencia médica)
     //   - Hay un error técnico que impide continuar
     //   - El perfil detecta modo advisor_premium con alta confianza
+    //   - El usuario insiste 2+ veces consecutivas pidiendo soporte humano
     showWhatsApp: false,
     advisorReason: null,
     // healthRisk: información sobre evaluación de riesgo médico
@@ -1662,7 +1749,9 @@ export default async function handler(req, res) {
     // Business Opportunity flags
     isBusinessOpportunity: false,
     showOpportunityVideo: false,
-    showOpportunityAdvisor: false
+    showOpportunityAdvisor: false,
+    // Insistence tracking
+    supportInsistence: insistence.count
   };
 
   // Detectar intención de oportunidad de negocio
@@ -1685,6 +1774,11 @@ export default async function handler(req, res) {
     responseContract.showWhatsApp = true;
     responseContract.advisorReason = 'Se detectó una situación que requiere atención médica inmediata.';
     responseContract.advisorRecommendation = 'emergency';
+  } else if (insistence.shouldEscalate) {
+    // Insistencia detectada: el usuario ha pedido soporte humano 2+ veces consecutivas
+    responseContract.showWhatsApp = true;
+    responseContract.advisorReason = `El cliente ha solicitado soporte humano ${insistence.count} veces consecutivas.`;
+    responseContract.advisorRecommendation = 'insistence_escalation';
   } else if (/\b(asesor|humano|whatsapp|hablar con un asesor|quiero hablar con un asesor|necesito un asesor|contactar con un asesor|asesor humano)\b/i.test(userMessage)) {
     // El usuario solicita explícitamente un asesor humano
     responseContract.showWhatsApp = true;

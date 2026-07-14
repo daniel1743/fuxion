@@ -155,7 +155,7 @@ const OpportunityVideo = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 bg-black/70 backdrop-blur-sm"
+            className="fixed inset-0 z-max flex items-center justify-center p-4 sm:p-6 bg-black/70 backdrop-blur-sm"
             onClick={handleBackdropClick}
           >
             <motion.div
@@ -170,7 +170,7 @@ const OpportunityVideo = () => {
               {/* ── Close button ──────────────────────────────── */}
               <button
                 onClick={handleClose}
-                className="absolute top-3 right-3 z-20 w-9 h-9 rounded-full bg-black/50 hover:bg-black/70 text-white flex items-center justify-center transition-colors"
+                className="absolute top-3 right-3 z-content w-9 h-9 rounded-full bg-black/50 hover:bg-black/70 text-white flex items-center justify-center transition-colors"
                 aria-label="Cerrar video"
               >
                 <X className="w-5 h-5" />

@@ -330,7 +330,7 @@ const HelpCenterPage = () => {
           <div className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full bg-emerald-50/50 dark:bg-emerald-800/10 blur-2xl" />
         </div>
 
-        <div className="relative z-10 w-full max-w-4xl mx-auto px-6 py-16 md:py-24 text-center">
+        <div className="relative z-content w-full max-w-4xl mx-auto px-6 py-16 md:py-24 text-center">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}

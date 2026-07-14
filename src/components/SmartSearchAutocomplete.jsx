@@ -110,7 +110,7 @@ const SmartSearchAutocomplete = ({
     <div className={`relative w-full ${className}`} ref={containerRef}>
       <form 
         onSubmit={(e) => { e.preventDefault(); handleKeyDown({ key: 'Enter', preventDefault: () => {} }); }}
-        className="w-full h-[52px] bg-white rounded-full shadow-xl shadow-black/10 flex items-center px-5 gap-3 border border-white focus-within:scale-[1.02] transition-transform relative z-50"
+        className="w-full h-[52px] bg-white rounded-full shadow-xl shadow-black/10 flex items-center px-5 gap-3 border border-white focus-within:scale-[1.02] transition-transform relative z-dropdown"
       >
         <HugeiconsIcon icon={Search01Icon} className="h-[22px] w-[22px] text-emerald-800/50" />
         <input
@@ -136,7 +136,7 @@ const SmartSearchAutocomplete = ({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.15 }}
-            className="absolute top-[60px] left-0 right-0 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden z-50"
+            className="absolute top-[60px] left-0 right-0 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden z-dropdown"
             role="listbox"
           >
             {results.length > 0 ? (

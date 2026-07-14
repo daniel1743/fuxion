@@ -38,7 +38,7 @@ const MobileBottomNav = () => {
   ];
 
   return (
-    <div className="md:hidden fixed bottom-0 left-0 right-0 z-[60] bg-white/90 dark:bg-[#0a1410]/90 backdrop-blur-xl border-t border-gray-200/50 dark:border-emerald-900/50 pb-[env(safe-area-inset-bottom)] shadow-[0_-4px_24px_rgba(0,0,0,0.06)]">
+    <div className="md:hidden fixed bottom-0 left-0 right-0 z-nav bg-white/90 dark:bg-[#0a1410]/90 backdrop-blur-xl border-t border-gray-200/50 dark:border-emerald-900/50 pb-[env(safe-area-inset-bottom)] shadow-[0_-4px_24px_rgba(0,0,0,0.06)]">
       <div className="flex items-center justify-between px-2 h-[68px]">
         {navItems.map((item) => {
           const isActive = currentPath === item.path || (item.path !== '/' && currentPath.startsWith(item.path));
@@ -54,7 +54,7 @@ const MobileBottomNav = () => {
               {isActive && (
                 <motion.div
                   layoutId="bottomNavIndicator"
-                  className="absolute inset-0 bg-emerald-50 dark:bg-emerald-900/30 rounded-2xl scale-75 -z-10"
+                  className="absolute inset-0 bg-emerald-50 dark:bg-emerald-900/30 rounded-2xl scale-75 z-hide"
                   transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                 />
               )}

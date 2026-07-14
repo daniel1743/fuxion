@@ -118,8 +118,8 @@ const TestimonialsSection = ({ title, subtitle, variant = 'default', showForm = 
         onMouseLeave={() => setIsPaused(false)}
       >
         {/* Gradient edges */}
-        <div className={`absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r ${gradients.left} to-transparent pointer-events-none z-10`} />
-        <div className={`absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l ${gradients.right} to-transparent pointer-events-none z-10`} />
+        <div className={`absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r ${gradients.left} to-transparent pointer-events-none z-content`} />
+        <div className={`absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l ${gradients.right} to-transparent pointer-events-none z-content`} />
 
         <div
           className="flex gap-6 w-max px-4"

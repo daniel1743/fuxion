@@ -60,7 +60,7 @@ const PwaInstallPrompt = () => {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 18, scale: 0.97 }}
           transition={{ duration: 0.25 }}
-          className="fixed bottom-5 left-4 z-[70] w-[calc(100%-2rem)] max-w-sm rounded-2xl border border-emerald-200 bg-background/95 p-4 shadow-2xl backdrop-blur-md sm:bottom-6 sm:left-6"
+          className="fixed bottom-5 left-4 z-toast w-[calc(100%-2rem)] max-w-sm rounded-2xl border border-emerald-200 bg-background/95 p-4 shadow-2xl backdrop-blur-md sm:bottom-6 sm:left-6"
           aria-label="Instalar aplicación"
         >
           <button
