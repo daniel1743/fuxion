@@ -146,7 +146,7 @@ const ProductPage = () => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.4 }}
-      className="container mx-auto px-6 py-28"
+      className="min-h-screen bg-gray-50 dark:bg-gray-950 md:bg-background pb-20"
     >
       <SEO
         title={buildProductTitle(product)}
