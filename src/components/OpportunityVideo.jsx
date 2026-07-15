@@ -217,7 +217,7 @@ const OpportunityVideo = () => {
                     </p>
                     <button
                       onClick={handleOpenInYouTube}
-                      className="inline-flex items-center gap-2 bg-white text-emerald-900 hover:bg-emerald-50 font-bold rounded-[20px] px-6 py-3 shadow-lg transition-all hover:shadow-xl active:scale-95"
+                      className="inline-flex items-center gap-2 bg-white text-emerald-900 hover:bg-emerald-50 font-bold rounded-2xl px-6 py-3 shadow-lg transition-all hover:shadow-xl active:scale-95"
                     >
                       <Youtube className="w-5 h-5" />
                       Ver video en YouTube

@@ -121,7 +121,7 @@ const SmartSearchAutocomplete = ({
           onFocus={() => setIsFocused(true)}
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
-          className="w-full h-full bg-transparent text-[15px] font-medium text-emerald-950 placeholder:text-emerald-900/40 outline-none flex-1"
+          className="w-full h-full bg-transparent text-sm font-medium text-emerald-950 placeholder:text-emerald-900/40 outline-none flex-1"
           autoFocus={autoFocus}
           aria-label={placeholder}
           aria-expanded={showDropdown}

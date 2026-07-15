@@ -195,7 +195,7 @@ const PremiumInput = forwardRef(
       'text-base md:text-sm text-gray-800',
       'bg-white/75 backdrop-blur-sm',
       'border border-white/30',
-      'rounded-[20px]',
+      'rounded-2xl',
       'shadow-sm',
       'transition-all duration-200 ease-out',
       'outline-none',

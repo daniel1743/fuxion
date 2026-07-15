@@ -158,7 +158,7 @@ const EvidenceInteractions = ({ evidenceId }) => {
                 <div key={comment.id} className="rounded-lg border border-border bg-background p-3">
                   <div className="flex items-start justify-between gap-3">
                     <p className="text-sm font-semibold">{comment.author_name}</p>
-                    <time className="shrink-0 text-[11px] text-muted-foreground">
+                    <time className="shrink-0 text-xxs text-muted-foreground">
                       {new Date(comment.created_at).toLocaleDateString('es-CL')}
                     </time>
                   </div>

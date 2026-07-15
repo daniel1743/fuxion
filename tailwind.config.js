@@ -16,6 +16,9 @@ module.exports = {
 			},
 		},
 		extend: {
+			fontSize: {
+				'xxs': ['0.625rem', { lineHeight: '1rem' }],
+			},
 			zIndex: {
 				'hide': '-1',
 				'base': '0',
@@ -64,11 +67,32 @@ module.exports = {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))',
 				},
+				fuxion: {
+					DEFAULT: '#0E5C53',
+					light: '#136a64',
+				},
+				whatsapp: {
+					DEFAULT: '#25D366',
+					hover: '#1fb85a',
+					bg: '#F1FDF8',
+				},
+				surface: {
+					dark: '#0a1410',
+					muted: '#0f1f18',
+					elevated: '#1a2e25',
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)',
+				'2xl': '20px',
+				'3xl': '28px',
+			},
+			boxShadow: {
+				'premium-soft': '0 12px 30px -10px rgba(14,92,83,0.4)',
+				'premium-hover': '0 8px 32px -4px rgba(0,0,0,0.12), 0 2px 8px -2px rgba(0,0,0,0.06)',
+				'premium-dark': '0 8px 32px -4px rgba(0,0,0,0.4)',
 			},
 			keyframes: {
 				'accordion-down': {

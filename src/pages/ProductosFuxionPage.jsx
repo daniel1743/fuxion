@@ -60,7 +60,7 @@ const ProductosFuxionPage = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="hidden md:flex relative min-h-[60vh] items-center overflow-hidden pt-28 bg-gradient-to-br from-[#f0faf4] via-white to-[#e8f5e9] dark:from-[#0f1f18] dark:via-[#111827] dark:to-[#1b1630]">
+      <section className="hidden md:flex relative min-h-[60vh] items-center overflow-hidden pt-28 bg-gradient-to-br from-[#f0faf4] via-white to-[#e8f5e9] dark:from-surface-muted dark:via-[#111827] dark:to-[#1b1630]">
         <div className="relative z-content w-full max-w-6xl mx-auto px-6 py-12">
           <div className="max-w-3xl">
             <motion.p

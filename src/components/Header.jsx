@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { HugeiconsIcon } from '@hugeicons/react';
 import {
   Home03Icon,
+  ShoppingCart01Icon,
   ShoppingBag03Icon,
   Leaf01Icon,
   BookOpen02Icon,
@@ -14,7 +15,6 @@ import {
   UserIcon,
   Message01Icon,
   ChevronRightIcon,
-  ShoppingCart01Icon,
   Menu01Icon,
   Cancel01Icon,
   LinkSquare01Icon,
@@ -23,9 +23,9 @@ import {
   TrendingUp,
   InstagramIcon,
   ChevronDownIcon,
+  Notification01Icon,
 } from '@hugeicons/core-free-icons';
 import { Button } from '@/components/ui/button';
-import { useCart } from '@/context/CartContext';
 import { useSiteSettings } from '@/context/SiteSettingsContext';
 import { useAuth } from '@/context/AuthContext';
 import { useNotifications } from '@/context/NotificationContext';
@@ -37,6 +37,7 @@ const officialStoreUrl = 'https://ifuxion.com/daniel/enrollment/chooseperson';
 // ── Drawer navigation items ────────────────────────────────────
 const drawerNavItems = [
   { label: 'Inicio', icon: Home03Icon, path: '/' },
+  { label: 'Mi carrito', subtitle: 'Ver mis productos', icon: ShoppingCart01Icon, path: '/carrito' },
   { label: 'Productos', subtitle: 'Catálogo FuXion', icon: ShoppingBag03Icon, path: '/explorar' },
   { label: 'Sobre Nosotros', subtitle: 'Nuestra historia y valores', icon: Leaf01Icon, path: '/sobre-nosotros' },
   { label: 'Objetivos de bienestar', subtitle: 'Encuentra lo ideal para ti', icon: BookOpen02Icon, path: '/opiniones' },
@@ -106,7 +107,7 @@ const DesktopDropdown = ({ label, items, navigate }) => {
             transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
             className="absolute top-full left-1/2 -translate-x-1/2 z-dropdown pt-2 min-w-[220px]"
           >
-            <div className="bg-white dark:bg-[#0f1f18] border border-emerald-100/80 dark:border-emerald-800/40 rounded-2xl shadow-[0_8px_32px_-4px_rgba(0,0,0,0.12),0_2px_8px_-2px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_-4px_rgba(0,0,0,0.4)] overflow-hidden p-1.5 space-y-0.5">
+            <div className="bg-white dark:bg-surface-muted border border-emerald-100/80 dark:border-emerald-800/40 rounded-2xl shadow-premium-hover dark:shadow-premium-dark overflow-hidden p-1.5 space-y-0.5">
               {items.map((item) => {
                 const Icon = item.icon;
                 const handleSelect = () => {
@@ -131,7 +132,7 @@ const DesktopDropdown = ({ label, items, navigate }) => {
                         {item.label}
                       </p>
                       {item.desc && (
-                        <p className="text-[11px] text-muted-foreground mt-0.5 truncate">
+                        <p className="text-xxs text-muted-foreground mt-0.5 truncate">
                           {item.desc}
                         </p>
                       )}
@@ -149,7 +150,6 @@ const DesktopDropdown = ({ label, items, navigate }) => {
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { getCartCount } = useCart();
   const { settings } = useSiteSettings();
   const { isAuthenticated, user, openAuthModal, logout } = useAuth();
   const navigate = useNavigate();
@@ -167,9 +167,9 @@ const Header = () => {
 
   // Listen for custom event from MobileHomeHeroSurface
   useEffect(() => {
-    const handleOpenMenu = () => setIsMenuOpen(true);
-    window.addEventListener('open-mobile-menu', handleOpenMenu);
-    return () => window.removeEventListener('open-mobile-menu', handleOpenMenu);
+    const handleToggleMenu = () => setIsMenuOpen(prev => !prev);
+    window.addEventListener('open-mobile-menu', handleToggleMenu);
+    return () => window.removeEventListener('open-mobile-menu', handleToggleMenu);
   }, []);
 
   const location = useLocation();
@@ -196,6 +196,10 @@ const Header = () => {
     if (!isMenuOpen) return;
 
     const handleClickOutside = (event) => {
+      // Ignore clicks on the menu toggle buttons to prevent race conditions
+      if (event.target.closest('button[aria-label="Menú"]') || event.target.closest('button[aria-label="Cerrar menú"]')) {
+        return;
+      }
       if (drawerPanelRef.current && !drawerPanelRef.current.contains(event.target)) {
         setIsMenuOpen(false);
       }
@@ -242,11 +246,10 @@ const Header = () => {
     }),
   };
 
-  const cartCount = getCartCount();
   const { unreadCount = 0 } = useNotifications() || {};
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-header pointer-events-none md:pointer-events-auto md:glassmorphism h-0 md:h-auto overflow-visible transition-transform duration-300 ease-out ${headerHidden ? 'md:-translate-y-full' : 'md:translate-y-0'}`}>
+    <header className={`fixed top-0 left-0 right-0 z-header pointer-events-auto glassmorphism overflow-visible transition-transform duration-300 ease-out ${headerHidden ? '-translate-y-full' : 'translate-y-0'}`}>
       <nav className="container mx-auto hidden md:flex items-center justify-between gap-1 px-3 py-2 sm:px-6 sm:py-3 pointer-events-auto">
         {/* ── Left: Brand / Mobile user greeting ──────────────── */}
         {/* Desktop brand — always visible on md+ */}
@@ -270,7 +273,7 @@ const Header = () => {
                 />
               </div>
               <div className="min-w-0">
-                <p className="text-[11px] text-muted-foreground leading-none">Hola,</p>
+                <p className="text-xxs text-muted-foreground leading-none">Hola,</p>
                 <p className="text-sm font-bold text-foreground leading-tight truncate">{user.name?.split(' ')[0] || 'Cliente'}</p>
               </div>
             </>
@@ -337,19 +340,18 @@ const Header = () => {
 
         {/* ── Right: Actions ──────────────────────────────────── */}
         <div className="flex shrink-0 items-center gap-1 sm:gap-3">
-          {/* Cart */}
-          <Link
-            to="/carrito"
+          {/* Notifications */}
+          <button
             className="relative text-muted-foreground hover:text-foreground transition-colors p-1.5"
-            aria-label="Carrito de compras"
+            aria-label="Notificaciones"
           >
-            <HugeiconsIcon icon={ShoppingCart01Icon} className="h-[26px] w-[26px]" />
-            {cartCount > 0 && (
-              <span className="absolute -top-0.5 -right-0.5 bg-emerald-600 text-white text-[10px] rounded-full h-[18px] w-[18px] flex items-center justify-center font-bold shadow-sm">
-                {cartCount > 9 ? '9+' : cartCount}
+            <HugeiconsIcon icon={Notification01Icon} className="h-[26px] w-[26px]" />
+            {unreadCount > 0 && (
+              <span className="absolute -top-0.5 -right-0.5 bg-emerald-600 text-white text-xxs rounded-full h-[18px] w-[18px] flex items-center justify-center font-bold shadow-sm">
+                {unreadCount > 9 ? '9+' : unreadCount}
               </span>
             )}
-          </Link>
+          </button>
 
           {/* User menu (desktop) */}
           <div className="hidden sm:block">
@@ -400,13 +402,13 @@ const Header = () => {
               initial="closed"
               animate="open"
               exit="closed"
-              className="fixed top-0 right-0 z-modal h-[calc(100dvh-68px-env(safe-area-inset-bottom))] w-[80vw] max-w-[320px] bg-white dark:bg-[#0f1f18] shadow-2xl md:hidden flex flex-col overflow-hidden rounded-l-[20px] pointer-events-auto"
+              className="fixed top-0 right-0 z-modal h-[100dvh] w-[80vw] max-w-[320px] bg-white dark:bg-surface-muted shadow-2xl md:hidden flex flex-col overflow-hidden pointer-events-auto"
             >
               {/* Close button — top right */}
               <button
                 type="button"
                 onClick={() => setIsMenuOpen(false)}
-                className="absolute top-4 right-4 z-content flex items-center justify-center w-10 h-10 rounded-full bg-white dark:bg-[#1a2e25] shadow-md hover:shadow-lg transition-shadow duration-200"
+                className="absolute top-4 right-4 z-content flex items-center justify-center w-10 h-10 rounded-full bg-white dark:bg-surface-elevated shadow-md hover:shadow-lg transition-shadow duration-200"
                 aria-label="Cerrar menú"
               >
                 <HugeiconsIcon icon={Cancel01Icon} className="w-[22px] h-[22px] text-foreground" />
@@ -444,7 +446,7 @@ const Header = () => {
                     <h2 className="text-sm font-bold text-foreground tracking-tight">
                       {user.name}
                     </h2>
-                    <p className="text-[11px] text-muted-foreground mt-0.5">
+                    <p className="text-xxs text-muted-foreground mt-0.5">
                       Mi cuenta
                     </p>
                   </>
@@ -453,7 +455,7 @@ const Header = () => {
                     <h2 className="text-sm font-bold text-foreground tracking-tight">
                       Bienvenido
                     </h2>
-                    <p className="text-[11px] text-muted-foreground mt-0.5">
+                    <p className="text-xxs text-muted-foreground mt-0.5">
                       Explora nuestra tienda
                     </p>
                   </>
@@ -488,12 +490,12 @@ const Header = () => {
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className={`text-sm font-semibold ${
-                          isActive ? 'text-emerald-700 dark:text-emerald-300' : 'text-[#2d2d2d] dark:text-gray-300'
+                          isActive ? 'text-emerald-700 dark:text-emerald-300' : 'text-gray-800 dark:text-gray-300'
                         }`}>
                           {item.label}
                         </p>
                         {item.subtitle && (
-                          <p className="text-[11px] text-muted-foreground mt-0.5 truncate">
+                          <p className="text-xxs text-muted-foreground mt-0.5 truncate">
                             {item.subtitle}
                           </p>
                         )}
@@ -520,10 +522,10 @@ const Header = () => {
                     <HugeiconsIcon icon={Store01Icon} size={18} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-[#2d2d2d] dark:text-gray-300">
+                    <p className="text-sm font-semibold text-gray-800 dark:text-gray-300">
                       Tienda oficial
                     </p>
-                    <p className="text-[11px] text-muted-foreground mt-0.5 truncate">
+                    <p className="text-xxs text-muted-foreground mt-0.5 truncate">
                       Compra directa en FuXion
                     </p>
                   </div>

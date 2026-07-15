@@ -16,7 +16,7 @@ const ChatMessageSkeleton = ({ text = 'Falcon Assistant está escribiendo...' })
           <div className="bg-white/20 rounded-full p-0.5">
             <HugeiconsIcon icon={AiChat02Icon} size={14} className="text-white" />
           </div>
-          <span className="text-[11px] font-semibold text-white/90">Fuxion Assistant</span>
+          <span className="text-xxs font-semibold text-white/90">Fuxion Assistant</span>
         </div>
         <p className="text-sm text-white/80">{text}</p>
         <div className="flex items-center gap-1.5 pl-0.5 mt-1">

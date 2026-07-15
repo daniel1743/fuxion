@@ -228,13 +228,15 @@ const CookieConsentBanner = () => {
                   </div>
                   <h3 className="font-bold text-foreground text-base">Configurar Cookies</h3>
                 </div>
-                <button
+                <Button
+                  variant="ghost"
+                  size="icon"
                   onClick={closeModal}
-                  className="w-8 h-8 rounded-lg bg-muted hover:bg-muted/80 flex items-center justify-center transition-colors cursor-pointer"
+                  className="h-8 w-8 rounded-lg"
                   aria-label="Cerrar"
                 >
                   <X className="w-4 h-4 text-muted-foreground" strokeWidth={2} />
-                </button>
+                </Button>
               </div>
 
               {/* Body */}

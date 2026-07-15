@@ -38,7 +38,7 @@ const MobileBottomNav = () => {
   ];
 
   return (
-    <div className="md:hidden fixed bottom-0 left-0 right-0 z-nav bg-white/90 dark:bg-[#0a1410]/90 backdrop-blur-xl border-t border-gray-200/50 dark:border-emerald-900/50 pb-[env(safe-area-inset-bottom)] shadow-[0_-4px_24px_rgba(0,0,0,0.06)]">
+    <div className="md:hidden fixed bottom-0 left-0 right-0 z-nav bg-white/90 dark:bg-surface-dark/90 backdrop-blur-xl border-t border-gray-200/50 dark:border-emerald-900/50 pb-[env(safe-area-inset-bottom)] shadow-[0_-4px_24px_rgba(0,0,0,0.06)]">
       <div className="flex items-center justify-between px-2 h-[68px]">
         {navItems.map((item) => {
           const isActive = currentPath === item.path || (item.path !== '/' && currentPath.startsWith(item.path));
@@ -69,7 +69,7 @@ const MobileBottomNav = () => {
                 <HugeiconsIcon icon={Icon} className="w-5 h-5" strokeWidth={isActive ? 2.5 : 2} />
               </motion.div>
               <span 
-                className={`text-[10px] font-medium leading-none ${
+                className={`text-xxs font-medium leading-none ${
                   isActive 
                     ? 'text-emerald-700 dark:text-emerald-400 font-semibold' 
                     : 'text-gray-500 dark:text-gray-400'

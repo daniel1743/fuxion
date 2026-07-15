@@ -4,6 +4,7 @@ import { MessageCircle, X } from 'lucide-react';
 import { confirmAndOpenWhatsapp } from '@/lib/whatsapp';
 import { WhatsAppIcon } from '@/components/icons/BrandIcons';
 import { useScrollAware } from '@/components/ScrollAwareFloating';
+import { Button } from '@/components/ui/button';
 
 const SHOW_EVERY_MS = 90000;
 const AUTO_HIDE_MS = 14000;
@@ -90,26 +91,30 @@ const FloatingWhatsAppButton = () => {
           onTouchEnd={() => setIsHovered(false)}
         >
           <div className="flex items-center gap-2 rounded-full border border-emerald-500/20 bg-white/95 p-1.5 pr-2 shadow-xl backdrop-blur dark:bg-neutral-950/95">
-            <button
+            <Button
               type="button"
+              variant="whatsapp"
+              size="sm"
               onClick={handleOpenWhatsapp}
-              className="group inline-flex items-center gap-2 rounded-full bg-[#25D366] px-3 py-2 text-sm font-semibold text-white transition hover:bg-[#1fb85a] focus:outline-none focus:ring-2 focus:ring-[#25D366]/40"
+              className="group rounded-full pl-3 pr-4"
               aria-label="Hablar por WhatsApp con un asesor"
             >
-              <WhatsAppIcon className="h-5 w-5" />
+              <WhatsAppIcon className="h-5 w-5 mr-1" />
               <span className="hidden sm:inline">Asesor por WhatsApp</span>
-              <MessageCircle className="h-4 w-4 opacity-80 transition group-hover:translate-x-0.5" />
-            </button>
+              <MessageCircle className="h-4 w-4 opacity-80 transition group-hover:translate-x-0.5 ml-1" />
+            </Button>
 
-            <button
+            <Button
               type="button"
+              variant="ghost"
+              size="icon"
               onClick={() => setIsVisible(false)}
-              className="flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground transition hover:bg-muted hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
+              className="h-8 w-8 rounded-full"
               aria-label="Ocultar botón de WhatsApp"
               title="Ocultar"
             >
               <X className="h-4 w-4" />
-            </button>
+            </Button>
           </div>
         </motion.div>
       )}

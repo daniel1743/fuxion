@@ -185,7 +185,7 @@
 }
 
 body.dark {
-  @apply bg-gradient-to-br from-[#0f1f18] via-[#111827] to-[#1b1630];
+  @apply bg-gradient-to-br from-surface-muted via-[#111827] to-[#1b1630];
 }
 
 body.light {

@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
+import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Search, ShoppingCart, MessageCircle } from 'lucide-react';
 import { HugeiconsIcon } from '@hugeicons/react';
@@ -236,7 +237,7 @@ const HomePage = () => {
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
-                  className="text-[11px] text-emerald-50/70 leading-relaxed font-normal max-w-[95%] drop-shadow-sm"
+                  className="text-xxs text-emerald-50/70 leading-relaxed font-normal max-w-[95%] drop-shadow-sm"
                 >
                   Encuentra bebidas activas para energía, digestión y control de peso.
                 </motion.p>
@@ -248,7 +249,7 @@ const HomePage = () => {
                 whileTap={{ scale: 0.94 }}
                 transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
                 onClick={() => navigate('/explorar')}
-                className="bg-white text-[#0E5C53] px-5 py-2.5 rounded-full text-[13px] font-bold shadow-lg shadow-black/10 flex items-center gap-2 active:bg-gray-50 transition-colors w-fit shrink-0 mt-0.5"
+                className="bg-white text-fuxion px-5 py-2.5 rounded-full text-xs font-bold shadow-lg shadow-black/10 flex items-center gap-2 active:bg-gray-50 transition-colors w-fit shrink-0 mt-0.5"
               >
                 Explorar productos
               </motion.button>
@@ -280,7 +281,7 @@ const HomePage = () => {
       </div>
 
       {/* SECCIÓN 1 – HERO (Desktop only) */}
-      <section className="relative min-h-[55vh] hidden md:flex items-center overflow-hidden pt-8 sm:pt-10 lg:pt-12 pb-6 lg:pb-0 bg-gradient-to-br from-[#f7faf4] via-white to-[#edf7ee] dark:from-[#0f1f18] dark:via-[#111827] dark:to-[#1b1630]">
+      <section className="relative min-h-[55vh] hidden md:flex items-center overflow-hidden pt-8 sm:pt-10 lg:pt-12 pb-6 lg:pb-0 bg-gradient-to-br from-[#f7faf4] via-white to-[#edf7ee] dark:from-surface-muted dark:via-[#111827] dark:to-[#1b1630]">
         <div className="relative z-content w-full max-w-[1440px] mx-auto px-6 lg:px-8 xl:px-16 py-4 lg:py-16">
           <div className="flex flex-col lg:grid lg:grid-cols-[55fr_45fr] gap-8 lg:gap-16 xl:gap-24 items-center">
             <div className="text-center lg:text-left flex flex-col items-center lg:items-start">
@@ -370,7 +371,7 @@ const HomePage = () => {
                 </div>
                 <div>
                   <p className="text-sm font-extrabold text-foreground leading-none">100% Natural</p>
-                  <p className="text-[11px] font-medium text-muted-foreground mt-1">Origen vegetal</p>
+                  <p className="text-xxs font-medium text-muted-foreground mt-1">Origen vegetal</p>
                 </div>
               </motion.div>
 
@@ -386,7 +387,7 @@ const HomePage = () => {
                 </div>
                 <div>
                   <p className="text-sm font-extrabold text-foreground leading-none">Calidad Premium</p>
-                  <p className="text-[11px] font-medium text-muted-foreground mt-1">Fórmulas patentadas</p>
+                  <p className="text-xxs font-medium text-muted-foreground mt-1">Fórmulas patentadas</p>
                 </div>
               </motion.div>
             </motion.div>
@@ -435,18 +436,18 @@ const HomePage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="flex flex-col items-start rounded-2xl border border-gray-100/80 bg-white p-3.5 text-left shadow-md shadow-gray-200/50 dark:border-emerald-950/30 dark:bg-card dark:shadow-none"
               >
-                {/* Icon wrapper - small rounded-xl container styled like category grid */}
-                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400">
-                  <HugeiconsIcon icon={item.rawIcon} size={20} />
-                </div>
-                <h4 className="text-[11px] font-bold text-gray-900 dark:text-white leading-tight">
-                  {item.title}
-                </h4>
-                <p className="mt-1 text-[9px] text-gray-500 dark:text-gray-400 leading-snug">
-                  {item.text}
-                </p>
+                <Card variant="trust" className="p-3.5 items-start border-gray-100/80 dark:border-emerald-950/30">
+                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400">
+                    <HugeiconsIcon icon={item.rawIcon} size={20} />
+                  </div>
+                  <h4 className="text-xxs font-bold text-foreground leading-tight">
+                    {item.title}
+                  </h4>
+                  <p className="mt-1 text-[9px] text-muted-foreground leading-snug">
+                    {item.text}
+                  </p>
+                </Card>
               </motion.div>
             ))}
           </div>
@@ -460,13 +461,14 @@ const HomePage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.15 }}
-                className="flex gap-4 rounded-2xl border border-white/30 bg-white/70 backdrop-blur-sm p-5 shadow-sm hover:shadow-md transition-all duration-300 dark:border-emerald-900/30 dark:bg-card/70"
               >
-                <div className="text-emerald-600 dark:text-emerald-400 shrink-0">{item.icon}</div>
-                <div>
-                  <h2 className="font-bold text-foreground">{item.title}</h2>
-                  <p className="mt-1 text-sm text-muted-foreground">{item.text}</p>
-                </div>
+                <Card variant="trust" className="gap-4 p-5 hover:shadow-md transition-all duration-300">
+                  <div className="text-emerald-600 dark:text-emerald-400 shrink-0">{item.icon}</div>
+                  <div>
+                    <h2 className="font-bold text-foreground">{item.title}</h2>
+                    <p className="mt-1 text-sm text-muted-foreground">{item.text}</p>
+                  </div>
+                </Card>
               </motion.div>
             ))}
           </div>
@@ -566,37 +568,39 @@ const HomePage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.2 }}
-                className="bg-card rounded-2xl p-8 border border-emerald-100 dark:border-border transition-all duration-300 hover:border-primary hover:shadow-xl hover:-translate-y-1 flex flex-col h-full"
+                className="h-full"
               >
-                <div className="flex items-center gap-4 mb-4 text-primary">
-                  {solution.icon}
-                  <h3 className="text-2xl font-bold text-foreground">{solution.title}</h3>
-                </div>
-                <div className="flex-1">
-                  <p className="text-muted-foreground mb-6">{solution.subtitle}</p>
-                  <div className="mb-6">
-                    <p className="text-sm font-semibold text-foreground mb-2">Productos:</p>
-                    <p className="text-sm text-muted-foreground">{solution.products.join(', ')}</p>
+                <Card variant="feature">
+                  <div className="flex items-center gap-4 mb-4 text-primary">
+                    {solution.icon}
+                    <h3 className="text-2xl font-bold text-foreground">{solution.title}</h3>
                   </div>
-                  <div className="mb-6">
-                    <p className="text-sm font-semibold text-foreground mb-3">Beneficios:</p>
-                    <ul className="space-y-2">
-                      {solution.benefits.map((benefit, idx) => (
-                        <li key={idx} className="flex items-start gap-2 text-sm text-foreground">
-                          <HugeiconsIcon icon={CheckmarkCircle02Icon} size={20} className="text-primary flex-shrink-0 mt-0.5" />
-                          <span>{benefit}</span>
-                        </li>
-                      ))}
-                    </ul>
+                  <div className="flex-1">
+                    <p className="text-muted-foreground mb-6">{solution.subtitle}</p>
+                    <div className="mb-6">
+                      <p className="text-sm font-semibold text-foreground mb-2">Productos:</p>
+                      <p className="text-sm text-muted-foreground">{solution.products.join(', ')}</p>
+                    </div>
+                    <div className="mb-6">
+                      <p className="text-sm font-semibold text-foreground mb-3">Beneficios:</p>
+                      <ul className="space-y-2">
+                        {solution.benefits.map((benefit, idx) => (
+                          <li key={idx} className="flex items-start gap-2 text-sm text-foreground">
+                            <HugeiconsIcon icon={CheckmarkCircle02Icon} size={20} className="text-primary flex-shrink-0 mt-0.5" />
+                            <span>{benefit}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-                </div>
-                <Button
-                  fullWidth
-                  className="mt-auto"
-                  onClick={() => handleWhatsAppClick(`Hola, me interesa: ${solution.title}`)}
-                >
-                  {solution.buttonText} <HugeiconsIcon icon={ArrowRight02Icon} size={16} className="ml-2" />
-                </Button>
+                  <Button
+                    fullWidth
+                    className="mt-auto"
+                    onClick={() => handleWhatsAppClick(`Hola, me interesa: ${solution.title}`)}
+                  >
+                    {solution.buttonText} <HugeiconsIcon icon={ArrowRight02Icon} size={16} className="ml-2" />
+                  </Button>
+                </Card>
               </motion.div>
             ))}
           </div>
@@ -704,7 +708,7 @@ const HomePage = () => {
                       <div className="flex items-start justify-between mb-2">
                         <h3 className="text-xl font-bold text-foreground">{product.name}</h3>
                         {product.badge && (
-                          <span className="shrink-0 rounded-full bg-emerald-100 px-2.5 py-0.5 text-[10px] font-semibold text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300">
+                          <span className="shrink-0 rounded-full bg-emerald-100 px-2.5 py-0.5 text-xxs font-semibold text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300">
                             {product.badge}
                           </span>
                         )}
@@ -1056,11 +1060,11 @@ const CertificationsCarousel = () => {
       {/* Section header */}
       <div className="container mx-auto px-6 mb-8">
         <div className="flex items-center gap-3 justify-center">
-          <div className="h-px flex-1 max-w-[80px] bg-gradient-to-r from-transparent to-emerald-200 dark:to-emerald-800" />
+          <div className="h-px flex-1 max-w-20 bg-gradient-to-r from-transparent to-emerald-200 dark:to-emerald-800" />
           <p className="text-xs font-semibold text-emerald-700 dark:text-emerald-400 uppercase tracking-[0.18em]">
             Sellos y certificaciones de calidad
           </p>
-          <div className="h-px flex-1 max-w-[80px] bg-gradient-to-l from-transparent to-emerald-200 dark:to-emerald-800" />
+          <div className="h-px flex-1 max-w-20 bg-gradient-to-l from-transparent to-emerald-200 dark:to-emerald-800" />
         </div>
       </div>
 
@@ -1142,7 +1146,7 @@ const CertificationsCarousel = () => {
                       aria-label="Verificado"
                     />
                   </div>
-                  <span className="inline-block mt-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300">
+                  <span className="inline-block mt-1 px-2 py-0.5 rounded-full text-xxs font-semibold bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300">
                     {activeCert.type}
                   </span>
                 </div>
@@ -1159,7 +1163,7 @@ const CertificationsCarousel = () => {
                   icon={CheckmarkCircle02Icon}
                   className="h-3.5 w-3.5 text-emerald-500 shrink-0"
                 />
-                <p className="text-[10px] font-medium text-emerald-600 dark:text-emerald-400">
+                <p className="text-xxs font-medium text-emerald-600 dark:text-emerald-400">
                   Sello de calidad verificado por FuXion
                 </p>
               </div>

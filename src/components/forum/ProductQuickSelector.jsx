@@ -125,7 +125,7 @@ const ProductQuickSelector = ({ onActionSelect }) => {
                       <span className="text-xs text-gray-600 mt-2 text-center line-clamp-2 group-hover:text-blue-600 font-medium">
                         {product.name}
                       </span>
-                      <span className="text-[10px] text-gray-400 mt-1">
+                      <span className="text-xxs text-gray-400 mt-1">
                         {product.category}
                       </span>
                     </button>

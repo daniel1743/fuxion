@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { ShoppingCart, Info } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import { useCart } from '@/context/CartContext';
 import ProductModal from '@/components/ProductModal';
 import fuxionDatabase from '@/data/fuxion_database.json';
@@ -272,7 +273,7 @@ const ExplorePage = () => {
           <div className="flex overflow-x-auto gap-2 pb-2 mt-4 scrollbar-hide -mx-5 snap-x before:content-[''] before:w-5 before:shrink-0 before:block after:content-[''] after:w-5 after:shrink-0 after:block">
             <button
               onClick={() => navigate('/explorar')}
-              className={`whitespace-nowrap px-4 py-1.5 rounded-full text-[13px] font-bold border transition-colors snap-start shrink-0 ${
+              className={`whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold border transition-colors snap-start shrink-0 ${
                 !categoriaParam 
                   ? 'bg-white text-emerald-900 border-white shadow-sm' 
                   : 'bg-white/10 text-white border-white/20 hover:bg-white/20'
@@ -284,7 +285,7 @@ const ExplorePage = () => {
               <button
                 key={slug}
                 onClick={() => navigate(`/categoria/${slug}`)}
-                className={`whitespace-nowrap px-4 py-1.5 rounded-full text-[13px] font-bold border transition-colors snap-start shrink-0 ${
+                className={`whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold border transition-colors snap-start shrink-0 ${
                   categoriaParam === slug 
                     ? 'bg-white text-emerald-900 border-white shadow-sm' 
                     : 'bg-white/10 text-white border-white/20 hover:bg-white/20'
@@ -343,7 +344,7 @@ const ExplorePage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: Math.min(i * 0.01, 0.3) }}
             >
-              <div className="group relative bg-card rounded-xl overflow-hidden border border-border transition-all duration-200 hover:border-primary hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1 flex flex-col h-full">
+              <Card variant="product">
                 <div className="absolute inset-0 radial-gradient-glow opacity-0 group-hover:opacity-50 transition-opacity duration-200"></div>
 
                 {/* Image */}
@@ -371,7 +372,7 @@ const ExplorePage = () => {
                 </div>
 
                 {/* Content */}
-                <div className="p-4 flex flex-col flex-grow">
+                <CardContent className="p-4 flex flex-col flex-grow">
                   <Link to={`/producto/${product.slug}`} className="text-base font-semibold text-foreground hover:text-primary truncate mb-2">
                     {product.name}
                   </Link>
@@ -428,8 +429,8 @@ const ExplorePage = () => {
                       <Info className="h-4 w-4" />
                     </Button>
                   </div>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             </motion.div>
           ))}
         </div>
@@ -450,26 +451,27 @@ const ExplorePage = () => {
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {relatedProducts.map((product) => (
-              <Link
-                key={product.id}
-                to={`/producto/${product.slug}`}
-                className="group rounded-xl border border-border bg-card p-4 transition hover:border-primary hover:shadow-md"
-              >
-                <div className="mb-3 aspect-square overflow-hidden rounded-lg bg-secondary">
-                  <img
-                    src={product.image}
-                    alt={`${product.name} Fuxion`}
-                    className="h-full w-full object-cover transition group-hover:scale-105"
-                    loading="lazy"
-                    onError={(event) => {
-                      event.currentTarget.src = getPlaceholderImage('product');
-                    }}
-                  />
-                </div>
-                <h3 className="font-semibold text-foreground">{product.name}</h3>
-                <p className="mt-1 text-sm text-muted-foreground">{product.categoria}</p>
-                <p className="mt-2 font-bold text-primary">${product.price.toLocaleString('es-CL')}</p>
-              </Link>
+              <Card key={product.id} variant="trust" className="p-4 bg-card dark:bg-card hover:border-primary">
+                <Link
+                  to={`/producto/${product.slug}`}
+                  className="block h-full"
+                >
+                  <div className="mb-3 aspect-square overflow-hidden rounded-lg bg-secondary">
+                    <img
+                      src={product.image}
+                      alt={`${product.name} Fuxion`}
+                      className="h-full w-full object-cover transition group-hover:scale-105"
+                      loading="lazy"
+                      onError={(event) => {
+                        event.currentTarget.src = getPlaceholderImage('product');
+                      }}
+                    />
+                  </div>
+                  <h3 className="font-semibold text-foreground">{product.name}</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">{product.categoria}</p>
+                  <p className="mt-2 font-bold text-primary">${product.price.toLocaleString('es-CL')}</p>
+                </Link>
+              </Card>
             ))}
           </div>
         </section>

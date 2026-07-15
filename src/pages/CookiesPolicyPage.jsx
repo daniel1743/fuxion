@@ -112,7 +112,7 @@ const CookiesPolicyPage = () => {
       {/* ═══════════════════════════════════════════════════════════
           HERO SECTION
       ════════════════════════════════════════════════════════════ */}
-      <section className="hidden md:flex relative min-h-[50vh] items-center overflow-hidden pt-24 bg-gradient-to-br from-[#f0faf4] via-white to-[#e8f5e9] dark:from-[#0a1a12] dark:via-[#0f1f18] dark:to-[#0d2818]">
+      <section className="hidden md:flex relative min-h-[50vh] items-center overflow-hidden pt-24 bg-gradient-to-br from-[#f0faf4] via-white to-[#e8f5e9] dark:from-[#0a1a12] dark:via-surface-muted dark:to-[#0d2818]">
         {/* Decorative background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-emerald-100/40 dark:bg-emerald-900/20 blur-3xl" />
@@ -180,7 +180,7 @@ const CookiesPolicyPage = () => {
               <h2 className="text-xl sm:text-2xl font-bold text-foreground">¿Qué son las cookies?</h2>
             </div>
 
-            <div className="text-[15px] sm:text-base text-foreground/80 leading-relaxed space-y-4">
+            <div className="text-sm sm:text-base text-foreground/80 leading-relaxed space-y-4">
               <p>
                 Las cookies son pequeños archivos de texto que se descargan de forma segura en tu navegador (ya sea en tu móvil, tablet o computadora) al visitar una página web. Su función es simple pero vital: permiten que la página "recuerde" información sobre tu visita, como tus preferencias de visualización, facilitando tu próxima navegación y haciendo que el sitio sea mucho más útil para ti.
               </p>

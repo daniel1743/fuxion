@@ -194,13 +194,14 @@ const AuthModal = () => {
                   {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                   {isSubmitting ? 'Verificando...' : 'Iniciar Sesión'}
                 </Button>
-                <button
+                <Button
                   type="button"
+                  variant="link"
                   onClick={() => setShowResetRequest((current) => !current)}
-                  className="w-full text-sm text-primary hover:underline"
+                  className="w-full text-sm"
                 >
                   ¿Olvidaste o no funciona tu contraseña?
-                </button>
+                </Button>
                 {showResetRequest && (
                   <div className="rounded-lg border border-border bg-secondary/30 p-3">
                     <p className="mb-3 text-sm text-muted-foreground">

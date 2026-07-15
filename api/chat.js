@@ -15,6 +15,7 @@
 
 import { createClient } from '@supabase/supabase-js';
 import { processChatConversation } from '../lib/chatEvents.js';
+import { sendTelegramNotification } from '../lib/telegramNotifier.js';
 import {
   processUserMessage,
   generateProfileContext,
@@ -331,6 +332,8 @@ INFORMACION QUE PUEDES COMPARTIR:
 - Cada persona avanza a su propio ritmo, sin presión.
 
 REGLAS DE SEGURIDAD (OBLIGATORIAS):
+- OBLIGATORIO: NUNCA digas que el negocio es "sin inversión" o "gratis".
+- Debes ser transparente e indicar que comenzar el negocio requiere una inversión inicial a través de la compra de un paquete de productos (generalmente entre 5 y 15 productos).
 - NUNCA prometas ingresos, ganancias, ni resultados económicos específicos.
 - NUNCA uses frases como "gana dinero fácil", "hazte rico", "ingreso garantizado", "todos ganan", "te haces rico", "vas a ganar dinero", "ingresos asegurados", "libertad financiera garantizada" o similares.
 - NUNCA presiones al usuario a unirse o tomar una decisión inmediata.
@@ -745,8 +748,9 @@ Nunca utilices:
 - bloques de codigo
 - tablas Markdown
 - comillas decorativas
-Si deseas destacar un producto, hazlo mediante la redaccion, nunca mediante formato.
-- REGLA DE LEGIBILIDAD EN MOVILES: Al enumerar opciones, productos o pasos, organízalos siempre utilizando guiones sencillos (-) seguidos de un espacio. Deja siempre un salto de línea doble (una línea vacía completa) entre cada párrafo u opción de la lista para garantizar que la respuesta sea muy cómoda de leer en pantallas de teléfonos.
+- Si deseas destacar un producto, hazlo mediante la redacción, nunca mediante formato.
+- REGLA DE LEGIBILIDAD EN MÓVILES: Al enumerar opciones, organízalos siempre utilizando guiones sencillos (-) seguidos de un espacio y deja un salto de línea doble entre cada párrafo.
+- REGLA DE ORTOGRAFÍA: Escribe siempre con ortografía, gramática y puntuación perfectas. No cometas errores tipográficos ni inventes palabras.
 
 INSTRUCCION SOBRE PRODUCTOS:
 - Todos los productos Fuxion vienen en sobres (sachets) para mezclar con agua. No son pastillas, capsulas, jarabes ni liquidos embotellados.
@@ -1194,7 +1198,7 @@ const callDeepSeekAPI = async (messages) => {
   const response = await fetch(DEEPSEEK_API_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${DEEPSEEK_API_KEY}` },
-    body: JSON.stringify({ model: 'deepseek-chat', messages, temperature: 0.7, max_tokens: 1024 })
+    body: JSON.stringify({ model: 'deepseek-chat', messages, temperature: 0.5, max_tokens: 1024 })
   });
   if (!response.ok) {
     const errorText = await response.text().catch(() => '');
@@ -1208,7 +1212,7 @@ const callQwenAPI = async (messages) => {
   const response = await fetch(QWEN_API_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${QWEN_API_KEY}` },
-    body: JSON.stringify({ model: 'qwen-plus', messages, temperature: 0.7, max_tokens: 1024 })
+    body: JSON.stringify({ model: 'qwen-plus', messages, temperature: 0.5, max_tokens: 1024 })
   });
   if (!response.ok) {
     const errorText = await response.text().catch(() => '');
@@ -1344,6 +1348,42 @@ const evaluateSupportInsistence = (sessionId, userMessage) => {
   return {
     count: tracker.count,
     shouldEscalate: tracker.count >= SUPPORT_INSISTENCE_THRESHOLD
+  };
+};
+
+// ===================================================================
+// DETECCIÓN DE INSISTENCIA DE NEGOCIO
+// ===================================================================
+const BUSINESS_INSISTENCE_THRESHOLD = 2;
+const sessionBusinessTracker = new Map();
+
+setInterval(() => {
+  const now = Date.now();
+  for (const [key, data] of sessionBusinessTracker.entries()) {
+    if (now - data.lastActivity > 60 * 60 * 1000) {
+      sessionBusinessTracker.delete(key);
+    }
+  }
+}, 30 * 60 * 1000);
+
+const evaluateBusinessInsistence = (sessionId, isBusiness) => {
+  if (!sessionId) return { count: 0, shouldEscalate: false };
+
+  let tracker = sessionBusinessTracker.get(sessionId);
+  if (!tracker) {
+    tracker = { count: 0, lastActivity: Date.now() };
+    sessionBusinessTracker.set(sessionId, tracker);
+  }
+
+  tracker.lastActivity = Date.now();
+
+  if (isBusiness) {
+    tracker.count += 1;
+  }
+
+  return {
+    count: tracker.count,
+    shouldEscalate: tracker.count >= BUSINESS_INSISTENCE_THRESHOLD
   };
 };
 
@@ -1750,6 +1790,7 @@ export default async function handler(req, res) {
     isBusinessOpportunity: false,
     showOpportunityVideo: false,
     showOpportunityAdvisor: false,
+    showOpportunityAdvisorForm: false,
     // Insistence tracking
     supportInsistence: insistence.count
   };
@@ -1758,6 +1799,19 @@ export default async function handler(req, res) {
   const isBusinessOpportunity = detectBusinessOpportunityIntent(userMessage);
   if (isBusinessOpportunity) {
     responseContract.isBusinessOpportunity = true;
+    
+    // Evaluar insistencia en negocio
+    const businessInsistence = evaluateBusinessInsistence(sessionId, true);
+    
+    if (businessInsistence.shouldEscalate) {
+      responseContract.showOpportunityAdvisorForm = true;
+      
+      // Notificar a Telegram silenciosamente (fire and forget)
+      sendTelegramNotification({
+        text: `🚀 POSIBLE SOCIO FUXION (Chatbot)\\nUn usuario está insistiendo en el chat sobre la oportunidad de negocio FuXion.\\nID Sesión: ${sessionId}\\nÚltimo mensaje: "${userMessage}"\\nTotal mensajes del usuario en sesión: ${messages.filter(m => m.role === 'user').length}`
+      }).catch(err => debugLog('Error sending Telegram', err));
+    }
+
     // Si el usuario pide explicación, ofrecer video
     if (/\b(c[oó]mo funciona|expl[ií]came|quiero saber m[aá]s|cu[eé]ntame m[aá]s|dime m[aá]s|quiero entender|en qu[eé] consiste)\b/i.test(userMessage)) {
       responseContract.showOpportunityVideo = true;
@@ -1766,6 +1820,8 @@ export default async function handler(req, res) {
     if (/\b(asesor|humano|quiero hablar con alguien|hablar con un asesor|contactar con un asesor|asesor humano|persona real|atenci[oó]n personalizada)\b/i.test(userMessage)) {
       responseContract.showOpportunityAdvisor = true;
     }
+  } else {
+    evaluateBusinessInsistence(sessionId, false);
   }
 
   // Determinar si debe mostrar WhatsApp según las reglas del backend

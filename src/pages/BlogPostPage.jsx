@@ -147,7 +147,7 @@ const BlogPostPage = () => {
 
       {/* ── FIXED SMART STICKY NAV (MOBILE) ── */}
       <div
-        className={`fixed top-0 left-0 right-0 z-header md:hidden bg-gradient-to-br from-[#0E5C53] to-[#136a64] shadow-lg px-4 pt-[env(safe-area-inset-top,0px)] transition-transform duration-300 ease-out ${
+        className={`fixed top-0 left-0 right-0 z-header md:hidden bg-gradient-to-br from-fuxion to-fuxion-light shadow-lg px-4 pt-[env(safe-area-inset-top,0px)] transition-transform duration-300 ease-out ${
           navHidden ? '-translate-y-full' : 'translate-y-0'
         }`}
       >
@@ -173,7 +173,7 @@ const BlogPostPage = () => {
             >
               <HugeiconsIcon icon={ShoppingCart01Icon} className="h-5 w-5" />
               {cartCount > 0 && (
-                <span className="absolute top-0 right-0 bg-orange-500 text-white text-[10px] rounded-full h-[18px] w-[18px] flex items-center justify-center font-bold shadow-sm ring-2 ring-[#0E5C53]">
+                <span className="absolute top-0 right-0 bg-orange-500 text-white text-xxs rounded-full h-[18px] w-[18px] flex items-center justify-center font-bold shadow-sm ring-2 ring-fuxion">
                   {cartCount > 9 ? '9+' : cartCount}
                 </span>
               )}
@@ -191,7 +191,7 @@ const BlogPostPage = () => {
       </div>
 
       {/* ── HERO VERDE UNIFICADO (Desktop & Mobile) ── */}
-      <div className="w-full bg-gradient-to-br from-[#0E5C53] to-[#136a64] pb-24 px-4 md:px-8 relative shadow-lg">
+      <div className="w-full bg-gradient-to-br from-fuxion to-fuxion-light pb-24 px-4 md:px-8 relative shadow-lg">
         {/* Glow decorativo */}
         <div className="absolute top-0 left-[20%] right-0 h-[200px] bg-emerald-400/15 blur-[80px] rounded-full pointer-events-none" />
 
@@ -220,7 +220,7 @@ const BlogPostPage = () => {
               >
                 <HugeiconsIcon icon={ShoppingCart01Icon} className="h-5 w-5" />
                 {cartCount > 0 && (
-                  <span className="absolute top-0 right-0 bg-orange-500 text-white text-[10px] rounded-full h-[18px] w-[18px] flex items-center justify-center font-bold shadow-sm ring-2 ring-[#0E5C53]">
+                  <span className="absolute top-0 right-0 bg-orange-500 text-white text-xxs rounded-full h-[18px] w-[18px] flex items-center justify-center font-bold shadow-sm ring-2 ring-fuxion">
                     {cartCount > 9 ? '9+' : cartCount}
                   </span>
                 )}

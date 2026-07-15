@@ -110,11 +110,11 @@ const WellnessJourneyCarousel = () => {
                     <HugeiconsIcon icon={slide.icon} className="w-3 h-3" />
                     {slide.category}
                   </span>
-                  <h3 className="text-[12px] font-bold text-[#2d2d2d] dark:text-gray-200 leading-snug line-clamp-2 mb-1">
+                  <h3 className="text-xs font-bold text-gray-800 dark:text-gray-200 leading-snug line-clamp-2 mb-1">
                     {slide.title}
                   </h3>
                 </div>
-                <p className="text-[10px] text-muted-foreground leading-snug line-clamp-2 mt-auto">
+                <p className="text-xxs text-muted-foreground leading-snug line-clamp-2 mt-auto">
                   {slide.description}
                 </p>
               </div>
@@ -141,7 +141,7 @@ const WellnessJourneyCarousel = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                 <div className="absolute top-3 left-3">
-                  <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold ${slide.badgeClass} backdrop-blur-sm bg-white/95 dark:bg-[#0f1f18]/90`}>
+                  <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xxs font-bold ${slide.badgeClass} backdrop-blur-sm bg-white/95 dark:bg-surface-muted/90`}>
                     <HugeiconsIcon icon={slide.icon} className="w-3.5 h-3.5" />
                     {slide.category}
                   </span>

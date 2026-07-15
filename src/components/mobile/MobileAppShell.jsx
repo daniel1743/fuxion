@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { HugeiconsIcon } from '@hugeicons/react';
-import { Search01Icon, ShoppingCart01Icon, Menu11Icon, ArrowLeft02Icon } from '@hugeicons/core-free-icons';
+import { Search01Icon, ShoppingCart01Icon, Menu11Icon, ArrowLeft02Icon, ChatBotIcon } from '@hugeicons/core-free-icons';
 import { useAuth } from '@/context/AuthContext';
 import { useCart } from '@/context/CartContext';
 import { useSiteSettings } from '@/context/SiteSettingsContext';
@@ -74,28 +74,28 @@ const MobileAppShell = ({
         ) : isAuthenticated && user ? (
           <>
             {/* Premium Animated Avatar Ring */}
-            <div className="relative flex items-center justify-center w-[48px] h-[48px] rounded-full shrink-0 overflow-hidden shadow-md">
+            <div className="relative flex items-center justify-center w-12 h-12 rounded-full shrink-0 overflow-hidden shadow-md">
               {/* Spinning Gradient Background */}
               <div className="absolute inset-[-50%] bg-[conic-gradient(from_0deg,transparent_0%,#fbbf24_20%,#34d399_50%,#fbbf24_80%,transparent_100%)] animate-[spin_3s_linear_infinite]" />
               {/* Inner Mask (matches Hero background to hide center of gradient) */}
-              <div className="absolute inset-[2px] bg-[#0E5C53] rounded-full" />
+              <div className="absolute inset-[2px] bg-fuxion rounded-full" />
               {/* Avatar Image */}
               <img
                 src={user.avatar}
                 alt={user.name || 'Mi cuenta'}
-                className="w-[44px] h-[44px] rounded-full object-cover relative z-content ring-1 ring-white/10"
+                className="w-11 h-11 rounded-full object-cover relative z-content ring-1 ring-white/10"
               />
             </div>
             <div className="flex flex-col justify-center h-full pt-1">
-              <span className="text-[12px] text-emerald-100/80 font-medium leading-[1]">Hola,</span>
-              <span className="text-[15px] font-bold text-white leading-tight truncate mt-[2px]">
+              <span className="text-xs text-emerald-100/80 font-medium leading-[1]">Hola,</span>
+              <span className="text-sm font-bold text-white leading-tight truncate mt-[2px]">
                 {user.name?.split(' ')[0] || 'Cliente'}
               </span>
             </div>
           </>
         ) : (
           <div className="flex items-center gap-2.5">
-            <div className="w-[40px] h-[40px] rounded-full bg-white flex items-center justify-center shadow-md p-1.5 shrink-0">
+            <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-md p-1.5 shrink-0">
               <img
                 src="/hoja-te-transparente.svg"
                 alt="FuXion"
@@ -112,17 +112,33 @@ const MobileAppShell = ({
       {/* Right: Actions */}
       <div className="flex items-center gap-1.5 bg-black/10 rounded-full p-1 border border-white/10 backdrop-blur-md">
         <button
-          onClick={() => navigate('/carrito')}
-          className="relative text-white p-2 rounded-full hover:bg-white/10 active:scale-95 transition-all"
-          aria-label="Carrito"
+          onClick={() => {
+            const botBtn = document.querySelector('button[aria-label="Abrir asistente de IA"]');
+            if (botBtn) botBtn.click();
+          }}
+          className="relative text-white p-1.5 rounded-full hover:bg-white/10 active:scale-95 transition-all flex items-center justify-center"
+          aria-label="FalconBot"
         >
-          <HugeiconsIcon icon={ShoppingCart01Icon} className="h-5 w-5" />
-          {cartCount > 0 && (
-            <span className="absolute top-0 right-0 bg-orange-500 text-white text-[10px] rounded-full h-[18px] w-[18px] flex items-center justify-center font-bold shadow-sm ring-2 ring-[#0E5C53]">
-              {cartCount > 9 ? '9+' : cartCount}
-            </span>
-          )}
+          <HugeiconsIcon icon={ChatBotIcon} className="h-[22px] w-[22px]" />
         </button>
+        
+        {cartCount > 0 && (
+          <>
+            <div className="w-[1px] h-5 bg-white/20"></div>
+            <motion.button
+              initial={{ scale: 0.4, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ type: 'spring', bounce: 0.5, duration: 0.4 }}
+              onClick={() => navigate('/carrito')}
+              className="relative text-white p-2 rounded-full hover:bg-white/10 active:scale-95 transition-all"
+              aria-label="Carrito"
+            >
+              <HugeiconsIcon icon={ShoppingCart01Icon} className="h-5 w-5" />
+              <span className="absolute top-[4px] right-[4px] bg-emerald-400 rounded-full h-2 w-2 shadow-sm ring-[1.5px] ring-fuxion"></span>
+            </motion.button>
+          </>
+        )}
+        
         <div className="w-[1px] h-5 bg-white/20"></div>
         <button
           onClick={handleOpenMenu}
@@ -141,7 +157,7 @@ const MobileAppShell = ({
          FIXED SMART STICKY NAV — hides on scroll down, shows on scroll up
       ════════════════════════════════════════════════════════════ */}
       <div
-        className={`fixed top-0 left-0 right-0 z-header md:hidden bg-gradient-to-br from-[#0E5C53] to-[#136a64] shadow-lg px-5 pt-[env(safe-area-inset-top,0px)] transition-transform duration-300 ease-out ${
+        className={`fixed top-0 left-0 right-0 z-header md:hidden bg-gradient-to-br from-fuxion to-fuxion-light shadow-lg px-5 pt-[env(safe-area-inset-top,0px)] transition-transform duration-300 ease-out ${
           navHidden ? '-translate-y-full' : 'translate-y-0'
         }`}
       >
@@ -153,7 +169,7 @@ const MobileAppShell = ({
       ════════════════════════════════════════════════════════════ */}
       <div className={`relative w-full pt-[env(safe-area-inset-top,1rem)] pb-6 px-5 z-sticky ${isLarge ? 'pb-8' : ''}`}>
         {/* Background layers with hidden overflow */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0E5C53] to-[#136a64] rounded-b-[28px] shadow-[0_12px_30px_-10px_rgba(14,92,83,0.4)] overflow-hidden border-b border-emerald-600/30 -z-content">
+        <div className="absolute inset-0 bg-gradient-to-br from-fuxion to-fuxion-light rounded-b-[28px] shadow-premium-soft overflow-hidden border-b border-emerald-600/30 -z-content">
           {/* Glow Effect / Lighting */}
           <div className="absolute top-0 left-[20%] right-0 h-[300px] bg-emerald-400/20 blur-[80px] rounded-full pointer-events-none"></div>
         </div>
@@ -198,7 +214,7 @@ const MobileAppShell = ({
                 </h1>
               )}
               {description && (
-                <p className="text-[15px] text-emerald-50 mt-1 font-medium drop-shadow-sm opacity-90">
+                <p className="text-sm text-emerald-50 mt-1 font-medium drop-shadow-sm opacity-90">
                   {description}
                 </p>
               )}

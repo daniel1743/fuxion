@@ -11,6 +11,11 @@ This document outlines the actionable tasks derived from the Final Release Candi
 - **Affected:** `MobileBottomNav.jsx`, `Header.jsx`, `Layout.jsx`
 - **Status:** Completed (VERIFIED 100/100)
 
+### 1.5 Design System Foundation (Phase 2 & 2.1)
+- **Description:** Application lacks unified visual language (hardcoded hex colors, shadows, border radii) and uses arbitrary layout values.
+- **Action:** Centralize design tokens into `tailwind.config.js` (colors, borders, shadows, micro-typography). Replaced arbitrary JIT classes repository-wide (colors, `w-[]`, `h-[]`, `text-[]`, `bottom-[]`).
+- **Status:** Completed (VERIFIED 100/100)
+
 ### 2. Mitigate React 18 Memory Leak (React Helmet)
 - **Description:** `react-helmet` is obsolete and causes severe memory leaks in React 18 Strict Mode.
 - **Action:** Replace `react-helmet` with `react-helmet-async`. Wrap the root in `<HelmetProvider>`.

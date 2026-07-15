@@ -9,6 +9,7 @@ import { confirmAndOpenWhatsapp, getActiveAdvisor } from '@/lib/whatsapp';
 import { recordAdvisorEvent } from '@/services/advisorService';
 import { AiRobotIcon, WhatsAppIcon } from '@/components/icons/BrandIcons';
 import ProductLinkedText from '@/components/ProductLinkedText';
+import { useCart } from '../context/CartContext';
 import { useAuth } from '@/context/AuthContext';
 import { useAdmin } from '@/context/AdminContext';
 import { useLoyalty } from '@/context/LoyaltyContext';
@@ -602,7 +603,8 @@ Nombre: ${productCtx.name}`;
                 // Business Opportunity flags
                 isBusinessOpportunity: response.isBusinessOpportunity === true,
                 showOpportunityVideo: response.showOpportunityVideo === true,
-                showOpportunityAdvisor: response.showOpportunityAdvisor === true
+                showOpportunityAdvisor: response.showOpportunityAdvisor === true,
+                showOpportunityAdvisorForm: response.showOpportunityAdvisorForm === true
             }]);
 
             console.log(`💬 Respuesta generada por: ${response.apiUsed}`);
@@ -687,7 +689,7 @@ Nombre: ${productCtx.name}`;
                         }}
                         exit={{ scale: 0 }}
                         transition={{ duration: 0.25, ease: 'easeOut' }}
-                        className={`fixed bottom-[100px] right-4 md:bottom-6 md:right-6 z-floating flex items-center gap-2 ${isMobileMenuOpen ? 'pointer-events-none md:pointer-events-auto' : ''}`}
+                        className={`fixed bottom-24 right-4 md:bottom-6 md:right-6 z-floating flex items-center gap-2 ${isMobileMenuOpen ? 'pointer-events-none md:pointer-events-auto' : ''}`}
                         onMouseEnter={() => { showQuickWhatsappAction(); setIsFloatingHovered(true); }}
                         onMouseLeave={() => { hideQuickWhatsappAction(); setIsFloatingHovered(false); }}
                         onFocus={() => { showQuickWhatsappAction(); setIsFloatingHovered(true); }}
@@ -703,7 +705,7 @@ Nombre: ${productCtx.name}`;
                                     animate={{ opacity: 1, x: 0, scale: 1 }}
                                     exit={{ opacity: 0, x: 12, scale: 0.9 }}
                                     onClick={handleQuickWhatsapp}
-                                    className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#25D366] to-[#00b894] text-white shadow-lg shadow-[#25D366]/30 transition-all hover:shadow-xl hover:shadow-[#25D366]/40 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#25D366]/40"
+                                    className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-whatsapp to-emerald-500 text-white shadow-lg shadow-whatsapp/30 transition-all hover:shadow-xl hover:shadow-whatsapp/40 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-whatsapp/40"
                                     aria-label="Hablar por WhatsApp con un asesor"
                                     title="WhatsApp"
                                 >
@@ -738,7 +740,7 @@ Nombre: ${productCtx.name}`;
                         }}
                         exit={{ opacity: 0, y: 10, scale: 0.96 }}
                         transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                        className={`fixed inset-x-3 bottom-[80px] md:bottom-3 z-floating h-[min(600px,calc(100dvh-100px))] md:h-[min(600px,calc(100dvh-24px))] bg-card border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden sm:inset-x-auto sm:bottom-6 sm:right-6 sm:w-96 sm:h-[min(600px,calc(100dvh-48px))] ${isMobileMenuOpen ? 'pointer-events-none md:pointer-events-auto' : ''}`}
+                        className={`fixed inset-x-3 bottom-20 md:bottom-3 z-floating h-[min(600px,calc(100dvh-100px))] md:h-[min(600px,calc(100dvh-24px))] bg-card border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden sm:inset-x-auto sm:bottom-6 sm:right-6 sm:w-96 sm:h-[min(600px,calc(100dvh-48px))] ${isMobileMenuOpen ? 'pointer-events-none md:pointer-events-auto' : ''}`}
                     >
                         {/* Header */}
                         <div className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 p-4 flex justify-between items-center shadow-emerald-500/20 relative overflow-hidden">
@@ -753,7 +755,7 @@ Nombre: ${productCtx.name}`;
                                         key={isLoading ? 'typing' : 'idle'}
                                         initial={{ opacity: 0, y: -4 }}
                                         animate={{ opacity: 1, y: 0 }}
-                                        className="text-white/80 text-[11px]"
+                                        className="text-white/80 text-xxs"
                                     >
                                         {isLoading ? bot.typingSubtitle : bot.subtitle}
                                     </motion.p>
@@ -805,7 +807,7 @@ Nombre: ${productCtx.name}`;
                                     <div
                                         className={`max-w-[80%] p-3 ${
                                             message.sender === 'user'
-                                                ? 'bg-[#F1FDF8] text-[#064E3B] border border-emerald-200 shadow-sm chat-bubble-user'
+                                                ? 'bg-whatsapp-bg text-emerald-900 border border-emerald-200 shadow-sm chat-bubble-user'
                                                 : message.botType === 'error'
                                                 ? 'bg-destructive/10 text-destructive border border-destructive/20 rounded-2xl'
                                                 : message.botType === 'system'
@@ -818,7 +820,7 @@ Nombre: ${productCtx.name}`;
                                                 <div className="bg-white/20 rounded-full p-0.5">
                                                     <AiRobotIcon className="h-5 w-5 object-contain" />
                                                 </div>
-                                                <span className="text-[11px] font-semibold text-white/90">{bot.name}</span>
+                                                <span className="text-xxs font-semibold text-white/90">{bot.name}</span>
                                             </div>
                                         )}
                                         {message.sender === 'bot' && message.botType !== 'system' && message.botType !== 'error' ? (
@@ -833,50 +835,84 @@ Nombre: ${productCtx.name}`;
                                         {/* Business Opportunity buttons */}
                                         {message.isBusinessOpportunity && (
                                             <div className="mt-3 flex flex-col gap-2">
-                                                {message.showOpportunityAdvisor && (
-                                                    <button
+                                                {message.showOpportunityAdvisorForm && (
+                                                    <div className="flex flex-col gap-2 p-3 bg-white/5 rounded-xl border border-white/10 mt-1">
+                                                        <p className="text-sm font-medium text-white mb-1">¿Listo para el siguiente paso?</p>
+                                                        <Button
+                                                            type="button"
+                                                            variant="whatsapp"
+                                                            size="sm"
+                                                            onClick={handleOpenWhatsAppContact}
+                                                            className="rounded-full w-full flex items-center justify-center"
+                                                        >
+                                                            <WhatsAppIcon className="h-5 w-5 text-white mr-2" />
+                                                            Contactar por WhatsApp
+                                                        </Button>
+                                                        <Button
+                                                            type="button"
+                                                            size="sm"
+                                                            onClick={() => {
+                                                                navigate('/contacto');
+                                                                minimizeChat();
+                                                            }}
+                                                            className="rounded-full w-full flex items-center justify-center bg-white text-brand-dark font-medium hover:bg-gray-100"
+                                                        >
+                                                            <FileText className="h-4 w-4 mr-2" />
+                                                            Llenar Formulario
+                                                        </Button>
+                                                    </div>
+                                                )}
+                                                {message.showOpportunityAdvisor && !message.showOpportunityAdvisorForm && (
+                                                    <Button
                                                         type="button"
+                                                        variant="whatsapp"
+                                                        size="sm"
                                                         onClick={handleOpenWhatsAppContact}
-                                                        className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-3 py-2 text-xs font-semibold text-white transition hover:bg-[#1fb85a]"
+                                                        className="rounded-full"
                                                     >
-                                                    <WhatsAppIcon className="h-5 w-5 text-white" />
-                                                        <MessageCircle className="h-4 w-4" />
+                                                    <WhatsAppIcon className="h-5 w-5 text-white mr-1" />
+                                                        <MessageCircle className="h-4 w-4 ml-1" />
                                                         Hablar con asesor
-                                                    </button>
+                                                    </Button>
                                                 )}
                                             </div>
                                         )}
                                         {message.advisorUrl && !message.isBusinessOpportunity && (
                                             <div className="mt-3 flex flex-col gap-2">
-                                                <button
+                                                <Button
                                                     type="button"
+                                                    variant="default"
+                                                    size="sm"
                                                     onClick={handleOpenContactForm}
-                                                    className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 px-3 py-2 text-xs font-semibold text-white transition hover:shadow-lg hover:from-emerald-600 hover:to-teal-600"
+                                                    className="rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600"
                                                 >
                                                     <FileText className="h-4 w-4" />
                                                     Abrir formulario de contacto
-                                                </button>
-                                                <button
+                                                </Button>
+                                                <Button
                                                     type="button"
+                                                    variant="whatsapp"
+                                                    size="sm"
                                                     onClick={handleOpenWhatsAppContact}
-                                                    className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-3 py-2 text-xs font-semibold text-white transition hover:bg-[#1fb85a]"
+                                                    className="rounded-full"
                                                 >
-                                                    <WhatsAppIcon className="h-5 w-5 text-white" />
-                                                    <WhatsAppIcon className="h-5 w-5 text-white" />
+                                                    <WhatsAppIcon className="h-5 w-5 text-white mr-1" />
                                                     Hablar por WhatsApp
-                                                </button>
-                                                <button
+                                                </Button>
+                                                <Button
                                                     type="button"
+                                                    variant="destructive"
+                                                    size="sm"
                                                     onClick={() => declineAdvisor(index)}
-                                                    className="inline-flex items-center justify-center rounded-full bg-red-500/90 px-3 py-2 text-xs font-semibold text-white transition hover:bg-red-600"
+                                                    className="rounded-full"
                                                 >
                                                     No, gracias. Prefiero continuar aquí.
-                                                </button>
+                                                </Button>
                                             </div>
                                         )}
                                     </div>
                                     {/* Timestamp */}
-                                    <span className={`mt-1 text-[10px] leading-none text-muted-foreground/60 ${message.sender === 'user' ? 'mr-1' : 'ml-1'}`}>
+                                    <span className={`mt-1 text-xxs leading-none text-muted-foreground/60 ${message.sender === 'user' ? 'mr-1' : 'ml-1'}`}>
                                         {new Date().toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' })}
                                     </span>
                                 </motion.div>
@@ -942,7 +978,7 @@ Nombre: ${productCtx.name}`;
                                     <Send className="h-4 w-4" />
                                 </Button>
                             </div>
-                            <p className="text-[11px] text-muted-foreground/70 mt-2 text-center">
+                            <p className="text-xxs text-muted-foreground/70 mt-2 text-center">
                                 <Leaf className="h-3 w-3 inline-block mr-0.5" aria-hidden="true" />
                                 Orientación sobre productos FuXion. No reemplaza una consulta médica.
                             </p>

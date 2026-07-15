@@ -118,15 +118,15 @@ const SupportPage = () => {
 
         {/* Stats */}
         <div className="flex justify-center gap-4 sm:gap-8 mt-8 flex-wrap">
-          <div className="text-center min-w-[80px]">
+          <div className="text-center min-w-20">
             <div className="text-2xl sm:text-3xl font-bold text-primary">{stats.total}</div>
             <div className="text-xs sm:text-sm text-muted-foreground">Consultas</div>
           </div>
-          <div className="text-center min-w-[80px]">
+          <div className="text-center min-w-20">
             <div className="text-2xl sm:text-3xl font-bold text-green-400">{stats.solved}</div>
             <div className="text-xs sm:text-sm text-muted-foreground">Resueltas</div>
           </div>
-          <div className="text-center min-w-[80px]">
+          <div className="text-center min-w-20">
             <div className="text-2xl sm:text-3xl font-bold text-blue-400">{stats.totalAnswers}</div>
             <div className="text-xs sm:text-sm text-muted-foreground">Respuestas</div>
           </div>
