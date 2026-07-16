@@ -82,7 +82,7 @@ const FloatingWhatsAppButton = () => {
           }}
           exit={{ opacity: 0, y: 18, scale: 0.96 }}
           transition={{ duration: 0.22, ease: 'easeOut' }}
-          className="fixed bottom-6 left-4 z-floating sm:left-6 pb-[env(safe-area-inset-bottom)]"
+          className="fixed bottom-[calc(5rem+env(safe-area-inset-bottom,0px))] md:bottom-[calc(1.5rem+env(safe-area-inset-bottom,0px))] left-4 z-floating sm:left-6"
           onMouseEnter={() => { setIsPaused(true); setIsHovered(true); }}
           onMouseLeave={() => { setIsPaused(false); setIsHovered(false); }}
           onFocus={() => { setIsPaused(true); setIsHovered(true); }}

@@ -11,7 +11,7 @@ const AboutPage = () => {
       <SEO 
         title="Sobre mí | Daniel Falcón - Bienestar en Claro"
         description="Conoce a Daniel Falcón, Investigador de Salud y Bienestar. Descubre la misión detrás de Bienestar en Claro y nuestra rigurosa metodología editorial."
-        canonical="https://bienestarenclaro.com/sobre-nosotros"
+        canonical="https://tiendafuxion.space/sobre-nosotros"
         structuredData={schema}
       />
 

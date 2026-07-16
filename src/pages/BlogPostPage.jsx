@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button';
 import MobileAppShell from '@/components/mobile/MobileAppShell';
 import { toast } from '@/components/ui/use-toast';
 import { useScrollDirection } from '@/hooks/useScrollDirection';
+import ArticleComments from '@/components/blog/ArticleComments';
 
 const BlogPostPage = () => {
   const { slug } = useParams();
@@ -81,15 +82,49 @@ const BlogPostPage = () => {
     if (!content) return '';
 
     let html = content
-      .replace(/^### (.*$)/gim, '<h3 class="text-xl font-semibold text-foreground mt-8 mb-4">$1</h3>')
+      // Images: ![alt](src)
+      .replace(/!\[(.*?)\]\((\/[^)]+)\)/gim,
+        '<figure class="my-8"><img src="$2" alt="$1" class="w-full rounded-2xl shadow-md object-cover" loading="lazy" /><figcaption class="text-center text-sm text-muted-foreground mt-2 italic">$1</figcaption></figure>')
+      // Tables: parse markdown tables
+      .replace(/(?:^\|.+\|\n)+/gm, (tableBlock) => {
+        const rows = tableBlock.trim().split('\n');
+        const header = rows[0];
+        const separator = rows[1];
+        const body = rows.slice(2);
+        if (!separator || !separator.match(/^\|[-:\s|]+\|$/)) return tableBlock;
+        const thCells = header.split('|').filter((_, i, a) => i > 0 && i < a.length - 1)
+          .map(c => `<th class="px-4 py-3 text-left text-sm font-semibold text-foreground bg-emerald-50 dark:bg-emerald-950/30">${c.trim()}</th>`).join('');
+        const bodyRows = body.map(row => {
+          const cells = row.split('|').filter((_, i, a) => i > 0 && i < a.length - 1)
+            .map(c => `<td class="px-4 py-3 text-sm text-muted-foreground border-t border-border">${c.trim()}</td>`).join('');
+          return `<tr class="hover:bg-muted/40 transition-colors">${cells}</tr>`;
+        }).join('');
+        return `<div class="overflow-x-auto my-8 rounded-xl border border-border shadow-sm"><table class="w-full border-collapse text-sm"><thead><tr>${thCells}</tr></thead><tbody>${bodyRows}</tbody></table></div>`;
+      })
+      // Blockquotes
+      .replace(/^> \*\*(.*?)\*\*\n((?:^> .*\n?)*)/gim, (_, title, body) => {
+        const items = body.replace(/^> \* /gim, '').replace(/^> /gim, '').trim();
+        const listItems = items.split('\n').filter(Boolean)
+          .map(l => `<li class="flex gap-2 text-foreground/85"><span class="text-emerald-500 mt-1">▸</span><span>${l.replace(/^\* /, '')}</span></li>`).join('');
+        return `<div class="bg-emerald-50 dark:bg-emerald-950/30 border-l-4 border-emerald-500 px-6 py-5 rounded-r-2xl my-6"><p class="text-sm font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400 mb-3">${title}</p><ul class="space-y-2">${listItems}</ul></div>`;
+      })
+      .replace(/^> (.*$)/gim, '<blockquote class="border-l-4 border-emerald-500 pl-5 py-1 italic text-muted-foreground my-4">$1</blockquote>')
+      // Headings
+      .replace(/^#### (.*$)/gim, '<h4 class="text-lg font-semibold text-foreground mt-6 mb-3">$1</h4>')
+      .replace(/^### (.*$)/gim, '<h3 class="text-xl font-semibold text-foreground mt-8 mb-4 border-b border-border pb-2">$1</h3>')
       .replace(/^## (.*$)/gim, '<h2 class="text-2xl font-bold text-foreground mt-10 mb-4">$1</h2>')
       .replace(/^# (.*$)/gim, '<h1 class="text-3xl font-bold text-foreground mt-10 mb-4">$1</h1>')
+      // Inline formatting
+      .replace(/\*\*\*(.*?)\*\*\*/gim, '<strong><em>$1</em></strong>')
       .replace(/\*\*(.*?)\*\*/gim, '<strong class="font-semibold text-foreground">$1</strong>')
       .replace(/\*(.*?)\*/gim, '<em>$1</em>')
-      .replace(/^- (.*$)/gim, '<li class="ml-4 text-muted-foreground">$1</li>')
-      .replace(/^❌ (.*$)/gim, '<li class="ml-4 text-red-400 flex items-start gap-2"><span>❌</span><span>$1</span></li>')
-      .replace(/^✅ (.*$)/gim, '<li class="ml-4 text-green-400 flex items-start gap-2"><span>✅</span><span>$1</span></li>')
+      // Lists
+      .replace(/^- (.*$)/gim, '<li class="flex gap-2 ml-4 text-muted-foreground mb-1"><span class="text-emerald-500 mt-1 shrink-0">•</span><span>$1</span></li>')
+      .replace(/^\* (.*$)/gim, '<li class="flex gap-2 ml-4 text-muted-foreground mb-1"><span class="text-emerald-500 mt-1 shrink-0">•</span><span>$1</span></li>')
+      .replace(/^\d+\. (.*$)/gim, '<li class="ml-6 text-muted-foreground mb-1 list-decimal">$1</li>')
+      // HR
       .replace(/^---$/gim, '<hr class="border-border my-8" />')
+      // Paragraphs
       .replace(/\n\n/g, '</p><p class="text-muted-foreground leading-relaxed mb-4">')
       .replace(/\n/g, '<br />');
 
@@ -125,7 +160,7 @@ const BlogPostPage = () => {
       "@type": "Person",
       "name": "Daniel Falcón",
       "jobTitle": "Investigador de Salud y Bienestar",
-      "url": "https://bienestarenclaro.com/sobre-nosotros"
+      "url": "https://tiendafuxion.space/sobre-nosotros"
     },
     "publisher": {
       "@type": "Organization",
@@ -195,7 +230,7 @@ const BlogPostPage = () => {
         {/* Glow decorativo */}
         <div className="absolute top-0 left-[20%] right-0 h-[200px] bg-emerald-400/15 blur-[80px] rounded-full pointer-events-none" />
 
-        <div className="container mx-auto max-w-3xl relative z-content">
+        <div className="container mx-auto max-w-5xl md:max-w-[1080px] relative z-content">
 
           {/* ── Barra de navegación MOBILE (inline en el Hero) ── */}
           <div className="md:hidden flex items-center justify-between pt-[env(safe-area-inset-top,12px)] pt-3 pb-2">
@@ -290,7 +325,7 @@ const BlogPostPage = () => {
       </div>
 
       {/* ── CONTENIDO BLANCO SUPERPUESTO ── */}
-      <article className="container mx-auto max-w-3xl -mt-12 md:-mt-16 relative z-sticky bg-card rounded-t-[32px] px-6 py-8 md:px-10 md:py-12 shadow-premium-soft border-t border-white/10 dark:border-white/5">
+      <article className="container mx-auto max-w-5xl md:max-w-[1080px] -mt-12 md:-mt-16 relative z-sticky bg-card rounded-t-[32px] px-6 py-8 md:px-16 md:py-12 shadow-premium-soft border-t border-white/10 dark:border-white/5">
         
         {/* Imagen principal */}
         {post.image_url && (
@@ -365,12 +400,15 @@ const BlogPostPage = () => {
           </Link>
         </motion.div>
 
+        {/* Comments Section */}
+        <ArticleComments articleSlug={post.slug} />
+
         {/* CTA a productos */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
-          className="bg-gradient-to-br from-emerald-500/10 to-green-600/10 border border-emerald-500/20 rounded-3xl p-8 md:p-10 mb-12 text-center md:text-left shadow-sm"
+          className="bg-gradient-to-br from-emerald-500/10 to-green-600/10 border border-emerald-500/20 rounded-3xl p-8 md:p-10 mb-12 text-center md:text-left shadow-sm mt-12"
         >
           <h3 className="text-2xl font-bold text-foreground mb-3 text-balance">
             Complementa tu bienestar con productos naturales

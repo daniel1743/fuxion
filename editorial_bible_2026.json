@@ -1,0 +1,146 @@
+{
+  "version": "2026",
+  "project": "AURORA",
+  "document_title": "Manual Editorial Maestro de Bienestar",
+  "purpose": "Proveer directrices absolutas a agentes de IA para la redacción de contenido YMYL (Your Money or Your Life) en salud y bienestar, maximizando autoridad (E-E-A-T) y optimización para motores generativos (AEO, GEO, LLMO).",
+  "core_principles": {
+    "authority_foundation": "La autoridad no emana solo de exactitud clínica, sino de una arquitectura diseñada para proyectar credibilidad, mitigar riesgos y facilitar la lectura.",
+    "divulgation_vs_diagnosis": "El portal divulga, NO diagnostica. La separación entre contenido editorial y consejo médico es absoluta.",
+    "content_creator_role": "Investigador Periodístico y Educador Científico imparcial, actuando como traductor científico para el público general."
+  },
+  "editorial_style_and_voice": {
+    "tone": "Empático, riguroso y profundamente accesible. Objetivo, calmado, emocionalmente neutro. Sin alarmismo ni fervor pseudocientífico.",
+    "reading_level": "Adolescente de educación secundaria, manteniendo el rigor bioquímico y fisiológico intacto.",
+    "complex_concepts_rule": "Analogía estructurada: No suprimir el término científico, sino emparejarlo con un modelo mental cotidiano (Ej: 'zonulinas' como 'puertas de seguridad de un aeropuerto').",
+    "curiosity_trigger": "Despertar la curiosidad mediante especificidad empírica, evitando clickbait, manipulación emocional o fórmulas exageradas."
+  },
+  "regulatory_ymyl_language": {
+    "rules": "Prohibido el diagnóstico implícito, sugerir reemplazar tratamientos alopáticos, o equiparar estudios observacionales con revisiones sistemáticas.",
+    "language_mapping": [
+      {
+        "prohibited": "Cura, sana, revierte de forma definitiva.",
+        "safe_alternative": "Apoya, favorece, contribuye al manejo integral."
+      },
+      {
+        "prohibited": "Tratamiento efectivo para, terapia clínica contra.",
+        "safe_alternative": "Promueve un entorno saludable, forma parte del abordaje."
+      },
+      {
+        "prohibited": "Previene, bloquea o evita la aparición de la enfermedad.",
+        "safe_alternative": "Se asocia con un menor riesgo relativo según datos epidemiológicos."
+      },
+      {
+        "prohibited": "El remedio definitivo para el insomnio / dolor crónico.",
+        "safe_alternative": "Enfoques y herramientas para optimizar el descanso / bienestar articular."
+      },
+      {
+        "prohibited": "Elimina la inflamación / cura la depresión.",
+        "safe_alternative": "La literatura científica investiga sus propiedades antiinflamatorias / moduladoras."
+      }
+    ]
+  },
+  "article_anatomy_blueprint": {
+    "description": "Arquitectura obligatoria para ensamblar cada pieza de contenido.",
+    "blocks": [
+      "1. Título (H1): Optimizado para la entidad central, sin hipérboles.",
+      "2. Etiquetas Editoriales y Confianza: Nombre del autor, credenciales, fecha de revisión científica, tiempo de lectura, distintivos de evidencia.",
+      "3. Resumen AEO (Answer Engine Optimization): Bloque visual diferenciado bajo el título. Respuesta explícita (máx. 3 oraciones o viñetas cortas) rica en datos. Es el 'cebo' para la IA.",
+      "4. Introducción y Gancho Contextual: Define prevalencia, empatiza y mapea el artículo.",
+      "5. Desarrollo Fisiológico (H2 y H3): Explicación patogénica con analogías estructuradas. Integración obligatoria de tablas de datos comparativos.",
+      "6. Desmitificación Científica: Corrección de concepciones erróneas para aportar Information Gain.",
+      "7. Guía de Advertencia (Red Flags YMYL): Viñetas que detallan cuándo acudir al médico especialista.",
+      "8. Módulo FAQ (Schema Markup): 3-5 preguntas de alta frecuencia (PAA) respondidas en 2 líneas.",
+      "9. Conclusión Ejecutiva: Recapitulación sin añadir información nueva.",
+      "10. Llamado a la Acción (CTA) Contextual: Enlace al siguiente artículo o recurso.",
+      "11. Referencias Científicas: Lista numerada con enlaces DOI/PMID apuntando a literatura original.",
+      "12. Aviso Responsable (Disclaimer YMYL): Propósito meramente informativo."
+    ]
+  },
+  "title_engineering": {
+    "philosophy": "Alto CTR, Cero Clickbait. Brecha de curiosidad científica basada en especificidad.",
+    "examples": [
+      {
+        "manipulative": "El alimento tóxico que destruye tu intestino",
+        "ethical": "Permeabilidad Intestinal: 4 alimentos vinculados a la inflamación de la barrera epitelial"
+      },
+      {
+        "manipulative": "La vitamina milagrosa para curar el cansancio eterno",
+        "ethical": "Déficit de Vitamina B12 y Fatiga Celular: Vías de absorción y biodisponibilidad"
+      },
+      {
+        "manipulative": "5 cosas que tu médico te oculta sobre el colesterol",
+        "ethical": "Triglicéridos, ApoB y Riesgo Cardiovascular: Lo que indican los análisis modernos"
+      },
+      {
+        "manipulative": "El secreto japonés para no envejecer nunca",
+        "ethical": "Senescencia Celular y Autofagia: Hábitos asociados a la longevidad fisiológica"
+      },
+      {
+        "manipulative": "Acaba con el hígado graso en solo 3 semanas",
+        "ethical": "Reversión metabólica del Hígado Graso No Alcohólico: Estrategias basadas en evidencia"
+      }
+    ]
+  },
+  "generative_engine_optimization_2026": {
+    "AEO": "Answer Engine Optimization. Párrafos iniciales ultraconcisos, formato de preguntas directas, estructuración en viñetas limpias.",
+    "GEO": "Generative Engine Optimization. Proveer 'Information Gain' (datos, tablas cruzadas, perspectivas ausentes en el consenso repetitivo).",
+    "LLMO": "Large Language Model Optimization. Uso exhaustivo de Entity SEO, interconexión de conceptos (Knowledge Graph) y Schema Markup."
+  },
+  "ux_and_readability": {
+    "mobile_first": "Sin fricción. Los carruseles auto-rotativos están prohibidos. Usar divulgación progresiva estática.",
+    "touch_targets": "Áreas interactivas mínimas de 44x44 pt (Apple) o 48x48 dp (Material) con 8 dp de padding.",
+    "typography": "Tamaño mínimo 16px/17pt. Alineación obligatoria a la izquierda. Párrafos máximos de 4-5 líneas en móvil."
+  },
+  "thematic_cluster_partitioning": {
+    "rule": "Toda condición compleja debe dividirse en series para maximizar cobertura semántica.",
+    "phases": [
+      "1. Fundamentos (Epidemiología, anatomía)",
+      "2. Mecanismos (Fisiopatología, vías)",
+      "3. Impacto Sistémico (Afección a otros ejes)",
+      "4. Intervenciones Basadas en Evidencia (Nutrición, cronobiología)",
+      "5. Desmitificación (Fraudes y mitos)",
+      "6. Alfabetización Médica (Biomarcadores, relación médico-paciente)"
+    ]
+  },
+  "critical_errors_taxonomy": {
+    "scientific_ymyl": [
+      "Miopía Epidemiológica: Citar estudios in vitro como definitivos para humanos.",
+      "Certeza Injustificada: Usar lenguaje definitivo ('comprobado') en ciencias dinámicas.",
+      "Omisión de Contraindicaciones: No listar interacciones medicamentosas de suplementos."
+    ],
+    "seo_aeo": [
+      "Orfandad Temática: Artículos sin internal linking (enlazado interno).",
+      "Estructura Monolítica: Faltan bloques de respuesta rápida (Summary blocks).",
+      "Falta de Information Gain: Repetir contenido del Top 10 de Google sin aportar valor único."
+    ],
+    "ux_mobile": [
+      "Intrusismo Cinético: Carruseles deslizantes o acordeones autónomos.",
+      "Deficiencia Táctil: Enlaces muy pequeños.",
+      "Exceso Tipográfico Horizontal: Párrafos que ocupan toda la pantalla móvil sin respiros."
+    ]
+  },
+  "master_checklists": {
+    "ymyl_and_eeat": {
+      "disclaimer": "Debe mostrarse visiblemente que el propósito es divulgativo y no médico.",
+      "language_purification": "Cero verbos prescriptivos. Uso de lenguaje condicional y seguro.",
+      "risk_identification": "Inclusión de sección 'Cuándo acudir al médico' o 'Red flags'.",
+      "authorship": "Firma editorial clara enlazada a las políticas de revisión."
+    },
+    "evidence_and_citation": {
+      "source_quality": "Enlaces a literatura primaria (PubMed, NIH, OMS) para beneficios a la salud.",
+      "data_transparency": "Diferenciar explícitamente estudios observacionales de ensayos clínicos.",
+      "scientific_neutrality": "Presentar ambos lados de la evidencia en posturas controversiales (ej. Dieta Keto)."
+    },
+    "generative_optimization": {
+      "quick_response_block": "Extracto ultraconciso al inicio respondiendo la intención primaria.",
+      "semantic_structure": "H2/H3 reflejando las preguntas exactas del usuario (fan-out queries).",
+      "entity_density": "Uso de terminología médica precisa interconectada."
+    },
+    "ux_and_accessibility": {
+      "tactile_dimensions": "Elementos interactivos cumplen regla de >48dp con separación.",
+      "scanning_hierarchy": "Textos alineados a la izquierda, fuente >=16px, párrafos cortos.",
+      "static_components": "Cero carruseles auto-rotativos.",
+      "high_value_formats": "Prioridad a Tablas Markdown para comparativas y rangos clínicos."
+    }
+  }
+}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import PremiumInput from '@/components/ui/PremiumInput';
 import { Badge } from '@/components/ui/badge';
 import { toast } from '@/components/ui/use-toast';
 import SEO from '@/components/SEO';
@@ -523,22 +524,14 @@ const HelpCenterPage = () => {
 
                 <form onSubmit={handleSubmit} className="bg-card rounded-2xl p-6 md:p-8 border border-emerald-100 dark:border-border space-y-6">
                   {/* Name */}
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Nombre <span className="text-red-500">*</span>
-                    </label>
-                    <Input
-                      type="text"
-                      placeholder="Tu nombre"
-                      value={formData.nombre}
-                      onChange={(e) => handleChange('nombre', e.target.value)}
-                      className={`w-full ${fieldErrors.nombre ? 'border-red-400 focus-visible:ring-red-400' : ''}`}
-                      required
-                    />
-                    {fieldErrors.nombre && (
-                      <p className="mt-1 text-xs text-red-500">{fieldErrors.nombre}</p>
-                    )}
-                  </div>
+                  <PremiumInput
+                    label="Nombre"
+                    type="text"
+                    value={formData.nombre}
+                    onChange={(e) => handleChange('nombre', e.target.value)}
+                    error={fieldErrors.nombre}
+                    required
+                  />
 
                   {/* Request type */}
                   <div>
@@ -580,38 +573,22 @@ const HelpCenterPage = () => {
                   {/* Contact info */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {/* WhatsApp */}
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
-                        WhatsApp <span className="text-xs text-muted-foreground">(Opcional si agregas correo)</span>
-                      </label>
-                      <Input
-                        type="tel"
-                        placeholder="+56 9 1234 5678"
-                        value={formData.whatsapp}
-                        onChange={(e) => handleChange('whatsapp', e.target.value)}
-                        className={`w-full ${fieldErrors.whatsapp || fieldErrors.contact ? 'border-red-400 focus-visible:ring-red-400' : ''}`}
-                      />
-                      {fieldErrors.whatsapp && (
-                        <p className="mt-1 text-xs text-red-500">{fieldErrors.whatsapp}</p>
-                      )}
-                    </div>
+                    <PremiumInput
+                      label="WhatsApp (Opcional si agregas correo)"
+                      type="tel"
+                      value={formData.whatsapp}
+                      onChange={(e) => handleChange('whatsapp', e.target.value)}
+                      error={fieldErrors.whatsapp || (fieldErrors.contact ? 'Falta contacto' : null)}
+                    />
 
                     {/* Email */}
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
-                        Correo <span className="text-xs text-muted-foreground">(Opcional si agregas WhatsApp)</span>
-                      </label>
-                      <Input
-                        type="email"
-                        placeholder="tu@correo.com"
-                        value={formData.email}
-                        onChange={(e) => handleChange('email', e.target.value)}
-                        className={`w-full ${fieldErrors.email || fieldErrors.contact ? 'border-red-400 focus-visible:ring-red-400' : ''}`}
-                      />
-                      {fieldErrors.email && (
-                        <p className="mt-1 text-xs text-red-500">{fieldErrors.email}</p>
-                      )}
-                    </div>
+                    <PremiumInput
+                      label="Correo (Opcional si agregas WhatsApp)"
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => handleChange('email', e.target.value)}
+                      error={fieldErrors.email || (fieldErrors.contact ? 'Falta contacto' : null)}
+                    />
                   </div>
 
                   {/* Contact required message */}

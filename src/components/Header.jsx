@@ -30,7 +30,9 @@ import { useSiteSettings } from '@/context/SiteSettingsContext';
 import { useAuth } from '@/context/AuthContext';
 import { useNotifications } from '@/context/NotificationContext';
 import UserMenu from '@/components/UserMenu';
+import { TiktokIcon, FacebookIcon } from '@/components/icons/BrandIcons';
 import { useScrollDirection } from '@/hooks/useScrollDirection';
+import { SPRING_PHYSICS, SPRING_SNAPPY } from '@/lib/motionTokens';
 
 const officialStoreUrl = 'https://ifuxion.com/daniel/enrollment/chooseperson';
 
@@ -50,16 +52,8 @@ const drawerNavItems = [
 // ── Social links ───────────────────────────────────────────────
 const socialLinks = [
   { name: 'Instagram', icon: InstagramIcon, url: 'https://www.instagram.com/naturalmentefuxion/' },
-  { name: 'TikTok', icon: ({ className }) => (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.9 2.89 2.89 0 0 1-2.88-2.89 2.89 2.89 0 0 1 2.88-2.89c.32 0 .63.06.92.16V8.77a6.35 6.35 0 0 0-.92-.07A6.34 6.34 0 0 0 3 15.04a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.95a8.24 8.24 0 0 0 4.58 1.5v-3.4a4.87 4.87 0 0 1-.67-.36Z"/>
-    </svg>
-  ) },
-  { name: 'Facebook', icon: ({ className }) => (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-    </svg>
-  ) },
+  { name: 'TikTok', icon: TiktokIcon, url: '#' }, // Agregamos URL vacia temporal o la que exista
+  { name: 'Facebook', icon: FacebookIcon, url: '#' },
 ];
 
 // ── Desktop dropdown component ─────────────────────────────────
@@ -223,12 +217,12 @@ const Header = () => {
     closed: {
       x: '100%',
       opacity: 0,
-      transition: { duration: 0.2, ease: [0.16, 1, 0.3, 1] },
+      transition: SPRING_SNAPPY,
     },
     open: {
       x: 0,
       opacity: 1,
-      transition: { duration: 0.28, ease: [0.16, 1, 0.3, 1] },
+      transition: SPRING_PHYSICS,
     },
   };
 
@@ -238,11 +232,10 @@ const Header = () => {
   };
 
   const itemVariants = {
-    closed: { opacity: 0, x: 20 },
+    closed: { opacity: 0 },
     open: (i) => ({
       opacity: 1,
-      x: 0,
-      transition: { delay: 0.04 * i, duration: 0.25, ease: [0.16, 1, 0.3, 1] },
+      transition: { delay: 0.02 * i, ...SPRING_PHYSICS },
     }),
   };
 
@@ -261,32 +254,7 @@ const Header = () => {
           />
         </Link>
 
-        {/* Mobile brand / user greeting — only visible below md */}
-        <div className="flex md:hidden shrink items-center gap-2.5 min-w-0">
-          {isAuthenticated && user ? (
-            <>
-              <div className="w-[38px] h-[38px] rounded-full ring-2 ring-emerald-200 dark:ring-emerald-700 shadow-sm overflow-hidden shrink-0">
-                <img
-                  src={user.avatar}
-                  alt={user.name || 'Mi cuenta'}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="min-w-0">
-                <p className="text-xxs text-muted-foreground leading-none">Hola,</p>
-                <p className="text-sm font-bold text-foreground leading-tight truncate">{user.name?.split(' ')[0] || 'Cliente'}</p>
-              </div>
-            </>
-          ) : (
-            <Link to="/" className="flex items-center gap-2 min-w-0">
-              <img
-                src="/branding/logo-horizontal.png"
-                alt={settings.site_name || 'Bienestar en Claro'}
-                className="h-[36px] shrink-0 object-contain bg-transparent"
-              />
-            </Link>
-          )}
-        </div>
+
 
         {/* ── Center: Desktop nav ─────────────────────────────── */}
         <div className="hidden md:flex items-center gap-1">
@@ -354,26 +322,7 @@ const Header = () => {
           </button>
 
           {/* User menu (desktop) */}
-          <div className="hidden sm:block">
-            <UserMenu />
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-muted-foreground h-10 w-10"
-              aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
-            >
-              {isMenuOpen ? (
-                <HugeiconsIcon icon={Cancel01Icon} className="h-[26px] w-[26px]" />
-              ) : (
-                <HugeiconsIcon icon={Menu01Icon} className="h-[26px] w-[26px]" />
-              )}
-            </Button>
-          </div>
+          <UserMenu />
         </div>
       </nav>
 
@@ -415,7 +364,8 @@ const Header = () => {
               </button>
 
               {/* ── Profile Header ─────────────────────────────── */}
-              <div className="flex flex-col items-center pt-[env(safe-area-inset-top,16px)] pt-6 pb-4 px-6 shrink-0">
+              {/* pt accounts for: safe-area-inset-top + close button height (40px=10) + gap */}
+              <div className="flex flex-col items-center pt-[max(env(safe-area-inset-top,0px)_+_56px,_72px)] pb-4 px-6 shrink-0">
                 {/* Avatar — reduced size by ~25% and made clickable to go to /cuenta */}
                 <div className="relative mt-2 mb-2">
                   <button
@@ -534,7 +484,11 @@ const Header = () => {
               </div>
 
               {/* ── Footer: Social + WhatsApp + Logout ─────────── */}
-              <div className="px-5 pt-4 pb-3 shrink-0 shadow-[0_-1px_0_rgba(0,0,0,0.05)] dark:shadow-[0_-1px_0_rgba(255,255,255,0.05)] space-y-3">
+              {/* pb-safe ensures logout never hides behind the bottom nav on mobile */}
+              <div
+                className="px-5 pt-4 pb-3 shrink-0 shadow-[0_-1px_0_rgba(0,0,0,0.05)] dark:shadow-[0_-1px_0_rgba(255,255,255,0.05)] space-y-3"
+                style={{ paddingBottom: 'max(calc(env(safe-area-inset-bottom) + 4.5rem), 4.5rem)' }}
+              >
                 {/* Social + WhatsApp row */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">

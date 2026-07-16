@@ -89,21 +89,31 @@ const SmartSearchAutocomplete = ({
     inputRef.current?.blur();
   };
 
-  const highlightMatch = (text, match) => {
-    if (!match) return text;
-    const normalizedText = normalizeText(text);
-    const normalizedMatch = normalizeText(match);
-    const index = normalizedText.indexOf(normalizedMatch);
-    
-    if (index === -1) return text;
+  const renderHighlightedText = (text, itemMatches, keyName) => {
+    if (!itemMatches) return text;
+    const match = itemMatches.find(m => m.key === keyName);
+    if (!match || !match.indices || match.indices.length === 0) return text;
 
-    return (
-      <>
-        {text.substring(0, index)}
-        <span className="font-bold text-emerald-700">{text.substring(index, index + match.length)}</span>
-        {text.substring(index + match.length)}
-      </>
-    );
+    const elements = [];
+    let lastIndex = 0;
+    
+    match.indices.forEach(([start, end], idx) => {
+      if (start > lastIndex) {
+        elements.push(<span key={`text-${idx}`}>{text.substring(lastIndex, start)}</span>);
+      }
+      elements.push(
+        <span key={`match-${idx}`} className="font-bold text-emerald-700">
+          {text.substring(start, end + 1)}
+        </span>
+      );
+      lastIndex = end + 1;
+    });
+    
+    if (lastIndex < text.length) {
+      elements.push(<span key="end">{text.substring(lastIndex)}</span>);
+    }
+    
+    return <>{elements}</>;
   };
 
   return (
@@ -161,10 +171,12 @@ const SmartSearchAutocomplete = ({
                           <HugeiconsIcon icon={Search01Icon} className="w-5 h-5 text-gray-400 shrink-0" />
                           <div className="flex flex-col flex-1 truncate">
                             <span className="text-sm font-medium text-gray-900 truncate">
-                              {highlightMatch(item[searchKeys[0]], debouncedQuery)}
+                              {renderHighlightedText(item[searchKeys[0]], item._matches, searchKeys[0])}
                             </span>
                             {item.categoria && (
-                              <span className="text-xs text-gray-500 truncate">{item.categoria}</span>
+                              <span className="text-xs text-gray-500 truncate">
+                                {renderHighlightedText(item.categoria, item._matches, 'categoria')}
+                              </span>
                             )}
                           </div>
                           {item.image && (

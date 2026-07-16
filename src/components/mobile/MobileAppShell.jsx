@@ -10,6 +10,7 @@ import SmartSearchAutocomplete from '@/components/SmartSearchAutocomplete';
 import fuxionDatabase from '@/data/fuxion_database.json';
 import { getProductImageUrl } from '@/lib/imageUtils';
 import { useScrollDirection } from '@/hooks/useScrollDirection';
+import { SPRING_PHYSICS, SPRING_BOUNCE } from '@/lib/motionTokens';
 
 const defaultProductsDataset = Object.entries(fuxionDatabase.productos || {}).map(([key, value]) => ({
   id: key,
@@ -49,11 +50,11 @@ const MobileAppShell = ({
   // Animation for elements inside the surface
   const itemVariants = {
     hidden: { opacity: 0, y: 15 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } }
+    visible: { opacity: 1, y: 0, transition: SPRING_PHYSICS }
   };
 
   // ── NAV BAR CONTENT (shared between fixed overlay and inline) ──
-  const NavBarContent = () => (
+  const navBarContent = (
     <div className={`flex items-center justify-between pt-3 ${isLarge ? 'pb-4' : 'pb-3'}`}>
       {/* Left: User / Brand */}
       <div className="flex items-center gap-3">
@@ -110,13 +111,13 @@ const MobileAppShell = ({
       </div>
 
       {/* Right: Actions */}
-      <div className="flex items-center gap-1.5 bg-black/10 rounded-full p-1 border border-white/10 backdrop-blur-md">
+      <div className="flex items-center gap-1 bg-black/10 rounded-full p-1 border border-white/10 backdrop-blur-md">
         <button
           onClick={() => {
             const botBtn = document.querySelector('button[aria-label="Abrir asistente de IA"]');
             if (botBtn) botBtn.click();
           }}
-          className="relative text-white p-1.5 rounded-full hover:bg-white/10 active:scale-95 transition-all flex items-center justify-center"
+          className="relative text-white min-h-[44px] min-w-[44px] p-2 rounded-full hover:bg-white/10 active:scale-95 transition-all flex items-center justify-center"
           aria-label="FalconBot"
         >
           <HugeiconsIcon icon={ChatBotIcon} className="h-[22px] w-[22px]" />
@@ -128,13 +129,13 @@ const MobileAppShell = ({
             <motion.button
               initial={{ scale: 0.4, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ type: 'spring', bounce: 0.5, duration: 0.4 }}
+              transition={SPRING_BOUNCE}
               onClick={() => navigate('/carrito')}
-              className="relative text-white p-2 rounded-full hover:bg-white/10 active:scale-95 transition-all"
+              className="relative text-white min-h-[44px] min-w-[44px] p-2 rounded-full hover:bg-white/10 active:scale-95 transition-all flex items-center justify-center"
               aria-label="Carrito"
             >
               <HugeiconsIcon icon={ShoppingCart01Icon} className="h-5 w-5" />
-              <span className="absolute top-[4px] right-[4px] bg-emerald-400 rounded-full h-2 w-2 shadow-sm ring-[1.5px] ring-fuxion"></span>
+              <span className="absolute top-[6px] right-[6px] bg-emerald-400 rounded-full h-2 w-2 shadow-sm ring-[1.5px] ring-fuxion"></span>
             </motion.button>
           </>
         )}
@@ -142,8 +143,8 @@ const MobileAppShell = ({
         <div className="w-[1px] h-5 bg-white/20"></div>
         <button
           onClick={handleOpenMenu}
-          className="text-white p-2 rounded-full hover:bg-white/10 active:scale-95 transition-all"
-          aria-label="Menú"
+          className="relative text-white min-h-[44px] min-w-[44px] p-2 rounded-full hover:bg-white/10 active:scale-95 transition-all flex items-center justify-center"
+          aria-label="Menú principal"
         >
           <HugeiconsIcon icon={Menu11Icon} className="h-5 w-5" />
         </button>
@@ -161,7 +162,7 @@ const MobileAppShell = ({
           navHidden ? '-translate-y-full' : 'translate-y-0'
         }`}
       >
-        <NavBarContent />
+        {navBarContent}
       </div>
 
       {/* ═══════════════════════════════════════════════════════════
@@ -183,7 +184,7 @@ const MobileAppShell = ({
           
           {/* INLINE NAV (part of the scrollable green surface — visible initially) */}
           <motion.div variants={itemVariants}>
-            <NavBarContent />
+            {navBarContent}
           </motion.div>
 
           {/* SEARCH BAR INTEGRADA */}

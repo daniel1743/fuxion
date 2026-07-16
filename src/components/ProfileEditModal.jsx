@@ -4,6 +4,7 @@ import { Camera, Loader2, Save, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { toast } from '@/components/ui/use-toast';
 import { useAuth } from '@/context/AuthContext';
 import { uploadSiteMedia } from '@/services/siteAdminService';
@@ -66,27 +67,14 @@ const ProfileEditModal = ({ isOpen, onClose }) => {
     if (result.success) onClose();
   };
 
-  return createPortal(
-    <div
-      className="fixed inset-0 z-modal flex items-center justify-center overflow-y-auto bg-black/60 p-3 backdrop-blur-sm sm:p-4"
-      onMouseDown={onClose}
-    >
-      <form
-        onSubmit={handleSubmit}
-        onMouseDown={(event) => event.stopPropagation()}
-        className="my-auto max-h-[calc(100vh-24px)] w-full max-w-md overflow-y-auto rounded-xl border border-border bg-card p-4 shadow-2xl sm:p-6"
-      >
-        <div className="mb-5 flex items-start justify-between gap-4">
-          <div>
-            <h2 className="text-xl font-semibold text-foreground">Editar perfil</h2>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Actualiza tu nombre visible y foto de cuenta.
-            </p>
-          </div>
-          <Button type="button" variant="ghost" size="icon" onClick={onClose} aria-label="Cerrar">
-            <X className="h-5 w-5" />
-          </Button>
-        </div>
+  return (
+    <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle>Editar perfil</DialogTitle>
+          <DialogDescription>Actualiza tu nombre visible y foto de cuenta.</DialogDescription>
+        </DialogHeader>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5 py-4">
 
         <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-center">
           <div className="mx-auto flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-full bg-muted ring-1 ring-border sm:mx-0">
@@ -128,9 +116,9 @@ const ProfileEditModal = ({ isOpen, onClose }) => {
             Guardar
           </Button>
         </div>
-      </form>
-    </div>,
-    document.body
+        </form>
+      </DialogContent>
+    </Dialog>
   );
 };
 

@@ -9,6 +9,7 @@ import WhatsAppConfirmDialog from '@/components/WhatsAppConfirmDialog';
 import PwaInstallPrompt from '@/components/PwaInstallPrompt';
 import CookieConsentBanner from '@/components/CookieConsentBanner';
 import MobileBottomNav from '@/components/mobile/MobileBottomNav';
+import { GlobalCommandPalette } from '@/components/GlobalCommandPalette';
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -94,6 +95,8 @@ const Layout = ({ children }) => {
       <FalconBot />
       <AuthModal />
       <WhatsAppConfirmDialog />
+      {/* Global Command Palette (⌘K) */}
+      <GlobalCommandPalette />
       <MobileBottomNav />
     </div>
   );

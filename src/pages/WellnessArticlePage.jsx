@@ -47,6 +47,58 @@ const WellnessArticlePage = () => {
     }
   };
 
+  const schemas = [];
+
+  // MedicalWebPage Schema
+  schemas.push({
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": article.title,
+    "description": article.excerpt,
+    "about": {
+      "@type": "MedicalCondition",
+      "name": article.category || "Salud y Bienestar"
+    },
+    "author": {
+      "@type": "Person",
+      "name": article.editor_name || "Investigador de Salud y Bienestar"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Tienda Fuxion"
+    },
+    "datePublished": article.published_at || article.created_at,
+    "image": article.image_url ? `${window.location.origin}${article.image_url}` : undefined
+  });
+
+  // Extract FAQs and build FAQPage Schema
+  const faqSectionMatch = article.content.match(/##\s+Preguntas Frecuentes([\s\S]*?)(?=\n##\s|$)/i);
+  if (faqSectionMatch) {
+    const faqText = faqSectionMatch[1];
+    const faqs = [];
+    const matches = faqText.matchAll(/###\s+(.+?)\n([\s\S]*?)(?=\n###\s|$)/g);
+    for (const match of matches) {
+      const question = match[1].trim();
+      const answer = match[2].trim().replace(/\n/g, ' ');
+      faqs.push({ question, answer });
+    }
+    
+    if (faqs.length > 0) {
+      schemas.push({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqs.map(faq => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.answer
+          }
+        }))
+      });
+    }
+  }
+
   return (
     <main className="min-h-screen bg-background pb-20 pt-0 md:pt-24">
       <SEO
@@ -55,6 +107,7 @@ const WellnessArticlePage = () => {
         canonical={`/bienestar/${article.slug}`}
         ogType="article"
         ogImage={article.image_url || undefined}
+        schema={schemas}
       />
 
       {/* ── MOBILE SHELL ── */}

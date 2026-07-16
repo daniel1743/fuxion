@@ -1,0 +1,1611 @@
+{
+  "metadata": {
+    "title": "Tracker de 200 Artículos - Proyecto Aurora",
+    "description": "Registro maestro para agentes de IA que documenta el progreso de redacción de los 200 núcleos temáticos de salud.",
+    "total_articles": 200,
+    "published_articles": 10,
+    "pending_articles": 190
+  },
+  "articles": [
+    {
+      "id": 1,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Disbiosis Intestinal",
+      "status": "published",
+      "published_url": "/docs/articles/disbiosis-intestinal-desequilibrio-del-microbioma-y-su-relaci-n-con-la-inflamaci-n-sist-mica.md",
+      "publish_date": "2026-07-16T00:38:58.042Z"
+    },
+    {
+      "id": 2,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Permeabilidad Intestinal (Leaky Gut)",
+      "status": "published",
+      "published_url": "/docs/articles/permeabilidad-intestinal-mecanismos-de-la-barrera-epitelial-y-factores-moduladores.md",
+      "publish_date": "2026-07-16T00:38:58.044Z"
+    },
+    {
+      "id": 3,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Síndrome del Intestino Irritable (SII)",
+      "status": "published",
+      "published_url": "/docs/articles/s-ndrome-del-intestino-irritable-sii-eje-intestino-cerebro-y-alteraciones-de-la-motilidad.md",
+      "publish_date": "2026-07-16T00:38:58.045Z"
+    },
+    {
+      "id": 4,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "SIBO (Sobrecrecimiento Bacteriano)",
+      "status": "published",
+      "published_url": "/docs/articles/sibo-sobrecrecimiento-bacteriano-migraci-n-microbiana-y-fermentaci-n-prematura.md",
+      "publish_date": "2026-07-16T00:38:58.046Z"
+    },
+    {
+      "id": 5,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Eje Intestino-Cerebro",
+      "status": "published",
+      "published_url": "/docs/articles/eje-intestino-cerebro-v-as-de-comunicaci-n-bidireccional-y-neurotransmisores-ent-ricos.md",
+      "publish_date": "2026-07-16T00:38:58.047Z"
+    },
+    {
+      "id": 6,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Hígado Graso No Alcohólico (HGNA)",
+      "status": "published",
+      "published_url": "/docs/articles/h-gado-graso-no-alcoh-lico-hgna-acumulaci-n-lip-dica-y-estr-s-oxidativo-hep-tico.md",
+      "publish_date": "2026-07-16T00:38:58.048Z"
+    },
+    {
+      "id": 7,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Reflujo Gastroesofágico (ERGE) e Hipoclorhidria",
+      "status": "published",
+      "published_url": "/docs/articles/reflujo-gastroesof-gico-erge-e-hipoclorhidria-mecanismos-del-esf-nter-y-acidez.md",
+      "publish_date": "2026-07-16T00:38:58.049Z"
+    },
+    {
+      "id": 8,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Celiaquía vs Sensibilidad al Gluten No Celíaca",
+      "status": "published",
+      "published_url": "/docs/articles/celiaqu-a-vs-sensibilidad-al-gluten-no-cel-aca-mecanismos-inmunol-gicos-diferenciados.md",
+      "publish_date": "2026-07-16T00:38:58.050Z"
+    },
+    {
+      "id": 9,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Digestión enzimática exocrina",
+      "status": "published",
+      "published_url": "/docs/articles/digesti-n-enzim-tica-exocrina-funci-n-pancre-tica-y-descomposici-n-de-macronutrientes.md",
+      "publish_date": "2026-07-16T00:38:58.051Z"
+    },
+    {
+      "id": 10,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Fibra soluble vs insoluble en la motilidad",
+      "status": "published",
+      "published_url": "/docs/articles/fibra-soluble-vs-insoluble-impacto-en-la-motilidad-y-modulaci-n-del-microbioma.md",
+      "publish_date": "2026-07-16T00:38:58.052Z"
+    },
+    {
+      "id": 11,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Ácidos grasos de cadena corta (Butirato)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 12,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Estreñimiento funcional crónico",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 13,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Metabolismo de los ácidos biliares",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 14,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Infección por Helicobacter pylori",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 15,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Eje intestino-hígado",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 16,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Intolerancia a la lactosa (Genética vs Adquirida)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 17,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Alergias alimentarias y respuesta IgE",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 18,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Histaminosis entérica",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 19,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Función del moco gástrico",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 20,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Tránsito intestinal acelerado",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 21,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Diverticulosis y prevención",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 22,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Vesícula biliar y metabolismo lipídico",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 23,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Ecosistema fúngico intestinal (Micobioma)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 24,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Fermentación colónica",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 25,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Gases y flatulencias fisiológicas",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 26,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Diarrea osmótica vs secretora",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 27,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Edulcorantes artificiales y microbioma",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 28,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Impacto intestinal del alcohol",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 29,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Ejercicio y motilidad gástrica",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 30,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Apéndice como reservorio bacteriano",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 31,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Absorción de hierro y B12 a nivel duodenal/ileal",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 32,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Ayuno y complejo motor migratorio",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 33,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Candidiasis intestinal (Evidencia vs Mitos)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 34,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Nutrición enteral básica",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 35,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Ritmos circadianos del tracto digestivo",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 36,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Polifenoles y bacterias comensales",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 37,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Masticación y fase cefálica de la digestión",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 38,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Impacto de los AINEs en la mucosa",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 39,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Intestino perezoso en el adulto mayor",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 40,
+      "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
+      "title": "Alimentos ultraprocesados y emulsificantes en la barrera",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 41,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Resistencia a la Insulina",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 42,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Flexibilidad Metabólica",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 43,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Ayuno Intermitente",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 44,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Índice y Carga Glucémica",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 45,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Termogénesis inducida por la dieta",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 46,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Cetosis fisiológica (Dieta Keto)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 47,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Adaptación metabólica (Tumba metabólica)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 48,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Leptina y resistencia leptínica",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 49,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Grelina y ritmos del hambre",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 50,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Dislipidemia (HDL, LDL, VLDL)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 51,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Triglicéridos y remanentes",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 52,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Metabolismo de la fructosa hepática",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 53,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Glucotoxicidad y estrés oxidativo",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 54,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Tejido adiposo visceral vs subcutáneo",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 55,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Grasa parda (BAT) y termogénesis",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 56,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Sarcopenia y requerimientos de leucina",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 57,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Nutrigenómica elemental",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 58,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Crononutrición",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 59,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Hidratación intra vs extracelular",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 60,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Ciclo de Krebs para mortales",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 61,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Biogénesis mitocondrial",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 62,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Hipoglucemia reactiva",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 63,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Proteínas séricas y albúmina",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 64,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Micronutrición (Biodisponibilidad del magnesio)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 65,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Metabolismo del calcio y D3",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 66,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Antioxidantes endógenos (Glutatión)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 67,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Vías mTOR y crecimiento celular",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 68,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Glicación (AGEs) y envejecimiento vascular",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 69,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Vitaminas liposolubles",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 70,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Vitaminas del complejo B y metilación",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 71,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Folato vs Ácido fólico sintético",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 72,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Metabolismo basal (TMB)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 73,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "NEAT (Termogénesis por actividad no asociada al ejercicio)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 74,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Adicción a ultraprocesados",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 75,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Microbioma y extracción calórica",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 76,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Hipertrofia adipocitaria",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 77,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Lipólisis y movilización de ácidos grasos",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 78,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Colesterol exógeno vs endógeno",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 79,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Respuesta glucémica individualizada",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 80,
+      "domain": "Dominio 2: Salud Metabólica, Nutrición Celular y Obesidad",
+      "title": "Dietas hiperproteicas y función renal",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 81,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Fisiología del Estrés (Eje HPA)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 82,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Arquitectura del Sueño",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 83,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Dopamina y Sistemas de Recompensa",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 84,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Neuroplasticidad en la edad adulta",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 85,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Serotonina (Eje cerebro-entérico)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 86,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Tono Vagal y Variabilidad Cardíaca (HRV)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 87,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "GABA y neurotransmisores inhibidores",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 88,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Sistema Nervioso Simpático vs Parasimpático",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 89,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Niebla Mental (Brain Fog) y neuroinflamación",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 90,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Neurogénesis en el hipocampo",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 91,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Reserva Cognitiva y prevención de demencias",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 92,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Fatiga por toma de decisiones",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 93,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Red Neuronal por Defecto (DMN) y rumiación",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 94,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Neurofisiología del \"Flow State\"",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 95,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Ejercicio y BDNF (Factor Neurotrófico)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 96,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Ritmos circadianos y núcleo supraquiasmático",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 97,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Insomnio de conciliación vs mantenimiento",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 98,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Apnea obstructiva del sueño (Fisiopatología)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 99,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Jet lag social",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 100,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Temperatura central y sueño",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 101,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Oxitocina y resiliencia al estrés",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 102,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Respiración diafragmática y quimiorreceptores",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 103,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Cambios estructurales del cerebro por meditación",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 104,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Endocannabinoides y ejercicio (El verdadero \"Runner's high\")",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 105,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Neurobiología de los hábitos (Ganglios basales)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 106,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Trauma y memoria somática",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 107,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Ansiedad funcional vs Trastorno generalizado",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 108,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Glutamato y excitotoxicidad",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 109,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Nutrientes nootrópicos (L-Teanina, Creatina)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 110,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Consolidación de la memoria durante el sueño",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 111,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Ritmos ultradianos de enfoque",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 112,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Fotofobia y procesamiento sensorial",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 113,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Depresión estacional y luz",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 114,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Efecto placebo y nocebo (Fisiología)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 115,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Regulación emocional \"Top-down\"",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 116,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Impacto neurotóxico del alcohol",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 117,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Barrera hematoencefálica",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 118,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Células gliales y astrocitos",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 119,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Propiocepción y esquema corporal",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 120,
+      "domain": "Dominio 3: Neurobiología, Sueño, Estrés y Salud Mental Funcional",
+      "title": "Sistema vestibular y mareos crónicos",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 121,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Transición Menopáusica",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 122,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Inflamación de Bajo Grado",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 123,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Disfunción Tiroidea (Subclínica)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 124,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Autoinmunidad (Mimetismo molecular)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 125,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Síndrome de Ovario Poliquístico (PCOS - Fenotipos)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 126,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Dominancia estrogénica y metabolismo hepático de hormonas",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 127,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Disruptores endocrinos en el entorno (Xenoestrógenos)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 128,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Amenorrea hipotalámica",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 129,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Dismenorrea y prostaglandinas",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 130,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Salud del suelo pélvico",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 131,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Microbioma vaginal",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 132,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Testosterona libre en hombres y mujeres",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 133,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Andropausia (Deficiencia de andrógenos)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 134,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Glándulas suprarrenales (DHEA)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 135,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Inmunidad innata vs adaptativa",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 136,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Sistema linfático periférico",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 137,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Mastocitos e intolerancia a la histamina",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 138,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Vitamina D como pro-hormona inmunomoduladora",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 139,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Senescencia celular (Células zombis)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 140,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Vías Sirtuinas y NAD+ en el envejecimiento",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 141,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Epigenética (Metilación del ADN)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 142,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Hormesis y estrés adaptativo",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 143,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Terapia de exposición al frío / calor extremo",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 144,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Longitud de los telómeros",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 145,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Células madre adultas endógenas",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 146,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Carga viral y reactivación de patógenos latentes (VEB)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 147,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Biomarcadores de edad biológica vs cronológica",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 148,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Salud de la próstata",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 149,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Prolactina en el estrés",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 150,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Eje intestino-piel (Acné hormonal)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 151,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Osteoporosis y dinámica de osteoblastos/osteoclastos",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 152,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Melasma y sensibilidad melanocítica",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 153,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Caída del cabello (Androgenética vs Efluvio)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 154,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Dinámica del colágeno dérmico y fotoenvejecimiento",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 155,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Termorregulación periférica femenina",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 156,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Funciones de la progesterona cerebral",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 157,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Anticonceptivos hormonales (Impacto metabólico)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 158,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Respuesta de histocompatibilidad (HLA)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 159,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Metabolismo del ácido úrico",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 160,
+      "domain": "Dominio 4: Endocrinología, Salud Femenina, Inmunidad y Longevidad",
+      "title": "Ciclo menstrual como signo vital",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 161,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Endotelio vascular y óxido nítrico",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 162,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Hipertensión esencial (Eje Renina-Angiotensina)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 163,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Rigidez arterial y presión de pulso",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 164,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Placa de ateroma (Vulnerabilidad vs Estabilidad)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 165,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Función de las lipoproteínas ApoB y ApoA1",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 166,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Fibrilación auricular y arritmias básicas",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 167,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Insuficiencia venosa y válvulas de retorno",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 168,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Microcirculación capilar periférica",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 169,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Vo2 Max como predictor de mortalidad",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 170,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Adaptaciones del ventrículo izquierdo al deporte",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 171,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Dinapenia y pérdida de fuerza en adultos mayores",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 172,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Reclutamiento de unidades motoras (Fibras lentas vs rápidas)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 173,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Tejido fascial y tensegridad del cuerpo",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 174,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Cartílago hialino y líquido sinovial (Artrosis)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 175,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Tendinopatías y carga mecánica progresiva",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 176,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Dolor lumbar inespecífico (Biomecánica)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 177,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Ergonomía moderna y postura",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 178,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Fisiología de la sed y osmorregulación",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 179,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Filtración glomerular y función renal básica",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 180,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Sistema endocannabinoide (Receptores CB1 y CB2)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 181,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Coagulación y función plaquetaria",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 182,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Hematopoyesis y glóbulos rojos",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 183,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Salud ocular (Película lagrimal y degeneración macular)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 184,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Fisiología auditiva (Presbiacusia y Tinnitus)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 185,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Barrera cutánea (Estrato córneo y ceramidas)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 186,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Microbioma de la piel y pH ácido",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 187,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Rosácea y reactividad de los vasos sanguíneos dérmicos",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 188,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Glándulas sebáceas",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 189,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Glándulas sudoríparas (Ecrinas vs Apocrinas)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 190,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Fisiología del estiramiento muscular (Husos neuromusculares)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 191,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Desintoxicación hepática real (Fase I, II y III, desmitificando dietas detox)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 192,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Equilibrio ácido-base fisiológico (El mito de las dietas alcalinas)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 193,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Interacciones farmacológicas a nivel del Citocromo P450",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 194,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Cilios respiratorios y aclaramiento mucociliar",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 195,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Asma y broncoconstricción",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 196,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Mecanorreceptores de la piel (Tacto y presión)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 197,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Fisiología del olfato y gusto",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 198,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Metabolismo del hierro y almacenamiento (Ferritina)",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 199,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Fisiología de la fiebre",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    },
+    {
+      "id": 200,
+      "domain": "Dominio 5: Fisiología Cardiovascular, Ejercicio, Biomecánica y Funciones Sistémicas Generales",
+      "title": "Plasticidad somatosensorial en la edad adulta",
+      "status": "pending",
+      "published_url": null,
+      "publish_date": null
+    }
+  ]
+}

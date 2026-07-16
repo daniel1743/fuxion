@@ -59,7 +59,7 @@ const FalconBot = () => {
     }, []);
 
     // Scroll awareness — reduce opacidad al hacer scroll
-    const { style: scrollStyle } = useScrollAware();
+    const { isScrolling, style: scrollStyle } = useScrollAware();
 
     // Smart suggestions based on user journey context
     const quickActions = getSmartSuggestions();
@@ -682,14 +682,15 @@ Nombre: ${productCtx.name}`;
             <AnimatePresence>
                 {!isOpen && (
                     <motion.div
-                        initial={{ scale: 0 }}
+                        initial={{ scale: 0, x: 0 }}
                         animate={{
                             scale: isMobileMenuOpen ? 0.8 : (isFloatingHovered ? 1 : scrollStyle.scale),
-                            opacity: isMobileMenuOpen ? 0 : (isFloatingHovered ? 1 : scrollStyle.opacity),
+                            opacity: isMobileMenuOpen ? 0 : (isFloatingHovered ? 1 : (isScrolling ? 0 : 1)),
+                            x: isScrolling && !isFloatingHovered ? 120 : 0,
                         }}
-                        exit={{ scale: 0 }}
+                        exit={{ scale: 0, x: 0 }}
                         transition={{ duration: 0.25, ease: 'easeOut' }}
-                        className={`fixed bottom-24 right-4 md:bottom-6 md:right-6 z-floating flex items-center gap-2 ${isMobileMenuOpen ? 'pointer-events-none md:pointer-events-auto' : ''}`}
+                        className={`fixed bottom-[calc(5.5rem+env(safe-area-inset-bottom,0px))] right-4 md:bottom-[calc(1.5rem+env(safe-area-inset-bottom,0px))] md:right-6 z-floating flex items-center gap-2 ${isMobileMenuOpen ? 'pointer-events-none md:pointer-events-auto' : ''}`}
                         onMouseEnter={() => { showQuickWhatsappAction(); setIsFloatingHovered(true); }}
                         onMouseLeave={() => { hideQuickWhatsappAction(); setIsFloatingHovered(false); }}
                         onFocus={() => { showQuickWhatsappAction(); setIsFloatingHovered(true); }}
@@ -740,7 +741,7 @@ Nombre: ${productCtx.name}`;
                         }}
                         exit={{ opacity: 0, y: 10, scale: 0.96 }}
                         transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                        className={`fixed inset-x-3 bottom-20 md:bottom-3 z-floating h-[min(600px,calc(100dvh-100px))] md:h-[min(600px,calc(100dvh-24px))] bg-card border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden sm:inset-x-auto sm:bottom-6 sm:right-6 sm:w-96 sm:h-[min(600px,calc(100dvh-48px))] ${isMobileMenuOpen ? 'pointer-events-none md:pointer-events-auto' : ''}`}
+                        className={`fixed inset-0 z-[100] h-[100dvh] w-full bg-card flex flex-col overflow-hidden sm:inset-auto sm:bottom-6 sm:right-6 sm:w-96 sm:h-[min(600px,calc(100dvh-48px))] sm:rounded-2xl sm:border sm:border-border sm:shadow-2xl ${isMobileMenuOpen ? 'pointer-events-none sm:pointer-events-auto' : ''}`}
                     >
                         {/* Header */}
                         <div className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 p-4 flex justify-between items-center shadow-emerald-500/20 relative overflow-hidden">

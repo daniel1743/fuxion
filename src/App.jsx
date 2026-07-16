@@ -14,6 +14,7 @@ import { NotificationProvider } from '@/context/NotificationContext';
 import AdminLoginModal from '@/components/admin/AdminLoginModal';
 import AppSplashScreen from '@/components/AppSplashScreen';
 import ScrollToTop from '@/components/ScrollToTop';
+import PageLoader from '@/components/PageLoader';
 import '@/utils/clearForumData'; // Cargar utilidades del foro
 import '@/utils/testBots'; // Cargar test de bots
 
@@ -69,11 +70,7 @@ function App() {
                   <SiteSettingsProvider>
                   <Layout>
               <AnimatePresence mode="popLayout">
-                <Suspense fallback={
-                  <div className="w-full h-screen flex items-center justify-center bg-background">
-                    <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-purple-500"></div>
-                  </div>
-                }>
+                <Suspense fallback={<PageLoader />}>
                   <Routes location={location} key={location.pathname}>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/explorar" element={<ExplorePage />} />

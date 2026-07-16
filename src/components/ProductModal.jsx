@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ShoppingCart, Package, Shield, Zap } from 'lucide-react';
+import { HugeiconsIcon } from '@hugeicons/react';
+import { Cancel01Icon, ShoppingCart01Icon, PackageIcon, Shield01Icon, EnergyIcon } from '@hugeicons/core-free-icons';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/CartContext';
 import { getPlaceholderImage } from '@/lib/imageUtils';
@@ -22,6 +23,13 @@ const ProductModal = ({ product, isOpen, onClose }) => {
     confirmAndOpenWhatsapp(`Hola, quiero hablar con un asesor sobre ${product.name}.`);
   };
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const modalVariants = {
+    hidden: { opacity: 0, y: isMobile ? '100%' : 20, scale: isMobile ? 1 : 0.95 },
+    visible: { opacity: 1, y: 0, scale: 1 },
+    exit: { opacity: 0, y: isMobile ? '100%' : 20, scale: isMobile ? 1 : 0.95 }
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -37,10 +45,11 @@ const ProductModal = ({ product, isOpen, onClose }) => {
 
           {/* Modal */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ type: "spring", duration: 0.5 }}
+            variants={modalVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            transition={{ type: "spring", stiffness: 400, damping: 30 }}
             className="fixed inset-0 z-modal flex flex-col justify-end md:justify-center p-0 md:p-4 pointer-events-none"
           >
             <div className="bg-card border-t md:border border-border rounded-t-[32px] md:rounded-2xl max-w-4xl w-full h-[90vh] md:h-auto md:max-h-[90vh] overflow-y-auto shadow-2xl pointer-events-auto mx-auto flex flex-col relative pb-[env(safe-area-inset-bottom,1rem)]">
@@ -58,7 +67,7 @@ const ProductModal = ({ product, isOpen, onClose }) => {
                   onClick={onClose}
                   className="rounded-full hover:bg-destructive/10 hover:text-destructive"
                 >
-                  <X className="h-5 w-5" />
+                  <HugeiconsIcon icon={Cancel01Icon} size={24} />
                 </Button>
               </div>
 
@@ -110,9 +119,9 @@ const ProductModal = ({ product, isOpen, onClose }) => {
                           product.features.slice(0, 3).map((feature, index) => (
                             <div key={index} className="flex items-center gap-3 text-sm">
                               <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                                {index === 0 && <Package className="h-5 w-5 text-primary" />}
-                                {index === 1 && <Shield className="h-5 w-5 text-primary" />}
-                                {index === 2 && <Zap className="h-5 w-5 text-primary" />}
+                                {index === 0 && <HugeiconsIcon icon={PackageIcon} className="h-5 w-5 text-primary" />}
+                                {index === 1 && <HugeiconsIcon icon={Shield01Icon} className="h-5 w-5 text-primary" />}
+                                {index === 2 && <HugeiconsIcon icon={EnergyIcon} className="h-5 w-5 text-primary" />}
                               </div>
                               <span className="text-muted-foreground">{feature}</span>
                             </div>
@@ -121,19 +130,19 @@ const ProductModal = ({ product, isOpen, onClose }) => {
                           <>
                             <div className="flex items-center gap-3 text-sm">
                               <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                                <Package className="h-5 w-5 text-primary" />
+                                <HugeiconsIcon icon={PackageIcon} className="h-5 w-5 text-primary" />
                               </div>
                               <span className="text-muted-foreground">100% Natural y Orgánico</span>
                             </div>
                             <div className="flex items-center gap-3 text-sm">
                               <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                                <Shield className="h-5 w-5 text-primary" />
+                                <HugeiconsIcon icon={Shield01Icon} className="h-5 w-5 text-primary" />
                               </div>
                               <span className="text-muted-foreground">Certificado por Fuxion Biotech</span>
                             </div>
                             <div className="flex items-center gap-3 text-sm">
                               <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                                <Zap className="h-5 w-5 text-primary" />
+                                <HugeiconsIcon icon={EnergyIcon} className="h-5 w-5 text-primary" />
                               </div>
                               <span className="text-muted-foreground">Resultados visibles en semanas</span>
                             </div>
@@ -145,15 +154,15 @@ const ProductModal = ({ product, isOpen, onClose }) => {
                     {/* Add to Cart */}
                     <div className="pt-4 space-y-3">
                       <div className="grid gap-3 sm:grid-cols-[1fr_auto_auto]">
-                        <Button
+                        <Button 
+                          className="flex-1 rounded-full text-sm md:text-base h-12 md:h-14 font-semibold shadow-lg shadow-primary/20 flex items-center justify-center gap-2"
                           onClick={() => {
-                            addToCart(product);
+                            addToCart(product, 1);
                             onClose();
                           }}
-                          className="h-12 text-lg gap-2"
                           disabled={product.stock === 0}
                         >
-                          <ShoppingCart className="h-5 w-5" />
+                          <HugeiconsIcon icon={ShoppingCart01Icon} size={20} />
                           {product.stock === 0 ? 'Agotado' : 'Agregar al Carrito'}
                         </Button>
                         <Button

@@ -133,6 +133,7 @@ const AuthModal = () => {
                 <Input
                   id="new-password"
                   type="password"
+                  autoComplete="new-password"
                   value={newPassword}
                   onChange={(event) => setNewPassword(event.target.value)}
                   placeholder="Mínimo 6 caracteres"
@@ -166,7 +167,7 @@ const AuthModal = () => {
               <form onSubmit={handleLogin} className="space-y-4 mt-4">
                 <div className="space-y-2">
                   <Label htmlFor="login-email">Email</Label>
-                  <Input id="login-email" type="email" placeholder="nombre@ejemplo.com" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                  <Input id="login-email" type="email" autoComplete="email" placeholder="nombre@ejemplo.com" value={email} onChange={(e) => setEmail(e.target.value)} onBlur={(e) => { if (e.target.value && !e.target.checkValidity()) setFormError('El correo ingresado no es válido'); else setFormError(''); }} className="[&:not(:placeholder-shown):invalid]:border-red-500 [&:not(:placeholder-shown):invalid]:ring-red-500 [&:not(:placeholder-shown):valid]:border-emerald-500" required />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="login-password">Contraseña</Label>
@@ -174,11 +175,14 @@ const AuthModal = () => {
                     <Input
                       id="login-password"
                       type={showLoginPassword ? 'text' : 'password'}
+                      autoComplete="current-password"
                       placeholder="••••••••"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className="pr-11"
+                      onBlur={(e) => { if (e.target.value.length > 0 && e.target.value.length < 6) setFormError('La contraseña debe tener al menos 6 caracteres'); else setFormError(''); }}
+                      className="pr-11 [&:not(:placeholder-shown):invalid]:border-red-500 [&:not(:placeholder-shown):valid]:border-emerald-500"
                       required
+                      minLength={6}
                     />
                     <button
                       type="button"
@@ -221,6 +225,7 @@ const AuthModal = () => {
                     <Label htmlFor="register-first-name">Nombre *</Label>
                     <Input
                       id="register-first-name"
+                      autoComplete="given-name"
                       placeholder="Juan"
                       value={registerData.firstName}
                       onChange={(e) => setRegisterData({ ...registerData, firstName: e.target.value })}
@@ -231,6 +236,7 @@ const AuthModal = () => {
                     <Label htmlFor="register-last-name">Apellido *</Label>
                     <Input
                       id="register-last-name"
+                      autoComplete="family-name"
                       placeholder="Pérez"
                       value={registerData.lastName}
                       onChange={(e) => setRegisterData({ ...registerData, lastName: e.target.value })}
@@ -243,9 +249,12 @@ const AuthModal = () => {
                   <Input
                     id="register-email"
                     type="email"
+                    autoComplete="email"
                     placeholder="nombre@ejemplo.com"
                     value={registerData.email}
                     onChange={(e) => setRegisterData({ ...registerData, email: e.target.value })}
+                    onBlur={(e) => { if (e.target.value && !e.target.checkValidity()) setFormError('El correo ingresado no es válido'); else setFormError(''); }}
+                    className="[&:not(:placeholder-shown):invalid]:border-red-500 [&:not(:placeholder-shown):valid]:border-emerald-500"
                     required
                   />
                 </div>
@@ -255,6 +264,7 @@ const AuthModal = () => {
                     <Input
                       id="register-password"
                       type={showRegisterPassword ? 'text' : 'password'}
+                      autoComplete="new-password"
                       placeholder="••••••••"
                       value={registerData.password}
                       onChange={(e) => setRegisterData({ ...registerData, password: e.target.value })}

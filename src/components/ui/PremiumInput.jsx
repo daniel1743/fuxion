@@ -223,7 +223,7 @@ const PremiumInput = forwardRef(
     );
 
     const labelClasses = cn(
-      'absolute left-4 transition-all duration-200 pointer-events-none select-none',
+      'absolute left-4 z-10 transition-all duration-200 pointer-events-none select-none',
       'text-gray-500 font-light',
       // Posición flotante
       floatingLabel

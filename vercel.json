@@ -86,6 +86,16 @@
       "source": "/blog/:slug",
       "destination": "/articulos/:slug",
       "permanent": true
+    },
+    {
+      "source": "/empieza-aqui",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/preguntas-frecuentes",
+      "destination": "/faq",
+      "permanent": true
     }
   ],
 

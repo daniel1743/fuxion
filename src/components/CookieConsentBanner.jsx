@@ -138,7 +138,7 @@ const CookieConsentBanner = () => {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: '100%', opacity: 0 }}
             transition={{ type: 'spring', damping: 28, stiffness: 300 }}
-            className="fixed bottom-0 left-0 right-0 z-max p-4 sm:p-6 pointer-events-none"
+            className="fixed bottom-0 left-0 right-0 z-max p-4 sm:p-6 pb-[calc(1rem+env(safe-area-inset-bottom,0px))] pointer-events-none"
           >
             <div className="max-w-2xl mx-auto pointer-events-auto">
               <div

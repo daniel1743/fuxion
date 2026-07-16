@@ -1,7 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { ShoppingCart, Info } from 'lucide-react';
+import { HugeiconsIcon } from '@hugeicons/react';
+import { ShoppingCart01Icon, InformationCircleIcon } from '@hugeicons/core-free-icons';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useCart } from '@/context/CartContext';
@@ -394,10 +395,10 @@ const ExplorePage = () => {
                     <Button
                       onClick={() => handleAddToCart(product)}
                       size="sm"
-                      className="flex-1 cursor-pointer"
+                      className="flex-1 cursor-pointer font-bold bg-emerald-600 hover:bg-emerald-500 shadow-emerald-600/20 shadow-lg border-emerald-600 hover:border-emerald-500"
                       disabled={product.stock === 0}
                     >
-                      <ShoppingCart className="h-4 w-4" />
+                      <HugeiconsIcon icon={ShoppingCart01Icon} className="h-4 w-4" />
                       {product.stock === 0 ? 'Agotado' : 'Agregar'}
                     </Button>
                     <Button
@@ -424,9 +425,10 @@ const ExplorePage = () => {
                       onClick={() => handleViewDetails(product)}
                       variant="outline"
                       size="icon"
-                      className="cursor-pointer"
+                      className="cursor-pointer border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                      title="Ver detalles"
                     >
-                      <Info className="h-4 w-4" />
+                      <HugeiconsIcon icon={InformationCircleIcon} className="h-5 w-5" />
                     </Button>
                   </div>
                 </CardContent>

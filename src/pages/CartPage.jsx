@@ -512,7 +512,7 @@ const CartPage = () => {
               <div className="bg-card border border-border rounded-xl p-6">
                 <h2 className="text-xl font-bold text-foreground mb-4">Resumen</h2>
                 <div className="space-y-3 mb-6">
-                  <div className="flex justify-between text-muted-foreground">
+                  <div className="flex justify-between text-slate-700 dark:text-slate-300 font-medium">
                     <span>Productos ({getCartCount()})</span>
                     <span>${getCartTotal().toLocaleString('es-CL')}</span>
                   </div>
@@ -530,6 +530,7 @@ const CartPage = () => {
                   variant="whatsapp"
                   size="lg"
                   fullWidth
+                  className="shadow-emerald-600/30 shadow-xl hover:shadow-emerald-500/40"
                 >
                   <Send className="h-5 w-5" />
                   {isSending ? 'Registrando pedido...' : 'Enviar pedido a un asesor'}

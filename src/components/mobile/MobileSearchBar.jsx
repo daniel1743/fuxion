@@ -24,9 +24,9 @@ const MobileSearchBar = ({ onSearch }) => {
       transition={{ duration: 0.4, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
       className="px-4 pt-4"
     >
-      <form
-        onSubmit={handleSubmit}
-        className="flex h-12 items-center gap-3 rounded-full border border-gray-100 bg-white px-4 shadow-sm transition-shadow focus-within:shadow-md"
+      <div
+        onClick={() => window.dispatchEvent(new CustomEvent('fuxion:open-command-palette'))}
+        className="flex h-12 cursor-pointer items-center gap-3 rounded-full border border-gray-100 bg-white px-4 shadow-sm transition-shadow hover:shadow-md"
       >
         <HugeiconsIcon
           icon={Search01Icon}
@@ -34,14 +34,10 @@ const MobileSearchBar = ({ onSearch }) => {
           className="shrink-0 text-gray-400"
         />
 
-        <input
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Buscar productos, objetivos o ingredientes..."
-          className="min-w-0 flex-1 bg-transparent text-sm text-gray-800 placeholder-gray-400 outline-none"
-        />
-      </form>
+        <div className="flex-1 text-sm text-gray-400">
+          Buscar productos, objetivos...
+        </div>
+      </div>
     </motion.div>
   );
 };

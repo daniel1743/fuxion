@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight, CheckCircle2, Leaf, ShoppingCart } from 'lucide-react';
+import { HugeiconsIcon } from '@hugeicons/react';
+import { ArrowLeft02Icon, ArrowRight02Icon, CheckmarkCircle02Icon, Leaf01Icon, ShoppingCart01Icon } from '@hugeicons/core-free-icons';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/CartContext';
 import MobileAppShell from '@/components/mobile/MobileAppShell';
@@ -182,8 +183,8 @@ const ProductPage = () => {
       <div className="container mx-auto px-4 sm:px-6 pt-6 md:pt-28">
 
 
-      <Link to="/explorar" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary mb-8">
-        <ArrowLeft className="h-4 w-4" />
+      <Link to="/explorar" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary mb-8 group transition-colors">
+        <HugeiconsIcon icon={ArrowLeft02Icon} className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
         Volver a productos
       </Link>
 
@@ -245,8 +246,9 @@ const ProductPage = () => {
             <Button
               onClick={() => addToCart(productForCart)}
               size="lg"
+              className="font-bold bg-emerald-600 hover:bg-emerald-500 shadow-emerald-600/20 shadow-lg border-emerald-600 hover:border-emerald-500"
             >
-              <ShoppingCart className="h-5 w-5" />
+              <HugeiconsIcon icon={ShoppingCart01Icon} className="h-5 w-5" />
               Agregar al carrito
             </Button>
             <Button
@@ -282,7 +284,7 @@ const ProductPage = () => {
           <div className="mt-5 space-y-3">
             {(product.benefits || []).map((benefit) => (
               <div key={benefit} className="flex gap-3 text-muted-foreground">
-                <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                <HugeiconsIcon icon={CheckmarkCircle02Icon} className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                 <span>{benefit}</span>
               </div>
             ))}

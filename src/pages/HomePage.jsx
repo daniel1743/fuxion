@@ -1,9 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Search, ShoppingCart, MessageCircle } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Search, ShoppingCart, MessageCircle } from 'lucide-react';
 import { HugeiconsIcon } from '@hugeicons/react';
 import {
   Leaf01Icon,
@@ -476,10 +476,10 @@ const HomePage = () => {
       </section>
 
       {/* SECCIÓN 2 – Dolor real del público */}
-      <section className="py-12 md:py-20 bg-secondary/30">
-        <div className="container mx-auto px-6 max-w-4xl">
+      <section className="py-8 md:py-20 bg-secondary/30">
+        <div className="container mx-auto px-4 md:px-6 max-w-4xl">
           <motion.h2
-            className="text-responsive-section font-bold text-center mb-8 text-foreground"
+            className="text-responsive-section font-bold text-center mb-6 md:mb-8 text-foreground"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -488,7 +488,7 @@ const HomePage = () => {
             ¿Sientes hinchazón, cansancio o te cuesta avanzar con tus objetivos de bienestar?
           </motion.h2>
           <motion.p
-            className="text-lg md:text-xl text-center text-muted-foreground mb-8"
+            className="text-base md:text-xl text-center text-muted-foreground mb-6 md:mb-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -497,21 +497,20 @@ const HomePage = () => {
             Muchas personas comparten lo mismo:
           </motion.p>
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8"
+            className="flex flex-wrap justify-center gap-2 mb-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             {painPoints.map((point, i) => (
-              <div key={i} className="flex items-center gap-3 text-foreground">
-                <div className="w-3 h-3 rounded-full bg-primary shadow-sm shadow-primary/30 ring-1 ring-primary/20 shrink-0"></div>
-                <span className="text-lg">{point}</span>
+              <div key={i} className="px-4 py-2 rounded-full border border-primary/20 bg-primary/5 text-foreground text-sm font-medium shadow-sm">
+                {point}
               </div>
             ))}
           </motion.div>
           <motion.p
-            className="text-xl md:text-2xl font-semibold text-center text-primary mt-8"
+            className="text-lg md:text-2xl font-semibold text-center text-primary mt-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -525,8 +524,8 @@ const HomePage = () => {
       </section>
 
       {/* SECCIÓN 3 – La promesa Fuxion */}
-      <section className="py-12 md:py-20">
-        <div className="container mx-auto px-6 max-w-4xl">
+      <section className="py-8 md:py-20">
+        <div className="container mx-auto px-4 md:px-6 max-w-4xl">
           <motion.h2
             className="text-responsive-section font-bold text-center mb-6 text-foreground"
             initial={{ opacity: 0, y: 20 }}
@@ -549,10 +548,10 @@ const HomePage = () => {
       </section>
 
       {/* SECCIÓN 4 – Las 3 soluciones principales */}
-      <section className="py-12 md:py-20 bg-secondary/30">
-        <div className="container mx-auto px-6">
+      <section className="py-8 md:py-20 bg-secondary/30 overflow-hidden">
+        <div className="container mx-auto px-4 md:px-6">
           <motion.h2
-            className="text-responsive-section font-bold text-center mb-12 text-foreground"
+            className="text-responsive-section font-bold text-center mb-6 md:mb-12 text-foreground"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -560,7 +559,7 @@ const HomePage = () => {
           >
             Las 3 soluciones principales
           </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="flex overflow-x-auto snap-x snap-mandatory md:grid md:grid-cols-3 gap-4 md:gap-8 max-w-6xl mx-auto pb-4 -mx-4 px-4 md:mx-auto md:px-0" style={{ scrollbarWidth: 'none' }}>
             {solutions.map((solution, i) => (
               <motion.div
                 key={solution.id}
@@ -568,9 +567,9 @@ const HomePage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.2 }}
-                className="h-full"
+                className="h-full w-[85vw] max-w-[85vw] sm:w-[320px] sm:max-w-[320px] md:w-auto md:max-w-none snap-center shrink-0"
               >
-                <Card variant="feature">
+                <Card variant="feature" className="h-full flex flex-col">
                   <div className="flex items-center gap-4 mb-4 text-primary">
                     {solution.icon}
                     <h3 className="text-2xl font-bold text-foreground">{solution.title}</h3>
@@ -608,8 +607,8 @@ const HomePage = () => {
       </section>
 
       {/* SECCIÓN 5 – Cómo funciona */}
-      <section className="py-12 md:py-20">
-        <div className="container mx-auto px-6 max-w-5xl">
+      <section className="py-8 md:py-20 overflow-hidden">
+        <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.h2
             className="text-responsive-section font-bold text-center mb-4 text-foreground"
             initial={{ opacity: 0, y: 20 }}
@@ -619,7 +618,7 @@ const HomePage = () => {
           >
             Compra simple, asistida y sin cobro automático.
           </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+          <div className="flex overflow-x-auto snap-x snap-mandatory md:grid md:grid-cols-3 gap-4 md:gap-8 mt-8 md:mt-12 pb-4 -mx-4 px-4 md:mx-auto md:px-0" style={{ scrollbarWidth: 'none' }}>
             {purchaseSteps.map((step, i) => {
               const StepIcon = step.icon;
               return (
@@ -629,7 +628,7 @@ const HomePage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.15 }}
-                  className="bg-card p-6 rounded-2xl border border-border/60 flex flex-col items-center text-center hover:border-emerald-300 hover:shadow-md transition-all duration-300"
+                  className="bg-card p-6 rounded-2xl border border-border/60 flex flex-col items-center text-center hover:border-emerald-300 hover:shadow-md transition-all duration-300 w-[85vw] max-w-[85vw] sm:w-[280px] sm:max-w-[280px] md:w-auto md:max-w-none snap-center shrink-0"
                 >
                   <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-50 to-emerald-100 text-emerald-600 shadow-sm dark:from-emerald-900/30 dark:to-emerald-900/20 dark:text-emerald-400">
                     <StepIcon className="h-6 w-6" strokeWidth={1.5} />
@@ -669,10 +668,10 @@ const HomePage = () => {
       </section>
 
       {/* SECCIÓN 6 – Productos destacados */}
-      <section className="py-12 md:py-20 bg-secondary/30">
-        <div className="container mx-auto px-6">
+      <section className="py-8 md:py-20 bg-secondary/30 overflow-hidden">
+        <div className="container mx-auto px-4 md:px-6">
           <motion.h2
-            className="text-responsive-section font-bold text-center mb-12 text-foreground"
+            className="text-responsive-section font-bold text-center mb-6 md:mb-12 text-foreground"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -680,7 +679,7 @@ const HomePage = () => {
           >
             Productos destacados
           </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="flex overflow-x-auto snap-x snap-mandatory md:grid md:grid-cols-3 gap-4 md:gap-8 max-w-6xl mx-auto pb-4 -mx-4 px-4 md:mx-auto md:px-0" style={{ scrollbarWidth: 'none' }}>
             {featuredProducts.map((product, i) => (
               <motion.div
                 key={product.id}
@@ -688,6 +687,7 @@ const HomePage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="w-[85vw] max-w-[85vw] sm:w-[300px] sm:max-w-[300px] md:w-auto md:max-w-none snap-center shrink-0"
               >
                 <Link to={`/producto/${product.slug}`}>
                   <div className="group relative bg-card rounded-xl overflow-hidden border border-emerald-100 dark:border-border transition-all duration-300 hover:border-primary hover:shadow-xl hover:-translate-y-1 flex flex-col h-full">
