@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { getImageUrl, getPlaceholderImage } from '@/lib/imageUtils';
+import WaitlistModal from './WaitlistModal';
 import { HugeiconsIcon } from '@hugeicons/react';
 import {
   Leaf01Icon,
@@ -29,7 +30,7 @@ const SLIDES = [
     action: 'Leer artículos',
     icon: Leaf01Icon,
     badgeClass: 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-900/30',
-    destination: '/wellness'
+    destination: '/articulos'
   },
   {
     id: 'productos',
@@ -40,7 +41,7 @@ const SLIDES = [
     action: 'Explorar opciones',
     icon: SparklesIcon,
     badgeClass: 'bg-amber-50 text-amber-700 dark:bg-amber-950/40 dark:text-amber-400 border border-amber-100 dark:border-amber-900/30',
-    destination: '/productos'
+    destination: '/explorar'
   },
   {
     id: 'plan',
@@ -51,12 +52,21 @@ const SLIDES = [
     action: 'Suscribirme',
     icon: HeartIcon,
     badgeClass: 'bg-rose-50 text-rose-700 dark:bg-rose-950/40 dark:text-rose-400 border border-rose-100 dark:border-rose-900/30',
-    destination: '#'
+    destination: 'modal'
   }
 ];
 
 const WellnessJourneyCarousel = () => {
   const navigate = useNavigate();
+  const [showWaitlistModal, setShowWaitlistModal] = useState(false);
+
+  const handleAction = (destination) => {
+    if (destination === 'modal') {
+      setShowWaitlistModal(true);
+    } else {
+      navigate(destination);
+    }
+  };
 
   return (
     <section 
@@ -77,7 +87,7 @@ const WellnessJourneyCarousel = () => {
               key={slide.id}
               whileTap={{ scale: 0.96 }}
               transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-              onClick={() => navigate(slide.destination)}
+              onClick={() => handleAction(slide.destination)}
               className={`flex flex-col justify-between bg-card border border-border/60 rounded-2xl overflow-hidden shadow-sm p-3 text-left w-full h-full active:shadow-inner ${index === 2 ? 'col-span-2' : ''}`}
             >
               <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden mb-2.5 shrink-0">
@@ -148,7 +158,7 @@ const WellnessJourneyCarousel = () => {
                 </div>
 
                 <Button
-                  onClick={() => navigate(slide.destination)}
+                  onClick={() => handleAction(slide.destination)}
                   className="w-full mt-4 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold h-10 rounded-xl flex items-center justify-center gap-1.5 shadow-sm transition-all"
                 >
                   <span>{slide.action}</span>
@@ -159,6 +169,11 @@ const WellnessJourneyCarousel = () => {
           ))}
         </div>
       </div>
+
+      <WaitlistModal 
+        isOpen={showWaitlistModal} 
+        onClose={() => setShowWaitlistModal(false)} 
+      />
     </section>
   );
 };
