@@ -1,11 +1,11 @@
 // ── Site Configuration — Centralized contact & brand info ──
 
 export const SITE = {
-  name: 'Tienda Fuxion Chile',
-  url: 'https://tiendafuxion.space',
+  name: 'Bienestar en Claro',
+  url: 'https://www.bienestarenclaro.com',
   whatsapp: '+56912345678',
   whatsappPhone: '56912345678',
-  email: 'contacto@tiendafuxion.space',
+  email: 'contacto@bienestarenclaro.com',
   address: 'Santiago, Chile',
   instagram: 'https://www.instagram.com/donde_mi_negro?igsh=MWU1MWo5aXhvMnh3bg==',
   facebook: 'https://www.facebook.com/share/1KVxA4JL4t/',

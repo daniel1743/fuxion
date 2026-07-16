@@ -193,6 +193,14 @@ const trustItems = [
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentHeroSlide((prev) => (prev + 1) % 3);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, []);
 
   const handleNeedSearch = (query) => {
     navigate(`/explorar?search=${encodeURIComponent(query)}`);
@@ -266,11 +274,14 @@ const HomePage = () => {
                   filter: 'drop-shadow(0 10px 18px rgba(0, 0, 0, 0.22))'
                 }}
               >
-                <img 
-                  src="/para el hero.jpeg" 
-                  alt="Producto FuXion" 
-                  className="w-full h-full object-cover opacity-90"
-                />
+                {['/para el hero.jpeg', '/img/hero_exercise.jpg', '/img/hero_kids.jpg'].map((src, index) => (
+                  <img 
+                    key={src}
+                    src={getImageUrl(src)} 
+                    alt="Bienestar en Claro" 
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[1500ms] ${index === currentHeroSlide ? 'opacity-90' : 'opacity-0'}`}
+                  />
+                ))}
               </motion.div>
             </div>
           </div>
@@ -344,19 +355,16 @@ const HomePage = () => {
               transition={{ duration: 0.8, delay: 0.4, type: 'spring', stiffness: 120 }}
               className="relative"
             >
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-emerald-100 dark:border-emerald-900">
-                <img
-                  src={getImageUrl('/para el hero.jpeg')}
-                  alt="Prunex 1 FuXion - Limpieza de colon y tránsito intestinal natural"
-                  title="Prunex 1 FuXion - Limpieza de colon y tránsito intestinal natural"
-                  className="w-full h-full object-cover max-h-[560px]"
-                  onError={(e) => {
-                    e.target.src = getPlaceholderImage('woman');
-                  }}
-                  loading="eager"
-                  width="800"
-                  height="560"
-                />
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-emerald-100 dark:border-emerald-900 bg-emerald-50/50 aspect-[4/3] sm:aspect-auto sm:h-[560px]">
+                {['/para el hero.jpeg', '/img/hero_exercise.jpg', '/img/hero_kids.jpg'].map((src, index) => (
+                  <img
+                    key={src}
+                    src={getImageUrl(src)}
+                    alt="Bienestar natural"
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[1500ms] ${index === currentHeroSlide ? 'opacity-100' : 'opacity-0'}`}
+                    loading={index === 0 ? "eager" : "lazy"}
+                  />
+                ))}
               </div>
 
               {/* ── Glassmorphism Badge 1 (Top Left) ── */}

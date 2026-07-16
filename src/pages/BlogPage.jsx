@@ -48,7 +48,7 @@ const BlogPage = () => {
       <SEO
         title="Blog de Salud y Bienestar — Consejos para Perder Peso y Nutrición"
         description="Artículos sobre pérdida de peso, bienestar, nutrición y vida saludable. Consejos prácticos para vivir mejor sin dietas extremas."
-        canonical="/blog"
+        canonical="/articulos"
       />
 
       <div className="min-h-screen bg-gradient-to-b from-background to-background/95 pt-0 md:pt-24 pb-16">

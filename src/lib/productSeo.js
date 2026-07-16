@@ -1,8 +1,8 @@
 import fuxionDatabase from '@/data/fuxion_database.json';
 import { getProductImageUrl } from '@/lib/imageUtils';
 
-export const SITE_URL = 'https://tiendafuxion.space';
-export const STORE_NAME = 'Tienda Fuxion Chile';
+export const SITE_URL = 'https://www.bienestarenclaro.com';
+export const STORE_NAME = 'Bienestar en Claro';
 
 export const PRIORITY_PRODUCT_SEO = {
   'thermo-t3': {
@@ -728,7 +728,7 @@ export const buildLocalBusinessSchema = () => ({
   image: `${SITE_URL}/prunex-principal.jpeg`,
   description: 'Tienda Fuxion en Chile con productos nutraceuticos para nutricion, bienestar, energia, digestion, control de peso y cuidado natural.',
   telephone: '+56912345678',
-  email: 'contacto@tiendafuxion.space',
+  email: 'contacto@bienestarenclaro.com',
   areaServed: [
     {
       '@type': 'City',

@@ -21,49 +21,38 @@ import {
 
 const SLIDES = [
   {
-    id: 'digestive',
-    image: '/img/floraliv carrusel.png',
-    category: 'Bienestar digestivo',
-    title: 'Equilibra tu bienestar desde adentro 🌱',
-    description: 'Acompaña tu rutina digestiva con productos pensados para apoyar equilibrio y bienestar diario.',
-    action: 'Descubrir Flora Liv',
+    id: 'editorial',
+    image: '/img/editorial_card.jpg',
+    category: 'Bienestar y Salud',
+    title: 'Aprende y Empodérate 🌱',
+    description: 'Explora nuestros artículos basados en evidencia científica para mejorar tu calidad de vida diaria.',
+    action: 'Leer artículos',
     icon: Leaf01Icon,
     badgeClass: 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-900/30',
-    destination: '/producto/flora-liv'
+    destination: '/wellness'
   },
   {
-    id: 'internal',
-    image: '/img/rexet carrusel.png',
-    category: 'Equilibrio interno',
-    title: 'Equilibrio diario desde tu interior ✨',
-    description: 'Complementa tus hábitos diarios con una fórmula FuXion creada para acompañar el bienestar interno.',
-    action: 'Descubrir Rexet',
+    id: 'productos',
+    image: '/img/floraliv carrusel.png',
+    category: 'Cuidado Natural',
+    title: 'Complementa tu bienestar ✨',
+    description: 'Descubre opciones naturales y nutracéuticos pensados para acompañar y fortalecer tus hábitos.',
+    action: 'Explorar opciones',
     icon: SparklesIcon,
     badgeClass: 'bg-amber-50 text-amber-700 dark:bg-amber-950/40 dark:text-amber-400 border border-amber-100 dark:border-amber-900/30',
-    destination: '/producto/rexet'
+    destination: '/productos'
   },
   {
-    id: 'beauty',
-    image: '/img/beauty-in carrusel.png',
-    category: 'Belleza desde adentro',
-    title: 'Tu cuidado también empieza desde dentro 💜',
-    description: 'Descubre productos de nutricosmética creados para complementar tu rutina de belleza y bienestar.',
-    action: 'Descubrir Beauty In',
+    id: 'plan',
+    image: '/img/plan_card.jpg',
+    category: 'Nutrición Personalizada',
+    title: 'Tu Plan a Medida 💜',
+    description: 'Únete a la lista de espera para tu plan nutricional detallado. Disfruta de beneficios premium al ser uno de los 100 primeros suscritos.',
+    action: 'Suscribirme',
     icon: HeartIcon,
     badgeClass: 'bg-rose-50 text-rose-700 dark:bg-rose-950/40 dark:text-rose-400 border border-rose-100 dark:border-rose-900/30',
-    destination: '/producto/beauty-in'
-  },
-  {
-    id: 'community',
-    image: '/img/otra imagen.png',
-    category: 'Comunidad FuXion 🌎',
-    title: 'Más que productos, una comunidad',
-    description: 'Descubre un proyecto donde bienestar, aprendizaje y emprendimiento pueden crecer juntos.',
-    action: 'Conocer oportunidad',
-    icon: UserGroupIcon,
-    badgeClass: 'bg-sky-50 text-sky-700 dark:bg-sky-950/40 dark:text-sky-400 border border-sky-100 dark:border-sky-900/30',
-    destination: '/oportunidad-fuxion',
-  },
+    destination: '#'
+  }
 ];
 
 const WellnessJourneyCarousel = () => {
@@ -81,15 +70,15 @@ const WellnessJourneyCarousel = () => {
           </h2>
         </div>
 
-        {/* ── Mobile Layout: 2x2 Grid of clickable cards ── */}
+        {/* ── Mobile Layout: 2x2 Grid where 3rd spans full width ── */}
         <div className="md:hidden grid grid-cols-2 gap-3.5 px-4 pb-6">
-          {SLIDES.map((slide) => (
+          {SLIDES.map((slide, index) => (
             <motion.button
               key={slide.id}
               whileTap={{ scale: 0.96 }}
               transition={{ type: 'spring', stiffness: 400, damping: 20 }}
               onClick={() => navigate(slide.destination)}
-              className="flex flex-col justify-between bg-card border border-border/60 rounded-2xl overflow-hidden shadow-sm p-3 text-left w-full h-full active:shadow-inner"
+              className={`flex flex-col justify-between bg-card border border-border/60 rounded-2xl overflow-hidden shadow-sm p-3 text-left w-full h-full active:shadow-inner ${index === 2 ? 'col-span-2' : ''}`}
             >
               <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden mb-2.5 shrink-0">
                 <img
@@ -122,8 +111,8 @@ const WellnessJourneyCarousel = () => {
           ))}
         </div>
 
-        {/* ── Desktop Layout: Premium 4-Column Grid ── */}
-        <div className="hidden md:grid grid-cols-4 gap-6 px-6">
+        {/* ── Desktop Layout: Premium 3-Column Grid ── */}
+        <div className="hidden md:grid grid-cols-3 gap-8 px-6">
           {SLIDES.map((slide) => (
             <div
               key={slide.id}

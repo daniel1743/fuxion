@@ -57,7 +57,7 @@ const MobileAppShell = ({
   const navBarContent = (
     <div className={`flex items-center justify-between pt-3 ${isLarge ? 'pb-4' : 'pb-3'}`}>
       {/* Left: User / Brand */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 min-w-0 flex-1">
         {showBack ? (
           <button
             onClick={() => {
@@ -95,7 +95,7 @@ const MobileAppShell = ({
             </div>
           </>
         ) : (
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2.5 min-w-0">
             <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-md p-1.5 shrink-0">
               <img
                 src="/hoja-te-transparente.svg"
@@ -103,15 +103,15 @@ const MobileAppShell = ({
                 className="w-full h-full object-contain"
               />
             </div>
-            <span className="text-lg font-bold tracking-tight text-white whitespace-nowrap">
-              {settings?.site_name || 'FuXion'}
+            <span className="text-lg font-bold tracking-tight text-white truncate">
+              {settings?.site_name || 'Bienestar en Claro'}
             </span>
           </div>
         )}
       </div>
 
       {/* Right: Actions */}
-      <div className="flex items-center gap-1 bg-black/10 rounded-full p-1 border border-white/10 backdrop-blur-md">
+      <div className="flex items-center gap-1 bg-black/10 rounded-full p-1 border border-white/10 backdrop-blur-md shrink-0">
         <button
           onClick={() => {
             const botBtn = document.querySelector('button[aria-label="Abrir asistente de IA"]');

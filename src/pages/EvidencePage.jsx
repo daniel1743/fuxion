@@ -105,7 +105,7 @@ const EvidencePage = () => {
       <SEO
         title="Experiencias FuXion — Casos, fotos y resultados compartidos"
         description="Evidencias, experiencias y registros compartidos por la comunidad Fuxion con asesoría personalizada."
-        canonical="/opiniones"
+        canonical="/blog"
       />
 
       {/* ── MOBILE SHELL ── */}

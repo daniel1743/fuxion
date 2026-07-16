@@ -160,7 +160,7 @@ const BlogPostPage = () => {
       "@type": "Person",
       "name": "Daniel Falcón",
       "jobTitle": "Investigador de Salud y Bienestar",
-      "url": "https://tiendafuxion.space/sobre-nosotros"
+      "url": "https://www.bienestarenclaro.com/sobre-nosotros"
     },
     "publisher": {
       "@type": "Organization",

@@ -40,7 +40,7 @@ const PwaInstallPrompt = () => {
   const handleInstall = async () => {
     if (isIos && !canInstall) {
       toast({
-        title: 'Instalar Tienda Fuxion',
+        title: 'Instalar Bienestar en Claro',
         description: 'En Safari toca Compartir y luego “Añadir a pantalla de inicio”.',
         duration: 8000
       });

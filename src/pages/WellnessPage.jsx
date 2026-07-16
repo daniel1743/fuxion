@@ -93,7 +93,7 @@ const WellnessPage = () => {
       <SEO
         title="Bienestar — Artículos y Hábitos Saludables"
         description="Artículos sobre belleza, bienestar, nutrición, ejercicio, salud digestiva, hepática y hábitos saludables."
-        canonical="/opiniones"
+        canonical="/opiniones/wellness"
       />
 
       {/* ── MOBILE SHELL ── */}

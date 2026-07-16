@@ -1,5 +1,5 @@
 # Robots.txt - Tienda Fuxion Chile
-# https://tiendafuxion.space
+# https://www.bienestarenclaro.com
 
 User-agent: *
 Allow: /
@@ -29,5 +29,5 @@ Disallow: /*?search=
 Disallow: /*?categoria=
 
 # Sitemap
-Sitemap: https://tiendafuxion.space/sitemap.xml
+Sitemap: https://www.bienestarenclaro.com/sitemap.xml
 

@@ -17,7 +17,7 @@ const InstallAppButton = ({ className, onClick, compact = false }) => {
 
     if (isIos && !canInstall) {
       toast({
-        title: 'Instalar Tienda Fuxion',
+        title: 'Instalar Bienestar en Claro',
         description: 'En Safari toca Compartir y luego “Añadir a pantalla de inicio”.',
         duration: 8000
       });
@@ -28,7 +28,7 @@ const InstallAppButton = ({ className, onClick, compact = false }) => {
     if (result.outcome === 'accepted') {
       toast({
         title: 'Instalando aplicación',
-        description: 'Tienda Fuxion se añadirá a tu dispositivo.'
+        description: 'Bienestar en Claro se añadirá a tu dispositivo.'
       });
     }
   };
@@ -43,7 +43,7 @@ const InstallAppButton = ({ className, onClick, compact = false }) => {
         'border-emerald-500/40 bg-emerald-500/10 text-emerald-700 hover:bg-emerald-500/20 hover:text-emerald-800',
         className
       )}
-      title="Instalar Tienda Fuxion como aplicación"
+      title="Instalar Bienestar en Claro como aplicación"
     >
       <Download className="h-4 w-4 shrink-0" />
       {!compact && <span>Instalar app</span>}
