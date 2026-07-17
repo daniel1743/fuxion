@@ -3,7 +3,7 @@ import SEO from '@/components/SEO';
 import { ArrowLeft, Calendar, Clock, Share2, User } from 'lucide-react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import CategoryBadge from '@/components/CategoryBadge';
 import { toast } from '@/components/ui/use-toast';
 import { fetchWellnessArticleBySlug } from '@/services/wellnessArticleService';
 import MobileAppShell from '@/components/mobile/MobileAppShell';
@@ -125,7 +125,7 @@ const WellnessArticlePage = () => {
           <Link to="/opiniones"><Button variant="ghost" size="sm"><ArrowLeft className="mr-2 h-4 w-4" /> Volver a Bienestar</Button></Link>
         </div>
         <header className="mt-8">
-          <Badge>{article.category}</Badge>
+          <CategoryBadge category={article.category} className="text-sm px-3 py-1" />
           <h1 className="mt-5 text-4xl font-extrabold leading-tight sm:text-5xl">{article.title}</h1>
           <p className="mt-5 text-xl leading-relaxed text-muted-foreground">{article.excerpt}</p>
           <div className="mt-6 flex flex-wrap gap-4 text-sm text-muted-foreground">

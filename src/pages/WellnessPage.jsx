@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { toast } from '@/components/ui/use-toast';
 import { useAdmin } from '@/context/AdminContext';
 import { useAuth } from '@/context/AuthContext';
+import CategoryBadge from '@/components/CategoryBadge';
 import WellnessArticleEditor from '@/components/WellnessArticleEditor';
 import { ArticleSkeleton } from '@/components/skeleton';
 import MobileAppShell from '@/components/mobile/MobileAppShell';
@@ -204,7 +205,7 @@ const ArticleFeatured = ({ article, ...actions }) => (
     </div>
     <div className="flex flex-col justify-center p-6 sm:p-10">
       <div className="flex items-start justify-between gap-3">
-        <Badge>{article.category}</Badge>
+        <CategoryBadge category={article.category} />
         <ManageButtons article={article} {...actions} />
       </div>
       <p className="mt-5 text-xs font-semibold uppercase tracking-wider text-emerald-700">Última publicación</p>
@@ -226,7 +227,7 @@ const ArticleCard = ({ article, ...actions }) => (
     </div>
     <div className="p-5">
       <div className="flex items-center justify-between gap-2">
-        <Badge variant="outline">{article.category}</Badge>
+        <CategoryBadge category={article.category} />
         {!article.is_published && <Badge variant="secondary">Borrador</Badge>}
       </div>
       <h2 className="mt-4 text-xl font-bold leading-snug">{article.title}</h2>

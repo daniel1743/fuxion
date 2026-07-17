@@ -3,8 +3,8 @@
     "title": "Tracker de 200 Artículos - Proyecto Aurora",
     "description": "Registro maestro para agentes de IA que documenta el progreso de redacción de los 200 núcleos temáticos de salud.",
     "total_articles": 200,
-    "published_articles": 10,
-    "pending_articles": 190
+    "published_articles": 20,
+    "pending_articles": 180
   },
   "articles": [
     {
@@ -13,7 +13,8 @@
       "title": "Disbiosis Intestinal",
       "status": "published",
       "published_url": "/docs/articles/disbiosis-intestinal-desequilibrio-del-microbioma-y-su-relaci-n-con-la-inflamaci-n-sist-mica.md",
-      "publish_date": "2026-07-16T00:38:58.042Z"
+      "publish_date": "2026-07-16T00:38:58.042Z",
+      "category": "Salud Digestiva"
     },
     {
       "id": 2,
@@ -21,7 +22,8 @@
       "title": "Permeabilidad Intestinal (Leaky Gut)",
       "status": "published",
       "published_url": "/docs/articles/permeabilidad-intestinal-mecanismos-de-la-barrera-epitelial-y-factores-moduladores.md",
-      "publish_date": "2026-07-16T00:38:58.044Z"
+      "publish_date": "2026-07-16T00:38:58.044Z",
+      "category": "Salud Digestiva"
     },
     {
       "id": 3,
@@ -29,7 +31,8 @@
       "title": "Síndrome del Intestino Irritable (SII)",
       "status": "published",
       "published_url": "/docs/articles/s-ndrome-del-intestino-irritable-sii-eje-intestino-cerebro-y-alteraciones-de-la-motilidad.md",
-      "publish_date": "2026-07-16T00:38:58.045Z"
+      "publish_date": "2026-07-16T00:38:58.045Z",
+      "category": "Salud Digestiva"
     },
     {
       "id": 4,
@@ -37,7 +40,8 @@
       "title": "SIBO (Sobrecrecimiento Bacteriano)",
       "status": "published",
       "published_url": "/docs/articles/sibo-sobrecrecimiento-bacteriano-migraci-n-microbiana-y-fermentaci-n-prematura.md",
-      "publish_date": "2026-07-16T00:38:58.046Z"
+      "publish_date": "2026-07-16T00:38:58.046Z",
+      "category": "Salud Digestiva"
     },
     {
       "id": 5,
@@ -45,7 +49,8 @@
       "title": "Eje Intestino-Cerebro",
       "status": "published",
       "published_url": "/docs/articles/eje-intestino-cerebro-v-as-de-comunicaci-n-bidireccional-y-neurotransmisores-ent-ricos.md",
-      "publish_date": "2026-07-16T00:38:58.047Z"
+      "publish_date": "2026-07-16T00:38:58.047Z",
+      "category": "Salud Digestiva"
     },
     {
       "id": 6,
@@ -53,7 +58,8 @@
       "title": "Hígado Graso No Alcohólico (HGNA)",
       "status": "published",
       "published_url": "/docs/articles/h-gado-graso-no-alcoh-lico-hgna-acumulaci-n-lip-dica-y-estr-s-oxidativo-hep-tico.md",
-      "publish_date": "2026-07-16T00:38:58.048Z"
+      "publish_date": "2026-07-16T00:38:58.048Z",
+      "category": "Hígado Graso"
     },
     {
       "id": 7,
@@ -61,7 +67,8 @@
       "title": "Reflujo Gastroesofágico (ERGE) e Hipoclorhidria",
       "status": "published",
       "published_url": "/docs/articles/reflujo-gastroesof-gico-erge-e-hipoclorhidria-mecanismos-del-esf-nter-y-acidez.md",
-      "publish_date": "2026-07-16T00:38:58.049Z"
+      "publish_date": "2026-07-16T00:38:58.049Z",
+      "category": "Salud Digestiva"
     },
     {
       "id": 8,
@@ -69,7 +76,8 @@
       "title": "Celiaquía vs Sensibilidad al Gluten No Celíaca",
       "status": "published",
       "published_url": "/docs/articles/celiaqu-a-vs-sensibilidad-al-gluten-no-cel-aca-mecanismos-inmunol-gicos-diferenciados.md",
-      "publish_date": "2026-07-16T00:38:58.050Z"
+      "publish_date": "2026-07-16T00:38:58.050Z",
+      "category": "Salud Digestiva"
     },
     {
       "id": 9,
@@ -77,7 +85,8 @@
       "title": "Digestión enzimática exocrina",
       "status": "published",
       "published_url": "/docs/articles/digesti-n-enzim-tica-exocrina-funci-n-pancre-tica-y-descomposici-n-de-macronutrientes.md",
-      "publish_date": "2026-07-16T00:38:58.051Z"
+      "publish_date": "2026-07-16T00:38:58.051Z",
+      "category": "Inmunidad"
     },
     {
       "id": 10,
@@ -85,87 +94,98 @@
       "title": "Fibra soluble vs insoluble en la motilidad",
       "status": "published",
       "published_url": "/docs/articles/fibra-soluble-vs-insoluble-impacto-en-la-motilidad-y-modulaci-n-del-microbioma.md",
-      "publish_date": "2026-07-16T00:38:58.052Z"
+      "publish_date": "2026-07-16T00:38:58.052Z",
+      "category": "Salud Digestiva"
     },
     {
       "id": 11,
       "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
       "title": "Ácidos grasos de cadena corta (Butirato)",
-      "status": "pending",
-      "published_url": null,
-      "publish_date": null
+      "status": "published",
+      "published_url": "/docs/articles/cidos-grasos-de-cadena-corta-butirato.md",
+      "publish_date": "2026-07-17T04:11:39.744Z",
+      "category": "Salud Digestiva"
     },
     {
       "id": 12,
       "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
       "title": "Estreñimiento funcional crónico",
-      "status": "pending",
-      "published_url": null,
-      "publish_date": null
+      "status": "published",
+      "published_url": "/docs/articles/estreimiento-funcional-crnico.md",
+      "publish_date": "2026-07-17T04:12:10.821Z",
+      "category": "Salud Digestiva"
     },
     {
       "id": 13,
       "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
       "title": "Metabolismo de los ácidos biliares",
-      "status": "pending",
-      "published_url": null,
-      "publish_date": null
+      "status": "published",
+      "published_url": "/docs/articles/metabolismo-de-los-cidos-biliares.md",
+      "publish_date": "2026-07-17T04:12:42.435Z",
+      "category": "Hígado Graso"
     },
     {
       "id": 14,
       "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
       "title": "Infección por Helicobacter pylori",
-      "status": "pending",
-      "published_url": null,
-      "publish_date": null
+      "status": "published",
+      "published_url": "/docs/articles/infeccin-por-helicobacter-pylori.md",
+      "publish_date": "2026-07-17T04:13:12.259Z",
+      "category": "Salud Digestiva"
     },
     {
       "id": 15,
       "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
       "title": "Eje intestino-hígado",
-      "status": "pending",
-      "published_url": null,
-      "publish_date": null
+      "status": "published",
+      "published_url": "/docs/articles/eje-intestino-hgado.md",
+      "publish_date": "2026-07-17T04:13:37.623Z",
+      "category": "Hígado Graso"
     },
     {
       "id": 16,
       "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
       "title": "Intolerancia a la lactosa (Genética vs Adquirida)",
-      "status": "pending",
-      "published_url": null,
-      "publish_date": null
+      "status": "published",
+      "published_url": "/docs/articles/intolerancia-a-la-lactosa-gentica-vs-adquirida.md",
+      "publish_date": "2026-07-17T04:14:11.845Z",
+      "category": "Salud Digestiva"
     },
     {
       "id": 17,
       "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
       "title": "Alergias alimentarias y respuesta IgE",
-      "status": "pending",
-      "published_url": null,
-      "publish_date": null
+      "status": "published",
+      "published_url": "/docs/articles/alergias-alimentarias-y-respuesta-ige.md",
+      "publish_date": "2026-07-17T04:14:48.399Z",
+      "category": "Inmunidad"
     },
     {
       "id": 18,
       "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
       "title": "Histaminosis entérica",
-      "status": "pending",
-      "published_url": null,
-      "publish_date": null
+      "status": "published",
+      "published_url": "/docs/articles/histaminosis-entrica.md",
+      "publish_date": "2026-07-17T04:15:21.845Z",
+      "category": "Inmunidad"
     },
     {
       "id": 19,
       "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
       "title": "Función del moco gástrico",
-      "status": "pending",
-      "published_url": null,
-      "publish_date": null
+      "status": "published",
+      "published_url": "/docs/articles/funcin-del-moco-gstrico.md",
+      "publish_date": "2026-07-17T04:15:57.501Z",
+      "category": "Salud Digestiva"
     },
     {
       "id": 20,
       "domain": "Dominio 1: Salud Digestiva, Microbioma y Eje Entérico",
       "title": "Tránsito intestinal acelerado",
-      "status": "pending",
-      "published_url": null,
-      "publish_date": null
+      "status": "published",
+      "published_url": "/docs/articles/trnsito-intestinal-acelerado.md",
+      "publish_date": "2026-07-17T04:16:32.223Z",
+      "category": "Salud Digestiva"
     },
     {
       "id": 21,
@@ -173,7 +193,8 @@
       "title": "Diverticulosis y prevención",
       "status": "pending",
       "published_url": null,
-      "publish_date": null
+      "publish_date": null,
+      "category": "Salud Digestiva"
     },
     {
       "id": 22,
@@ -181,7 +202,8 @@
       "title": "Vesícula biliar y metabolismo lipídico",
       "status": "pending",
       "published_url": null,
-      "publish_date": null
+      "publish_date": null,
+      "category": "Salud Digestiva"
     },
     {
       "id": 23,
@@ -189,7 +211,8 @@
       "title": "Ecosistema fúngico intestinal (Micobioma)",
       "status": "pending",
       "published_url": null,
-      "publish_date": null
+      "publish_date": null,
+      "category": "Salud Digestiva"
     },
     {
       "id": 24,
@@ -197,7 +220,8 @@
       "title": "Fermentación colónica",
       "status": "pending",
       "published_url": null,
-      "publish_date": null
+      "publish_date": null,
+      "category": "Salud Digestiva"
     },
     {
       "id": 25,
@@ -205,7 +229,8 @@
       "title": "Gases y flatulencias fisiológicas",
       "status": "pending",
       "published_url": null,
-      "publish_date": null
+      "publish_date": null,
+      "category": "Salud Digestiva"
     },
     {
       "id": 26,
@@ -213,7 +238,8 @@
       "title": "Diarrea osmótica vs secretora",
       "status": "pending",
       "published_url": null,
-      "publish_date": null
+      "publish_date": null,
+      "category": "Salud Digestiva"
     },
     {
       "id": 27,
@@ -221,7 +247,8 @@
       "title": "Edulcorantes artificiales y microbioma",
       "status": "pending",
       "published_url": null,
-      "publish_date": null
+      "publish_date": null,
+      "category": "Salud Digestiva"
     },
     {
       "id": 28,
@@ -229,7 +256,8 @@
       "title": "Impacto intestinal del alcohol",
       "status": "pending",
       "published_url": null,
-      "publish_date": null
+      "publish_date": null,
+      "category": "Salud Digestiva"
     },
     {
       "id": 29,
@@ -237,7 +265,8 @@
       "title": "Ejercicio y motilidad gástrica",
       "status": "pending",
       "published_url": null,
-      "publish_date": null
+      "publish_date": null,
+      "category": "Salud Digestiva"
     },
     {
       "id": 30,
@@ -245,7 +274,8 @@
       "title": "Apéndice como reservorio bacteriano",
       "status": "pending",
       "published_url": null,
-      "publish_date": null
+      "publish_date": null,
+      "category": "Salud Digestiva"
     },
     {
       "id": 31,
@@ -253,7 +283,8 @@
       "title": "Absorción de hierro y B12 a nivel duodenal/ileal",
       "status": "pending",
       "published_url": null,
-      "publish_date": null
+      "publish_date": null,
+      "category": "Salud Digestiva"
     },
     {
       "id": 32,
@@ -261,7 +292,8 @@
       "title": "Ayuno y complejo motor migratorio",
       "status": "pending",
       "published_url": null,
-      "publish_date": null
+      "publish_date": null,
+      "category": "Salud Digestiva"
     },
     {
       "id": 33,
@@ -269,7 +301,8 @@
       "title": "Candidiasis intestinal (Evidencia vs Mitos)",
       "status": "pending",
       "published_url": null,
-      "publish_date": null
+      "publish_date": null,
+      "category": "Salud Digestiva"
     },
     {
       "id": 34,
@@ -277,7 +310,8 @@
       "title": "Nutrición enteral básica",
       "status": "pending",
       "published_url": null,
-      "publish_date": null
+      "publish_date": null,
+      "category": "Salud Digestiva"
     },
     {
       "id": 35,
@@ -285,7 +319,8 @@
       "title": "Ritmos circadianos del tracto digestivo",
       "status": "pending",
       "published_url": null,
-      "publish_date": null
+      "publish_date": null,
+      "category": "Inmunidad"
     },
     {
       "id": 36,
@@ -293,7 +328,8 @@
       "title": "Polifenoles y bacterias comensales",
       "status": "pending",
       "published_url": null,
-      "publish_date": null
+      "publish_date": null,
+      "category": "Salud Digestiva"
     },
     {
       "id": 37,
@@ -301,7 +337,8 @@
       "title": "Masticación y fase cefálica de la digestión",
       "status": "pending",
       "published_url": null,
-      "publish_date": null
+      "publish_date": null,
+      "category": "Inmunidad"
     },
     {
       "id": 38,
@@ -309,7 +346,8 @@
       "title": "Impacto de los AINEs en la mucosa",
       "status": "pending",
       "published_url": null,
-      "publish_date": null
+      "publish_date": null,
+      "category": "Salud Digestiva"
     },
     {
       "id": 39,
@@ -317,7 +355,8 @@
       "title": "Intestino perezoso en el adulto mayor",
       "status": "pending",
       "published_url": null,
-      "publish_date": null
+      "publish_date": null,
+      "category": "Salud Digestiva"
     },
     {
       "id": 40,
@@ -325,7 +364,8 @@
       "title": "Alimentos ultraprocesados y emulsificantes en la barrera",
       "status": "pending",
       "published_url": null,
-      "publish_date": null
+      "publish_date": null,
+      "category": "Salud Digestiva"
     },
     {
       "id": 41,

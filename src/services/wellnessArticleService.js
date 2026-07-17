@@ -1,16 +1,20 @@
 import { supabase } from '@/lib/supabaseClient';
 
 export const WELLNESS_CATEGORIES = [
-  'Belleza',
-  'Bienestar',
-  'Salud hepática',
-  'Control de peso',
-  'Bienestar gástrico',
+  'Belleza y Piel',
+  'Bienestar General',
+  'Control de Peso',
   'Ejercicio',
-  'Nutrición',
   'Energía',
-  'Hábitos saludables',
-  'Salud emocional',
+  'Estrés y Sueño',
+  'Grasa Corporal',
+  'Hígado Graso',
+  'Inmunidad',
+  'Metabolismo',
+  'Microbioma',
+  'Nutrición Celular',
+  'Salud Digestiva',
+  'Salud Emocional',
 ];
 
 export const slugifyWellnessArticle = (value = '') => value
