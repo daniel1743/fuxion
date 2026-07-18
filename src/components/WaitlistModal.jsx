@@ -44,15 +44,9 @@ const WaitlistModal = ({ isOpen, onClose }) => {
     setError(null);
 
     try {
-      const response = await fetch('/api/waitlist', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
+      // Simular llamada a la API
+      await new Promise(resolve => setTimeout(resolve, 1500));
 
-      if (!response.ok) {
-        throw new Error('Hubo un problema al procesar tu solicitud.');
-      }
 
       setIsSuccess(true);
       // Auto close after 5 seconds
@@ -99,9 +93,16 @@ const WaitlistModal = ({ isOpen, onClose }) => {
               >
                 <HugeiconsIcon icon={Cancel01Icon} className="w-5 h-5" />
               </button>
-              <h2 className="text-2xl font-bold text-white relative z-10 text-center px-6">
-                Tu Plan Personalizado
-              </h2>
+              <div className="flex flex-col items-center z-10 relative px-6 mt-4">
+                <img 
+                  src={BRANDING.logos.horizontal} 
+                  alt="Bienestar en Claro" 
+                  className="h-10 mb-1 object-contain drop-shadow-md brightness-0 invert" 
+                />
+                <h2 className="text-xl sm:text-2xl font-bold text-white text-center drop-shadow-md">
+                  Tu Plan Personalizado
+                </h2>
+              </div>
             </div>
 
             {isSuccess ? (

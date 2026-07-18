@@ -274,7 +274,7 @@ const HomePage = () => {
                   filter: 'drop-shadow(0 10px 18px rgba(0, 0, 0, 0.22))'
                 }}
               >
-                {['/para el hero.jpeg', '/img/hero_exercise.jpg', '/img/hero_kids.jpg'].map((src, index) => (
+                {['/para el hero.jpeg', '/branding/yoga.png', '/branding/niños.png'].map((src, index) => (
                   <img 
                     key={src}
                     src={getImageUrl(src)} 
@@ -356,7 +356,7 @@ const HomePage = () => {
               className="relative"
             >
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-emerald-100 dark:border-emerald-900 bg-emerald-50/50 aspect-[4/3] sm:aspect-auto sm:h-[560px]">
-                {['/para el hero.jpeg', '/img/hero_exercise.jpg', '/img/hero_kids.jpg'].map((src, index) => (
+                {['/para el hero.jpeg', '/branding/yoga.png', '/branding/niños.png'].map((src, index) => (
                   <img
                     key={src}
                     src={getImageUrl(src)}

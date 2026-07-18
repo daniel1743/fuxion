@@ -105,7 +105,7 @@ const MobileAppShell = ({
                 />
               </div>
             <span className="text-lg font-bold tracking-tight text-white truncate">
-              {settings?.site_name || 'Bienestar en Claro'}
+              Bienestar en Claro
             </span>
           </div>
         )}
