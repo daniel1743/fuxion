@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabaseClient';
+import { CATEGORY_CATALOG } from '@/lib/categoryCatalog';
 
 const BlogContext = createContext();
 
@@ -16,15 +17,8 @@ export const BlogProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Categorías del blog enfocadas en sobrepeso, salud y bienestar
-  const categories = [
-    { id: 'perdida-peso', name: 'Pérdida de Peso', color: 'bg-green-500' },
-    { id: 'sobrepeso', name: 'Sobrepeso', color: 'bg-orange-500' },
-    { id: 'bienestar', name: 'Bienestar', color: 'bg-purple-500' },
-    { id: 'nutricion', name: 'Nutrición', color: 'bg-blue-500' },
-    { id: 'recetas', name: 'Recetas Saludables', color: 'bg-pink-500' },
-    { id: 'motivacion', name: 'Motivación', color: 'bg-yellow-500' },
-  ];
+  // Categorías oficiales desde el catálogo
+  const categories = CATEGORY_CATALOG;
 
   // Cargar artículos publicados
   const fetchPosts = async () => {

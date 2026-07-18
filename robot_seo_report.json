@@ -1,0 +1,162 @@
+{
+  "procesados": 26,
+  "errores": 0,
+  "detalles": [
+    {
+      "title": "Guía para Principiantes: Empezando tu Camino hacia un Peso Saludable",
+      "old": "Sobrepeso",
+      "new": "Sobrepeso,Pérdida de Peso,Metabolismo",
+      "confidence": 95
+    },
+    {
+      "title": "Ácidos grasos de cadena corta (Butirato)",
+      "old": "Salud Digestiva",
+      "new": "Salud Digestiva,Nutrición,Microbiota",
+      "confidence": 95
+    },
+    {
+      "title": "Metabolismo de los ácidos biliares",
+      "old": "Hígado Graso",
+      "new": "Hígado Graso,Salud Digestiva,Microbiota,Nutrición",
+      "confidence": 95
+    },
+    {
+      "title": "Alergias alimentarias y respuesta IgE",
+      "old": "Inmunidad",
+      "new": "Inmunidad,Salud Digestiva,Nutrición",
+      "confidence": 95
+    },
+    {
+      "title": "5 Hábitos que Sabotean tu Pérdida de Peso sin que lo Sepas",
+      "old": "Pérdida de Peso",
+      "new": "Pérdida de Peso,Sobrepeso,Metabolismo",
+      "confidence": 95
+    },
+    {
+      "title": "Cirrosis hepática: qué es, causas, síntomas, tratamiento y cómo cuidar tu hígado desde la alimentación",
+      "old": "Salud del Hígado",
+      "new": "Salud del Hígado,Hígado Graso,Inflamación",
+      "confidence": 95
+    },
+    {
+      "title": "Síntomas de la cirrosis hepática: primeras señales, síntomas avanzados y cuándo consultar",
+      "old": "Salud del Hígado",
+      "new": "Salud del Hígado,Hígado Graso,Inflamación",
+      "confidence": 95
+    },
+    {
+      "title": "Cómo la Inflamación Afecta tu Peso y Energía",
+      "old": "Bienestar",
+      "new": "Bienestar,Pérdida de Peso,Sobrepeso,Metabolismo",
+      "confidence": 95
+    },
+    {
+      "title": "¿Qué es el hígado graso? Causas, síntomas y cómo cuidar la salud del hígado",
+      "old": "Salud del Hígado",
+      "new": "Salud del Hígado,Hígado Graso,Metabolismo",
+      "confidence": 95
+    },
+    {
+      "title": "Disbiosis Intestinal: Desequilibrio del Microbioma y su Relación con la Inflamación Sistémica",
+      "old": "Bienestar",
+      "new": "Bienestar,Microbiota,Salud Digestiva,Inflamación",
+      "confidence": 95
+    },
+    {
+      "title": "Intolerancia a la lactosa (Genética vs Adquirida)",
+      "old": "Salud Digestiva",
+      "new": "Salud Digestiva,Microbiota,Inmunidad,Nutrición",
+      "confidence": 95
+    },
+    {
+      "title": "Estreñimiento funcional crónico",
+      "old": "Salud Digestiva",
+      "new": "Salud Digestiva",
+      "confidence": 75
+    },
+    {
+      "title": "Infección por Helicobacter pylori",
+      "old": "Salud Digestiva",
+      "new": "Salud Digestiva,Sistema Inmunitario",
+      "confidence": 95
+    },
+    {
+      "title": "Eje intestino-hígado",
+      "old": "Hígado Graso",
+      "new": "Hígado Graso,Microbiota,Salud Digestiva,Sistema Inmunitario,Inflamación",
+      "confidence": 95
+    },
+    {
+      "title": "Histaminosis entérica",
+      "old": "Inmunidad",
+      "new": "Inmunidad,Salud Digestiva,Nutrición,Inflamación",
+      "confidence": 95
+    },
+    {
+      "title": "Función del moco gástrico",
+      "old": "Salud Digestiva",
+      "new": "Salud Digestiva,Inmunidad",
+      "confidence": 95
+    },
+    {
+      "title": "Tránsito intestinal acelerado",
+      "old": "Salud Digestiva",
+      "new": "Salud Digestiva,Microbiota",
+      "confidence": 95
+    },
+    {
+      "title": "Permeabilidad Intestinal (Leaky Gut)",
+      "old": "Salud Digestiva",
+      "new": "Salud Digestiva,Microbiota",
+      "confidence": 95
+    },
+    {
+      "title": "SIBO (Sobrecrecimiento Bacteriano del Intestino Delgado): Migración Microbiana, Fermentación Prematura y Diagnóstico",
+      "old": "Bienestar",
+      "new": "Bienestar,Salud Digestiva,Microbiota",
+      "confidence": 95
+    },
+    {
+      "title": "Celiaquía vs Sensibilidad al Gluten No Celíaca: Mecanismos Inmunológicos Diferenciados y Diagnóstico Preciso",
+      "old": "Bienestar",
+      "new": "Bienestar,Salud Digestiva,Inmunidad,Sistema Inmunitario,Nutrición,Microbiota",
+      "confidence": 95
+    },
+    {
+      "title": "Eje Intestino-Cerebro: Vías de Comunicación Bidireccional, Neurotransmisores Entéricos y Salud Mental",
+      "old": "Bienestar",
+      "new": "Bienestar,Salud Digestiva,Microbiota",
+      "confidence": 95
+    },
+    {
+      "title": "Hígado Graso No Alcohólico (HGNA): Acumulación Lipídica, Estrés Oxidativo y el Rol del Intestino",
+      "old": "Bienestar",
+      "new": "Bienestar,Hígado Graso,Salud Digestiva,Pérdida de Peso,Metabolismo,Salud del Hígado",
+      "confidence": 95
+    },
+    {
+      "title": "Fibra Soluble vs Insoluble: Impacto en la Motilidad Intestinal, Microbioma y Metabolismo",
+      "old": "Bienestar",
+      "new": "Bienestar,Microbiota,Nutrición,Salud Digestiva,Sistema Inmunitario",
+      "confidence": 95
+    },
+    {
+      "title": "Reflujo Gastroesofágico (ERGE) e Hipoclorhidria: Más Allá del Exceso de Ácido",
+      "old": "Bienestar",
+      "new": "Bienestar,Salud Digestiva",
+      "confidence": 95
+    },
+    {
+      "title": "Digestión Enzimática Exocrina: Función Pancreática, Síntesis Biliar y Absorción de Macronutrientes",
+      "old": "Bienestar",
+      "new": "Bienestar,Salud Digestiva,Microbiota,Nutrición",
+      "confidence": 95
+    },
+    {
+      "title": "Síndrome del Intestino Irritable (SII): Fisiopatología, Diagnóstico, Dieta FODMAP y Manejo Integral",
+      "old": "Bienestar",
+      "new": "Bienestar,Salud Digestiva,Microbiota",
+      "confidence": 95
+    }
+  ]
+}

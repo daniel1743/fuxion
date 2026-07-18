@@ -10,7 +10,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const SITE_URL = 'https://www.bienestarenclaro.com';
+const SITE_URL = 'https://tiendafuxion.space';
 const TODAY = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
 
 // ── Static pages ──────────────────────────────────────────────

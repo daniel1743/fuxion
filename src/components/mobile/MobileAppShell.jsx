@@ -11,6 +11,7 @@ import fuxionDatabase from '@/data/fuxion_database.json';
 import { getProductImageUrl } from '@/lib/imageUtils';
 import { useScrollDirection } from '@/hooks/useScrollDirection';
 import { SPRING_PHYSICS, SPRING_BOUNCE } from '@/lib/motionTokens';
+import { BRANDING } from '@/branding/branding';
 
 const defaultProductsDataset = Object.entries(fuxionDatabase.productos || {}).map(([key, value]) => ({
   id: key,
@@ -96,13 +97,13 @@ const MobileAppShell = ({
           </>
         ) : (
           <div className="flex items-center gap-2.5 min-w-0">
-            <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-md p-1.5 shrink-0">
-              <img
-                src="/hoja-te-transparente.svg"
-                alt="FuXion"
-                className="w-full h-full object-contain"
-              />
-            </div>
+              <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-md p-1.5 shrink-0">
+                <img
+                  src={BRANDING.logos.isotype}
+                  alt="FuXion"
+                  className="w-[85%] h-[85%] object-contain"
+                />
+              </div>
             <span className="text-lg font-bold tracking-tight text-white truncate">
               {settings?.site_name || 'Bienestar en Claro'}
             </span>

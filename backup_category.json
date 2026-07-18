@@ -1,0 +1,132 @@
+[
+  {
+    "id": "47f71ac4-3f24-418e-a6bd-ca31ad6ba5da",
+    "title": "Guía para Principiantes: Empezando tu Camino hacia un Peso Saludable",
+    "category": "Sobrepeso"
+  },
+  {
+    "id": "17f40184-2a3a-448c-86b4-e8e2f0e41e11",
+    "title": "Ácidos grasos de cadena corta (Butirato)",
+    "category": "Salud Digestiva"
+  },
+  {
+    "id": "658fd0b0-4c69-4222-81ba-2aeae3a20fe9",
+    "title": "Metabolismo de los ácidos biliares",
+    "category": "Hígado Graso"
+  },
+  {
+    "id": "9854cbd2-352f-4fab-a0b7-1e09a613b164",
+    "title": "Alergias alimentarias y respuesta IgE",
+    "category": "Inmunidad"
+  },
+  {
+    "id": "272f9495-eed9-4f77-ac8c-752e1764263b",
+    "title": "5 Hábitos que Sabotean tu Pérdida de Peso sin que lo Sepas",
+    "category": "Pérdida de Peso"
+  },
+  {
+    "id": "05d899f5-b779-4b66-ad38-67e7e1bae345",
+    "title": "Cirrosis hepática: qué es, causas, síntomas, tratamiento y cómo cuidar tu hígado desde la alimentación",
+    "category": "Salud del Hígado"
+  },
+  {
+    "id": "1d504cb5-9a03-4e81-b331-b38f2670388d",
+    "title": "Síntomas de la cirrosis hepática: primeras señales, síntomas avanzados y cuándo consultar",
+    "category": "Salud del Hígado"
+  },
+  {
+    "id": "7760e026-844b-4434-8952-746813eab373",
+    "title": "Cómo la Inflamación Afecta tu Peso y Energía",
+    "category": "Bienestar"
+  },
+  {
+    "id": "a001e3ec-0a91-4d0e-a6be-f439651b8442",
+    "title": "¿Qué es el hígado graso? Causas, síntomas y cómo cuidar la salud del hígado",
+    "category": "Salud del Hígado"
+  },
+  {
+    "id": "c69df71e-b86d-4911-9b9c-f0876e08f1ec",
+    "title": "Disbiosis Intestinal: Desequilibrio del Microbioma y su Relación con la Inflamación Sistémica",
+    "category": "Bienestar"
+  },
+  {
+    "id": "21d1dbb8-8dc3-422e-9813-589d68748cb4",
+    "title": "Intolerancia a la lactosa (Genética vs Adquirida)",
+    "category": "Salud Digestiva"
+  },
+  {
+    "id": "bcf25da8-c7a6-40cf-a35d-53088cdcef35",
+    "title": "Estreñimiento funcional crónico",
+    "category": "Salud Digestiva"
+  },
+  {
+    "id": "043885cf-f14a-49f1-a355-ea6cdfd92343",
+    "title": "Infección por Helicobacter pylori",
+    "category": "Salud Digestiva"
+  },
+  {
+    "id": "04232e3d-6e61-424a-8477-f93cfcd890cc",
+    "title": "Eje intestino-hígado",
+    "category": "Hígado Graso"
+  },
+  {
+    "id": "6601570a-f68b-4804-aeda-cdd8dcd4c9f7",
+    "title": "Histaminosis entérica",
+    "category": "Inmunidad"
+  },
+  {
+    "id": "cb371c60-28c0-48ce-a086-9ccad6a60b4a",
+    "title": "Función del moco gástrico",
+    "category": "Salud Digestiva"
+  },
+  {
+    "id": "b398eed2-cc34-4acd-a4b0-4e2d8f141a91",
+    "title": "Tránsito intestinal acelerado",
+    "category": "Salud Digestiva"
+  },
+  {
+    "id": "c6b2d42b-4695-48e7-9245-86be0211c762",
+    "title": "Permeabilidad Intestinal (Leaky Gut)",
+    "category": "Salud Digestiva"
+  },
+  {
+    "id": "3a0ca55a-b838-4260-9b86-f6fbdcc53523",
+    "title": "SIBO (Sobrecrecimiento Bacteriano del Intestino Delgado): Migración Microbiana, Fermentación Prematura y Diagnóstico",
+    "category": "Bienestar"
+  },
+  {
+    "id": "377be48a-49ff-4ee9-b839-44a0aaaeda70",
+    "title": "Celiaquía vs Sensibilidad al Gluten No Celíaca: Mecanismos Inmunológicos Diferenciados y Diagnóstico Preciso",
+    "category": "Bienestar"
+  },
+  {
+    "id": "e6dfbc3f-079b-48e3-a5c6-f73669798d24",
+    "title": "Eje Intestino-Cerebro: Vías de Comunicación Bidireccional, Neurotransmisores Entéricos y Salud Mental",
+    "category": "Bienestar"
+  },
+  {
+    "id": "49a741b4-f26d-43f0-b2eb-06fbdc1991a3",
+    "title": "Hígado Graso No Alcohólico (HGNA): Acumulación Lipídica, Estrés Oxidativo y el Rol del Intestino",
+    "category": "Bienestar"
+  },
+  {
+    "id": "88c6d876-d8a4-4cf5-8053-ba43da97d8c9",
+    "title": "Fibra Soluble vs Insoluble: Impacto en la Motilidad Intestinal, Microbioma y Metabolismo",
+    "category": "Bienestar"
+  },
+  {
+    "id": "5a51a11c-7585-477c-94d4-3ef87dea41ff",
+    "title": "Reflujo Gastroesofágico (ERGE) e Hipoclorhidria: Más Allá del Exceso de Ácido",
+    "category": "Bienestar"
+  },
+  {
+    "id": "5232bdbc-4a69-4b10-a21c-b54250bfa91f",
+    "title": "Digestión Enzimática Exocrina: Función Pancreática, Síntesis Biliar y Absorción de Macronutrientes",
+    "category": "Bienestar"
+  },
+  {
+    "id": "3acd12a2-8794-44db-bf4f-9e03b9109cb9",
+    "title": "Síndrome del Intestino Irritable (SII): Fisiopatología, Diagnóstico, Dieta FODMAP y Manejo Integral",
+    "category": "Bienestar"
+  }
+]

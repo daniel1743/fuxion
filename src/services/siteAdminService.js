@@ -3,10 +3,12 @@ import { supabase } from '@/lib/supabaseClient';
 
 const SITE_MEDIA_BUCKET = 'site-media';
 
+import { BRANDING } from '@/branding/branding';
+
 export const defaultSiteSettings = {
   id: 'main',
-  site_name: 'Tienda Fuxion',
-  logo_url: '/hoja-te-transparente.svg',
+  site_name: 'Bienestar en Claro',
+  logo_url: BRANDING.logos.isotype,
   owner_name: 'Daniel Falcon',
   tagline: 'Asesoría personalizada en productos Fuxion',
 };

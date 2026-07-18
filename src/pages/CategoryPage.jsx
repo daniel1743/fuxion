@@ -18,18 +18,25 @@ const VALID_CATEGORIES = [
   'deportes',
 ];
 
+import { getCategoryBySlug } from '@/lib/categoryCatalog';
+import BlogCategoryPage from './BlogCategoryPage';
+
 const CategoryPage = () => {
   const { categorySlug } = useParams();
 
-  if (!categorySlug || !VALID_CATEGORIES.includes(categorySlug)) {
-    return <Navigate to="/explorar" replace />;
+  // If it's a Fuxion product category, redirect to ExplorePage
+  if (VALID_CATEGORIES.includes(categorySlug)) {
+    return <CategoryRedirect slug={categorySlug} />;
   }
 
-  // We render ExplorePage which reads ?categoria= from URL params.
-  // The route /categoria/:slug will pass the slug, but ExplorePage
-  // reads from useSearchParams. We need to handle this differently.
-  // Instead, we'll use a wrapper that sets the search params.
-  return <CategoryRedirect slug={categorySlug} />;
+  // If it's a Blog category, render the semantic hub
+  const blogCategory = getCategoryBySlug(categorySlug);
+  if (blogCategory) {
+    return <BlogCategoryPage slug={categorySlug} />;
+  }
+
+  // Otherwise, redirect to root
+  return <Navigate to="/" replace />;
 };
 
 /**

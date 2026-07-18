@@ -15,6 +15,7 @@ import {
   Shield,
   Cookie,
 } from 'lucide-react';
+import BRANDING from '@/branding/branding';
 import { buildWhatsappUrl } from '@/lib/whatsapp';
 import { WhatsAppIcon } from '@/components/icons/BrandIcons';
 import { useSiteSettings } from '@/context/SiteSettingsContext';
@@ -67,10 +68,18 @@ const Footer = () => {
                     <div className="col-span-1 md:col-span-1 flex flex-col items-start">
                         <Link to="/" className="flex items-center gap-3 mb-4">
                             <img
-                                src="/branding/logo-horizontal.png"
-                                alt={settings.site_name}
+                                src={BRANDING.logos.horizontal}
+                                alt="Logo Bienestar en Claro"
                                 className="h-12 object-contain bg-transparent"
                             />
+                            <div className="flex flex-col justify-center">
+                              <span className="font-serif text-[1.5rem] leading-none font-bold text-slate-800 dark:text-slate-100 tracking-wide" style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}>
+                                Bienestar
+                              </span>
+                              <span className="font-serif text-[1rem] leading-none text-emerald-600 dark:text-emerald-400 font-medium tracking-widest uppercase mt-1" style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}>
+                                en Claro
+                              </span>
+                            </div>
                         </Link>
                         <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
                             Bienestar en Claro: Información basada en evidencia científica y nutrición inteligente.

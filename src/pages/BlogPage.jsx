@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import SEO from '@/components/SEO';
@@ -10,6 +10,8 @@ import { Input } from '@/components/ui/input';
 import BlogAdminPanel from '@/components/admin/BlogAdminPanel';
 import { ArticleSkeleton } from '@/components/skeleton';
 import MobileAppShell from '@/components/mobile/MobileAppShell';
+import { parseCategories, getCategoryData } from '@/lib/categoryCatalog';
+import ArticleBadges from '@/components/blog/ArticleBadges';
 
 const BlogPage = () => {
   const { posts, loading, categories } = useBlog();
@@ -18,13 +20,18 @@ const BlogPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [showAdminPanel, setShowAdminPanel] = useState(false);
 
-  // Filtrar posts
-  const filteredPosts = posts.filter(post => {
-    const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === 'all' || post.category === selectedCategory;
-    return matchesSearch && matchesCategory;
-  });
+  // Filtrar posts (Memoizado para performance)
+  const filteredPosts = useMemo(() => {
+    return posts.filter(post => {
+      const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                           post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
+      
+      const parsedCats = parseCategories(post.category);
+      const matchesCategory = selectedCategory === 'all' || parsedCats.includes(selectedCategory);
+      
+      return matchesSearch && matchesCategory;
+    });
+  }, [posts, searchTerm, selectedCategory]);
 
   // Formatear fecha
   const formatDate = (dateString) => {
@@ -103,9 +110,9 @@ const BlogPage = () => {
             transition={{ delay: 0.1 }}
             className="bg-card border border-border rounded-xl p-4 mb-8"
           >
-            <div className="flex flex-col md:flex-row gap-4">
+            <div className="flex flex-col gap-4">
               {/* Búsqueda */}
-              <div className="relative flex-1">
+              <div className="relative w-full">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <Input
                   type="text"
@@ -126,17 +133,29 @@ const BlogPage = () => {
                 >
                   Todos
                 </Button>
-                {categories.map((cat) => (
-                  <Button
-                    key={cat.id}
-                    variant={selectedCategory === cat.name ? 'default' : 'outline'}
-                    size="sm"
-                    onClick={() => setSelectedCategory(cat.name)}
-                    className="rounded-full snap-start shrink-0"
-                  >
-                    {cat.name}
-                  </Button>
-                ))}
+                {categories.map((cat) => {
+                  // Extraemos el color base (ej. 'blue-500' de 'bg-blue-500') para usarlo dinámicamente si es necesario, 
+                  // pero usar la clase directa de bg es más seguro.
+                  const isSelected = selectedCategory === cat.name;
+                  return (
+                    <Button
+                      key={cat.id}
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setSelectedCategory(cat.name)}
+                      className={`rounded-full snap-start shrink-0 transition-colors ${
+                        isSelected 
+                          ? `${cat.color} text-white border-transparent hover:${cat.color}` 
+                          : 'hover:bg-slate-50'
+                      }`}
+                    >
+                      {!isSelected && (
+                        <span className={`w-2 h-2 rounded-full mr-2 ${cat.color}`}></span>
+                      )}
+                      {cat.name}
+                    </Button>
+                  );
+                })}
               </div>
             </div>
           </motion.div>
@@ -204,10 +223,8 @@ const BlogPage = () => {
                           <BookOpen className="w-12 h-12 text-primary/50" />
                         </div>
                       )}
-                      {/* Categoría badge */}
-                      <span className="absolute top-3 left-3 bg-primary text-primary-foreground text-xs font-medium px-3 py-1 rounded-full">
-                        {post.category}
-                      </span>
+                      {/* Categorías (Multi-Badge Component) */}
+                      <ArticleBadges categoryString={post.category} />
                     </div>
                   </Link>
 

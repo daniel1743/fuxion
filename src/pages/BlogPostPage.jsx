@@ -12,6 +12,9 @@ import MobileAppShell from '@/components/mobile/MobileAppShell';
 import { toast } from '@/components/ui/use-toast';
 import { useScrollDirection } from '@/hooks/useScrollDirection';
 import ArticleComments from '@/components/blog/ArticleComments';
+import { parseCategories, CATEGORY_CATALOG } from '@/lib/categoryCatalog';
+import { TAG_CATALOG } from '@/lib/tagCatalog';
+import ArticleBadges from '@/components/blog/ArticleBadges';
 
 const BlogPostPage = () => {
   const { slug } = useParams();
@@ -81,7 +84,37 @@ const BlogPostPage = () => {
   const renderContent = (content) => {
     if (!content) return '';
 
-    let html = content
+    let html = content;
+
+    // 1. Enmascarar enlaces e imágenes markdown para protegerlos del auto-linker
+    const maskedLinks = [];
+    html = html.replace(/!?\[(.*?)\]\((.*?)\)/gim, (match) => {
+      maskedLinks.push(match);
+      return `__MD_LINK_${maskedLinks.length - 1}__`;
+    });
+
+    // 2. Auto-Linker de Categorías y Etiquetas
+    const allTerms = [
+      ...CATEGORY_CATALOG.map(c => ({ name: c.name, url: `/categoria/${c.slug}` })),
+      ...TAG_CATALOG.map(t => ({ name: t.name, url: `/etiqueta/${t.slug}` }))
+    ];
+
+    // Ordenar términos por longitud descendente para evitar que palabras cortas rompan palabras largas
+    allTerms.sort((a, b) => b.name.length - a.name.length);
+
+    allTerms.forEach(term => {
+      // Reemplaza solo la primera coincidencia exacta (fuera de palabras mayores)
+      const regex = new RegExp(`\\b(${term.name})\\b`, 'i');
+      html = html.replace(regex, `<a href="${term.url}" class="text-emerald-600 dark:text-emerald-400 hover:underline font-medium transition-colors">$1</a>`);
+    });
+
+    // 3. Restaurar los enlaces enmascarados
+    maskedLinks.forEach((link, idx) => {
+      html = html.replace(`__MD_LINK_${idx}__`, link);
+    });
+
+    // 4. Continuar con el parseo normal de Markdown
+    html = html
       // Images: ![alt](src)
       .replace(/!\[(.*?)\]\((\/[^)]+)\)/gim,
         '<figure class="my-8"><img src="$2" alt="$1" class="w-full rounded-2xl shadow-md object-cover" loading="lazy" /><figcaption class="text-center text-sm text-muted-foreground mt-2 italic">$1</figcaption></figure>')
@@ -122,6 +155,8 @@ const BlogPostPage = () => {
       .replace(/^- (.*$)/gim, '<li class="flex gap-2 ml-4 text-muted-foreground mb-1"><span class="text-emerald-500 mt-1 shrink-0">•</span><span>$1</span></li>')
       .replace(/^\* (.*$)/gim, '<li class="flex gap-2 ml-4 text-muted-foreground mb-1"><span class="text-emerald-500 mt-1 shrink-0">•</span><span>$1</span></li>')
       .replace(/^\d+\. (.*$)/gim, '<li class="ml-6 text-muted-foreground mb-1 list-decimal">$1</li>')
+      // Links
+      .replace(/\[(.*?)\]\((.*?)\)/gim, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-emerald-600 dark:text-emerald-400 hover:underline font-medium">$1</a>')
       // HR
       .replace(/^---$/gim, '<hr class="border-border my-8" />')
       // Paragraphs
@@ -131,9 +166,24 @@ const BlogPostPage = () => {
     return `<p class="text-muted-foreground leading-relaxed mb-4">${html}</p>`;
   };
 
-  const relatedPosts = posts
-    .filter(p => p.id !== post?.id && p.category === post?.category)
-    .slice(0, 3);
+  const relatedPosts = React.useMemo(() => {
+    if (!post || !posts.length) return [];
+    
+    const currentCats = parseCategories(post.category);
+    
+    // Calcular coincidencias
+    const postsWithScore = posts
+      .filter(p => p.id !== post.id)
+      .map(p => {
+        const pCats = parseCategories(p.category);
+        const shared = pCats.filter(cat => currentCats.includes(cat)).length;
+        return { post: p, shared };
+      })
+      .filter(p => p.shared > 0) // Solo si comparten al menos 1
+      .sort((a, b) => b.shared - a.shared); // Ordenar por mayor coincidencia
+      
+    return postsWithScore.slice(0, 3).map(p => p.post);
+  }, [post, posts]);
 
   if (loading) {
     return (
@@ -291,10 +341,10 @@ const BlogPostPage = () => {
             animate={{ opacity: 1, y: 0 }}
             className="mt-4 md:mt-0"
           >
-            {/* Categoría */}
-            <span className="inline-block bg-white/20 text-white backdrop-blur-md text-sm font-semibold px-4 py-1.5 rounded-full mb-6 border border-white/10 shadow-sm">
-              {post.category}
-            </span>
+            {/* Categoría(s) */}
+            <div className="relative h-8 mb-6">
+              <ArticleBadges categoryString={post.category} />
+            </div>
 
             {/* Título */}
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-8 leading-[1.2] drop-shadow-sm text-balance">
@@ -441,15 +491,16 @@ const BlogPostPage = () => {
                   to={`/articulos/${relatedPost.slug}`}
                   className="group bg-card border border-border rounded-2xl overflow-hidden hover:border-emerald-500/50 hover:shadow-premium-soft transition-all duration-300 card-hover-premium flex flex-col"
                 >
-                  {relatedPost.image_url && (
-                    <div className="relative h-40 overflow-hidden">
-                      <img
-                        src={relatedPost.image_url}
-                        alt={relatedPost.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-                  )}
+                    {relatedPost.image_url && (
+                      <div className="relative h-40 overflow-hidden">
+                        <img
+                          src={relatedPost.image_url}
+                          alt={relatedPost.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <ArticleBadges categoryString={relatedPost.category} />
+                      </div>
+                    )}
                   <div className="p-5 flex-1 flex flex-col">
                     <h3 className="font-bold text-foreground line-clamp-3 group-hover:text-emerald-600 transition-colors leading-snug">
                       {relatedPost.title}

@@ -10,6 +10,7 @@ import { Label } from '@/components/ui/label';
 import { Eye, EyeOff, Leaf, Loader2 } from 'lucide-react';
 import { useSiteSettings } from '@/context/SiteSettingsContext';
 import { useAdmin } from '@/context/AdminContext';
+import { BRANDING } from '@/branding/branding';
 
 const AuthModal = () => {
   const {
@@ -115,11 +116,11 @@ const AuthModal = () => {
         <DialogHeader className="p-6 pb-0">
           <div className="flex items-center gap-2 mb-2">
             <img
-              src="/hoja-te-transparente.svg"
-              alt={settings.site_name}
-              className="h-7 w-7 rounded-full object-contain bg-transparent"
+              src={BRANDING.logos.isotype}
+              alt={BRANDING.constants.BRAND_NAME}
+              className="h-8 w-8 object-contain drop-shadow-sm"
             />
-            <DialogTitle className="text-2xl font-bold text-foreground">{settings.site_name}</DialogTitle>
+            <DialogTitle className="text-2xl font-bold text-foreground">{BRANDING.constants.BRAND_NAME}</DialogTitle>
           </div>
           <DialogDescription>
             Accede para guardar tu experiencia en este dispositivo. Los pedidos se siguen coordinando por WhatsApp.

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Cancel01Icon, CheckmarkBadge01Icon, Mail01Icon, UserIcon, SmartPhone01Icon, Target01Icon, RulerIcon, WeightScaleIcon } from '@hugeicons/core-free-icons';
+import { BRANDING } from '@/branding/branding';
 
 const GOALS = [
   'Pérdida de Peso',
@@ -87,7 +88,10 @@ const WaitlistModal = ({ isOpen, onClose }) => {
           >
             {/* Header */}
             <div className="relative h-32 bg-gradient-to-br from-emerald-600 to-emerald-800 overflow-hidden flex items-center justify-center">
-              <div className="absolute inset-0 bg-[url('/hoja-te-transparente.svg')] bg-no-repeat bg-center opacity-10 bg-[length:150%]" />
+              <div 
+                className="absolute inset-0 bg-no-repeat bg-center opacity-10 bg-[length:150%]" 
+                style={{ backgroundImage: `url('${BRANDING.logos.isotype}')` }} 
+              />
               <button 
                 onClick={onClose}
                 disabled={isSubmitting}

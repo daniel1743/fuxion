@@ -1,0 +1,247 @@
+[
+  {
+    "id": "47f71ac4-3f24-418e-a6bd-ca31ad6ba5da",
+    "title": "Guía para Principiantes: Empezando tu Camino hacia un Peso Saludable",
+    "slug": "guia-principiantes-peso-saludable",
+    "created_at": "2026-06-16T22:29:41.814411+00:00",
+    "image_url": "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800"
+  },
+  {
+    "id": "7760e026-844b-4434-8952-746813eab373",
+    "title": "Cómo la Inflamación Afecta tu Peso y Energía",
+    "slug": "como-la-inflamacion-afecta-tu-peso",
+    "created_at": "2026-06-16T22:29:41.814411+00:00",
+    "image_url": "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?w=800"
+  },
+  {
+    "id": "272f9495-eed9-4f77-ac8c-752e1764263b",
+    "title": "5 Hábitos que Sabotean tu Pérdida de Peso sin que lo Sepas",
+    "slug": "5-habitos-que-sabotean-tu-perdida-de-peso",
+    "created_at": "2026-06-16T22:29:41.814411+00:00",
+    "image_url": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800"
+  },
+  {
+    "id": "05d899f5-b779-4b66-ad38-67e7e1bae345",
+    "title": "Cirrosis hepática: qué es, causas, síntomas, tratamiento y cómo cuidar tu hígado desde la alimentación",
+    "slug": "cirrosis-hepatica",
+    "created_at": "2026-07-13T21:51:10.93556+00:00",
+    "image_url": "/images/articles/cirrosis-hepatica-sintomas-causas.png"
+  },
+  {
+    "id": "1d504cb5-9a03-4e81-b331-b38f2670388d",
+    "title": "Síntomas de la cirrosis hepática: primeras señales, síntomas avanzados y cuándo consultar",
+    "slug": "sintomas-cirrosis-hepatica",
+    "created_at": "2026-07-13T22:04:50.327564+00:00",
+    "image_url": "/images/articles/sintomas-cirrosis-hepatica-primeras-senales.png"
+  },
+  {
+    "id": "a001e3ec-0a91-4d0e-a6be-f439651b8442",
+    "title": "¿Qué es el hígado graso? Causas, síntomas y cómo cuidar la salud del hígado",
+    "slug": "higado-graso",
+    "created_at": "2026-07-13T22:13:56.67866+00:00",
+    "image_url": "/images/articles/que-es-el-higado-graso.png"
+  },
+  {
+    "id": "c69df71e-b86d-4911-9b9c-f0876e08f1ec",
+    "title": "Disbiosis Intestinal: Desequilibrio del Microbioma y su Relación con la Inflamación Sistémica",
+    "slug": "disbiosis-intestinal-desequilibrio-del-microbioma-y-su-relacion-con-la-inflamacion-sistemica",
+    "created_at": "2026-07-16T00:51:04.828038+00:00",
+    "image_url": "/images/articles/Disbiosis.png"
+  },
+  {
+    "id": "c6b2d42b-4695-48e7-9245-86be0211c762",
+    "title": "Permeabilidad Intestinal (Leaky Gut)",
+    "slug": "permeabilidad-intestinal-mecanismos-de-la-barrera-epitelial-y-factores-moduladores",
+    "created_at": "2026-07-16T00:51:06.149215+00:00",
+    "image_url": "/images/articles/factores-modulares.png"
+  },
+  {
+    "id": "377be48a-49ff-4ee9-b839-44a0aaaeda70",
+    "title": "Celiaquía vs Sensibilidad al Gluten No Celíaca: Mecanismos Inmunológicos Diferenciados y Diagnóstico Preciso",
+    "slug": "celiaquia-vs-sensibilidad-al-gluten-no-celiaca-mecanismos-inmunologicos-diferenciados-y-diagnostico-preciso",
+    "created_at": "2026-07-16T02:45:12.6793+00:00",
+    "image_url": "/images/articles/celiaquia-vs-sensibilidad-gluten.png"
+  },
+  {
+    "id": "5a51a11c-7585-477c-94d4-3ef87dea41ff",
+    "title": "Reflujo Gastroesofágico (ERGE) e Hipoclorhidria: Más Allá del Exceso de Ácido",
+    "slug": "reflujo-gastroesofagico-erge-e-hipoclorhidria-mas-alla-del-exceso-de-acido",
+    "created_at": "2026-07-16T02:45:15.229795+00:00",
+    "image_url": "/images/articles/reflujo-gastroesofagico-erge.png"
+  },
+  {
+    "id": "3a0ca55a-b838-4260-9b86-f6fbdcc53523",
+    "title": "SIBO (Sobrecrecimiento Bacteriano del Intestino Delgado): Migración Microbiana, Fermentación Prematura y Diagnóstico",
+    "slug": "sibo-sobrecrecimiento-bacteriano-del-intestino-delgado-migracion-microbiana-fermentacion-prematura-y-diagnostico",
+    "created_at": "2026-07-16T02:45:15.898224+00:00",
+    "image_url": "/images/articles/sibo.png"
+  },
+  {
+    "id": "e6dfbc3f-079b-48e3-a5c6-f73669798d24",
+    "title": "Eje Intestino-Cerebro: Vías de Comunicación Bidireccional, Neurotransmisores Entéricos y Salud Mental",
+    "slug": "eje-intestino-cerebro-vias-de-comunicacion-bidireccional-neurotransmisores-entericos-y-salud-mental",
+    "created_at": "2026-07-16T03:01:01.626404+00:00",
+    "image_url": "/images/articles/eje-intestino-cerebro.png"
+  },
+  {
+    "id": "88c6d876-d8a4-4cf5-8053-ba43da97d8c9",
+    "title": "Fibra Soluble vs Insoluble: Impacto en la Motilidad Intestinal, Microbioma y Metabolismo",
+    "slug": "fibra-soluble-vs-insoluble-impacto-en-la-motilidad-intestinal-microbioma-y-metabolismo",
+    "created_at": "2026-07-16T03:01:01.967552+00:00",
+    "image_url": "/images/articles/fibra-soluble-vs-insoluble.png"
+  },
+  {
+    "id": "5232bdbc-4a69-4b10-a21c-b54250bfa91f",
+    "title": "Digestión Enzimática Exocrina: Función Pancreática, Síntesis Biliar y Absorción de Macronutrientes",
+    "slug": "digestion-enzimatica-exocrina-funcion-pancreatica-sintesis-biliar-y-absorcion-de-macronutrientes",
+    "created_at": "2026-07-16T13:58:15.209076+00:00",
+    "image_url": "/images/articles/digestion-enzimatica-exocrina.png"
+  },
+  {
+    "id": "49a741b4-f26d-43f0-b2eb-06fbdc1991a3",
+    "title": "Hígado Graso No Alcohólico (HGNA): Acumulación Lipídica, Estrés Oxidativo y el Rol del Intestino",
+    "slug": "higado-graso-no-alcoholico-hgna-acumulacion-lipidica-estres-oxidativo-y-el-rol-del-intestino",
+    "created_at": "2026-07-16T13:58:16.60465+00:00",
+    "image_url": "/images/articles/higado-graso-hgna.png"
+  },
+  {
+    "id": "3acd12a2-8794-44db-bf4f-9e03b9109cb9",
+    "title": "Síndrome del Intestino Irritable (SII): Fisiopatología, Diagnóstico, Dieta FODMAP y Manejo Integral",
+    "slug": "sindrome-del-intestino-irritable-sii-fisiopatologia-diagnostico-dieta-fodmap-y-manejo-integral",
+    "created_at": "2026-07-16T13:58:17.600222+00:00",
+    "image_url": "/images/articles/sindrome-intestino-irritable.png"
+  },
+  {
+    "id": "17f40184-2a3a-448c-86b4-e8e2f0e41e11",
+    "title": "Ácidos grasos de cadena corta (Butirato)",
+    "slug": "cidos-grasos-de-cadena-corta-butirato",
+    "created_at": "2026-07-17T04:42:01.650098+00:00",
+    "image_url": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": "9854cbd2-352f-4fab-a0b7-1e09a613b164",
+    "title": "Alergias alimentarias y respuesta IgE",
+    "slug": "alergias-alimentarias-y-respuesta-ige",
+    "created_at": "2026-07-17T04:42:01.650098+00:00",
+    "image_url": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": "658fd0b0-4c69-4222-81ba-2aeae3a20fe9",
+    "title": "Metabolismo de los ácidos biliares",
+    "slug": "metabolismo-de-los-cidos-biliares",
+    "created_at": "2026-07-17T04:42:01.650098+00:00",
+    "image_url": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": "bcf25da8-c7a6-40cf-a35d-53088cdcef35",
+    "title": "Estreñimiento funcional crónico",
+    "slug": "estreimiento-funcional-crnico",
+    "created_at": "2026-07-17T05:21:23.157329+00:00",
+    "image_url": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": "043885cf-f14a-49f1-a355-ea6cdfd92343",
+    "title": "Infección por Helicobacter pylori",
+    "slug": "infeccin-por-helicobacter-pylori",
+    "created_at": "2026-07-17T05:21:23.157329+00:00",
+    "image_url": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": "04232e3d-6e61-424a-8477-f93cfcd890cc",
+    "title": "Eje intestino-hígado",
+    "slug": "eje-intestino-hgado",
+    "created_at": "2026-07-17T05:21:23.157329+00:00",
+    "image_url": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": "21d1dbb8-8dc3-422e-9813-589d68748cb4",
+    "title": "Intolerancia a la lactosa (Genética vs Adquirida)",
+    "slug": "intolerancia-a-la-lactosa-gentica-vs-adquirida",
+    "created_at": "2026-07-17T05:21:23.157329+00:00",
+    "image_url": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": "6601570a-f68b-4804-aeda-cdd8dcd4c9f7",
+    "title": "Histaminosis entérica",
+    "slug": "histaminosis-entrica",
+    "created_at": "2026-07-17T05:21:23.157329+00:00",
+    "image_url": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": "cb371c60-28c0-48ce-a086-9ccad6a60b4a",
+    "title": "Función del moco gástrico",
+    "slug": "funcin-del-moco-gstrico",
+    "created_at": "2026-07-17T05:21:23.157329+00:00",
+    "image_url": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": "b9649cb7-8634-4a2b-9d14-3b2af779388c",
+    "title": "Celiaquía vs Sensibilidad al Gluten No Celíaca",
+    "slug": "celiaqu-a-vs-sensibilidad-al-gluten-no-cel-aca-mecanismos-inmunol-gicos-diferenciados",
+    "created_at": "2026-07-17T05:21:23.157329+00:00",
+    "image_url": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": "2c4e3cf4-9a87-46ce-94d1-b008dcd78bc8",
+    "title": "Reflujo Gastroesofágico (ERGE) e Hipoclorhidria",
+    "slug": "reflujo-gastroesof-gico-erge-e-hipoclorhidria-mecanismos-del-esf-nter-y-acidez",
+    "created_at": "2026-07-17T05:21:23.157329+00:00",
+    "image_url": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": "9eaba70b-741c-43f3-8b88-e4f932f4ee2f",
+    "title": "Hígado Graso No Alcohólico (HGNA)",
+    "slug": "h-gado-graso-no-alcoh-lico-hgna-acumulaci-n-lip-dica-y-estr-s-oxidativo-hep-tico",
+    "created_at": "2026-07-17T05:21:23.157329+00:00",
+    "image_url": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": "ec07d95c-998a-484d-92e3-5ed7bcd9f5d0",
+    "title": "Eje Intestino-Cerebro",
+    "slug": "eje-intestino-cerebro-v-as-de-comunicaci-n-bidireccional-y-neurotransmisores-ent-ricos",
+    "created_at": "2026-07-17T05:21:23.157329+00:00",
+    "image_url": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": "05649b6c-e5a9-44a9-bd4f-2c8d77dbfa30",
+    "title": "SIBO (Sobrecrecimiento Bacteriano)",
+    "slug": "sibo-sobrecrecimiento-bacteriano-migraci-n-microbiana-y-fermentaci-n-prematura",
+    "created_at": "2026-07-17T05:21:23.157329+00:00",
+    "image_url": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": "d8a0329e-8204-497f-bc71-73465469ad79",
+    "title": "Síndrome del Intestino Irritable (SII)",
+    "slug": "s-ndrome-del-intestino-irritable-sii-eje-intestino-cerebro-y-alteraciones-de-la-motilidad",
+    "created_at": "2026-07-17T05:21:23.157329+00:00",
+    "image_url": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": "f505f6a3-b6be-4857-b473-d182f4b57c7f",
+    "title": "Disbiosis Intestinal",
+    "slug": "disbiosis-intestinal-desequilibrio-del-microbioma-y-su-relaci-n-con-la-inflamaci-n-sist-mica",
+    "created_at": "2026-07-17T05:21:23.157329+00:00",
+    "image_url": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": "b398eed2-cc34-4acd-a4b0-4e2d8f141a91",
+    "title": "Tránsito intestinal acelerado",
+    "slug": "trnsito-intestinal-acelerado",
+    "created_at": "2026-07-17T05:21:23.157329+00:00",
+    "image_url": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": "ba48ed55-88d5-4996-a05c-309afac15ffe",
+    "title": "Digestión enzimática exocrina",
+    "slug": "digesti-n-enzim-tica-exocrina-funci-n-pancre-tica-y-descomposici-n-de-macronutrientes",
+    "created_at": "2026-07-17T05:21:23.157329+00:00",
+    "image_url": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": "a96614ea-bfe1-48d7-a4de-1b297f43d8ed",
+    "title": "Fibra soluble vs insoluble en la motilidad",
+    "slug": "fibra-soluble-vs-insoluble-impacto-en-la-motilidad-y-modulaci-n-del-microbioma",
+    "created_at": "2026-07-17T05:21:23.157329+00:00",
+    "image_url": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200&auto=format&fit=crop"
+  }
+]

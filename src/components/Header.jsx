@@ -29,6 +29,8 @@ import { Button } from '@/components/ui/button';
 import { useSiteSettings } from '@/context/SiteSettingsContext';
 import { useAuth } from '@/context/AuthContext';
 import { useNotifications } from '@/context/NotificationContext';
+import MobileAppShell from '@/components/mobile/MobileAppShell';
+import BRANDING from '@/branding/branding';
 import UserMenu from '@/components/UserMenu';
 import { TiktokIcon, FacebookIcon } from '@/components/icons/BrandIcons';
 import { useScrollDirection } from '@/hooks/useScrollDirection';
@@ -246,12 +248,20 @@ const Header = () => {
       <nav className="container mx-auto hidden md:flex items-center justify-between gap-1 px-3 py-2 sm:px-6 sm:py-3 pointer-events-auto">
         {/* ── Left: Brand / Mobile user greeting ──────────────── */}
         {/* Desktop brand — always visible on md+ */}
-        <Link to="/" className="hidden md:flex shrink items-center gap-2 min-w-0">
+        <Link to="/" className="flex-shrink-0 group flex items-center gap-3 relative z-20">
           <img
-            src="/branding/logo-horizontal.png"
+            src={BRANDING.logos.horizontal}
             alt={settings.site_name || 'Bienestar en Claro'}
             className="h-[42px] shrink-0 object-contain bg-transparent"
           />
+          <div className="flex flex-col justify-center">
+            <span className="font-serif text-[1.35rem] leading-none font-bold text-slate-800 dark:text-slate-100 tracking-wide" style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}>
+              Bienestar
+            </span>
+            <span className="font-serif text-[0.95rem] leading-none text-emerald-600 dark:text-emerald-400 font-medium tracking-widest uppercase mt-1" style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}>
+              en Claro
+            </span>
+          </div>
         </Link>
 
 
@@ -382,9 +392,9 @@ const Header = () => {
                       />
                     ) : (
                       <img
-                        src="/hoja-te-transparente.svg"
+                        src={BRANDING.logos.isotype}
                         alt={settings.site_name || 'FuXion'}
-                        className="w-full h-full object-contain"
+                        className="w-[70%] h-[70%] mt-[15%] ml-[15%] object-contain"
                       />
                     )}
                   </button>
