@@ -44,43 +44,26 @@ const BienestarEnClaroSplash = ({ onFinish = () => console.log('Splash finalizad
 
   // Configuraciones de animación (Framer Motion)
   
-  // 1. Efecto wipe para reemplazar stroke-reveal (draw + fill = 2.4s)
-  const maskVariants = {
+  // 1. Efecto inicial: Inicia idéntico al splash nativo (sin wipe, escala 1) y luego respira
+  const logoVariants = {
     hidden: { 
-      clipPath: shouldReduceMotion ? undefined : "inset(100% 0% 0% 0%)",
-      opacity: shouldReduceMotion ? 0 : 1
-    },
-    visible: { 
-      clipPath: shouldReduceMotion ? undefined : "inset(0% 0% 0% 0%)",
-      opacity: 1,
-      transition: {
-        duration: shouldReduceMotion ? 1.5 : 2.4, // duration covers draw (1.8s) + fill (0.6s)
-        ease: [0.215, 0.61, 0.355, 1], // easeOutCubic
-        delay: 0.4 // intro delay
-      }
-    }
-  };
-
-  // 2. Efecto bloom: Scale (0.96 -> 1) and Glow
-  const bloomVariants = {
-    hidden: { 
-      scale: shouldReduceMotion ? 1 : 0.96,
+      scale: 1.0,
       filter: "drop-shadow(0px 0px 0px rgba(183, 216, 176, 0))" 
     },
     visible: {
-      scale: 1.0,
+      scale: shouldReduceMotion ? 1.0 : [1.0, 1.04, 1.0],
       filter: shouldReduceMotion 
         ? "drop-shadow(0px 0px 0px rgba(183, 216, 176, 0))"
-        : "drop-shadow(0px 0px 12px rgba(183, 216, 176, 0.22))",
+        : ["drop-shadow(0px 0px 0px rgba(183, 216, 176, 0))", "drop-shadow(0px 0px 16px rgba(183, 216, 176, 0.35))", "drop-shadow(0px 0px 8px rgba(183, 216, 176, 0.15))"],
       transition: { 
-        duration: 0.9, 
-        ease: "easeOut", 
-        delay: 2.8 
+        duration: 2.8, 
+        ease: "easeInOut", 
+        delay: 0.3 // Esperamos una fracción de segundo después del handoff de Android
       }
     }
   };
 
-  // 3. Tipografía premium
+  // 2. Tipografía premium
   const textVariants = {
     hidden: { 
       opacity: 0, 
@@ -92,14 +75,14 @@ const BienestarEnClaroSplash = ({ onFinish = () => console.log('Splash finalizad
       y: 0, 
       filter: "blur(0px)",
       transition: { 
-        delay: 2.2, 
+        delay: 0.8, // Entra suavemente mientras el logo hace su primera "respiración"
         duration: 1.5, 
         ease: "easeOut" 
       }
     }
   };
 
-  // 4. Salida (Exit)
+  // 3. Salida (Exit)
   const exitVariants = {
     exit: {
       opacity: 0,
@@ -117,36 +100,28 @@ const BienestarEnClaroSplash = ({ onFinish = () => console.log('Splash finalizad
         <motion.div
           className="fixed inset-0 z-50 flex flex-col items-center justify-center"
           style={{ backgroundColor: '#FCFBF8', willChange: 'opacity, transform' }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1, transition: { duration: 0.4 } }}
+          // INICIO CRÍTICO: Opacidad 1 desde el ms 0 para empatar con Android
+          initial={{ opacity: 1 }}
+          animate={{ opacity: 1 }}
           exit="exit"
           variants={exitVariants}
         >
-          {/* Contenedor con efecto de respiración (breathing loop) */}
-          <motion.div
-            style={{ willChange: 'transform' }}
-            animate={shouldReduceMotion ? {} : {
-              scale: [1, 1.012, 1],
-              y: [0, -2, 0]
-            }}
-            transition={{
-              duration: 5,
-              ease: "easeInOut",
-              repeat: Infinity,
-              delay: 3.7 // Empieza después de que termine el bloom
-            }}
-            className="flex flex-col items-center"
-          >
-            {/* Capa de Bloom */}
-            <motion.div variants={bloomVariants} initial="hidden" animate="visible" style={{ willChange: 'transform, filter' }}>
-              {/* Capa de Draw (Wipe Reveal) */}
-              <motion.div variants={maskVariants} initial="hidden" animate="visible" style={{ willChange: 'clip-path' }}>
-                <img 
-                  src={logoPath} 
-                  alt="Bienestar en Claro Logo" 
-                  style={{ width: '320px', height: 'auto', display: 'block' }} 
-                />
-              </motion.div>
+          {/* Contenedor principal */}
+          <div className="flex flex-col items-center">
+            
+            {/* Animación fluida del Logo */}
+            <motion.div 
+              variants={logoVariants} 
+              initial="hidden" 
+              animate="visible" 
+              style={{ willChange: 'transform, filter' }}
+            >
+              <img 
+                src={logoPath} 
+                alt="Bienestar en Claro Logo" 
+                // El tamaño debe ser aproximado a cómo Android renderiza el maskable icon
+                style={{ width: '320px', height: 'auto', display: 'block' }} 
+              />
             </motion.div>
 
             {/* Texto Premium */}
@@ -165,7 +140,7 @@ const BienestarEnClaroSplash = ({ onFinish = () => console.log('Splash finalizad
             >
               Bienestar en Claro
             </motion.div>
-          </motion.div>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

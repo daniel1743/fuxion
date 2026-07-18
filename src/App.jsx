@@ -11,6 +11,7 @@ import { BlogProvider } from '@/context/BlogContext';
 import { SiteSettingsProvider } from '@/context/SiteSettingsContext';
 import { LoyaltyProvider } from '@/context/LoyaltyContext';
 import { NotificationProvider } from '@/context/NotificationContext';
+import { WellnessTwinProvider } from '@/context/WellnessTwinContext';
 import AdminLoginModal from '@/components/admin/AdminLoginModal';
 import BienestarEnClaroSplash from '@/components/BienestarEnClaroSplash';
 import ScrollToTop from '@/components/ScrollToTop';
@@ -43,6 +44,7 @@ const ReviewsPage = lazy(() => import('@/pages/ReviewsPage'));
 const AboutPage = lazy(() => import('@/pages/AboutPage'));
 const PrivacyPolicyPage = lazy(() => import('@/pages/PrivacyPolicyPage'));
 const CookiesPolicyPage = lazy(() => import('@/pages/CookiesPolicyPage'));
+const PersonalizedPlanPage = lazy(() => import('@/pages/PersonalizedPlanPage'));
 
 function App() {
 
@@ -66,6 +68,7 @@ function App() {
         <AdminProvider>
           <LoyaltyProvider>
             <CartProvider>
+            <WellnessTwinProvider>
               <ForumProvider>
                 <BlogProvider>
                   <SiteSettingsProvider>
@@ -100,6 +103,7 @@ function App() {
 
                     <Route path="/oportunidad-fuxion" element={<OpportunityPage />} />
                     <Route path="/productos-fuxion-chile" element={<ProductosFuxionPage />} />
+                    <Route path="/plan-a-medida" element={<PersonalizedPlanPage />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                   </Routes>
                 </Suspense>
@@ -109,6 +113,7 @@ function App() {
                   </SiteSettingsProvider>
                 </BlogProvider>
               </ForumProvider>
+            </WellnessTwinProvider>
             </CartProvider>
           </LoyaltyProvider>
         </AdminProvider>

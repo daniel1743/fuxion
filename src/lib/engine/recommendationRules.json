@@ -1,0 +1,115 @@
+[
+  {
+    "id": "R_SLEEP_EXTEND",
+    "domain": "sleep",
+    "priority_weight": 95,
+    "conditions": [
+      { "field": "sleepHours", "operator": "<", "value": 7 }
+    ],
+    "action": "Dormir 40 minutos adicionales hoy",
+    "reason": "Dormir menos de 7 horas eleva el cortisol y la resistencia a la insulina, bloqueando tu metabolismo celular."
+  },
+  {
+    "id": "R_SLEEP_SCREENS",
+    "domain": "sleep",
+    "priority_weight": 85,
+    "conditions": [
+      { "field": "screensBeforeBed", "operator": "===", "value": true },
+      { "field": "sleepQuality", "operator": "<", "value": 4 }
+    ],
+    "action": "Apagar pantallas 45 minutos antes de dormir",
+    "reason": "La luz azul bloquea la secreción de melatonina. Reemplázalo por lectura o respiración para mejorar drásticamente tu calidad de sueño."
+  },
+  {
+    "id": "R_WATER_INCREASE",
+    "domain": "nutrition",
+    "priority_weight": 90,
+    "conditions": [
+      { "field": "waterLiters", "operator": "<", "value": 1.5 }
+    ],
+    "action": "Beber 2 vasos de agua al despertar",
+    "reason": "Tu cuerpo pierde medio litro de agua al dormir. Rehidratar a primera hora enciende tu metabolismo basal hasta en un 30%."
+  },
+  {
+    "id": "R_VEG_FIBER",
+    "domain": "digestion",
+    "priority_weight": 80,
+    "conditions": [
+      { "field": "fruitVegServings", "operator": "<", "value": 3 },
+      { "field": "bristolType", "operator": "<=", "value": 2 }
+    ],
+    "action": "Añadir una porción de vegetales crudos o semillas a tu almuerzo",
+    "reason": "Tus problemas de tránsito (Escala de Bristol baja) se corrigen rápidamente aumentando la fibra insoluble."
+  },
+  {
+    "id": "R_PROTEIN_BREAKFAST",
+    "domain": "nutrition",
+    "priority_weight": 88,
+    "conditions": [
+      { "field": "goal", "operator": "in", "value": ["lose", "gain"] }
+    ],
+    "action": "Asegurar al menos 25g de proteína en el desayuno",
+    "reason": "Romper el ayuno con proteína estabiliza la glucosa todo el día, reduciendo los antojos de tarde y favoreciendo tu objetivo de peso."
+  },
+  {
+    "id": "R_MOVEMENT_SNACKS",
+    "domain": "activity",
+    "priority_weight": 92,
+    "conditions": [
+      { "field": "sedentaryHours", "operator": ">=", "value": 8 }
+    ],
+    "action": "Realizar 'snacks de movimiento' de 2 minutos cada 90 minutos",
+    "reason": "Más de 8 horas sentado apaga la enzima lipoproteína lipasa (quema grasas). Levantarte reactiva tu metabolismo sin necesidad de sudar."
+  },
+  {
+    "id": "R_STEP_INCREASE",
+    "domain": "activity",
+    "priority_weight": 75,
+    "conditions": [
+      { "field": "dailySteps", "operator": "<", "value": 5000 },
+      { "field": "activityLevel", "operator": "===", "value": "sedentary" }
+    ],
+    "action": "Caminar 15 minutos extra después de la comida principal",
+    "reason": "Una caminata post-comida reduce el pico de glucosa e insulina, ayudando a tu cuerpo a usar la energía en lugar de almacenarla como grasa."
+  },
+  {
+    "id": "R_STRESS_BREATHING",
+    "domain": "mental",
+    "priority_weight": 85,
+    "conditions": [
+      { "field": "stressLevel", "operator": ">=", "value": 7 }
+    ],
+    "action": "Practicar 5 minutos de respiración profunda (4-7-8)",
+    "reason": "Tu nivel de estrés crónico frena cualquier intento de mejorar la composición corporal. La respiración activa tu sistema parasimpático instantáneamente."
+  },
+  {
+    "id": "R_SUNLIGHT",
+    "domain": "mental",
+    "priority_weight": 70,
+    "conditions": [
+      { "field": "sunExposure", "operator": "===", "value": "none" }
+    ],
+    "action": "Exponer el rostro al sol 10 minutos antes de las 10 AM",
+    "reason": "La luz solar matutina calibra tu reloj circadiano, mejorando el estado de ánimo en el día y facilitando el sueño profundo por la noche."
+  },
+  {
+    "id": "R_GUT_REST",
+    "domain": "digestion",
+    "priority_weight": 85,
+    "conditions": [
+      { "field": "bloating", "operator": "in", "value": ["often", "always"] }
+    ],
+    "action": "Establecer una ventana de ayuno digestivo de 12 horas (Ej. 8pm - 8am)",
+    "reason": "La hinchazón frecuente indica falta de descanso gástrico. 12 horas sin comida permite activar el complejo motor migratorio que limpia tu intestino."
+  },
+  {
+    "id": "R_REDUCE_ALCOHOL",
+    "domain": "habits",
+    "priority_weight": 90,
+    "conditions": [
+      { "field": "alcoholPerWeek", "operator": ">", "value": 5 }
+    ],
+    "action": "Reducir a la mitad el consumo de alcohol y reemplazar por agua con gas",
+    "reason": "El alcohol inhibe la oxidación de grasas y destruye la arquitectura del sueño profundo, limitando severamente tus resultados."
+  }
+]

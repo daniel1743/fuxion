@@ -4,8 +4,8 @@
   "description": "Comunidad de bienestar, nutrición y suplementación Fuxion.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#10b981",
+  "background_color": "#FCFBF8",
+  "theme_color": "#FCFBF8",
   "orientation": "portrait",
   "icons": [
     {

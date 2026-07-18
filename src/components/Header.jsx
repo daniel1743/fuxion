@@ -24,6 +24,7 @@ import {
   InstagramIcon,
   ChevronDownIcon,
   Notification01Icon,
+  Target01Icon,
 } from '@hugeicons/core-free-icons';
 import { Button } from '@/components/ui/button';
 import { useSiteSettings } from '@/context/SiteSettingsContext';
@@ -42,7 +43,9 @@ const officialStoreUrl = 'https://ifuxion.com/daniel/enrollment/chooseperson';
 const drawerNavItems = [
   { label: 'Inicio', icon: Home03Icon, path: '/' },
   { label: 'Mi carrito', subtitle: 'Ver mis productos', icon: ShoppingCart01Icon, path: '/carrito' },
+  { label: 'Bienestar (Menú)', subtitle: 'Ver opciones', icon: Target01Icon, path: '#' },
   { label: 'Productos', subtitle: 'Catálogo FuXion', icon: ShoppingBag03Icon, path: '/explorar' },
+  { label: 'Tu plan a medida', subtitle: 'Diseña tu programa ideal', icon: Rocket01Icon, path: '/plan-a-medida' },
   { label: 'Sobre Nosotros', subtitle: 'Nuestra historia y valores', icon: Leaf01Icon, path: '/sobre-nosotros' },
   { label: 'Objetivos de bienestar', subtitle: 'Encuentra lo ideal para ti', icon: BookOpen02Icon, path: '/opiniones' },
   { label: 'Artículos', subtitle: 'Ciencia y salud', icon: BookOpen02Icon, path: '/articulos' },
@@ -282,12 +285,13 @@ const Header = () => {
             Inicio
           </NavLink>
 
-          {/* Productos dropdown */}
+          {/* Bienestar dropdown */}
           <DesktopDropdown
-            label="Productos"
+            label="Bienestar"
             items={[
-              { label: 'Catálogo de productos', path: '/explorar', icon: PackageIcon, desc: 'Explora toda la línea FuXion' },
+              { label: 'Productos', path: '/explorar', icon: PackageIcon, desc: 'Explora toda la línea FuXion' },
               { label: 'Objetivos de bienestar', path: '/opiniones', icon: HeartIcon, desc: 'Encuentra lo ideal para ti' },
+              { label: 'Tu plan a medida', path: '/plan-a-medida', icon: Rocket01Icon, desc: 'Diseña tu programa ideal' },
             ]}
             navigate={navigate}
           />
