@@ -53,8 +53,8 @@ const BlogPage = () => {
   return (
     <>
       <SEO
-        title="Blog de Salud y Bienestar — Consejos para Perder Peso y Nutrición"
-        description="Artículos sobre pérdida de peso, bienestar, nutrición y vida saludable. Consejos prácticos para vivir mejor sin dietas extremas."
+        title="Artículos Científicos — Salud Digestiva, Metabolismo y Bienestar"
+        description="Artículos científicos sobre salud digestiva, microbioma, metabolismo, salud mental y longevidad. Escritos por Daniel Falcón, Investigador Periodístico y Educador Científico."
         canonical="/articulos"
       />
 

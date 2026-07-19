@@ -92,8 +92,8 @@ const WellnessPage = () => {
   return (
     <main className="min-h-screen bg-background pb-20 pt-0 md:pt-24">
       <SEO
-        title="Bienestar — Artículos y Hábitos Saludables"
-        description="Artículos sobre belleza, bienestar, nutrición, ejercicio, salud digestiva, hepática y hábitos saludables."
+        title="Bienestar — Artículos Científicos sobre Salud y Nutrición"
+        description="Artículos sobre salud digestiva, hígado graso, microbioma, inmunidad, metabolismo y longevidad. Escritos con rigor científico por Daniel Falcón."
         canonical="/opiniones/wellness"
       />
 
