@@ -288,7 +288,13 @@ export default function PersonalizedPlanPage() {
   }, [hasCompletedEvaluation, activePlan, view]);
 
   return (
-  <div style={{ minHeight: '100vh', backgroundColor: '#FCFBF8' }}>
+  <div
+    style={{
+      minHeight: '100vh',
+      backgroundColor: '#FCFBF8',
+      paddingTop: '80px'
+    }}
+  >
     <LandingView onStart={() => console.log("Start")} />
   </div>
 );
