@@ -1,91 +1,36 @@
-const CACHE_NAME = 'fuxion-v2-brand-refresh';
-
-const APP_SHELL = [
+const CACHE_NAME = 'bienestar-en-claro-v1';
+const STATIC_ASSETS = [
   '/',
-  '/site.webmanifest',
-  '/manifest.json',
-  '/icons/favicon.ico',
-  '/icons/favicon-16x16.png',
-  '/icons/favicon-32x32.png',
-  '/icons/apple-touch-icon.png',
+  '/index.html',
+  '/manifest.webmanifest',
+  '/icons/android-chrome-192x192.png',
+  '/icons/android-chrome-512x512.png',
   '/branding/pwa/icon-192.png',
   '/branding/pwa/icon-512.png',
-  '/img/productos/vitaenergia.png'
 ];
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => cache.addAll(APP_SHELL))
-      .then(() => self.skipWaiting())
-  );
+  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(STATIC_ASSETS)));
+  self.skipWaiting();
 });
 
 self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys()
-      .then((keys) => Promise.all(
-        keys
-          .filter((key) => key !== CACHE_NAME)
-          .map((key) => caches.delete(key))
-      ))
-      .then(() => self.clients.claim())
-  );
+  event.waitUntil(caches.keys().then((keys) => Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))));
+  self.clients.claim();
 });
 
 self.addEventListener('fetch', (event) => {
-  const { request } = event;
-  const url = new URL(request.url);
+  if (event.request.method !== 'GET') return;
 
-  if (
-    request.method !== 'GET' ||
-    url.origin !== self.location.origin ||
-    url.pathname.startsWith('/api/')
-  ) {
+  if (event.request.url.match(/\.(png|jpg|jpeg|webp|svg|woff2?|ttf|mp4|webm)$/) || event.request.url.includes('/branding/') || event.request.url.includes('/img/') || event.request.url.includes('/images/')) {
+    event.respondWith(caches.match(event.request).then((cached) => fetch(event.request).then((response) => { if (response.ok) { const clone = response.clone(); caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone)); } return response; }).catch(() => cached)));
     return;
   }
 
-  if (request.mode === 'navigate') {
-    event.respondWith(
-      fetch(request)
-        .then((response) => {
-          const copy = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put('/', copy));
-          return response;
-        })
-        .catch(async () => {
-          const cachedPage = await caches.match(request);
-          if (cachedPage) return cachedPage;
-
-          const appShell = await caches.match('/');
-          if (appShell) return appShell;
-
-          return new Response('Sin conexión', {
-            status: 503,
-            headers: { 'Content-Type': 'text/plain; charset=utf-8' }
-          });
-        })
-    );
+  if (event.request.mode === 'navigate') {
+    event.respondWith(fetch(event.request).then((response) => { if (response.ok) { const clone = response.clone(); caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone)); } return response; }).catch(() => caches.match('/index.html')));
     return;
   }
 
-  event.respondWith(
-    caches.match(request).then((cached) => {
-      if (cached) {
-        return cached;
-      }
-
-      return fetch(request)
-        .then((response) => {
-          if (!response || response.status !== 200 || response.type !== 'basic') {
-            return response;
-          }
-
-          const copy = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
-          return response;
-        })
-        .catch(() => new Response('', { status: 503, statusText: 'Offline' }));
-    })
-  );
+  event.respondWith(fetch(event.request).catch(() => caches.match(event.request)));
 });

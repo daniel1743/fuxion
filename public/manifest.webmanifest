@@ -1,0 +1,37 @@
+{
+  "name": "Bienestar en Claro",
+  "short_name": "Bienestar",
+  "description": "Artículos y hábitos saludables basados en ciencia. Bienestar en Claro.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#FCFBF8",
+  "theme_color": "#064e3b",
+  "icons": [
+    {
+      "src": "/branding/pwa/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/branding/pwa/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/branding/pwa/maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/branding/pwa/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["health", "lifestyle"],
+  "lang": "es-CL",
+  "dir": "ltr"
+}
