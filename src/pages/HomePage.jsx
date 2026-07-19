@@ -15,10 +15,9 @@ import {
   ShoppingBag03Icon,
   ArrowRight02Icon,
   CheckmarkCircle02Icon,
-  BadgeCheckIcon,
 } from '@hugeicons/core-free-icons';
-import { buildStoreSchema, buildOrganizationSchema, SITE_URL, STORE_NAME, getAllSeoProducts } from '@/lib/productSeo';
-import { confirmAndOpenWhatsapp, openWhatsapp } from '@/lib/whatsapp';
+import { buildStoreSchema, buildCompleteOrganizationSchema, buildWebsiteSchema, buildOrganizationSchema } from '@/lib/productSeo';
+import { openWhatsapp } from '@/lib/whatsapp';
 import { getImageUrl } from '@/lib/imageUtils';
 import PremiumIcon from '@/components/ui/PremiumIcon';
 import ProductNeedSearch from '@/components/ProductNeedSearch';
@@ -27,7 +26,10 @@ import MobileAppShell from '@/components/mobile/MobileAppShell';
 import MobileCategoryGrid from '@/components/mobile/MobileCategoryGrid';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import SEO from '@/components/SEO';
-import { AiRobotIcon, WhatsAppIcon } from '@/components/icons/BrandIcons';
+import { WhatsAppIcon } from '@/components/icons/BrandIcons';
+import { useBlog } from '@/context/BlogContext';
+import ArticleBadges from '@/components/blog/ArticleBadges';
+import { getPlaceholderImage } from '@/lib/imageUtils';
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -37,24 +39,6 @@ const pageVariants = {
 
 const handleWhatsAppClick = (message = 'Hola, quiero empezar mi cambio con Fuxion') => {
   openWhatsapp(message);
-};
-
-const handleProductAiClick = (product) => {
-  window.dispatchEvent(new CustomEvent('fuxion:open-product-ai', {
-    detail: {
-      product: {
-        name: product.name,
-        slug: product.slug,
-        image: product.image,
-        description: product.description,
-        categoria: 'Producto destacado Fuxion'
-      }
-    }
-  }));
-};
-
-const handleProductWhatsappClick = (product) => {
-  confirmAndOpenWhatsapp(`Hola, quiero hablar con un asesor sobre ${product.name}.`);
 };
 
 const solutions = [
@@ -99,43 +83,6 @@ const solutions = [
     ],
     buttonText: 'Quiero más energía',
     icon: <PremiumIcon icon={EnergyIcon} size="md" />
-  }
-];
-
-// Obtener precios reales desde la base de datos de productos
-const allSeoProducts = getAllSeoProducts();
-const getProductPrice = (slug) => {
-  const product = allSeoProducts.find(p => p.slug === slug);
-  return product?.price || product?.precio || null;
-};
-
-const featuredProducts = [
-  {
-    id: 'prunex-1',
-    name: 'PRUNEX 1',
-    description: 'Digestión + liviandad',
-    image: getImageUrl('/img/productos/prunex-1.png'),
-    slug: 'prunex-1',
-    price: getProductPrice('prunex-1'),
-    badge: 'Más elegido'
-  },
-  {
-    id: 'thermo-t3',
-    name: 'THERMO T3',
-    description: 'Metabolismo + energía',
-    image: getImageUrl('/img/productos/thermo-t3.png'),
-    slug: 'thermo-t3',
-    price: getProductPrice('thermo-t3'),
-    badge: null
-  },
-  {
-    id: 'vita-xtra-t-plus',
-    name: 'VITA XTRA T+',
-    description: 'Energía + rendimiento',
-    image: getImageUrl('/img/productos/vita-xtra-t+.png'),
-    slug: 'vita-xtra-t-plus',
-    price: getProductPrice('vita-xtra-t-plus'),
-    badge: null
   }
 ];
 
@@ -216,10 +163,10 @@ const HomePage = () => {
       className="overflow-x-hidden"
     >
       <SEO
-        title="Tienda Fuxion Chile — Productos para Nutrición y Bienestar Natural"
-        description="Tienda Fuxion en Chile con productos nutracéuticos para nutrición, bienestar natural, digestión, energía, control de peso, defensas, deporte y belleza. Asesoría personalizada por WhatsApp. Envíos a todo Chile."
+        title="Bienestar en Claro — Guías de Bienestar, Nutrición Natural y Asesoría Fuxion en Chile"
+        description="Guías de bienestar, nutrición natural y hábitos saludables. Asesoría personalizada por WhatsApp para elegir productos Fuxion según tu objetivo. Envíos a todo Chile."
         canonical="/"
-        schema={[buildStoreSchema(), buildOrganizationSchema()]}
+        schema={[buildStoreSchema(), buildOrganizationSchema(), buildWebsiteSchema()]}
       />
 
       {/* ═══════════════════════════════════════════════════════════
@@ -302,7 +249,7 @@ const HomePage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                Tienda Fuxion Chile · Asesoría personalizada
+                Bienestar en Claro Chile · Asesoría personalizada
               </motion.p>
               <motion.h1
                 className="text-[1.4rem] sm:text-2xl md:text-3xl lg:text-responsive-hero font-bold uppercase text-foreground tracking-wide mb-3 lg:mb-4 leading-[1.2]"
@@ -405,27 +352,6 @@ const HomePage = () => {
 
       {/* SECCIÓN 1.5 – Wellness Journey Carousel */}
       <WellnessJourneyCarousel />
-
-      {/* ═══════════════════════════════════════════════════════════
-         SECCIÓN 1.6 – Sellos y certificaciones (scroll infinito)
-         
-         CÓMO REEMPLAZAR ICONOS:
-         - Cada certificación tiene un `icon` que actualmente es un SVG inline genérico.
-         - Para usar imágenes reales, reemplaza el SVG por:
-             icon: <img src="/ruta/al/logo.png" alt="Nombre" className="h-8 w-8 object-contain" />
-         
-         CÓMO ELIMINAR ESTA SECCIÓN:
-         - Elimina todo el bloque desde "SECCIÓN 1.6" hasta el cierre de </section>
-         - O simplemente comenta o elimina este bloque completo.
-         
-         CÓMO AJUSTAR VELOCIDAD:
-         - Cambia el valor de `speed` en el useEffect (actualmente 0.3)
-         
-         CÓMO AGREGAR MÁS SELLOS:
-         - Agrega objetos al array `certifications` siguiendo la misma estructura
-      ════════════════════════════════════════════════════════════
-      */}
-      <CertificationsCarousel />
 
       <TestimonialsSection
         title="Experiencias de consumidores FuXion"
@@ -675,115 +601,112 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* SECCIÓN 6 – Productos destacados */}
-      <section className="py-8 md:py-20 bg-secondary/30 overflow-hidden">
-        <div className="container mx-auto px-4 md:px-6">
-          <motion.h2
-            className="text-responsive-section font-bold text-center mb-6 md:mb-12 text-foreground"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            Productos destacados
-          </motion.h2>
-          <div className="flex overflow-x-auto snap-x snap-mandatory md:grid md:grid-cols-3 gap-4 md:gap-8 max-w-6xl mx-auto pb-4 -mx-4 px-4 md:mx-auto md:px-0" style={{ scrollbarWidth: 'none' }}>
-            {featuredProducts.map((product, i) => (
-              <motion.div
-                key={product.id}
+      {/* SECCIÓN 6 – Artículos destacados */}
+      {!loading && posts.length > 0 && (() => {
+        const readingTime = (content) => {
+          const words = content.split(/\s+/).length;
+          const minutes = Math.max(1, Math.ceil(words / 200));
+          return `${minutes} min de lectura`;
+        };
+        const featuredPosts = posts.slice(0, 3);
+        return (
+          <section className="py-8 md:py-20 bg-secondary/30 overflow-hidden">
+            <div className="container mx-auto px-4 md:px-6">
+              <motion.h2
+                className="text-responsive-section font-bold text-center mb-6 md:mb-12 text-foreground"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="w-[85vw] max-w-[85vw] sm:w-[300px] sm:max-w-[300px] md:w-auto md:max-w-none snap-center shrink-0"
+                transition={{ duration: 0.6 }}
               >
-                <Link to={`/producto/${product.slug}`}>
-                  <div className="group relative bg-card rounded-xl overflow-hidden border border-emerald-100 dark:border-border transition-all duration-300 hover:border-primary hover:shadow-xl hover:-translate-y-1 flex flex-col h-full">
-                    <div className="relative h-60 overflow-hidden bg-secondary flex-shrink-0">
-                      <img
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        alt={`${product.name} Fuxion`}
-                        src={product.image}
-                        loading="lazy"
-                        onError={(e) => {
-                          if (e.target.src !== getPlaceholderImage('product')) {
-                            e.target.src = getPlaceholderImage('product');
-                          }
-                        }}
-                      />
-                    </div>
-                    <div className="p-6 flex flex-col flex-grow">
-                      <div className="flex items-start justify-between mb-2">
-                        <h3 className="text-xl font-bold text-foreground">{product.name}</h3>
-                        {product.badge && (
-                          <span className="shrink-0 rounded-full bg-emerald-100 px-2.5 py-0.5 text-xxs font-semibold text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300">
-                            {product.badge}
-                          </span>
-                        )}
+                Artículos destacados
+              </motion.h2>
+              <div className="flex overflow-x-auto snap-x snap-mandatory md:grid md:grid-cols-3 gap-4 md:gap-8 max-w-6xl mx-auto pb-4 -mx-4 px-4 md:mx-auto md:px-0" style={{ scrollbarWidth: 'none' }}>
+                {featuredPosts.map((post, i) => (
+                  <motion.div
+                    key={post.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                    className="w-[85vw] max-w-[85vw] sm:w-[300px] sm:max-w-[300px] md:w-auto md:max-w-none snap-center shrink-0"
+                  >
+                    <Link to={`/articulos/${post.slug}`}>
+                      <div className="group relative bg-card rounded-xl overflow-hidden border border-emerald-100 dark:border-border transition-all duration-300 hover:border-primary hover:shadow-xl hover:-translate-y-1 flex flex-col h-full">
+                        <div className="relative h-60 overflow-hidden bg-secondary flex-shrink-0">
+                          <img
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            alt={post.title}
+                            src={post.image_url || post.cover_image || '/branding/social/og-image.png'}
+                            loading="lazy"
+                            onError={(e) => {
+                              if (e.target.src !== getPlaceholderImage('wellness')) {
+                                e.target.src = getPlaceholderImage('wellness');
+                              }
+                            }}
+                          />
+                          <div className="absolute top-3 left-3">
+                            <ArticleBadges categoryString={post.category} />
+                          </div>
+                        </div>
+                        <div className="p-6 flex flex-col flex-grow">
+                          <h3 className="text-lg font-bold text-foreground line-clamp-2 mb-2">
+                            {post.title}
+                          </h3>
+                          <p className="text-sm text-muted-foreground line-clamp-3 mb-4">
+                            {post.excerpt || ''}
+                          </p>
+                          <div className="mt-auto flex items-center gap-3 text-xs text-muted-foreground">
+                            <span className="flex items-center gap-1">
+                              <HugeiconsIcon icon={LeafIcon} size={14} />
+                              {readingTime(post.content)}
+                            </span>
+                            {post.views && (
+                              <span>{post.views} lecturas</span>
+                            )}
+                          </div>
+                          <Button
+                            size="sm"
+                            className="mt-4 w-full"
+                            onClick={(event) => {
+                              event.preventDefault();
+                              window.location.href = `/articulos/${post.slug}`;
+                            }}
+                          >
+                            Leer artículo <HugeiconsIcon icon={ArrowRight02Icon} size={14} className="ml-1" />
+                          </Button>
+                        </div>
                       </div>
-                      <p className="text-sm text-muted-foreground mb-2">{product.description}</p>
-                      {product.price != null && (
-                        <p className="text-lg font-bold text-foreground mb-4">
-                          ${product.price.toLocaleString('es-CL')}
-                        </p>
-                      )}
-                      <div className="mt-auto flex gap-2">
-                        <Button
-                          size="sm"
-                          className="flex-1"
-                          onClick={(event) => {
-                            event.preventDefault();
-                            window.location.href = `/producto/${product.slug}`;
-                          }}
-                        >
-                          Ver detalles
-                        </Button>
-                        <Button
-                          size="icon"
-                          variant="outline"
-                          onClick={(event) => {
-                            event.preventDefault();
-                            handleProductAiClick(product);
-                          }}
-                          title={`Preguntar a la IA sobre ${product.name}`}
-                          aria-label={`Preguntar a la IA sobre ${product.name}`}
-                        >
-                          <AiRobotIcon className="h-4 w-4" />
-                        </Button>
-                        <Button
-                          size="icon"
-                          variant="outline"
-                          onClick={(event) => {
-                            event.preventDefault();
-                            handleProductWhatsappClick(product);
-                          }}
-                          title="Hablar con asesor"
-                          aria-label={`Hablar con asesor por WhatsApp sobre ${product.name}`}
-                        >
-                          <WhatsAppIcon className="h-5 w-5 text-white" />
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+              <motion.div
+                className="text-center mt-12"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                <Link to="/articulos">
+                  <Button variant="outline" className="hover:bg-primary hover:text-primary-foreground">
+                    Ver todos los artículos <HugeiconsIcon icon={ArrowRight02Icon} size={16} className="ml-2" />
+                  </Button>
                 </Link>
               </motion.div>
-            ))}
+            </div>
+          </section>
+        );
+      })()}
+
+      {/* Empty state when no posts yet */}
+      {!loading && posts.length === 0 && (
+        <section className="py-12 bg-secondary/30">
+          <div className="container mx-auto px-4 md:px-6 text-center">
+            <p className="text-muted-foreground">Pronto publicaremos contenido de valor para ti.</p>
           </div>
-          <motion.div
-            className="text-center mt-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <Link to="/explorar">
-              <Button variant="outline" className="hover:bg-primary hover:text-primary-foreground">
-                Ver todos los productos <HugeiconsIcon icon={ArrowRight02Icon} size={16} className="ml-2" />
-              </Button>
-            </Link>
-          </motion.div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* SECCIÓN 6.5 – Soft integration banner: Oportunidad Fuxion */}
       <section className="py-12 bg-gradient-to-r from-emerald-50/60 to-teal-50/60 dark:from-emerald-950/10 dark:to-teal-950/10 border-y border-emerald-100/50 dark:border-emerald-900/30">
@@ -920,266 +843,6 @@ const HomePage = () => {
       </section>
 
     </motion.div>
-  );
-};
-
-// ═══════════════════════════════════════════════════════════════════
-// COMPONENTE: CertificationsCarousel
-// Carrusel de scroll infinito de derecha a izquierda para sellos
-// y certificaciones de calidad.
-//
-// ═══════════════════════════════════════════════════════════════════
-const certifications = [
-  {
-    id: 'actigenos',
-    imageSrc: '/carrussel certificaciones/actigenos.jpeg',
-    name: 'Actinos',
-    type: 'Péptidos naturales del lactosuero',
-    description: 'Complejo de péptidos naturales extraídos del lactosuero. Induce la producción endógena de óxido nítrico, provocando profunda vasodilatación que acelera la depuración del ácido láctico y retrasa la fatiga muscular.'
-  },
-  {
-    id: 'bc-certificacion',
-    imageSrc: '/carrussel certificaciones/bc certificaion.jpeg',
-    name: 'Baltic Control',
-    type: 'Inspección internacional',
-    description: 'Firma de inspección internacional que audita cadenas de suministro desde el origen botánico agrícola hasta el envasado nutracéutico, respaldando la pureza y potencia de los productos.'
-  },
-  {
-    id: 'bioferrin',
-    imageSrc: '/carrussel certificaciones/bioferrin.jpeg',
-    name: 'Bioferrin',
-    type: 'Lactoferrina bioactiva',
-    description: 'Lactoferrina pura bioactiva extraída de matrices de lactosuero bovino. Actúa como agente antimicrobiano que secuestra el hierro libre, eliminando el sustrato vital de patógenos invasores.'
-  },
-  {
-    id: 'bioprotein-active',
-    imageSrc: '/carrussel certificaciones/bioprotein active.jpeg',
-    name: 'BioProtein Active',
-    type: 'Proteína vegetal viva',
-    description: 'Matriz de proteína vegetal viva que integra quinua orgánica germinada, arvejas, arroz integral y algas. Su proceso de germinación pre-digiere la proteína, brindando alto valor biológico.'
-  },
-  {
-    id: 'bioprotein',
-    imageSrc: '/carrussel certificaciones/bioprotein.jpeg',
-    name: 'BioProtein Colostrum',
-    type: 'Proteínas + Calostro',
-    description: 'Amalgama de ingeniería alimentaria que fusiona proteínas de distinta tasa de absorción cinética con calostro bovino. Aporta inmunoglobulinas que recubren las mucosas gastrointestinales.'
-  },
-  {
-    id: 'bpm',
-    imageSrc: '/carrussel certificaciones/bpm.jpeg',
-    name: 'BPM',
-    type: 'Buenas Prácticas de Manufactura',
-    description: 'Estándar que exige rediseño total de la arquitectura de producción para prohibir la variabilidad lote a lote. Asegura concentración declarada exacta e impone protocolos de limpieza anti-contaminación cruzada.'
-  },
-  {
-    id: 'ciencia-natural',
-    imageSrc: '/carrussel certificaciones/ciencia natural.jpeg',
-    name: 'Ciencia y Naturaleza',
-    type: 'Filosofía I+D',
-    description: 'Directriz de investigación y desarrollo que busca mapear, aislar y potenciar perfiles fitoquímicos ancestrales. Representa la "Fusión Nutracéutica" con tecnologías de estabilización para extraer principios activos puros.'
-  },
-  {
-    id: 'clean-label',
-    imageSrc: '/carrussel certificaciones/cleam label.jpeg',
-    name: 'Clean Label',
-    type: 'Ingredientes naturales',
-    description: 'Garantiza ingredientes 100% de origen natural y una reingeniería de sistemas de entrega de nutrientes con tecnología de microencapsulación lipídica para proteger los principios activos.'
-  },
-  {
-    id: 'haccp',
-    imageSrc: '/carrussel certificaciones/haccp.jpeg',
-    name: 'HACCP',
-    type: 'Seguridad alimentaria preventiva',
-    description: 'Sistema que eleva la seguridad alimentaria a un modelo predictivo. Requiere mapeo exhaustivo de cada etapa del procesamiento industrial para identificar Puntos Críticos de Control con límites de monitoreo en tiempo real.'
-  },
-  {
-    id: 'humanitas',
-    imageSrc: '/carrussel certificaciones/humanitas.jpeg',
-    name: 'Humanitas',
-    type: 'Prácticas corporativas',
-    description: 'Sello que avala el modelo de negocio, las prácticas laborales éticas, la sostenibilidad del abastecimiento y la transparencia comercial de la corporación.'
-  },
-  {
-    id: 'prolibra',
-    imageSrc: '/carrussel certificaciones/prolibra.jpeg',
-    name: 'Prolibra',
-    type: 'Fracción bioactiva del suero',
-    description: 'Ingrediente de fracción bioactiva derivado del suero lácteo. Altera favorablemente la partición de nutrientes, dirigiendo aminoácidos hacia la síntesis de proteínas musculares y acelerando la movilización de grasa.'
-  },
-  {
-    id: 'svetol',
-    imageSrc: '/carrussel certificaciones/svetol.jpeg',
-    name: 'Svetol',
-    type: 'Extracto de café verde',
-    description: 'Extracto natural estandarizado de granos de café verde Robusta. Compuesto bioactivo de acción metabólica reconocida.'
-  }
-];
-
-const CertificationsCarousel = () => {
-  const [activeId, setActiveId]   = useState(null);
-  const [isPaused, setIsPaused]   = useState(false);
-  const [tipStyle, setTipStyle]   = useState({});   // fixed-position coords
-
-  const activeCert = activeId
-    ? certifications.find(c => c.id === activeId.replace(/-\d+$/, ''))
-    : null;
-
-  const handleEnter = (uniqueId, e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    // Center tooltip above the card, staying within viewport
-    const TOOLTIP_W = 320; // px — max tooltip width
-    const leftIdeal = rect.left + rect.width / 2 - TOOLTIP_W / 2;
-    const leftClamped = Math.max(12, Math.min(leftIdeal, window.innerWidth - TOOLTIP_W - 12));
-
-    setTipStyle({
-      position:  'fixed',
-      bottom:    window.innerHeight - rect.top + 14,
-      left:      leftClamped,
-      width:     TOOLTIP_W,
-    });
-    setActiveId(uniqueId);
-    setIsPaused(true);
-  };
-
-  const handleLeave = () => {
-    setActiveId(null);
-    setIsPaused(false);
-  };
-
-  return (
-    <section
-      className="relative py-10 bg-white dark:bg-card overflow-hidden border-y border-emerald-100/60 dark:border-border"
-      onMouseLeave={handleLeave}
-      onTouchEnd={handleLeave}
-    >
-      {/* CSS keyframes */}
-      <style>{`
-        @keyframes certs-scroll {
-          from { transform: translateX(0%); }
-          to   { transform: translateX(-50%); }
-        }
-        .certs-track {
-          animation: certs-scroll 40s linear infinite;
-          animation-play-state: var(--scroll-state, running);
-        }
-      `}</style>
-
-      {/* Section header */}
-      <div className="container mx-auto px-6 mb-8">
-        <div className="flex items-center gap-3 justify-center">
-          <div className="h-px flex-1 max-w-20 bg-gradient-to-r from-transparent to-emerald-200 dark:to-emerald-800" />
-          <p className="text-xs font-semibold text-emerald-700 dark:text-emerald-400 uppercase tracking-[0.18em]">
-            Sellos y certificaciones de calidad
-          </p>
-          <div className="h-px flex-1 max-w-20 bg-gradient-to-l from-transparent to-emerald-200 dark:to-emerald-800" />
-        </div>
-      </div>
-
-      {/* Edge fades */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white dark:from-card to-transparent z-content" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white dark:from-card to-transparent z-content" />
-
-      {/* Scrolling track */}
-      <div
-        className="certs-track flex items-center gap-10 w-max px-6 py-3"
-        style={{ '--scroll-state': isPaused ? 'paused' : 'running' }}
-      >
-        {[...certifications, ...certifications].map((cert, i) => {
-          const uniqueId = `${cert.id}-${i}`;
-          const isActive = activeId === uniqueId;
-          return (
-            <div
-              key={uniqueId}
-              className="relative shrink-0"
-              onMouseEnter={(e) => handleEnter(uniqueId, e)}
-              onTouchStart={(e) => handleEnter(uniqueId, e)}
-              role="button"
-              tabIndex={0}
-              aria-label={`Ver información: ${cert.name}`}
-              onKeyDown={(e) => e.key === 'Enter' && handleEnter(uniqueId, e)}
-            >
-              <motion.div
-                className="flex items-center justify-center w-[100px] h-[100px] rounded-2xl border border-emerald-100 dark:border-emerald-900/40 bg-white dark:bg-gray-900 cursor-pointer select-none"
-                style={{
-                  boxShadow: isActive
-                    ? '0 8px 32px rgba(16,185,129,0.18), 0 2px 8px rgba(0,0,0,0.08)'
-                    : '0 2px 8px rgba(0,0,0,0.05)',
-                }}
-                animate={{ scale: isActive ? 1.12 : 1, y: isActive ? -6 : 0 }}
-                transition={{ type: 'spring', stiffness: 350, damping: 24 }}
-              >
-                <img
-                  src={cert.imageSrc}
-                  alt={cert.name}
-                  className="h-14 w-14 object-contain"
-                  loading="lazy"
-                  draggable={false}
-                />
-              </motion.div>
-            </div>
-          );
-        })}
-      </div>
-
-      {/* ─── Tooltip rendered via portal (position:fixed) to escape overflow ─── */}
-      <AnimatePresence>
-        {activeCert && (
-          <motion.div
-            key="cert-tooltip"
-            initial={{ opacity: 0, y: 10, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0,  scale: 1    }}
-            exit={{    opacity: 0, y: 10, scale: 0.95 }}
-            transition={{ type: 'spring', stiffness: 420, damping: 30 }}
-            style={tipStyle}
-            className="pointer-events-none z-max"
-          >
-            {/* Arrow pointing down toward the card */}
-            <div className="absolute bottom-[-6px] left-1/2 -translate-x-1/2 w-3 h-3 rotate-45 bg-white dark:bg-gray-900 border-r border-b border-emerald-200 dark:border-emerald-800" />
-
-            <div className="rounded-2xl border border-emerald-200 dark:border-emerald-800 bg-white/98 dark:bg-gray-900/98 backdrop-blur-2xl shadow-2xl p-5">
-              {/* Logo + name + badge */}
-              <div className="flex items-start gap-3 mb-3">
-                <img
-                  src={activeCert.imageSrc}
-                  alt={activeCert.name}
-                  className="h-10 w-10 object-contain rounded-xl border border-emerald-100 dark:border-emerald-900 bg-white dark:bg-gray-800 p-1 shrink-0 shadow-sm"
-                />
-                <div>
-                  <div className="flex items-center gap-1.5">
-                    <p className="text-sm font-bold text-foreground leading-snug">{activeCert.name}</p>
-                    <HugeiconsIcon
-                      icon={BadgeCheckIcon}
-                      className="h-4 w-4 text-emerald-500 shrink-0"
-                      aria-label="Verificado"
-                    />
-                  </div>
-                  <span className="inline-block mt-1 px-2 py-0.5 rounded-full text-xxs font-semibold bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300">
-                    {activeCert.type}
-                  </span>
-                </div>
-              </div>
-
-              <div className="h-px bg-emerald-100 dark:bg-emerald-900/40 mb-3" />
-
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                {activeCert.description}
-              </p>
-
-              <div className="mt-3 flex items-center gap-1.5">
-                <HugeiconsIcon
-                  icon={CheckmarkCircle02Icon}
-                  className="h-3.5 w-3.5 text-emerald-500 shrink-0"
-                />
-                <p className="text-xxs font-medium text-emerald-600 dark:text-emerald-400">
-                  Sello de calidad verificado por FuXion
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </section>
   );
 };
 
