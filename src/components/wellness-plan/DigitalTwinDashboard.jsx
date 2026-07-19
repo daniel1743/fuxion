@@ -211,7 +211,8 @@ export default function DigitalTwinDashboard() {
 
   const { twin_state, recommendations } = twinData;
   const { iib, biometrics } = twin_state;
-  const { tdee, protein, waterL, bmi, bmiClass } = biometrics;
+  const domains = twin_state.domains || iib?.domains || {};
+  const { tdee, protein, waterL, bmi, bmiClass } = biometrics || {};
 
   const handleDownload = async () => {
     if (!twinData || !userData) return;
@@ -442,7 +443,7 @@ export default function DigitalTwinDashboard() {
         }}>
           Análisis por Dominio
         </h3>
-        {Object.entries(iib.domains).map(([key, score], i) => (
+        {Object.entries(domains).map(([key, score], i) => (
           <DomainBar key={key} domainKey={key} score={score} delay={i} />
         ))}
       </motion.div>

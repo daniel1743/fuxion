@@ -96,10 +96,10 @@ export function generateDigitalTwin(answers) {
         sleepScore,
         bristolEval
       },
-      domains: iib.domains,
       iib: {
         score: iib.score,
-        level: iib.level
+        level: iib.level,
+        domains: iib.domains
       }
     },
     

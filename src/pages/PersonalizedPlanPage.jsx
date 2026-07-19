@@ -288,14 +288,43 @@ export default function PersonalizedPlanPage() {
   }, [hasCompletedEvaluation, activePlan, view]);
 
   return (
-  <div
-    style={{
-      minHeight: '100vh',
-      backgroundColor: '#FCFBF8',
-      paddingTop: '80px'
-    }}
-  >
-    <LandingView onStart={() => console.log("Start")} />
-  </div>
-);
+    <div
+      style={{
+        minHeight: '100vh',
+        backgroundColor: '#FCFBF8',
+        paddingTop: '80px'
+      }}
+    >
+      <AnimatePresence mode="wait">
+        {view === 'landing' && (
+          <LandingView key="landing" onStart={handleStartQuestionnaire} />
+        )}
+        {view === 'questionnaire' && (
+          <motion.div
+            key="questionnaire"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4 }}
+            style={{ padding: '24px 16px' }}
+          >
+            <WellnessQuestionnaire onComplete={handleQuestionnaireComplete} />
+          </motion.div>
+        )}
+        {view === 'analyzing' && (
+          <AnalysisScreen key="analyzing" onDone={handleAnalysisDone} />
+        )}
+        {view === 'dashboard' && (
+          <motion.div key="dashboard" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <DigitalTwinDashboard />
+          </motion.div>
+        )}
+        {view === 'active-plan' && (
+          <motion.div key="active-plan" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <ActivePlanDashboard />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
 }
