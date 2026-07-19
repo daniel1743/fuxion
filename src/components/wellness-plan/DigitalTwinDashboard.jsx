@@ -211,8 +211,8 @@ export default function DigitalTwinDashboard() {
 
   const { twin_state, recommendations } = twinData;
   const { iib, biometrics } = twin_state;
-  const domains = twin_state.domains || iib?.domains || {};
-  const { tdee, protein, waterL, bmi, bmiClass } = biometrics || {};
+  const activeDomains = iib?.domains || twin_state?.domains || {};
+  const { tdee, protein, waterL, bmi, bmiClass } = biometrics;
 
   const handleDownload = async () => {
     if (!twinData || !userData) return;
@@ -223,13 +223,8 @@ export default function DigitalTwinDashboard() {
       let markdown = twinData.ai_report_markdown;
       
       if (!markdown) {
-        // 2. Si no, llamar a la IA para generarlo
-        // NOTA: Para producción, la API key debe venir del backend o de variables de entorno seguras.
-        // Aquí usamos la que el usuario nos pida, o una de prueba temporalmente.
-        const apiKey = import.meta.env.VITE_OPENAI_API_KEY || prompt("Ingresa tu clave de OpenAI para generar el reporte Premium:");
-        if (!apiKey) throw new Error("No se proporcionó API Key.");
-        
-        markdown = await generatePremiumReportContent(userData, twinData, apiKey);
+        // 2. Si no, llamar a la IA para generarlo a través de nuestro backend
+        markdown = await generatePremiumReportContent(userData, twinData);
         
         // Lo guardamos temporalmente en el estado para no volver a generarlo si descarga 2 veces
         twinData.ai_report_markdown = markdown; 
@@ -443,9 +438,15 @@ export default function DigitalTwinDashboard() {
         }}>
           Análisis por Dominio
         </h3>
-        {Object.entries(domains).map(([key, score], i) => (
-          <DomainBar key={key} domainKey={key} score={score} delay={i} />
-        ))}
+        {Object.keys(activeDomains).length > 0 ? (
+          Object.entries(activeDomains).map(([key, score], i) => (
+            <DomainBar key={key} domainKey={key} score={score} delay={i} />
+          ))
+        ) : (
+          <p style={{ fontSize: '0.85rem', color: '#6b7280', margin: 0 }}>
+            Sin datos de dominios disponibles...
+          </p>
+        )}
       </motion.div>
 
       {/* ── Disclaimer ── */}

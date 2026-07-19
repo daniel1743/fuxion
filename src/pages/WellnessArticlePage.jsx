@@ -6,13 +6,20 @@ import { Button } from '@/components/ui/button';
 import CategoryBadge from '@/components/CategoryBadge';
 import { toast } from '@/components/ui/use-toast';
 import { fetchWellnessArticleBySlug } from '@/services/wellnessArticleService';
+import { useReaderTracking } from '@/hooks/useReaderTracking';
 import MobileAppShell from '@/components/mobile/MobileAppShell';
 
 const WellnessArticlePage = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
+  const { trackArticleOpen, trackArticleClose, trackParagraphTime, trackPageView, openChat } = useReaderTracking();
   const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [paragraphRefs, setParagraphRefs] = useState([]);
+
+  useEffect(() => {
+    trackPageView();
+  }, [trackPageView]);
 
   useEffect(() => {
     const load = async () => {
@@ -23,6 +30,7 @@ const WellnessArticlePage = () => {
           return;
         }
         setArticle(data);
+        trackArticleOpen(slug, data.title);
       } catch {
         navigate('/opiniones', { replace: true });
       } finally {
@@ -30,7 +38,10 @@ const WellnessArticlePage = () => {
       }
     };
     load();
-  }, [slug, navigate]);
+    return () => {
+      if (slug) trackArticleClose(slug);
+    };
+  }, [slug, navigate, trackArticleOpen, trackArticleClose]);
 
   if (loading) return <main className="flex min-h-screen items-center justify-center"><div className="h-10 w-10 animate-spin rounded-full border-2 border-primary border-t-transparent" /></main>;
   if (!article) return null;
@@ -139,7 +150,18 @@ const WellnessArticlePage = () => {
 
         <div className="mt-10 space-y-5 text-[1.05rem] leading-8 text-muted-foreground">
           {article.content.split(/\n\s*\n/).filter(Boolean).map((paragraph, index) => (
-            <p key={`${index}-${paragraph.slice(0, 20)}`} className="whitespace-pre-wrap">{paragraph}</p>
+            <p
+              key={`${index}-${paragraph.slice(0, 20)}`}
+              className="whitespace-pre-wrap"
+              ref={(el) => {
+                if (el) paragraphRefs[index] = el;
+              }}
+              onMouseEnter={() => trackParagraphTime(`${slug}-p-${index}`)}
+              onMouseLeave={() => trackParagraphTime(`${slug}-p-${index}`)}
+              onTouchStart={() => trackParagraphTime(`${slug}-p-${index}`)}
+            >
+              {paragraph}
+            </p>
           ))}
         </div>
 

@@ -1,0 +1,395 @@
+{
+  "document_title": "Investigación Científica Maestra: Biblioteca Premium de Bienestar en Claro",
+  "purpose": "Proveer una base de conocimiento exhaustiva, libre de sesgos comerciales y fundamentada estrictamente en la evidencia clínica de mayor jerarquía (Niveles 1 a 3), integrando el razonamiento de múltiples disciplinas médicas y de estilo de vida.",
+  "target_population": "Población adulta residente en Providencia y la Región Metropolitana de Santiago, considerando variables demográficas, ambientales (como la dureza del agua y material particulado) y el marco regulatorio alimentario chileno (Ley 20.606).",
+  "modules": [
+    {
+      "id": 1,
+      "title": "Nutrición, Metabolismo y Peso Corporal",
+      "pathophysiology": "El peso corporal y el estado metabólico están dictados por la interacción entre el balance energético y la regulación neuroendocrina. El tejido adiposo secreta adipocinas proinflamatorias. La obesidad se asocia a la hipertrofia de los adipocitos viscerales, induciendo inflamación, resistencia a la insulina y eventualmente DM2. El control del apetito está mediado por hormonas como la grelina, GLP-1, GIP y leptina.",
+      "risk_factors": "Sedentarismo (bajo NEAT), dietas con alta carga glucémica, ultraprocesados, privación del sueño y estrés crónico.",
+      "myths_and_errors": [
+        "Mito: Todas las calorías son iguales independientemente de su origen. (El efecto térmico varía).",
+        "Error Común: Enfocarse exclusivamente en pérdida de peso sin entrenamiento de fuerza (causa sarcopenia).",
+        "Mito: El ayuno intermitente acelera el metabolismo por sí solo."
+      ],
+      "evidence_summary": "Guías ADA 2025/2026 y Endocrine Society. Pérdida del 5-15% revierte resistencia a la insulina. Ley 20.606 (Etiquetado) es efectiva. Patrones DASH, Mediterránea y MIND poseen mayor evidencia.",
+      "interventions": [
+        {
+          "id": 1,
+          "action": "Terapia farmacológica (Agonistas GLP-1/GIP)",
+          "mechanism": "Retrasan vaciamiento gástrico, actúan en hipotálamo induciendo saciedad.",
+          "errors_alternatives": "Abandonar el ejercicio de fuerza. Alternativa: Bariatría o déficit estricto.",
+          "benefit_time": "Pérdida de peso >15%. 3-6 meses.",
+          "impact_evidence": "Alto (Nivel 1). Impacto: Muy Alto"
+        },
+        {
+          "id": 2,
+          "action": "Déficit calórico individualizado (500-750 kcal/día)",
+          "mechanism": "Fuerza al cuerpo a oxidar triglicéridos. Calcular TDEE y restar 500 kcal.",
+          "errors_alternatives": "Subestimar porciones ingeridas. Alternativa: Reducción basada en saciedad.",
+          "benefit_time": "Pérdida de 0.5-1 kg/sem.",
+          "impact_evidence": "Alto (Nivel 1). Impacto: Muy Alto"
+        },
+        {
+          "id": 3,
+          "action": "Aumento de Proteína (1.2-1.5 g/kg/día)",
+          "mechanism": "Incrementa efecto térmico y provee sustrato anabólico.",
+          "errors_alternatives": "Depender de polvos. Alternativa: Legumbres + cereales.",
+          "benefit_time": "Preserva masa muscular. 4-8 semanas.",
+          "impact_evidence": "Alto (Nivel 1). Impacto: Alto"
+        },
+        {
+          "id": 4,
+          "action": "Entrenamiento de Fuerza (2-3 días/sem)",
+          "mechanism": "Mejora receptores GLUT4 y capilarización muscular.",
+          "errors_alternatives": "Usar pesos muy ligeros. Alternativa: Calistenia.",
+          "benefit_time": "Sensibilidad a insulina. 8-12 semanas.",
+          "impact_evidence": "Alto (Nivel 1). Impacto: Alto"
+        },
+        {
+          "id": 5,
+          "action": "Sustitución guiada por Ley de Etiquetados",
+          "mechanism": "Modifica entorno limitando estímulos supernormales.",
+          "errors_alternatives": "Creer que 'sin sellos' es libre de calorías. Alternativa: Alimentos sin empaque.",
+          "benefit_time": "Menor ingesta calórica. 2-4 semanas.",
+          "impact_evidence": "Alto (Nivel 1). Impacto: Alto"
+        },
+        {
+          "id": 6,
+          "action": "Adopción de la Dieta MIND",
+          "mechanism": "Antioxidantes y polifenoles reducen estrés oxidativo.",
+          "errors_alternatives": "Añadir azúcares a berries o freír nueces. Alternativa: Mediterránea.",
+          "benefit_time": "Neuroprotección y baja de LDL. 12 semanas.",
+          "impact_evidence": "Alto (Nivel 1). Impacto: Alto"
+        },
+        {
+          "id": 7,
+          "action": "Sustitución de fármacos obesogénicos",
+          "mechanism": "Antidepresivos e hipoglucemiantes causan ganancia de peso.",
+          "errors_alternatives": "Suspender sin aval médico.",
+          "benefit_time": "Detención de hiperfagia. 4 semanas.",
+          "impact_evidence": "Alto (Nivel 1). Impacto: Alto"
+        },
+        {
+          "id": 8,
+          "action": "Terapia Cognitivo Conductual (CBT) para obesidad",
+          "mechanism": "Reestructura distorsiones cognitivas que causan atracones.",
+          "errors_alternatives": "Buscar resultados inmediatos en la balanza.",
+          "benefit_time": "Modificación de conducta. 12-24 semanas.",
+          "impact_evidence": "Alto (Nivel 1). Impacto: Alto"
+        },
+        {
+          "id": 9,
+          "action": "Incremento del NEAT (>8,000 pasos/día)",
+          "mechanism": "Incrementa gasto calórico no planificado.",
+          "errors_alternatives": "Compensar el gasto comiendo más. Alternativa: Escritorios de pie.",
+          "benefit_time": "Gasto extra de 300+ kcal/día. 1-2 semanas.",
+          "impact_evidence": "Moderado (Nivel 2). Impacto: Alto"
+        },
+        {
+          "id": 10,
+          "action": "Ejercicio Aeróbico (150-300 min/sem)",
+          "mechanism": "Aumenta biogénesis mitocondrial.",
+          "errors_alternatives": "Exceso de cardio que eleva cortisol.",
+          "benefit_time": "Mejora VO2 max. 8 semanas.",
+          "impact_evidence": "Alto (Nivel 1). Impacto: Alto"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Salud Intestinal, Disbiosis y Estreñimiento",
+      "pathophysiology": "Microbiota regula inflamación y sintetiza butirato. Estreñimiento crónico funcional (Criterios de Roma IV). Incluye inercia colónica y disinergia del suelo pélvico.",
+      "risk_factors": "Dietas pobres en fibra (<15g/día), sedentarismo, deshidratación, opioides.",
+      "myths_and_errors": [
+        "Mito: Todos los probióticos curan el intestino.",
+        "Error Común: Aumento drástico de fibra insoluble sin agua.",
+        "Error Común: Abuso de laxantes senósidos causando melanosis coli."
+      ],
+      "evidence_summary": "Guías AGA y ACG. Primera línea farmacológica: Polietilenglicol (PEG 3350). Psyllium es la única fibra con recomendación formal.",
+      "interventions": [
+        {
+          "id": 11,
+          "action": "Polietilenglicol (PEG 3350)",
+          "mechanism": "Laxante osmótico, retiene agua en lumen.",
+          "errors_alternatives": "Suspenderlo de inmediato; debe usarse como mantenimiento.",
+          "benefit_time": "Mejoría en 2-3 días. Mantenimiento seguro.",
+          "impact_evidence": "Alto (Nivel 1). Impacto: Muy Alto"
+        },
+        {
+          "id": 12,
+          "action": "Suplementación con Psyllium",
+          "mechanism": "Fibra soluble formadora de gel.",
+          "errors_alternatives": "Consumirlo sin agua causa impactación.",
+          "benefit_time": "Mejoría en 1-2 semanas.",
+          "impact_evidence": "Alto (Nivel 1). Impacto: Alto"
+        },
+        {
+          "id": 13,
+          "action": "Postura de Defecación (Squatting)",
+          "mechanism": "Alinea ángulo anorrectal y relaja músculo puborrectal.",
+          "errors_alternatives": "Pujar conteniendo la respiración (Valsalva).",
+          "benefit_time": "Efecto inmediato.",
+          "impact_evidence": "Moderado (Nivel 2). Impacto: Moderado"
+        },
+        {
+          "id": 14,
+          "action": "Linaclotida o Plecanatida",
+          "mechanism": "Secretagogos, aumentan secreción de fluidos.",
+          "errors_alternatives": "Usarlo sin evaluar respuesta previa a PEG.",
+          "benefit_time": "Mejoría en 1-2 semanas.",
+          "impact_evidence": "Alto (Nivel 1). Impacto: Alto"
+        },
+        {
+          "id": 15,
+          "action": "Entrenamiento del Reflejo Gastrocólico",
+          "mechanism": "Motilidad colónica se dispara 30 min post-ingesta.",
+          "errors_alternatives": "Hacer fuerza excesiva.",
+          "benefit_time": "Reprogramación en 2-4 semanas.",
+          "impact_evidence": "Moderado (Nivel 2). Impacto: Moderado"
+        },
+        {
+          "id": 16,
+          "action": "Hidratación constante (Orina clara)",
+          "mechanism": "Si el cuerpo está deshidratado, el bolo fecal se deseca.",
+          "errors_alternatives": "Beber de golpe; mejor sorbos continuos.",
+          "benefit_time": "Mejoría en 3-5 días.",
+          "impact_evidence": "Alto (Nivel 1). Impacto: Alto"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Neurobiología del Sueño, Sistema Inmune y Descanso",
+      "pathophysiology": "Sueño es responsable del barrido de toxinas amiloides (sistema glinfático) y secreción de GH. Fases NREM y REM. Alteración deprime células T y aumenta riesgo cardiometabólico.",
+      "risk_factors": "Luz azul vespertina, alcohol nocturno, cafeína post 14:00h. Riesgo de SAOS en obesos.",
+      "myths_and_errors": [
+        "Mito: La melatonina es un sedante fuerte (es cronobiótica).",
+        "Error Común: Confiar únicamente en Higiene del Sueño para el insomnio clínico.",
+        "Mito: Puedo recuperar el sueño perdido el fin de semana (Social Jetlag)."
+      ],
+      "evidence_summary": "Guías AASM. Terapia Cognitivo-Conductual para el Insomnio (CBT-I) es el estándar de oro de primera línea.",
+      "interventions": [
+        {
+          "id": 30,
+          "action": "Descarte de enfermedades sistémicas",
+          "mechanism": "Pruebas tiroideas, glicemia, test celiaquía.",
+          "errors_alternatives": "Ignorar pérdida de peso o sangrado.",
+          "benefit_time": "Diagnóstico oportuno.",
+          "impact_evidence": "Alto (Nivel 1). Impacto: Muy Alto"
+        },
+        {
+          "id": 31,
+          "action": "Terapia CBT-I",
+          "mechanism": "Restricción de sueño y control de estímulos.",
+          "errors_alternatives": "Fármacos como primera línea.",
+          "benefit_time": "Mejoría en 4-8 semanas.",
+          "impact_evidence": "Alto (Nivel 1). Impacto: Muy Alto"
+        },
+        {
+          "id": 32,
+          "action": "Higiene del Sueño (Oscuridad total, temperatura <18°C)",
+          "mechanism": "Maximiza secreción de melatonina y sueño profundo.",
+          "errors_alternatives": "Usar antifaz sin controlar temperatura.",
+          "benefit_time": "Mejoría en 1-2 semanas.",
+          "impact_evidence": "Moderado (Nivel 2). Impacto: Alto"
+        },
+        {
+          "id": 33,
+          "action": "Evitar pantallas 2h antes de dormir",
+          "mechanism": "Bloqueo de luz azul inhibe melatonina.",
+          "errors_alternatives": "Usar filtros de pantalla sin cambiar rutinas.",
+          "benefit_time": "Mejoría en 3-5 días.",
+          "impact_evidence": "Moderado (Nivel 2). Impacto: Alto"
+        },
+        {
+          "id": 34,
+          "action": "Suplementación con Melatonina (0.3-1mg)",
+          "mechanism": "Cronobiótica, ajusta fase del sueño.",
+          "errors_alternatives": "Dosis altas (5-10mg) causan somnolencia diurna.",
+          "benefit_time": "Ajuste de ciclo en 3-5 días.",
+          "impact_evidence": "Moderado (Nivel 1). Impacto: Moderado"
+        },
+        {
+          "id": 35,
+          "action": "Evaluación de SAOS en pacientes obesos",
+          "mechanism": "Apnea obstructiva causa fragmentación del sueño.",
+          "errors_alternatives": "Ignorar ronquidos o fatiga diurna.",
+          "benefit_time": "Diagnóstico oportuno.",
+          "impact_evidence": "Alto (Nivel 1). Impacto: Muy Alto"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Salud Mental, Estrés Crónico y Función Cognitiva",
+      "pathophysiology": "Estrés agudo (HPA, catecolaminas, cortisol). Estrés crónico causa 'Carga Alostática': resistencia a insulina, atrofia del hipocampo, hipertensión, burnout y pérdida de tono vagal.",
+      "evidence_summary": "Lifestyle Medicine valida herramientas no farmacológicas. CBT para reestructuración cognitiva. MBSR reduce niveles de cortisol.",
+      "interventions": [
+        {
+          "id": 40,
+          "action": "Terapia Cognitivo Conductual (CBT)",
+          "mechanism": "Reestructura pensamientos catastróficos que disparan el eje HPA.",
+          "errors_alternatives": "Creer que es solo 'hablar'; requiere tareas prácticas.",
+          "benefit_time": "Mejoría en 8-12 semanas.",
+          "impact_evidence": "Alto (Nivel 1). Impacto: Muy Alto"
+        },
+        {
+          "id": 41,
+          "action": "MBSR (Mindfulness)",
+          "mechanism": "Práctica de atención plena sin juzgar; desactiva amígdala.",
+          "errors_alternatives": "Frustrarse porque la mente no se pone en blanco.",
+          "benefit_time": "Cambios en 8 semanas.",
+          "impact_evidence": "Alto (Nivel 1). Impacto: Alto"
+        },
+        {
+          "id": 42,
+          "action": "Suspiro Fisiológico (Cyclic Sighing)",
+          "mechanism": "Doble inhalación nasal rápida y exhalación oral larga. Expulsa CO2 alveolar bloqueado.",
+          "errors_alternatives": "Hacerlo muy rápido generando hiperventilación.",
+          "benefit_time": "Reducción inmediata de cortisol.",
+          "impact_evidence": "Moderado (Nivel 2). Impacto: Moderado"
+        },
+        {
+          "id": 43,
+          "action": "Respiración de Caja (Box Breathing)",
+          "mechanism": "Tiempos iguales (4s). Regula tono vagal.",
+          "errors_alternatives": "Contener forzosamente causando mareo.",
+          "benefit_time": "Reducción inmediata de ansiedad.",
+          "impact_evidence": "Moderado (Nivel 2). Impacto: Moderado"
+        },
+        {
+          "id": 44,
+          "action": "Ejercicio aeróbico regular",
+          "mechanism": "Libera BDNF, endorfinas y reduce cortisol.",
+          "errors_alternatives": "Entrenamiento excesivo sin descanso.",
+          "benefit_time": "Mejoría en 2-4 semanas.",
+          "impact_evidence": "Alto (Nivel 1). Impacto: Alto"
+        },
+        {
+          "id": 45,
+          "action": "Terapia de exposición a luz solar matutina",
+          "mechanism": "Regula ritmo circadiano y aumenta serotonina.",
+          "errors_alternatives": "Exposición solar intensa sin protección.",
+          "benefit_time": "Regulación en 1-2 semanas.",
+          "impact_evidence": "Moderado (Nivel 2). Impacto: Alto"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Hidratación Clínica, Termorregulación y Nutrición Celular",
+      "pathophysiology": "Agua mantiene volumen plasmático. Déficit del 1-2% compromete alerta. Aguas 'duras' en Santiago (RM) tienen carbonato de calcio y sulfato de magnesio, aportando minerales pero afectando sabor.",
+      "evidence_summary": "NHS y guías de Australia: 2.0 - 3.4 L de agua diaria. ESPEN para adultos mayores: 30 kcal/kg y min 1.5 L agua/día.",
+      "interventions": [
+        {
+          "id": 50,
+          "action": "Iniciar el día con 500ml de agua",
+          "mechanism": "Rompe ayuno hídrico nocturno.",
+          "errors_alternatives": "No beber agua y tomar café solo.",
+          "benefit_time": "Hidratación matutina inmediata.",
+          "impact_evidence": "Moderado (Nivel 2). Impacto: Alto"
+        },
+        {
+          "id": 51,
+          "action": "Reemplazar jugos y bebidas",
+          "mechanism": "Reduce drásticamente obesidad y riesgo metabólico.",
+          "errors_alternatives": "Migrar a bebidas isotónicas comerciales ricas en azúcar.",
+          "benefit_time": "Mejoría en 4-8 semanas.",
+          "impact_evidence": "Alto (Nivel 1). Impacto: Muy Alto"
+        },
+        {
+          "id": 52,
+          "action": "Hidratación proactiva",
+          "mechanism": "La sed aparece con ~1% de déficit volumétrico. Beber por horarios.",
+          "errors_alternatives": "Esperar a tener sed.",
+          "benefit_time": "Prevención continua.",
+          "impact_evidence": "Alto (Nivel 1). Impacto: Alto"
+        },
+        {
+          "id": 53,
+          "action": "Minerales del agua dura (calcio y magnesio)",
+          "mechanism": "Aportan contribución relevante al requerimiento diario.",
+          "errors_alternatives": "Filtra el agua eliminando minerales beneficiosos.",
+          "benefit_time": "Contribución diaria.",
+          "impact_evidence": "Bajo-Moderado (Nivel 3). Impacto: Bajo"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Ejercicio, Aparato Cardiovascular y Longevidad Funcional",
+      "pathophysiology": "Músculo esquelético es tejido endocrino (mioquinas). Sarcopenia es acelerador metabólico de fragilidad y diabetes.",
+      "myths_and_errors": [
+        "Pensar que caminar lento reemplaza el entrenamiento de resistencia.",
+        "Temer el entrenamiento con pesas en la tercera edad."
+      ],
+      "evidence_summary": "AHA, ACSM, MINSAL y ESC: Mínimo 150-300 min de ejercicio aeróbico moderado + 2 días de fuerza.",
+      "interventions": [
+        {
+          "id": 60,
+          "action": "Pausas Activas",
+          "mechanism": "Interrumpir sedentarismo disminuye glucemia 9%.",
+          "errors_alternatives": "Sentarse más de 90 minutos seguidos.",
+          "benefit_time": "Beneficio inmediato por pausa.",
+          "impact_evidence": "Alto (Nivel 1). Impacto: Alto"
+        },
+        {
+          "id": 61,
+          "action": "Entrenamiento de Fuerza (2-3 días/sem)",
+          "mechanism": "Mantiene masa muscular, mejora sensibilidad a insulina.",
+          "errors_alternatives": "Solo hacer cardio sin fuerza.",
+          "benefit_time": "Fuerza en 4-8 semanas.",
+          "impact_evidence": "Alto (Nivel 1). Impacto: Muy Alto"
+        },
+        {
+          "id": 62,
+          "action": "Camino rápido (8,000+ pasos/día)",
+          "mechanism": "Reduce mortalidad cardiovascular y mejora perfil metabólico.",
+          "errors_alternatives": "Caminar lento sin intención.",
+          "benefit_time": "Mejoría en 4-6 semanas.",
+          "impact_evidence": "Alto (Nivel 1). Impacto: Alto"
+        },
+        {
+          "id": 63,
+          "action": "Entrenamiento de intervalos (HIIT)",
+          "mechanism": "Mejora VO2 max y sensibilidad a insulina rápidamente.",
+          "errors_alternatives": "Exceso sin recuperación adecuada.",
+          "benefit_time": "Mejoría en 2-4 semanas.",
+          "impact_evidence": "Alto (Nivel 1). Impacto: Alto"
+        },
+        {
+          "id": 64,
+          "action": "Actividad física en adultos mayores",
+          "mechanism": "Combate sarcopenia y previene caídas.",
+          "errors_alternatives": "Evitar movimiento por miedo a lesiones.",
+          "benefit_time": "Funcionalidad en 4-8 semanas.",
+          "impact_evidence": "Alto (Nivel 1). Impacto: Muy Alto"
+        }
+      ]
+    }
+  ],
+  "strategic_matrix": {
+    "endocrino_nutricional": {
+      "alto_impacto": "Déficit Calórico Controlado (CICO) + Dieta MIND/Mediterránea + Tratamiento Fármaco/Bariatría si IMC alto",
+      "impacto_moderado": "Aumento de Fibra + Reducción drástica azúcares",
+      "acciones_sinergistas": "Reemplazar endulzantes calóricos, Pausas activas post-comida"
+    },
+    "cardiovascular": {
+      "alto_impacto": "Cesación total de Tabaquismo + Medicación IECA/Estatinas",
+      "impacto_moderado": "150-300 min/Cardio + 2d/Fuerza",
+      "acciones_sinergistas": "Controlar estrés con respiración pautada"
+    },
+    "salud_digestiva": {
+      "alto_impacto": "PEG 3350 + Biofeedback (si disinergia) + Agua + Postura",
+      "impacto_moderado": "Linaclotida/Prucaloprida + Aumento progresivo dieta integral vegetal",
+      "acciones_sinergistas": "Movimiento diario matutino + café matinal"
+    },
+    "salud_mental_sueno": {
+      "alto_impacto": "CBT-I (Insomnio) + CBT (Estrés/Ansiedad) + Farmacoterapia psiquiátrica si refractario",
+      "impacto_moderado": "Práctica de MBSR + Eliminación estímulos pantallas noche",
+      "acciones_sinergistas": "Desactivar notificaciones + Journaling"
+    }
+  }
+}

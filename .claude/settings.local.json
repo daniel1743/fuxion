@@ -6,7 +6,10 @@
       "Bash(cd \"C:\\\\Users\\\\Lenovo\\\\Desktop\\\\proyectos desplegados importante\\\\de daniel falcon\" && node scripts/generate-sitemap.js 2>&1)",
       "Bash(node:*)",
       "Bash(python3:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(python -c \"import json; f=open\\(r'public\\\\branding\\\\base de datos bienestar ia\\\\biblioteca_bienestar.json','r',encoding='utf-8'\\); data=json.load\\(f\\); print\\('OK, modules:', len\\(data.get\\('modules',[]\\)\\)\\); f.close\\(\\)\")",
+      "Bash(git add *)",
+      "Bash(git commit *)"
     ]
   }
 }

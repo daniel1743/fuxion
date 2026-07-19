@@ -25,6 +25,7 @@ const CategoriesPage = lazy(() => import('@/pages/CategoriesPage'));
 const SupportPage = lazy(() => import('@/pages/SupportPage'));
 const CartPage = lazy(() => import('@/pages/CartPage'));
 const EvidencePage = lazy(() => import('@/pages/EvidencePage'));
+const BlogRedirectPage = lazy(() => import('@/pages/BlogRedirectPage'));
 const BlogPage = lazy(() => import('@/pages/BlogPage'));
 const BlogPostPage = lazy(() => import('@/pages/BlogPostPage'));
 const ProductPage = lazy(() => import('@/pages/ProductPage'));
@@ -45,6 +46,7 @@ const AboutPage = lazy(() => import('@/pages/AboutPage'));
 const PrivacyPolicyPage = lazy(() => import('@/pages/PrivacyPolicyPage'));
 const CookiesPolicyPage = lazy(() => import('@/pages/CookiesPolicyPage'));
 const PersonalizedPlanPage = lazy(() => import('@/pages/PersonalizedPlanPage'));
+const WellnessReportPage = lazy(() => import('@/pages/WellnessReportPage'));
 
 function App() {
 
@@ -90,7 +92,7 @@ function App() {
                     <Route path="/opiniones" element={<ReviewsPage />} />
                     <Route path="/opiniones/wellness" element={<WellnessPage />} />
                     <Route path="/bienestar/:slug" element={<WellnessArticlePage />} />
-                    <Route path="/blog" element={<EvidencePage />} />
+                    <Route path="/blog" element={<BlogRedirectPage />} />
                     <Route path="/articulos" element={<BlogPage />} />
                     <Route path="/articulos/:slug" element={<BlogPostPage />} />
                     <Route path="/sobre-nosotros" element={<AboutPage />} />
@@ -104,6 +106,7 @@ function App() {
                     <Route path="/oportunidad-fuxion" element={<OpportunityPage />} />
                     <Route path="/productos-fuxion-chile" element={<ProductosFuxionPage />} />
                     <Route path="/plan-a-medida" element={<PersonalizedPlanPage />} />
+                    <Route path="/mi-informe" element={<WellnessReportPage />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                   </Routes>
                 </Suspense>

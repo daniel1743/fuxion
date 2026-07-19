@@ -20,7 +20,19 @@ export const WellnessTwinProvider = ({ children }) => {
   // Helper to normalize legacy twin data structure to Phase 3 structure
   const normalizeTwinData = (legacyData) => {
     if (!legacyData) return null;
-    return legacyData.twin_state ? legacyData : {
+    
+    // Si ya viene con twin_state, asegurarnos de que la estructura interna sea correcta (ej. domains dentro de iib)
+    if (legacyData.twin_state) {
+      const ts = legacyData.twin_state;
+      if (ts.domains && ts.iib && !ts.iib.domains) {
+        ts.iib.domains = ts.domains;
+        // Opcional: delete ts.domains; para mantenerlo limpio, pero no es estrictamente necesario
+      }
+      return legacyData;
+    }
+
+    // Estructura legacy muy antigua
+    return {
       twin_state: {
         iib: legacyData.iib || { score: legacyData.iibScore || 0, domains: {} },
         biometrics: {

@@ -815,3 +815,40 @@ body.drawer-open {
 .image-placeholder img.loaded {
   opacity: 1;
 }
+
+/* ── Print styles for Wellness Report ─────────────────────── */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .min-h-screen {
+    min-height: auto !important;
+  }
+  .bg-gradient-to-br,
+  .bg-gradient-to-b {
+    background: white !important;
+  }
+  button,
+  [role="button"] {
+    display: none !important;
+  }
+  .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+  .bg-white {
+    background: white !important;
+    border: 1px solid #e5e7eb !important;
+    page-break-inside: avoid;
+  }
+  section {
+    page-break-inside: avoid;
+  }
+  h1, h2, h3 {
+    color: #064e3b !important;
+  }
+  .text-emerald-900 {
+    color: #064e3b !important;
+  }
+}

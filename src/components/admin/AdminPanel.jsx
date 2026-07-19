@@ -26,6 +26,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
 import { toast } from '@/components/ui/use-toast';
+import ReaderAnalyticsPanel from './ReaderAnalyticsPanel';
 import { useAdmin } from '@/context/AdminContext';
 import { useAuth } from '@/context/AuthContext';
 import { useSiteSettings } from '@/context/SiteSettingsContext';
@@ -557,6 +558,14 @@ const AdminPanel = ({ isOpen, onClose }) => {
             <BarChart3 className="mr-2 h-4 w-4" />
             Métricas
           </Button>
+          <Button
+            variant={activeTab === 'analytics' ? 'default' : 'outline'}
+            size="sm"
+            onClick={() => setActiveTab('analytics')}
+          >
+            <Eye className="mr-2 h-4 w-4" />
+            Analytics
+          </Button>
         </div>
 
         <div className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto overscroll-contain p-3 [scrollbar-gutter:stable] sm:p-5">
@@ -964,6 +973,19 @@ const AdminPanel = ({ isOpen, onClose }) => {
                     </div>
                   </div>
                 ))}
+              </div>
+            </div>
+          ) : activeTab === 'analytics' ? (
+            <div className="space-y-3">
+              <div className="rounded-lg border border-border bg-background/50 p-4">
+                <h3 className="flex items-center gap-2 font-semibold">
+                  <Eye className="h-4 w-4" />
+                  Reader Analytics
+                </h3>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Visualiza el comportamiento de lectores, artículos más leídos y tendencias.
+                </p>
+                <ReaderAnalyticsPanel isOpen={true} onClose={() => {}} />
               </div>
             </div>
           ) : (
