@@ -86,6 +86,7 @@ const SupportPage = () => {
         title="Opiniones y Consultas"
         description="Consultas, respuestas y opiniones sobre productos Fuxion. Comparte tu experiencia o solicita orientación antes de comprar."
         canonical="/faq"
+        ogImageAlt="Bienestar en Claro — Opiniones y Consultas"
       />
 
       {/* ── MOBILE SHELL ── */}

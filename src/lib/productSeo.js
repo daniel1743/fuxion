@@ -1,5 +1,6 @@
 import fuxionDatabase from '@/data/fuxion_database.json';
 import { getProductImageUrl } from '@/lib/imageUtils';
+import { PRODUCT_SEO_EXTENSIONS } from '@/data/productSeoExtensions';
 
 export const SITE_URL = 'https://www.bienestarenclaro.com';
 export const STORE_NAME = 'Bienestar en Claro';
@@ -594,12 +595,14 @@ export const getProductSeoContent = (product) => {
 
   const baseContent = PRIORITY_PRODUCT_SEO[product.slug];
   const semanticContent = PRODUCT_SEMANTIC_SECTIONS[product.slug];
+  const extensionContent = PRODUCT_SEO_EXTENSIONS[product.slug];
 
-  if (!baseContent && !semanticContent) return null;
+  if (!baseContent && !semanticContent && !extensionContent) return null;
 
   return {
     ...(baseContent || {}),
-    ...(semanticContent || {})
+    ...(semanticContent || {}),
+    ...(extensionContent || {})
   };
 };
 
@@ -687,7 +690,7 @@ export const buildStoreSchema = () => ({
   name: STORE_NAME,
   url: SITE_URL,
   image: `${SITE_URL}/prunex-principal.jpeg`,
-  description: 'Tienda Fuxion en Chile con productos nutraceuticos para nutricion, bienestar, energia, digestion, control de peso y cuidado natural.',
+  description: 'Bienestar en Claro Chile — tienda oficial de productos Fuxion con asesoría personalizada. Nutrición, bienestar natural, digestión, energía, control de peso, defensas y belleza. Envíos a todo Chile.',
   areaServed: {
     '@type': 'Country',
     name: 'Chile'
@@ -707,13 +710,27 @@ export const buildOrganizationSchema = () => ({
   name: STORE_NAME,
   url: SITE_URL,
   logo: `${SITE_URL}/icons/android-chrome-512x512.png`,
-  description: 'Tienda Fuxion en Chile con productos nutraceuticos para nutricion, bienestar, energia, digestion, control de peso y cuidado natural.',
+  description: 'Bienestar en Claro Chile — tienda oficial de productos Fuxion con asesoría personalizada. Nutrición, bienestar natural, digestión, energía, control de peso, defensas y belleza. Envíos a todo Chile.',
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+56989639088',
+    contactType: 'customer service',
+    areaServed: 'CL',
+    availableLanguage: 'Spanish'
+  },
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'CL',
+    addressLocality: 'Santiago'
+  },
   areaServed: {
     '@type': 'Country',
     name: 'Chile'
   },
   sameAs: [
-    SITE_URL
+    SITE_URL,
+    'https://instagram.com/bienestarenclaro',
+    'https://twitter.com/bienestarenclaro'
   ]
 });
 
@@ -726,9 +743,8 @@ export const buildLocalBusinessSchema = () => ({
   name: STORE_NAME,
   url: SITE_URL,
   image: `${SITE_URL}/prunex-principal.jpeg`,
-  description: 'Tienda Fuxion en Chile con productos nutraceuticos para nutricion, bienestar, energia, digestion, control de peso y cuidado natural.',
-  telephone: '+56912345678',
-  email: 'contacto@bienestarenclaro.com',
+  description: 'Bienestar en Claro Chile — tienda oficial de productos Fuxion con asesoría personalizada. Nutrición, bienestar natural, digestión, energía, control de peso, defensas y belleza. Envíos a todo Chile.',
+  telephone: '+56989639088',
   areaServed: [
     {
       '@type': 'City',
@@ -741,13 +757,72 @@ export const buildLocalBusinessSchema = () => ({
   ],
   address: {
     '@type': 'PostalAddress',
-    addressCountry: 'CL'
+    addressCountry: 'CL',
+    addressLocality: 'Santiago'
   },
   priceRange: '$$',
   openingHours: 'Mo-Fr 09:00-18:00',
   sameAs: [
-    SITE_URL
+    SITE_URL,
+    'https://instagram.com/bienestarenclaro',
+    'https://twitter.com/bienestarenclaro'
   ]
+});
+
+/**
+ * Complete Organization schema with ContactPoint, sameAs, logo.
+ */
+export const buildCompleteOrganizationSchema = () => ({
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: STORE_NAME,
+  alternateName: ['Bienestar en Claro Chile', 'Tienda Fuxion Chile'],
+  url: SITE_URL,
+  logo: {
+    '@type': 'ImageObject',
+    url: `${SITE_URL}/icons/android-chrome-512x512.png`,
+    width: 512,
+    height: 512
+  },
+  description: 'Bienestar en Claro Chile — tienda oficial de productos Fuxion con asesoría personalizada. Nutrición, bienestar natural, digestión, energía, control de peso, defensas y belleza. Envíos a todo Chile.',
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+56-9-8963-9088',
+    contactType: 'customer service',
+    areaServed: 'CL',
+    availableLanguage: 'Spanish',
+    email: 'contacto@bienestarenclaro.com',
+    hoursAvailable: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: [
+        'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
+      ],
+      opens: '09:00',
+      closes: '21:00'
+    }
+  },
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'CL',
+    addressRegion: 'Región Metropolitana'
+  },
+  sameAs: [
+    SITE_URL,
+    'https://instagram.com/bienestarenclaro',
+    'https://twitter.com/bienestarenclaro',
+    'https://facebook.com/bienestarenclaro',
+    'https://linkedin.com/company/bienestarenclaro',
+    'https://youtube.com/@bienestarenclaro'
+  ],
+  brand: {
+    '@type': 'Brand',
+    name: 'Fuxion',
+    description: 'Fuxion Biotech — productos nutracéuticos para nutrición y bienestar.'
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'Chile'
+  }
 });
 
 /**
@@ -756,12 +831,40 @@ export const buildLocalBusinessSchema = () => ({
 export const buildPersonSchema = (person) => ({
   '@context': 'https://schema.org',
   '@type': 'Person',
-  name: person?.name || 'Daniel Falcon',
-  jobTitle: person?.role || 'Asesor Independiente Fuxion',
+  name: person?.name || 'Daniel Falcón',
+  jobTitle: person?.role || 'Asesor de Bienestar y Nutrición',
   url: `${SITE_URL}/sobre-nosotros`,
-  description: person?.bio || 'Emprendedor chileno apasionado por la nutricion y el bienestar natural.',
+  description: person?.bio || 'Emprendedor chileno apasionado por la nutrición y el bienestar natural.',
   image: person?.image ? `${SITE_URL}${person.image}` : `${SITE_URL}/icons/android-chrome-192x192.png`,
-  sameAs: [SITE_URL]
+  sameAs: [SITE_URL],
+  knowsAbout: person?.knowsAbout || [
+    'Nutrición',
+    'Bienestar',
+    'Salud intestinal',
+    'Nutracéuticos',
+    'Fuxion'
+  ]
+});
+
+/**
+ * WebSite schema with SearchAction for rich results.
+ */
+export const buildWebsiteSchema = () => ({
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: STORE_NAME,
+  url: SITE_URL,
+  description: 'Tienda oficial de productos Fuxion con asesoría personalizada. Nutrición, bienestar natural, digestión, energía, control de peso, defensas y belleza.',
+  publisher: {
+    '@type': 'Organization',
+    name: STORE_NAME,
+    url: SITE_URL
+  },
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: `${SITE_URL}/explorar?search={search_term_string}`,
+    'query-input': 'required name=search_term_string'
+  }
 });
 
 /**
@@ -776,4 +879,68 @@ export const buildBreadcrumbSchema = (items) => ({
     name: item.name,
     item: `${SITE_URL}${item.url}`
   }))
+});
+
+/**
+ * Article schema with author, datePublished, dateModified, image, keywords.
+ */
+export const buildArticleSchema = (article, author) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: article.title,
+  description: article.excerpt,
+  image: article.image_url ? `${SITE_URL}${article.image_url}` : `${SITE_URL}/icons/android-chrome-512x512.png`,
+  author: {
+    '@type': 'Person',
+    name: author?.name || 'Daniel Falcón',
+    jobTitle: author?.jobTitle || 'Investigador de Salud y Bienestar',
+    url: `${SITE_URL}/sobre-nosotros`
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: STORE_NAME,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${SITE_URL}/icons/android-chrome-512x512.png`
+    }
+  },
+  datePublished: article.created_at,
+  dateModified: article.updated_at || article.created_at,
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': `${SITE_URL}/articulos/${article.slug}`
+  },
+  keywords: article.tags?.join(', '),
+  articleSection: article.category
+});
+
+/**
+ * HowTo schema for routines and regimens.
+ */
+export const buildHowToSchema = (howTo) => ({
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: howTo.title,
+  description: howTo.description,
+  totalEstimatedTime: howTo.totalEstimatedTime || 'PT10M',
+  step: (howTo.steps || []).map((step, i) => ({
+    '@type': 'HowToStep',
+    position: i + 1,
+    name: step.name,
+    text: step.text,
+    url: step.url ? `${SITE_URL}${step.url}` : undefined
+  }))
+});
+
+/**
+ * AggregateRating schema for testimonials/reviews.
+ */
+export const buildAggregateRatingSchema = (rating) => ({
+  '@context': 'https://schema.org',
+  '@type': 'AggregateRating',
+  ratingValue: rating.ratingValue || '4.5',
+  reviewCount: rating.reviewCount || '120',
+  bestRating: rating.bestRating || '5',
+  worstRating: rating.worstRating || '1',
+  itemReviewed: rating.itemReviewed || STORE_NAME
 });

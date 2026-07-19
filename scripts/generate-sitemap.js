@@ -1,6 +1,6 @@
 /**
- * Dynamic sitemap generator for Tienda Fuxion Chile
- * 
+ * Dynamic sitemap generator for Bienestar en Claro Chile
+ *
  * Run: node scripts/generate-sitemap.js
  * This generates public/sitemap.xml with all products, categories, wellness articles, and static pages.
  */
@@ -10,7 +10,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const SITE_URL = 'https://tiendafuxion.space';
+const SITE_URL = 'https://www.bienestarenclaro.com';
 const TODAY = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
 
 // ── Static pages ──────────────────────────────────────────────

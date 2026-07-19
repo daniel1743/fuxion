@@ -244,6 +244,7 @@ const ExplorePage = () => {
           : 'Catálogo completo de productos Fuxion en Chile para nutrición, bienestar natural, energía, digestión, control de peso, defensas, deporte y belleza. Envíos a todo Chile.'
         }
         canonical={categoriaParam ? `/categoria/${categoriaParam}` : '/explorar'}
+        ogImageAlt="Bienestar en Claro — Catálogo de Productos Fuxion"
         schema={[
           buildStoreSchema(),
           ...(categoriaParam

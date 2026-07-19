@@ -118,7 +118,7 @@ USING (lower(email) <> 'falcondaniel37@gmail.com');
 -- Configuración visible del sitio.
 CREATE TABLE IF NOT EXISTS public.site_settings (
   id TEXT PRIMARY KEY DEFAULT 'main',
-  site_name TEXT NOT NULL DEFAULT 'Tienda Fuxion',
+  site_name TEXT NOT NULL DEFAULT 'Bienestar en Claro Chile',
   logo_url TEXT,
   owner_name TEXT DEFAULT 'Daniel Falcon',
   tagline TEXT DEFAULT 'Asesoría personalizada en productos Fuxion',
@@ -218,7 +218,7 @@ ON CONFLICT (email) DO UPDATE SET
   updated_at = NOW();
 
 INSERT INTO public.site_settings (id, site_name, owner_name, tagline)
-VALUES ('main', 'Tienda Fuxion', 'Daniel Falcon', 'Asesoría personalizada en productos Fuxion')
+VALUES ('main', 'Bienestar en Claro Chile', 'Daniel Falcon', 'Asesoría personalizada en productos Fuxion')
 ON CONFLICT (id) DO NOTHING;
 
 CREATE OR REPLACE FUNCTION public.is_app_admin(input_email TEXT)

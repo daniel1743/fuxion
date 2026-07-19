@@ -4,7 +4,7 @@ const products = Object.values(fuxionDatabase.productos || {});
 
 export const fuxionKnowledgeBase = {
   company: {
-    name: 'Tienda Fuxion Chile',
+    name: 'Bienestar en Claro Chile',
     slogan: 'Nutricion y bienestar natural con asesoria personalizada',
     description: 'Tienda de productos Fuxion Biotech para nutricion, energia, digestion, control de peso, defensas, belleza y deporte.',
     whatsapp: 'https://wa.me/56989639088',

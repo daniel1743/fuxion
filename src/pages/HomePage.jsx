@@ -153,6 +153,8 @@ const HomePage = () => {
     navigate(`/explorar?search=${encodeURIComponent(query)}`);
   };
 
+  const { posts, loading } = useBlog();
+
   return (
     <motion.div
       initial="initial"
@@ -166,7 +168,7 @@ const HomePage = () => {
         title="Bienestar en Claro — Guías de Bienestar, Nutrición Natural y Asesoría Fuxion en Chile"
         description="Guías de bienestar, nutrición natural y hábitos saludables. Asesoría personalizada por WhatsApp para elegir productos Fuxion según tu objetivo. Envíos a todo Chile."
         canonical="/"
-        schema={[buildStoreSchema(), buildOrganizationSchema(), buildWebsiteSchema()]}
+        schema={[buildCompleteOrganizationSchema(), buildWebsiteSchema(), buildStoreSchema()]}
       />
 
       {/* ═══════════════════════════════════════════════════════════

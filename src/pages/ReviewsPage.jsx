@@ -77,7 +77,7 @@ const ReviewsPage = () => {
     '@type': 'AggregateRating',
     itemReviewed: {
       '@type': 'Organization',
-      name: 'Tienda Fuxion Chile',
+      name: 'Bienestar en Claro Chile',
     },
     ratingValue: avgRating,
     reviewCount: publicReviews.length,
@@ -91,6 +91,7 @@ const ReviewsPage = () => {
         title="Opiniones — Experiencias de consumidores FuXion"
         description="Lee experiencias compartidas por consumidores que han probado productos FuXion y publicado sus opiniones en plataformas públicas."
         canonical="/opiniones"
+        ogImageAlt="Bienestar en Claro — Opiniones de clientes"
         schema={[buildOrganizationSchema(), reviewSchema]}
       />
 

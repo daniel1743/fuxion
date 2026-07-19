@@ -304,6 +304,7 @@ const PrivacyPolicyPage = () => {
         title="Política de Privacidad — FuXion Chile"
         description="Política de Privacidad y Tratamiento de Datos de Tienda FuXion. Conoce cómo protegemos y utilizamos tu información personal. Transparencia y seguridad."
         canonical="/privacidad"
+        ogImageAlt="Bienestar en Claro — Política de Privacidad"
       />
 
       {/* ── MOBILE SHELL ── */}

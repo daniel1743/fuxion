@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button';
 import CategoryBadge from '@/components/CategoryBadge';
 import { toast } from '@/components/ui/use-toast';
 import { fetchWellnessArticleBySlug } from '@/services/wellnessArticleService';
+import { buildBreadcrumbSchema, buildPersonSchema } from '@/lib/productSeo';
+import { generateArticleSchema, generateFaqSchema, extractSemanticKeywords } from '@/lib/articleEnricher';
 import { useReaderTracking } from '@/hooks/useReaderTracking';
 import MobileAppShell from '@/components/mobile/MobileAppShell';
 
@@ -72,43 +74,63 @@ const WellnessArticlePage = () => {
     },
     "author": {
       "@type": "Person",
-      "name": article.editor_name || "Investigador de Salud y Bienestar"
+      "name": article.editor_name || "Daniel Falcón",
+      "jobTitle": "Investigador de Salud y Bienestar",
+      "url": "https://www.bienestarenclaro.com/sobre-nosotros"
     },
     "publisher": {
       "@type": "Organization",
-      "name": "Tienda Fuxion"
+      "name": "Bienestar en Claro",
+      "url": "https://www.bienestarenclaro.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.bienestarenclaro.com/icons/android-chrome-512x512.png"
+      }
     },
     "datePublished": article.published_at || article.created_at,
+    "dateModified": article.updated_at || article.published_at || article.created_at,
     "image": article.image_url ? `${window.location.origin}${article.image_url}` : undefined
   });
 
+  // Article schema
+  schemas.push({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": article.title,
+    "description": article.excerpt,
+    "author": {
+      "@type": "Person",
+      "name": article.editor_name || "Daniel Falcón",
+      "jobTitle": "Investigador de Salud y Bienestar"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Bienestar en Claro",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.bienestarenclaro.com/icons/android-chrome-512x512.png"
+      }
+    },
+    "datePublished": article.published_at || article.created_at,
+    "dateModified": article.updated_at || article.published_at || article.created_at,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `${window.location.origin}/bienestar/${article.slug}`
+    },
+    "image": article.image_url ? `${window.location.origin}${article.image_url}` : undefined,
+    "articleSection": article.category
+  });
+
+  // Enriched schema from articleEnricher
+  const personSchema = buildPersonSchema({ name: article.editor_name || 'Daniel Falcón' });
+  const enrichedSchemas = generateArticleSchema(article, personSchema);
+  enrichedSchemas.forEach(s => schemas.push(s));
+
   // Extract FAQs and build FAQPage Schema
-  const faqSectionMatch = article.content.match(/##\s+Preguntas Frecuentes([\s\S]*?)(?=\n##\s|$)/i);
-  if (faqSectionMatch) {
-    const faqText = faqSectionMatch[1];
-    const faqs = [];
-    const matches = faqText.matchAll(/###\s+(.+?)\n([\s\S]*?)(?=\n###\s|$)/g);
-    for (const match of matches) {
-      const question = match[1].trim();
-      const answer = match[2].trim().replace(/\n/g, ' ');
-      faqs.push({ question, answer });
-    }
-    
-    if (faqs.length > 0) {
-      schemas.push({
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": faqs.map(faq => ({
-          "@type": "Question",
-          "name": faq.question,
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": faq.answer
-          }
-        }))
-      });
-    }
-  }
+  const faqSchema = generateFaqSchema(article.content);
+  if (faqSchema) schemas.push(faqSchema);
+
+  const keywords = extractSemanticKeywords(article.content, article.category);
 
   return (
     <main className="min-h-screen bg-background pb-20 pt-0 md:pt-24">
@@ -118,8 +140,22 @@ const WellnessArticlePage = () => {
         canonical={`/bienestar/${article.slug}`}
         ogType="article"
         ogImage={article.image_url || undefined}
-        schema={schemas}
-      />
+        ogImageAlt={article.title}
+        articleAuthor={article.editor_name || 'Equipo de Bienestar'}
+        articlePublished={article.published_at || article.created_at}
+        articleModified={article.updated_at || article.published_at || article.created_at}
+        articleTags={[article.category || 'Bienestar']}
+        schema={[
+          ...schemas,
+          buildBreadcrumbSchema([
+            { name: 'Inicio', url: '/' },
+            { name: 'Bienestar', url: '/bienestar' },
+            { name: article.title, url: `/bienestar/${article.slug}` }
+          ])
+        ]}
+      >
+        <meta name="keywords" content={keywords.join(', ')} />
+      </SEO>
 
       {/* ── MOBILE SHELL ── */}
       <div className="md:hidden">

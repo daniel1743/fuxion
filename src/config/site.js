@@ -15,7 +15,7 @@ export const SITE = {
 };
 
 export const STORE = {
-  name: 'Tienda Fuxion Chile',
+  name: 'Bienestar en Claro Chile',
   owner: 'Daniel Falcon',
   role: 'Asesor Independiente Fuxion',
   tagline: 'Bienestar natural y asesoría personalizada',

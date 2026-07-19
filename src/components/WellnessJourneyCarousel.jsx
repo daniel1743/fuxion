@@ -23,7 +23,7 @@ import {
 const SLIDES = [
   {
     id: 'editorial',
-    image: '/img/editorial_card.jpg',
+    image: '/img/mujer leyendo.jpeg',
     category: 'Bienestar y Salud',
     title: 'Aprende y Empodérate 🌱',
     description: 'Explora nuestros artículos basados en evidencia científica para mejorar tu calidad de vida diaria.',
@@ -45,7 +45,7 @@ const SLIDES = [
   },
   {
     id: 'plan',
-    image: '/img/plan_card.jpg',
+    image: '/img/asesoria (1).jpeg',
     category: 'Nutrición Personalizada',
     title: 'Tu Plan a Medida 💜',
     description: 'Únete a la lista de espera para tu plan nutricional detallado. Disfruta de beneficios premium al ser uno de los 100 primeros suscritos.',

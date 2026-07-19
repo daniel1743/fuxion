@@ -47,6 +47,7 @@ const BlogCategoryPage = ({ slug }) => {
         title={`${category.name} — Centro de Conocimiento`}
         description={category.description}
         canonical={`/categoria/${category.slug}`}
+        ogImageAlt={`${category.name} — Bienestar en Claro`}
       />
 
       <div className="min-h-screen bg-gradient-to-b from-background to-background/95 pt-0 md:pt-24 pb-16">

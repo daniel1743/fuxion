@@ -14,6 +14,8 @@ import { useScrollDirection } from '@/hooks/useScrollDirection';
 import ArticleComments from '@/components/blog/ArticleComments';
 import { parseCategories, CATEGORY_CATALOG } from '@/lib/categoryCatalog';
 import { TAG_CATALOG } from '@/lib/tagCatalog';
+import { buildBreadcrumbSchema, buildPersonSchema } from '@/lib/productSeo';
+import { generateArticleSchema, generateFaqSchema, extractSemanticKeywords } from '@/lib/articleEnricher';
 import ArticleBadges from '@/components/blog/ArticleBadges';
 
 const BlogPostPage = () => {
@@ -221,14 +223,38 @@ const BlogPostPage = () => {
     "image": post.image_url
   };
 
+  // Enriched schema
+  const personSchema = buildPersonSchema({ name: 'Daniel Falcón' });
+  const enrichedSchemas = generateArticleSchema(post, personSchema);
+
+  // FAQ schema from content
+  const faqSchema = generateFaqSchema(post.content);
+  if (faqSchema) enrichedSchemas.push(faqSchema);
+
+  const keywords = extractSemanticKeywords(post.content, post.category);
+
   return (
     <div className="min-h-screen bg-background pb-16">
-      <SEO 
+      <SEO
         title={post.title}
         description={post.excerpt}
         ogImage={post.image_url}
-        schema={[articleSchema]}
-      />
+        ogImageAlt={post.title}
+        ogType="article"
+        articleAuthor="Daniel Falcón"
+        articlePublished={post.created_at}
+        articleTags={parseCategories(post.category)}
+        schema={[
+          ...enrichedSchemas,
+          buildBreadcrumbSchema([
+            { name: 'Inicio', url: '/' },
+            { name: 'Blog', url: '/blog' },
+            { name: post.title, url: `/articulos/${post.slug}` }
+          ])
+        ]}
+      >
+        <meta name="keywords" content={keywords.join(', ')} />
+      </SEO>
 
       {/* ── FIXED SMART STICKY NAV (MOBILE) ── */}
       <div
@@ -464,7 +490,7 @@ const BlogPostPage = () => {
             Complementa tu bienestar con productos naturales
           </h3>
           <p className="text-muted-foreground mb-6 text-lg">
-            En Tienda Fuxion tenemos productos diseñados para apoyar tu camino hacia una vida más saludable y en equilibrio.
+            En Bienestar en Claro tenemos productos diseñados para apoyar tu camino hacia una vida más saludable y en equilibrio.
           </p>
           <Link to="/explorar">
             <Button className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl px-8 py-6 h-auto text-base font-semibold shadow-md btn-premium-lift w-full md:w-auto">

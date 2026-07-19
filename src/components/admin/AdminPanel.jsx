@@ -844,7 +844,7 @@ const AdminPanel = ({ isOpen, onClose }) => {
                 <Input
                   value={brandingForm.site_name || ''}
                   onChange={(event) => setBrandingForm(prev => ({ ...prev, site_name: event.target.value }))}
-                  placeholder="Tienda Fuxion"
+                  placeholder="Bienestar en Claro"
                   required
                 />
               </div>

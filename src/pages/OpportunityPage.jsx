@@ -450,6 +450,7 @@ const OpportunityPage = () => {
         title="Oportunidad de Negocio FuXion | Emprende y Trabaja desde Casa"
         description="Emprende desde casa con la oportunidad de negocio FuXion. Genera ingresos extra compartiendo productos naturales de bienestar. Trabajo independiente y flexible."
         canonical="/oportunidad-fuxion"
+        ogImageAlt="Bienestar en Claro — Oportunidad de Negocio Fuxion"
         schema={[faqSchema]}
       />
 

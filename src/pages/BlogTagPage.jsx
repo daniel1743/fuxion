@@ -52,6 +52,7 @@ const BlogTagPage = () => {
         title={`${tagData.name} — Entidad Científica`}
         description={tagData.description}
         canonical={`/etiqueta/${tagData.slug}`}
+        ogImageAlt={`${tagData.name} — Bienestar en Claro`}
       />
 
       <div className="min-h-screen bg-gradient-to-b from-background to-background/95 pt-0 md:pt-24 pb-16">

@@ -98,6 +98,7 @@ const CookiesPolicyPage = () => {
         title="Política de Cookies — FuXion Chile"
         description="Política de Cookies y tecnologías similares de Tienda FuXion. Conoce cómo usamos cookies para mejorar tu experiencia de navegación."
         canonical="/cookies"
+        ogImageAlt="Bienestar en Claro — Política de Cookies"
       />
 
       {/* ── MOBILE SHELL ── */}

@@ -56,6 +56,7 @@ const BlogPage = () => {
         title="Artículos Científicos — Salud Digestiva, Metabolismo y Bienestar"
         description="Artículos científicos sobre salud digestiva, microbioma, metabolismo, salud mental y longevidad. Escritos por Daniel Falcón, Investigador Periodístico y Educador Científico."
         canonical="/articulos"
+        ogImageAlt="Bienestar en Claro — Artículos Científicos"
       />
 
       <div className="min-h-screen bg-gradient-to-b from-background to-background/95 pt-0 md:pt-24 pb-16">

@@ -268,6 +268,7 @@ const ContactPage = () => {
         title="Contacto FuXion Chile | Atención y consultas"
         description="Contáctanos para resolver dudas sobre productos FuXion, pedidos u oportunidad de negocio."
         canonical="/contacto"
+        ogImageAlt="Bienestar en Claro — Contacto"
       />
 
       {/* ── MOBILE SHELL ── */}

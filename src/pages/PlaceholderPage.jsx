@@ -28,7 +28,7 @@ const PlaceholderPage = ({ pageName }) => {
       </div>
       <SEO
         title={pageName}
-        description={`Página de ${pageName} — Próximamente disponible en Tienda Fuxion Chile.`}
+        description={`Página de ${pageName} — Próximamente disponible en Bienestar en Claro Chile.`}
         noindex
       />
       <motion.div

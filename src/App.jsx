@@ -46,7 +46,10 @@ const AboutPage = lazy(() => import('@/pages/AboutPage'));
 const PrivacyPolicyPage = lazy(() => import('@/pages/PrivacyPolicyPage'));
 const CookiesPolicyPage = lazy(() => import('@/pages/CookiesPolicyPage'));
 const PersonalizedPlanPage = lazy(() => import('@/pages/PersonalizedPlanPage'));
+                    <Route path="/condicion/:slug" element={<ConditionPage />} />
 const WellnessReportPage = lazy(() => import('@/pages/WellnessReportPage'));
+import ConditionPage from "@/pages/ConditionPage";
+const ConditionHubPage = lazy(() => import('@/pages/ConditionHubPage'));
 
 function App() {
 
@@ -92,6 +95,7 @@ function App() {
                     <Route path="/opiniones" element={<ReviewsPage />} />
                     <Route path="/opiniones/wellness" element={<WellnessPage />} />
                     <Route path="/bienestar/:slug" element={<WellnessArticlePage />} />
+                    <Route path="/condicion/:slug" element={<ConditionHubPage />} />
                     <Route path="/blog" element={<BlogRedirectPage />} />
                     <Route path="/articulos" element={<BlogPage />} />
                     <Route path="/articulos/:slug" element={<BlogPostPage />} />

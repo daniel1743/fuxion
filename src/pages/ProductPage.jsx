@@ -155,6 +155,7 @@ const ProductPage = () => {
         canonical={`/producto/${product.slug}`}
         ogType="product"
         ogImage={product.imageUrl}
+        ogImageAlt={`${product.name} FuXion — ${product.category || 'Bienestar'}`}
         schema={[
           buildProductSchema(product),
           buildBreadcrumbSchema([
@@ -369,7 +370,7 @@ const ProductPage = () => {
         </h2>
         <div className="mt-6 rounded-2xl border border-border bg-card p-6">
           <p className="text-muted-foreground leading-relaxed">
-            Puedes comprar <strong>{product.name} FuXion original</strong> a través de nuestra tienda online <strong>Tienda Fuxion Chile</strong>. 
+            Puedes comprar <strong>{product.name} FuXion original</strong> a través de nuestra tienda online <strong>Bienestar en Claro Chile</strong>.
             Realizamos envíos a todo Chile con coordinación vía WhatsApp. 
             Para garantizar que recibas un producto 100% original, recomendamos siempre comprar a través de canales oficiales y con asesoría personalizada.
           </p>

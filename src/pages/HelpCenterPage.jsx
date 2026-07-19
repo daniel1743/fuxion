@@ -309,6 +309,7 @@ const HelpCenterPage = () => {
         title="Centro de Ayuda FuXion | Contacto y Soporte"
         description="Centro de ayuda de Naturalmente FuXion. Envía tu consulta, reclamo, felicitación o sugerencia. Te responderemos personalmente."
         canonical="/ayuda"
+        ogImageAlt="Bienestar en Claro — Centro de Ayuda"
       />
 
       {/* ── MOBILE SHELL ── */}

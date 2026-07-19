@@ -9,7 +9,24 @@
       "Bash(git push:*)",
       "Bash(python -c \"import json; f=open\\(r'public\\\\branding\\\\base de datos bienestar ia\\\\biblioteca_bienestar.json','r',encoding='utf-8'\\); data=json.load\\(f\\); print\\('OK, modules:', len\\(data.get\\('modules',[]\\)\\)\\); f.close\\(\\)\")",
       "Bash(git add *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(Get-ChildItem \"C:\\\\Users\\\\Lenovo\\\\Desktop\\\\proyectos desplegados importante\\\\de daniel falcon\\\\src\\\\data\")",
+      "Bash(Select-Object Name)",
+      "Bash(powershell -Command \"\\(Get-Content 'C:\\\\Users\\\\Lenovo\\\\Desktop\\\\proyectos desplegados importante\\\\de daniel falcon\\\\public\\\\sitemap.xml'\\) -replace 'tiendafuxion\\\\.space', 'www.bienestarenclaro.com' | Set-Content 'C:\\\\Users\\\\Lenovo\\\\Desktop\\\\proyectos desplegados importante\\\\de daniel falcon\\\\public\\\\sitemap.xml' -Encoding utf8\")",
+      "Bash(npx vite *)",
+      "Bash(n\\\\\"\")",
+      "Bash(powershell -Command \"\\(Get-Content 'C:\\\\Users\\\\Lenovo\\\\Desktop\\\\proyectos desplegados importante\\\\de daniel falcon\\\\public\\\\sitemap.xml' | Select-Object -First 10\\) -join \\\\\"`n\\\\\"\")",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\Lenovo\\\\Desktop\\\\proyectos desplegados importante\\\\de daniel falcon\\\\public\\\\branding\\\\social\" | Select-Object Name, Length, @{Name='Dimensions';Expression={\\(Get-Item $_.FullName\\).Length}})",
+      "PowerShell(New-Item *)",
+      "PowerShell(node -e \"const fs=require\\('fs'\\); fs.writeFileSync\\('src/pages/ConditionPage.jsx','test'\\)\")",
+      "PowerShell(node -e 'var fs=require\\(\"fs\"\\); var c=fs.readFileSync\\(\"src/App.jsx\",\"utf-8\"\\); var lines=c.split\\(\"\\\\n\"\\); var idx=-1; for\\(var i=0;i<lines.length;i++\\){if\\(lines[i].indexOf\\(\"WellnessReportPage\"\\)>=0\\){idx=i;break;}} if\\(idx>=0\\) lines.splice\\(idx+1,0,\"import ConditionPage from \\\\\"@/pages/ConditionPage\\\\\";\"\\); var ridx=-1; for\\(var i=0;i<lines.length;i++\\){if\\(lines[i].indexOf\\(\"PersonalizedPlanPage\"\\)>=0\\){ridx=i;break;}} if\\(ridx>=0\\) lines.splice\\(ridx+1,0,\"                    <Route path=\\\\\"/condicion/:slug\\\\\" element={<ConditionPage />} />\"\\); fs.writeFileSync\\(\"src/App.jsx\",lines.join\\(\"\\\\n\"\\),\"utf-8\"\\); console.log\\(\"Updated App.jsx\"\\);')",
+      "PowerShell(node -e 'var fs=require\\(\"fs\"\\); var c=fs.readFileSync\\(\"src/App.jsx\",\"utf-8\"\\); var lines=c.split\\(\"\\\\n\"\\); for\\(var i=0;i<lines.length;i++\\){if\\(lines[i].indexOf\\(\"ConditionPage\"\\)>=0||lines[i].indexOf\\(\"condicion\"\\)>=0\\) console.log\\(i+1+\": \"+lines[i]\\);}')",
+      "PowerShell(node -e 'var fs=require\\(\"fs\"\\); var c=fs.readFileSync\\(\"src/App.jsx\",\"utf-8\"\\); var lines=c.split\\(\"\\\\n\"\\); for\\(var i=0;i<lines.length;i++\\){if\\(lines[i].indexOf\\(\"ConditionHubPage\"\\)>=0\\) console.log\\(i+1+\": \"+lines[i]\\);}')",
+      "PowerShell(node -e 'var fs=require\\(\"fs\"\\); var c=fs.readFileSync\\(\"src/pages/ConditionHubPage.jsx\",\"utf-8\"\\); console.log\\(\"LENGTH: \"+c.length\\); console.log\\(\"---\"\\); console.log\\(c.substring\\(0,3000\\)\\);')",
+      "PowerShell(node -e 'var fs=require\\(\"fs\"\\); if\\(fs.existsSync\\(\"src/data/conditionHub.js\"\\)\\){var c=fs.readFileSync\\(\"src/data/conditionHub.js\",\"utf-8\"\\); console.log\\(\"CONDITION_HUB EXISTS - length: \"+c.length\\); console.log\\(\"---\"\\); console.log\\(c.substring\\(0,2000\\)\\);} else {console.log\\(\"DOES NOT EXIST\"\\);}')",
+      "PowerShell(node -e 'var fs=require\\(\"fs\"\\); var c=fs.readFileSync\\(\"src/data/conditionHub.js\",\"utf-8\"\\); var lines=c.split\\(\"\\\\n\"\\); for\\(var i=0;i<lines.length;i++\\){if\\(lines[i].indexOf\\(\"icon:\"\\)>=0\\) console.log\\(i+1+\": \"+lines[i].trim\\(\\)\\);}')",
+      "PowerShell(node -e 'var fs=require\\(\"fs\"\\); if\\(fs.existsSync\\(\"src/lib/articleEnricher.js\"\\)\\){var c=fs.readFileSync\\(\"src/lib/articleEnricher.js\",\"utf-8\"\\); console.log\\(\"LENGTH: \"+c.length\\); console.log\\(c.substring\\(0,2000\\)\\);} else {console.log\\(\"DOES NOT EXIST\"\\);}')",
+      "Bash(powershell -Command \"Get-Content 'C:\\\\Users\\\\Lenovo\\\\Desktop\\\\proyectos desplegados importante\\\\de daniel falcon\\\\src\\\\components\\\\SEO.jsx'\")"
     ]
   }
 }

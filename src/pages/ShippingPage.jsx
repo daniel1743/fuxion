@@ -53,6 +53,7 @@ const ShippingPage = () => {
       <SEO
         title="Envíos — FuXion Chile"
         description="Recibe tus productos FuXion de forma simple y segura. Asesoría personalizada por Daniel Falcón, coordinación de entrega y envíos a todo Chile."
+        ogImageAlt="Bienestar en Claro — Envíos y despachos"
       />
 
       {/* ── MOBILE SHELL ── */}
