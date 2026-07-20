@@ -28,11 +28,24 @@
 - [x] HomePage incluye `buildWebsiteSchema()`
 
 ### Fase 2B: Article enrichment pipeline ✅
+
 - [x] Script `scripts/polish-articles.mjs` creado
 - [x] Ejecutado: 150/150 artículos de la biblia pulidos
 - [x] Títulos editoriales generados (no más nombres técnicos)
 - [x] Contenido estructurado con secciones claras
 - [x] FAQs generadas automáticamente (en campo `faqsGenerated`)
+
+## Fase 2B.2: Enrichment editorial con IA — EN PROCESO
+
+- [x] Script `scripts/enrich-wellness-articles.mjs` refactorizado (v2.0.0)
+- [x] Arreglado: Quality Gate ahora valida las 9 secciones H2 (faltaban "¿Qué es?" y "¿Cómo funciona?")
+- [x] Arreglado: Idempotencia verifica ANTES de hacer backup
+- [x] Arreglado: Fases correctamente numeradas en código y comentarios
+- [ ] Ejecutar `node scripts/enrich-wellness-articles.mjs --limit=1` para probar
+- [ ] Ejecutar `node scripts/enrich-wellness-articles.mjs` para enriquecer los 150 artículos
+- [ ] Verificar calidad de artículos en la app
+- [x] Arreglado: `generate-sitemap-final.cjs` ahora incluye las 30 páginas de condiciones médicas
+- [x] Arreglado: Sitemap regenerado con 267 URLs (incluyendo condiciones)
 
 ---
 

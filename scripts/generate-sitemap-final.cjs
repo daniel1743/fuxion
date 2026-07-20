@@ -13,10 +13,18 @@ const ROOT_DIR = path.resolve(__dirname, '..');
 const SITE_URL = 'https://www.bienestarenclaro.com';
 const TODAY = new Date().toISOString().split('T')[0];
 
-// ── Supabase client ───────────────────────────────────────────
-const supabaseUrl = 'https://iyloouessyxfvwvzdboc.supabase.co';
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml5bG9vdWVzc3l4ZnZ3dnpkYm9jIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE2MzcyNzUsImV4cCI6MjA5NzIxMzI3NX0.6bjQCIC3vQKFny4Sl5i-k7P1r7_4UUKhhcQ65Y5jsmc';
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// ── Supabase client (requires SUPABASE_SERVICE_ROLE_KEY env var) ────
+const SUPABASE_URL = process.env.SUPABASE_URL || 'https://iyloouessyxfvwvzdboc.supabase.co';
+const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+if (!SUPABASE_SERVICE_ROLE_KEY) {
+  console.error('❌ ERROR: SUPABASE_SERVICE_ROLE_KEY no está definida en el entorno. Ejecuta:');
+  console.error('   export SUPABASE_SERVICE_ROLE_KEY=tu_clave_aqui');
+  console.error('   node scripts/generate-sitemap-final.cjs');
+  process.exit(1);
+}
+
+const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
 // ── Static pages ──────────────────────────────────────────────
 const staticPages = [

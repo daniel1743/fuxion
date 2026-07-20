@@ -24,6 +24,35 @@ export const CATEGORY_CATALOG = [
 ];
 
 /**
+ * Diccionario Declarativo de Alias de Categorías
+ * Clave: Expresión o frase representativa del dominio (en minúsculas)
+ * Valor: Nombre exacto de la categoría oficial en CATEGORY_CATALOG
+ */
+const CATEGORY_ALIASES = {
+  'salud intestinal': 'Salud Digestiva',
+  'microbioma': 'Salud Digestiva',
+  'flora intestinal': 'Salud Digestiva',
+  'estreñimiento crónico': 'Salud Digestiva',
+  'disbiosis': 'Salud Digestiva',
+  'esteatosis': 'Hígado Graso',
+  'hidratación clínica': 'Nutrición',
+  'nutrición celular': 'Nutrición',
+  'flexibilidad metabólica': 'Metabolismo',
+  'recomposición corporal': 'Pérdida de Peso',
+  'peso corporal': 'Pérdida de Peso',
+  'sistema inmune': 'Sistema Inmunitario',
+  'estrés crónico': 'Bienestar Mental',
+  'salud mental': 'Bienestar Mental',
+  'función cognitiva': 'Bienestar Mental',
+  'neurobiología del sueño': 'Bienestar Mental',
+  'longevidad funcional': 'Metabolismo',
+  'aparato cardiovascular': 'Salud Cardiovascular',
+  'presión arterial': 'Salud Cardiovascular',
+  'resistencia a la insulina': 'Diabetes',
+  'glucemia': 'Diabetes'
+};
+
+/**
  * Normaliza y formatea el nombre de una categoría basándose en el catálogo oficial
  */
 const normalizeCategoryName = (name) => {
@@ -34,7 +63,8 @@ const normalizeCategoryName = (name) => {
 };
 
 /**
- * Parsea un string de categorías separadas por coma hacia un Array estricto.
+ * Parsea un string de categorías separadas por coma hacia un Array estricto,
+ * aplicando mapeo semántico mediante alias para módulos complejos.
  * @param {string} categoryString - Ej: "Hígado Graso, Nutrición"
  * @returns {string[]} Ej: ["Hígado Graso", "Nutrición"]
  */
@@ -44,10 +74,32 @@ export const parseCategories = (categoryString) => {
   // Dividir, limpiar espacios, filtrar vacíos
   const rawList = categoryString.split(',').map(c => c.trim()).filter(Boolean);
   
-  // Normalizar y filtrar categorías que NO estén en el catálogo
-  const validCategories = rawList
-    .map(normalizeCategoryName)
-    .filter(Boolean);
+  let validCategories = [];
+
+  for (const raw of rawList) {
+    const normalizedRaw = raw.toLowerCase();
+    
+    // 1. Intento directo con el contrato original
+    const exactMatch = normalizeCategoryName(raw);
+    if (exactMatch) {
+      validCategories.push(exactMatch);
+      continue;
+    }
+    
+    // 2. Búsqueda por diccionario de alias específicos del dominio
+    for (const [alias, officialCategory] of Object.entries(CATEGORY_ALIASES)) {
+      if (normalizedRaw.includes(alias)) {
+        validCategories.push(officialCategory);
+      }
+    }
+    
+    // 3. Fallback: buscar si el fragmento contiene el nombre exacto de la categoría oficial
+    CATEGORY_CATALOG.forEach(c => {
+      if (normalizedRaw.includes(c.name.toLowerCase())) {
+        validCategories.push(c.name);
+      }
+    });
+  }
     
   // Eliminar duplicados
   return [...new Set(validCategories)];

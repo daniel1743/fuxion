@@ -1,0 +1,51 @@
+{
+  "id": "e530a0fc-bbc7-4f17-b3af-ac87e3320f6f",
+  "owner_user_id": "8f37047c-a45f-4d8e-8313-fc8534e5a2fa",
+  "title": "Diario de Gratitud — Salud Mental, Estrés Crónico y Función Cognitiva",
+  "slug": "diario-de-gratitud-salud-mental-estres-cronico-y-funcion-cognitiva",
+  "excerpt": "Diario de Gratitud — Salud Mental, Estrés Crónico y Función Cognitiva. ...",
+  "content": "# Diario de Gratitud — Salud Mental, Estrés Crónico y Función Cognitiva\n\nUna intervención basada en evidencia para tu bienestar.\n\n## ¿Qué es Diario de Gratitud — Salud Mental, Estrés Crónico y Función Cognitiva?\n\nDiario de Gratitud — Salud Mental, Estrés Crónico y Función Cognitiva es una intervención respaldada por la ciencia que aborda aspectos clave de la salud y el bienestar. Basada en investigaciones de instituciones como la ADA, la Endocrine Society y organizaciones internacionales de salud.\n\n## Mecanismo de acción\n\n\n\n## Beneficios y tiempo estimado\n\nTiempo de efecto variable según cada persona.\n\n## Evidencia científica\n\n\n\n## Errores comunes y alternativas\n\nConsulta con profesional de salud antes de implementar esta intervención.\n\n## Consideraciones generales\n\nEs importante recordar que diario de gratitud — salud mental, estrés crónico y función cognitiva es parte de un enfoque integral de salud. No reemplaza una evaluación profesional ni sustituye indicaciones médicas. Siempre consulta con un profesional de salud antes de implementar cambios significativos en tu alimentación, estilo de vida o rutina de ejercicio.\n\n---\n\n*Este contenido tiene propósito informativo y educativo basado en investigación científica. No reemplaza una evaluación ni indicación profesional de salud.*",
+  "category": "Salud Mental, Estrés Crónico y Función Cognitiva",
+  "image_url": "/branding/social/og-image.png",
+  "editor_name": "Daniel Falcón",
+  "editor_email": "falcondaniel37@gmail.com",
+  "is_published": true,
+  "published_at": "2026-07-20T16:26:23.7+00:00",
+  "created_at": "2026-07-20T16:19:03.049348+00:00",
+  "updated_at": "2026-07-20T17:39:03.667236+00:00",
+  "enriched": true,
+  "entity_detected": [
+    "Diario de Gratitud"
+  ],
+  "entity_slug": "diario-de-gratitud",
+  "evidence_level": "medium",
+  "related_products": [],
+  "semantic_keywords": [
+    "Diario de Gratitud",
+    "Diario de Gratitud",
+    "Salud Mental, Estrés Crónico y Función Cognitiva"
+  ],
+  "seo_schema": {
+    "name": "Diario de Gratitud",
+    "@type": "MedicalWebPage",
+    "about": {
+      "name": "Salud Mental, Estrés Crónico y Función Cognitiva",
+      "@type": "MedicalCondition"
+    },
+    "author": {
+      "name": "Daniel Falcón",
+      "@type": "Person",
+      "jobTitle": "Asesor de Bienestar y Nutrición"
+    },
+    "@context": "https://schema.org",
+    "publisher": {
+      "name": "Bienestar en Claro Chile",
+      "@type": "Organization"
+    },
+    "description": "Re-entrena al cerebro para notar sesgos positivos y reducir el sesgo de negatividad evolutivo.",
+    "datePublished": "2026-07-20T16:26:23.700Z"
+  },
+  "enrichment_score": 0.85,
+  "author_id": null,
+  "views": 0
+}
