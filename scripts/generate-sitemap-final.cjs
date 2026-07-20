@@ -144,9 +144,28 @@ async function loadWellnessArticleSlugs() {
   }
 }
 
+// ── Condition page slugs from catalog ─────────────────────────
+function loadConditionSlugs() {
+  try {
+    const catPath = path.join(ROOT_DIR, 'src/data/conditions/catalog.json');
+    const raw = fs.readFileSync(catPath, 'utf-8');
+    const catalog = JSON.parse(raw);
+    const conditions = catalog.conditions || [];
+
+    return Object.entries(conditions).map(([slug, c]) => ({
+      slug,
+      title: c.title || c.name || slug,
+    }));
+  } catch (err) {
+    console.error('Error loading condition catalog:', err.message);
+    return [];
+  }
+}
+
 // ── Generate XML ──────────────────────────────────────────────
 async function generateSitemap() {
   const products = loadProductSlugs();
+  const conditions = loadConditionSlugs();
   const wellnessArticles = await loadWellnessArticleSlugs();
   const blogPosts = await loadBlogPostSlugs();
   const urls = [];
@@ -182,6 +201,16 @@ async function generateSitemap() {
   </url>`);
   }
 
+  // Condition pages
+  for (const cond of conditions) {
+    urls.push(`  <url>
+    <loc>${SITE_URL}/condicion/${cond.slug}</loc>
+    <lastmod>${TODAY}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>`);
+  }
+
   // Wellness article pages
   for (const article of wellnessArticles) {
     urls.push(`  <url>
@@ -214,6 +243,7 @@ ${urls.join('\n')}
   console.log(`      ${staticPages.length} static,`);
   console.log(`      ${categories.length} categories,`);
   console.log(`      ${products.length} products,`);
+  console.log(`      ${conditions.length} conditions,`);
   console.log(`      ${wellnessArticles.length} wellness articles,`);
   console.log(`      ${blogPosts.length} blog posts)`);
 }

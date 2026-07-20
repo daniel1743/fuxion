@@ -55,6 +55,11 @@ const getDefaultContext = () => ({
   lastActivity: Date.now(),
   greetingShown: false,
   searchQueries: [],
+  // -- Fase 2: Contexto editorial (campos nuevos, no afectan lógica existente) --
+  pageMode: 'MODE_HOME',
+  currentArticle: null,
+  currentReading: {},
+  currentEditorialContext: {},
 });
 
 /**
@@ -125,6 +130,73 @@ export const trackEvent = (eventType, data = {}) => {
       ].slice(0, 3);
       context.searchQueries = updatedQueries;
       context.currentPage = 'search';
+      break;
+    }
+
+    // -- Fase 1: Eventos editoriales (nuevos, no afectan lógica existente) --
+    case 'ARTICLE_VIEW': {
+      const { title, slug, category, type, entities, taxonomy } = data;
+      if (!title) return;
+      context.currentArticle = {
+        title,
+        slug: slug || null,
+        category: category || 'General',
+        entities: Array.isArray(entities) ? entities : [],
+        taxonomy: taxonomy || null,
+        type: type || 'blog',
+      };
+      context.currentPage = type === 'wellness' ? 'wellness_article' : 'blog_article';
+      context.pageMode = 'MODE_ARTICLE';
+      context.currentReading = {
+        progress: 0,
+        startTime: Date.now(),
+      };
+      context.currentEditorialContext = {
+        lastScroll: 0,
+        totalTime: 0,
+        internalLinks: 0,
+        shared: false,
+      };
+      break;
+    }
+
+    // -- Fase 1 (stubs): Eventos de lectura preparados para fase futura --
+    // TODO: Fase futura — requiere IntersectionObserver en el componente
+    case 'ARTICLE_SCROLL_25':
+    case 'ARTICLE_SCROLL_50':
+    case 'ARTICLE_SCROLL_75':
+    case 'ARTICLE_SCROLL_100': {
+      if (context.currentReading) {
+        const progMap = {
+          'ARTICLE_SCROLL_25': 25,
+          'ARTICLE_SCROLL_50': 50,
+          'ARTICLE_SCROLL_75': 75,
+          'ARTICLE_SCROLL_100': 100,
+        };
+        context.currentReading.progress = progMap[eventType] || 0;
+      }
+      break;
+    }
+
+    case 'ARTICLE_TIME_60S': {
+      if (context.currentReading) {
+        context.currentReading.totalTime = (context.currentReading.totalTime || 0) + 60;
+        context.currentEditorialContext.totalTime = context.currentReading.totalTime;
+      }
+      break;
+    }
+
+    case 'ARTICLE_INTERNAL_LINK': {
+      if (context.currentEditorialContext) {
+        context.currentEditorialContext.internalLinks = (context.currentEditorialContext.internalLinks || 0) + 1;
+      }
+      break;
+    }
+
+    case 'ARTICLE_SHARE': {
+      if (context.currentEditorialContext) {
+        context.currentEditorialContext.shared = true;
+      }
       break;
     }
 
@@ -268,6 +340,13 @@ export const getContextualGreeting = () => {
     return { text: greeting, slug: null };
   }
 
+  // 6. -- Fase 4: Saludo contextual para artículos (añadido, no reemplaza nada) --
+  if ((context.currentPage === 'blog_article' || context.currentPage === 'wellness_article') && context.currentArticle) {
+    const article = context.currentArticle;
+    const greeting = `Estoy aquí para ayudarte a entender mejor este tema. Si tienes dudas sobre lo que estás leyendo o quieres profundizar, puedo ayudarte.`;
+    return { text: greeting, slug: article.slug || null };
+  }
+
   return null;
 };
 
@@ -318,6 +397,43 @@ export const getSmartSuggestions = () => {
     ];
   }
 
+  // -- Fase 5: Chips inteligentes para artículos (añadido, no reemplaza nada) --
+  if ((context.currentPage === 'blog_article' || context.currentPage === 'wellness_article') && context.currentArticle) {
+    const article = context.currentArticle;
+    const chips = [];
+
+    // Chips dinámicos según taxonomía
+    if (article.taxonomy) {
+      chips.push({ emoji: '🔬', label: 'Más sobre esto', text: `Profundiza sobre ${article.taxonomy}` });
+    }
+
+    // Chips dinámicos según entidades detectadas
+    if (article.entities && article.entities.length > 0) {
+      const firstEntity = article.entities[0];
+      chips.push({ emoji: '🤔', label: `¿${firstEntity}?`, text: `¿Cómo sé si tengo problemas de ${firstEntity.toLowerCase()}?` });
+      if (article.entities.length > 1) {
+        const secondEntity = article.entities[1];
+        chips.push({ emoji: '🍃', label: `Tratamiento`, text: `¿Hay alternativas naturales para ${secondEntity.toLowerCase()}?` });
+      }
+    }
+
+    // Chips base (si no hay suficientes dinámicos)
+    if (chips.length < 2) {
+      chips.push({ emoji: '📚', label: 'Síntomas', text: '¿Cuáles son los síntomas principales?' });
+    }
+    if (chips.length < 3) {
+      chips.push({ emoji: '🥗', label: 'Alimentación', text: '¿Qué alimentación ayuda con esto?' });
+    }
+    if (chips.length < 4) {
+      chips.push({ emoji: '🌿', label: 'Productos', text: '¿Hay productos naturales que ayuden?' });
+    }
+    if (chips.length < 5) {
+      chips.push({ emoji: '💬', label: 'Hablar con asesor', text: 'Quiero hablar con un asesor sobre esto' });
+    }
+
+    return chips;
+  }
+
   // Sugerencias por defecto (genéricas)
   return [
     { emoji: '🔥', label: 'Controlar peso', text: 'Quiero productos para controlar mi peso' },
@@ -363,6 +479,28 @@ export const getContextForAI = () => {
 
   if (context.searchQueries.length > 0) {
     parts.push(`Búsquedas recientes: ${context.searchQueries.join(', ')}`);
+  }
+
+  // -- Fase 6: Enriquecer frontendContext con pageMode y artículo (añadido) --
+  if (context.pageMode && context.pageMode !== 'MODE_HOME') {
+    parts.push(`Modo de página: ${context.pageMode}`);
+  }
+
+  if (context.currentArticle) {
+    const article = context.currentArticle;
+    parts.push(`Artículo actual: "${article.title}"`);
+    if (article.category) parts.push(`Categoría del artículo: ${article.category}`);
+    if (article.taxonomy) parts.push(`Taxonomía: ${article.taxonomy}`);
+    if (article.entities && article.entities.length > 0) {
+      parts.push(`Entidades del artículo: ${article.entities.join(', ')}`);
+    }
+    if (context.currentReading && context.currentReading.progress > 0) {
+      parts.push(`Progreso de lectura: ${context.currentReading.progress}%`);
+    }
+    if (context.currentReading && context.currentReading.totalTime > 0) {
+      parts.push(`Tiempo de lectura: ${context.currentReading.totalTime}s`);
+    }
+    parts.push(`Nota: El usuario está leyendo este artículo educativo. Puede estar informándose o tener una preocupación de salud real. Pregúntale con empatía si necesita orientación.`);
   }
 
   return parts.length > 0 ? parts.join('. ') : '';

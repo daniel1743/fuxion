@@ -10,6 +10,7 @@ import { buildBreadcrumbSchema, buildPersonSchema } from '@/lib/productSeo';
 import { generateArticleSchema, generateFaqSchema, extractSemanticKeywords } from '@/lib/articleEnricher';
 import { buildWebsiteSchema } from '@/lib/productSeo';
 import { useReaderTracking } from '@/hooks/useReaderTracking';
+import { trackEvent } from '@/lib/userJourneyContext';
 import MobileAppShell from '@/components/mobile/MobileAppShell';
 import TableOfContents from '@/components/TableOfContents';
 
@@ -35,6 +36,14 @@ const WellnessArticlePage = () => {
         }
         setArticle(data);
         trackArticleOpen(slug, data.title);
+        trackEvent('ARTICLE_VIEW', {
+          title: data.title,
+          slug: data.slug || slug,
+          category: data.categoria || data.category || 'Bienestar',
+          type: 'wellness',
+          entities: extractSemanticKeywords(data.title || ''),
+          taxonomy: data.taxonomia || data.taxonomy || null,
+        });
       } catch {
         navigate('/opiniones', { replace: true });
       } finally {

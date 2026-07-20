@@ -315,7 +315,7 @@ export function generateArticleSchema(article, personSchema, basePath = 'articul
       name: STORE_NAME
     },
     articleSection: article.category,
-    keywords: article.tags?.join(', ') || article.category
+    keywords: Array.isArray(article.tags) ? article.tags.join(', ') : (article.tags || article.category || '')
   });
 
   return schemas;

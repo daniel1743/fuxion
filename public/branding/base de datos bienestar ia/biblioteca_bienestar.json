@@ -438,7 +438,7 @@
       "evidence_summary": "Guías AGA y ACG dictaminan tratamiento escalonado. Primera línea: PEG 3350. Psyllium es la única fibra con recomendación formal. En casos refractarios: secretagogos y procinéticos.",
       "interventions": [
         {
-          "id": 1,
+          "id": 51,
           "action": "Polietilenglicol (PEG 3350)",
           "mechanism": "Laxante osmótico de polímeros largos. Retiene agua en el lumen intestinal ablandando el bolo. Dosis: 17g/día diluidos en agua.",
           "errors_alternatives": "Suspenderlo de inmediato al evacuar; debe usarse como mantenimiento.",
@@ -446,7 +446,7 @@
           "impact_evidence": "Alto (Evidencia Nivel 1)"
         },
         {
-          "id": 2,
+          "id": 52,
           "action": "Suplementación con Psyllium",
           "mechanism": "Única fibra soluble que normaliza la reología fecal formadora de gel, sin alta fermentación de gases. 1-2 cucharadas con 250ml de agua.",
           "errors_alternatives": "Consumirlo sin agua suficiente, causando impactación. Alt: Goma guar.",
@@ -454,7 +454,7 @@
           "impact_evidence": "Alto (Evidencia Nivel 1)"
         },
         {
-          "id": 3,
+          "id": 53,
           "action": "Postura de Defecación (Squatting)",
           "mechanism": "Elevar las rodillas por encima de la cadera (taburete) alinea el ángulo anorrectal y relaja el músculo puborrectal.",
           "errors_alternatives": "Pujar conteniendo la respiración (Valsalva).",
@@ -462,7 +462,7 @@
           "impact_evidence": "Alto (Evidencia Nivel 2)"
         },
         {
-          "id": 4,
+          "id": 54,
           "action": "Linaclotida o Plecanatida",
           "mechanism": "Secretagogos (Agonistas guanilato ciclasa-C). Aumentan secreción de fluidos y aceleran el tránsito. Requiere prescripción médica.",
           "errors_alternatives": "Usarlo sin evaluar respuesta previa a PEG.",
@@ -470,7 +470,7 @@
           "impact_evidence": "Alto (Evidencia Nivel 1)"
         },
         {
-          "id": 5,
+          "id": 55,
           "action": "Entrenamiento del Reflejo Gastrocólico",
           "mechanism": "La motilidad colónica se dispara 30 min post-ingesta (sobre todo grasas o líquidos tibios). Sentarse 5 min tras desayunar.",
           "errors_alternatives": "Hacer fuerza excesiva al sentarse. Alt: Beber café tibio.",
@@ -478,7 +478,7 @@
           "impact_evidence": "Alto (Evidencia Nivel 2)"
         },
         {
-          "id": 6,
+          "id": 56,
           "action": "Hidratación constante (Orina clara)",
           "mechanism": "El colon extrae agua; si el cuerpo está deshidratado, el bolo fecal se deseca y petrifica.",
           "errors_alternatives": "Beber de golpe; mejor sorbos continuos.",
@@ -486,7 +486,7 @@
           "impact_evidence": "Alto (Evidencia Nivel 1)"
         },
         {
-          "id": 7,
+          "id": 57,
           "action": "Terapia de Biorretroalimentación (Biofeedback)",
           "mechanism": "Entrenamiento neuromuscular guiado por sensores para corregir contracciones paradójicas del esfínter anal.",
           "errors_alternatives": "Tomar laxantes orales si el problema es puramente expulsivo pélvico.",
@@ -494,7 +494,7 @@
           "impact_evidence": "Alto (Evidencia Nivel 1)"
         },
         {
-          "id": 8,
+          "id": 58,
           "action": "Consumo de 2 Kiwis diarios",
           "mechanism": "Efecto laxante suave clínicamente comprobado, mediado por la enzima actinidina que aumenta el volumen fecal.",
           "errors_alternatives": "Consumir kiwis inmaduros (menor enzima). Alt: Ciruelas pasas.",
@@ -502,7 +502,7 @@
           "impact_evidence": "Mod (Evidencia Nivel 2)"
         },
         {
-          "id": 9,
+          "id": 59,
           "action": "Prucaloprida",
           "mechanism": "Agonista receptor 5-HT4. Estimula directamente los reflejos peristálticos para tránsito lento refractario. Vía médica.",
           "errors_alternatives": "Contraindicado en obstrucción mecánica.",
@@ -510,7 +510,7 @@
           "impact_evidence": "Alto (Evidencia Nivel 1)"
         },
         {
-          "id": 10,
+          "id": 60,
           "action": "Ciruelas Pasas (Prunes)",
           "mechanism": "Contienen D-sorbitol, un poliol que no se absorbe y atrae agua al colon, actuando como laxante osmótico natural. 5-6 ciruelas/día.",
           "errors_alternatives": "Consumir en exceso si hay Síndrome Intestino Irritable (causan gases).",
@@ -518,7 +518,7 @@
           "impact_evidence": "Mod (Evidencia Nivel 2)"
         },
         {
-          "id": 11,
+          "id": 61,
           "action": "Óxido de Magnesio / Leche Magnesia",
           "mechanism": "Crea gradiente osmótico intra-luminal, secretando agua y electrolitos. 400-500 mg diarios iniciales.",
           "errors_alternatives": "Usarlo si existe insuficiencia renal (riesgo de hipermagnesemia).",
@@ -526,7 +526,7 @@
           "impact_evidence": "Mod (Evidencia Nivel 2)"
         },
         {
-          "id": 12,
+          "id": 62,
           "action": "Actividad Física Aeróbica (Caminar/Trotar)",
           "mechanism": "El movimiento mecánico abdominal y el tono autonómico simpático post-ejercicio aceleran el vaciamiento.",
           "errors_alternatives": "Correr maratones deshidratado.",
@@ -534,7 +534,7 @@
           "impact_evidence": "Mod (Evidencia Nivel 2)"
         },
         {
-          "id": 13,
+          "id": 63,
           "action": "Masaje abdominal secuencial (Trayecto colónico)",
           "mechanism": "Maniobra mecánica pasiva; masaje circular en sentido horario desde fosa ilíaca derecha hacia izquierda.",
           "errors_alternatives": "Presión excesiva sobre el colon inflamado.",
@@ -542,7 +542,7 @@
           "impact_evidence": "Bajo (Evidencia Nivel 3)"
         },
         {
-          "id": 14,
+          "id": 64,
           "action": "Bisacodilo o Picosulfato (Venta libre)",
           "mechanism": "Laxantes estimulantes actúan sobre mucosa colónica y bacterias para provocar peristaltismo inmediato.",
           "errors_alternatives": "Uso crónico prolongado (reservar para rescate <4 semanas).",
@@ -550,7 +550,7 @@
           "impact_evidence": "Alto (Evidencia Nivel 1)"
         },
         {
-          "id": 15,
+          "id": 65,
           "action": "Suspensión de medicación constipante",
           "mechanism": "Muchos fármacos (opioides, suplementos de hierro, anticolinérgicos) deprimen la motilidad. Revisar historial con el doctor.",
           "errors_alternatives": "Dejar medicación cardíaca abruptamente. Alt: Laxante profiláctico al usar opioide.",
@@ -558,7 +558,7 @@
           "impact_evidence": "Alto (Evidencia Nivel 1)"
         },
         {
-          "id": 16,
+          "id": 66,
           "action": "Lubiprostona",
           "mechanism": "Activador del canal de cloruro tipo 2 epitelial, secretando líquido intra-intestinal. Vía médica.",
           "errors_alternatives": "Tomar con estómago vacío (causa náuseas marcadas).",
@@ -566,7 +566,7 @@
           "impact_evidence": "Alto (Evidencia Nivel 1)"
         },
         {
-          "id": 17,
+          "id": 67,
           "action": "Dieta baja en FODMAPs (Fase de eliminación)",
           "mechanism": "Si el estreñimiento se acompaña de dolor y meteorismo severo (SII-C), restringir carbohidratos fermentables alivia distensión.",
           "errors_alternatives": "Mantenerla para siempre (afecta la microbiota a largo plazo).",
@@ -574,7 +574,7 @@
           "impact_evidence": "Mod (Evidencia Nivel 2)"
         },
         {
-          "id": 18,
+          "id": 68,
           "action": "Semillas de lino/linaza molidas",
           "mechanism": "Ricas en mucílagos y fibra insoluble finamente procesada; lubrican la luz del tracto gastrointestinal. 1-2 cdas/día en avena.",
           "errors_alternatives": "Consumir las semillas enteras (no se digieren).",
@@ -582,7 +582,7 @@
           "impact_evidence": "Mod (Evidencia Nivel 2)"
         },
         {
-          "id": 19,
+          "id": 69,
           "action": "Supositorios de Glicerina / Enemas de microenema",
           "mechanism": "Inducen reflejo evacuatorio y lubrican el recto inferior frente a impactación seca. Uso SOS.",
           "errors_alternatives": "Utilizarlos diariamente; pueden enmascarar patología subyacente.",
@@ -590,7 +590,7 @@
           "impact_evidence": "Alto (Evidencia Nivel 1)"
         },
         {
-          "id": 20,
+          "id": 70,
           "action": "Cese de esfuerzo defecatorio extremo (Straining)",
           "mechanism": "Evita el desarrollo de hemorroides, fisuras y neuropatía pudenda. Limitar el tiempo en inodoro a 5 min.",
           "errors_alternatives": "Pagar precios altos leyendo en el baño.",
@@ -598,7 +598,7 @@
           "impact_evidence": "Alto (Evidencia Nivel 2)"
         },
         {
-          "id": 21,
+          "id": 71,
           "action": "Lactulosa (Jarabe)",
           "mechanism": "Disacárido sintético osmótico no digerible que promueve peristalsis.",
           "errors_alternatives": "Puede empeorar significativamente la flatulencia inicial por fermentación.",
@@ -606,7 +606,7 @@
           "impact_evidence": "Mod (Evidencia Nivel 2)"
         },
         {
-          "id": 22,
+          "id": 72,
           "action": "Bebida caliente en ayunas (Ej. Té o Café)",
           "mechanism": "Estimula potentes contracciones propagadas de alta amplitud en el colon por reflejo autonómico matutino.",
           "errors_alternatives": "Abuso de cafeína causando ansiedad.",
@@ -614,7 +614,7 @@
           "impact_evidence": "Mod (Evidencia Nivel 3)"
         },
         {
-          "id": 23,
+          "id": 73,
           "action": "Probióticos específicos (B. lactis)",
           "mechanism": "Algunas formulaciones modulan el pH luminal y aceleran el tránsito intestinal. Tratamiento de prueba de 4 semanas.",
           "errors_alternatives": "Comprar cepas genéricas sin validación científica.",
@@ -622,7 +622,7 @@
           "impact_evidence": "Bajo (Evidencia Nivel 3)"
         },
         {
-          "id": 24,
+          "id": 74,
           "action": "Manometría anorrectal y test expulsivo",
           "mechanism": "Pruebas de diagnóstico funcional definitivas para descartar inercia colónica o disinergia antes de escalar terapia.",
           "errors_alternatives": "Tratar ciegamente el estreñimiento por años sin diagnóstico.",
@@ -630,7 +630,7 @@
           "impact_evidence": "Alto (Evidencia Nivel 1)"
         },
         {
-          "id": 25,
+          "id": 75,
           "action": "Limitar ingesta de calcio suplementario",
           "mechanism": "Altas dosis de carbonato de calcio sin magnesio reducen la contractilidad lisa del colon. Separar dosis.",
           "errors_alternatives": "Suspenderlo si hay osteoporosis severa sin aval.",
@@ -638,7 +638,7 @@
           "impact_evidence": "Mod (Evidencia Nivel 2)"
         },
         {
-          "id": 26,
+          "id": 76,
           "action": "Reducción de Alimentos Ultraprocesados",
           "mechanism": "Comidas ricas en grasas saturadas, azúcares y sin fibra celular detienen la microbiota saludable.",
           "errors_alternatives": "Reemplazar por alimentos dietéticos también procesados.",
@@ -646,7 +646,7 @@
           "impact_evidence": "Alto (Evidencia Nivel 2)"
         },
         {
-          "id": 27,
+          "id": 77,
           "action": "Masticación completa de los alimentos",
           "mechanism": "Rompe celulosa vegetal facilitando que la fibra retenga agua a su paso por el tracto digestivo.",
           "errors_alternatives": "Engullir aire (aerofagia) que causa distensión.",
@@ -654,7 +654,7 @@
           "impact_evidence": "Bajo (Evidencia Nivel 3)"
         },
         {
-          "id": 28,
+          "id": 78,
           "action": "Aceite de oliva en ayunas (1 cdta)",
           "mechanism": "Liberación de colecistoquinina (CCK) y bilis que tiene un efecto lubricante y laxante leve.",
           "errors_alternatives": "Aumenta aporte calórico significativamente (90 kcal/cucharada).",
@@ -662,7 +662,7 @@
           "impact_evidence": "Bajo (Evidencia Nivel 3)"
         },
         {
-          "id": 29,
+          "id": 79,
           "action": "Senósidos (Senna)",
           "mechanism": "Laxante natural estimulante; inhibe absorción de agua e induce motilidad. Tratamiento corto <4 semanas.",
           "errors_alternatives": "Causa dolor tipo cólico si se usa sin necesidad de rescate.",
@@ -670,7 +670,7 @@
           "impact_evidence": "Mod (Evidencia Nivel 2)"
         },
         {
-          "id": 30,
+          "id": 80,
           "action": "Descarte de enfermedades sistémicas",
           "mechanism": "Pruebas tiroideas (TSH para hipotiroidismo), glicemia, y test serológico de enfermedad celíaca.",
           "errors_alternatives": "Ignorar la pérdida de peso o sangrado (Banderas Rojas).",
@@ -713,7 +713,7 @@
       "evidence_summary": "Las técnicas con mayor respaldo científico para el manejo clínico del estrés son la CBT, el MBSR (Mindfulness-Based Stress Reduction), y la regulación vagal mediante respiración y exposición térmica.",
       "interventions": [
         {
-          "id": 1,
+          "id": 81,
           "action": "Terapia Cognitivo Conductual (CBT)",
           "mechanism": "Identificación y reestructuración de distorsiones cognitivas que disparan ansiedad.",
           "errors_alternatives": "Pensar que es solo hablar sin tareas en casa.",
@@ -721,7 +721,7 @@
           "impact_evidence": "Alto (Evidencia Nivel 1)"
         },
         {
-          "id": 2,
+          "id": 82,
           "action": "Mindfulness-Based Stress Reduction (MBSR)",
           "mechanism": "Programa estructurado de 8 semanas que reduce reactividad amigdalina.",
           "errors_alternatives": "Esperar vaciar la mente por completo.",
@@ -729,7 +729,7 @@
           "impact_evidence": "Alto (Evidencia Nivel 1)"
         },
         {
-          "id": 3,
+          "id": 83,
           "action": "Suspiro Fisiológico",
           "mechanism": "Dos inhalaciones nasales cortas seguidas de una exhalación larga. Abre alvéolos y reduce frecuencia cardíaca.",
           "errors_alternatives": "Hiperventilar exhalando corto.",
@@ -737,7 +737,7 @@
           "impact_evidence": "Mod (Evidencia Nivel 2)"
         },
         {
-          "id": 4,
+          "id": 84,
           "action": "Ejercicio Aeróbico (Zona 2)",
           "mechanism": "Estimula la neurogénesis en el hipocampo (BDNF) y modula cortisol basal.",
           "errors_alternatives": "Exceso de HIIT en estado de Burnout.",
@@ -745,7 +745,7 @@
           "impact_evidence": "Alto (Evidencia Nivel 1)"
         },
         {
-          "id": 5,
+          "id": 85,
           "action": "Relajación Muscular Progresiva (PMR)",
           "mechanism": "Tensión y relajación secuencial para enseñar al cuerpo a reconocer la ausencia de estrés físico.",
           "errors_alternatives": "Tensar al punto de causar calambre.",
@@ -753,7 +753,7 @@
           "impact_evidence": "Mod (Evidencia Nivel 2)"
         },
         {
-          "id": 6,
+          "id": 86,
           "action": "Respiración de Caja",
           "mechanism": "Inhalar, retener, exhalar y retener (4 segundos cada fase). Equilibra el sistema nervioso autónomo.",
           "errors_alternatives": "Retener forzando dolor de cabeza.",
@@ -761,7 +761,7 @@
           "impact_evidence": "Mod (Evidencia Nivel 2)"
         },
         {
-          "id": 7,
+          "id": 87,
           "action": "Grounding (Conexión a tierra o técnica 5-4-3-2-1)",
           "mechanism": "Distracción sensorial estructurada para detener ataques de pánico incipientes.",
           "errors_alternatives": "Usarlo sin práctica previa en momentos de crisis extrema.",
@@ -769,7 +769,7 @@
           "impact_evidence": "Mod (Evidencia Nivel 3)"
         },
         {
-          "id": 8,
+          "id": 88,
           "action": "Yoga y Asanas",
           "mechanism": "Combina control vagal respiratorio con estiramiento fascial.",
           "errors_alternatives": "Hacer posturas lesivas avanzadas para relajarse.",
@@ -777,7 +777,7 @@
           "impact_evidence": "Alto (Evidencia Nivel 1)"
         },
         {
-          "id": 9,
+          "id": 89,
           "action": "Optimización de la Higiene de Sueño",
           "mechanism": "Ambiente oscuro, frío (18-20°C) y silencioso. El mal dormir retroalimenta el estrés.",
           "errors_alternatives": "Dormir con televisor encendido para acompañar el sueño.",
@@ -785,7 +785,7 @@
           "impact_evidence": "Alto (Evidencia Nivel 1)"
         },
         {
-          "id": 10,
+          "id": 90,
           "action": "Terapia de Exposición al Frío",
           "mechanism": "Duchas frías (2-3 min) generan pico de dopamina y noradrenalina, aumentando resiliencia al estrés cruzado.",
           "errors_alternatives": "Exponerse tras evento cardiovascular inestable.",
@@ -793,7 +793,7 @@
           "impact_evidence": "Mod (Evidencia Nivel 2)"
         },
         {
-          "id": 11,
+          "id": 91,
           "action": "Expresión Escrita (Journaling)",
           "mechanism": "Traducir emoción a lenguaje enciende la corteza prefrontal y enfría la amígdala.",
           "errors_alternatives": "Escribir solo lo negativo sin buscar reencuadre.",
@@ -801,7 +801,7 @@
           "impact_evidence": "Mod (Evidencia Nivel 2)"
         },
         {
-          "id": 12,
+          "id": 92,
           "action": "Restricción del Tiempo en Cama",
           "mechanism": "Para el insomnio: consolidar el sueño limitando las horas de cama a las horas reales dormidas.",
           "errors_alternatives": "Tomar siestas para compensar el déficit inicial.",
@@ -809,7 +809,7 @@
           "impact_evidence": "Alto (Evidencia Nivel 1)"
         },
         {
-          "id": 13,
+          "id": 93,
           "action": "Higiene de Luz Matutina",
           "mechanism": "Ver luz solar en los primeros 30-60 min del despertar ancla el reloj circadiano y setea cortisol saludable.",
           "errors_alternatives": "Ver a través de ventanas cerradas (filtra luz clave).",
@@ -817,7 +817,7 @@
           "impact_evidence": "Alto (Evidencia Nivel 1)"
         },
         {
-          "id": 14,
+          "id": 94,
           "action": "Meditación Trascendental",
           "mechanism": "Uso de mantras para inducir respuesta de relajación y baja de presión arterial.",
           "errors_alternatives": "Frustrarse si la mente divaga.",
@@ -825,7 +825,7 @@
           "impact_evidence": "Mod (Evidencia Nivel 2)"
         },
         {
-          "id": 15,
+          "id": 95,
           "action": "Meditación de Amor Bondadoso",
           "mechanism": "Fomenta la compasión, activando áreas de recompensa social en el cerebro. Reduce severidad de enojo crónico.",
           "errors_alternatives": "Forzar positividad tóxica ignorando trauma.",
@@ -833,7 +833,7 @@
           "impact_evidence": "Mod (Evidencia Nivel 2)"
         },
         {
-          "id": 16,
+          "id": 96,
           "action": "Manejo de Tiempo (Pomodoro)",
           "mechanism": "Reduce la ansiedad por procrastinación dividiendo el trabajo en ráfagas de 25 min.",
           "errors_alternatives": "Saltarse los descansos de 5 min.",
@@ -841,7 +841,7 @@
           "impact_evidence": "Alto (Evidencia Nivel 2)"
         },
         {
-          "id": 17,
+          "id": 97,
           "action": "Terapia de Aceptación y Compromiso (ACT)",
           "mechanism": "Aceptar los pensamientos intrusivos sin juzgarlos, comprometiéndose a actuar según valores vitales.",
           "errors_alternatives": "Usarlo como técnica para suprimir pensamientos.",
@@ -849,7 +849,7 @@
           "impact_evidence": "Alto (Evidencia Nivel 1)"
         },
         {
-          "id": 18,
+          "id": 98,
           "action": "Desconexión Digital Nocturna",
           "mechanism": "Reducir cortisol causado por noticias alarmantes o correos de trabajo (Doomscrolling) antes de dormir.",
           "errors_alternatives": "Creer que filtros de luz azul evitan la activación emocional.",
@@ -857,7 +857,7 @@
           "impact_evidence": "Alto (Evidencia Nivel 1)"
         },
         {
-          "id": 19,
+          "id": 99,
           "action": "Terapia de Masaje",
           "mechanism": "Libera oxitocina y baja temporalmente el tono simpático muscular.",
           "errors_alternatives": "Esperar resolución psicológica profunda.",
@@ -865,7 +865,7 @@
           "impact_evidence": "Mod (Evidencia Nivel 2)"
         },
         {
-          "id": 20,
+          "id": 100,
           "action": "Reestructuración de Valores (ACT)",
           "mechanism": "Alienación de metas laborales hacia actividades que generan sentido vital profundo.",
           "errors_alternatives": "Confundir metas (ej. comprar un auto) con valores (ej. ser compasivo).",
@@ -873,7 +873,7 @@
           "impact_evidence": "Alto (Evidencia Nivel 1)"
         },
         {
-          "id": 21,
+          "id": 101,
           "action": "Forest Bathing (Shinrin-yoku)",
           "mechanism": "Exposición a fitoncidas de árboles y ambiente de baja demanda cognitiva.",
           "errors_alternatives": "Hacerlo escuchando podcasts de trabajo.",
@@ -881,7 +881,7 @@
           "impact_evidence": "Mod (Evidencia Nivel 2)"
         },
         {
-          "id": 22,
+          "id": 102,
           "action": "Tai Chi o Qi Gong",
           "mechanism": "Movimiento lento, equilibrio y respiración (Mindful movement).",
           "errors_alternatives": "Considerarlo un cardio intenso.",
@@ -889,7 +889,7 @@
           "impact_evidence": "Alto (Evidencia Nivel 1)"
         },
         {
-          "id": 23,
+          "id": 103,
           "action": "Biofeedback HRV (Variabilidad de Frecuencia Cardíaca)",
           "mechanism": "Entrena al usuario para aumentar su HRV (marcador de tono parasimpático) mediante control respiratorio.",
           "errors_alternatives": "Obsesionarse y generar más ansiedad por los números.",
@@ -897,7 +897,7 @@
           "impact_evidence": "Alto (Evidencia Nivel 1)"
         },
         {
-          "id": 24,
+          "id": 104,
           "action": "Musicoterapia",
           "mechanism": "Música clásica o ritmos de 60 BPM pueden inducir arrastre de ondas cerebrales hacia estados alfa.",
           "errors_alternatives": "Escuchar música con letras complejas al trabajar (distracción).",
@@ -905,7 +905,7 @@
           "impact_evidence": "Mod (Evidencia Nivel 2)"
         },
         {
-          "id": 25,
+          "id": 105,
           "action": "Escáner Corporal (Body Scan)",
           "mechanism": "Paseo de la atención por todo el cuerpo. Ideal para el insomnio de conciliación.",
           "errors_alternatives": "Dormirse en la terapia de día (si el objetivo es meditar).",
@@ -913,7 +913,7 @@
           "impact_evidence": "Alto (Evidencia Nivel 1)"
         },
         {
-          "id": 26,
+          "id": 106,
           "action": "Aromaterapia Clínica (Lavanda)",
           "mechanism": "Vía olfatoria conecta directo con sistema límbico. Linalol tiene efectos moduladores GABAérgicos.",
           "errors_alternatives": "Usarla como reemplazo de terapia psiquiátrica mayor.",
@@ -921,7 +921,7 @@
           "impact_evidence": "Bajo (Evidencia Nivel 3)"
         },
         {
-          "id": 27,
+          "id": 107,
           "action": "Mindfulness en la alimentación",
           "mechanism": "Reducción de cortisol en almuerzos, mejorando además la digestión funcional.",
           "errors_alternatives": "Contar calorías compulsivamente.",
@@ -929,7 +929,7 @@
           "impact_evidence": "Mod (Evidencia Nivel 2)"
         },
         {
-          "id": 28,
+          "id": 108,
           "action": "Desensibilización (EMDR)",
           "mechanism": "Terapia de elección para PTSD y trauma complejo, re-procesando recuerdos mediante movimiento ocular bilateral.",
           "errors_alternatives": "Auto-aplicarse EMDR en traumas severos sin psicólogo.",
@@ -937,7 +937,7 @@
           "impact_evidence": "Alto (Evidencia Nivel 1)"
         },
         {
-          "id": 29,
+          "id": 109,
           "action": "Reestructuración de Expectativas",
           "mechanism": "Técnica cognitiva para bajar el estándar de perfeccionismo dañino ('Good Enough').",
           "errors_alternatives": "Mediocridad justificada (abandono de responsabilidad).",
@@ -945,7 +945,7 @@
           "impact_evidence": "Mod (Evidencia Nivel 2)"
         },
         {
-          "id": 30,
+          "id": 110,
           "action": "Diario de Gratitud",
           "mechanism": "Re-entrena al cerebro para notar sesgos positivos y reducir el sesgo de negatividad evolutivo.",
           "errors_alternatives": "Escribirlo mecánicamente sin conectar emocionalmente.",
@@ -969,7 +969,7 @@
       "evidence_summary": "Guías del NHS y ESPEN dictaminan que los adultos requieren entre 2.0 y 3.4 L diarios (20% proviene de la dieta sólida). La deshidratación intrahospitalaria es una causa crítica de letargo.",
       "interventions": [
         {
-          "id": 1,
+          "id": 111,
           "action": "Iniciar el día con 500ml de agua",
           "mechanism": "Rompe el ayuno hídrico nocturno y normaliza la osmolalidad matutina.",
           "errors_alternatives": "Usar vaso junto a la cama.",
@@ -977,7 +977,7 @@
           "impact_evidence": "Mod (Niv 2)"
         },
         {
-          "id": 2,
+          "id": 112,
           "action": "Monitoreo visual de la orina",
           "mechanism": "Color 'amarillo pálido' o 'paja' confirma la euhidratación perfecta.",
           "errors_alternatives": "Orina oscura = déficit.",
@@ -985,7 +985,7 @@
           "impact_evidence": "Alto (Niv 1)"
         },
         {
-          "id": 3,
+          "id": 113,
           "action": "Reemplazar jugos y bebidas",
           "mechanism": "Sustituir bebidas azucaradas por agua o infusiones reduce drásticamente obesidad y riesgo metabólico.",
           "errors_alternatives": "Error: migrar a bebidas isotónicas comerciales ricas en azúcar.",
@@ -993,7 +993,7 @@
           "impact_evidence": "Alto (Niv 1)"
         },
         {
-          "id": 4,
+          "id": 114,
           "action": "Hidratación intra y post entrenamiento",
           "mechanism": "Compensar la tasa de sudoración pesando antes/después y reponiendo 1.5x lo perdido.",
           "errors_alternatives": "Esencial si se pierde >2% masa corporal en fluidos.",
@@ -1001,7 +1001,7 @@
           "impact_evidence": "Alto (Niv 1)"
         },
         {
-          "id": 5,
+          "id": 115,
           "action": "Incrementar sopas o verduras altas en H2O",
           "mechanism": "Sandía, pepino, caldos; aportan hasta 20-30% de las necesidades hídricas totales pasivamente.",
           "errors_alternatives": "Excelente para adultos mayores que pierden la sed.",
@@ -1009,7 +1009,7 @@
           "impact_evidence": "Alto (Niv 1)"
         },
         {
-          "id": 6,
+          "id": 116,
           "action": "Infusionar el agua natural",
           "mechanism": "Rodajas de limón, pepino, menta; mejora la palatabilidad.",
           "errors_alternatives": "Ideal si la dureza del agua potable de Santiago resulta desagradable.",
@@ -1017,7 +1017,7 @@
           "impact_evidence": "Alto (Niv 2)"
         },
         {
-          "id": 7,
+          "id": 117,
           "action": "\"Nudging\" (Botella siempre a la vista)",
           "mechanism": "Disminuye la fricción. La mera exposición constante detona tomas inconscientes a lo largo del día.",
           "errors_alternatives": "Comprar termo insulado (conserva frío).",
@@ -1025,7 +1025,7 @@
           "impact_evidence": "Mod (Niv 2)"
         },
         {
-          "id": 8,
+          "id": 118,
           "action": "Dilución de bebidas (Cordials)",
           "mechanism": "Llenar el vaso con 80% agua y 20% de jugo, transicionando a paladares menos dulces.",
           "errors_alternatives": "Puente para infantes y adultos reacios.",
@@ -1033,7 +1033,7 @@
           "impact_evidence": "Mod (Niv 2)"
         },
         {
-          "id": 9,
+          "id": 119,
           "action": "Pares conductuales (Agua en cada comida)",
           "mechanism": "Beber un vaso de agua antes, durante y después de los principales tiempos de comida.",
           "errors_alternatives": "Ayuda además levemente a la saciedad temprana.",
@@ -1041,7 +1041,7 @@
           "impact_evidence": "Alto (Niv 2)"
         },
         {
-          "id": 10,
+          "id": 120,
           "action": "Uso de filtros domiciliarios",
           "mechanism": "En zonas con agua muy dura (como RM/Providencia), ablanda el perfil organoléptico (sin sarro).",
           "errors_alternatives": "Previene uso de hervidores dañados y rechazo al grifo.",
@@ -1049,7 +1049,7 @@
           "impact_evidence": "Mod (Niv 3)"
         },
         {
-          "id": 11,
+          "id": 121,
           "action": "Hidratación proactiva en lugar de reactiva",
           "mechanism": "La sensación de sed aparece cuando ya existe ~1% de déficit volumétrico. Beber por horarios, no por sed.",
           "errors_alternatives": "Poner recordatorios en el móvil.",
@@ -1057,7 +1057,7 @@
           "impact_evidence": "Alto (Niv 1)"
         },
         {
-          "id": 12,
+          "id": 122,
           "action": "Consumo de electrolitos en sudor extremo",
           "mechanism": "Reposición de sodio (Na+) si el ejercicio/calor dura >60-90 min para prevenir hiponatremia dilucional.",
           "errors_alternatives": "Error: Tomar Gatorade sin realizar ningún esfuerzo físico (azúcar).",
@@ -1065,7 +1065,7 @@
           "impact_evidence": "Alto (Niv 1)"
         },
         {
-          "id": 13,
+          "id": 123,
           "action": "Regla compensatoria (Café/Té/Alcohol)",
           "mechanism": "Tomar un vaso de agua por cada taza/vaso de estas sustancias que poseen efectos diuréticos dosis-dependientes.",
           "errors_alternatives": "Evita la hemoconcentración.",
@@ -1073,7 +1073,7 @@
           "impact_evidence": "Mod (Niv 2)"
         },
         {
-          "id": 14,
+          "id": 124,
           "action": "Agua Mineral carbonatada (Con gas)",
           "mechanism": "Alternativa sin azúcar y sin calorías al antojo mecánico de efervescencia de los refrescos.",
           "errors_alternatives": "Error: Confundir con agua tónica, que sí contiene jarabe de maíz o azúcar.",
@@ -1081,7 +1081,7 @@
           "impact_evidence": "Alto (Niv 1)"
         },
         {
-          "id": 15,
+          "id": 125,
           "action": "Monitoreo clínico de fármacos depletivos",
           "mechanism": "Diuréticos (Furosemida), laxantes, y litio incrementan pérdidas obligatorias.",
           "errors_alternatives": "Obligatorio control con médico tratante geriátrico.",
@@ -1089,7 +1089,7 @@
           "impact_evidence": "Alto (Niv 1)"
         },
         {
-          "id": 16,
+          "id": 126,
           "action": "Apps o Smart Bottles",
           "mechanism": "Relojes y aplicaciones programadas que alertan con sonido u olor vibratorio para recordar metas.",
           "errors_alternatives": "Combate la falla de memoria prospectiva.",
@@ -1097,7 +1097,7 @@
           "impact_evidence": "Mod (Niv 2)"
         },
         {
-          "id": 17,
+          "id": 127,
           "action": "Leche magra o alternativas lácteas",
           "mechanism": "Índices de hidratación altísimos; matriz de macronutrientes enlentece el aclaramiento gástrico reteniendo fluido.",
           "errors_alternatives": "Alternativa efectiva post-ejercicio, provee proteína.",
@@ -1105,7 +1105,7 @@
           "impact_evidence": "Alto (Niv 1)"
         },
         {
-          "id": 18,
+          "id": 128,
           "action": "Vasos isotérmicos (Temperatura)",
           "mechanism": "El agua fría o a temperatura precisa mejora dramáticamente el reflejo de ingesta y tolerancia térmica.",
           "errors_alternatives": "Especialmente útil en el crudo verano capitalino.",
@@ -1113,7 +1113,7 @@
           "impact_evidence": "Mod (Niv 2)"
         },
         {
-          "id": 19,
+          "id": 129,
           "action": "Estratificación vespertina",
           "mechanism": "Beber 70% del agua antes de las 18:00h para evitar la nicturia (despertares para orinar), protegiendo la arquitectura del sueño.",
           "errors_alternatives": "Crucial en hombres con HBP (próstata) y adultos mayores.",
@@ -1121,7 +1121,7 @@
           "impact_evidence": "Alto (Niv 2)"
         },
         {
-          "id": 20,
+          "id": 130,
           "action": "Aumentar líquidos ante fiebre o infección",
           "mechanism": "La pérdida insensible de líquidos sube drásticamente con la termogénesis inducida por patógenos.",
           "errors_alternatives": "Prevención de falla prerrenal aguda y letargo.",

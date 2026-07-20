@@ -1,14 +1,14 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const SPLASH_KEY = 'splash_shown_v1';
+const SPLASH_KEY = 'splash_shown_v2';
 
 function isPwaStandalone() {
   if (typeof window === 'undefined') return false;
   try {
     if (window.matchMedia('(display-mode: standalone)').matches) return true;
     if (window.navigator.standalone === true) return true;
-  } catch (_) { /* ignore */ }
+  } catch (_) {}
   return false;
 }
 
@@ -20,32 +20,34 @@ function shouldBypassSplash() {
   }
 }
 
-const BienestarEnClaroSplash = ({ onFinish = () => {} }) => {
+const BienestarEnClaroSplash = () => {
   const [phase, setPhase] = useState('idle');
   const [bypass, setBypass] = useState(() => shouldBypassSplash());
-  const onFinishRef = useRef(onFinish);
-  onFinishRef.current = onFinish;
+  const onFinishRef = useRef(() => {});
 
   const shouldShow = !bypass;
 
   useEffect(() => {
     if (bypass) {
-      onFinishRef.current?.();
+      onFinishRef.current();
       return;
     }
 
-    try { localStorage.setItem(SPLASH_KEY, 'true'); } catch (_) { /* ignore */ }
+    try { localStorage.setItem(SPLASH_KEY, 'true'); } catch (_) {}
 
-    const t1 = setTimeout(() => setPhase('grow'), 400);
-    const t2 = setTimeout(() => setPhase('pulse'), 1600);
+    const t1 = setTimeout(() => setPhase('grow'), 180);
+    const t2 = setTimeout(() => setPhase('pulse'), 700);
     const t3 = setTimeout(() => setPhase('fade'), 2800);
     const t4 = setTimeout(() => {
       setPhase('done');
-      onFinishRef.current?.();
+      onFinishRef.current();
     }, 3400);
 
     return () => {
-      clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4);
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      clearTimeout(t4);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -54,113 +56,77 @@ const BienestarEnClaroSplash = ({ onFinish = () => {} }) => {
   if (phase === 'done') return null;
 
   return (
-    <AnimatePresence>
-      {phase !== 'done' && (
+    <>
+      <style>{`
+        @keyframes logoGrow {
+          0% { opacity: 0; transform: scale(0.985) translateY(8px); }
+          100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        @keyframes logoBreathe {
+          0% { transform: scale(1); }
+          50% { transform: scale(1.012); }
+          100% { transform: scale(1); }
+        }
+        @keyframes contentFade {
+          0% { opacity: 0; transform: translateY(10px); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+        .animate-logo-grow {
+          animation: logoGrow 520ms cubic-bezier(0.33, 1, 0.68, 1) both;
+        }
+        .animate-logo-breathe {
+          animation: logoBreathe 550ms cubic-bezier(0.42, 0, 0.58, 1) both;
+        }
+        .animate-content-fade {
+          animation: contentFade 200ms cubic-bezier(0.33, 1, 0.68, 1) both;
+        }
+      `}</style>
+
+      <AnimatePresence>
         <motion.div
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden"
-          style={{
-            background: 'linear-gradient(165deg, #f8fdf9 0%, #f0fdf4 30%, #ffffff 60%, #fafdf6 100%)',
-          }}
+          className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden bg-white"
           initial={{ opacity: 1 }}
           animate={{ opacity: phase === 'fade' ? 0 : 1 }}
-          transition={{ duration: 0.8, ease: 'easeInOut' }}
+          transition={{ duration: 0.6, ease: 'easeInOut' }}
+          style={{
+            fontFamily: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+          }}
         >
-          {/* Subtle ambient glow */}
-          <motion.div
-            className="absolute"
-            style={{
-              width: 300,
-              height: 300,
-              borderRadius: '50%',
-              background: 'radial-gradient(circle, rgba(16,185,129,0.06) 0%, transparent 70%)',
-              filter: 'blur(40px)',
-            }}
-            animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.7, 0.4] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-          />
-
-          {/* Logo */}
-          <motion.img
-            src="/branding/mujer logo.svg"
+        <div className="flex items-center justify-center">
+          <img
+            src="/animacion para bienestar en claro.svg"
             alt="Bienestar en Claro"
-            className="w-48 h-auto"
-            animate={{
-              scale: phase === 'grow'
-                ? [0.7, 1]
-                : phase === 'pulse'
-                  ? [1, 1.03, 0.97, 1]
-                  : 1,
-              opacity: phase === 'grow' ? [0, 1] : 1,
-            }}
-            transition={{
-              scale: phase === 'grow'
-                ? { duration: 1.2, times: [0, 1], ease: [0.25, 0.1, 0.25, 1] }
-                : phase === 'pulse'
-                  ? { duration: 1.2, times: [0, 0.2, 0.6, 1], ease: 'easeInOut' }
-                  : { duration: 0.8 },
-              opacity: { duration: 0.8, ease: 'easeOut' },
+            className={phase === 'grow' ? 'animate-logo-grow' : phase === 'pulse' ? 'animate-logo-breathe' : ''}
+            style={{
+              transformOrigin: 'center',
+              display: 'block',
             }}
           />
+        </div>
 
-          {/* Breathing glow behind logo during pulse */}
-          {phase === 'pulse' && (
-            <motion.div
-              className="absolute"
-              style={{
-                width: 180,
-                height: 180,
-                borderRadius: '50%',
-                background: 'radial-gradient(circle, rgba(52,211,153,0.08) 0%, transparent 70%)',
-                filter: 'blur(20px)',
-              }}
-              animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0.6, 0.3] }}
-              transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-            />
-          )}
-
-          {/* Title */}
-          <motion.h1
-            className="text-3xl md:text-5xl font-light tracking-[0.3em] text-gray-800/90 uppercase mt-8"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{
-              opacity: phase === 'pulse' ? 1 : 0,
-              y: phase === 'pulse' ? 0 : 12,
-            }}
-            transition={{ duration: 0.9, ease: [0.25, 0.1, 0.25, 1] }}
+        <div
+          className={`animate-content-fade ${phase === 'pulse' || phase === 'fade' ? '' : 'opacity-0'}`}
+          style={{
+            textAlign: 'center',
+            marginTop: '20px',
+          }}
+        >
+          <h1
+            className="font-light tracking-[0.25em] text-gray-700"
+            style={{ fontSize: 'clamp(1.25rem, 4vw, 1.75rem)' }}
           >
             Bienestar
-          </motion.h1>
-
-          {/* Subtitle */}
-          <motion.h2
-            className="text-xs md:text-sm tracking-[0.5em] text-emerald-600/80 font-light uppercase mt-2"
-            initial={{ opacity: 0, y: 8 }}
-            animate={{
-              opacity: phase === 'pulse' ? 1 : 0,
-              y: phase === 'pulse' ? 0 : 8,
-            }}
-            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+          </h1>
+          <h2
+            className="font-light tracking-[0.5em] text-emerald-600"
+            style={{ fontSize: 'clamp(0.65rem, 2vw, 0.875rem)', marginTop: '6px' }}
           >
             en Claro
-          </motion.h2>
-
-          {/* Bottom loader */}
-          <motion.div
-            className="absolute bottom-16 w-32 h-[1px] bg-gray-200/40 overflow-hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: phase === 'pulse' || phase === 'fade' ? 1 : 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <motion.div
-              className="h-full bg-emerald-400/40"
-              initial={{ x: '-100%' }}
-              animate={{ x: '100%' }}
-              transition={{ duration: 2, ease: 'easeInOut', repeat: Infinity, repeatDelay: 0.5 }}
-            />
-          </motion.div>
+          </h2>
+        </div>
         </motion.div>
-      )}
-    </AnimatePresence>
+      </AnimatePresence>
+    </>
   );
 };
 

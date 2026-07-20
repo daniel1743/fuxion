@@ -8,7 +8,9 @@
     "build": "node scripts/regenerate-all-icons.cjs && node scripts/generate-sitemap-final.cjs && vite build",
     "sitemap": "node scripts/generate-sitemap-final.cjs",
     "preview": "vite preview --host :: --port 3000",
-    "compress-images": "node scripts/compress-product-images.js"
+    "compress-images": "node scripts/compress-product-images.js",
+    "convert-biblia": "node scripts/convert-biblia-to-articles.mjs",
+    "enrich-article": "node scripts/enrich-article.mjs"
   },
   "dependencies": {
     "@hugeicons/core-free-icons": "^4.2.2",

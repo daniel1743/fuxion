@@ -1,12 +1,13 @@
-const CACHE_NAME = 'bienestar-en-claro-v1';
+const CACHE_NAME = 'bienestar-en-claro-v3';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
-  '/manifest.webmanifest',
-  '/icons/android-chrome-192x192.png',
-  '/icons/android-chrome-512x512.png',
+  '/manifest.json',
+  '/branding/social/og-image.png',
   '/branding/pwa/icon-192.png',
   '/branding/pwa/icon-512.png',
+  '/branding/pwa/maskable-192.png',
+  '/branding/pwa/maskable-512.png',
 ];
 
 self.addEventListener('install', (event) => {

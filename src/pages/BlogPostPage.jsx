@@ -16,6 +16,7 @@ import { parseCategories, CATEGORY_CATALOG } from '@/lib/categoryCatalog';
 import { TAG_CATALOG } from '@/lib/tagCatalog';
 import { buildBreadcrumbSchema, buildPersonSchema, buildWebsiteSchema } from '@/lib/productSeo';
 import { generateArticleSchema, generateFaqSchema, extractSemanticKeywords } from '@/lib/articleEnricher';
+import { trackEvent } from '@/lib/userJourneyContext';
 import ArticleBadges from '@/components/blog/ArticleBadges';
 import TableOfContents from '@/components/TableOfContents';
 
@@ -40,6 +41,14 @@ const BlogPostPage = () => {
       const data = await getPostBySlug(slug);
       if (data) {
         setPost(data);
+        trackEvent('ARTICLE_VIEW', {
+          title: data.title || data.meta_title,
+          slug: data.slug || slug,
+          category: data.categoria || data.category || 'General',
+          type: 'blog',
+          entities: extractSemanticKeywords ? extractSemanticKeywords(data.title || data.meta_title || '') : [],
+          taxonomy: data.taxonomia || data.taxonomy || null,
+        });
       } else {
         navigate('/blog');
       }

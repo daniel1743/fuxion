@@ -37,7 +37,24 @@
       "Bash(n\\\\\")",
       "Bash(powershell -Command \"\\(Get-Content 'scripts/generate-sitemap.cjs' -Raw\\) -split \\\\\"`n\\\\\")",
       "Bash(Select-Object -Index 11,12,13\")",
-      "Bash(powershell -Command \"\\(Get-ChildItem -Path . -Filter 'biblioteca*' -Recurse -File\\).FullName\")"
+      "Bash(powershell -Command \"\\(Get-ChildItem -Path . -Filter 'biblioteca*' -Recurse -File\\).FullName\")",
+      "Bash(winget list *)",
+      "Bash(nvm list *)",
+      "Bash(winget install *)",
+      "Bash(choco install *)",
+      "Bash(scoop install *)",
+      "Bash(curl *)",
+      "Bash(choco list *)",
+      "Bash(dir C:\\\\Users\\\\Lenovo\\\\Desktop\\\\proyectos desplegados importante\\\\de daniel falcon\\\\public\\\\branding\\\\base de datos bienestar ia *)",
+      "Bash(npm run *)",
+      "Bash(curl -s http://localhost:5173)",
+      "Bash(powershell -Command \"Remove-Item 'C:\\\\Users\\\\Lenovo\\\\AppData\\\\Local\\\\Google\\\\Chrome\\\\User Data\\\\Default\\\\Local Storage\\\\leveldb' -Recurse -Force -ErrorAction SilentlyContinue; Write-Output 'cleared'\")",
+      "Bash(start http://localhost:3001)",
+      "PowerShell(node -e 'var fs=require\\(\"fs\"\\); var c=fs.readFileSync\\(\"supabase_schema_v2.sql\",\"utf-8\"\\); console.log\\(c\\);')",
+      "PowerShell(node -e \"var fs=require\\('fs'\\); var d=fs.readFileSync\\('src/data/conditions/catalog.json','utf-8'\\); var c=JSON.parse\\(d\\); var lines=['// Auto-generated from catalog.json','export const CONDITIONS_HUB = {']; Object.entries\\(c.conditions\\).forEach\\(function\\([k,v]\\){var kw='['+v.keywords.map\\(function\\(x\\){return JSON.stringify\\(x\\)}\\).join\\(','\\)+']';var prod='['+v.products.map\\(function\\(x\\){return JSON.stringify\\(x\\)}\\).join\\(','\\)+']';lines.push\\('  '+JSON.stringify\\(k\\)+': { title: '+JSON.stringify\\(v.title\\)+', description: '+JSON.stringify\\(v.description\\)+', keywords: '+kw+', products: '+prod+', icon: '+JSON.stringify\\(v.icon\\)+', medicalCondition: '+JSON.stringify\\(v.medicalCondition\\)+', medicalCode: '+JSON.stringify\\(v.medicalCode\\)+' },'\\);}\\); lines.push\\('};'\\); fs.writeFileSync\\('src/data/conditionHub.js',lines.join\\('\\\\n'\\),'utf-8'\\); console.log\\('OK '+Object.keys\\(c.conditions\\).length+' conditions'\\);\")",
+      "PowerShell(node -e \"var fs=require\\('fs'\\); var c=fs.readFileSync\\('scripts/generate-sitemap-final.cjs','utf-8'\\); console.log\\('Contains conditionPages:', c.includes\\('conditionPages'\\)\\); console.log\\('Contains /condicion/:', c.includes\\('/condicion/'\\)\\); var idx=c.indexOf\\('conditionPages'\\); if\\(idx>=0\\) console.log\\(c.slice\\(idx,idx+200\\)\\);\")",
+      "PowerShell(node -e \"var fs=require\\('fs'\\); var c=fs.readFileSync\\('scripts/generate-sitemap-final.cjs','utf-8'\\); var idx=c.indexOf\\('staticPages\\);'\\); console.log\\('idx='+idx\\); if\\(idx>=0\\) console.log\\('Found staticPages'\\); else console.log\\('Not found'\\);\")",
+      "PowerShell(node -e \"var fs=require\\('fs'\\); var c=fs.readFileSync\\('scripts/generate-sitemap-final.cjs','utf-8'\\); var lines=c.split\\('\\\\n'\\); for\\(var i=0;i<lines.length;i++\\){if\\(lines[i].indexOf\\('staticPages'\\)>=0\\) console.log\\(i+1+': '+lines[i].trim\\(\\)\\);}\")"
     ]
   }
 }

@@ -61,7 +61,7 @@ const PRODUCT_KEYWORD_MAP = {
 
 // Map article topics to bible module IDs
 const ARTICLE_TOPIC_TO_MODULE = {
-  'cirrosis': 6, 'hígado graso': 6, 'hígado': 6, 'esteatosis': 6, 'hepat': 6,
+  'cirrosis': 1, 'hígado graso': 6, 'hígado': 6, 'esteatosis': 6, 'hepat': 6, 'hepatización': 6, 'hepatiti': 6,
   'digestión': 2, 'estreñimiento': 2, 'disbiosis': 2, 'microbiota': 2,
   'colon irritable': 2, 'gastritis': 2, 'reflujo': 2, 'sibo': 2,
   'fibra': 2, 'intestino irritable': 2, 'permeabilidad intestinal': 2,

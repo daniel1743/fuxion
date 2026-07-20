@@ -7,6 +7,7 @@ import '@/index.css';
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from '@/context/ThemeProvider';
 import { initializeAdvisorFromUrl } from '@/lib/whatsapp';
+import PerformanceProvider from '@/components/PerformanceProvider';
 
 initializeAdvisorFromUrl();
 
@@ -32,11 +33,13 @@ if (import.meta.env.PROD && 'serviceWorker' in navigator) {
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <>
-    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-      <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
-        <App />
-        <Toaster />
-      </ThemeProvider>
-    </BrowserRouter>
+    <PerformanceProvider>
+      <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
+          <App />
+          <Toaster />
+        </ThemeProvider>
+      </BrowserRouter>
+    </PerformanceProvider>
   </>
 );

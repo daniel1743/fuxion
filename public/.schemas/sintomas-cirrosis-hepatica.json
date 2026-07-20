@@ -6,7 +6,7 @@
     "description": "Conoce los síntomas de la cirrosis hepática, desde las primeras señales hasta los signos de alarma. Aprende cuándo consultar y qué esperar durante la enfermedad.",
     "about": {
       "@type": "MedicalCondition",
-      "name": "Ejercicio, Aparato Cardiovascular y Longevidad Funcional"
+      "name": "Nutrición, Metabolismo y Peso Corporal"
     },
     "keywords": [
       "energía",
@@ -37,46 +37,6 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "¿Qué es Terapia Cognitivo Conductual (CBT)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Identificación y reestructuración de distorsiones cognitivas que disparan ansiedad."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Mindfulness-Based Stress Reduction (MBSR)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Programa estructurado de 8 semanas que reduce reactividad amigdalina."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Suspiro Fisiológico?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Dos inhalaciones nasales cortas seguidas de una exhalación larga. Abre alvéolos y reduce frecuencia cardíaca."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Ejercicio Aeróbico (Zona 2)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Estimula la neurogénesis en el hipocampo (BDNF) y modula cortisol basal."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Relajación Muscular Progresiva (PMR)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Tensión y relajación secuencial para enseñar al cuerpo a reconocer la ausencia de estrés físico."
-        }
-      },
       {
         "@type": "Question",
         "name": "¿Qué es Terapia farmacológica (Agonistas GLP-1/GIP)?",
@@ -115,6 +75,46 @@
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Modifica el entorno limitando estímulos supernormales. Escoger productos sin sellos 'Alto en Calorías/Azúcares'."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Terapia Cognitivo Conductual (CBT)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Identificación y reestructuración de distorsiones cognitivas que disparan ansiedad."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Mindfulness-Based Stress Reduction (MBSR)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Programa estructurado de 8 semanas que reduce reactividad amigdalina."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Suspiro Fisiológico?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dos inhalaciones nasales cortas seguidas de una exhalación larga. Abre alvéolos y reduce frecuencia cardíaca."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Ejercicio Aeróbico (Zona 2)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Estimula la neurogénesis en el hipocampo (BDNF) y modula cortisol basal."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Relajación Muscular Progresiva (PMR)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tensión y relajación secuencial para enseñar al cuerpo a reconocer la ausencia de estrés físico."
         }
       }
     ]

@@ -113,14 +113,14 @@ CREATE POLICY "admin_users_public_delete"
 ON public.admin_users
 FOR DELETE
 TO anon, authenticated
-USING (lower(email) <> 'falcondaniel37@gmail.com');
+USING (lower(email) <> 'falcondaniel37@gmail.com' AND lower(email) <> 'admin@bienestarenclaro.com');
 
 -- Configuración visible del sitio.
 CREATE TABLE IF NOT EXISTS public.site_settings (
   id TEXT PRIMARY KEY DEFAULT 'main',
   site_name TEXT NOT NULL DEFAULT 'Bienestar en Claro Chile',
   logo_url TEXT,
-  owner_name TEXT DEFAULT 'Daniel Falcon',
+  owner_name TEXT DEFAULT 'Daniel Falcón',
   tagline TEXT DEFAULT 'Asesoría personalizada en productos Fuxion',
   updated_by TEXT,
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
@@ -198,6 +198,33 @@ FOR DELETE
 TO anon, authenticated
 USING (true);
 
+-- =============================================
+-- FUNCIONES AUXILIARES
+-- =============================================
+CREATE OR REPLACE FUNCTION public.update_updated_at_column()
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.updated_at = NOW();
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION public.current_user_is_main_admin()
+RETURNS BOOLEAN
+LANGUAGE sql
+STABLE
+SECURITY DEFINER
+SET search_path = public
+AS $$
+  SELECT lower(COALESCE(auth.jwt() ->> 'email', '')) IN ('falcondaniel37@gmail.com', 'admin@bienestarenclaro.com')
+    AND EXISTS (
+      SELECT 1
+      FROM public.admin_users
+      WHERE lower(email) = lower(COALESCE(auth.jwt() ->> 'email', ''))
+        AND is_active = true
+    );
+$$;
+
 DROP TRIGGER IF EXISTS update_admin_users_updated_at ON public.admin_users;
 CREATE TRIGGER update_admin_users_updated_at
   BEFORE UPDATE ON public.admin_users
@@ -211,14 +238,21 @@ CREATE TRIGGER update_evidence_posts_updated_at
   EXECUTE FUNCTION public.update_updated_at_column();
 
 INSERT INTO public.admin_users (email, name, is_active, created_by)
-VALUES ('falcondaniel37@gmail.com', 'Daniel Falcon', true, 'system')
+VALUES ('falcondaniel37@gmail.com', 'Daniel Falcón', true, 'system')
+ON CONFLICT (email) DO UPDATE SET
+  name = COALESCE(public.admin_users.name, EXCLUDED.name),
+  is_active = true,
+  updated_at = NOW();
+
+INSERT INTO public.admin_users (email, name, is_active, created_by)
+VALUES ('admin@bienestarenclaro.com', 'Admin Bienestar en Claro', true, 'system')
 ON CONFLICT (email) DO UPDATE SET
   name = COALESCE(public.admin_users.name, EXCLUDED.name),
   is_active = true,
   updated_at = NOW();
 
 INSERT INTO public.site_settings (id, site_name, owner_name, tagline)
-VALUES ('main', 'Bienestar en Claro Chile', 'Daniel Falcon', 'Asesoría personalizada en productos Fuxion')
+VALUES ('main', 'Bienestar en Claro Chile', 'Daniel Falcón', 'Asesoría personalizada en productos Fuxion')
 ON CONFLICT (id) DO NOTHING;
 
 CREATE OR REPLACE FUNCTION public.is_app_admin(input_email TEXT)

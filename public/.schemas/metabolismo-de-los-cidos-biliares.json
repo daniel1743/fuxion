@@ -6,7 +6,7 @@
     "description": "> * Los ácidos biliares son moléculas sintetizadas en el hígado a partir del colesterol, esenciales para la digestión y absorción de grasas y vitaminas liposolubles (A, D, E, K). > * Su circulación enterohepática —el viaje desde el hígado al intestino y de regreso— se repite entre 4 y 12 veces al dí",
     "about": {
       "@type": "MedicalCondition",
-      "name": "Ejercicio, Aparato Cardiovascular y Longevidad Funcional"
+      "name": "Nutrición, Metabolismo y Peso Corporal"
     },
     "keywords": [
       "metabolismo",
@@ -40,6 +40,46 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Qué es Terapia farmacológica (Agonistas GLP-1/GIP)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Retrasan el vaciamiento gástrico y actúan en el hipotálamo induciendo saciedad profunda. Indicar bajo supervisión si IMC >27 con comorbilidades."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Déficit calórico individualizado (500-750 kcal/día)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ley de termodinámica; fuerza al cuerpo a oxidar triglicéridos almacenados. Calcular TDEE y restar 500 kcal con registro en app."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Aumento de Proteína (1.2-1.5 g/kg/día)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Incrementa el efecto térmico de los alimentos y provee sustrato anabólico. Incluir 25-30g de proteína magra por comida."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Entrenamiento de Fuerza (2-3 días/sem)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Mejora la densidad de receptores GLUT4 y capilarización muscular. Ejercicios multiarticulares progresivos."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Sustitución guiada por Ley de Etiquetados?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Modifica el entorno limitando estímulos supernormales. Escoger productos sin sellos 'Alto en Calorías/Azúcares'."
+        }
+      },
       {
         "@type": "Question",
         "name": "¿Qué es Polietilenglicol (PEG 3350)?",
@@ -158,46 +198,6 @@
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Sandía, pepino, caldos; aportan hasta 20-30% de las necesidades hídricas totales pasivamente."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Terapia farmacológica (Agonistas GLP-1/GIP)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Retrasan el vaciamiento gástrico y actúan en el hipotálamo induciendo saciedad profunda. Indicar bajo supervisión si IMC >27 con comorbilidades."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Déficit calórico individualizado (500-750 kcal/día)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Ley de termodinámica; fuerza al cuerpo a oxidar triglicéridos almacenados. Calcular TDEE y restar 500 kcal con registro en app."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Aumento de Proteína (1.2-1.5 g/kg/día)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Incrementa el efecto térmico de los alimentos y provee sustrato anabólico. Incluir 25-30g de proteína magra por comida."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Entrenamiento de Fuerza (2-3 días/sem)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Mejora la densidad de receptores GLUT4 y capilarización muscular. Ejercicios multiarticulares progresivos."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Sustitución guiada por Ley de Etiquetados?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Modifica el entorno limitando estímulos supernormales. Escoger productos sin sellos 'Alto en Calorías/Azúcares'."
         }
       }
     ]

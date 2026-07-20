@@ -15,6 +15,7 @@ import { SITE_URL, STORE_NAME } from '@/lib/productSeo';
  *   articleTags   — Array of article tags (for article:tag OG)
  *   articleAuthor — Author name for article:author OG
  *   articlePublished — Published date for article:published_time OG
+ *   articleModified — Modified date for article:modified_time OG
  *   noindex       — If true, sets robots to noindex
  *   schema        — Optional array of schema.org JSON-LD objects
  *   children      — Additional Helmet children (e.g. extra meta tags)
@@ -29,6 +30,7 @@ const SEO = ({
   articleTags = [],
   articleAuthor = '',
   articlePublished = '',
+  articleModified = '',
   noindex = false,
   schema = [],
   children
@@ -63,6 +65,9 @@ const SEO = ({
       )}
       {ogType === 'article' && articlePublished && (
         <meta property="article:published_time" content={articlePublished} />
+      )}
+      {ogType === 'article' && articleModified && (
+        <meta property="article:modified_time" content={articleModified} />
       )}
       {ogType === 'article' && articleTags && (
         <meta property="article:section" content={articleTags[0] || ''} />

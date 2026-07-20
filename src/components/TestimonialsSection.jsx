@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { StarIcon, QuoteUpIcon, SentIcon } from '@hugeicons/core-free-icons';
+import SEO from '@/components/SEO';
 
 const testimonials = [
   {
@@ -55,6 +56,11 @@ const testimonials = [
   }
 ];
 
+// Calcular rating promedio
+const totalRatings = testimonials.reduce((sum, t) => sum + t.rating, 0);
+const averageRating = (totalRatings / testimonials.length).toFixed(1);
+const reviewCount = testimonials.length;
+
 const TestimonialsSection = ({ title, subtitle, variant = 'default', showForm = true }) => {
   const colors = variant === 'dark'
     ? { bg: 'bg-gray-900', text: 'text-white', muted: 'text-gray-400', cardBg: 'bg-gray-800', accent: 'text-emerald-400' }
@@ -83,6 +89,24 @@ const TestimonialsSection = ({ title, subtitle, variant = 'default', showForm = 
 
   return (
     <section className={`${colors.bg} py-16 sm:py-20 overflow-hidden`}>
+      <SEO
+        title={title || 'Opiniones — Experiencias de consumidores FuXion'}
+        description={subtitle || 'Lee experiencias compartidas por consumidores que han probado productos FuXion y publicado sus opiniones en plataformas públicas.'}
+        schema={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'AggregateRating',
+            ratingValue: averageRating,
+            reviewCount: reviewCount,
+            bestRating: 5,
+            worstRating: 1,
+            author: {
+              '@type': 'Organization',
+              name: 'Bienestar en Claro Chile'
+            }
+          }
+        ]}
+      />
       <div className="container mx-auto px-5">
         {/* Nota discreta */}
         <motion.p
