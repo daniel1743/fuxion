@@ -46,7 +46,6 @@ const AboutPage = lazy(() => import('@/pages/AboutPage'));
 const PrivacyPolicyPage = lazy(() => import('@/pages/PrivacyPolicyPage'));
 const CookiesPolicyPage = lazy(() => import('@/pages/CookiesPolicyPage'));
 const PersonalizedPlanPage = lazy(() => import('@/pages/PersonalizedPlanPage'));
-                    <Route path="/condicion/:slug" element={<ConditionPage />} />
 const WellnessReportPage = lazy(() => import('@/pages/WellnessReportPage'));
 import ConditionPage from "@/pages/ConditionPage";
 const ConditionHubPage = lazy(() => import('@/pages/ConditionHubPage'));
@@ -55,19 +54,10 @@ function App() {
 
   const location = useLocation();
 
-  const handleSplashFinish = () => {
-    // Eliminar el splash inicial del DOM (server-rendered en index.html)
-    const initialSplash = document.getElementById('initial-splash');
-    if (initialSplash) {
-      initialSplash.style.opacity = '0';
-      setTimeout(() => initialSplash.remove(), 450);
-    }
-  };
-
   return (
     <>
       <ScrollToTop />
-      <BienestarEnClaroSplash onFinish={handleSplashFinish} />
+      <BienestarEnClaroSplash />
       <AuthProvider>
         <NotificationProvider>
         <AdminProvider>

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Minus, X, Send, MessageCircle, FileText, Play, Heart, Leaf } from 'lucide-react';
+import { Minus, X, Send, MessageCircle, FileText, Play, Heart, Leaf, Copy, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from "@/components/ui/use-toast";
 import { sendMessageToDeepSeek } from '@/services/deepseekService';
@@ -13,7 +13,6 @@ import { useCart } from '../context/CartContext';
 import { useAuth } from '@/context/AuthContext';
 import { useAdmin } from '@/context/AdminContext';
 import { useLoyalty } from '@/context/LoyaltyContext';
-import { ChatMessageSkeleton } from '@/components/skeleton';
 import { useScrollAware } from '@/components/ScrollAwareFloating';
 import {
   getContextualGreeting,
@@ -29,6 +28,49 @@ import {
   getMainInterest
 } from '@/lib/productJourney';
 
+// Spring physics presets — Apple/Telegram-level feel
+const SPRING = { type: 'spring', stiffness: 350, damping: 25 };
+const SPRING_SLOW = { type: 'spring', stiffness: 200, damping: 20 };
+const SPRING_FAST = { type: 'spring', stiffness: 400, damping: 30 };
+
+// Animated typing dots — three bouncing circles
+const AnimatedTypingDots = ({ color = 'slate' }) => {
+    const dotColor = {
+        slate: 'bg-slate-400',
+        emerald: 'bg-emerald-400',
+    }[color] || 'bg-slate-400';
+
+    return (
+        <div className="flex items-center gap-1">
+            {[0, 1, 2].map(i => (
+                <motion.span
+                    key={i}
+                    className={`w-2 h-2 rounded-full ${dotColor}`}
+                    animate={{ y: [0, -5, 0], opacity: [0.4, 1, 0.4] }}
+                    transition={{
+                        duration: 0.6,
+                        repeat: Infinity,
+                        delay: i * 0.18,
+                        ease: 'easeInOut'
+                    }}
+                />
+            ))}
+        </div>
+    );
+};
+
+// Format date for separator
+const formatDateSeparator = (dateStr) => {
+    const date = new Date(dateStr);
+    const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+
+    if (date.toDateString() === today.toDateString()) return 'Hoy';
+    if (date.toDateString() === yesterday.toDateString()) return 'Ayer';
+    return date.toLocaleDateString('es-CL', { day: 'numeric', month: 'long' });
+};
+
 const FalconBot = () => {
     const navigate = useNavigate();
     const { user } = useAuth();
@@ -43,9 +85,24 @@ const FalconBot = () => {
     const [showQuickActions, setShowQuickActions] = useState(true);
     const [isFloatingHovered, setIsFloatingHovered] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [copyToast, setCopyToast] = useState(null);
     const messagesEndRef = useRef(null);
     const quickWhatsappTimerRef = useRef(null);
     const chatContainerRef = useRef(null);
+    const inputRef = useRef(null);
+
+    // Auto-focus input when chat opens
+    useEffect(() => {
+        if (isOpen && inputRef.current) {
+            setTimeout(() => inputRef.current?.focus(), 300);
+        }
+    }, [isOpen]);
+
+    const triggerCopyToast = () => {
+        setCopyToast({ key: Date.now() });
+        setTimeout(() => setCopyToast(null), 1800);
+    };
+
     const customerName = user?.name || adminData?.nombre_completo || '';
     const firstName = customerName.trim().split(/\s+/)[0] || '';
 
@@ -95,8 +152,8 @@ const FalconBot = () => {
             return 'Hola. ¿En qué puedo ayudarte hoy?';
         }
         return firstName
-            ? `Hola, ${firstName}. ¿En qué puedo ayudarte hoy?`
-            : 'Hola. ¿En qué puedo ayudarte hoy?';
+            ? `Hola, ${firstName}. Te doy la bienvenida a Fuxion Shop. ¿En qué puedo ayudarte hoy?`
+            : 'Hola. Te doy la bienvenida a Fuxion Shop. ¿En qué puedo ayudarte hoy?';
     };
 
     const makeConversationNatural = (text) => {
@@ -125,14 +182,14 @@ const FalconBot = () => {
     };
 
     const bot = {
-        name: 'Fuxion Assistant',
+        name: 'Asesor de Bienestar',
         subtitle: (
             <>
                 <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 mr-1.5 align-middle" />
-                Disponible para ayudarte
+                Bienestar y nutrición
             </>
         ),
-        typingSubtitle: 'Falcon Assistant está escribiendo...',
+        typingSubtitle: 'typing',
         color: 'bg-gradient-to-br from-emerald-500 to-teal-500',
         greeting: buildPersonalizedGreeting()
     };
@@ -148,7 +205,7 @@ const FalconBot = () => {
             .slice(-8)
             .map(message => `${message.sender === 'user' ? 'Cliente' : 'Chatbot'}: ${message.text}`)
             .join('\n');
-        return `Hola, solicito asesoría desde Fuxion Shop.
+        return `Hola, soy tu asesor de bienestar y nutrición. ¿En qué puedo ayudarte hoy?
 
 Motivo de derivación: ${reason}
 ${activeProduct?.name ? `Producto en consulta: ${activeProduct.name}\n` : ''}
@@ -314,7 +371,9 @@ Puedes preguntarme si es adecuado para tu objetivo, con qué combinarlo o cómo 
             setMessages(prev => [...prev, {
                 sender: 'bot',
                 text: buildProductIntro(product),
-                botType: 'assistant'
+                botType: 'assistant',
+                sentAt: new Date().toISOString(),
+                timestamp: new Date().toISOString()
             }]);
         };
         window.addEventListener('fuxion:open-product-ai', handleProductConsultation);
@@ -348,7 +407,9 @@ Puedes preguntarme si es adecuado para tu objetivo, con qué combinarlo o cómo 
                     text: greetingObj.text,
                     botType: 'assistant',
                     contextMessage: true,
-                    contextSlug: greetingObj.slug || null
+                    contextSlug: greetingObj.slug || null,
+                    sentAt: new Date().toISOString(),
+                    timestamp: new Date().toISOString()
                 }];
             }
 
@@ -374,6 +435,7 @@ Puedes preguntarme si es adecuado para tu objetivo, con qué combinarlo o cómo 
         setIsOpen(!isOpen);
         if (!isOpen) {
             // Verificar contexto de producto al abrir el chat
+            setTimeout(() => inputRef.current?.focus(), 300);
             const journeyCtx = getUserJourneyContext();
 
             // Obtener saludo contextual (ahora devuelve { text, slug } o null)
@@ -398,13 +460,17 @@ Puedes preguntarme si es adecuado para tu objetivo, con qué combinarlo o cómo 
                     setMessages(prev => prev.length === 0 ? [{
                         sender: 'bot',
                         text: journeyGreeting,
-                        botType: 'assistant'
+                        botType: 'assistant',
+                        sentAt: new Date().toISOString(),
+                        timestamp: new Date().toISOString()
                     }] : prev);
                 } else {
                     setMessages(prev => prev.length === 0 ? [{
                         sender: 'bot',
                         text: bot.greeting,
-                        botType: 'assistant'
+                        botType: 'assistant',
+                        sentAt: new Date().toISOString(),
+                        timestamp: new Date().toISOString()
                     }] : prev);
                 }
             }
@@ -418,7 +484,9 @@ Puedes preguntarme si es adecuado para tu objetivo, con qué combinarlo o cómo 
             {
                 sender: 'bot',
                 text: bot.greeting,
-                botType: 'assistant'
+                botType: 'assistant',
+                sentAt: new Date().toISOString(),
+                timestamp: new Date().toISOString()
             }
         ]);
         setShowQuickActions(true);
@@ -429,17 +497,17 @@ Puedes preguntarme si es adecuado para tu objetivo, con qué combinarlo o cómo 
         setIsOpen(false);
     };
 
-    const declineAdvisor = (messageIndex) => {
+    const declineAdvisor = (message) => {
         const advisor = getActiveAdvisor();
         if (advisor?.id) {
             recordAdvisorEvent(advisor.id, 'advisor_decline', {
                 source: 'chat',
-                messageIndex
+                messageIndex: 0
             });
         }
         setMessages(prev => {
-            const updated = prev.map((msg, index) => (
-                index === messageIndex
+            const updated = prev.map((msg) => (
+                msg === message
                     ? { ...msg, advisorUrl: null, showContactForm: false }
                     : msg
             ));
@@ -448,7 +516,9 @@ Puedes preguntarme si es adecuado para tu objetivo, con qué combinarlo o cómo 
                 {
                     sender: 'bot',
                     text: 'Perfecto, seguimos aquí. Continuaré respondiendo tu consulta dentro del chat. Si en cualquier momento quieres hablar con un asesor por WhatsApp, solo dime y te lo facilito.',
-                    botType: 'assistant'
+                    botType: 'assistant',
+                    sentAt: new Date().toISOString(),
+                    timestamp: new Date().toISOString()
                 }
             ];
         });
@@ -560,7 +630,9 @@ Nombre: ${productCtx.name}`;
                 setMessages(prev => [...prev, {
                     sender: 'bot',
                     text: 'Claro, para ver el video explicativo y conocer cómo funciona la oportunidad FuXion, dirígete a la sección "Oportunidad" en el menú principal (arriba) y desliza hacia abajo. Allí encontrarás el video con todos los detalles.',
-                    botType: 'assistant'
+                    botType: 'assistant',
+                    sentAt: new Date().toISOString(),
+                    timestamp: new Date().toISOString()
                 }]);
                 setIsLoading(false);
                 return;
@@ -592,6 +664,11 @@ Nombre: ${productCtx.name}`;
             );
 
 
+            // Clear pending flag on user messages
+            setMessages(prev => prev.map(m =>
+                m.pending ? { ...m, pending: false } : m
+            ));
+
             setMessages(prev => [...prev, {
                 sender: 'bot',
                 text: makeConversationNatural(response.text),
@@ -604,7 +681,9 @@ Nombre: ${productCtx.name}`;
                 isBusinessOpportunity: response.isBusinessOpportunity === true,
                 showOpportunityVideo: response.showOpportunityVideo === true,
                 showOpportunityAdvisor: response.showOpportunityAdvisor === true,
-                showOpportunityAdvisorForm: response.showOpportunityAdvisorForm === true
+                showOpportunityAdvisorForm: response.showOpportunityAdvisorForm === true,
+                sentAt: new Date().toISOString(),
+                timestamp: new Date().toISOString()
             }]);
 
             console.log(`💬 Respuesta generada por: ${response.apiUsed}`);
@@ -628,7 +707,9 @@ Nombre: ${productCtx.name}`;
                 sender: 'bot',
                 text: errorMessage,
                 botType: 'error',
-                advisorUrl: buildAdvisorUrl(nextMessages, 'El chatbot tuvo un error técnico y derivó la conversación a asesor humano.')
+                advisorUrl: buildAdvisorUrl(nextMessages, 'El chatbot tuvo un error técnico y derivó la conversación a asesor humano.'),
+                sentAt: new Date().toISOString(),
+                timestamp: new Date().toISOString()
             }]);
 
             toast({
@@ -648,12 +729,16 @@ Nombre: ${productCtx.name}`;
         const userMessage = input.trim();
         setInput('');
 
+        const now = new Date().toISOString();
         setMessages(prev => [...prev, {
             sender: 'user',
-            text: userMessage
+            text: userMessage,
+            pending: true,
+            sentAt: now,
+            timestamp: now
         }]);
 
-        const nextMessages = [...messages, { sender: 'user', text: userMessage }];
+        const nextMessages = [...messages, { sender: 'user', text: userMessage, sentAt: now, timestamp: now }];
 
         setIsLoading(true);
         await executeSend(userMessage, nextMessages);
@@ -682,14 +767,14 @@ Nombre: ${productCtx.name}`;
             <AnimatePresence>
                 {!isOpen && (
                     <motion.div
-                        initial={{ scale: 0, x: 0 }}
+                        initial={{ scale: 0 }}
                         animate={{
                             scale: isMobileMenuOpen ? 0.8 : (isFloatingHovered ? 1 : scrollStyle.scale),
                             opacity: isMobileMenuOpen ? 0 : (isFloatingHovered ? 1 : (isScrolling ? 0 : 1)),
                             x: isScrolling && !isFloatingHovered ? 120 : 0,
                         }}
-                        exit={{ scale: 0, x: 0 }}
-                        transition={{ duration: 0.25, ease: 'easeOut' }}
+                        exit={{ scale: 0 }}
+                        transition={SPRING_FAST}
                         className={`fixed bottom-[calc(5.5rem+env(safe-area-inset-bottom,0px))] right-4 md:bottom-[calc(1.5rem+env(safe-area-inset-bottom,0px))] md:right-6 z-floating flex items-center gap-2 ${isMobileMenuOpen ? 'pointer-events-none md:pointer-events-auto' : ''}`}
                         onMouseEnter={() => { showQuickWhatsappAction(); setIsFloatingHovered(true); }}
                         onMouseLeave={() => { hideQuickWhatsappAction(); setIsFloatingHovered(false); }}
@@ -705,6 +790,7 @@ Nombre: ${productCtx.name}`;
                                     initial={{ opacity: 0, x: 12, scale: 0.9 }}
                                     animate={{ opacity: 1, x: 0, scale: 1 }}
                                     exit={{ opacity: 0, x: 12, scale: 0.9 }}
+                                    transition={SPRING}
                                     onClick={handleQuickWhatsapp}
                                     className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-whatsapp to-emerald-500 text-white shadow-lg shadow-whatsapp/30 transition-all hover:shadow-xl hover:shadow-whatsapp/40 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-whatsapp/40"
                                     aria-label="Hablar por WhatsApp con un asesor"
@@ -737,29 +823,32 @@ Nombre: ${productCtx.name}`;
                             opacity: isMobileMenuOpen ? 0 : 1,
                             y: isMobileMenuOpen ? 10 : 0,
                             scale: isMobileMenuOpen ? 0.96 : 1,
-                            filter: isMobileMenuOpen ? 'blur(4px)' : 'blur(0px)'
+                            filter: isMobileMenuOpen ? 'blur(4px)' : 'blur(0px)',
                         }}
                         exit={{ opacity: 0, y: 10, scale: 0.96 }}
-                        transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ type: 'tween', duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
                         className={`fixed inset-0 z-[100] h-[100dvh] w-full bg-card flex flex-col overflow-hidden sm:inset-auto sm:bottom-6 sm:right-6 sm:w-96 sm:h-[min(600px,calc(100dvh-48px))] sm:rounded-2xl sm:border sm:border-border sm:shadow-2xl ${isMobileMenuOpen ? 'pointer-events-none sm:pointer-events-auto' : ''}`}
                     >
                         {/* Header */}
-                        <div className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 p-4 flex justify-between items-center shadow-emerald-500/20 relative overflow-hidden">
+                        <div className="bg-gradient-to-r from-emerald-700 via-emerald-600 to-teal-600 p-4 flex justify-between items-center shadow-lg relative overflow-hidden">
                             <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none"></div>
-                            <div className="flex items-center gap-2 relative z-content">
-                                <div className="bg-white/15 rounded-full p-1.5">
-                                    <AiRobotIcon className="h-8 w-8 object-contain" />
+                            <div className="flex items-center gap-3 relative z-content">
+                                {/* Professional avatar */}
+                                <div className="relative">
+                                    <div className="w-10 h-10 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center ring-2 ring-white/20">
+                                        <Leaf className="h-5 w-5 text-white" />
+                                    </div>
                                 </div>
                                 <div>
                                     <h3 className="text-white font-bold text-sm">{bot.name}</h3>
-                                    <motion.p
-                                        key={isLoading ? 'typing' : 'idle'}
-                                        initial={{ opacity: 0, y: -4 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        className="text-white/80 text-xxs"
-                                    >
-                                        {isLoading ? bot.typingSubtitle : bot.subtitle}
-                                    </motion.p>
+                                    {isLoading ? (
+                                        <div className="flex items-center gap-1.5 mt-0.5">
+                                            <AnimatedTypingDots color="emerald" />
+                                            <span className="text-white/80 text-xxs">escribiendo...</span>
+                                        </div>
+                                    ) : (
+                                        <p className="text-white/75 text-xxs">{bot.subtitle}</p>
+                                    )}
                                 </div>
                             </div>
                             <div className="flex items-center gap-1 relative z-content">
@@ -796,128 +885,222 @@ Nombre: ${productCtx.name}`;
                             </div>
                         </div>
 
+                        {/* Toast de copiado — dentro del chat, encima de mensajes */}
+                        {copyToast && (
+                            <motion.div
+                                key={copyToast.key}
+                                initial={{ opacity: 0, y: -8, scale: 0.92 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                exit={{ opacity: 0, y: -8, scale: 0.92 }}
+                                transition={SPRING}
+                                className="absolute top-20 left-1/2 -translate-x-1/2 z-10 pointer-events-none"
+                            >
+                                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 dark:bg-slate-800/90 backdrop-blur-md border border-slate-200/80 shadow-sm shadow-slate-200/30">
+                                    <svg className="w-3 h-3 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span className="text-xs font-medium text-slate-600">Copiado</span>
+                                </div>
+                            </motion.div>
+                        )}
+
                         {/* Mensajes */}
-                        <div className="flex-1 overflow-y-auto p-4 space-y-3">
-                            {messages.map((message, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    className={`flex flex-col ${message.sender === 'user' ? 'items-end' : 'items-start'}`}
-                                >
-                                    <div
-                                        className={`max-w-[80%] p-3 ${
-                                            message.sender === 'user'
-                                                ? 'bg-whatsapp-bg text-emerald-900 border border-emerald-200 shadow-sm chat-bubble-user'
-                                                : message.botType === 'error'
-                                                ? 'bg-destructive/10 text-destructive border border-destructive/20 rounded-2xl'
-                                                : message.botType === 'system'
-                                                ? 'bg-secondary text-foreground border border-border rounded-2xl'
-                                                : 'bg-gradient-to-br from-emerald-500 to-teal-500 text-white shadow-md chat-bubble-bot'
-                                        }`}
-                                    >
-                                        {message.sender === 'bot' && message.botType !== 'system' && message.botType !== 'error' && (
-                                            <div className="flex items-center gap-2 mb-1.5">
-                                                <div className="bg-white/20 rounded-full p-0.5">
-                                                    <AiRobotIcon className="h-5 w-5 object-contain" />
-                                                </div>
-                                                <span className="text-xxs font-semibold text-white/90">{bot.name}</span>
-                                            </div>
-                                        )}
-                                        {message.sender === 'bot' && message.botType !== 'system' && message.botType !== 'error' ? (
-                                            <ProductLinkedText
-                                                text={message.text}
-                                                className="text-sm whitespace-pre-wrap"
-                                                onProductClick={minimizeChat}
-                                            />
-                                        ) : (
-                                            <p className="text-sm whitespace-pre-wrap">{message.text}</p>
-                                        )}
-                                        {/* Business Opportunity buttons */}
-                                        {message.isBusinessOpportunity && (
-                                            <div className="mt-3 flex flex-col gap-2">
-                                                {message.showOpportunityAdvisorForm && (
-                                                    <div className="flex flex-col gap-2 p-3 bg-white/5 rounded-xl border border-white/10 mt-1">
-                                                        <p className="text-sm font-medium text-white mb-1">¿Listo para el siguiente paso?</p>
-                                                        <Button
-                                                            type="button"
-                                                            variant="whatsapp"
-                                                            size="sm"
-                                                            onClick={handleOpenWhatsAppContact}
-                                                            className="rounded-full w-full flex items-center justify-center"
-                                                        >
-                                                            <WhatsAppIcon className="h-5 w-5 text-white mr-2" />
-                                                            Contactar por WhatsApp
-                                                        </Button>
-                                                        <Button
-                                                            type="button"
-                                                            size="sm"
-                                                            onClick={() => {
-                                                                navigate('/contacto');
-                                                                minimizeChat();
-                                                            }}
-                                                            className="rounded-full w-full flex items-center justify-center bg-white text-brand-dark font-medium hover:bg-gray-100"
-                                                        >
-                                                            <FileText className="h-4 w-4 mr-2" />
-                                                            Llenar Formulario
-                                                        </Button>
+                        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+                            {messages.length > 0 && (() => {
+                                // Group messages by date
+                                const groups = [];
+                                let currentGroup = [];
+                                let currentDate = null;
+
+                                messages.forEach((msg, idx) => {
+                                    const msgDate = msg.timestamp ? new Date(msg.timestamp).toDateString() : formatDateSeparator(new Date());
+                                    if (msgDate !== currentDate) {
+                                        if (currentGroup.length) groups.push({ date: currentDate, messages: currentGroup });
+                                        currentGroup = [msg];
+                                        currentDate = msgDate;
+                                    } else {
+                                        currentGroup.push(msg);
+                                    }
+                                });
+                                if (currentGroup.length) groups.push({ date: currentDate, messages: currentGroup });
+
+                                return (
+                                    <>
+                                        {groups.map((group, gi) => (
+                                            <React.Fragment key={`group-${gi}`}>
+                                                {/* Date separator */}
+                                                <div className="flex items-center justify-center">
+                                                    <div className="bg-muted/60 rounded-full px-3 py-0.5">
+                                                        <span className="text-xxs font-medium text-muted-foreground">{group.date}</span>
                                                     </div>
-                                                )}
-                                                {message.showOpportunityAdvisor && !message.showOpportunityAdvisorForm && (
-                                                    <Button
-                                                        type="button"
-                                                        variant="whatsapp"
-                                                        size="sm"
-                                                        onClick={handleOpenWhatsAppContact}
-                                                        className="rounded-full"
-                                                    >
-                                                    <WhatsAppIcon className="h-5 w-5 text-white mr-1" />
-                                                        <MessageCircle className="h-4 w-4 ml-1" />
-                                                        Hablar con asesor
-                                                    </Button>
-                                                )}
-                                            </div>
-                                        )}
-                                        {message.advisorUrl && !message.isBusinessOpportunity && (
-                                            <div className="mt-3 flex flex-col gap-2">
-                                                <Button
-                                                    type="button"
-                                                    variant="default"
-                                                    size="sm"
-                                                    onClick={handleOpenContactForm}
-                                                    className="rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600"
-                                                >
-                                                    <FileText className="h-4 w-4" />
-                                                    Abrir formulario de contacto
-                                                </Button>
-                                                <Button
-                                                    type="button"
-                                                    variant="whatsapp"
-                                                    size="sm"
-                                                    onClick={handleOpenWhatsAppContact}
-                                                    className="rounded-full"
-                                                >
-                                                    <WhatsAppIcon className="h-5 w-5 text-white mr-1" />
-                                                    Hablar por WhatsApp
-                                                </Button>
-                                                <Button
-                                                    type="button"
-                                                    variant="destructive"
-                                                    size="sm"
-                                                    onClick={() => declineAdvisor(index)}
-                                                    className="rounded-full"
-                                                >
-                                                    No, gracias. Prefiero continuar aquí.
-                                                </Button>
-                                            </div>
-                                        )}
-                                    </div>
-                                    {/* Timestamp */}
-                                    <span className={`mt-1 text-xxs leading-none text-muted-foreground/60 ${message.sender === 'user' ? 'mr-1' : 'ml-1'}`}>
-                                        {new Date().toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' })}
-                                    </span>
-                                </motion.div>
-                            ))}
+                                                </div>
+
+                                                {group.messages.map((message, msgIdx) => {
+                                                    const isUser = message.sender === 'user';
+                                                    const isLatest = msgIdx === group.messages.length - 1;
+                                                    const isPending = message.pending;
+
+                                                    return (
+                                                        <motion.div
+                                                            key={`msg-${msgIdx}`}
+                                                            initial={{ opacity: 0, y: isUser ? 12 : -8, scale: isUser ? 0.95 : 1 }}
+                                                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                                                            transition={SPRING_FAST}
+                                                            className={`flex flex-col ${isUser ? 'items-end' : 'items-start'}`}
+                                                        >
+                                                            <div
+                                                                className={`max-w-[80%] p-3 ${
+                                                                    isUser
+                                                                        ? 'bg-gradient-to-br from-emerald-600 to-teal-600 text-white rounded-2xl rounded-br-md shadow-md shadow-emerald-500/10'
+                                                                        : message.botType === 'error'
+                                                                        ? 'bg-destructive/10 text-destructive border border-destructive/20 rounded-2xl rounded-bl-md'
+                                                                        : message.botType === 'system'
+                                                                        ? 'bg-secondary text-foreground border border-border rounded-2xl rounded-bl-md'
+                                                                        : 'bg-card border border-border rounded-2xl rounded-bl-md shadow-sm'
+                                                                }`}
+                                                            >
+                                                                {/* Bot avatar + name in message */}
+                                                                {!isUser && message.botType !== 'system' && message.botType !== 'error' && (
+                                                                    <div className="flex items-center gap-1.5 mb-1.5">
+                                                                        <div className="w-5 h-5 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center">
+                                                                            <Leaf className="h-2.5 w-2.5 text-white" />
+                                                                        </div>
+                                                                        <span className="text-xxs font-semibold text-muted-foreground">{bot.name}</span>
+                                                                    </div>
+                                                                )}
+
+                                                                {isUser ? (
+                                                                    <p className="text-sm">{message.text}</p>
+                                                                ) : message.botType !== 'system' && message.botType !== 'error' ? (
+                                                                    <ProductLinkedText
+                                                                        text={message.text}
+                                                                        className="text-sm whitespace-pre-wrap"
+                                                                        onProductClick={minimizeChat}
+                                                                    />
+                                                                ) : (
+                                                                    <p className="text-sm whitespace-pre-wrap">{message.text}</p>
+                                                                )}
+
+                                                                {/* Business Opportunity buttons */}
+                                                                {message.isBusinessOpportunity && (
+                                                                    <div className="mt-3 flex flex-col gap-2">
+                                                                        {message.showOpportunityAdvisorForm && (
+                                                                            <div className="flex flex-col gap-2 p-3 bg-black/5 rounded-xl mt-1">
+                                                                                <p className="text-sm font-medium mb-1">¿Listo para el siguiente paso?</p>
+                                                                                <Button
+                                                                                    type="button"
+                                                                                    variant="whatsapp"
+                                                                                    size="sm"
+                                                                                    onClick={handleOpenWhatsAppContact}
+                                                                                    className="rounded-full w-full flex items-center justify-center"
+                                                                                >
+                                                                                    <WhatsAppIcon className="h-5 w-5 text-white mr-2" />
+                                                                                    Contactar por WhatsApp
+                                                                                </Button>
+                                                                                <Button
+                                                                                    type="button"
+                                                                                    size="sm"
+                                                                                    onClick={() => {
+                                                                                        navigate('/contacto');
+                                                                                        minimizeChat();
+                                                                                    }}
+                                                                                    className="rounded-full w-full flex items-center justify-center bg-white text-brand-dark font-medium hover:bg-gray-100"
+                                                                                >
+                                                                                    <FileText className="h-4 w-4 mr-2" />
+                                                                                    Llenar Formulario
+                                                                                </Button>
+                                                                            </div>
+                                                                        )}
+                                                                        {message.showOpportunityAdvisor && !message.showOpportunityAdvisorForm && (
+                                                                            <Button
+                                                                                type="button"
+                                                                                variant="whatsapp"
+                                                                                size="sm"
+                                                                                onClick={handleOpenWhatsAppContact}
+                                                                                className="rounded-full"
+                                                                            >
+                                                                                <WhatsAppIcon className="h-5 w-5 text-white mr-1" />
+                                                                                <MessageCircle className="h-4 w-4 ml-1" />
+                                                                                Hablar con asesor
+                                                                            </Button>
+                                                                        )}
+                                                                    </div>
+                                                                )}
+                                                                {message.advisorUrl && !message.isBusinessOpportunity && (
+                                                                    <div className="mt-3 flex flex-col gap-2">
+                                                                        <Button
+                                                                            type="button"
+                                                                            variant="default"
+                                                                            size="sm"
+                                                                            onClick={handleOpenContactForm}
+                                                                            className="rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600"
+                                                                        >
+                                                                            <FileText className="h-4 w-4" />
+                                                                            Abrir formulario de contacto
+                                                                        </Button>
+                                                                        <Button
+                                                                            type="button"
+                                                                            variant="whatsapp"
+                                                                            size="sm"
+                                                                            onClick={handleOpenWhatsAppContact}
+                                                                            className="rounded-full"
+                                                                        >
+                                                                            <WhatsAppIcon className="h-5 w-5 text-white mr-1" />
+                                                                            Hablar por WhatsApp
+                                                                        </Button>
+                                                                        <Button
+                                                                            type="button"
+                                                                            variant="destructive"
+                                                                            size="sm"
+                                                                            onClick={() => declineAdvisor(message)}
+                                                                            className="rounded-full"
+                                                                        >
+                                                                            No, gracias. Prefiero continuar aquí.
+                                                                        </Button>
+                                                                    </div>
+                                                                )}
+                                                            </div>
+
+                                                            {/* Timestamp + actions row */}
+                                                            <div className={`flex items-center gap-1 mt-1 ${isUser ? 'flex-row-reverse' : ''}`}>
+                                                                {/* Copy button for bot messages */}
+                                                                {!isUser && (
+                                                                    <motion.button
+                                                                        whileTap={{ scale: 0.9 }}
+                                                                        transition={SPRING_FAST}
+                                                                        onClick={() => {
+                                                                            navigator.clipboard.writeText(message.text);
+                                                                            triggerCopyToast();
+                                                                        }}
+                                                                        className="text-muted-foreground/40 hover:text-muted-foreground/80 transition-colors p-0.5"
+                                                                        aria-label="Copiar mensaje"
+                                                                    >
+                                                                        <Copy className="h-3 w-3" />
+                                                                    </motion.button>
+                                                                )}
+                                                                <span className="text-xxs leading-none text-muted-foreground/50">
+                                                                    {message.sentAt ? new Date(message.sentAt).toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' }) : ''}
+                                                                </span>
+                                                                {/* Sending indicator for user messages */}
+                                                                {isPending && (
+                                                                    <motion.span
+                                                                        initial={{ opacity: 0 }}
+                                                                        animate={{ opacity: [0.4, 1, 0.4] }}
+                                                                        transition={{ duration: 1.5, repeat: Infinity }}
+                                                                        className="text-xxs text-muted-foreground/60"
+                                                                    >
+                                                                        enviando...
+                                                                    </motion.span>
+                                                                )}
+                                                            </div>
+                                                        </motion.div>
+                                                    );
+                                                })}
+                                            </React.Fragment>
+                                        ))}
+                                    </>
+                                );
+                            })()}
 
                             {/* Quick action chips - shown when no messages or only greeting */}
                             {showQuickActions && messages.length <= 1 && !activeProduct && (
@@ -950,9 +1133,12 @@ Nombre: ${productCtx.name}`;
                                 <motion.div
                                     initial={{ opacity: 0, y: 8 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.2 }}
+                                    transition={SPRING}
                                 >
-                                    <ChatMessageSkeleton text="Falcon Assistant está escribiendo..." />
+                                    <div className="flex items-center gap-2.5 p-3 rounded-2xl rounded-bl-md bg-slate-50 border border-slate-200/80 shadow-sm">
+                                        <AnimatedTypingDots />
+                                        <span className="text-xs text-slate-400 font-medium">Asesor escribiendo...</span>
+                                    </div>
                                 </motion.div>
                             )}
 
@@ -960,28 +1146,29 @@ Nombre: ${productCtx.name}`;
                         </div>
 
                         {/* Input */}
-                        <form onSubmit={handleSend} className="p-3 border-t border-emerald-100 dark:border-emerald-900/30 bg-white dark:bg-secondary">
+                        <form onSubmit={handleSend} className="p-3 border-t border-border bg-card">
                             <div className="flex gap-2">
                                 <input
+                                    ref={inputRef}
                                     type="text"
                                     value={input}
                                     onChange={(e) => setInput(e.target.value)}
                                     placeholder="Cuéntame qué quieres mejorar"
-                                    className="flex-1 bg-white dark:bg-card border border-emerald-200 dark:border-emerald-800/40 rounded-full px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-400 placeholder:text-muted-foreground/50 transition-all"
+                                    className="flex-1 bg-background border border-border rounded-full px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-400 placeholder:text-muted-foreground/50 transition-all"
                                     disabled={isLoading}
                                 />
                                 <Button
                                     type="submit"
                                     size="icon"
-                                    className="rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 shadow-sm shadow-emerald-500/20 transition-all hover:shadow-md hover:shadow-emerald-500/30 hover:scale-105"
+                                    className="rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 shadow-sm shadow-emerald-500/20 transition-all hover:shadow-md hover:shadow-emerald-500/30"
                                     disabled={!input.trim() || isLoading}
                                 >
                                     <Send className="h-4 w-4" />
                                 </Button>
                             </div>
-                            <p className="text-xxs text-muted-foreground/70 mt-2 text-center">
+                            <p className="text-xxs text-muted-foreground/60 mt-2 text-center">
                                 <Leaf className="h-3 w-3 inline-block mr-0.5" aria-hidden="true" />
-                                Orientación sobre productos FuXion. No reemplaza una consulta médica.
+                                Orientación en bienestar y nutrición. No reemplaza una consulta médica.
                             </p>
                         </form>
                     </motion.div>

@@ -1,0 +1,230 @@
+{
+  "medical": {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": "Hígado Graso No Alcohólico (HGNA)",
+    "description": "> * El Hígado Graso No Alcohólico (HGNA), denominado actualmente Enfermedad Hepática Metabólica Asociada a Disfunción Metabólica (MASLD en inglés), es la acumulación de grasa en los hepatocitos superior al 5% del peso hepático, sin que el consumo de alcohol sea la causa. > * Afecta a entre el 25% y ",
+    "about": {
+      "@type": "MedicalCondition",
+      "name": "Ejercicio, Aparato Cardiovascular y Longevidad Funcional"
+    },
+    "keywords": [
+      "metabolismo",
+      "carbohidratos",
+      "azúcar",
+      "fibra",
+      "digestión",
+      "microbiota",
+      "hígado",
+      "hígado graso",
+      "hepático",
+      "vitaminas",
+      "antioxidantes",
+      "fatiga",
+      "estrés",
+      "sueño",
+      "colágeno",
+      "piel",
+      "café",
+      "plan"
+    ],
+    "author": {
+      "@type": "Person",
+      "name": "Daniel Falcón",
+      "jobTitle": "Investigador de Salud y Bienestar",
+      "url": "https://www.bienestarenclaro.com/sobre-nosotros"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Bienestar en Claro",
+      "url": "https://www.bienestarenclaro.com"
+    },
+    "datePublished": "2026-07-17T05:21:23.157329+00:00",
+    "dateModified": "2026-07-17T05:21:23.157329+00:00"
+  },
+  "faq": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Qué es Polietilenglicol (PEG 3350)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Laxante osmótico de polímeros largos. Retiene agua en el lumen intestinal ablandando el bolo. Dosis: 17g/día diluidos en agua."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Suplementación con Psyllium?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Única fibra soluble que normaliza la reología fecal formadora de gel, sin alta fermentación de gases. 1-2 cucharadas con 250ml de agua."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Postura de Defecación (Squatting)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Elevar las rodillas por encima de la cadera (taburete) alinea el ángulo anorrectal y relaja el músculo puborrectal."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Linaclotida o Plecanatida?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Secretagogos (Agonistas guanilato ciclasa-C). Aumentan secreción de fluidos y aceleran el tránsito. Requiere prescripción médica."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Entrenamiento del Reflejo Gastrocólico?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La motilidad colónica se dispara 30 min post-ingesta (sobre todo grasas o líquidos tibios). Sentarse 5 min tras desayunar."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Terapia Cognitivo Conductual (CBT)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Identificación y reestructuración de distorsiones cognitivas que disparan ansiedad."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Mindfulness-Based Stress Reduction (MBSR)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Programa estructurado de 8 semanas que reduce reactividad amigdalina."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Suspiro Fisiológico?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dos inhalaciones nasales cortas seguidas de una exhalación larga. Abre alvéolos y reduce frecuencia cardíaca."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Ejercicio Aeróbico (Zona 2)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Estimula la neurogénesis en el hipocampo (BDNF) y modula cortisol basal."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Relajación Muscular Progresiva (PMR)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tensión y relajación secuencial para enseñar al cuerpo a reconocer la ausencia de estrés físico."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Terapia farmacológica (Agonistas GLP-1/GIP)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Retrasan el vaciamiento gástrico y actúan en el hipotálamo induciendo saciedad profunda. Indicar bajo supervisión si IMC >27 con comorbilidades."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Déficit calórico individualizado (500-750 kcal/día)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ley de termodinámica; fuerza al cuerpo a oxidar triglicéridos almacenados. Calcular TDEE y restar 500 kcal con registro en app."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Aumento de Proteína (1.2-1.5 g/kg/día)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Incrementa el efecto térmico de los alimentos y provee sustrato anabólico. Incluir 25-30g de proteína magra por comida."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Entrenamiento de Fuerza (2-3 días/sem)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Mejora la densidad de receptores GLUT4 y capilarización muscular. Ejercicios multiarticulares progresivos."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Sustitución guiada por Ley de Etiquetados?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Modifica el entorno limitando estímulos supernormales. Escoger productos sin sellos 'Alto en Calorías/Azúcares'."
+        }
+      }
+    ]
+  },
+  "seo": {
+    "title": "Hígado Graso No Alcohólico (HGNA)",
+    "description": "> * El Hígado Graso No Alcohólico (HGNA), denominado actualmente Enfermedad Hepática Metabólica Asociada a Disfunción Metabólica (MASLD en inglés), es la acumulación de grasa en los hepatocitos superior al 5% del peso hepático, sin que el consumo de alcohol sea la causa. > * Afecta a entre el 25% y ",
+    "canonical": "https://www.bienestarenclaro.com/articulos/h-gado-graso-no-alcoh-lico-hgna-acumulaci-n-lip-dica-y-estr-s-oxidativo-hep-tico",
+    "ogImage": "https://www.bienestarenclaro.com/branding/social/og-image.png",
+    "ogType": "article",
+    "articleTags": [
+      "Hígado Graso"
+    ],
+    "articleAuthor": "Daniel Falcón",
+    "articlePublished": "2026-07-17T05:21:23.157329+00:00"
+  },
+  "relatedProducts": [
+    {
+      "slug": "nocarb-t",
+      "name": "NOCARB-T",
+      "category": "Control de Peso",
+      "price": 36000,
+      "image": "https://www.bienestarenclaro.com/img/productos/nocarb-t.png",
+      "matchReason": "Contiene carbohidratos, azúcar, fibra",
+      "url": "https://www.bienestarenclaro.com/producto/nocarb-t"
+    },
+    {
+      "slug": "rexet",
+      "name": "REXET",
+      "category": "Limpieza Hígado y Sistema Hepatobiliar",
+      "price": 36000,
+      "image": "https://www.bienestarenclaro.com/img/productos/rexet.png",
+      "matchReason": "Contiene hígado, hígado graso, depurativo",
+      "url": "https://www.bienestarenclaro.com/producto/rexet"
+    },
+    {
+      "slug": "prunex-1",
+      "name": "PRUNEX 1",
+      "category": "Limpieza del Colon",
+      "price": 23300,
+      "image": "https://www.bienestarenclaro.com/img/productos/prunex-1.png",
+      "matchReason": "Contiene estreñimiento, transito intestinal, fibra",
+      "url": "https://www.bienestarenclaro.com/producto/prunex-1"
+    },
+    {
+      "slug": "nutraday",
+      "name": "NUTRADAY",
+      "category": "Hidratación Nutricional para la Familia",
+      "price": 36000,
+      "image": "https://www.bienestarenclaro.com/img/productos/nutraday.png",
+      "matchReason": "Contiene vitaminas, nutrición, antioxidantes",
+      "url": "https://www.bienestarenclaro.com/producto/nutraday"
+    },
+    {
+      "slug": "beauty-in",
+      "name": "BEAUTY-IN",
+      "category": "Anti-Edad",
+      "price": 44750,
+      "image": "https://www.bienestarenclaro.com/img/productos/beauty-in.png",
+      "matchReason": "Contiene colágeno, piel, belleza",
+      "url": "https://www.bienestarenclaro.com/producto/beauty-in"
+    }
+  ]
+}

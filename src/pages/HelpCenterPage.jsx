@@ -612,22 +612,17 @@ const HelpCenterPage = () => {
                   )}
 
                   {/* Message */}
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Mensaje <span className="text-red-500">*</span>
-                    </label>
-                    <textarea
-                      placeholder="Cuéntanos cómo podemos ayudarte..."
-                      value={formData.mensaje}
-                      onChange={(e) => handleChange('mensaje', e.target.value)}
-                      rows={5}
-                      className={`w-full rounded-lg border ${fieldErrors.mensaje ? 'border-red-400' : 'border-input'} bg-background px-3 py-2.5 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 resize-y min-h-[120px]`}
-                      required
-                    />
-                    {fieldErrors.mensaje && (
-                      <p className="mt-1 text-xs text-red-500">{fieldErrors.mensaje}</p>
-                    )}
-                  </div>
+                  <PremiumInput
+                    as="textarea"
+                    label="Mensaje"
+                    placeholder="Cuéntanos cómo podemos ayudarte..."
+                    value={formData.mensaje}
+                    onChange={(e) => handleChange('mensaje', e.target.value)}
+                    error={fieldErrors.mensaje}
+                    floatingLabel
+                    required
+                    className="min-h-[120px]"
+                  />
 
                   <Button
                     type="submit"

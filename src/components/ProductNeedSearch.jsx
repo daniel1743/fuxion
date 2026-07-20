@@ -1,21 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Search01Icon, ArrowRight02Icon } from '@hugeicons/core-free-icons';
-
-const SUGGESTIONS = [
-  'bienestar hepático',
-  'bajar de peso',
-  'abdomen hinchado',
-  'estrés',
-  'digestión',
-  'energía',
-  'defensas',
-  'desintoxicación',
-  'vitaminas',
-  'rendimiento'
-];
 
 const ProductNeedSearch = ({
   initialValue = '',
@@ -25,33 +11,10 @@ const ProductNeedSearch = ({
 }) => {
   const [value, setValue] = useState(initialValue);
   const [isFocused, setIsFocused] = useState(false);
-  const scrollRef = useRef(null);
 
   useEffect(() => {
     setValue(initialValue);
   }, [initialValue]);
-
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-
-    let animationId;
-    let scrollPos = 0;
-    const speed = 0.5; // pixels per frame
-
-    const scroll = () => {
-      scrollPos += speed;
-      if (scrollPos >= el.scrollWidth / 2) {
-        scrollPos = 0;
-      }
-      el.scrollLeft = scrollPos;
-      animationId = requestAnimationFrame(scroll);
-    };
-
-    animationId = requestAnimationFrame(scroll);
-
-    return () => cancelAnimationFrame(animationId);
-  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -81,40 +44,9 @@ const ProductNeedSearch = ({
             }`}
             aria-label="Buscar productos por necesidad"
           />
-          {/* Infinite scroll suggestions inside the input - decorative only */}
-          {!compact && (
-            <AnimatePresence>
-              {!isFocused && !value && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.25 }}
-                  className="pointer-events-none absolute inset-y-0 left-12 right-4 flex items-center overflow-hidden select-none"
-                  aria-hidden="true"
-                >
-                  <div
-                    ref={scrollRef}
-                    className="flex items-center gap-3 overflow-x-hidden whitespace-nowrap text-xs text-emerald-600/45 font-light"
-                    style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-                  >
-                    {/* Duplicate for seamless loop */}
-                    {[...SUGGESTIONS, ...SUGGESTIONS].map((suggestion, i) => (
-                      <span
-                        key={`${suggestion}-${i}`}
-                        className="shrink-0"
-                      >
-                        {suggestion}
-                      </span>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          )}
         </div>
         <Button type="submit" className={`${compact ? 'h-12' : 'h-14'} bg-emerald-600 hover:bg-emerald-700 text-white gap-2 rounded-xl px-5 shrink-0`}>
-          Ver productos
+          Comenzar a explorar
           <HugeiconsIcon icon={ArrowRight02Icon} className="h-4 w-4" />
         </Button>
       </div>

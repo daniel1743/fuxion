@@ -17,7 +17,7 @@ import {
 } from '@hugeicons/core-free-icons';
 import { Button } from '@/components/ui/button';
 import { CONDITIONS_HUB } from '@/data/conditionHub';
-import { getSeoProductBySlug, buildBreadcrumbSchema, buildPersonSchema } from '@/lib/productSeo';
+import { getSeoProductBySlug, buildBreadcrumbSchema, buildPersonSchema, buildWebsiteSchema } from '@/lib/productSeo';
 import { generateArticleSchema, extractSemanticKeywords } from '@/lib/articleEnricher';
 
 const ICON_MAP = {
@@ -62,6 +62,7 @@ const ConditionHubPage = () => {
       },
       personSchema
     ),
+    buildWebsiteSchema(),
     buildBreadcrumbSchema([
       { name: 'Inicio', url: '/' },
       { name: 'Bienestar', url: '/bienestar' },

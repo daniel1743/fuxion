@@ -1,27 +1,60 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const BienestarEnClaroSplash = ({ onFinish = () => console.log('Splash finalizado') }) => {
+const SPLASH_KEY = 'splash_shown_v1';
+
+function isPwaStandalone() {
+  if (typeof window === 'undefined') return false;
+  try {
+    if (window.matchMedia('(display-mode: standalone)').matches) return true;
+    if (window.navigator.standalone === true) return true;
+  } catch (_) { /* ignore */ }
+  return false;
+}
+
+function shouldBypassSplash() {
+  try {
+    return !!localStorage.getItem(SPLASH_KEY) || !isPwaStandalone();
+  } catch (_) {
+    return !isPwaStandalone();
+  }
+}
+
+const BienestarEnClaroSplash = ({ onFinish = () => {} }) => {
   const [phase, setPhase] = useState('idle');
+  const [bypass, setBypass] = useState(() => shouldBypassSplash());
+  const onFinishRef = useRef(onFinish);
+  onFinishRef.current = onFinish;
+
+  const shouldShow = !bypass;
 
   useEffect(() => {
+    if (bypass) {
+      onFinishRef.current?.();
+      return;
+    }
+
+    try { localStorage.setItem(SPLASH_KEY, 'true'); } catch (_) { /* ignore */ }
+
     const t1 = setTimeout(() => setPhase('grow'), 400);
     const t2 = setTimeout(() => setPhase('pulse'), 1600);
     const t3 = setTimeout(() => setPhase('fade'), 2800);
     const t4 = setTimeout(() => {
       setPhase('done');
-      onFinish?.();
+      onFinishRef.current?.();
     }, 3400);
 
     return () => {
       clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4);
     };
-  }, [onFinish]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
+  if (!shouldShow) return null;
   if (phase === 'done') return null;
 
   return (
-    <AnimatePresence onExitComplete={onFinish}>
+    <AnimatePresence>
       {phase !== 'done' && (
         <motion.div
           className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden"

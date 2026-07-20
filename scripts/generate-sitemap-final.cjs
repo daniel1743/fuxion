@@ -1,17 +1,22 @@
 /**
  * Dynamic sitemap generator for Bienestar en Claro Chile
  *
- * Run: node scripts/generate-sitemap.js
- * This generates public/sitemap.xml with all products, categories, wellness articles, and static pages.
+ * Run: node scripts/generate-sitemap-final.cjs
+ * This generates public/sitemap.xml with all products, categories, wellness articles, and blog posts.
  */
 
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+const fs = require('fs');
+const path = require('path');
+const { createClient } = require('@supabase/supabase-js');
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const ROOT_DIR = path.resolve(__dirname, '..');
 const SITE_URL = 'https://www.bienestarenclaro.com';
-const TODAY = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+const TODAY = new Date().toISOString().split('T')[0];
+
+// ── Supabase client ───────────────────────────────────────────
+const supabaseUrl = 'https://iyloouessyxfvwvzdboc.supabase.co';
+const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml5bG9vdWVzc3l4ZnZ3dnpkYm9jIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE2MzcyNzUsImV4cCI6MjA5NzIxMzI3NX0.6bjQCIC3vQKFny4Sl5i-k7P1r7_4UUKhhcQ65Y5jsmc';
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // ── Static pages ──────────────────────────────────────────────
 const staticPages = [
@@ -50,7 +55,7 @@ const categories = [
 // ── Product slugs from database ───────────────────────────────
 function loadProductSlugs() {
   try {
-    const dbPath = path.resolve(__dirname, '../src/data/fuxion_database.json');
+    const dbPath = path.join(ROOT_DIR, 'src/data/fuxion_database.json');
     const raw = fs.readFileSync(dbPath, 'utf-8');
     const db = JSON.parse(raw);
     const productos = db.productos || {};
@@ -60,7 +65,6 @@ function loadProductSlugs() {
       const slug = name
         .toLowerCase()
         .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
         .replace(/\+/g, ' plus ')
         .replace(/[^a-z0-9]+/g, '-')
         .replace(/^-|-$/g, '');
@@ -72,30 +76,79 @@ function loadProductSlugs() {
   }
 }
 
-// ── Wellness article slugs from Supabase (optional) ───────────
-// If a wellness-articles.json cache exists, include those URLs too
-function loadWellnessArticleSlugs() {
+// ── Blog post slugs from Supabase (dynamic) ───────────────────
+async function loadBlogPostSlugs() {
   try {
-    const cachePath = path.resolve(__dirname, '../public/wellness-articles-cache.json');
-    if (fs.existsSync(cachePath)) {
-      const raw = fs.readFileSync(cachePath, 'utf-8');
-      const articles = JSON.parse(raw);
-      if (Array.isArray(articles)) {
-        return articles
-          .filter((a) => a.slug && a.is_published !== false)
-          .map((a) => ({ slug: a.slug, title: a.title }));
-      }
+    if (!supabase) {
+      console.warn('⚠️ Supabase not configured — skipping blog posts.');
+      return [];
     }
+
+    const { data, error } = await supabase
+      .from('blog_posts')
+      .select('slug, updated_at')
+      .eq('is_published', true)
+      .order('updated_at', { ascending: false });
+
+    if (error) {
+      console.error('❌ Error loading blog posts:', error.message);
+      return [];
+    }
+
+    return (data || []).map((post) => ({
+      slug: post.slug,
+      updated_at: post.updated_at || TODAY
+    }));
   } catch (err) {
-    // Silently fail - cache may not exist yet
+    console.error('❌ Error loading blog posts:', err.message);
+    return [];
   }
-  return [];
+}
+
+// ── Wellness article slugs from Supabase (dynamic) ────────────
+async function loadWellnessArticleSlugs() {
+  try {
+    if (!supabase) {
+      // Fall back to cache file
+      const cachePath = path.join(ROOT_DIR, 'public/wellness-articles-cache.json');
+      if (fs.existsSync(cachePath)) {
+        const raw = fs.readFileSync(cachePath, 'utf-8');
+        const articles = JSON.parse(raw);
+        if (Array.isArray(articles)) {
+          return articles
+            .filter((a) => a.slug && a.is_published !== false)
+            .map((a) => ({ slug: a.slug, title: a.title }));
+        }
+      }
+      return [];
+    }
+
+    const { data, error } = await supabase
+      .from('wellness_articles')
+      .select('slug, updated_at')
+      .eq('is_published', true)
+      .order('updated_at', { ascending: false });
+
+    if (error) {
+      console.error('❌ Error loading wellness articles:', error.message);
+      return [];
+    }
+
+    return (data || []).map((article) => ({
+      slug: article.slug,
+      updated_at: article.updated_at || TODAY
+    }));
+  } catch (err) {
+    console.error('❌ Error loading wellness articles:', err.message);
+    return [];
+  }
 }
 
 // ── Generate XML ──────────────────────────────────────────────
-function generateSitemap() {
+async function generateSitemap() {
   const products = loadProductSlugs();
-  const wellnessArticles = loadWellnessArticleSlugs();
+  const wellnessArticles = await loadWellnessArticleSlugs();
+  const blogPosts = await loadBlogPostSlugs();
   const urls = [];
 
   // Static pages
@@ -133,9 +186,19 @@ function generateSitemap() {
   for (const article of wellnessArticles) {
     urls.push(`  <url>
     <loc>${SITE_URL}/bienestar/${article.slug}</loc>
-    <lastmod>${TODAY}</lastmod>
+    <lastmod>${article.updated_at}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
+  </url>`);
+  }
+
+  // Blog post pages
+  for (const post of blogPosts) {
+    urls.push(`  <url>
+    <loc>${SITE_URL}/articulos/${post.slug}</loc>
+    <lastmod>${post.updated_at}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
   </url>`);
   }
 
@@ -144,10 +207,15 @@ function generateSitemap() {
 ${urls.join('\n')}
 </urlset>`;
 
-  const outputPath = path.resolve(__dirname, '../public/sitemap.xml');
+  const outputPath = path.join(ROOT_DIR, 'public/sitemap.xml');
   fs.writeFileSync(outputPath, xml, 'utf-8');
   console.log(`✅ Sitemap generated: ${outputPath}`);
-  console.log(`   ${urls.length} URLs included (${staticPages.length} static, ${categories.length} categories, ${products.length} products, ${wellnessArticles.length} wellness articles)`);
+  console.log(`   ${urls.length} URLs included (`);
+  console.log(`      ${staticPages.length} static,`);
+  console.log(`      ${categories.length} categories,`);
+  console.log(`      ${products.length} products,`);
+  console.log(`      ${wellnessArticles.length} wellness articles,`);
+  console.log(`      ${blogPosts.length} blog posts)`);
 }
 
 generateSitemap();

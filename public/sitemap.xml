@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.bienestarenclaro.com/</loc>
@@ -205,7 +205,7 @@
     <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://www.bienestarenclaro.com/producto/vitaenergia</loc>
+    <loc>https://www.bienestarenclaro.com/producto/vitaenergi-a</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
@@ -313,63 +313,333 @@
     <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://www.bienestarenclaro.com/bienestar/celiaqu-a-vs-sensibilidad-al-gluten-no-cel-aca-mecanismos-inmunol-gicos-diferenciados</loc>
-    <lastmod>2026-07-19</lastmod>
+    <loc>https://www.bienestarenclaro.com/bienestar/cidos-grasos-de-cadena-corta-butirato</loc>
+    <lastmod>2026-07-17T05:21:23.157329+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
-    <loc>https://www.bienestarenclaro.com/bienestar/digesti-n-enzim-tica-exocrina-funci-n-pancre-tica-y-descomposici-n-de-macronutrientes</loc>
-    <lastmod>2026-07-19</lastmod>
+    <loc>https://www.bienestarenclaro.com/bienestar/metabolismo-de-los-cidos-biliares</loc>
+    <lastmod>2026-07-17T05:21:23.157329+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/bienestar/alergias-alimentarias-y-respuesta-ige</loc>
+    <lastmod>2026-07-17T05:21:23.157329+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
     <loc>https://www.bienestarenclaro.com/bienestar/disbiosis-intestinal-desequilibrio-del-microbioma-y-su-relaci-n-con-la-inflamaci-n-sist-mica</loc>
-    <lastmod>2026-07-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.65</priority>
-  </url>
-  <url>
-    <loc>https://www.bienestarenclaro.com/bienestar/eje-intestino-cerebro-v-as-de-comunicaci-n-bidireccional-y-neurotransmisores-ent-ricos</loc>
-    <lastmod>2026-07-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.65</priority>
-  </url>
-  <url>
-    <loc>https://www.bienestarenclaro.com/bienestar/fibra-soluble-vs-insoluble-impacto-en-la-motilidad-y-modulaci-n-del-microbioma</loc>
-    <lastmod>2026-07-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.65</priority>
-  </url>
-  <url>
-    <loc>https://www.bienestarenclaro.com/bienestar/h-gado-graso-no-alcoh-lico-hgna-acumulaci-n-lip-dica-y-estr-s-oxidativo-hep-tico</loc>
-    <lastmod>2026-07-19</lastmod>
+    <lastmod>2026-07-17T05:21:23.157329+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
     <loc>https://www.bienestarenclaro.com/bienestar/permeabilidad-intestinal-mecanismos-de-la-barrera-epitelial-y-factores-moduladores</loc>
-    <lastmod>2026-07-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.65</priority>
-  </url>
-  <url>
-    <loc>https://www.bienestarenclaro.com/bienestar/reflujo-gastroesof-gico-erge-e-hipoclorhidria-mecanismos-del-esf-nter-y-acidez</loc>
-    <lastmod>2026-07-19</lastmod>
+    <lastmod>2026-07-17T05:21:23.157329+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
     <loc>https://www.bienestarenclaro.com/bienestar/s-ndrome-del-intestino-irritable-sii-eje-intestino-cerebro-y-alteraciones-de-la-motilidad</loc>
-    <lastmod>2026-07-19</lastmod>
+    <lastmod>2026-07-17T05:21:23.157329+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
     <loc>https://www.bienestarenclaro.com/bienestar/sibo-sobrecrecimiento-bacteriano-migraci-n-microbiana-y-fermentaci-n-prematura</loc>
-    <lastmod>2026-07-19</lastmod>
+    <lastmod>2026-07-17T05:21:23.157329+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/bienestar/eje-intestino-cerebro-v-as-de-comunicaci-n-bidireccional-y-neurotransmisores-ent-ricos</loc>
+    <lastmod>2026-07-17T05:21:23.157329+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/bienestar/h-gado-graso-no-alcoh-lico-hgna-acumulaci-n-lip-dica-y-estr-s-oxidativo-hep-tico</loc>
+    <lastmod>2026-07-17T05:21:23.157329+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/bienestar/reflujo-gastroesof-gico-erge-e-hipoclorhidria-mecanismos-del-esf-nter-y-acidez</loc>
+    <lastmod>2026-07-17T05:21:23.157329+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/bienestar/celiaqu-a-vs-sensibilidad-al-gluten-no-cel-aca-mecanismos-inmunol-gicos-diferenciados</loc>
+    <lastmod>2026-07-17T05:21:23.157329+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/bienestar/digesti-n-enzim-tica-exocrina-funci-n-pancre-tica-y-descomposici-n-de-macronutrientes</loc>
+    <lastmod>2026-07-17T05:21:23.157329+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/bienestar/fibra-soluble-vs-insoluble-impacto-en-la-motilidad-y-modulaci-n-del-microbioma</loc>
+    <lastmod>2026-07-17T05:21:23.157329+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/bienestar/estreimiento-funcional-crnico</loc>
+    <lastmod>2026-07-17T05:21:23.157329+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/bienestar/infeccin-por-helicobacter-pylori</loc>
+    <lastmod>2026-07-17T05:21:23.157329+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/bienestar/eje-intestino-hgado</loc>
+    <lastmod>2026-07-17T05:21:23.157329+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/bienestar/intolerancia-a-la-lactosa-gentica-vs-adquirida</loc>
+    <lastmod>2026-07-17T05:21:23.157329+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/bienestar/histaminosis-entrica</loc>
+    <lastmod>2026-07-17T05:21:23.157329+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/bienestar/funcin-del-moco-gstrico</loc>
+    <lastmod>2026-07-17T05:21:23.157329+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/bienestar/trnsito-intestinal-acelerado</loc>
+    <lastmod>2026-07-17T05:21:23.157329+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/fibra-soluble-vs-insoluble-impacto-en-la-motilidad-y-modulaci-n-del-microbioma</loc>
+    <lastmod>2026-07-19T21:12:36.451576+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/alergias-alimentarias-y-respuesta-ige</loc>
+    <lastmod>2026-07-19T07:08:21.990914+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/reflujo-gastroesof-gico-erge-e-hipoclorhidria-mecanismos-del-esf-nter-y-acidez</loc>
+    <lastmod>2026-07-19T06:25:42.779558+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/digesti-n-enzim-tica-exocrina-funci-n-pancre-tica-y-descomposici-n-de-macronutrientes</loc>
+    <lastmod>2026-07-19T06:25:42.779558+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/celiaqu-a-vs-sensibilidad-al-gluten-no-cel-aca-mecanismos-inmunol-gicos-diferenciados</loc>
+    <lastmod>2026-07-19T06:25:42.779558+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/disbiosis-intestinal-desequilibrio-del-microbioma-y-su-relaci-n-con-la-inflamaci-n-sist-mica</loc>
+    <lastmod>2026-07-19T06:25:42.779558+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/s-ndrome-del-intestino-irritable-sii-eje-intestino-cerebro-y-alteraciones-de-la-motilidad</loc>
+    <lastmod>2026-07-19T06:25:42.779558+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/sibo-sobrecrecimiento-bacteriano-migraci-n-microbiana-y-fermentaci-n-prematura</loc>
+    <lastmod>2026-07-19T06:25:42.779558+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/eje-intestino-cerebro-v-as-de-comunicaci-n-bidireccional-y-neurotransmisores-ent-ricos</loc>
+    <lastmod>2026-07-19T06:25:42.779558+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/h-gado-graso-no-alcoh-lico-hgna-acumulaci-n-lip-dica-y-estr-s-oxidativo-hep-tico</loc>
+    <lastmod>2026-07-19T06:25:42.779558+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/5-habitos-que-sabotean-tu-perdida-de-peso</loc>
+    <lastmod>2026-07-19T03:19:05.11565+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/higado-graso</loc>
+    <lastmod>2026-07-18T23:14:04.445115+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/eje-intestino-hgado</loc>
+    <lastmod>2026-07-18T04:42:44.066645+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/guia-principiantes-peso-saludable</loc>
+    <lastmod>2026-07-17T22:49:58.141978+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/histaminosis-entrica</loc>
+    <lastmod>2026-07-17T21:09:24.450907+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/eje-intestino-cerebro-vias-de-comunicacion-bidireccional-neurotransmisores-entericos-y-salud-mental</loc>
+    <lastmod>2026-07-17T19:43:07.680914+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/sindrome-del-intestino-irritable-sii-fisiopatologia-diagnostico-dieta-fodmap-y-manejo-integral</loc>
+    <lastmod>2026-07-17T19:39:03.103486+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/digestion-enzimatica-exocrina-funcion-pancreatica-sintesis-biliar-y-absorcion-de-macronutrientes</loc>
+    <lastmod>2026-07-17T19:39:02.909037+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/reflujo-gastroesofagico-erge-e-hipoclorhidria-mas-alla-del-exceso-de-acido</loc>
+    <lastmod>2026-07-17T19:39:02.754375+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/fibra-soluble-vs-insoluble-impacto-en-la-motilidad-intestinal-microbioma-y-metabolismo</loc>
+    <lastmod>2026-07-17T19:39:02.600595+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/higado-graso-no-alcoholico-hgna-acumulacion-lipidica-estres-oxidativo-y-el-rol-del-intestino</loc>
+    <lastmod>2026-07-17T19:39:02.392574+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/celiaquia-vs-sensibilidad-al-gluten-no-celiaca-mecanismos-inmunologicos-diferenciados-y-diagnostico-preciso</loc>
+    <lastmod>2026-07-17T19:39:01.934518+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/sibo-sobrecrecimiento-bacteriano-del-intestino-delgado-migracion-microbiana-fermentacion-prematura-y-diagnostico</loc>
+    <lastmod>2026-07-17T19:39:01.779728+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/permeabilidad-intestinal-mecanismos-de-la-barrera-epitelial-y-factores-moduladores</loc>
+    <lastmod>2026-07-17T19:39:01.573249+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/trnsito-intestinal-acelerado</loc>
+    <lastmod>2026-07-17T19:39:01.377468+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/funcin-del-moco-gstrico</loc>
+    <lastmod>2026-07-17T19:39:01.212196+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/infeccin-por-helicobacter-pylori</loc>
+    <lastmod>2026-07-17T19:39:00.643744+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/estreimiento-funcional-crnico</loc>
+    <lastmod>2026-07-17T19:39:00.438596+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/intolerancia-a-la-lactosa-gentica-vs-adquirida</loc>
+    <lastmod>2026-07-17T19:39:00.285647+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/disbiosis-intestinal-desequilibrio-del-microbioma-y-su-relacion-con-la-inflamacion-sistemica</loc>
+    <lastmod>2026-07-17T19:39:00.136339+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/como-la-inflamacion-afecta-tu-peso</loc>
+    <lastmod>2026-07-17T19:38:59.737164+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/sintomas-cirrosis-hepatica</loc>
+    <lastmod>2026-07-17T19:38:59.518779+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/cirrosis-hepatica</loc>
+    <lastmod>2026-07-17T19:38:59.364603+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/metabolismo-de-los-cidos-biliares</loc>
+    <lastmod>2026-07-17T19:38:58.831943+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bienestarenclaro.com/articulos/cidos-grasos-de-cadena-corta-butirato</loc>
+    <lastmod>2026-07-17T19:38:58.620199+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
   </url>
 </urlset>

@@ -6,6 +6,7 @@ import PremiumInput from '@/components/ui/PremiumInput';
 import { Badge } from '@/components/ui/badge';
 import { toast } from '@/components/ui/use-toast';
 import SEO from '@/components/SEO';
+import { buildLocalBusinessSchema, buildCompleteOrganizationSchema } from '@/lib/productSeo';
 import MobileAppShell from '@/components/mobile/MobileAppShell';
 import SuccessAnimation from '@/components/SuccessAnimation';
 import {
@@ -269,6 +270,7 @@ const ContactPage = () => {
         description="Contáctanos para resolver dudas sobre productos FuXion, pedidos u oportunidad de negocio."
         canonical="/contacto"
         ogImageAlt="Bienestar en Claro — Contacto"
+        schema={[buildLocalBusinessSchema()]}
       />
 
       {/* ── MOBILE SHELL ── */}
@@ -555,22 +557,17 @@ const ContactPage = () => {
                   )}
 
                   {/* Message */}
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Mensaje <span className="text-red-500">*</span>
-                    </label>
-                    <textarea
-                      placeholder="Cuéntanos cómo podemos ayudarte..."
-                      value={formData.mensaje}
-                      onChange={(e) => handleChange('mensaje', e.target.value)}
-                      rows={5}
-                      className={`w-full rounded-lg border ${fieldErrors.mensaje ? 'border-red-400' : 'border-input'} bg-background px-3 py-2.5 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 resize-y min-h-[120px]`}
-                      required
-                    />
-                    {fieldErrors.mensaje && (
-                      <p className="mt-1 text-xs text-red-500">{fieldErrors.mensaje}</p>
-                    )}
-                  </div>
+                  <PremiumInput
+                    as="textarea"
+                    label="Mensaje"
+                    placeholder="Cuéntanos cómo podemos ayudarte..."
+                    value={formData.mensaje}
+                    onChange={(e) => handleChange('mensaje', e.target.value)}
+                    error={fieldErrors.mensaje}
+                    floatingLabel
+                    required
+                    className="min-h-[120px]"
+                  />
 
                   <Button
                     type="submit"

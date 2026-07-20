@@ -241,7 +241,7 @@ export function enrichArticle(article, productCatalog = [], bibliography = []) {
 /**
  * Generate all schemas for a blog post (MedicalWebPage + Article + Breadcrumbs + FAQPage).
  */
-export function generateArticleSchema(article, personSchema) {
+export function generateArticleSchema(article, personSchema, basePath = 'articulos') {
   const schemas = [];
 
   // MedicalWebPage
@@ -276,10 +276,10 @@ export function generateArticleSchema(article, personSchema) {
     '@type': 'Article',
     headline: article.title,
     description: article.excerpt,
-    author: {
+    author: personSchema || {
       '@type': 'Person',
-      name: article.author_name || 'Daniel Falcón',
-      jobTitle: article.author_title || 'Investigador de Salud y Bienestar'
+      name: 'Daniel Falcón',
+      jobTitle: 'Investigador de Salud y Bienestar'
     },
     publisher: {
       '@type': 'Organization',
@@ -293,7 +293,7 @@ export function generateArticleSchema(article, personSchema) {
     dateModified: article.updated_at || article.created_at,
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `${SITE_URL}/articulos/${article.slug}`
+      '@id': `${SITE_URL}/${basePath}/${article.slug}`
     },
     image: article.image_url ? `${SITE_URL}${article.image_url}` : undefined
   });

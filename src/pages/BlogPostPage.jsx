@@ -14,9 +14,10 @@ import { useScrollDirection } from '@/hooks/useScrollDirection';
 import ArticleComments from '@/components/blog/ArticleComments';
 import { parseCategories, CATEGORY_CATALOG } from '@/lib/categoryCatalog';
 import { TAG_CATALOG } from '@/lib/tagCatalog';
-import { buildBreadcrumbSchema, buildPersonSchema } from '@/lib/productSeo';
+import { buildBreadcrumbSchema, buildPersonSchema, buildWebsiteSchema } from '@/lib/productSeo';
 import { generateArticleSchema, generateFaqSchema, extractSemanticKeywords } from '@/lib/articleEnricher';
 import ArticleBadges from '@/components/blog/ArticleBadges';
+import TableOfContents from '@/components/TableOfContents';
 
 const BlogPostPage = () => {
   const { slug } = useParams();
@@ -199,31 +200,7 @@ const BlogPostPage = () => {
 
   if (!post) return null;
 
-  const articleSchema = {
-    "@context": "https://schema.org",
-    "@type": "MedicalWebPage",
-    "name": post.title,
-    "description": post.excerpt,
-    "about": {
-      "@type": "MedicalCondition",
-      "name": post.category || "Salud y Bienestar"
-    },
-    "author": {
-      "@type": "Person",
-      "name": "Daniel Falcón",
-      "jobTitle": "Investigador de Salud y Bienestar",
-      "url": "https://www.bienestarenclaro.com/sobre-nosotros"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Bienestar en Claro"
-    },
-    "datePublished": post.created_at,
-    "dateModified": post.updated_at || post.created_at,
-    "image": post.image_url
-  };
-
-  // Enriched schema
+  // Enriched schema from articleEnricher (MedicalWebPage + Article + WebArticle)
   const personSchema = buildPersonSchema({ name: 'Daniel Falcón' });
   const enrichedSchemas = generateArticleSchema(post, personSchema);
 
@@ -240,12 +217,15 @@ const BlogPostPage = () => {
         description={post.excerpt}
         ogImage={post.image_url}
         ogImageAlt={post.title}
+        canonical={`/articulos/${post.slug}`}
         ogType="article"
         articleAuthor="Daniel Falcón"
         articlePublished={post.created_at}
+        articleModified={post.updated_at || post.created_at}
         articleTags={parseCategories(post.category)}
         schema={[
           ...enrichedSchemas,
+          buildWebsiteSchema(),
           buildBreadcrumbSchema([
             { name: 'Inicio', url: '/' },
             { name: 'Blog', url: '/blog' },
@@ -429,6 +409,16 @@ const BlogPostPage = () => {
           <p className="text-lg md:text-xl text-foreground/90 italic font-medium leading-relaxed">
             {post.excerpt}
           </p>
+        </motion.div>
+
+        {/* Tabla de Contenidos */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.25 }}
+          className="mb-10"
+        >
+          <TableOfContents content={post.content} />
         </motion.div>
 
         {/* Contenido */}

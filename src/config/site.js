@@ -3,8 +3,8 @@
 export const SITE = {
   name: 'Bienestar en Claro',
   url: 'https://www.bienestarenclaro.com',
-  whatsapp: '+56912345678',
-  whatsappPhone: '56912345678',
+  whatsapp: '+56989639088',
+  whatsappPhone: '56989639088',
   email: 'contacto@bienestarenclaro.com',
   address: 'Santiago, Chile',
   instagram: 'https://www.instagram.com/donde_mi_negro?igsh=MWU1MWo5aXhvMnh3bg==',

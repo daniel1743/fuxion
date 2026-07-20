@@ -12,6 +12,7 @@ import {
   buildProductSchema,
   buildProductTitle,
   buildBreadcrumbSchema,
+  buildWebsiteSchema,
   getProductSeoContent,
   getSeoProductBySlug,
   SITE_URL,
@@ -158,6 +159,7 @@ const ProductPage = () => {
         ogImageAlt={`${product.name} FuXion — ${product.category || 'Bienestar'}`}
         schema={[
           buildProductSchema(product),
+          buildWebsiteSchema(),
           buildBreadcrumbSchema([
             { name: 'Inicio', url: '/' },
             { name: 'Productos', url: '/explorar' },

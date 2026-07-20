@@ -1,19 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '@/components/SEO';
-import { buildPersonSchema } from '@/lib/productSeo';
+import { buildPersonSchema, buildCompleteOrganizationSchema } from '@/lib/productSeo';
 
 const AboutPage = () => {
-  const schema = buildPersonSchema();
+  const personSchema = buildPersonSchema({
+    name: 'Daniel Falcón',
+    role: 'Investigador de Salud y Bienestar',
+    bio: 'Emprendedor chileno apasionado por la nutrición y el bienestar natural. Investigador en salud intestinal, nutrición funcional y bienestar integral.',
+    knowsAbout: ['Nutrición', 'Bienestar', 'Salud intestinal', 'Nutracéuticos', 'Fuxion', 'Microbiota', 'Estrés y salud mental']
+  });
+  const orgSchema = buildCompleteOrganizationSchema();
 
   return (
     <div className="min-h-screen bg-slate-50 py-16 dark:bg-background">
-      <SEO 
+      <SEO
         title="Sobre mí | Daniel Falcón - Bienestar en Claro"
         description="Conoce a Daniel Falcón, Investigador de Salud y Bienestar. Descubre la misión detrás de Bienestar en Claro y nuestra rigurosa metodología editorial."
         canonical="https://www.bienestarenclaro.com/sobre-nosotros"
         ogImageAlt="Daniel Falcón — Investigador de Salud y Bienestar"
-        structuredData={schema}
+        schema={[orgSchema, personSchema]}
       />
 
       <div className="container mx-auto max-w-3xl px-4 mt-8 md:mt-4">

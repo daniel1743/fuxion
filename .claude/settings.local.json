@@ -26,7 +26,18 @@
       "PowerShell(node -e 'var fs=require\\(\"fs\"\\); if\\(fs.existsSync\\(\"src/data/conditionHub.js\"\\)\\){var c=fs.readFileSync\\(\"src/data/conditionHub.js\",\"utf-8\"\\); console.log\\(\"CONDITION_HUB EXISTS - length: \"+c.length\\); console.log\\(\"---\"\\); console.log\\(c.substring\\(0,2000\\)\\);} else {console.log\\(\"DOES NOT EXIST\"\\);}')",
       "PowerShell(node -e 'var fs=require\\(\"fs\"\\); var c=fs.readFileSync\\(\"src/data/conditionHub.js\",\"utf-8\"\\); var lines=c.split\\(\"\\\\n\"\\); for\\(var i=0;i<lines.length;i++\\){if\\(lines[i].indexOf\\(\"icon:\"\\)>=0\\) console.log\\(i+1+\": \"+lines[i].trim\\(\\)\\);}')",
       "PowerShell(node -e 'var fs=require\\(\"fs\"\\); if\\(fs.existsSync\\(\"src/lib/articleEnricher.js\"\\)\\){var c=fs.readFileSync\\(\"src/lib/articleEnricher.js\",\"utf-8\"\\); console.log\\(\"LENGTH: \"+c.length\\); console.log\\(c.substring\\(0,2000\\)\\);} else {console.log\\(\"DOES NOT EXIST\"\\);}')",
-      "Bash(powershell -Command \"Get-Content 'C:\\\\Users\\\\Lenovo\\\\Desktop\\\\proyectos desplegados importante\\\\de daniel falcon\\\\src\\\\components\\\\SEO.jsx'\")"
+      "Bash(powershell -Command \"Get-Content 'C:\\\\Users\\\\Lenovo\\\\Desktop\\\\proyectos desplegados importante\\\\de daniel falcon\\\\src\\\\components\\\\SEO.jsx'\")",
+      "Bash(powershell -Command \"\\(Get-Content 'C:\\\\Users\\\\Lenovo\\\\Desktop\\\\proyectos desplegados importante\\\\de daniel falcon\\\\src\\\\data\\\\fuxion_database.json' | ConvertFrom-Json\\).productos.PSObject.Properties.Count\")",
+      "Bash('t\\).Count\" 2>$null; powershell -Command \"[System.Text.Json.JsonSerializer]::Deserialize\\(\\(Get-Content C:UsersLenovoDesktopproyectos' desplegados importantede daniel 'falconsrcdatafuxion_database.json -Raw\\), [hashtable]\\).productos.PSObject.Properties.Count')",
+      "Bash(powershell -Command '\\(Import-Csv -Path '\\\\''C:\\\\Users\\\\Lenovo\\\\Desktop\\\\proyectos desplegados importante\\\\de daniel falcon\\\\src\\\\data\\\\fuxion_database.json'\\\\'' -Delimiter '\\\\''__CMDSUB_OUTPUT__')",
+      "Bash(python *)",
+      "Bash(npm install *)",
+      "Bash(powershell -Command \"\\(Get-Content 'scripts/generate-sitemap.cjs' | Select-String '__dirname' -AllMatches\\).Count\")",
+      "Bash(powershell -Command \"\\(Get-Content 'scripts/generate-sitemap.cjs'\\) | Select-String '__dirname'\")",
+      "Bash(n\\\\\")",
+      "Bash(powershell -Command \"\\(Get-Content 'scripts/generate-sitemap.cjs' -Raw\\) -split \\\\\"`n\\\\\")",
+      "Bash(Select-Object -Index 11,12,13\")",
+      "Bash(powershell -Command \"\\(Get-ChildItem -Path . -Filter 'biblioteca*' -Recurse -File\\).FullName\")"
     ]
   }
 }

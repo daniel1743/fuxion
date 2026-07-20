@@ -8,8 +8,10 @@ import { toast } from '@/components/ui/use-toast';
 import { fetchWellnessArticleBySlug } from '@/services/wellnessArticleService';
 import { buildBreadcrumbSchema, buildPersonSchema } from '@/lib/productSeo';
 import { generateArticleSchema, generateFaqSchema, extractSemanticKeywords } from '@/lib/articleEnricher';
+import { buildWebsiteSchema } from '@/lib/productSeo';
 import { useReaderTracking } from '@/hooks/useReaderTracking';
 import MobileAppShell from '@/components/mobile/MobileAppShell';
+import TableOfContents from '@/components/TableOfContents';
 
 const WellnessArticlePage = () => {
   const { slug } = useParams();
@@ -123,7 +125,7 @@ const WellnessArticlePage = () => {
 
   // Enriched schema from articleEnricher
   const personSchema = buildPersonSchema({ name: article.editor_name || 'Daniel Falcón' });
-  const enrichedSchemas = generateArticleSchema(article, personSchema);
+  const enrichedSchemas = generateArticleSchema(article, personSchema, 'bienestar');
   enrichedSchemas.forEach(s => schemas.push(s));
 
   // Extract FAQs and build FAQPage Schema
@@ -143,10 +145,10 @@ const WellnessArticlePage = () => {
         ogImageAlt={article.title}
         articleAuthor={article.editor_name || 'Equipo de Bienestar'}
         articlePublished={article.published_at || article.created_at}
-        articleModified={article.updated_at || article.published_at || article.created_at}
         articleTags={[article.category || 'Bienestar']}
         schema={[
           ...schemas,
+          buildWebsiteSchema(),
           buildBreadcrumbSchema([
             { name: 'Inicio', url: '/' },
             { name: 'Bienestar', url: '/bienestar' },
@@ -183,6 +185,8 @@ const WellnessArticlePage = () => {
         </header>
 
         {article.image_url && <img src={article.image_url} alt={article.title} className="mt-8 max-h-[520px] w-full rounded-2xl object-cover" />}
+
+        <TableOfContents content={article.content} className="mt-8" />
 
         <div className="mt-10 space-y-5 text-[1.05rem] leading-8 text-muted-foreground">
           {article.content.split(/\n\s*\n/).filter(Boolean).map((paragraph, index) => (

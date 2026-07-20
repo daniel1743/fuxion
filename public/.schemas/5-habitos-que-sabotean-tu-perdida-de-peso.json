@@ -1,0 +1,206 @@
+{
+  "medical": {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": "5 Hábitos que Sabotean tu Pérdida de Peso sin que lo Sepas",
+    "description": "Descubre los errores invisibles que bloquean tu metabolismo y cómo revertirlos con hábitos sostenibles para alcanzar tu peso ideal.",
+    "about": {
+      "@type": "MedicalCondition",
+      "name": "Neurobiología del Sueño, Sistema Inmune y Descanso"
+    },
+    "keywords": [
+      "metabolismo",
+      "energía",
+      "carbohidratos",
+      "azúcar",
+      "vitaminas",
+      "cerebro",
+      "estrés",
+      "ansiedad",
+      "saciedad",
+      "hormonas",
+      "café"
+    ],
+    "author": {
+      "@type": "Person",
+      "name": "Daniel Falcón",
+      "jobTitle": "Investigador de Salud y Bienestar",
+      "url": "https://www.bienestarenclaro.com/sobre-nosotros"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Bienestar en Claro",
+      "url": "https://www.bienestarenclaro.com"
+    },
+    "datePublished": "2026-06-16T22:29:41.814411+00:00",
+    "dateModified": "2026-07-19T03:19:05.11565+00:00",
+    "image": "https://www.bienestarenclaro.comhttps://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800"
+  },
+  "faq": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Qué es Terapia Cognitivo Conductual (CBT)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Identificación y reestructuración de distorsiones cognitivas que disparan ansiedad."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Mindfulness-Based Stress Reduction (MBSR)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Programa estructurado de 8 semanas que reduce reactividad amigdalina."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Suspiro Fisiológico?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dos inhalaciones nasales cortas seguidas de una exhalación larga. Abre alvéolos y reduce frecuencia cardíaca."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Ejercicio Aeróbico (Zona 2)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Estimula la neurogénesis en el hipocampo (BDNF) y modula cortisol basal."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Relajación Muscular Progresiva (PMR)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tensión y relajación secuencial para enseñar al cuerpo a reconocer la ausencia de estrés físico."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Iniciar el día con 500ml de agua?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Rompe el ayuno hídrico nocturno y normaliza la osmolalidad matutina."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Monitoreo visual de la orina?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Color 'amarillo pálido' o 'paja' confirma la euhidratación perfecta."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Reemplazar jugos y bebidas?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sustituir bebidas azucaradas por agua o infusiones reduce drásticamente obesidad y riesgo metabólico."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Hidratación intra y post entrenamiento?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Compensar la tasa de sudoración pesando antes/después y reponiendo 1.5x lo perdido."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Incrementar sopas o verduras altas en H2O?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sandía, pepino, caldos; aportan hasta 20-30% de las necesidades hídricas totales pasivamente."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Terapia farmacológica (Agonistas GLP-1/GIP)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Retrasan el vaciamiento gástrico y actúan en el hipotálamo induciendo saciedad profunda. Indicar bajo supervisión si IMC >27 con comorbilidades."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Déficit calórico individualizado (500-750 kcal/día)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ley de termodinámica; fuerza al cuerpo a oxidar triglicéridos almacenados. Calcular TDEE y restar 500 kcal con registro en app."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Aumento de Proteína (1.2-1.5 g/kg/día)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Incrementa el efecto térmico de los alimentos y provee sustrato anabólico. Incluir 25-30g de proteína magra por comida."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Entrenamiento de Fuerza (2-3 días/sem)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Mejora la densidad de receptores GLUT4 y capilarización muscular. Ejercicios multiarticulares progresivos."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Sustitución guiada por Ley de Etiquetados?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Modifica el entorno limitando estímulos supernormales. Escoger productos sin sellos 'Alto en Calorías/Azúcares'."
+        }
+      }
+    ]
+  },
+  "seo": {
+    "title": "5 Hábitos que Sabotean tu Pérdida de Peso sin que lo Sepas",
+    "description": "Descubre los errores invisibles que bloquean tu metabolismo y cómo revertirlos con hábitos sostenibles para alcanzar tu peso ideal.",
+    "canonical": "https://www.bienestarenclaro.com/articulos/5-habitos-que-sabotean-tu-perdida-de-peso",
+    "ogImage": "https://www.bienestarenclaro.comhttps://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800",
+    "ogType": "article",
+    "articleTags": [
+      "Pérdida de Peso,Sobrepeso,Metabolismo"
+    ],
+    "articleAuthor": "Daniel Falcón",
+    "articlePublished": "2026-06-16T22:29:41.814411+00:00"
+  },
+  "relatedProducts": [
+    {
+      "slug": "thermo-t3",
+      "name": "THERMO T3",
+      "category": "Control de Peso",
+      "price": 36000,
+      "image": "https://www.bienestarenclaro.com/img/productos/thermo-t3.png",
+      "matchReason": "Contiene metabolismo, quema de grasa, energía",
+      "url": "https://www.bienestarenclaro.com/producto/thermo-t3"
+    },
+    {
+      "slug": "nocarb-t",
+      "name": "NOCARB-T",
+      "category": "Control de Peso",
+      "price": 36000,
+      "image": "https://www.bienestarenclaro.com/img/productos/nocarb-t.png",
+      "matchReason": "Contiene carbohidratos, azúcar, fibra",
+      "url": "https://www.bienestarenclaro.com/producto/nocarb-t"
+    },
+    {
+      "slug": "no-stress",
+      "name": "NO STRESS",
+      "category": "Vigor Mental",
+      "price": 39750,
+      "image": "https://www.bienestarenclaro.com/img/productos/no-stress.png",
+      "matchReason": "Contiene estrés, ansiedad, relajación",
+      "url": "https://www.bienestarenclaro.com/producto/no-stress"
+    }
+  ]
+}

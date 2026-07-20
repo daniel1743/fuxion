@@ -259,7 +259,7 @@ const HomePage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
               >
-                Productos Fuxion para <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-emerald-400">nutrición y bienestar natural.</span>
+                La información que tu <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-emerald-400">bienestar merece.</span>
               </motion.h1>
               <motion.p
                 className="text-sm md:text-base font-normal text-emerald-800/70 dark:text-emerald-300/70 mb-3 lg:mb-4"
@@ -267,7 +267,7 @@ const HomePage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.35 }}
               >
-                Explora nuestro catálogo y recibe asesoría directa antes de comprar.
+                Descubre artículos, guías, recomendaciones sobre nutrición, salud y bienestar.
               </motion.p>
               {/* ── Row 1: buscador a ancho completo ── */}
               <motion.div
