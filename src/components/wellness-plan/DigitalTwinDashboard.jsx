@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { generatePremiumReportContent } from '@/lib/engine/AiReportGenerator';
 import PremiumReportTemplate, { downloadPremiumPDF } from './PremiumReportTemplate';
 import { motion } from 'framer-motion';
+import ReactECharts from 'echarts-for-react';
 import { HugeiconsIcon } from '@hugeicons/react';
 import {
   Download04Icon,
@@ -123,6 +124,68 @@ function DomainBar({ domainKey, score, delay = 0 }) {
         </div>
       </div>
     </motion.div>
+  );
+}
+
+function DomainRadarChart({ domains }) {
+  const entries = Object.entries(DOMAIN_CONFIG)
+    .filter(([key]) => domains[key] !== undefined)
+    .map(([key, config]) => ({
+      key,
+      label: config.label,
+      value: Math.round(domains[key]),
+    }));
+
+  if (entries.length === 0) return null;
+
+  const option = {
+    tooltip: {
+      trigger: 'item',
+      formatter: (params) => {
+        const values = params.value || [];
+        return entries
+          .map((entry, index) => `${entry.label}: <strong>${values[index]}/100</strong>`)
+          .join('<br/>');
+      },
+    },
+    radar: {
+      radius: '68%',
+      center: ['50%', '52%'],
+      indicator: entries.map((entry) => ({ name: entry.label, max: 100 })),
+      splitNumber: 4,
+      axisName: {
+        color: '#374151',
+        fontSize: 11,
+        lineHeight: 14,
+      },
+      splitLine: { lineStyle: { color: ['#e5e7eb'] } },
+      splitArea: {
+        areaStyle: {
+          color: ['rgba(34,197,94,0.03)', 'rgba(20,184,166,0.06)'],
+        },
+      },
+      axisLine: { lineStyle: { color: '#d1d5db' } },
+    },
+    series: [
+      {
+        type: 'radar',
+        data: [
+          {
+            value: entries.map((entry) => entry.value),
+            name: 'Perfil actual',
+            areaStyle: { color: 'rgba(34,197,94,0.22)' },
+            lineStyle: { color: '#16a34a', width: 3 },
+            itemStyle: { color: '#16a34a' },
+          },
+        ],
+      },
+    ],
+  };
+
+  return (
+    <div style={{ height: 320, width: '100%' }}>
+      <ReactECharts option={option} style={{ height: '100%', width: '100%' }} />
+    </div>
   );
 }
 
@@ -439,9 +502,27 @@ export default function DigitalTwinDashboard() {
           Análisis por Dominio
         </h3>
         {Object.keys(activeDomains).length > 0 ? (
-          Object.entries(activeDomains).map(([key, score], i) => (
-            <DomainBar key={key} domainKey={key} score={score} delay={i} />
-          ))
+          <>
+            <DomainRadarChart domains={activeDomains} />
+            <div style={{
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: 10,
+              background: '#f0fdf4',
+              border: '1px solid #bbf7d0',
+              borderRadius: 12,
+              padding: '12px 14px',
+              margin: '4px 0 12px',
+            }}>
+              <HugeiconsIcon icon={InformationCircleIcon} size={18} color="#16a34a" style={{ flexShrink: 0, marginTop: 2 }} />
+              <p style={{ margin: 0, color: '#166534', fontSize: '0.8rem', lineHeight: 1.5 }}>
+                Este mapa muestra tus áreas fuertes y tus puntos de mayor oportunidad. El informe usa esta forma para priorizar hábitos con más impacto y menor fricción.
+              </p>
+            </div>
+            {Object.entries(activeDomains).map(([key, score], i) => (
+              <DomainBar key={key} domainKey={key} score={score} delay={i} />
+            ))}
+          </>
         ) : (
           <p style={{ fontSize: '0.85rem', color: '#6b7280', margin: 0 }}>
             Sin datos de dominios disponibles...

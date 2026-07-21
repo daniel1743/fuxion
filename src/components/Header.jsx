@@ -43,7 +43,7 @@ const officialStoreUrl = 'https://ifuxion.com/daniel/enrollment/chooseperson';
 const drawerNavItems = [
   { label: 'Inicio', icon: Home03Icon, path: '/' },
   { label: 'Mi carrito', subtitle: 'Ver mis productos', icon: ShoppingCart01Icon, path: '/carrito' },
-  { label: 'Bienestar (Menú)', subtitle: 'Ver opciones', icon: Target01Icon, path: '#' },
+  { label: 'Bienestar', subtitle: 'Ver opciones', icon: Target01Icon, path: '#' },
   { label: 'Productos', subtitle: 'Catálogo FuXion', icon: ShoppingBag03Icon, path: '/explorar' },
   { label: 'Tu plan a medida', subtitle: 'Diseña tu programa ideal', icon: Rocket01Icon, path: '/plan-a-medida' },
   { label: 'Sobre Nosotros', subtitle: 'Nuestra historia y valores', icon: Leaf01Icon, path: '/sobre-nosotros' },
@@ -345,29 +345,28 @@ const Header = () => {
       ════════════════════════════════════════════════════════════ */}
       <AnimatePresence>
         {isMenuOpen && (
-          <>
-            {/* Overlay — full screen backdrop */}
-            <motion.div
-              key="drawer-overlay"
-              variants={overlayVariants}
-              initial="closed"
-              animate="open"
-              exit="closed"
-              className="fixed inset-0 z-backdrop bg-black/30 backdrop-blur-[6px] md:hidden pointer-events-auto"
-              onClick={() => setIsMenuOpen(false)}
-            />
+          <motion.div
+            key="drawer-overlay"
+            variants={overlayVariants}
+            initial="closed"
+            animate="open"
+            exit="closed"
+            className="fixed inset-0 z-backdrop bg-black/30 backdrop-blur-[6px] md:hidden pointer-events-auto"
+            onClick={() => setIsMenuOpen(false)}
+          />
+        )}
 
-            {/* Drawer panel — fixed to viewport, full height */}
-            <motion.div
-              ref={drawerPanelRef}
-              key="drawer-panel"
-              variants={drawerVariants}
-              initial="closed"
-              animate="open"
-              exit="closed"
-              className="fixed top-0 right-0 z-modal h-[100dvh] w-[80vw] max-w-[320px] bg-white dark:bg-surface-muted shadow-2xl md:hidden flex flex-col overflow-hidden pointer-events-auto"
-            >
-              {/* Close button — top right */}
+        {isMenuOpen && (
+          <motion.div
+            ref={drawerPanelRef}
+            key="drawer-panel"
+            variants={drawerVariants}
+            initial="closed"
+            animate="open"
+            exit="closed"
+            className="fixed top-0 right-0 z-modal h-[100dvh] w-[80vw] max-w-[320px] bg-white dark:bg-surface-muted shadow-2xl md:hidden flex flex-col overflow-hidden pointer-events-auto"
+          >
+            {/* Close button — top right */}
               <button
                 type="button"
                 onClick={() => setIsMenuOpen(false)}
@@ -385,7 +384,7 @@ const Header = () => {
                   <button
                     type="button"
                     onClick={() => handleNavClick('/cuenta')}
-                    className="w-[56px] h-[56px] rounded-full ring-2 ring-emerald-200 dark:ring-emerald-700 shadow-md overflow-hidden focus:outline-none focus:ring-4 transition-shadow cursor-pointer block"
+                    className="w-[56px] h-[56px] rounded-full shadow-md overflow-hidden focus:outline-none focus:ring-4 transition-shadow cursor-pointer block"
                     aria-label="Ir a mi cuenta y notificaciones"
                   >
                     {isAuthenticated && user?.avatar ? (
@@ -559,7 +558,6 @@ const Header = () => {
                 </div>
               </div>
             </motion.div>
-          </>
         )}
       </AnimatePresence>
 

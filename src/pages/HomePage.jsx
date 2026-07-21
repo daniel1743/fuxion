@@ -46,28 +46,26 @@ const solutions = [
     id: 1,
     title: 'Desintoxicación suave y digestión',
     subtitle: 'Ideales para quienes buscan apoyar tránsito intestinal, liviandad abdominal y digestión diaria.',
-    products: ['Prunex1', 'Flora Liv', 'Liquid Fiber', 'Balance'],
+    products: ['Prunex 1', 'Flora Liv', 'Liquid Fiber', 'Balance'],
     benefits: [
       'Abdomen más liviano',
       'Mejor digestión',
       'Menos inflamación',
       'Apoyo a rutinas de limpieza digestiva'
     ],
-    buttonText: 'Quiero mejorar mi digestión',
     icon: <PremiumIcon icon={Leaf01Icon} size="md" />
   },
   {
     id: 2,
     title: 'Control de peso y medidas',
     subtitle: 'Pensados para acompañar hábitos de control de peso, comidas y actividad física.',
-    products: ['Thermo T3', 'NoCarb-T', 'Protein Active Fit', 'Pack 5/14'],
+    products: ['Thermo T3', 'NOCARB-T', 'Protein Active Fit', 'Pack 5/14'],
     benefits: [
       'Apoyo para hábitos de control de peso',
       'Apoyo para ordenar antojos',
       'Acompaña energía diaria',
       'Rutina simple de acompañamiento'
     ],
-    buttonText: 'Quiero apoyo para mi objetivo',
     icon: <PremiumIcon icon={WeightScaleIcon} size="md" />
   },
   {
@@ -81,7 +79,6 @@ const solutions = [
       'Mayor rendimiento',
       'Vitalidad durante el día'
     ],
-    buttonText: 'Quiero más energía',
     icon: <PremiumIcon icon={EnergyIcon} size="md" />
   }
 ];
@@ -108,33 +105,33 @@ const purchaseSteps = [
 ];
 
 const painPoints = [
-  'hinchazón constante',
-  'cansancio',
-  'retención de líquidos',
-  'ansiedad por comer',
-  'digestión lenta',
-  'poca energía',
-  'dificultad para ver resultados aunque se esfuercen'
+  'Hinchazón constante después de las comidas',
+  'Cansancio que no desaparece con descanso',
+  'Retención de líquidos',
+  'Ansiedad por comer',
+  'Digestión lenta',
+  'Poca energía',
+  'Dificultad para ver resultados aunque se esfuercen'
 ];
 
 const trustItems = [
   {
     icon: <PremiumIcon icon={Shield02Icon} size="md" />,
     rawIcon: Shield02Icon,
-    title: 'Compra asistida',
-    text: 'Te orientamos antes de comprar para elegir productos según tu objetivo.'
+    title: 'Asesoría personalizada',
+    text: 'Te orientamos antes de elegir para seleccionar productos según tu objetivo real.'
   },
   {
     icon: <PremiumIcon icon={Leaf01Icon} size="md" />,
     rawIcon: Leaf01Icon,
-    title: 'Fuxion Biotech',
-    text: 'Productos nutracéuticos con enfoque en nutrición, bienestar y hábitos saludables.'
+    title: 'Productos Fuxion Biotech',
+    text: 'Bebidas activas con ingredientes naturales, fibras, probióticos y extractos vegetales.'
   },
   {
     icon: <PremiumIcon icon={DeliveryTruck02Icon} size="md" />,
     rawIcon: DeliveryTruck02Icon,
-    title: 'Pedido por WhatsApp',
-    text: 'Agregas al carrito, envías tu pedido y coordinamos la atención directamente.'
+    title: 'Envío a todo Chile',
+    text: 'Coordina tu pedido directamente por WhatsApp con atención personalizada.'
   }
 ];
 
@@ -196,7 +193,7 @@ const HomePage = () => {
                   transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
                   className="text-xxs text-emerald-50/70 leading-relaxed font-normal max-w-[95%] drop-shadow-sm"
                 >
-                  Encuentra bebidas activas para energía, digestión y control de peso.
+                  Encuentra guías y recomendaciones sobre nutrición, digestión y bienestar.
                 </motion.p>
               </div>
               
@@ -205,10 +202,10 @@ const HomePage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 whileTap={{ scale: 0.94 }}
                 transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
-                onClick={() => navigate('/explorar')}
+                onClick={() => navigate('/articulos')}
                 className="bg-white text-fuxion px-5 py-2.5 rounded-full text-xs font-bold shadow-lg shadow-black/10 flex items-center gap-2 active:bg-gray-50 transition-colors w-fit shrink-0 mt-0.5"
               >
-                Explorar productos
+                Explorar guías y artículos
               </motion.button>
             </div>
 
@@ -254,7 +251,7 @@ const HomePage = () => {
                 Bienestar en Claro Chile · Asesoría personalizada
               </motion.p>
               <motion.h1
-                className="text-[1.4rem] sm:text-2xl md:text-3xl lg:text-responsive-hero font-bold uppercase text-foreground tracking-wide mb-3 lg:mb-4 leading-[1.2]"
+                className="text-[1.4rem] sm:text-2xl md:text-3xl lg:text-responsive-hero font-bold text-foreground tracking-wide mb-3 lg:mb-4 leading-[1.2]"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
@@ -294,7 +291,7 @@ const HomePage = () => {
                   <HugeiconsIcon icon={ArrowRight02Icon} size={20} className="shrink-0" />
                 </Button>
                 <p className="text-sm text-muted-foreground leading-snug hidden sm:block">
-                  Un asesor te ayuda a elegir<br className="hidden lg:block" /> el producto ideal para tu objetivo.
+                  Un asesor te ayuda a elegir<br className="hidden lg:block" /> el camino adecuado para tu objetivo.
                 </p>
               </motion.div>
             </div>
@@ -356,8 +353,8 @@ const HomePage = () => {
       <WellnessJourneyCarousel />
 
       <TestimonialsSection
-        title="Experiencias de consumidores FuXion"
-        subtitle="Opiniones compartidas por consumidores que han probado productos FuXion y publicado sus experiencias en diferentes plataformas públicas."
+        title="Historias de bienestar"
+        subtitle="Experiencias reales de consumidores FuXion que han compartido sus vivencias en diferentes plataformas."
         showForm={false}
       />
 
@@ -483,7 +480,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* SECCIÓN 4 – Las 3 soluciones principales */}
+      {/* SECCIÓN 3 – Las 3 soluciones principales */}
       <section className="py-8 md:py-20 bg-secondary/30 overflow-hidden">
         <div className="container mx-auto px-4 md:px-6">
           <motion.h2
@@ -493,7 +490,7 @@ const HomePage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            Las 3 soluciones principales
+            Tres caminos hacia tu bienestar
           </motion.h2>
           <div className="flex overflow-x-auto snap-x snap-mandatory md:grid md:grid-cols-3 gap-4 md:gap-8 max-w-6xl mx-auto pb-4 -mx-4 px-4 md:mx-auto md:px-0" style={{ scrollbarWidth: 'none' }}>
             {solutions.map((solution, i) => (
@@ -508,16 +505,16 @@ const HomePage = () => {
                 <Card variant="feature" className="h-full flex flex-col">
                   <div className="flex items-center gap-4 mb-4 text-primary">
                     {solution.icon}
-                    <h3 className="text-2xl font-bold text-foreground">{solution.title}</h3>
+                    <h3 className="text-xl font-bold text-foreground">{solution.title}</h3>
                   </div>
                   <div className="flex-1">
                     <p className="text-muted-foreground mb-6">{solution.subtitle}</p>
                     <div className="mb-6">
-                      <p className="text-sm font-semibold text-foreground mb-2">Productos:</p>
+                      <p className="text-sm font-semibold text-foreground mb-2">Productos asociados:</p>
                       <p className="text-sm text-muted-foreground">{solution.products.join(', ')}</p>
                     </div>
                     <div className="mb-6">
-                      <p className="text-sm font-semibold text-foreground mb-3">Beneficios:</p>
+                      <p className="text-sm font-semibold text-foreground mb-3">Qué puedes sentir:</p>
                       <ul className="space-y-2">
                         {solution.benefits.map((benefit, idx) => (
                           <li key={idx} className="flex items-start gap-2 text-sm text-foreground">
@@ -533,7 +530,7 @@ const HomePage = () => {
                     className="mt-auto"
                     onClick={() => handleWhatsAppClick(`Hola, me interesa: ${solution.title}`)}
                   >
-                    {solution.buttonText} <HugeiconsIcon icon={ArrowRight02Icon} size={16} className="ml-2" />
+                    Quiero asesoría sobre este tema <HugeiconsIcon icon={ArrowRight02Icon} size={16} className="ml-2" />
                   </Button>
                 </Card>
               </motion.div>
@@ -542,7 +539,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* SECCIÓN 5 – Cómo funciona */}
+      {/* SECCIÓN 5 – Cómo te acompañamos */}
       <section className="py-8 md:py-20 overflow-hidden">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
           <motion.h2
@@ -552,7 +549,7 @@ const HomePage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            Compra simple, asistida y sin cobro automático.
+            Acompañamiento real, sin cobro automático
           </motion.h2>
           <div className="flex overflow-x-auto snap-x snap-mandatory md:grid md:grid-cols-3 gap-4 md:gap-8 mt-8 md:mt-12 pb-4 -mx-4 px-4 md:mx-auto md:px-0" style={{ scrollbarWidth: 'none' }}>
             {purchaseSteps.map((step, i) => {
@@ -593,10 +590,10 @@ const HomePage = () => {
               <Button
                 size="lg"
                 variant="outline"
-                onClick={() => window.location.href = '/explorar'}
+                onClick={() => window.location.href = '/articulos'}
               >
-                <HugeiconsIcon icon={ShoppingBag03Icon} size={20} className="mr-2 shrink-0" />
-                <span className="text-balance">Ver productos</span>
+                <HugeiconsIcon icon={Leaf01Icon} size={20} className="mr-2 shrink-0" />
+                <span className="text-balance">Leer guías de bienestar</span>
               </Button>
             </div>
           </motion.div>
@@ -742,7 +739,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* SECCIÓN 7 – Bonus irresistible */}
+      {/* SECCIÓN 7 – Asesoría personalizada */}
       <section className="py-12 md:py-20">
         <div className="container mx-auto px-6 max-w-4xl">
           <motion.div
@@ -768,7 +765,7 @@ const HomePage = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              Asesoría personalizada antes de comprar
+              Asesoría personalizada antes de elegir
             </motion.h2>
             <motion.p
               className="text-lg md:text-xl text-muted-foreground mb-8"
@@ -816,7 +813,7 @@ const HomePage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Yo te acompaño en el proceso.
+            Te acompaño en el proceso.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -835,10 +832,10 @@ const HomePage = () => {
             <Button
               size="lg"
               variant="outline"
-              onClick={() => window.location.href = '/explorar'}
+              onClick={() => window.location.href = '/articulos'}
             >
-              <HugeiconsIcon icon={ShoppingBag03Icon} size={20} className="mr-2 shrink-0" />
-              <span className="text-balance">Ver catálogo</span>
+              <HugeiconsIcon icon={Leaf01Icon} size={20} className="mr-2 shrink-0" />
+              <span className="text-balance">Leer guías de bienestar</span>
             </Button>
           </motion.div>
         </div>

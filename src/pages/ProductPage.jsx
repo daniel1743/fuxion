@@ -195,7 +195,7 @@ const ProductPage = () => {
         <div className="bg-secondary rounded-2xl overflow-hidden border border-border">
           <img
             src={product.image || getPlaceholderImage('product')}
-            alt={`${product.name} FuXion Chile — producto nutracéutico para ${product.category?.toLowerCase() || 'bienestar'}`}
+            alt={`${product.name} FuXion Chile — ${product.category?.toLowerCase() || 'producto nutracéutico'} para ${product.category?.toLowerCase() || 'bienestar'}`}
             width="600"
             height="600"
             loading="eager"
@@ -210,8 +210,8 @@ const ProductPage = () => {
           <p className="text-sm font-semibold text-primary uppercase tracking-wide">
             {product.category}
           </p>
-          <h1 className="mt-3 text-4xl md:text-5xl font-extrabold text-foreground">
-            {product.name} Fuxion
+          <h1 className="mt-3 text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground leading-tight">
+            {buildProductTitle(product)}
           </h1>
           <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
             {seoContent?.intro || metaDescription}
@@ -342,7 +342,7 @@ const ProductPage = () => {
 
       {/* H2: Precio de {product.name} FuXion en Chile */}
       <section className="mt-14">
-        <h2 className="text-3xl font-extrabold text-foreground">
+        <h2 className="text-2xl md:text-3xl font-extrabold text-foreground">
           Precio de {product.name} FuXion en Chile
         </h2>
         <div className="mt-6 rounded-2xl border border-border bg-card p-6">
@@ -367,7 +367,7 @@ const ProductPage = () => {
 
       {/* H2: Dónde comprar {product.name} FuXion original en Chile */}
       <section className="mt-14">
-        <h2 className="text-3xl font-extrabold text-foreground">
+        <h2 className="text-2xl md:text-3xl font-extrabold text-foreground">
           Dónde comprar {product.name} FuXion original en Chile
         </h2>
         <div className="mt-6 rounded-2xl border border-border bg-card p-6">
@@ -381,7 +381,7 @@ const ProductPage = () => {
               onClick={() => addToCart(productForCart)}
               className="h-10 px-4 gap-2"
             >
-              <ShoppingCart className="h-4 w-4" />
+              <HugeiconsIcon icon={ShoppingCart01Icon} className="h-4 w-4" />
               Agregar al carrito
             </Button>
             <Button
@@ -518,7 +518,7 @@ const ProductPage = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-5 md:gap-6">
           <div className="flex items-center gap-3 md:gap-4">
             <div className="hidden md:flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900/40">
-              <Leaf className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
+              <HugeiconsIcon icon={Leaf01Icon} className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
             </div>
             <div className="text-center md:text-left">
               <p className="text-base md:text-lg font-semibold text-foreground">
@@ -534,7 +534,7 @@ const ProductPage = () => {
               variant="outline"
               className="w-full md:w-auto shrink-0 rounded-full border-emerald-300 text-emerald-700 hover:bg-emerald-600 hover:text-white dark:border-emerald-700 dark:text-emerald-300 dark:hover:bg-emerald-600"
             >
-              Conocer más <ArrowRight className="ml-2 h-4 w-4" />
+              Conocer más <HugeiconsIcon icon={ArrowRight02Icon} size={16} className="ml-2" />
             </Button>
           </Link>
         </div>

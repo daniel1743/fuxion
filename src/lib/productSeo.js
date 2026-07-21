@@ -8,7 +8,7 @@ export const STORE_NAME = 'Bienestar en Claro';
 export const PRIORITY_PRODUCT_SEO = {
   'thermo-t3': {
     seoTitle: 'Bebida Natural para Quemar Grasa y Energía al Entrenar | Thermo T3 Chile',
-    metaDescription: 'Descubre cómo quemar grasa de forma natural con Thermo T3 en Chile. Acelera tu metabolismo, controla tu peso y aumenta tu energía para entrenar. Asesoría por WhatsApp.',
+    metaDescription: 'Thermo T3 para bajar de peso y quemar grasa de forma natural en Chile. Acelera tu metabolismo, aumenta tu energía para entrenar y controla tu peso. Compra con asesoría por WhatsApp.',
     intro: 'THERMO T3 es una opción Fuxion orientada a personas que entrenan o quieren acompañar una rutina activa de control de peso. Su uso correcto es clave: se toma 30 minutos antes de hacer ejercicio, dentro de un plan con alimentación, hidratación y constancia.',
     seoHeading: 'Bebida Natural para Control de Peso y Energía',
     searchIntent: [
@@ -18,14 +18,14 @@ export const PRIORITY_PRODUCT_SEO = {
     ],
     faqs: [
       { question: '¿THERMO T3 se toma en la mañana?', answer: 'La indicación práctica es tomarlo 30 minutos antes de hacer ejercicio. Si entrenas en la mañana, ese puede ser tu horario; si entrenas en otro momento, se ajusta a tu rutina.' },
-      { question: '¿THERMO T3 sirve para bajar de peso?', answer: 'Puede acompañar una rutina de control de peso cuando existe actividad física, alimentación ordenada e hidratación. No reemplaza un plan nutricional ni una evaluación profesional.' },
-      { question: '¿THERMO T3 tiene cafeína?', answer: 'Sí, pertenece a la línea de control de peso y contiene componentes estimulantes. Si eres sensible a la cafeína, estás embarazada, en lactancia o tienes una condición médica, consulta antes.' }
+      { question: '¿THERMO T3 sirve para bajar de peso?', answer: 'Sí, Thermo T3 está diseñado específicamente para acompañar rutinas de control de peso y quema de grasa cuando existe actividad física, alimentación ordenada e hidratación. No reemplaza un plan nutricional ni una evaluación profesional.' },
+      { question: '¿THERMO T3 tiene cafeína?', answer: 'Sí, pertenece a la línea de control de peso y contiene componentes estimulantes (té verde, té negro, guaraná). Si eres sensible a la cafeína, estás embarazada, en lactancia o tienes una condición médica, consulta antes.' }
     ],
     relatedSlugs: ['nocarb-t', 'protein-active-fit', 'pre-sport-pro-edition']
   },
   'nocarb-t': {
     seoTitle: 'Té Natural para Bloquear Carbohidratos y Controlar el Azúcar | Nocarb-T Chile',
-    metaDescription: 'Controla tu peso y reduce la asimilación de azúcar con Nocarb-T en Chile. Ideal para acompañar comidas altas en carbohidratos. Revisa beneficios y cómo tomarlo.',
+    metaDescription: 'Nocarb-T para bajar de peso y bloquear carbohidratos en Chile. Reduce la asimilación de azúcar, controla tus porciones y acompaña comidas altas en carbohidratos. Revisa beneficios.',
     intro: 'NOCARB-T está pensado para personas que quieren ordenar su alimentación y acompañar comidas donde suelen aparecer carbohidratos. Su valor está en integrarlo con hábitos reales, no en usarlo como permiso para comer sin control.',
     seoHeading: 'Té Natural para el Control de Carbohidratos y Azúcar',
     searchIntent: [
@@ -34,15 +34,15 @@ export const PRIORITY_PRODUCT_SEO = {
       { title: 'Comprar NOCARB-T en Chile', body: 'Antes de pedirlo, conviene revisar tu objetivo: bajar medidas, controlar antojos, ordenar comidas o complementar ejercicio.' }
     ],
     faqs: [
-      { question: '¿NOCARB-T reemplaza una dieta?', answer: 'No. Es un apoyo dentro de hábitos de alimentación. La base sigue siendo una pauta equilibrada, actividad física e hidratación.' },
-      { question: '¿NOCARB-T es para cualquier persona?', answer: 'No necesariamente. No se recomienda para menores de 8 años, embarazadas o nodrizas sin indicación profesional. Ante condiciones médicas, consulta primero.' },
-      { question: '¿Puedo combinar NOCARB-T con THERMO T3?', answer: 'Depende de tu objetivo, horario y tolerancia. THERMO T3 se relaciona más con ejercicio; NOCARB-T con hábitos alimentarios. Lo ideal es recibir asesoría.' }
+      { question: '¿NOCARB-T reemplaza una dieta?', answer: 'No. Es un apoyo dentro de hábitos de alimentación. La base sigue siendo una pauta equilibrada, actividad física e hidratación. NOCARB-T ayuda a bloquear carbohidratos en comidas específicas.' },
+      { question: '¿NOCARB-T es para bajar de peso?', answer: 'Sí, NOCARB-T está diseñado para acompañar rutinas de control de peso, especialmente cuando la persona quiere reducir la asimilación de carbohidratos y azúcar.' },
+      { question: '¿NOCARB-T es para cualquier persona?', answer: 'No necesariamente. No se recomienda para menores de 8 años, embarazadas o nodrizas sin indicación profesional. Ante condiciones médicas, consulta primero.' }
     ],
     relatedSlugs: ['thermo-t3', 'prunex-1', 'flora-liv']
   },
   'prunex-1': {
     seoTitle: 'Té Natural para el Estreñimiento y Tránsito Intestinal | Prunex 1 Chile',
-    metaDescription: 'Alivia el estreñimiento y limpia tu colon naturalmente con Prunex 1 en Chile. Descubre cómo mejorar tu tránsito intestinal y bienestar digestivo. Asesoría personalizada.',
+    metaDescription: 'Prunex 1 para el estreñimiento en Chile. Alivia el estreñimiento, limpia tu colon naturalmente y mejora tu tránsito intestinal. Descubre cómo mejorar tu bienestar digestivo. Asesoría personalizada.',
     intro: 'PRUNEX 1 es uno de los productos más buscados de Fuxion para personas que quieren apoyar su bienestar digestivo y tránsito intestinal. La recomendación debe adaptarse a cada caso, especialmente si existe estreñimiento persistente o una condición digestiva diagnosticada.',
     seoHeading: 'Té Natural para el Bienestar Digestivo y Tránsito Intestinal',
     searchIntent: [
@@ -51,15 +51,15 @@ export const PRIORITY_PRODUCT_SEO = {
       { title: 'Comprar PRUNEX 1 en Chile', body: 'Puedes pedirlo con asesoría para evaluar si corresponde PRUNEX 1 o una alternativa más suave como Liquid Fiber, según tu objetivo digestivo.' }
     ],
     faqs: [
-      { question: '¿PRUNEX 1 sirve para estreñimiento?', answer: 'Puede apoyar el tránsito intestinal, pero si el estreñimiento es severo, frecuente o viene con dolor, lo correcto es consultar a un profesional de salud.' },
-      { question: '¿PRUNEX 1 se toma con agua caliente?', answer: 'Sí, su modo de uso indica tomar un sobre en agua caliente.' },
-      { question: '¿Cuál es la diferencia entre PRUNEX 1 y Liquid Fiber?', answer: 'PRUNEX 1 suele buscarse para apoyo digestivo más marcado; Liquid Fiber puede ser una opción más suave para hábitos de fibra. La elección depende de la persona.' }
+      { question: '¿PRUNEX 1 sirve para estreñimiento?', answer: 'Sí, Prunex 1 está diseñado específicamente para aliviar el estreñimiento de forma natural. Combina psyllium, inulina y linaza para mejorar el tránsito intestinal. Si el estreñimiento es severo o persistente, consulta a un profesional.' },
+      { question: '¿PRUNEX 1 se toma con agua caliente?', answer: 'Sí, su modo de uso indica tomar un sobre en agua caliente. Es importante beber suficiente agua durante el día para potenciar su efecto.' },
+      { question: '¿Cuál es la diferencia entre PRUNEX 1 y Liquid Fiber?', answer: 'PRUNEX 1 es para apoyo digestivo más marcado (estreñimiento). Liquid Fiber es más suave, enfocado en fibra prebiótica diaria. La elección depende de tu objetivo.' }
     ],
     relatedSlugs: ['liquid-fiber', 'flora-liv', 'rexet']
   },
   'flora-liv': {
     seoTitle: 'Probióticos Naturales para la Flora Intestinal y Digestión | Flora Liv Chile',
-    metaDescription: 'Regenera tu flora intestinal y mejora tu digestión con probióticos naturales Flora Liv en Chile. Apoyo ideal para gastritis y bienestar gástrico. Conoce sus beneficios.',
+    metaDescription: 'Flora Liv para la flora intestinal y digestión en Chile. Probióticos naturales con prebióticos, granadilla y aguaymanto. Regenera tu microbiota. Consulta precio y beneficios.',
     intro: 'FLORA LIV está orientado al equilibrio de la flora intestinal y bienestar digestivo. Es una alternativa relevante cuando la persona busca apoyo gástrico, digestión más cómoda o reconstruir hábitos después de desórdenes alimentarios o uso de antibióticos.',
     seoHeading: 'Probióticos Naturales para la Flora Intestinal',
     searchIntent: [
@@ -76,8 +76,8 @@ export const PRIORITY_PRODUCT_SEO = {
   },
   rexet: {
     seoTitle: 'Bebida Natural para Limpiar el Hígado y Bienestar Hepático | Rexet Chile',
-    metaDescription: 'Protege y desintoxica tu hígado naturalmente con Rexet en Chile. Apoyo ideal para el sistema hepatobiliar después de excesos. Revisa precio e ingredientes.',
-    intro: 'REXET se relaciona con bienestar hepático y rutinas de limpieza del sistema hepatobiliar según la línea Fuxion. Para comunicarlo bien, conviene hablar de apoyo y hábitos, no de cura de enfermedades.',
+    metaDescription: 'Rexet para limpiar el hígado y apoyar tu salud metabólica en Chile. Desintoxicación natural con alcachofa, tuna roja y taurina. Consulta precio y beneficios.',
+    intro: 'REXET es una opción Fuxion orientada a la limpieza del hígado, el bienestar hepático y la salud metabólica. Combina tuna roja, alcachofa, hierba luisa, perejil, acerola, minerales, taurina, cisteina y vitaminas del complejo B, C y D. Para comunicarlo bien, conviene hablar de apoyo y hábitos, no de cura de enfermedades.',
     seoHeading: 'Bebida Natural para el Bienestar Hepático',
     searchIntent: [
       { title: '¿Para qué sirve REXET?', body: 'Se enfoca en acompañar rutinas de bienestar hepático y cuidado del sistema hepatobiliar, junto con alimentación ordenada, agua y menor carga de ultraprocesados.' },
@@ -85,7 +85,7 @@ export const PRIORITY_PRODUCT_SEO = {
       { title: 'Comprar REXET en Chile', body: 'Antes de pedirlo, es útil revisar si buscas apoyo digestivo, hepático, energía o una rutina integral.' }
     ],
     faqs: [
-      { question: '¿REXET sirve para hígado graso?', answer: 'REXET puede presentarse como apoyo de bienestar hepático, pero el hígado graso requiere diagnóstico, seguimiento médico y cambios de hábitos. No debe reemplazar indicaciones profesionales.' },
+      { question: '¿REXET sirve para hígado graso?', answer: 'REXET puede presentarse como apoyo de bienestar hepático y salud metabólica, pero el hígado graso requiere diagnóstico, seguimiento médico y cambios de hábitos. No debe reemplazar indicaciones profesionales.' },
       { question: '¿REXET es un medicamento?', answer: 'No. Es un producto nutracéutico/alimentario de Fuxion y se debe usar como complemento de hábitos saludables.' },
       { question: '¿Con qué producto se puede complementar REXET?', answer: 'Depende del objetivo. Para digestión puede evaluarse FLORA LIV o PRUNEX 1; para energía puede revisarse VITA XTRA T+ o NUTRADAY.' }
     ],
@@ -93,7 +93,7 @@ export const PRIORITY_PRODUCT_SEO = {
   },
   nutraday: {
     seoTitle: 'Vitaminas y Minerales Naturales para la Nutrición Diaria | Nutraday Chile',
-    metaDescription: 'Refuerza las defensas y nutrición de tu familia con Nutraday en Chile. Vitaminas, minerales y antioxidantes 100% naturales. Hidratación sin azúcar.',
+    metaDescription: 'Nutraday para hidratación y nutrición diaria en Chile. Vitaminas, minerales, antioxidantes y 100% natural sin azúcar. Complemento natural para toda la familia. Consulta precio.',
     intro: 'NUTRADAY es una alternativa de hidratación nutricional para el día a día. Su búsqueda suele venir de personas que quieren mejorar energía, nutrición básica, antioxidantes y hábitos familiares sin partir por productos más específicos.',
     seoHeading: 'Vitaminas y Antioxidantes para Nutrición Diaria',
     searchIntent: [
@@ -110,7 +110,7 @@ export const PRIORITY_PRODUCT_SEO = {
   },
   'vita-xtra-t-plus': {
     seoTitle: 'Bebida Energética Natural sin Azúcar | Vita Xtra T+ Chile',
-    metaDescription: 'Aumenta tu energía y vitalidad diaria de forma 100% natural con Vita Xtra T+ en Chile. Bebida energética sin azúcar ni químicos. Revisa sus beneficios.',
+    metaDescription: 'Vita Xtra T+ para energía natural sin azúcar en Chile. Guayusa, té verde, ginseng y goji berry. Aumenta tu vitalidad diaria de forma 100% natural. Consulta precio.',
     intro: 'VITA XTRA T+ es una opción Fuxion para quienes buscan energía natural y apoyo antioxidante en la rutina diaria. Es diferente a productos deportivos o de control de peso: su foco es vitalidad y bienestar general.',
     seoHeading: 'Bebida Energética Natural para Vitalidad Diaria',
     searchIntent: [
@@ -127,7 +127,7 @@ export const PRIORITY_PRODUCT_SEO = {
   },
   'liquid-fiber': {
     seoTitle: 'Fibra Prebiótica Líquida para Digestión Saludable | Liquid Fiber Chile',
-    metaDescription: 'Liquid Fiber: fibra prebiótica suave para tránsito intestinal regular y equilibrio de flora. Ideal para toda la familia. Consulta precio y beneficios.',
+    metaDescription: 'Liquid Fiber para la digestión en Chile. Fibra prebiótica suave para tránsito intestinal regular y equilibrio de flora. Ideal para toda la familia. Consulta precio y beneficios.',
     intro: 'LIQUID FIBER es una alternativa suave de fibra prebiótica para acompañar la rutina digestiva diaria. Se presenta como una opción más accesible que PRUNEX 1 para quienes buscan un apoyo constante de fibra.',
     seoHeading: 'Fibra Prebiótica para la Digestión Diaria',
     searchIntent: [
@@ -570,6 +570,21 @@ export const PRODUCT_SEMANTIC_SECTIONS = {
     ]
   },
   'protein-active-fit': {
+    seoTitle: 'Protein Active Fit — Proteína Vegetal para Bajar de Peso y Tonificar | Chile',
+    metaDescription: 'Protein Active Fit para bajar de peso con proteína vegetal de quinua germinada. Saciedad, tonificación muscular y control de peso natural. Consulta precio y beneficios.',
+    intro: 'PROTEIN ACTIVE FIT es una opción Fuxion orientada a personas que buscan control de peso, saciedad y tonificación muscular con proteína vegetal de alta calidad. Combina BioProtein Active con ingredientes que apoyan el metabolismo y reducen el apetito.',
+    seoHeading: 'Proteína Vegetal para Control de Peso y Tonificación',
+    searchIntent: [
+      { title: '¿Para qué sirve Protein Active Fit?', body: 'Acompaña rutinas de control de peso, aporta saciedad y proteína vegetal de calidad. Ideal para quienes buscan tonificar mientras pierden peso.' },
+      { title: 'Cómo tomar Protein Active Fit', body: 'Su modo de uso indica tomar un sobre en agua fría, de media mañana o media tarde. Puede usarse como reemplazo de una colación.' },
+      { title: 'Comprar Protein Active Fit en Chile', body: 'Puedes pedirlo con asesoría para evaluar si es la mejor opción para tu rutina de control de peso.' }
+    ],
+    faqs: [
+      { question: '¿Protein Active Fit sirve para bajar de peso?', answer: 'Sí, está orientado a control de peso con proteína vegetal y saciedad. Funciona mejor combinado con alimentación ordenada y actividad física.' },
+      { question: '¿Protein Active Fit es vegano?', answer: 'Sí, es 100% vegetal con proteína de quinua germinada, arveja y arroz germinado.' },
+      { question: '¿Protein Active Fit o BioProtein Active?', answer: 'BioProtein Active es proteína pura. Protein Active Fit tiene el mismo perfil con enfoque en control de peso y saciedad.' }
+    ],
+    relatedSlugs: ['thermo-t3', 'nocarb-t', 'bioprotein-active'],
     semanticTerms: ['proteina vegetal', 'control de peso', 'saciedad', 'tonificacion muscular', 'quinua germinada', 'metabolismo', 'biodisponibilidad', 'batido proteico', 'apetito', 'quema de grasa'],
     deepSections: [
       { title: 'Ingredientes destacados', body: 'Protein Active Fit combina BioProtein Active (quinua germinada, arveja, arroz germinado, algas), enzimas, vitaminas, L-lisina, cromo y zinc en un batido proteico 100% vegetal.' },

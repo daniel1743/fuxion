@@ -34,6 +34,7 @@ export interface PipelineContext {
   stages: PipelineStageResult[];
   current_stage: string;
   traceId: string;
+  warnings?: string[];
 }
 
 // ─── Knowledge Pipeline ──────────────────────────────────────────────

@@ -11,7 +11,7 @@ import fuxionDatabase from '@/data/fuxion_database.json';
 import { getProductImageUrl } from '@/lib/imageUtils';
 import { useScrollDirection } from '@/hooks/useScrollDirection';
 import { SPRING_PHYSICS, SPRING_BOUNCE } from '@/lib/motionTokens';
-import { BRANDING } from '@/branding/branding';
+import BRANDING from '@/branding/branding';
 
 const defaultProductsDataset = Object.entries(fuxionDatabase.productos || {}).map(([key, value]) => ({
   id: key,

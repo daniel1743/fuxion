@@ -10,6 +10,41 @@ const slideVariants = {
   exit: (direction) => ({ x: direction < 0 ? 300 : -300, opacity: 0 }),
 };
 
+const stepGuidance = [
+  {
+    label: 'Base del informe',
+    message: 'Esto es importante porque edad, sexo, peso y altura cambian los cálculos de energía, proteína e hidratación. Con esta base evitamos recomendaciones genéricas.',
+  },
+  {
+    label: 'Lectura metabólica',
+    message: 'Este bloque nos ayuda a estimar tu punto de partida corporal. No buscamos juzgar un número: buscamos entender qué palancas pueden darte más resultado.',
+  },
+  {
+    label: 'Impacto semanal',
+    message: 'Aquí vemos si tu cuerpo recibe suficiente movimiento real. Pequeñas caminatas pueden cambiar mucho el control de glucosa, energía y recuperación.',
+  },
+  {
+    label: 'Recuperación',
+    message: 'El sueño altera apetito, ánimo, concentración y respuesta al entrenamiento. Por eso el informe no trata el descanso como un dato secundario.',
+  },
+  {
+    label: 'Combustible diario',
+    message: 'Con agua, vegetales y ultraprocesados podemos detectar si tu plan necesita primero ordenar lo básico antes de recomendar estrategias más avanzadas.',
+  },
+  {
+    label: 'Señales digestivas',
+    message: 'Tu digestión entrega pistas sobre hidratación, fibra, estrés y microbiota. Esta sección ayuda a que el informe no sea solo peso y calorías.',
+  },
+  {
+    label: 'Carga mental',
+    message: 'Estrés y ánimo pueden explicar por qué un plan falla aunque la persona tenga motivación. Esta información ayuda a recomendar hábitos posibles, no perfectos.',
+  },
+  {
+    label: 'Prioridad final',
+    message: 'Este cierre define banderas preventivas y objetivo principal. Con esto ordenamos tus 3 microhábitos por impacto, seguridad y facilidad de cumplimiento.',
+  },
+];
+
 export default function WellnessQuestionnaire({ onComplete }) {
   const { answers, setAnswers, currentStep, setCurrentStep, totalSteps, submitEvaluation } = useWellnessTwin();
   const [direction, setDirection] = useState(1);
@@ -170,6 +205,29 @@ export default function WellnessQuestionnaire({ onComplete }) {
       border: '1px solid #d1d5db',
       borderRadius: '8px',
       transition: 'all 0.2s'
+    },
+    guidanceCard: {
+      display: 'flex',
+      gap: '12px',
+      alignItems: 'flex-start',
+      background: 'linear-gradient(135deg, #f0fdf4, #ecfeff)',
+      border: '1px solid #bbf7d0',
+      borderRadius: '14px',
+      padding: '14px 16px',
+      marginBottom: '22px'
+    },
+    guidanceBadge: {
+      width: '28px',
+      height: '28px',
+      borderRadius: '999px',
+      background: '#22c55e',
+      color: 'white',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontWeight: 800,
+      flexShrink: 0,
+      fontSize: '14px'
     }
   };
 
@@ -504,6 +562,7 @@ export default function WellnessQuestionnaire({ onComplete }) {
 
   const progressPercentage = ((currentStep + 1) / totalSteps) * 100;
   const valid = isStepValid();
+  const guidance = stepGuidance[currentStep];
 
   return (
     <div style={styles.container}>
@@ -523,6 +582,31 @@ export default function WellnessQuestionnaire({ onComplete }) {
             transition={{ x: { type: "spring", stiffness: 300, damping: 30 }, opacity: { duration: 0.2 } }}
             style={{ width: '100%' }}
           >
+            {guidance && (
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.12 }}
+                style={styles.guidanceCard}
+              >
+                <div style={styles.guidanceBadge}>i</div>
+                <div>
+                  <p style={{
+                    margin: '0 0 4px',
+                    fontSize: '0.76rem',
+                    fontWeight: 800,
+                    letterSpacing: '0.08em',
+                    color: '#15803d',
+                    textTransform: 'uppercase'
+                  }}>
+                    {guidance.label}
+                  </p>
+                  <p style={{ margin: 0, color: '#365314', fontSize: '0.88rem', lineHeight: 1.55 }}>
+                    {guidance.message}
+                  </p>
+                </div>
+              </motion.div>
+            )}
             {renderStepContent()}
           </motion.div>
         </AnimatePresence>

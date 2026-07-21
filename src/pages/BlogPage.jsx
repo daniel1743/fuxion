@@ -109,7 +109,7 @@ const BlogPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="bg-card border border-border rounded-xl p-4 mb-8"
+            className="sticky top-0 z-10 -mx-4 px-4 pt-4 pb-3 bg-background/95 backdrop-blur-sm border-b border-border md:top-0 md:mx-0 md:px-6 md:rounded-xl md:bg-card md:border md:mb-8"
           >
             <div className="flex flex-col gap-4">
               {/* Búsqueda */}
@@ -120,12 +120,12 @@ const BlogPage = () => {
                   placeholder="Buscar artículos..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
+                  className="pl-10 bg-white dark:bg-zinc-900"
                 />
               </div>
 
               {/* Categorías (Scroll horizontal en móvil) */}
-              <div className="flex overflow-x-auto gap-2 pb-2 scrollbar-hide snap-x before:content-[''] before:w-1 before:shrink-0 before:block after:content-[''] after:w-1 after:shrink-0 after:block -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap">
+              <div className="flex overflow-x-auto gap-2 scrollbar-hide snap-x before:content-[''] before:w-1 before:shrink-0 before:block after:content-[''] after:w-1 after:shrink-0 after:block -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap">
                 <Button
                   variant={selectedCategory === 'all' ? 'default' : 'outline'}
                   size="sm"

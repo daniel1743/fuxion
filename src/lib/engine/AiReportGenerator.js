@@ -13,9 +13,21 @@
  * Estado actual: solo DeepSeek es funcional.
  */
 
+import { classifyIIBLevel } from '../wellnessAlgorithms';
+
 export async function generatePremiumReportContent(userData, twinData) {
   const { biometrics, iib } = twinData.twin_state;
-  const profile = twinData.behavior_profile;
+  const rawAnswers = twinData.raw_answers || {};
+  const profile = twinData.behavior_profile || {};
+  const domains = iib?.domains || twinData.twin_state.domains || {};
+  const iibLevel = iib?.level || classifyIIBLevel(iib.score).level;
+  const reportUser = {
+    ...rawAnswers,
+    ...profile,
+    ...userData,
+    goal: userData.goal || rawAnswers.goal || profile.goal || 'mejorar bienestar',
+    activityLevel: userData.activityLevel || rawAnswers.activityLevel || profile.activity_level || 'sin especificar',
+  };
 
   const systemPrompt = `
 Eres el Coach Principal de Bienestar en Claro, una marca premium que vende suplementos naturales (Fuxion) y planes de salud.
@@ -37,7 +49,7 @@ Explica por qué le recomendamos esto específicamente.
 Usa listas con viñetas para enumerar y desarrollar cada uno de los 3 hábitos recomendados.
 
 # 4. Plan de Acción Nutricional y Estilo de Vida
-Basado en su Índice Integral de Bienestar (IIB), que es de ${iib.score}/100 (Nivel: ${iib.level}).
+Basado en su Índice Integral de Bienestar (IIB), que es de ${iib.score}/100 (Nivel: ${iibLevel}).
 Habla de sus fortalezas y áreas de mejora.
 
 # 5. Recomendación Premium (Fuxion)
@@ -53,27 +65,28 @@ Tono: Profesional, experto, muy humano, empático. No uses lenguaje médico extr
 
   const userPrompt = `
 DATOS DEL CLIENTE:
-- Nombre: ${userData.name}
-- Edad: ${userData.age} años
-- Género: ${userData.gender}
-- Objetivo: ${userData.goal}
-- Actividad Física: ${userData.activityLevel}
+- Nombre: ${reportUser.name}
+- Edad: ${reportUser.age} años
+- Género: ${reportUser.gender}
+- Objetivo: ${reportUser.goal}
+- Actividad Física: ${reportUser.activityLevel}
 
 BIOMETRÍA Y REQUERIMIENTOS:
 - IMC: ${biometrics.bmi} (${biometrics.bmiClass})
 - TDEE: ${biometrics.tdee} kcal/día
 - Proteína sugerida: ${biometrics.protein} g/día
 - Hidratación: ${biometrics.waterL} L/día
-- Calidad de Sueño (Score): ${biometrics.sleepScore}/10
-- Tránsito Intestinal (Escala Bristol): Evaluación -> ${biometrics.bristolEval}
+- Calidad de Sueño (Score): ${biometrics.sleepScore}/100
+- Tránsito Intestinal (Escala Bristol): ${biometrics.bristolEval?.label || 'Sin datos'}${biometrics.bristolEval?.advice ? ` — ${biometrics.bristolEval.advice}` : ''}
 
 DOMINIOS (0 a 100):
-- Nutrición: ${twinData.twin_state.domains?.nutrition || 0}
-- Actividad Física: ${twinData.twin_state.domains?.activity || 0}
-- Sueño y Descanso: ${twinData.twin_state.domains?.sleep || 0}
-- Salud Mental y Estrés: ${twinData.twin_state.domains?.mental || 0}
-- Digestión: ${twinData.twin_state.domains?.digestion || 0}
-- Prevención: ${twinData.twin_state.domains?.habits || 0}
+- Nutrición: ${domains.nutrition || 0}
+- Actividad Física: ${domains.activity || 0}
+- Sueño y Descanso: ${domains.sleep || 0}
+- Salud Mental y Estrés: ${domains.mental || 0}
+- Biometría y Riesgo: ${domains.biometry || 0}
+- Digestión: ${domains.digestion || 0}
+- Prevención: ${domains.habits || 0}
 
 RECOMENDACIONES DE MICROHÁBITOS:
 ${twinData.recommendations.map(r => `- ${r.action}: ${r.why}`).join('\n')}
