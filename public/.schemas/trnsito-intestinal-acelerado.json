@@ -2,29 +2,29 @@
   "medical": {
     "@context": "https://schema.org",
     "@type": "MedicalWebPage",
-    "name": "Tránsito intestinal acelerado",
-    "description": "> * El tránsito intestinal acelerado describe un movimiento más rápido de lo habitual del contenido digestivo a través del intestino delgado y grueso, lo que reduce el tiempo disponible para la absorción de agua, electrolitos y nutrientes. > * Este fenómeno se asocia con frecuencia a heces blandas o",
+    "name": "Tránsito intestinal acelerado: diarrea crónica y sus causas",
+    "description": "Tránsito intestinal acelerado: diarrea crónica y sus causas. ...",
     "about": {
       "@type": "MedicalCondition",
       "name": "Salud Intestinal, Disbiosis y Estreñimiento"
     },
     "keywords": [
       "metabolismo",
+      "carbohidratos",
       "fibra",
-      "digestión",
-      "transito",
+      "estreñimiento",
+      "psyllium",
       "probióticos",
       "microbiota",
-      "vitaminas",
       "hidratación",
       "familia",
       "cerebro",
       "estrés",
       "sueño",
-      "piel",
+      "antiinflamatorio",
       "hormonas",
-      "aminoácidos",
-      "electrolitos"
+      "electrolitos",
+      "plan"
     ],
     "author": {
       "@type": "Person",
@@ -38,7 +38,7 @@
       "url": "https://www.bienestarenclaro.com"
     },
     "datePublished": "2026-07-17T05:21:23.157329+00:00",
-    "dateModified": "2026-07-17T05:21:23.157329+00:00"
+    "dateModified": "2026-07-21T13:09:56.985271+00:00"
   },
   "faq": {
     "@context": "https://schema.org",
@@ -207,8 +207,8 @@
     ]
   },
   "seo": {
-    "title": "Tránsito intestinal acelerado",
-    "description": "> * El tránsito intestinal acelerado describe un movimiento más rápido de lo habitual del contenido digestivo a través del intestino delgado y grueso, lo que reduce el tiempo disponible para la absorción de agua, electrolitos y nutrientes. > * Este fenómeno se asocia con frecuencia a heces blandas o",
+    "title": "Tránsito intestinal acelerado: diarrea crónica y sus causas",
+    "description": "Tránsito intestinal acelerado: diarrea crónica y sus causas. ...",
     "canonical": "https://www.bienestarenclaro.com/articulos/trnsito-intestinal-acelerado",
     "ogImage": "https://www.bienestarenclaro.com/branding/social/og-image.png",
     "ogType": "article",
@@ -220,15 +220,6 @@
   },
   "relatedProducts": [
     {
-      "slug": "nutraday",
-      "name": "NUTRADAY",
-      "category": "Hidratación Nutricional para la Familia",
-      "price": 36000,
-      "image": "https://www.bienestarenclaro.com/img/productos/nutraday.png",
-      "matchReason": "Contiene vitaminas, nutrición, antioxidantes",
-      "url": "https://www.bienestarenclaro.com/producto/nutraday"
-    },
-    {
       "slug": "prunex-1",
       "name": "PRUNEX 1",
       "category": "Limpieza del Colon",
@@ -238,13 +229,13 @@
       "url": "https://www.bienestarenclaro.com/producto/prunex-1"
     },
     {
-      "slug": "liquid-fiber",
-      "name": "LIQUID FIBER",
-      "category": "Limpieza del Sistema Digestivo",
-      "price": 28750,
-      "image": "https://www.bienestarenclaro.com/img/productos/liquid-fiber.png",
-      "matchReason": "Contiene fibra prebiótica, digestión, flora intestinal",
-      "url": "https://www.bienestarenclaro.com/producto/liquid-fiber"
+      "slug": "nocarb-t",
+      "name": "NOCARB-T",
+      "category": "Control de Peso",
+      "price": 36000,
+      "image": "https://www.bienestarenclaro.com/img/productos/nocarb-t.png",
+      "matchReason": "Contiene carbohidratos, azúcar, fibra",
+      "url": "https://www.bienestarenclaro.com/producto/nocarb-t"
     },
     {
       "slug": "flora-liv",
@@ -256,13 +247,13 @@
       "url": "https://www.bienestarenclaro.com/producto/flora-liv"
     },
     {
-      "slug": "pre-sport-pro-edition",
-      "name": "PRE SPORT PRO EDITION",
-      "category": "Sport",
-      "price": 39250,
-      "image": "https://www.bienestarenclaro.com/img/productos/pre-sport-pro-edition.png",
-      "matchReason": "Contiene pre entreno, rendimiento deportivo, aminoácidos",
-      "url": "https://www.bienestarenclaro.com/producto/pre-sport-pro-edition"
+      "slug": "nutraday",
+      "name": "NUTRADAY",
+      "category": "Hidratación Nutricional para la Familia",
+      "price": 36000,
+      "image": "https://www.bienestarenclaro.com/img/productos/nutraday.png",
+      "matchReason": "Contiene vitaminas, nutrición, antioxidantes",
+      "url": "https://www.bienestarenclaro.com/producto/nutraday"
     }
   ]
 }

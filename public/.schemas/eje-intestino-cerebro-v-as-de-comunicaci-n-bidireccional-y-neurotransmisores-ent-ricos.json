@@ -2,24 +2,22 @@
   "medical": {
     "@context": "https://schema.org",
     "@type": "MedicalWebPage",
-    "name": "Eje Intestino-Cerebro",
-    "description": "> * El eje intestino-cerebro es una red de comunicación bidireccional y continua que conecta el sistema nervioso entérico (el \"segundo cerebro\" del intestino) con el sistema nervioso central a través de vías neurales, endocrinas e inmunológicas. > * El nervio vago actúa como el canal principal de es",
+    "name": "Eje intestino-cerebro: cómo tu microbiota controla tu estado de ánimo",
+    "description": "Eje intestino-cerebro: cómo tu microbiota controla tu estado de ánimo. ...",
     "about": {
       "@type": "MedicalCondition",
       "name": "Salud Intestinal, Disbiosis y Estreñimiento"
     },
     "keywords": [
-      "carbohidratos",
+      "energía",
       "fibra",
-      "estreñimiento",
-      "digestión",
-      "fibra prebiótica",
       "probióticos",
       "microbiota",
+      "nutrición",
+      "fatiga",
       "cerebro",
       "estrés",
       "ansiedad",
-      "triptófano",
       "sueño",
       "plan"
     ],
@@ -35,7 +33,7 @@
       "url": "https://www.bienestarenclaro.com"
     },
     "datePublished": "2026-07-17T05:21:23.157329+00:00",
-    "dateModified": "2026-07-17T05:21:23.157329+00:00"
+    "dateModified": "2026-07-21T13:09:56.985271+00:00"
   },
   "faq": {
     "@context": "https://schema.org",
@@ -123,46 +121,6 @@
       },
       {
         "@type": "Question",
-        "name": "¿Qué es Iniciar el día con 500ml de agua?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Rompe el ayuno hídrico nocturno y normaliza la osmolalidad matutina."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Monitoreo visual de la orina?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Color 'amarillo pálido' o 'paja' confirma la euhidratación perfecta."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Reemplazar jugos y bebidas?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sustituir bebidas azucaradas por agua o infusiones reduce drásticamente obesidad y riesgo metabólico."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Hidratación intra y post entrenamiento?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Compensar la tasa de sudoración pesando antes/después y reponiendo 1.5x lo perdido."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Incrementar sopas o verduras altas en H2O?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sandía, pepino, caldos; aportan hasta 20-30% de las necesidades hídricas totales pasivamente."
-        }
-      },
-      {
-        "@type": "Question",
         "name": "¿Qué es Terapia farmacológica (Agonistas GLP-1/GIP)?",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -204,8 +162,8 @@
     ]
   },
   "seo": {
-    "title": "Eje Intestino-Cerebro",
-    "description": "> * El eje intestino-cerebro es una red de comunicación bidireccional y continua que conecta el sistema nervioso entérico (el \"segundo cerebro\" del intestino) con el sistema nervioso central a través de vías neurales, endocrinas e inmunológicas. > * El nervio vago actúa como el canal principal de es",
+    "title": "Eje intestino-cerebro: cómo tu microbiota controla tu estado de ánimo",
+    "description": "Eje intestino-cerebro: cómo tu microbiota controla tu estado de ánimo. ...",
     "canonical": "https://www.bienestarenclaro.com/articulos/eje-intestino-cerebro-v-as-de-comunicaci-n-bidireccional-y-neurotransmisores-ent-ricos",
     "ogImage": "https://www.bienestarenclaro.com/branding/social/og-image.png",
     "ogType": "article",
@@ -217,13 +175,13 @@
   },
   "relatedProducts": [
     {
-      "slug": "prunex-1",
-      "name": "PRUNEX 1",
-      "category": "Limpieza del Colon",
-      "price": 23300,
-      "image": "https://www.bienestarenclaro.com/img/productos/prunex-1.png",
-      "matchReason": "Contiene estreñimiento, transito intestinal, fibra",
-      "url": "https://www.bienestarenclaro.com/producto/prunex-1"
+      "slug": "flora-liv",
+      "name": "FLORA LIV",
+      "category": "Regeneración Flora Intestinal",
+      "price": 43000,
+      "image": "https://www.bienestarenclaro.com/img/productos/flora-liv.png",
+      "matchReason": "Contiene probióticos, flora intestinal, microbiota",
+      "url": "https://www.bienestarenclaro.com/producto/flora-liv"
     },
     {
       "slug": "no-stress",
@@ -233,33 +191,6 @@
       "image": "https://www.bienestarenclaro.com/img/productos/no-stress.png",
       "matchReason": "Contiene estrés, ansiedad, relajación",
       "url": "https://www.bienestarenclaro.com/producto/no-stress"
-    },
-    {
-      "slug": "nocarb-t",
-      "name": "NOCARB-T",
-      "category": "Control de Peso",
-      "price": 36000,
-      "image": "https://www.bienestarenclaro.com/img/productos/nocarb-t.png",
-      "matchReason": "Contiene carbohidratos, azúcar, fibra",
-      "url": "https://www.bienestarenclaro.com/producto/nocarb-t"
-    },
-    {
-      "slug": "liquid-fiber",
-      "name": "LIQUID FIBER",
-      "category": "Limpieza del Sistema Digestivo",
-      "price": 28750,
-      "image": "https://www.bienestarenclaro.com/img/productos/liquid-fiber.png",
-      "matchReason": "Contiene fibra prebiótica, digestión, flora intestinal",
-      "url": "https://www.bienestarenclaro.com/producto/liquid-fiber"
-    },
-    {
-      "slug": "flora-liv",
-      "name": "FLORA LIV",
-      "category": "Regeneración Flora Intestinal",
-      "price": 43000,
-      "image": "https://www.bienestarenclaro.com/img/productos/flora-liv.png",
-      "matchReason": "Contiene probióticos, flora intestinal, microbiota",
-      "url": "https://www.bienestarenclaro.com/producto/flora-liv"
     }
   ]
 }

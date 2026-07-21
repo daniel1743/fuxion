@@ -165,8 +165,8 @@ const HomePage = () => {
       className="overflow-x-hidden"
     >
       <SEO
-        title="Bienestar en Claro — Guías de Bienestar, Nutrición Natural y Asesoría Fuxion en Chile"
-        description="Guías de bienestar, nutrición natural y hábitos saludables. Asesoría personalizada por WhatsApp para elegir productos Fuxion según tu objetivo. Envíos a todo Chile."
+        title="Bienestar en Claro — Salud Metabólica, Energía y Pérdida de Peso en Chile"
+        description="¿Problemas de digestión o fatiga? Transforma tu cuerpo con guías prácticas y nutrición Fuxion 100% natural. Asesoría personalizada y envíos a todo Chile. ¡Da el primer paso!"
         canonical="/"
         schema={[buildCompleteOrganizationSchema(), buildWebsiteSchema(), buildStoreSchema()]}
       />
@@ -648,7 +648,7 @@ const HomePage = () => {
                             }}
                           />
                           <div className="absolute top-3 left-3">
-                            <ArticleBadges categoryString={post.category} />
+                            <ArticleBadges categoryString={post.category} content={post.content} />
                           </div>
                         </div>
                         <div className="p-6 flex flex-col flex-grow">

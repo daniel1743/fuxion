@@ -2,8 +2,8 @@
   "medical": {
     "@context": "https://schema.org",
     "@type": "MedicalWebPage",
-    "name": "Síndrome del Intestino Irritable (SII)",
-    "description": "> * El Síndrome del Intestino Irritable (SII) es el trastorno funcional digestivo más prevalente del mundo: afecta entre el 10% y el 15% de la población global, con mayor incidencia en mujeres y en personas de entre 20 y 50 años. > * Se caracteriza por dolor abdominal recurrente asociado a alteracio",
+    "name": "Síndrome del intestino irritable: causas, síntomas y tratamiento",
+    "description": "Síndrome del intestino irritable: causas, síntomas y tratamiento. ...",
     "about": {
       "@type": "MedicalCondition",
       "name": "Salud Intestinal, Disbiosis y Estreñimiento"
@@ -13,14 +13,15 @@
       "fibra",
       "estreñimiento",
       "psyllium",
-      "digestión",
       "probióticos",
       "microbiota",
       "hidratación",
       "familia",
+      "fatiga",
       "cerebro",
       "estrés",
       "ansiedad",
+      "sueño",
       "plan"
     ],
     "author": {
@@ -35,7 +36,7 @@
       "url": "https://www.bienestarenclaro.com"
     },
     "datePublished": "2026-07-17T05:21:23.157329+00:00",
-    "dateModified": "2026-07-17T05:21:23.157329+00:00"
+    "dateModified": "2026-07-21T13:09:56.985271+00:00"
   },
   "faq": {
     "@context": "https://schema.org",
@@ -204,8 +205,8 @@
     ]
   },
   "seo": {
-    "title": "Síndrome del Intestino Irritable (SII)",
-    "description": "> * El Síndrome del Intestino Irritable (SII) es el trastorno funcional digestivo más prevalente del mundo: afecta entre el 10% y el 15% de la población global, con mayor incidencia en mujeres y en personas de entre 20 y 50 años. > * Se caracteriza por dolor abdominal recurrente asociado a alteracio",
+    "title": "Síndrome del intestino irritable: causas, síntomas y tratamiento",
+    "description": "Síndrome del intestino irritable: causas, síntomas y tratamiento. ...",
     "canonical": "https://www.bienestarenclaro.com/articulos/s-ndrome-del-intestino-irritable-sii-eje-intestino-cerebro-y-alteraciones-de-la-motilidad",
     "ogImage": "https://www.bienestarenclaro.com/branding/social/og-image.png",
     "ogType": "article",

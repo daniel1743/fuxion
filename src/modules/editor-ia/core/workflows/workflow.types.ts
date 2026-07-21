@@ -6,6 +6,7 @@
 
 import type { ContentJob, DraftArticle, ContentFormat } from '../../types';
 import type { EditorState } from '../state-machine/editor.states';
+import type { BaseError } from '../errors/base.error';
 
 // ─── Workflow Status ─────────────────────────────────────────────────
 
@@ -20,7 +21,8 @@ export interface WorkflowContext {
   status: WorkflowStatus;
   started_at: string;
   completed_at: string | null;
-  error: string | null;
+  traceId: string;
+  error: BaseError | null;
 }
 
 // ─── Generate Series Workflow ────────────────────────────────────────

@@ -2,31 +2,28 @@
   "medical": {
     "@context": "https://schema.org",
     "@type": "MedicalWebPage",
-    "name": "Hígado Graso No Alcohólico (HGNA)",
-    "description": "> * El Hígado Graso No Alcohólico (HGNA), denominado actualmente Enfermedad Hepática Metabólica Asociada a Disfunción Metabólica (MASLD en inglés), es la acumulación de grasa en los hepatocitos superior al 5% del peso hepático, sin que el consumo de alcohol sea la causa. > * Afecta a entre el 25% y ",
+    "name": "Hígado graso no alcohólico: el enemigo silencioso de tu hígado",
+    "description": "Hígado graso no alcohólico: el enemigo silencioso de tu hígado. ...",
     "about": {
       "@type": "MedicalCondition",
       "name": "Nutrición, Metabolismo y Peso Corporal"
     },
     "keywords": [
       "metabolismo",
+      "energía",
+      "entrenamiento",
       "carbohidratos",
       "azúcar",
       "fibra",
-      "digestión",
-      "microbiota",
       "hígado",
       "hígado graso",
       "hepático",
-      "vitaminas",
-      "antioxidantes",
+      "familia",
       "fatiga",
       "estrés",
       "sueño",
-      "colágeno",
       "piel",
-      "café",
-      "plan"
+      "antiinflamatorio"
     ],
     "author": {
       "@type": "Person",
@@ -40,7 +37,7 @@
       "url": "https://www.bienestarenclaro.com"
     },
     "datePublished": "2026-07-17T05:21:23.157329+00:00",
-    "dateModified": "2026-07-17T05:21:23.157329+00:00"
+    "dateModified": "2026-07-21T13:31:50.849966+00:00"
   },
   "faq": {
     "@context": "https://schema.org",
@@ -165,22 +162,71 @@
           "@type": "Answer",
           "text": "Tensión y relajación secuencial para enseñar al cuerpo a reconocer la ausencia de estrés físico."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Iniciar el día con 500ml de agua?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Rompe el ayuno hídrico nocturno y normaliza la osmolalidad matutina."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Monitoreo visual de la orina?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Color 'amarillo pálido' o 'paja' confirma la euhidratación perfecta."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Reemplazar jugos y bebidas?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sustituir bebidas azucaradas por agua o infusiones reduce drásticamente obesidad y riesgo metabólico."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Hidratación intra y post entrenamiento?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Compensar la tasa de sudoración pesando antes/después y reponiendo 1.5x lo perdido."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Incrementar sopas o verduras altas en H2O?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sandía, pepino, caldos; aportan hasta 20-30% de las necesidades hídricas totales pasivamente."
+        }
       }
     ]
   },
   "seo": {
-    "title": "Hígado Graso No Alcohólico (HGNA)",
-    "description": "> * El Hígado Graso No Alcohólico (HGNA), denominado actualmente Enfermedad Hepática Metabólica Asociada a Disfunción Metabólica (MASLD en inglés), es la acumulación de grasa en los hepatocitos superior al 5% del peso hepático, sin que el consumo de alcohol sea la causa. > * Afecta a entre el 25% y ",
+    "title": "Hígado graso no alcohólico: el enemigo silencioso de tu hígado",
+    "description": "Hígado graso no alcohólico: el enemigo silencioso de tu hígado. ...",
     "canonical": "https://www.bienestarenclaro.com/articulos/h-gado-graso-no-alcoh-lico-hgna-acumulaci-n-lip-dica-y-estr-s-oxidativo-hep-tico",
     "ogImage": "https://www.bienestarenclaro.com/branding/social/og-image.png",
     "ogType": "article",
     "articleTags": [
-      "Hígado Graso"
+      "Nutrición"
     ],
     "articleAuthor": "Daniel Falcón",
     "articlePublished": "2026-07-17T05:21:23.157329+00:00"
   },
   "relatedProducts": [
+    {
+      "slug": "thermo-t3",
+      "name": "THERMO T3",
+      "category": "Control de Peso",
+      "price": 36000,
+      "image": "https://www.bienestarenclaro.com/img/productos/thermo-t3.png",
+      "matchReason": "Contiene metabolismo, quema de grasa, energía",
+      "url": "https://www.bienestarenclaro.com/producto/thermo-t3"
+    },
     {
       "slug": "nocarb-t",
       "name": "NOCARB-T",
@@ -198,33 +244,6 @@
       "image": "https://www.bienestarenclaro.com/img/productos/rexet.png",
       "matchReason": "Contiene hígado, hígado graso, depurativo",
       "url": "https://www.bienestarenclaro.com/producto/rexet"
-    },
-    {
-      "slug": "prunex-1",
-      "name": "PRUNEX 1",
-      "category": "Limpieza del Colon",
-      "price": 23300,
-      "image": "https://www.bienestarenclaro.com/img/productos/prunex-1.png",
-      "matchReason": "Contiene estreñimiento, transito intestinal, fibra",
-      "url": "https://www.bienestarenclaro.com/producto/prunex-1"
-    },
-    {
-      "slug": "nutraday",
-      "name": "NUTRADAY",
-      "category": "Hidratación Nutricional para la Familia",
-      "price": 36000,
-      "image": "https://www.bienestarenclaro.com/img/productos/nutraday.png",
-      "matchReason": "Contiene vitaminas, nutrición, antioxidantes",
-      "url": "https://www.bienestarenclaro.com/producto/nutraday"
-    },
-    {
-      "slug": "beauty-in",
-      "name": "BEAUTY-IN",
-      "category": "Anti-Edad",
-      "price": 44750,
-      "image": "https://www.bienestarenclaro.com/img/productos/beauty-in.png",
-      "matchReason": "Contiene colágeno, piel, belleza",
-      "url": "https://www.bienestarenclaro.com/producto/beauty-in"
     }
   ]
 }

@@ -2,22 +2,19 @@
   "medical": {
     "@context": "https://schema.org",
     "@type": "MedicalWebPage",
-    "name": "Intolerancia a la lactosa (Genética vs Adquirida)",
-    "description": "> * La intolerancia a la lactosa no es una enfermedad, sino un patrón fisiológico determinado por la disminución de la actividad de la enzima lactasa en el intestino delgado. > * Existen dos formas principales: la genética (persistencia/no persistencia de lactasa, determinada por variantes en el gen",
+    "name": "Intolerancia a la lactosa: genética o adquirida",
+    "description": "Intolerancia a la lactosa: genética o adquirida. ...",
     "about": {
       "@type": "MedicalCondition",
       "name": "Salud Intestinal, Disbiosis y Estreñimiento"
     },
     "keywords": [
-      "metabolismo",
-      "energía",
       "azúcar",
-      "cromo",
-      "transito",
-      "probióticos",
-      "microbiota",
+      "digestión",
+      "nutrición",
       "familia",
-      "fatiga"
+      "fatiga",
+      "plan"
     ],
     "author": {
       "@type": "Person",
@@ -31,7 +28,7 @@
       "url": "https://www.bienestarenclaro.com"
     },
     "datePublished": "2026-07-17T05:21:23.157329+00:00",
-    "dateModified": "2026-07-17T05:21:23.157329+00:00"
+    "dateModified": "2026-07-21T13:09:56.985271+00:00"
   },
   "faq": {
     "@context": "https://schema.org",
@@ -160,8 +157,8 @@
     ]
   },
   "seo": {
-    "title": "Intolerancia a la lactosa (Genética vs Adquirida)",
-    "description": "> * La intolerancia a la lactosa no es una enfermedad, sino un patrón fisiológico determinado por la disminución de la actividad de la enzima lactasa en el intestino delgado. > * Existen dos formas principales: la genética (persistencia/no persistencia de lactasa, determinada por variantes en el gen",
+    "title": "Intolerancia a la lactosa: genética o adquirida",
+    "description": "Intolerancia a la lactosa: genética o adquirida. ...",
     "canonical": "https://www.bienestarenclaro.com/articulos/intolerancia-a-la-lactosa-gentica-vs-adquirida",
     "ogImage": "https://www.bienestarenclaro.com/branding/social/og-image.png",
     "ogType": "article",
@@ -173,31 +170,13 @@
   },
   "relatedProducts": [
     {
-      "slug": "thermo-t3",
-      "name": "THERMO T3",
-      "category": "Control de Peso",
+      "slug": "nutraday",
+      "name": "NUTRADAY",
+      "category": "Hidratación Nutricional para la Familia",
       "price": 36000,
-      "image": "https://www.bienestarenclaro.com/img/productos/thermo-t3.png",
-      "matchReason": "Contiene metabolismo, quema de grasa, energía",
-      "url": "https://www.bienestarenclaro.com/producto/thermo-t3"
-    },
-    {
-      "slug": "nocarb-t",
-      "name": "NOCARB-T",
-      "category": "Control de Peso",
-      "price": 36000,
-      "image": "https://www.bienestarenclaro.com/img/productos/nocarb-t.png",
-      "matchReason": "Contiene carbohidratos, azúcar, fibra",
-      "url": "https://www.bienestarenclaro.com/producto/nocarb-t"
-    },
-    {
-      "slug": "flora-liv",
-      "name": "FLORA LIV",
-      "category": "Regeneración Flora Intestinal",
-      "price": 43000,
-      "image": "https://www.bienestarenclaro.com/img/productos/flora-liv.png",
-      "matchReason": "Contiene probióticos, flora intestinal, microbiota",
-      "url": "https://www.bienestarenclaro.com/producto/flora-liv"
+      "image": "https://www.bienestarenclaro.com/img/productos/nutraday.png",
+      "matchReason": "Contiene vitaminas, nutrición, antioxidantes",
+      "url": "https://www.bienestarenclaro.com/producto/nutraday"
     }
   ]
 }

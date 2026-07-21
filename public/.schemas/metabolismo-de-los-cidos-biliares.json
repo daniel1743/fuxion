@@ -2,25 +2,25 @@
   "medical": {
     "@context": "https://schema.org",
     "@type": "MedicalWebPage",
-    "name": "Metabolismo de los ácidos biliares",
-    "description": "> * Los ácidos biliares son moléculas sintetizadas en el hígado a partir del colesterol, esenciales para la digestión y absorción de grasas y vitaminas liposolubles (A, D, E, K). > * Su circulación enterohepática —el viaje desde el hígado al intestino y de regreso— se repite entre 4 y 12 veces al dí",
+    "name": "Ácidos biliares: más que digestión",
+    "description": "Ácidos biliares: más que digestión. ...",
     "about": {
       "@type": "MedicalCondition",
-      "name": "Nutrición, Metabolismo y Peso Corporal"
+      "name": "Ejercicio, Aparato Cardiovascular y Longevidad Funcional"
     },
     "keywords": [
       "metabolismo",
+      "fibra",
       "digestión",
+      "probióticos",
       "microbiota",
       "hígado",
       "hepático",
       "vitaminas",
-      "taurina",
-      "glicina",
+      "hidratación",
+      "familia",
       "piel",
-      "hormonas",
-      "aminoácidos",
-      "electrolitos"
+      "antiinflamatorio"
     ],
     "author": {
       "@type": "Person",
@@ -34,52 +34,12 @@
       "url": "https://www.bienestarenclaro.com"
     },
     "datePublished": "2026-07-17T04:42:01.650098+00:00",
-    "dateModified": "2026-07-17T05:21:23.157329+00:00"
+    "dateModified": "2026-07-21T13:09:56.985271+00:00"
   },
   "faq": {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "¿Qué es Terapia farmacológica (Agonistas GLP-1/GIP)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Retrasan el vaciamiento gástrico y actúan en el hipotálamo induciendo saciedad profunda. Indicar bajo supervisión si IMC >27 con comorbilidades."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Déficit calórico individualizado (500-750 kcal/día)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Ley de termodinámica; fuerza al cuerpo a oxidar triglicéridos almacenados. Calcular TDEE y restar 500 kcal con registro en app."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Aumento de Proteína (1.2-1.5 g/kg/día)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Incrementa el efecto térmico de los alimentos y provee sustrato anabólico. Incluir 25-30g de proteína magra por comida."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Entrenamiento de Fuerza (2-3 días/sem)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Mejora la densidad de receptores GLUT4 y capilarización muscular. Ejercicios multiarticulares progresivos."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Sustitución guiada por Ley de Etiquetados?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Modifica el entorno limitando estímulos supernormales. Escoger productos sin sellos 'Alto en Calorías/Azúcares'."
-        }
-      },
       {
         "@type": "Question",
         "name": "¿Qué es Polietilenglicol (PEG 3350)?",
@@ -122,46 +82,6 @@
       },
       {
         "@type": "Question",
-        "name": "¿Qué es Terapia Cognitivo Conductual (CBT)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Identificación y reestructuración de distorsiones cognitivas que disparan ansiedad."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Mindfulness-Based Stress Reduction (MBSR)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Programa estructurado de 8 semanas que reduce reactividad amigdalina."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Suspiro Fisiológico?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Dos inhalaciones nasales cortas seguidas de una exhalación larga. Abre alvéolos y reduce frecuencia cardíaca."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Ejercicio Aeróbico (Zona 2)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Estimula la neurogénesis en el hipocampo (BDNF) y modula cortisol basal."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Relajación Muscular Progresiva (PMR)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Tensión y relajación secuencial para enseñar al cuerpo a reconocer la ausencia de estrés físico."
-        }
-      },
-      {
-        "@type": "Question",
         "name": "¿Qué es Iniciar el día con 500ml de agua?",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -199,22 +119,89 @@
           "@type": "Answer",
           "text": "Sandía, pepino, caldos; aportan hasta 20-30% de las necesidades hídricas totales pasivamente."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Terapia farmacológica (Agonistas GLP-1/GIP)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Retrasan el vaciamiento gástrico y actúan en el hipotálamo induciendo saciedad profunda. Indicar bajo supervisión si IMC >27 con comorbilidades."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Déficit calórico individualizado (500-750 kcal/día)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ley de termodinámica; fuerza al cuerpo a oxidar triglicéridos almacenados. Calcular TDEE y restar 500 kcal con registro en app."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Aumento de Proteína (1.2-1.5 g/kg/día)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Incrementa el efecto térmico de los alimentos y provee sustrato anabólico. Incluir 25-30g de proteína magra por comida."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Entrenamiento de Fuerza (2-3 días/sem)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Mejora la densidad de receptores GLUT4 y capilarización muscular. Ejercicios multiarticulares progresivos."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Sustitución guiada por Ley de Etiquetados?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Modifica el entorno limitando estímulos supernormales. Escoger productos sin sellos 'Alto en Calorías/Azúcares'."
+        }
       }
     ]
   },
   "seo": {
-    "title": "Metabolismo de los ácidos biliares",
-    "description": "> * Los ácidos biliares son moléculas sintetizadas en el hígado a partir del colesterol, esenciales para la digestión y absorción de grasas y vitaminas liposolubles (A, D, E, K). > * Su circulación enterohepática —el viaje desde el hígado al intestino y de regreso— se repite entre 4 y 12 veces al dí",
+    "title": "Ácidos biliares: más que digestión",
+    "description": "Ácidos biliares: más que digestión. ...",
     "canonical": "https://www.bienestarenclaro.com/articulos/metabolismo-de-los-cidos-biliares",
     "ogImage": "https://www.bienestarenclaro.com/branding/social/og-image.png",
     "ogType": "article",
     "articleTags": [
-      "Hígado Graso"
+      "Ejercicio"
     ],
     "articleAuthor": "Daniel Falcón",
     "articlePublished": "2026-07-17T04:42:01.650098+00:00"
   },
   "relatedProducts": [
+    {
+      "slug": "nutraday",
+      "name": "NUTRADAY",
+      "category": "Hidratación Nutricional para la Familia",
+      "price": 36000,
+      "image": "https://www.bienestarenclaro.com/img/productos/nutraday.png",
+      "matchReason": "Contiene vitaminas, nutrición, antioxidantes",
+      "url": "https://www.bienestarenclaro.com/producto/nutraday"
+    },
+    {
+      "slug": "prunex-1",
+      "name": "PRUNEX 1",
+      "category": "Limpieza del Colon",
+      "price": 23300,
+      "image": "https://www.bienestarenclaro.com/img/productos/prunex-1.png",
+      "matchReason": "Contiene estreñimiento, transito intestinal, fibra",
+      "url": "https://www.bienestarenclaro.com/producto/prunex-1"
+    },
+    {
+      "slug": "flora-liv",
+      "name": "FLORA LIV",
+      "category": "Regeneración Flora Intestinal",
+      "price": 43000,
+      "image": "https://www.bienestarenclaro.com/img/productos/flora-liv.png",
+      "matchReason": "Contiene probióticos, flora intestinal, microbiota",
+      "url": "https://www.bienestarenclaro.com/producto/flora-liv"
+    },
     {
       "slug": "rexet",
       "name": "REXET",
@@ -223,15 +210,6 @@
       "image": "https://www.bienestarenclaro.com/img/productos/rexet.png",
       "matchReason": "Contiene hígado, hígado graso, depurativo",
       "url": "https://www.bienestarenclaro.com/producto/rexet"
-    },
-    {
-      "slug": "pre-sport-pro-edition",
-      "name": "PRE SPORT PRO EDITION",
-      "category": "Sport",
-      "price": 39250,
-      "image": "https://www.bienestarenclaro.com/img/productos/pre-sport-pro-edition.png",
-      "matchReason": "Contiene pre entreno, rendimiento deportivo, aminoácidos",
-      "url": "https://www.bienestarenclaro.com/producto/pre-sport-pro-edition"
     }
   ]
 }

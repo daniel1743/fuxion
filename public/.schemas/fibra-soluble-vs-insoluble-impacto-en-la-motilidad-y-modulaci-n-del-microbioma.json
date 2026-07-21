@@ -2,32 +2,24 @@
   "medical": {
     "@context": "https://schema.org",
     "@type": "MedicalWebPage",
-    "name": "Fibra soluble vs insoluble en la motilidad",
-    "description": "> * La fibra dietética se clasifica principalmente en soluble e insoluble. Ambas son carbohidratos no digeribles, pero difieren radicalmente en su comportamiento físico, su velocidad de tránsito y su interacción con la microbiota intestinal. > * La fibra soluble forma geles viscosos que enlentecen l",
+    "name": "Fibra soluble vs insoluble: cuál necesitas y por qué",
+    "description": "Fibra soluble vs insoluble: cuál necesitas y por qué. ...",
     "about": {
       "@type": "MedicalCondition",
-      "name": "Ejercicio, Aparato Cardiovascular y Longevidad Funcional"
+      "name": "Salud Intestinal, Disbiosis y Estreñimiento"
     },
     "keywords": [
-      "metabolismo",
-      "energía",
-      "carbohidratos",
+      "control de peso",
       "fibra",
       "estreñimiento",
       "psyllium",
       "digestión",
       "microbiota",
-      "hígado",
-      "hígado graso",
       "vitaminas",
-      "nutrición",
       "hidratación",
-      "estrés",
+      "concentración",
       "saciedad",
-      "antiinflamatorio",
-      "hormonas",
-      "clorofila",
-      "aminoácidos"
+      "piel"
     ],
     "author": {
       "@type": "Person",
@@ -41,7 +33,7 @@
       "url": "https://www.bienestarenclaro.com"
     },
     "datePublished": "2026-07-17T05:21:23.157329+00:00",
-    "dateModified": "2026-07-17T05:21:23.157329+00:00"
+    "dateModified": "2026-07-21T13:09:56.985271+00:00"
   },
   "faq": {
     "@context": "https://schema.org",
@@ -85,46 +77,6 @@
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "La motilidad colónica se dispara 30 min post-ingesta (sobre todo grasas o líquidos tibios). Sentarse 5 min tras desayunar."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Terapia Cognitivo Conductual (CBT)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Identificación y reestructuración de distorsiones cognitivas que disparan ansiedad."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Mindfulness-Based Stress Reduction (MBSR)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Programa estructurado de 8 semanas que reduce reactividad amigdalina."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Suspiro Fisiológico?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Dos inhalaciones nasales cortas seguidas de una exhalación larga. Abre alvéolos y reduce frecuencia cardíaca."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Ejercicio Aeróbico (Zona 2)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Estimula la neurogénesis en el hipocampo (BDNF) y modula cortisol basal."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Relajación Muscular Progresiva (PMR)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Tensión y relajación secuencial para enseñar al cuerpo a reconocer la ausencia de estrés físico."
         }
       },
       {
@@ -210,8 +162,8 @@
     ]
   },
   "seo": {
-    "title": "Fibra soluble vs insoluble en la motilidad",
-    "description": "> * La fibra dietética se clasifica principalmente en soluble e insoluble. Ambas son carbohidratos no digeribles, pero difieren radicalmente en su comportamiento físico, su velocidad de tránsito y su interacción con la microbiota intestinal. > * La fibra soluble forma geles viscosos que enlentecen l",
+    "title": "Fibra soluble vs insoluble: cuál necesitas y por qué",
+    "description": "Fibra soluble vs insoluble: cuál necesitas y por qué. ...",
     "canonical": "https://www.bienestarenclaro.com/articulos/fibra-soluble-vs-insoluble-impacto-en-la-motilidad-y-modulaci-n-del-microbioma",
     "ogImage": "https://www.bienestarenclaro.com/branding/social/og-image.png",
     "ogType": "article",
@@ -232,24 +184,6 @@
       "url": "https://www.bienestarenclaro.com/producto/prunex-1"
     },
     {
-      "slug": "nutraday",
-      "name": "NUTRADAY",
-      "category": "Hidratación Nutricional para la Familia",
-      "price": 36000,
-      "image": "https://www.bienestarenclaro.com/img/productos/nutraday.png",
-      "matchReason": "Contiene vitaminas, nutrición, antioxidantes",
-      "url": "https://www.bienestarenclaro.com/producto/nutraday"
-    },
-    {
-      "slug": "thermo-t3",
-      "name": "THERMO T3",
-      "category": "Control de Peso",
-      "price": 36000,
-      "image": "https://www.bienestarenclaro.com/img/productos/thermo-t3.png",
-      "matchReason": "Contiene metabolismo, quema de grasa, energía",
-      "url": "https://www.bienestarenclaro.com/producto/thermo-t3"
-    },
-    {
       "slug": "nocarb-t",
       "name": "NOCARB-T",
       "category": "Control de Peso",
@@ -259,13 +193,22 @@
       "url": "https://www.bienestarenclaro.com/producto/nocarb-t"
     },
     {
-      "slug": "rexet",
-      "name": "REXET",
-      "category": "Limpieza Hígado y Sistema Hepatobiliar",
+      "slug": "nutraday",
+      "name": "NUTRADAY",
+      "category": "Hidratación Nutricional para la Familia",
       "price": 36000,
-      "image": "https://www.bienestarenclaro.com/img/productos/rexet.png",
-      "matchReason": "Contiene hígado, hígado graso, depurativo",
-      "url": "https://www.bienestarenclaro.com/producto/rexet"
+      "image": "https://www.bienestarenclaro.com/img/productos/nutraday.png",
+      "matchReason": "Contiene vitaminas, nutrición, antioxidantes",
+      "url": "https://www.bienestarenclaro.com/producto/nutraday"
+    },
+    {
+      "slug": "protein-active-fit",
+      "name": "PROTEIN ACTIVE FIT",
+      "category": "Control de Peso",
+      "price": 41500,
+      "image": "https://www.bienestarenclaro.com/img/productos/protein-active-fit.png",
+      "matchReason": "Contiene proteína vegetal, control de peso, saciedad",
+      "url": "https://www.bienestarenclaro.com/producto/protein-active-fit"
     }
   ]
 }

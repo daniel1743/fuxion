@@ -27,7 +27,7 @@ export const BlogProvider = ({ children }) => {
     excerpt: record.excerpt,
     content: record.content,
     image_url: record.image_url,
-    category: record.category || source,
+    category: record.category || null,  // FIXED: was falling back to table name ('blog_posts' / 'wellness_articles'), causing parseCategories to silently return []
     tags: record.tags || '',
     author: record.author || record.editor_name || 'Daniel Falcón',
     views: record.views || 0,

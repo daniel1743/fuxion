@@ -2,24 +2,24 @@
   "medical": {
     "@context": "https://schema.org",
     "@type": "MedicalWebPage",
-    "name": "Estreñimiento funcional crónico",
-    "description": "> * El estreñimiento funcional crónico se define por la presencia de evacuaciones intestinales infrecuentes (menos de 3 por semana), esfuerzo excesivo, sensación de evacuación incompleta o heces duras durante al menos 3 meses, sin una causa orgánica identificable. > * Afecta aproximadamente al 14-16",
+    "name": "Estreñimiento crónico: cuándo es funcional y cómo tratarlo",
+    "description": "Estreñimiento crónico: cuándo es funcional y cómo tratarlo. ...",
     "about": {
       "@type": "MedicalCondition",
       "name": "Salud Intestinal, Disbiosis y Estreñimiento"
     },
     "keywords": [
+      "entrenamiento",
       "fibra",
       "estreñimiento",
       "psyllium",
-      "transito",
       "probióticos",
       "microbiota",
       "hidratación",
       "familia",
       "cerebro",
       "estrés",
-      "ansiedad"
+      "plan"
     ],
     "author": {
       "@type": "Person",
@@ -33,7 +33,7 @@
       "url": "https://www.bienestarenclaro.com"
     },
     "datePublished": "2026-07-17T05:21:23.157329+00:00",
-    "dateModified": "2026-07-17T05:21:23.157329+00:00"
+    "dateModified": "2026-07-21T13:09:56.985271+00:00"
   },
   "faq": {
     "@context": "https://schema.org",
@@ -202,8 +202,8 @@
     ]
   },
   "seo": {
-    "title": "Estreñimiento funcional crónico",
-    "description": "> * El estreñimiento funcional crónico se define por la presencia de evacuaciones intestinales infrecuentes (menos de 3 por semana), esfuerzo excesivo, sensación de evacuación incompleta o heces duras durante al menos 3 meses, sin una causa orgánica identificable. > * Afecta aproximadamente al 14-16",
+    "title": "Estreñimiento crónico: cuándo es funcional y cómo tratarlo",
+    "description": "Estreñimiento crónico: cuándo es funcional y cómo tratarlo. ...",
     "canonical": "https://www.bienestarenclaro.com/articulos/estreimiento-funcional-crnico",
     "ogImage": "https://www.bienestarenclaro.com/branding/social/og-image.png",
     "ogType": "article",
@@ -240,15 +240,6 @@
       "image": "https://www.bienestarenclaro.com/img/productos/nutraday.png",
       "matchReason": "Contiene vitaminas, nutrición, antioxidantes",
       "url": "https://www.bienestarenclaro.com/producto/nutraday"
-    },
-    {
-      "slug": "no-stress",
-      "name": "NO STRESS",
-      "category": "Vigor Mental",
-      "price": 39750,
-      "image": "https://www.bienestarenclaro.com/img/productos/no-stress.png",
-      "matchReason": "Contiene estrés, ansiedad, relajación",
-      "url": "https://www.bienestarenclaro.com/producto/no-stress"
     }
   ]
 }

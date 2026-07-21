@@ -2,22 +2,21 @@
   "medical": {
     "@context": "https://schema.org",
     "@type": "MedicalWebPage",
-    "name": "Reflujo Gastroesofágico (ERGE) e Hipoclorhidria",
-    "description": "> * El Reflujo Gastroesofágico (ERGE) ocurre cuando el contenido gástrico retrocede hacia el esófago debido a un mal funcionamiento del esfínter esofágico inferior (EEI), un estrés mecánico sobre el estómago (presión intraabdominal elevada) o una señalización ácida insuficiente para mantener cerrada",
+    "name": "Reflujo y ácido: por qué menos ácido puede ser peor",
+    "description": "Reflujo y ácido: por qué menos ácido puede ser peor. ...",
     "about": {
       "@type": "MedicalCondition",
       "name": "Salud Intestinal, Disbiosis y Estreñimiento"
     },
     "keywords": [
+      "control de peso",
       "digestión",
-      "transito",
+      "probióticos",
       "microbiota",
-      "gastritis",
       "estrés",
-      "relajación",
+      "ansiedad",
       "sueño",
-      "antiinflamatorio",
-      "café"
+      "hormonas"
     ],
     "author": {
       "@type": "Person",
@@ -31,7 +30,7 @@
       "url": "https://www.bienestarenclaro.com"
     },
     "datePublished": "2026-07-17T05:21:23.157329+00:00",
-    "dateModified": "2026-07-17T05:21:23.157329+00:00"
+    "dateModified": "2026-07-21T13:09:56.985271+00:00"
   },
   "faq": {
     "@context": "https://schema.org",
@@ -160,8 +159,8 @@
     ]
   },
   "seo": {
-    "title": "Reflujo Gastroesofágico (ERGE) e Hipoclorhidria",
-    "description": "> * El Reflujo Gastroesofágico (ERGE) ocurre cuando el contenido gástrico retrocede hacia el esófago debido a un mal funcionamiento del esfínter esofágico inferior (EEI), un estrés mecánico sobre el estómago (presión intraabdominal elevada) o una señalización ácida insuficiente para mantener cerrada",
+    "title": "Reflujo y ácido: por qué menos ácido puede ser peor",
+    "description": "Reflujo y ácido: por qué menos ácido puede ser peor. ...",
     "canonical": "https://www.bienestarenclaro.com/articulos/reflujo-gastroesof-gico-erge-e-hipoclorhidria-mecanismos-del-esf-nter-y-acidez",
     "ogImage": "https://www.bienestarenclaro.com/branding/social/og-image.png",
     "ogType": "article",
@@ -172,15 +171,6 @@
     "articlePublished": "2026-07-17T05:21:23.157329+00:00"
   },
   "relatedProducts": [
-    {
-      "slug": "liquid-fiber",
-      "name": "LIQUID FIBER",
-      "category": "Limpieza del Sistema Digestivo",
-      "price": 28750,
-      "image": "https://www.bienestarenclaro.com/img/productos/liquid-fiber.png",
-      "matchReason": "Contiene fibra prebiótica, digestión, flora intestinal",
-      "url": "https://www.bienestarenclaro.com/producto/liquid-fiber"
-    },
     {
       "slug": "flora-liv",
       "name": "FLORA LIV",

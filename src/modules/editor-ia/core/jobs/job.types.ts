@@ -5,6 +5,7 @@
  */
 
 import type { ContentFormat } from '../../types';
+import type { BaseError } from '../errors/base.error';
 
 /** Union of all possible job types in the system */
 export type JobType =
@@ -57,8 +58,8 @@ export interface Job {
   started_at: string | null;
   /** ISO-8601 completion timestamp */
   completed_at: string | null;
-  /** Error details if failed */
-  error: string | null;
+  /** Error details if failed — uses unified error model */
+  error: BaseError | null;
   /** Arbitrary metadata */
   metadata: Record<string, unknown>;
 }

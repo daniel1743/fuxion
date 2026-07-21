@@ -1,0 +1,103 @@
+{
+  "medical": {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": "Diario de Gratitud — Salud Mental, Estrés Crónico y Función Cognitiva",
+    "description": "Diario de Gratitud — Salud Mental, Estrés Crónico y Función Cognitiva. ...",
+    "about": {
+      "@type": "MedicalCondition",
+      "name": "Neurobiología del Sueño, Sistema Inmune y Descanso"
+    },
+    "keywords": [
+      "familia",
+      "memoria",
+      "estrés",
+      "ansiedad",
+      "sueño",
+      "Salud Mental, Estrés Crónico y Función Cognitiva"
+    ],
+    "author": {
+      "@type": "Person",
+      "name": "Daniel Falcón",
+      "jobTitle": "Investigador de Salud y Bienestar",
+      "url": "https://www.bienestarenclaro.com/sobre-nosotros"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Bienestar en Claro",
+      "url": "https://www.bienestarenclaro.com"
+    },
+    "datePublished": "2026-07-20T16:19:03.049348+00:00",
+    "dateModified": "2026-07-21T13:09:56.985271+00:00",
+    "image": "https://www.bienestarenclaro.com/branding/social/og-image.png"
+  },
+  "faq": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Qué es Terapia Cognitivo Conductual (CBT)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Identificación y reestructuración de distorsiones cognitivas que disparan ansiedad."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Mindfulness-Based Stress Reduction (MBSR)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Programa estructurado de 8 semanas que reduce reactividad amigdalina."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Suspiro Fisiológico?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dos inhalaciones nasales cortas seguidas de una exhalación larga. Abre alvéolos y reduce frecuencia cardíaca."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Ejercicio Aeróbico (Zona 2)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Estimula la neurogénesis en el hipocampo (BDNF) y modula cortisol basal."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Relajación Muscular Progresiva (PMR)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tensión y relajación secuencial para enseñar al cuerpo a reconocer la ausencia de estrés físico."
+        }
+      }
+    ]
+  },
+  "seo": {
+    "title": "Diario de Gratitud — Salud Mental, Estrés Crónico y Función Cognitiva",
+    "description": "Diario de Gratitud — Salud Mental, Estrés Crónico y Función Cognitiva. ...",
+    "canonical": "https://www.bienestarenclaro.com/articulos/diario-de-gratitud-salud-mental-estres-cronico-y-funcion-cognitiva",
+    "ogImage": "https://www.bienestarenclaro.com/branding/social/og-image.png",
+    "ogType": "article",
+    "articleTags": [
+      "Sueño y Descanso"
+    ],
+    "articleAuthor": "Daniel Falcón",
+    "articlePublished": "2026-07-20T16:19:03.049348+00:00"
+  },
+  "relatedProducts": [
+    {
+      "slug": "no-stress",
+      "name": "NO STRESS",
+      "category": "Vigor Mental",
+      "price": 39750,
+      "image": "https://www.bienestarenclaro.com/img/productos/no-stress.png",
+      "matchReason": "Contiene estrés, ansiedad, relajación",
+      "url": "https://www.bienestarenclaro.com/producto/no-stress"
+    }
+  ]
+}

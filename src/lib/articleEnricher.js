@@ -196,11 +196,11 @@ export function extractSemanticKeywords(content, category) {
  * Generate a meta description from content if not provided.
  */
 function generateMetaDescription(content, title) {
-  if (!content) return `${title} en Bienestar en Claro — información basada en evidencia.`;
+  if (!content) return `Descubre todo sobre ${title}. Guía práctica y soluciones 100% naturales para transformar tu salud y recuperar tu energía en Bienestar en Claro.`;
 
   // Take the first 2 meaningful paragraphs (up to ~155 characters)
   const paragraphs = content.trim().split(/\n\s*\n/).filter(Boolean);
-  if (paragraphs.length === 0) return `${title} en Bienestar en Claro — información basada en evidencia.`;
+  if (paragraphs.length === 0) return `Descubre todo sobre ${title}. Guía práctica y soluciones 100% naturales para transformar tu salud y recuperar tu energía en Bienestar en Claro.`;
 
   let desc = paragraphs[0].trim();
   if (desc.length > 155) {

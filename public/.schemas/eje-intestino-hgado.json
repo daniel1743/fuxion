@@ -2,23 +2,32 @@
   "medical": {
     "@context": "https://schema.org",
     "@type": "MedicalWebPage",
-    "name": "Eje intestino-hígado",
-    "description": "> * El eje intestino-hígado describe la comunicación bidireccional entre el tracto digestivo y el hígado, mediada por la circulación portal, la microbiota intestinal y sus metabolitos. > * Alteraciones en la permeabilidad intestinal y la composición de la microbiota (disbiosis) se asocian con cambio",
+    "name": "Eje intestino-hígado: el circuito oculto de tu salud",
+    "description": "Eje intestino-hígado: el circuito oculto de tu salud. ...",
     "about": {
       "@type": "MedicalCondition",
-      "name": "Ejercicio, Aparato Cardiovascular y Longevidad Funcional"
+      "name": "Nutrición, Metabolismo y Peso Corporal"
     },
     "keywords": [
+      "metabolismo",
+      "azúcar",
       "fibra",
       "probióticos",
       "microbiota",
       "hígado",
       "hígado graso",
       "hepático",
-      "vitaminas",
-      "familia",
+      "desintoxicación",
+      "nutrición",
+      "té verde",
       "fatiga",
+      "estrés",
+      "triptófano",
+      "saciedad",
       "piel",
+      "antiinflamatorio",
+      "hormonas",
+      "limpieza",
       "plan"
     ],
     "author": {
@@ -33,12 +42,52 @@
       "url": "https://www.bienestarenclaro.com"
     },
     "datePublished": "2026-07-17T05:21:23.157329+00:00",
-    "dateModified": "2026-07-17T05:21:23.157329+00:00"
+    "dateModified": "2026-07-21T13:31:50.849966+00:00"
   },
   "faq": {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Qué es Terapia farmacológica (Agonistas GLP-1/GIP)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Retrasan el vaciamiento gástrico y actúan en el hipotálamo induciendo saciedad profunda. Indicar bajo supervisión si IMC >27 con comorbilidades."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Déficit calórico individualizado (500-750 kcal/día)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ley de termodinámica; fuerza al cuerpo a oxidar triglicéridos almacenados. Calcular TDEE y restar 500 kcal con registro en app."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Aumento de Proteína (1.2-1.5 g/kg/día)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Incrementa el efecto térmico de los alimentos y provee sustrato anabólico. Incluir 25-30g de proteína magra por comida."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Entrenamiento de Fuerza (2-3 días/sem)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Mejora la densidad de receptores GLUT4 y capilarización muscular. Ejercicios multiarticulares progresivos."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Sustitución guiada por Ley de Etiquetados?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Modifica el entorno limitando estímulos supernormales. Escoger productos sin sellos 'Alto en Calorías/Azúcares'."
+        }
+      },
       {
         "@type": "Question",
         "name": "¿Qué es Polietilenglicol (PEG 3350)?",
@@ -81,94 +130,54 @@
       },
       {
         "@type": "Question",
-        "name": "¿Qué es Iniciar el día con 500ml de agua?",
+        "name": "¿Qué es Terapia Cognitivo Conductual (CBT)?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Rompe el ayuno hídrico nocturno y normaliza la osmolalidad matutina."
+          "text": "Identificación y reestructuración de distorsiones cognitivas que disparan ansiedad."
         }
       },
       {
         "@type": "Question",
-        "name": "¿Qué es Monitoreo visual de la orina?",
+        "name": "¿Qué es Mindfulness-Based Stress Reduction (MBSR)?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Color 'amarillo pálido' o 'paja' confirma la euhidratación perfecta."
+          "text": "Programa estructurado de 8 semanas que reduce reactividad amigdalina."
         }
       },
       {
         "@type": "Question",
-        "name": "¿Qué es Reemplazar jugos y bebidas?",
+        "name": "¿Qué es Suspiro Fisiológico?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Sustituir bebidas azucaradas por agua o infusiones reduce drásticamente obesidad y riesgo metabólico."
+          "text": "Dos inhalaciones nasales cortas seguidas de una exhalación larga. Abre alvéolos y reduce frecuencia cardíaca."
         }
       },
       {
         "@type": "Question",
-        "name": "¿Qué es Hidratación intra y post entrenamiento?",
+        "name": "¿Qué es Ejercicio Aeróbico (Zona 2)?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Compensar la tasa de sudoración pesando antes/después y reponiendo 1.5x lo perdido."
+          "text": "Estimula la neurogénesis en el hipocampo (BDNF) y modula cortisol basal."
         }
       },
       {
         "@type": "Question",
-        "name": "¿Qué es Incrementar sopas o verduras altas en H2O?",
+        "name": "¿Qué es Relajación Muscular Progresiva (PMR)?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Sandía, pepino, caldos; aportan hasta 20-30% de las necesidades hídricas totales pasivamente."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Terapia farmacológica (Agonistas GLP-1/GIP)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Retrasan el vaciamiento gástrico y actúan en el hipotálamo induciendo saciedad profunda. Indicar bajo supervisión si IMC >27 con comorbilidades."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Déficit calórico individualizado (500-750 kcal/día)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Ley de termodinámica; fuerza al cuerpo a oxidar triglicéridos almacenados. Calcular TDEE y restar 500 kcal con registro en app."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Aumento de Proteína (1.2-1.5 g/kg/día)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Incrementa el efecto térmico de los alimentos y provee sustrato anabólico. Incluir 25-30g de proteína magra por comida."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Entrenamiento de Fuerza (2-3 días/sem)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Mejora la densidad de receptores GLUT4 y capilarización muscular. Ejercicios multiarticulares progresivos."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Sustitución guiada por Ley de Etiquetados?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Modifica el entorno limitando estímulos supernormales. Escoger productos sin sellos 'Alto en Calorías/Azúcares'."
+          "text": "Tensión y relajación secuencial para enseñar al cuerpo a reconocer la ausencia de estrés físico."
         }
       }
     ]
   },
   "seo": {
-    "title": "Eje intestino-hígado",
-    "description": "> * El eje intestino-hígado describe la comunicación bidireccional entre el tracto digestivo y el hígado, mediada por la circulación portal, la microbiota intestinal y sus metabolitos. > * Alteraciones en la permeabilidad intestinal y la composición de la microbiota (disbiosis) se asocian con cambio",
+    "title": "Eje intestino-hígado: el circuito oculto de tu salud",
+    "description": "Eje intestino-hígado: el circuito oculto de tu salud. ...",
     "canonical": "https://www.bienestarenclaro.com/articulos/eje-intestino-hgado",
     "ogImage": "https://www.bienestarenclaro.com/branding/social/og-image.png",
     "ogType": "article",
     "articleTags": [
-      "Hígado Graso"
+      "Nutrición"
     ],
     "articleAuthor": "Daniel Falcón",
     "articlePublished": "2026-07-17T05:21:23.157329+00:00"
@@ -184,6 +193,15 @@
       "url": "https://www.bienestarenclaro.com/producto/rexet"
     },
     {
+      "slug": "nocarb-t",
+      "name": "NOCARB-T",
+      "category": "Control de Peso",
+      "price": 36000,
+      "image": "https://www.bienestarenclaro.com/img/productos/nocarb-t.png",
+      "matchReason": "Contiene carbohidratos, azúcar, fibra",
+      "url": "https://www.bienestarenclaro.com/producto/nocarb-t"
+    },
+    {
       "slug": "flora-liv",
       "name": "FLORA LIV",
       "category": "Regeneración Flora Intestinal",
@@ -193,13 +211,13 @@
       "url": "https://www.bienestarenclaro.com/producto/flora-liv"
     },
     {
-      "slug": "nutraday",
-      "name": "NUTRADAY",
-      "category": "Hidratación Nutricional para la Familia",
-      "price": 36000,
-      "image": "https://www.bienestarenclaro.com/img/productos/nutraday.png",
-      "matchReason": "Contiene vitaminas, nutrición, antioxidantes",
-      "url": "https://www.bienestarenclaro.com/producto/nutraday"
+      "slug": "no-stress",
+      "name": "NO STRESS",
+      "category": "Vigor Mental",
+      "price": 39750,
+      "image": "https://www.bienestarenclaro.com/img/productos/no-stress.png",
+      "matchReason": "Contiene estrés, ansiedad, relajación",
+      "url": "https://www.bienestarenclaro.com/producto/no-stress"
     }
   ]
 }

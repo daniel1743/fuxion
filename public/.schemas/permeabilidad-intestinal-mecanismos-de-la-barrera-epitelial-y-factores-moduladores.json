@@ -2,23 +2,24 @@
   "medical": {
     "@context": "https://schema.org",
     "@type": "MedicalWebPage",
-    "name": "Permeabilidad Intestinal (Leaky Gut)",
-    "description": "> * La permeabilidad intestinal describe la capacidad de la barrera del intestino para permitir el paso selectivo de agua y nutrientes mientras limita el ingreso de microorganismos y moléculas potencialmente dañinas. > * Un aumento de esta permeabilidad puede producirse cuando se alteran las uniones",
+    "name": "Leaky gut: mito o realidad clínica",
+    "description": "Leaky gut: mito o realidad clínica. ...",
     "about": {
       "@type": "MedicalCondition",
       "name": "Salud Intestinal, Disbiosis y Estreñimiento"
     },
     "keywords": [
-      "energía",
-      "cromo",
+      "fibra",
+      "fibra prebiótica",
+      "probióticos",
       "microbiota",
-      "vitaminas",
-      "nutrición",
+      "familia",
       "fatiga",
-      "cerebro",
       "estrés",
-      "aminoácidos",
-      "glutamina"
+      "sueño",
+      "antiinflamatorio",
+      "glutamina",
+      "plan"
     ],
     "author": {
       "@type": "Person",
@@ -32,7 +33,7 @@
       "url": "https://www.bienestarenclaro.com"
     },
     "datePublished": "2026-07-17T05:21:23.157329+00:00",
-    "dateModified": "2026-07-17T05:21:23.157329+00:00"
+    "dateModified": "2026-07-21T13:09:56.985271+00:00"
   },
   "faq": {
     "@context": "https://schema.org",
@@ -120,46 +121,6 @@
       },
       {
         "@type": "Question",
-        "name": "¿Qué es Iniciar el día con 500ml de agua?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Rompe el ayuno hídrico nocturno y normaliza la osmolalidad matutina."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Monitoreo visual de la orina?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Color 'amarillo pálido' o 'paja' confirma la euhidratación perfecta."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Reemplazar jugos y bebidas?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sustituir bebidas azucaradas por agua o infusiones reduce drásticamente obesidad y riesgo metabólico."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Hidratación intra y post entrenamiento?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Compensar la tasa de sudoración pesando antes/después y reponiendo 1.5x lo perdido."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Incrementar sopas o verduras altas en H2O?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sandía, pepino, caldos; aportan hasta 20-30% de las necesidades hídricas totales pasivamente."
-        }
-      },
-      {
-        "@type": "Question",
         "name": "¿Qué es Terapia farmacológica (Agonistas GLP-1/GIP)?",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -201,8 +162,8 @@
     ]
   },
   "seo": {
-    "title": "Permeabilidad Intestinal (Leaky Gut)",
-    "description": "> * La permeabilidad intestinal describe la capacidad de la barrera del intestino para permitir el paso selectivo de agua y nutrientes mientras limita el ingreso de microorganismos y moléculas potencialmente dañinas. > * Un aumento de esta permeabilidad puede producirse cuando se alteran las uniones",
+    "title": "Leaky gut: mito o realidad clínica",
+    "description": "Leaky gut: mito o realidad clínica. ...",
     "canonical": "https://www.bienestarenclaro.com/articulos/permeabilidad-intestinal-mecanismos-de-la-barrera-epitelial-y-factores-moduladores",
     "ogImage": "https://www.bienestarenclaro.com/branding/social/og-image.png",
     "ogType": "article",
@@ -214,13 +175,13 @@
   },
   "relatedProducts": [
     {
-      "slug": "nutraday",
-      "name": "NUTRADAY",
-      "category": "Hidratación Nutricional para la Familia",
-      "price": 36000,
-      "image": "https://www.bienestarenclaro.com/img/productos/nutraday.png",
-      "matchReason": "Contiene vitaminas, nutrición, antioxidantes",
-      "url": "https://www.bienestarenclaro.com/producto/nutraday"
+      "slug": "flora-liv",
+      "name": "FLORA LIV",
+      "category": "Regeneración Flora Intestinal",
+      "price": 43000,
+      "image": "https://www.bienestarenclaro.com/img/productos/flora-liv.png",
+      "matchReason": "Contiene probióticos, flora intestinal, microbiota",
+      "url": "https://www.bienestarenclaro.com/producto/flora-liv"
     }
   ]
 }

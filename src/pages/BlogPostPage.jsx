@@ -358,7 +358,7 @@ const BlogPostPage = () => {
           >
             {/* Categoría(s) */}
             <div className="relative h-8 mb-6">
-              <ArticleBadges categoryString={post.category} />
+              <ArticleBadges categoryString={post.category} content={post.content} />
             </div>
 
             {/* Título */}
@@ -523,7 +523,7 @@ const BlogPostPage = () => {
                           alt={relatedPost.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
-                        <ArticleBadges categoryString={relatedPost.category} />
+                        <ArticleBadges categoryString={relatedPost.category} content={relatedPost.content} />
                       </div>
                     )}
                   <div className="p-5 flex-1 flex flex-col">

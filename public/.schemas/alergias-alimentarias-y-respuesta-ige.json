@@ -2,18 +2,13 @@
   "medical": {
     "@context": "https://schema.org",
     "@type": "MedicalWebPage",
-    "name": "Alergias alimentarias y respuesta IgE",
-    "description": "> * Las alergias alimentarias mediadas por inmunoglobulina E (IgE) representan una respuesta exagerada del sistema inmunológico frente a proteínas alimentarias específicas, desencadenando la liberación de histamina y otros mediadores inflamatorios en cuestión de minutos. > * Afectan aproximadamente ",
+    "name": "Alergias alimentarias: cómo tu sistema inmune reacciona a lo que comes",
+    "description": "Alergias alimentarias: cómo tu sistema inmune reacciona a lo que comes. ...",
     "about": {
       "@type": "MedicalCondition",
-      "name": "Salud Intestinal, Disbiosis y Estreñimiento"
+      "name": "Neurobiología del Sueño, Sistema Inmune y Descanso"
     },
-    "keywords": [
-      "desintoxicación",
-      "familia",
-      "piel",
-      "plan"
-    ],
+    "keywords": [],
     "author": {
       "@type": "Person",
       "name": "Daniel Falcón",
@@ -26,92 +21,12 @@
       "url": "https://www.bienestarenclaro.com"
     },
     "datePublished": "2026-07-17T04:42:01.650098+00:00",
-    "dateModified": "2026-07-17T05:21:23.157329+00:00"
+    "dateModified": "2026-07-21T13:09:56.985271+00:00"
   },
   "faq": {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "¿Qué es Polietilenglicol (PEG 3350)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Laxante osmótico de polímeros largos. Retiene agua en el lumen intestinal ablandando el bolo. Dosis: 17g/día diluidos en agua."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Suplementación con Psyllium?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Única fibra soluble que normaliza la reología fecal formadora de gel, sin alta fermentación de gases. 1-2 cucharadas con 250ml de agua."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Postura de Defecación (Squatting)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Elevar las rodillas por encima de la cadera (taburete) alinea el ángulo anorrectal y relaja el músculo puborrectal."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Linaclotida o Plecanatida?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Secretagogos (Agonistas guanilato ciclasa-C). Aumentan secreción de fluidos y aceleran el tránsito. Requiere prescripción médica."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Entrenamiento del Reflejo Gastrocólico?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "La motilidad colónica se dispara 30 min post-ingesta (sobre todo grasas o líquidos tibios). Sentarse 5 min tras desayunar."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Iniciar el día con 500ml de agua?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Rompe el ayuno hídrico nocturno y normaliza la osmolalidad matutina."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Monitoreo visual de la orina?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Color 'amarillo pálido' o 'paja' confirma la euhidratación perfecta."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Reemplazar jugos y bebidas?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sustituir bebidas azucaradas por agua o infusiones reduce drásticamente obesidad y riesgo metabólico."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Hidratación intra y post entrenamiento?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Compensar la tasa de sudoración pesando antes/después y reponiendo 1.5x lo perdido."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Incrementar sopas o verduras altas en H2O?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sandía, pepino, caldos; aportan hasta 20-30% de las necesidades hídricas totales pasivamente."
-        }
-      },
       {
         "@type": "Question",
         "name": "¿Qué es Terapia farmacológica (Agonistas GLP-1/GIP)?",
@@ -155,13 +70,13 @@
     ]
   },
   "seo": {
-    "title": "Alergias alimentarias y respuesta IgE",
-    "description": "> * Las alergias alimentarias mediadas por inmunoglobulina E (IgE) representan una respuesta exagerada del sistema inmunológico frente a proteínas alimentarias específicas, desencadenando la liberación de histamina y otros mediadores inflamatorios en cuestión de minutos. > * Afectan aproximadamente ",
+    "title": "Alergias alimentarias: cómo tu sistema inmune reacciona a lo que comes",
+    "description": "Alergias alimentarias: cómo tu sistema inmune reacciona a lo que comes. ...",
     "canonical": "https://www.bienestarenclaro.com/articulos/alergias-alimentarias-y-respuesta-ige",
     "ogImage": "https://www.bienestarenclaro.com/branding/social/og-image.png",
     "ogType": "article",
     "articleTags": [
-      "Inmunidad"
+      "Sueño y Descanso"
     ],
     "articleAuthor": "Daniel Falcón",
     "articlePublished": "2026-07-17T04:42:01.650098+00:00"

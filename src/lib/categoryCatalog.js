@@ -21,6 +21,9 @@ export const CATEGORY_CATALOG = [
   { id: 'bienestar-mental', slug: 'bienestar-mental', name: 'Bienestar Mental', color: 'bg-sky-500', icon: 'Brain', description: 'El eje intestino-cerebro, neurotransmisores, gestión del estrés, ansiedad y cómo la fisiología impacta tu estado de ánimo.' },
   { id: 'bienestar', slug: 'bienestar', name: 'Bienestar', color: 'bg-purple-500', icon: 'Smile', description: 'Hábitos de vida saludables, longevidad, sueño reparador y prácticas para alcanzar un estado de homeostasis física y mental.' },
   { id: 'motivacion', slug: 'motivacion', name: 'Motivación', color: 'bg-yellow-500', icon: 'Sun', description: 'Estrategias psicológicas para adherencia de hábitos, cambio de mentalidad y consistencia en tu viaje hacia la salud.' },
+  { id: 'hidratacion', slug: 'hidratacion', name: 'Hidratación', color: 'bg-cyan-500', icon: 'Droplet', description: 'Ciencia de la hidratación celular, electrolitos y el papel crítico del agua en cada proceso fisiológico del organismo.' },
+  { id: 'sueno-descanso', slug: 'sueno-y-descanso', name: 'Sueño y Descanso', color: 'bg-indigo-600', icon: 'Moon', description: 'Arquitectura del sueño, ritmos circadianos, higiene del sueño y el papel del descanso en la reparación celular y la neuroplasticidad.' },
+  { id: 'estres-ansiedad', slug: 'estres-y-ansiedad', name: 'Estrés y Ansiedad', color: 'bg-violet-600', icon: 'Zap', description: 'Eje HPA, cortisol, respuesta al estrés agudo vs crónico, fisiología de la ansiedad y estrategias de regulación nerviosa.' },
 ];
 
 /**
@@ -49,7 +52,15 @@ const CATEGORY_ALIASES = {
   'aparato cardiovascular': 'Salud Cardiovascular',
   'presión arterial': 'Salud Cardiovascular',
   'resistencia a la insulina': 'Diabetes',
-  'glucemia': 'Diabetes'
+  'glucemia': 'Diabetes',
+  'dormir': 'Sueño y Descanso',
+  'insomnio': 'Sueño y Descanso',
+  'ritmos circadianos': 'Sueño y Descanso',
+  'agua y electrolitos': 'Hidratación',
+  'hidratación': 'Hidratación',
+  'ansiedad': 'Estrés y Ansiedad',
+  'cortisol': 'Estrés y Ansiedad',
+  'respuesta al estrés': 'Estrés y Ansiedad'
 };
 
 /**

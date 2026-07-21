@@ -6,6 +6,7 @@
 
 import type { ContentJob, DraftArticle, ContentFormat } from '../../types';
 import type { EditorState } from '../state-machine/editor.states';
+import type { BaseError } from '../errors/base.error';
 
 // ─── Pipeline Stage ──────────────────────────────────────────────────
 
@@ -21,7 +22,7 @@ export interface PipelineStageResult {
   status: PipelineStageStatus;
   started_at: string;
   completed_at: string | null;
-  error: string | null;
+  error: BaseError | null;
   metadata: Record<string, unknown>;
 }
 
@@ -32,6 +33,7 @@ export interface PipelineContext {
   job: ContentJob;
   stages: PipelineStageResult[];
   current_stage: string;
+  traceId: string;
 }
 
 // ─── Knowledge Pipeline ──────────────────────────────────────────────

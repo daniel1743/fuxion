@@ -7,7 +7,10 @@
 
 const fs = require('fs');
 const path = require('path');
+const dotenv = require('dotenv');
 const { createClient } = require('@supabase/supabase-js');
+
+dotenv.config({ path: path.resolve(__dirname, '..', '.env') });
 
 const ROOT_DIR = path.resolve(__dirname, '..');
 const SITE_URL = 'https://www.bienestarenclaro.com';

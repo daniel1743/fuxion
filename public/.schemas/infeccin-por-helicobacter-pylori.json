@@ -2,16 +2,20 @@
   "medical": {
     "@context": "https://schema.org",
     "@type": "MedicalWebPage",
-    "name": "Infección por Helicobacter pylori",
-    "description": "> * *Helicobacter pylori* es una bacteria gramnegativa que coloniza el epitelio gástrico de aproximadamente la mitad de la población mundial, aunque la mayoría de las personas infectadas permanecen asintomáticas. > * Su capacidad para sobrevivir en el ambiente ácido del estómago se debe a la producc",
+    "name": "H. pylori: la bacteria que causa úlceras y puede afectar tu salud a largo plazo",
+    "description": "H. pylori: la bacteria que causa úlceras y puede afectar tu salud a largo plazo. ...",
     "about": {
       "@type": "MedicalCondition",
       "name": "Salud Intestinal, Disbiosis y Estreñimiento"
     },
     "keywords": [
       "probióticos",
+      "microbiota",
       "gastritis",
-      "saciedad",
+      "familia",
+      "estrés",
+      "antiinflamatorio",
+      "hormonas",
       "café"
     ],
     "author": {
@@ -26,7 +30,7 @@
       "url": "https://www.bienestarenclaro.com"
     },
     "datePublished": "2026-07-17T05:21:23.157329+00:00",
-    "dateModified": "2026-07-17T05:21:23.157329+00:00"
+    "dateModified": "2026-07-21T13:09:56.985271+00:00"
   },
   "faq": {
     "@context": "https://schema.org",
@@ -70,6 +74,46 @@
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "La motilidad colónica se dispara 30 min post-ingesta (sobre todo grasas o líquidos tibios). Sentarse 5 min tras desayunar."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Terapia Cognitivo Conductual (CBT)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Identificación y reestructuración de distorsiones cognitivas que disparan ansiedad."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Mindfulness-Based Stress Reduction (MBSR)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Programa estructurado de 8 semanas que reduce reactividad amigdalina."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Suspiro Fisiológico?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dos inhalaciones nasales cortas seguidas de una exhalación larga. Abre alvéolos y reduce frecuencia cardíaca."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Ejercicio Aeróbico (Zona 2)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Estimula la neurogénesis en el hipocampo (BDNF) y modula cortisol basal."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Relajación Muscular Progresiva (PMR)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tensión y relajación secuencial para enseñar al cuerpo a reconocer la ausencia de estrés físico."
         }
       },
       {
@@ -155,8 +199,8 @@
     ]
   },
   "seo": {
-    "title": "Infección por Helicobacter pylori",
-    "description": "> * *Helicobacter pylori* es una bacteria gramnegativa que coloniza el epitelio gástrico de aproximadamente la mitad de la población mundial, aunque la mayoría de las personas infectadas permanecen asintomáticas. > * Su capacidad para sobrevivir en el ambiente ácido del estómago se debe a la producc",
+    "title": "H. pylori: la bacteria que causa úlceras y puede afectar tu salud a largo plazo",
+    "description": "H. pylori: la bacteria que causa úlceras y puede afectar tu salud a largo plazo. ...",
     "canonical": "https://www.bienestarenclaro.com/articulos/infeccin-por-helicobacter-pylori",
     "ogImage": "https://www.bienestarenclaro.com/branding/social/og-image.png",
     "ogType": "article",

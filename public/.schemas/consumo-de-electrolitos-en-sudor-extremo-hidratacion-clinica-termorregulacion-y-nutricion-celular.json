@@ -1,0 +1,145 @@
+{
+  "medical": {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": "Consumo de electrolitos en sudor extremo — Hidratación Clínica, Termorregulación y Nutrición Celular",
+    "description": "Consumo de electrolitos en sudor extremo — Hidratación Clínica, Termorregulación y Nutrición Celular. ...",
+    "about": {
+      "@type": "MedicalCondition",
+      "name": "Hidratación Clínica, Termorregulación y Nutrición Celular"
+    },
+    "keywords": [
+      "azúcar",
+      "nutrición",
+      "hidratación",
+      "fatiga",
+      "concentración",
+      "electrolitos",
+      "plan",
+      "Hidratación Clínica, Termorregulación y Nutrición Celular"
+    ],
+    "author": {
+      "@type": "Person",
+      "name": "Daniel Falcón",
+      "jobTitle": "Investigador de Salud y Bienestar",
+      "url": "https://www.bienestarenclaro.com/sobre-nosotros"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Bienestar en Claro",
+      "url": "https://www.bienestarenclaro.com"
+    },
+    "datePublished": "2026-07-20T16:19:03.049348+00:00",
+    "dateModified": "2026-07-21T13:09:56.985271+00:00",
+    "image": "https://www.bienestarenclaro.com/branding/social/og-image.png"
+  },
+  "faq": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Qué es Iniciar el día con 500ml de agua?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Rompe el ayuno hídrico nocturno y normaliza la osmolalidad matutina."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Monitoreo visual de la orina?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Color 'amarillo pálido' o 'paja' confirma la euhidratación perfecta."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Reemplazar jugos y bebidas?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sustituir bebidas azucaradas por agua o infusiones reduce drásticamente obesidad y riesgo metabólico."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Hidratación intra y post entrenamiento?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Compensar la tasa de sudoración pesando antes/después y reponiendo 1.5x lo perdido."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Incrementar sopas o verduras altas en H2O?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sandía, pepino, caldos; aportan hasta 20-30% de las necesidades hídricas totales pasivamente."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Terapia farmacológica (Agonistas GLP-1/GIP)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Retrasan el vaciamiento gástrico y actúan en el hipotálamo induciendo saciedad profunda. Indicar bajo supervisión si IMC >27 con comorbilidades."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Déficit calórico individualizado (500-750 kcal/día)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ley de termodinámica; fuerza al cuerpo a oxidar triglicéridos almacenados. Calcular TDEE y restar 500 kcal con registro en app."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Aumento de Proteína (1.2-1.5 g/kg/día)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Incrementa el efecto térmico de los alimentos y provee sustrato anabólico. Incluir 25-30g de proteína magra por comida."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Entrenamiento de Fuerza (2-3 días/sem)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Mejora la densidad de receptores GLUT4 y capilarización muscular. Ejercicios multiarticulares progresivos."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Sustitución guiada por Ley de Etiquetados?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Modifica el entorno limitando estímulos supernormales. Escoger productos sin sellos 'Alto en Calorías/Azúcares'."
+        }
+      }
+    ]
+  },
+  "seo": {
+    "title": "Consumo de electrolitos en sudor extremo — Hidratación Clínica, Termorregulación y Nutrición Celular",
+    "description": "Consumo de electrolitos en sudor extremo — Hidratación Clínica, Termorregulación y Nutrición Celular. ...",
+    "canonical": "https://www.bienestarenclaro.com/articulos/consumo-de-electrolitos-en-sudor-extremo-hidratacion-clinica-termorregulacion-y-nutricion-celular",
+    "ogImage": "https://www.bienestarenclaro.com/branding/social/og-image.png",
+    "ogType": "article",
+    "articleTags": [
+      "Hidratación"
+    ],
+    "articleAuthor": "Daniel Falcón",
+    "articlePublished": "2026-07-20T16:19:03.049348+00:00"
+  },
+  "relatedProducts": [
+    {
+      "slug": "nutraday",
+      "name": "NUTRADAY",
+      "category": "Hidratación Nutricional para la Familia",
+      "price": 36000,
+      "image": "https://www.bienestarenclaro.com/img/productos/nutraday.png",
+      "matchReason": "Contiene vitaminas, nutrición, antioxidantes",
+      "url": "https://www.bienestarenclaro.com/producto/nutraday"
+    }
+  ]
+}

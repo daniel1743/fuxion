@@ -1,0 +1,186 @@
+{
+  "medical": {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": "Preparación semanal de comidas (Meal Prep) — Nutrición, Metabolismo y Peso Corporal",
+    "description": "Preparación semanal de comidas (Meal Prep) — Nutrición, Metabolismo y Peso Corporal. ...",
+    "about": {
+      "@type": "MedicalCondition",
+      "name": "Neurobiología del Sueño, Sistema Inmune y Descanso"
+    },
+    "keywords": [
+      "metabolismo",
+      "energía",
+      "control de peso",
+      "carbohidratos",
+      "azúcar",
+      "nutrición",
+      "fatiga",
+      "estrés",
+      "ansiedad",
+      "saciedad",
+      "sueño",
+      "plan",
+      "Nutrición, Metabolismo y Peso Corporal"
+    ],
+    "author": {
+      "@type": "Person",
+      "name": "Daniel Falcón",
+      "jobTitle": "Investigador de Salud y Bienestar",
+      "url": "https://www.bienestarenclaro.com/sobre-nosotros"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Bienestar en Claro",
+      "url": "https://www.bienestarenclaro.com"
+    },
+    "datePublished": "2026-07-20T16:19:02.319554+00:00",
+    "dateModified": "2026-07-21T13:09:56.985271+00:00",
+    "image": "https://www.bienestarenclaro.com/branding/social/og-image.png"
+  },
+  "faq": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Qué es Terapia Cognitivo Conductual (CBT)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Identificación y reestructuración de distorsiones cognitivas que disparan ansiedad."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Mindfulness-Based Stress Reduction (MBSR)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Programa estructurado de 8 semanas que reduce reactividad amigdalina."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Suspiro Fisiológico?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dos inhalaciones nasales cortas seguidas de una exhalación larga. Abre alvéolos y reduce frecuencia cardíaca."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Ejercicio Aeróbico (Zona 2)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Estimula la neurogénesis en el hipocampo (BDNF) y modula cortisol basal."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Relajación Muscular Progresiva (PMR)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tensión y relajación secuencial para enseñar al cuerpo a reconocer la ausencia de estrés físico."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Terapia farmacológica (Agonistas GLP-1/GIP)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Retrasan el vaciamiento gástrico y actúan en el hipotálamo induciendo saciedad profunda. Indicar bajo supervisión si IMC >27 con comorbilidades."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Déficit calórico individualizado (500-750 kcal/día)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ley de termodinámica; fuerza al cuerpo a oxidar triglicéridos almacenados. Calcular TDEE y restar 500 kcal con registro en app."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Aumento de Proteína (1.2-1.5 g/kg/día)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Incrementa el efecto térmico de los alimentos y provee sustrato anabólico. Incluir 25-30g de proteína magra por comida."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Entrenamiento de Fuerza (2-3 días/sem)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Mejora la densidad de receptores GLUT4 y capilarización muscular. Ejercicios multiarticulares progresivos."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es Sustitución guiada por Ley de Etiquetados?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Modifica el entorno limitando estímulos supernormales. Escoger productos sin sellos 'Alto en Calorías/Azúcares'."
+        }
+      }
+    ]
+  },
+  "seo": {
+    "title": "Preparación semanal de comidas (Meal Prep) — Nutrición, Metabolismo y Peso Corporal",
+    "description": "Preparación semanal de comidas (Meal Prep) — Nutrición, Metabolismo y Peso Corporal. ...",
+    "canonical": "https://www.bienestarenclaro.com/articulos/preparacion-semanal-de-comidas-nutricion-metabolismo-y-peso-corporal",
+    "ogImage": "https://www.bienestarenclaro.com/branding/social/og-image.png",
+    "ogType": "article",
+    "articleTags": [
+      "Sueño y Descanso"
+    ],
+    "articleAuthor": "Daniel Falcón",
+    "articlePublished": "2026-07-20T16:19:02.319554+00:00"
+  },
+  "relatedProducts": [
+    {
+      "slug": "thermo-t3",
+      "name": "THERMO T3",
+      "category": "Control de Peso",
+      "price": 36000,
+      "image": "https://www.bienestarenclaro.com/img/productos/thermo-t3.png",
+      "matchReason": "Contiene metabolismo, quema de grasa, energía",
+      "url": "https://www.bienestarenclaro.com/producto/thermo-t3"
+    },
+    {
+      "slug": "nocarb-t",
+      "name": "NOCARB-T",
+      "category": "Control de Peso",
+      "price": 36000,
+      "image": "https://www.bienestarenclaro.com/img/productos/nocarb-t.png",
+      "matchReason": "Contiene carbohidratos, azúcar, fibra",
+      "url": "https://www.bienestarenclaro.com/producto/nocarb-t"
+    },
+    {
+      "slug": "no-stress",
+      "name": "NO STRESS",
+      "category": "Vigor Mental",
+      "price": 39750,
+      "image": "https://www.bienestarenclaro.com/img/productos/no-stress.png",
+      "matchReason": "Contiene estrés, ansiedad, relajación",
+      "url": "https://www.bienestarenclaro.com/producto/no-stress"
+    },
+    {
+      "slug": "protein-active-fit",
+      "name": "PROTEIN ACTIVE FIT",
+      "category": "Control de Peso",
+      "price": 41500,
+      "image": "https://www.bienestarenclaro.com/img/productos/protein-active-fit.png",
+      "matchReason": "Contiene proteína vegetal, control de peso, saciedad",
+      "url": "https://www.bienestarenclaro.com/producto/protein-active-fit"
+    },
+    {
+      "slug": "pack-5-14",
+      "name": "PACK 5/14",
+      "category": "Control de Peso",
+      "price": 111000,
+      "image": "https://www.bienestarenclaro.com/img/productos/pack-5-14.png",
+      "matchReason": "Contiene control de peso, combo, plan",
+      "url": "https://www.bienestarenclaro.com/producto/pack-5-14"
+    }
+  ]
+}

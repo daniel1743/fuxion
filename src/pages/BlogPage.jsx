@@ -225,7 +225,7 @@ const BlogPage = () => {
                         </div>
                       )}
                       {/* Categorías (Multi-Badge Component) */}
-                      <ArticleBadges categoryString={post.category} />
+                      <ArticleBadges categoryString={post.category} content={post.content} />
                     </div>
                   </Link>
 

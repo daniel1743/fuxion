@@ -2,24 +2,19 @@
   "medical": {
     "@context": "https://schema.org",
     "@type": "MedicalWebPage",
-    "name": "Celiaquía vs Sensibilidad al Gluten No Celíaca",
-    "description": "> * La Enfermedad Celíaca (EC) es una patología autoinmune sistémica y crónica en la que la ingestión de gluten desencadena una respuesta inmune que destruye las vellosidades del intestino delgado, comprometiendo la absorción de prácticamente todos los nutrientes. > * La Sensibilidad al Gluten No Ce",
+    "name": "Celiaquía vs sensibilidad al gluten: diferencias clave",
+    "description": "Celiaquía vs sensibilidad al gluten: diferencias clave. ...",
     "about": {
       "@type": "MedicalCondition",
       "name": "Salud Intestinal, Disbiosis y Estreñimiento"
     },
     "keywords": [
-      "azúcar",
       "fibra",
       "estreñimiento",
+      "digestión",
       "vitaminas",
-      "nutrición",
-      "familia",
       "fatiga",
-      "inmunidad",
-      "aminoácidos",
-      "glutamina",
-      "plan"
+      "glutamina"
     ],
     "author": {
       "@type": "Person",
@@ -33,7 +28,7 @@
       "url": "https://www.bienestarenclaro.com"
     },
     "datePublished": "2026-07-17T05:21:23.157329+00:00",
-    "dateModified": "2026-07-17T05:21:23.157329+00:00"
+    "dateModified": "2026-07-21T13:09:56.985271+00:00"
   },
   "faq": {
     "@context": "https://schema.org",
@@ -122,8 +117,8 @@
     ]
   },
   "seo": {
-    "title": "Celiaquía vs Sensibilidad al Gluten No Celíaca",
-    "description": "> * La Enfermedad Celíaca (EC) es una patología autoinmune sistémica y crónica en la que la ingestión de gluten desencadena una respuesta inmune que destruye las vellosidades del intestino delgado, comprometiendo la absorción de prácticamente todos los nutrientes. > * La Sensibilidad al Gluten No Ce",
+    "title": "Celiaquía vs sensibilidad al gluten: diferencias clave",
+    "description": "Celiaquía vs sensibilidad al gluten: diferencias clave. ...",
     "canonical": "https://www.bienestarenclaro.com/articulos/celiaqu-a-vs-sensibilidad-al-gluten-no-cel-aca-mecanismos-inmunol-gicos-diferenciados",
     "ogImage": "https://www.bienestarenclaro.com/branding/social/og-image.png",
     "ogType": "article",
@@ -134,24 +129,6 @@
     "articlePublished": "2026-07-17T05:21:23.157329+00:00"
   },
   "relatedProducts": [
-    {
-      "slug": "nutraday",
-      "name": "NUTRADAY",
-      "category": "Hidratación Nutricional para la Familia",
-      "price": 36000,
-      "image": "https://www.bienestarenclaro.com/img/productos/nutraday.png",
-      "matchReason": "Contiene vitaminas, nutrición, antioxidantes",
-      "url": "https://www.bienestarenclaro.com/producto/nutraday"
-    },
-    {
-      "slug": "nocarb-t",
-      "name": "NOCARB-T",
-      "category": "Control de Peso",
-      "price": 36000,
-      "image": "https://www.bienestarenclaro.com/img/productos/nocarb-t.png",
-      "matchReason": "Contiene carbohidratos, azúcar, fibra",
-      "url": "https://www.bienestarenclaro.com/producto/nocarb-t"
-    },
     {
       "slug": "prunex-1",
       "name": "PRUNEX 1",

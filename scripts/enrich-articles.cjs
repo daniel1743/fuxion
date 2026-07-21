@@ -12,7 +12,10 @@
 
 const fs = require('fs');
 const path = require('path');
+const dotenv = require('dotenv');
 const { createClient } = require('@supabase/supabase-js');
+
+dotenv.config({ path: path.resolve(__dirname, '..', '.env') });
 
 const ROOT_DIR = path.resolve(__dirname, '..');
 const SITE_URL = 'https://www.bienestarenclaro.com';
@@ -221,6 +224,121 @@ function enrichArticle(article) {
   };
 }
 
+// Map bible module titles to the validated taxonomy categories
+// DB CHECK constraint: Belleza, Bienestar, Salud hepática, Control de peso,
+//   Bienestar gástrico, Ejercicio, Nutrición, Energía, Hábitos saludables, Salud emocional
+const MODULE_TO_TAXONOMY = {
+  'Nutrición y Metabolismo': 'Nutrición',
+  'Salud Digestiva': 'Bienestar gástrico',
+  'Sueño y Descanso': 'Hábitos saludables',
+  'Salud Emocional y Cognitiva': 'Salud emocional',
+  'Hidratación Clínica': 'Nutrición',
+  'Hígado Graso': 'Salud hepática',
+  'Diabetes y Metabolismo': 'Control de peso',
+  'Ejercicio y Fuerza': 'Ejercicio',
+  'Control de Peso': 'Control de peso',
+  'Belleza y Piel': 'Belleza',
+  'Salud Cardiovascular': 'Ejercicio',
+  'Salud Hormonal': 'Bienestar',
+  'Inmunidad': 'Bienestar',
+  'Metabolismo': 'Control de peso',
+  'Nutrición': 'Nutrición',
+  'Bienestar': 'Bienestar',
+};
+
+// Generate a taxonomy string (CSV) from multiple signals
+function generateTaxonomy(article) {
+  const text = (article.title + ' ' + decodeHtmlEntities(article.content || '')).toLowerCase();
+  const categories = new Set();
+
+  // 1. Primary module — mapped to validated taxonomy
+  if (article.enriched.primaryModule) {
+    const mapped = MODULE_TO_TAXONOMY[article.enriched.primaryModule] || article.enriched.primaryModule;
+    categories.add(mapped);
+  }
+
+  // 2. Secondary modules — find ALL matching bible modules
+  for (const [topic, moduleId] of Object.entries(ARTICLE_TOPIC_TO_MODULE)) {
+    if (text.includes(topic.toLowerCase())) {
+      const mod = BIBLE.modules[moduleId - 1];
+      if (mod) {
+        const mapped = MODULE_TO_TAXONOMY[mod.title] || mod.title;
+        categories.add(mapped);
+      }
+    }
+  }
+
+  // 3. Semantic keywords that match module titles
+  for (const keyword of article.enriched.semanticKeywords) {
+    for (const mod of BIBLE.modules || []) {
+      if (keyword.toLowerCase().includes(mod.title.toLowerCase()) ||
+          mod.title.toLowerCase().includes(keyword.toLowerCase())) {
+        const mapped = MODULE_TO_TAXONOMY[mod.title] || mod.title;
+        categories.add(mapped);
+      }
+    }
+  }
+
+  // 4. Product categories
+  for (const product of article.enriched.relatedProducts) {
+    if (product.category) categories.add(product.category);
+  }
+
+  // 5. Known health terms → DB CHECK constraint categories
+  //    Valid categories: Belleza, Bienestar, Salud hepática, Control de peso,
+  //    Bienestar gástrico, Ejercicio, Nutrición, Energía, Hábitos saludables, Salud emocional
+  const HEALTH_TERMS = [
+    // → Salud hepática
+    ['hígado', 'Salud hepática'], ['hígado graso', 'Salud hepática'],
+    // → Bienestar gástrico
+    ['digestión', 'Bienestar gástrico'], ['estreñimiento', 'Bienestar gástrico'],
+    ['microbiota', 'Bienestar gástrico'], ['flora intestinal', 'Bienestar gástrico'],
+    ['colon irritable', 'Bienestar gástrico'], ['gastritis', 'Bienestar gástrico'],
+    ['reflujo', 'Bienestar gástrico'], ['sibo', 'Bienestar gástrico'],
+    // → Bienestar
+    ['sistema inmune', 'Bienestar'], ['defensas', 'Bienestar'],
+    ['inmunidad', 'Bienestar'], ['alergia', 'Bienestar'],
+    ['hormona', 'Bienestar'], ['tiroides', 'Bienestar'],
+    ['inflamación', 'Bienestar'], ['articulación', 'Bienestar'],
+    ['riñón', 'Bienestar'], ['pulmón', 'Bienestar'],
+    // → Control de peso
+    ['diabetes', 'Control de peso'], ['insulina', 'Control de peso'],
+    ['metabolismo', 'Control de peso'], ['obesidad', 'Control de peso'],
+    ['peso', 'Control de peso'],
+    // → Nutrición
+    ['nutrición', 'Nutrición'], ['proteína', 'Nutrición'],
+    ['hidratación', 'Nutrición'], ['agua', 'Nutrición'],
+    // → Hábitos saludables
+    ['sueño', 'Hábitos saludables'], ['insomnio', 'Hábitos saludables'],
+    // → Salud emocional
+    ['estrés', 'Salud emocional'], ['ansiedad', 'Salud emocional'],
+    ['mente', 'Salud emocional'], ['memoria', 'Salud emocional'],
+    ['depresión', 'Salud emocional'], ['salud mental', 'Salud emocional'],
+    ['cerebro', 'Salud emocional'], ['neuro', 'Salud emocional'],
+    // → Belleza
+    ['piel', 'Belleza'], ['colágeno', 'Belleza'],
+    ['belleza', 'Belleza'],
+    // → Ejercicio
+    ['ejercicio', 'Ejercicio'], ['deporte', 'Ejercicio'],
+    ['corazón', 'Ejercicio'], ['cardiovascular', 'Ejercicio'],
+    ['músculo', 'Ejercicio']
+  ];
+
+  for (const [term, category] of HEALTH_TERMS) {
+    if (text.includes(term)) categories.add(category);
+  }
+
+  // 6. Existing category if it's valid
+  if (article.category && article.category !== 'Bienestar') {
+    categories.add(article.category);
+  }
+
+  // Limit to 5 categories and join as CSV
+  const sorted = [...categories];
+  const result = sorted.slice(0, 5).join(', ');
+  return result;
+}
+
 // Schema builders
 function buildFaqSchema(faqs) {
   if (!faqs || faqs.length === 0) return null;
@@ -313,7 +431,45 @@ async function enrichAllArticles() {
   }
 
   console.log('Saved ' + enrichedArticles.length + ' schema files to ' + schemasDir);
-  console.log('\nDone! All articles enriched.');
+
+  // Update Supabase with enriched taxonomy in the category field
+  // Generates multiple categories as CSV: "Hígado Graso, Nutrición, Inmunidad"
+  console.log('\nWriting enriched taxonomy to Supabase...');
+  let updated = 0;
+  const MAX_CATEGORY_LENGTH = 95;
+  const tables = ['blog_posts', 'wellness_articles'];
+
+  for (const article of enrichedArticles) {
+    const taxonomy = generateTaxonomy(article);
+    if (!taxonomy) continue;
+
+    const value = taxonomy.length > MAX_CATEGORY_LENGTH
+      ? taxonomy.substring(0, MAX_CATEGORY_LENGTH)
+      : taxonomy;
+
+    for (const table of tables) {
+      try {
+        const { error } = await supabase
+          .from(table)
+          .update({ category: value })
+          .eq('slug', article.slug);
+        if (error) {
+          if (error.code === 'PGRST204') {
+            // Row not found — fine, skip
+          } else {
+            console.error('  ❌ Failed to update ' + table + '/' + article.slug + ':', error.message);
+          }
+        } else {
+          updated++;
+        }
+      } catch (err) {
+        console.error('  ❌ Error updating ' + table + '/' + article.slug + ':', err.message);
+      }
+    }
+  }
+  console.log('Updated ' + updated + ' articles with taxonomy badges.\n');
+
+  console.log('Done! All articles enriched.');
 }
 
 enrichAllArticles().catch(err => {

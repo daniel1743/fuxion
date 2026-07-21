@@ -2,32 +2,26 @@
   "medical": {
     "@context": "https://schema.org",
     "@type": "MedicalWebPage",
-    "name": "Disbiosis Intestinal",
-    "description": "> * La disbiosis intestinal es una alteración en la composición, diversidad y función del microbioma intestinal, caracterizada por la pérdida de bacterias beneficiosas y el predominio de microorganismos oportunistas o proinflamatorios. > * Este desequilibrio compromete la integridad de la barrera ep",
+    "name": "Disbiosis intestinal: cuándo tu microbiota se desequilibra",
+    "description": "Disbiosis intestinal: cuándo tu microbiota se desequilibra. ...",
     "about": {
       "@type": "MedicalCondition",
-      "name": "Ejercicio, Aparato Cardiovascular y Longevidad Funcional"
+      "name": "Salud Intestinal, Disbiosis y Estreñimiento"
     },
     "keywords": [
       "metabolismo",
-      "energía",
       "azúcar",
       "fibra",
-      "fibra prebiótica",
-      "transito",
+      "estreñimiento",
       "probióticos",
       "microbiota",
-      "hígado",
-      "hígado graso",
       "vitaminas",
       "familia",
+      "fatiga",
       "cerebro",
-      "memoria",
       "estrés",
-      "ansiedad",
       "sueño",
-      "piel",
-      "hormonas",
+      "antiinflamatorio",
       "plan"
     ],
     "author": {
@@ -42,7 +36,7 @@
       "url": "https://www.bienestarenclaro.com"
     },
     "datePublished": "2026-07-17T05:21:23.157329+00:00",
-    "dateModified": "2026-07-17T05:21:23.157329+00:00"
+    "dateModified": "2026-07-21T13:09:56.985271+00:00"
   },
   "faq": {
     "@context": "https://schema.org",
@@ -171,8 +165,8 @@
     ]
   },
   "seo": {
-    "title": "Disbiosis Intestinal",
-    "description": "> * La disbiosis intestinal es una alteración en la composición, diversidad y función del microbioma intestinal, caracterizada por la pérdida de bacterias beneficiosas y el predominio de microorganismos oportunistas o proinflamatorios. > * Este desequilibrio compromete la integridad de la barrera ep",
+    "title": "Disbiosis intestinal: cuándo tu microbiota se desequilibra",
+    "description": "Disbiosis intestinal: cuándo tu microbiota se desequilibra. ...",
     "canonical": "https://www.bienestarenclaro.com/articulos/disbiosis-intestinal-desequilibrio-del-microbioma-y-su-relaci-n-con-la-inflamaci-n-sist-mica",
     "ogImage": "https://www.bienestarenclaro.com/branding/social/og-image.png",
     "ogType": "article",
@@ -184,15 +178,6 @@
   },
   "relatedProducts": [
     {
-      "slug": "thermo-t3",
-      "name": "THERMO T3",
-      "category": "Control de Peso",
-      "price": 36000,
-      "image": "https://www.bienestarenclaro.com/img/productos/thermo-t3.png",
-      "matchReason": "Contiene metabolismo, quema de grasa, energía",
-      "url": "https://www.bienestarenclaro.com/producto/thermo-t3"
-    },
-    {
       "slug": "nocarb-t",
       "name": "NOCARB-T",
       "category": "Control de Peso",
@@ -202,13 +187,13 @@
       "url": "https://www.bienestarenclaro.com/producto/nocarb-t"
     },
     {
-      "slug": "liquid-fiber",
-      "name": "LIQUID FIBER",
-      "category": "Limpieza del Sistema Digestivo",
-      "price": 28750,
-      "image": "https://www.bienestarenclaro.com/img/productos/liquid-fiber.png",
-      "matchReason": "Contiene fibra prebiótica, digestión, flora intestinal",
-      "url": "https://www.bienestarenclaro.com/producto/liquid-fiber"
+      "slug": "prunex-1",
+      "name": "PRUNEX 1",
+      "category": "Limpieza del Colon",
+      "price": 23300,
+      "image": "https://www.bienestarenclaro.com/img/productos/prunex-1.png",
+      "matchReason": "Contiene estreñimiento, transito intestinal, fibra",
+      "url": "https://www.bienestarenclaro.com/producto/prunex-1"
     },
     {
       "slug": "flora-liv",
@@ -220,13 +205,13 @@
       "url": "https://www.bienestarenclaro.com/producto/flora-liv"
     },
     {
-      "slug": "rexet",
-      "name": "REXET",
-      "category": "Limpieza Hígado y Sistema Hepatobiliar",
+      "slug": "nutraday",
+      "name": "NUTRADAY",
+      "category": "Hidratación Nutricional para la Familia",
       "price": 36000,
-      "image": "https://www.bienestarenclaro.com/img/productos/rexet.png",
-      "matchReason": "Contiene hígado, hígado graso, depurativo",
-      "url": "https://www.bienestarenclaro.com/producto/rexet"
+      "image": "https://www.bienestarenclaro.com/img/productos/nutraday.png",
+      "matchReason": "Contiene vitaminas, nutrición, antioxidantes",
+      "url": "https://www.bienestarenclaro.com/producto/nutraday"
     }
   ]
 }

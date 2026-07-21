@@ -116,7 +116,7 @@ const BlogCategoryPage = ({ slug }) => {
                             <BookOpen className="w-12 h-12 text-primary/50" />
                           </div>
                         )}
-                        <ArticleBadges categoryString={post.category} />
+                        <ArticleBadges categoryString={post.category} content={post.content} />
                       </div>
                     </Link>
 

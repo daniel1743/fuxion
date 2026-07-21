@@ -1259,8 +1259,8 @@ const FaqPage = () => {
       className="overflow-x-hidden"
     >
       <SEO
-        title="Preguntas Frecuentes — FuXion Chile | FAQ sobre productos nutracéuticos"
-        description="Encuentra respuestas a las preguntas más frecuentes sobre productos FuXion: digestión, energía, control de peso, belleza, sistema inmune, deporte, compras y envíos en Chile."
+        title="Preguntas Frecuentes | Resuelve tus dudas sobre Salud y Fuxion"
+        description="Resolvemos tus dudas sobre hígado graso, digestión, control de peso y cómo nuestros productos naturales te ayudarán a sentirte increíble. Descubre cómo empezar."
         canonical="/faq"
         ogImageAlt="Bienestar en Claro — Preguntas Frecuentes"
       />

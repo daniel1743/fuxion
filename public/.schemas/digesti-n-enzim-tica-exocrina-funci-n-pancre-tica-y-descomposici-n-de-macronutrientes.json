@@ -2,23 +2,21 @@
   "medical": {
     "@context": "https://schema.org",
     "@type": "MedicalWebPage",
-    "name": "Digestión enzimática exocrina",
-    "description": "> * La digestión enzimática exocrina es el proceso por el cual el páncreas, el hígado y las propias células intestinales sintetizan y secretan enzimas especializadas que descomponen los tres macronutrientes —carbohidratos, proteínas y grasas— en unidades lo suficientemente pequeñas para ser absorbid",
+    "name": "Enzimas digestivas: cómo tu cuerpo descompone lo que comes",
+    "description": "Enzimas digestivas: cómo tu cuerpo descompone lo que comes. ...",
     "about": {
       "@type": "MedicalCondition",
-      "name": "Nutrición, Metabolismo y Peso Corporal"
+      "name": "Salud Intestinal, Disbiosis y Estreñimiento"
     },
     "keywords": [
+      "energía",
       "carbohidratos",
-      "cromo",
+      "azúcar",
       "digestión",
-      "microbiota",
-      "hígado",
+      "gastritis",
       "vitaminas",
-      "nutrición",
+      "familia",
       "estrés",
-      "piel",
-      "hormonas",
       "aminoácidos"
     ],
     "author": {
@@ -33,52 +31,12 @@
       "url": "https://www.bienestarenclaro.com"
     },
     "datePublished": "2026-07-17T05:21:23.157329+00:00",
-    "dateModified": "2026-07-17T05:21:23.157329+00:00"
+    "dateModified": "2026-07-21T13:09:56.985271+00:00"
   },
   "faq": {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "¿Qué es Terapia farmacológica (Agonistas GLP-1/GIP)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Retrasan el vaciamiento gástrico y actúan en el hipotálamo induciendo saciedad profunda. Indicar bajo supervisión si IMC >27 con comorbilidades."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Déficit calórico individualizado (500-750 kcal/día)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Ley de termodinámica; fuerza al cuerpo a oxidar triglicéridos almacenados. Calcular TDEE y restar 500 kcal con registro en app."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Aumento de Proteína (1.2-1.5 g/kg/día)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Incrementa el efecto térmico de los alimentos y provee sustrato anabólico. Incluir 25-30g de proteína magra por comida."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Entrenamiento de Fuerza (2-3 días/sem)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Mejora la densidad de receptores GLUT4 y capilarización muscular. Ejercicios multiarticulares progresivos."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué es Sustitución guiada por Ley de Etiquetados?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Modifica el entorno limitando estímulos supernormales. Escoger productos sin sellos 'Alto en Calorías/Azúcares'."
-        }
-      },
       {
         "@type": "Question",
         "name": "¿Qué es Polietilenglicol (PEG 3350)?",
@@ -161,54 +119,54 @@
       },
       {
         "@type": "Question",
-        "name": "¿Qué es Iniciar el día con 500ml de agua?",
+        "name": "¿Qué es Terapia farmacológica (Agonistas GLP-1/GIP)?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Rompe el ayuno hídrico nocturno y normaliza la osmolalidad matutina."
+          "text": "Retrasan el vaciamiento gástrico y actúan en el hipotálamo induciendo saciedad profunda. Indicar bajo supervisión si IMC >27 con comorbilidades."
         }
       },
       {
         "@type": "Question",
-        "name": "¿Qué es Monitoreo visual de la orina?",
+        "name": "¿Qué es Déficit calórico individualizado (500-750 kcal/día)?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Color 'amarillo pálido' o 'paja' confirma la euhidratación perfecta."
+          "text": "Ley de termodinámica; fuerza al cuerpo a oxidar triglicéridos almacenados. Calcular TDEE y restar 500 kcal con registro en app."
         }
       },
       {
         "@type": "Question",
-        "name": "¿Qué es Reemplazar jugos y bebidas?",
+        "name": "¿Qué es Aumento de Proteína (1.2-1.5 g/kg/día)?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Sustituir bebidas azucaradas por agua o infusiones reduce drásticamente obesidad y riesgo metabólico."
+          "text": "Incrementa el efecto térmico de los alimentos y provee sustrato anabólico. Incluir 25-30g de proteína magra por comida."
         }
       },
       {
         "@type": "Question",
-        "name": "¿Qué es Hidratación intra y post entrenamiento?",
+        "name": "¿Qué es Entrenamiento de Fuerza (2-3 días/sem)?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Compensar la tasa de sudoración pesando antes/después y reponiendo 1.5x lo perdido."
+          "text": "Mejora la densidad de receptores GLUT4 y capilarización muscular. Ejercicios multiarticulares progresivos."
         }
       },
       {
         "@type": "Question",
-        "name": "¿Qué es Incrementar sopas o verduras altas en H2O?",
+        "name": "¿Qué es Sustitución guiada por Ley de Etiquetados?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Sandía, pepino, caldos; aportan hasta 20-30% de las necesidades hídricas totales pasivamente."
+          "text": "Modifica el entorno limitando estímulos supernormales. Escoger productos sin sellos 'Alto en Calorías/Azúcares'."
         }
       }
     ]
   },
   "seo": {
-    "title": "Digestión enzimática exocrina",
-    "description": "> * La digestión enzimática exocrina es el proceso por el cual el páncreas, el hígado y las propias células intestinales sintetizan y secretan enzimas especializadas que descomponen los tres macronutrientes —carbohidratos, proteínas y grasas— en unidades lo suficientemente pequeñas para ser absorbid",
+    "title": "Enzimas digestivas: cómo tu cuerpo descompone lo que comes",
+    "description": "Enzimas digestivas: cómo tu cuerpo descompone lo que comes. ...",
     "canonical": "https://www.bienestarenclaro.com/articulos/digesti-n-enzim-tica-exocrina-funci-n-pancre-tica-y-descomposici-n-de-macronutrientes",
     "ogImage": "https://www.bienestarenclaro.com/branding/social/og-image.png",
     "ogType": "article",
     "articleTags": [
-      "Inmunidad"
+      "Salud Digestiva"
     ],
     "articleAuthor": "Daniel Falcón",
     "articlePublished": "2026-07-17T05:21:23.157329+00:00"

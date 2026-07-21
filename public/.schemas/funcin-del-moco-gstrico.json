@@ -2,21 +2,20 @@
   "medical": {
     "@context": "https://schema.org",
     "@type": "MedicalWebPage",
-    "name": "Función del moco gástrico",
-    "description": "> * El moco gástrico es una capa viscosa y dinámica compuesta principalmente por mucinas, bicarbonato, agua y lípidos, que recubre la superficie interna del estómago. > * Su función principal es crear un gradiente de pH que protege las células epiteliales del ácido clorhídrico (pH 1-2) y de la pepsi",
+    "name": "Moco gástrico: la barrera invisible que protege tu estómago",
+    "description": "Moco gástrico: la barrera invisible que protege tu estómago. ...",
     "about": {
       "@type": "MedicalCondition",
       "name": "Salud Intestinal, Disbiosis y Estreñimiento"
     },
     "keywords": [
-      "probióticos",
+      "digestión",
       "gastritis",
-      "familia",
-      "té verde",
-      "regeneración celular",
       "estrés",
-      "piel",
-      "antiinflamatorio"
+      "antiinflamatorio",
+      "electrolitos",
+      "glutamina",
+      "café"
     ],
     "author": {
       "@type": "Person",
@@ -30,7 +29,7 @@
       "url": "https://www.bienestarenclaro.com"
     },
     "datePublished": "2026-07-17T05:21:23.157329+00:00",
-    "dateModified": "2026-07-17T05:21:23.157329+00:00"
+    "dateModified": "2026-07-21T13:09:56.985271+00:00"
   },
   "faq": {
     "@context": "https://schema.org",
@@ -199,8 +198,8 @@
     ]
   },
   "seo": {
-    "title": "Función del moco gástrico",
-    "description": "> * El moco gástrico es una capa viscosa y dinámica compuesta principalmente por mucinas, bicarbonato, agua y lípidos, que recubre la superficie interna del estómago. > * Su función principal es crear un gradiente de pH que protege las células epiteliales del ácido clorhídrico (pH 1-2) y de la pepsi",
+    "title": "Moco gástrico: la barrera invisible que protege tu estómago",
+    "description": "Moco gástrico: la barrera invisible que protege tu estómago. ...",
     "canonical": "https://www.bienestarenclaro.com/articulos/funcin-del-moco-gstrico",
     "ogImage": "https://www.bienestarenclaro.com/branding/social/og-image.png",
     "ogType": "article",
@@ -212,13 +211,13 @@
   },
   "relatedProducts": [
     {
-      "slug": "flora-liv",
-      "name": "FLORA LIV",
-      "category": "Regeneración Flora Intestinal",
-      "price": 43000,
-      "image": "https://www.bienestarenclaro.com/img/productos/flora-liv.png",
-      "matchReason": "Contiene probióticos, flora intestinal, microbiota",
-      "url": "https://www.bienestarenclaro.com/producto/flora-liv"
+      "slug": "post-sport-pro-edition",
+      "name": "POST SPORT PRO EDITION",
+      "category": "Sport",
+      "price": 39250,
+      "image": "https://www.bienestarenclaro.com/img/productos/post-sport-pro-edition.png",
+      "matchReason": "Contiene recuperación muscular, BCAAs, glutamina",
+      "url": "https://www.bienestarenclaro.com/producto/post-sport-pro-edition"
     }
   ]
 }
