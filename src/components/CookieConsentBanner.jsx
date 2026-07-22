@@ -138,7 +138,7 @@ const CookieConsentBanner = () => {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: '100%', opacity: 0 }}
             transition={{ type: 'spring', damping: 28, stiffness: 300 }}
-            className="fixed bottom-0 left-0 right-0 z-max p-4 sm:p-6 pb-[calc(1rem+env(safe-area-inset-bottom,0px))] pointer-events-none"
+            className="fixed bottom-0 left-0 right-0 z-max p-3 sm:p-6 pb-[calc(0.75rem+env(safe-area-inset-bottom,0px))] pointer-events-none"
           >
             <div className="max-w-2xl mx-auto pointer-events-auto">
               <div
@@ -152,22 +152,22 @@ const CookieConsentBanner = () => {
                 {/* Decorative gradient */}
                 <div className="absolute -top-20 -right-20 w-40 h-40 bg-emerald-100/30 dark:bg-emerald-900/20 rounded-full blur-3xl pointer-events-none" />
 
-                <div className="relative p-5 sm:p-6">
-                  <div className="flex items-start gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center shrink-0">
+                <div className="relative p-4 sm:p-6">
+                  <div className="flex items-start gap-3 mb-3 sm:mb-4">
+                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center shrink-0">
                       <Cookie className="w-5 h-5 text-emerald-600 dark:text-emerald-400" strokeWidth={1.8} />
                     </div>
                     <div className="flex-1 min-w-0">
                       <h3 className="font-bold text-foreground text-base mb-1">
                         🍪 Mejora de Experiencia
                       </h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
+                      <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
                         Utilizamos cookies estrictamente necesarias para el funcionamiento de la tienda, y cookies analíticas para mejorar tu experiencia de navegación y ofrecerte un servicio más personalizado. No usamos cookies de publicidad. Puedes elegir cómo interactuar con ellas.
                       </p>
                     </div>
                   </div>
 
-                  <div className="flex flex-col sm:flex-row gap-3 mt-4">
+                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-3 sm:mt-4">
                     <Button
                       onClick={handleAcceptAll}
                       className="flex-1 shadow-premium-soft hover:shadow-md"

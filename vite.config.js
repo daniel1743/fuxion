@@ -229,7 +229,7 @@ const addTransformIndexHtml = {
 const vercelApiDevPlugin = () => ({
 	name: 'vercel-api-dev',
 	configureServer(server) {
-		server.middlewares.use('/api/chat', async (req, res) => {
+		const runApiHandler = async (req, res, handlerPath) => {
 			let rawBody = '';
 
 			req.on('data', chunk => {
@@ -240,7 +240,7 @@ const vercelApiDevPlugin = () => ({
 				try {
 					req.body = rawBody ? JSON.parse(rawBody) : {};
 
-					const { default: handler } = await import(`./api/chat.js?t=${Date.now()}`);
+					const { default: handler } = await import(`${handlerPath}?t=${Date.now()}`);
 
 					const vercelRes = {
 						status(code) {
@@ -272,6 +272,14 @@ const vercelApiDevPlugin = () => ({
 					}));
 				}
 			});
+		};
+
+		server.middlewares.use('/api/chat', async (req, res) => {
+			await runApiHandler(req, res, './api/chat.js');
+		});
+
+		server.middlewares.use('/api/generate-report', async (req, res) => {
+			await runApiHandler(req, res, './api/generate-report.js');
 		});
 	}
 });
@@ -321,7 +329,18 @@ export default defineConfig(({ mode }) => {
 				'@babel/traverse',
 				'@babel/generator',
 				'@babel/types'
-			]
+			],
+			output: {
+				manualChunks(id) {
+					if (!id.includes('node_modules')) return undefined;
+					if (id.includes('echarts') || id.includes('zrender')) return 'charts';
+					if (id.includes('html2pdf') || id.includes('jspdf') || id.includes('html2canvas') || id.includes('react-markdown')) return 'pdf-report';
+					if (id.includes('firebase') || id.includes('@supabase')) return 'backend-sdk';
+					if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) return 'react-vendor';
+					if (id.includes('framer-motion')) return 'motion';
+					return undefined;
+				},
+			},
 		}
 	}
 	};

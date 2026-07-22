@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bienestar-en-claro-v3';
+const CACHE_NAME = 'bienestar-en-claro-v4';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -24,14 +24,14 @@ self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
 
   if (event.request.url.match(/\.(png|jpg|jpeg|webp|svg|woff2?|ttf|mp4|webm)$/) || event.request.url.includes('/branding/') || event.request.url.includes('/img/') || event.request.url.includes('/images/')) {
-    event.respondWith(caches.match(event.request).then((cached) => fetch(event.request).then((response) => { if (response.ok) { const clone = response.clone(); caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone)); } return response; }).catch(() => cached)));
+    event.respondWith(caches.match(event.request).then((cached) => fetch(event.request).then((response) => { if (response.ok) { const clone = response.clone(); caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone)); } return response; }).catch(() => cached || Response.error())));
     return;
   }
 
   if (event.request.mode === 'navigate') {
-    event.respondWith(fetch(event.request).then((response) => { if (response.ok) { const clone = response.clone(); caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone)); } return response; }).catch(() => caches.match('/index.html')));
+    event.respondWith(fetch(event.request).then((response) => { if (response.ok) { const clone = response.clone(); caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone)); } return response; }).catch(() => caches.match('/index.html').then((cached) => cached || Response.error())));
     return;
   }
 
-  event.respondWith(fetch(event.request).catch(() => caches.match(event.request)));
+  event.respondWith(fetch(event.request).catch(() => caches.match(event.request).then((cached) => cached || Response.error())));
 });

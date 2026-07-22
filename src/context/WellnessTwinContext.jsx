@@ -16,6 +16,10 @@ export const WellnessTwinProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
 
+  // ── CAT engine state ──────────────────────────────────────────────
+  const [currentQuestionId, setCurrentQuestionId] = useState(null);
+  const [completedQuestions, setCompletedQuestions] = useState([]);
+
   const totalSteps = 8;
 
   // Helper to normalize legacy twin data structure to Phase 3 structure
@@ -217,6 +221,8 @@ export const WellnessTwinProvider = ({ children }) => {
     setTwinData(null);
     setHasCompletedEvaluation(false);
     setCurrentStep(0);
+    setCurrentQuestionId(null);
+    setCompletedQuestions([]);
     localStorage.removeItem('wellness_twin_data');
   };
 
@@ -244,6 +250,11 @@ export const WellnessTwinProvider = ({ children }) => {
     currentStep,
     setCurrentStep,
     totalSteps,
+    // ── CAT engine ────────────────────────────────────────────────
+    currentQuestionId,
+    setCurrentQuestionId,
+    completedQuestions,
+    setCompletedQuestions,
     submitEvaluation,
     activateUserPlan, // Nuevo: Activar Plan
     resetEvaluation,

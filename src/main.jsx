@@ -9,6 +9,10 @@ import { ThemeProvider } from '@/context/ThemeProvider';
 import { initializeAdvisorFromUrl } from '@/lib/whatsapp';
 import PerformanceProvider from '@/components/PerformanceProvider';
 
+if ('scrollRestoration' in window.history) {
+  window.history.scrollRestoration = 'manual';
+}
+
 initializeAdvisorFromUrl();
 
 if (import.meta.env.PROD && 'serviceWorker' in navigator) {

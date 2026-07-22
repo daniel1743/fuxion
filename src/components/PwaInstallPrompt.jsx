@@ -6,6 +6,7 @@ import { toast } from '@/components/ui/use-toast';
 import { usePwaInstall } from '@/hooks/usePwaInstall';
 
 const STORAGE_KEY = 'fuxion-pwa-install-prompt-next-at';
+const COOKIE_CONSENT_KEY = 'fuxion_cookie_consent';
 const DAY = 24 * 60 * 60 * 1000;
 
 const PwaInstallPrompt = () => {
@@ -26,7 +27,10 @@ const PwaInstallPrompt = () => {
     const nextAt = Number(window.localStorage.getItem(STORAGE_KEY) || 0);
     if (Date.now() < nextAt) return undefined;
 
-    const showTimer = window.setTimeout(() => setVisible(true), 9000);
+    const showTimer = window.setTimeout(() => {
+      if (!window.localStorage.getItem(COOKIE_CONSENT_KEY)) return;
+      setVisible(true);
+    }, 9000);
     return () => window.clearTimeout(showTimer);
   }, [canInstall, installed, isIos]);
 

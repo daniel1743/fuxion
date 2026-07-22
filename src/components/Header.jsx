@@ -43,7 +43,6 @@ const officialStoreUrl = 'https://ifuxion.com/daniel/enrollment/chooseperson';
 const drawerNavItems = [
   { label: 'Inicio', icon: Home03Icon, path: '/' },
   { label: 'Mi carrito', subtitle: 'Ver mis productos', icon: ShoppingCart01Icon, path: '/carrito' },
-  { label: 'Bienestar', subtitle: 'Ver opciones', icon: Target01Icon, path: '#' },
   { label: 'Productos', subtitle: 'Catálogo FuXion', icon: ShoppingBag03Icon, path: '/explorar' },
   { label: 'Tu plan a medida', subtitle: 'Diseña tu programa ideal', icon: Rocket01Icon, path: '/plan-a-medida' },
   { label: 'Sobre Nosotros', subtitle: 'Nuestra historia y valores', icon: Leaf01Icon, path: '/sobre-nosotros' },
@@ -247,7 +246,7 @@ const Header = () => {
   const { unreadCount = 0 } = useNotifications() || {};
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-header pointer-events-auto glassmorphism overflow-visible transition-transform duration-300 ease-out ${headerHidden ? '-translate-y-full' : 'translate-y-0'}`}>
+    <header className={`fixed top-0 left-0 right-0 z-[100] pointer-events-auto glassmorphism overflow-visible transition-transform duration-300 ease-out ${headerHidden ? '-translate-y-full' : 'translate-y-0'}`}>
       <nav className="container mx-auto hidden md:flex items-center justify-between gap-1 px-3 py-2 sm:px-6 sm:py-3 pointer-events-auto">
         {/* ── Left: Brand / Mobile user greeting ──────────────── */}
         {/* Desktop brand — always visible on md+ */}

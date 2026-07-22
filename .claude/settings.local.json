@@ -55,7 +55,9 @@
       "PowerShell(node -e \"var fs=require\\('fs'\\); var c=fs.readFileSync\\('scripts/generate-sitemap-final.cjs','utf-8'\\); console.log\\('Contains conditionPages:', c.includes\\('conditionPages'\\)\\); console.log\\('Contains /condicion/:', c.includes\\('/condicion/'\\)\\); var idx=c.indexOf\\('conditionPages'\\); if\\(idx>=0\\) console.log\\(c.slice\\(idx,idx+200\\)\\);\")",
       "PowerShell(node -e \"var fs=require\\('fs'\\); var c=fs.readFileSync\\('scripts/generate-sitemap-final.cjs','utf-8'\\); var idx=c.indexOf\\('staticPages\\);'\\); console.log\\('idx='+idx\\); if\\(idx>=0\\) console.log\\('Found staticPages'\\); else console.log\\('Not found'\\);\")",
       "PowerShell(node -e \"var fs=require\\('fs'\\); var c=fs.readFileSync\\('scripts/generate-sitemap-final.cjs','utf-8'\\); var lines=c.split\\('\\\\n'\\); for\\(var i=0;i<lines.length;i++\\){if\\(lines[i].indexOf\\('staticPages'\\)>=0\\) console.log\\(i+1+': '+lines[i].trim\\(\\)\\);}\")",
-      "Bash(npm ls *)"
+      "Bash(npm ls *)",
+      "Bash(npx eslint *)",
+      "Bash(echo \"exit: $?\")"
     ]
   }
 }

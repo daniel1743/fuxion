@@ -1,640 +1,580 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HugeiconsIcon } from '@hugeicons/react';
-import { ArrowRight01Icon, ArrowLeft01Icon, CheckmarkCircle02Icon } from '@hugeicons/core-free-icons';
+import {
+  ArrowRight01Icon,
+  ArrowLeft01Icon,
+  CheckmarkCircle02Icon,
+} from '@hugeicons/core-free-icons';
 import { useWellnessTwin } from '@/context/WellnessTwinContext';
+import {
+  getNextQuestion,
+  completeQuestion,
+} from '@/lib/engine/questionRouter';
+import {
+  QUESTIONS,
+  QUESTION_ORDER,
+  QUESTION_GROUPS,
+  getQuestionById,
+} from '@/lib/engine/questionTree';
+import { recognizeAnswer } from '@/lib/engine/microRecognition';
+
+/* ── Animations ────────────────────────────────────────────────────── */
+
+const spring = { type: 'spring', stiffness: 360, damping: 32, mass: 0.9 };
 
 const slideVariants = {
-  enter: (direction) => ({ x: direction > 0 ? 300 : -300, opacity: 0 }),
+  enter: (direction) => ({ x: direction > 0 ? 56 : -56, opacity: 0 }),
   center: { x: 0, opacity: 1 },
-  exit: (direction) => ({ x: direction < 0 ? 300 : -300, opacity: 0 }),
+  exit: (direction) => ({ x: direction < 0 ? 56 : -56, opacity: 0 }),
 };
 
-const stepGuidance = [
-  {
-    label: 'Base del informe',
-    message: 'Esto es importante porque edad, sexo, peso y altura cambian los cálculos de energía, proteína e hidratación. Con esta base evitamos recomendaciones genéricas.',
-  },
-  {
-    label: 'Lectura metabólica',
-    message: 'Este bloque nos ayuda a estimar tu punto de partida corporal. No buscamos juzgar un número: buscamos entender qué palancas pueden darte más resultado.',
-  },
-  {
-    label: 'Impacto semanal',
-    message: 'Aquí vemos si tu cuerpo recibe suficiente movimiento real. Pequeñas caminatas pueden cambiar mucho el control de glucosa, energía y recuperación.',
-  },
-  {
-    label: 'Recuperación',
-    message: 'El sueño altera apetito, ánimo, concentración y respuesta al entrenamiento. Por eso el informe no trata el descanso como un dato secundario.',
-  },
-  {
-    label: 'Combustible diario',
-    message: 'Con agua, vegetales y ultraprocesados podemos detectar si tu plan necesita primero ordenar lo básico antes de recomendar estrategias más avanzadas.',
-  },
-  {
-    label: 'Señales digestivas',
-    message: 'Tu digestión entrega pistas sobre hidratación, fibra, estrés y microbiota. Esta sección ayuda a que el informe no sea solo peso y calorías.',
-  },
-  {
-    label: 'Carga mental',
-    message: 'Estrés y ánimo pueden explicar por qué un plan falla aunque la persona tenga motivación. Esta información ayuda a recomendar hábitos posibles, no perfectos.',
-  },
-  {
-    label: 'Prioridad final',
-    message: 'Este cierre define banderas preventivas y objetivo principal. Con esto ordenamos tus 3 microhábitos por impacto, seguridad y facilidad de cumplimiento.',
-  },
-];
+/* ── Helpers ───────────────────────────────────────────────────────── */
 
-export default function WellnessQuestionnaire({ onComplete }) {
-  const { answers, setAnswers, currentStep, setCurrentStep, totalSteps, submitEvaluation } = useWellnessTwin();
-  const [direction, setDirection] = useState(1);
-
-  const getNextValidStep = (current, dir) => {
-    let next = current + dir;
-    
-    // Lógica Adaptativa:
-    // Aquí puedes definir saltos de pasos completos si el usuario no los necesita.
-    // Ejemplo: Si no tiene problemas digestivos reportados previamente, saltar paso 5.
-    // if (next === 5 && answers.ultraprocessedPerWeek === 0) return next + dir;
-    
-    return next;
+function getCategory(field) {
+  const map = {
+    activityLevel: 'activity',
+    sleepHours: 'sleep',
+    sleepQuality: 'sleep_quality',
+    waterLiters: 'water',
+    fruitVegServings: 'fruit_veg',
+    ultraprocessedPerWeek: 'ultraprocessed',
+    bristolType: 'bristol',
+    bowelFrequency: 'bowel_frequency',
+    bloating: 'bloating',
+    stressLevel: 'stress',
+    moodLevel: 'mood',
+    sunExposure: 'sun_exposure',
+    smokes: 'smoking',
+    alcoholPerWeek: 'alcohol',
+    coffeePerDay: 'coffee',
+    goal: 'goal',
   };
+  return map[field] || 'general';
+}
 
-  const handleNext = () => {
-    const nextStep = getNextValidStep(currentStep, 1);
-    if (nextStep < totalSteps) {
-      setDirection(1);
-      setCurrentStep(nextStep);
-    } else {
-      handleFinish();
+function getFieldId(field) {
+  return field.replace(/([A-Z])/g, '_$1').toLowerCase();
+}
+
+function formatValue(field, value) {
+  if (value == null) return '';
+  if (typeof value === 'boolean') return value ? 'Sí' : 'No';
+  if (typeof value === 'number') return String(value);
+  return String(value);
+}
+
+function getGroupProgress(completedIds) {
+  const groupCounts = {};
+  QUESTION_ORDER.forEach((id) => {
+    const q = getQuestionById(id);
+    if (q) {
+      groupCounts[q.stepGroup] = (groupCounts[q.stepGroup] || 0) + 1;
     }
-  };
+  });
 
-  const handlePrev = () => {
-    const prevStep = getNextValidStep(currentStep, -1);
-    if (prevStep >= 0) {
-      setDirection(-1);
-      setCurrentStep(prevStep);
+  const groupCompleted = {};
+  completedIds.forEach((id) => {
+    const q = getQuestionById(id);
+    if (q) {
+      groupCompleted[q.stepGroup] = (groupCompleted[q.stepGroup] || 0) + 1;
     }
-  };
+  });
 
-  const handleFinish = async () => {
-    await submitEvaluation(answers);
-    if (onComplete) {
-      onComplete();
-    }
-  };
+  return Object.entries(groupCounts).map(([groupId, total]) => ({
+    id: groupId,
+    label: QUESTION_GROUPS.find((g) => g.id === groupId)?.label || groupId,
+    done: groupCompleted[groupId] || 0,
+    total,
+  }));
+}
 
-  const handleChange = (field, value) => {
-    setAnswers(prev => ({ ...prev, [field]: value }));
-  };
+/* ── Input Components ──────────────────────────────────────────────── */
 
-  const isStepValid = () => {
-    if (currentStep === 0) {
-      return answers.name && answers.age && answers.gender;
-    }
-    if (currentStep === 1) {
-      return answers.weight && answers.height;
-    }
-    return true; // other steps optional or have defaults
-  };
+function Field({ label, hint, children }) {
+  return (
+    <div className="space-y-2">
+      <label className="text-sm font-semibold text-gray-800">{label}</label>
+      {children}
+      {hint && <p className="text-xs leading-5 text-gray-500">{hint}</p>}
+    </div>
+  );
+}
 
-  const styles = {
-    container: {
-      maxWidth: '600px',
-      margin: '0 auto',
-      background: 'white',
-      borderRadius: '16px',
-      boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
-      padding: '32px',
-      position: 'relative'
-    },
-    progressBarContainer: {
-      width: '100%',
-      height: '8px',
-      background: '#e5e7eb',
-      borderRadius: '4px',
-      marginBottom: '24px',
-      overflow: 'hidden'
-    },
-    progressBar: {
-      height: '100%',
-      background: '#22c55e',
-      transition: 'width 0.3s ease'
-    },
-    stepTitle: {
-      fontSize: '24px',
-      fontWeight: 'bold',
-      marginBottom: '24px',
-      color: '#111827'
-    },
-    label: {
-      fontWeight: '600',
-      marginBottom: '6px',
-      display: 'block',
-      color: '#374151'
-    },
-    input: {
-      border: '1px solid #d1d5db',
-      borderRadius: '8px',
-      padding: '10px 14px',
-      width: '100%',
-      fontSize: '16px',
-      marginBottom: '16px',
-      boxSizing: 'border-box',
-      outline: 'none'
-    },
-    select: {
-      border: '1px solid #d1d5db',
-      borderRadius: '8px',
-      padding: '10px 14px',
-      width: '100%',
-      fontSize: '16px',
-      marginBottom: '16px',
-      background: 'white',
-      boxSizing: 'border-box',
-      outline: 'none'
-    },
-    buttonContainer: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      marginTop: '32px'
-    },
-    btnNext: {
-      background: '#22c55e',
-      color: 'white',
-      border: 'none',
-      borderRadius: '12px',
-      padding: '12px 24px',
-      fontSize: '16px',
-      fontWeight: '600',
-      cursor: 'pointer',
-      display: 'flex',
-      alignItems: 'center',
-      gap: '8px'
-    },
-    btnPrev: {
-      background: 'transparent',
-      color: '#22c55e',
-      border: '2px solid #22c55e',
-      borderRadius: '12px',
-      padding: '12px 24px',
-      fontSize: '16px',
-      fontWeight: '600',
-      cursor: 'pointer',
-      display: 'flex',
-      alignItems: 'center',
-      gap: '8px'
-    },
-    disabledBtn: {
-      opacity: 0.5,
-      cursor: 'not-allowed'
-    },
-    radioGroup: {
-      display: 'flex',
-      gap: '12px',
-      marginBottom: '16px',
-      flexWrap: 'wrap'
-    },
-    radioLabel: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      cursor: 'pointer',
-      padding: '8px',
-      border: '1px solid #d1d5db',
-      borderRadius: '8px',
-      transition: 'all 0.2s'
-    },
-    guidanceCard: {
-      display: 'flex',
-      gap: '12px',
-      alignItems: 'flex-start',
-      background: 'linear-gradient(135deg, #f0fdf4, #ecfeff)',
-      border: '1px solid #bbf7d0',
-      borderRadius: '14px',
-      padding: '14px 16px',
-      marginBottom: '22px'
-    },
-    guidanceBadge: {
-      width: '28px',
-      height: '28px',
-      borderRadius: '999px',
-      background: '#22c55e',
-      color: 'white',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontWeight: 800,
-      flexShrink: 0,
-      fontSize: '14px'
-    }
-  };
+function TextInput({ label, hint, value, onChange, placeholder }) {
+  return (
+    <Field label={label} hint={hint}>
+      <input
+        value={value ?? ''}
+        onChange={onChange}
+        placeholder={placeholder}
+        className="h-12 w-full rounded-2xl border border-gray-200 bg-white/80 px-4 text-base text-gray-900 shadow-sm outline-none transition-all placeholder:text-gray-400 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/12"
+      />
+    </Field>
+  );
+}
 
-  const renderStepContent = () => {
-    switch (currentStep) {
-      case 0:
-        return (
-          <div>
-            <h2 style={styles.stepTitle}>Datos Personales</h2>
-            <label style={styles.label}>Nombre completo</label>
-            <input
-              type="text"
-              style={styles.input}
-              value={answers.name || ''}
-              onChange={e => handleChange('name', e.target.value)}
-              placeholder="Tu nombre"
-            />
-            <label style={styles.label}>Edad</label>
-            <input
-              type="number"
-              style={styles.input}
-              value={answers.age || ''}
-              onChange={e => handleChange('age', Number(e.target.value))}
-              placeholder="Años"
-            />
-            <label style={styles.label}>Género</label>
-            <select
-              style={styles.select}
-              value={answers.gender || ''}
-              onChange={e => handleChange('gender', e.target.value)}
+function TextareaInput({ label, hint, value, onChange, placeholder }) {
+  return (
+    <Field label={label} hint={hint}>
+      <textarea
+        value={value ?? ''}
+        onChange={onChange}
+        placeholder={placeholder}
+        rows={3}
+        className="w-full resize-y rounded-2xl border border-gray-200 bg-white/80 px-4 py-3 text-base text-gray-900 shadow-sm outline-none transition-all placeholder:text-gray-400 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/12"
+      />
+    </Field>
+  );
+}
+
+function RangeInput({ label, value, min, max, onChange, lowLabel, highLabel }) {
+  const resolved = value ?? Math.round((min + max) / 2);
+  return (
+    <Field label={label}>
+      <div className="rounded-2xl border border-gray-200 bg-white/80 p-4 shadow-sm">
+        <div className="mb-3 flex items-center justify-between">
+          <span className="text-xs font-medium text-gray-500">{lowLabel}</span>
+          <span className="rounded-full bg-emerald-100 px-3 py-1 text-sm font-bold text-emerald-700">
+            {resolved}
+          </span>
+          <span className="text-xs font-medium text-gray-500">{highLabel}</span>
+        </div>
+        <input
+          type="range"
+          min={min}
+          max={max}
+          value={resolved}
+          onChange={(e) => onChange(Number(e.target.value))}
+          className="w-full accent-emerald-600"
+        />
+      </div>
+    </Field>
+  );
+}
+
+function ChoiceGrid({ label, hint, value, options, onChange }) {
+  return (
+    <Field label={label} hint={hint}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {options.map((option) => {
+          const selected = value === option.value;
+          return (
+            <motion.button
+              key={String(option.value)}
+              type="button"
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              transition={spring}
+              onClick={() => onChange(option.value)}
+              className={`min-h-[72px] rounded-2xl border p-4 text-left transition-all ${
+                selected
+                  ? 'border-emerald-500 bg-emerald-50 shadow-[0_14px_32px_rgba(16,185,129,0.14)]'
+                  : 'border-gray-200 bg-white/75 shadow-sm hover:border-emerald-200 hover:bg-emerald-50/40'
+              }`}
             >
-              <option value="">Selecciona...</option>
-              <option value="male">Masculino</option>
-              <option value="female">Femenino</option>
-            </select>
-          </div>
+              <span className={`block text-sm font-bold ${selected ? 'text-emerald-800' : 'text-gray-900'}`}>
+                {option.title}
+              </span>
+              <span className="mt-1 block text-xs leading-5 text-gray-500">{option.desc}</span>
+            </motion.button>
+          );
+        })}
+      </div>
+    </Field>
+  );
+}
+
+/* ── Recognition Banner ────────────────────────────────────────────── */
+
+function RecognitionBanner({ message, severity, question }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ ...spring, delay: 0.1 }}
+      className={`relative overflow-hidden rounded-3xl border p-5 ${
+        severity === 'warning'
+          ? 'border-amber-200 bg-amber-50/80'
+          : severity === 'positive'
+            ? 'border-emerald-200 bg-emerald-50/80'
+            : 'border-slate-200 bg-white/80'
+      }`}
+    >
+      <div className="flex items-start gap-3">
+        <div className="shrink-0 mt-0.5">
+          {severity === 'warning' ? (
+            <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-amber-100 text-amber-600 text-sm font-bold">!</span>
+          ) : severity === 'positive' ? (
+            <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 text-lg">✓</span>
+          ) : (
+            <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-slate-100 text-slate-500 text-sm">💡</span>
+          )}
+        </div>
+        <div>
+          <p className={`text-sm leading-6 ${
+            severity === 'warning' ? 'text-amber-800' :
+            severity === 'positive' ? 'text-emerald-800' : 'text-slate-700'
+          }`}>
+            {message}
+          </p>
+          <p className="mt-1 text-xs text-gray-400">
+            {question?.label}
+          </p>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+/* ── Question Card ─────────────────────────────────────────────────── */
+
+function QuestionCard({ question, answer, onChange, onConfirm }) {
+  const renderInput = () => {
+    switch (question.type) {
+      case 'choice':
+        return (
+          <ChoiceGrid
+            label={question.label}
+            hint={question.hint}
+            value={answer}
+            options={question.options}
+            onChange={onChange}
+          />
         );
-      case 1:
+      case 'range':
         return (
-          <div>
-            <h2 style={styles.stepTitle}>Antropometría</h2>
-            <label style={styles.label}>Peso (kg)</label>
-            <input
-              type="number"
-              style={styles.input}
-              value={answers.weight || ''}
-              onChange={e => handleChange('weight', Number(e.target.value))}
-              placeholder="Ej. 70"
-            />
-            <label style={styles.label}>Altura (cm)</label>
-            <input
-              type="number"
-              style={styles.input}
-              value={answers.height || ''}
-              onChange={e => handleChange('height', Number(e.target.value))}
-              placeholder="Ej. 175"
-            />
-            <label style={styles.label}>Circunferencia de cintura (cm) - Opcional</label>
-            <p style={{fontSize: '14px', color: '#6b7280', marginBottom: '8px'}}>Mide a la altura del ombligo, sin apretar.</p>
-            <input
-              type="number"
-              style={styles.input}
-              value={answers.waistCm || ''}
-              onChange={e => handleChange('waistCm', Number(e.target.value))}
-              placeholder="Ej. 85"
-            />
-          </div>
+          <RangeInput
+            label={question.label}
+            value={answer}
+            min={question.min}
+            max={question.max}
+            lowLabel={question.lowLabel}
+            highLabel={question.highLabel}
+            onChange={onChange}
+          />
         );
-      case 2:
+      case 'textarea':
         return (
-          <div>
-            <h2 style={styles.stepTitle}>Actividad Física</h2>
-            <label style={styles.label}>Nivel de actividad</label>
-            <select
-              style={styles.select}
-              value={answers.activityLevel || ''}
-              onChange={e => handleChange('activityLevel', e.target.value)}
-            >
-              <option value="">Selecciona...</option>
-              <option value="sedentary">Sedentario (poco o nada de ejercicio)</option>
-              <option value="light">Ligero (ejercicio 1-3 días a la semana)</option>
-              <option value="moderate">Moderado (ejercicio 3-5 días a la semana)</option>
-              <option value="vigorous">Vigoroso (ejercicio 6-7 días a la semana)</option>
-              <option value="extreme">Extremo (ejercicio muy intenso, atleta)</option>
-            </select>
-            <label style={styles.label}>Minutos de ejercicio por semana</label>
-            <input
-              type="number"
-              style={styles.input}
-              value={answers.exerciseMinutesPerWeek || ''}
-              onChange={e => handleChange('exerciseMinutesPerWeek', Number(e.target.value))}
-            />
-            <label style={styles.label}>Pasos diarios aproximados</label>
-            <input
-              type="number"
-              style={styles.input}
-              value={answers.dailySteps || ''}
-              onChange={e => handleChange('dailySteps', Number(e.target.value))}
-            />
-            <label style={styles.label}>Horas sentado al día</label>
-            <input
-              type="number"
-              style={styles.input}
-              value={answers.sedentaryHours || ''}
-              onChange={e => handleChange('sedentaryHours', Number(e.target.value))}
-            />
-          </div>
-        );
-      case 3:
-        return (
-          <div>
-            <h2 style={styles.stepTitle}>Sueño y Descanso</h2>
-            <label style={styles.label}>Horas de sueño por noche</label>
-            <input
-              type="number"
-              min="1"
-              max="14"
-              style={styles.input}
-              value={answers.sleepHours || ''}
-              onChange={e => handleChange('sleepHours', Number(e.target.value))}
-            />
-            <label style={styles.label}>Calidad del sueño</label>
-            <div style={styles.radioGroup}>
-              {[{v: 1, e: '😫', l: 'Muy mala'}, {v: 2, e: '😕', l: 'Mala'}, {v: 3, e: '😐', l: 'Regular'}, {v: 4, e: '🙂', l: 'Buena'}, {v: 5, e: '😴', l: 'Excelente'}].map(opt => (
-                <motion.div 
-                  key={opt.v}
-                  onClick={() => handleChange('sleepQuality', opt.v)}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  style={{...styles.radioLabel, borderColor: answers.sleepQuality === opt.v ? '#22c55e' : '#d1d5db', background: answers.sleepQuality === opt.v ? '#f0fdf4' : 'transparent'}}
-                >
-                  <span style={{fontSize: '24px'}}>{opt.e}</span>
-                  <span style={{fontSize: '12px'}}>{opt.l}</span>
-                </motion.div>
-              ))}
-            </div>
-            <label style={styles.label}>Despertares por noche</label>
-            <input
-              type="number"
-              min="0"
-              max="10"
-              style={styles.input}
-              value={answers.awakeningsPerNight ?? 0}
-              onChange={e => handleChange('awakeningsPerNight', Number(e.target.value))}
-            />
-            <label style={styles.label}>Uso de pantallas antes de dormir</label>
-            <select
-              style={styles.select}
-              value={answers.screensBeforeBed !== undefined ? String(answers.screensBeforeBed) : ''}
-              onChange={e => handleChange('screensBeforeBed', e.target.value === 'true')}
-            >
-              <option value="">Selecciona...</option>
-              <option value="true">Sí, siempre o casi siempre</option>
-              <option value="false">No, las evito</option>
-            </select>
-          </div>
-        );
-      case 4:
-        return (
-          <div>
-            <h2 style={styles.stepTitle}>Nutrición e Hidratación</h2>
-            <label style={styles.label}>Litros de agua al día</label>
-            <input
-              type="number"
-              step="0.5"
-              style={styles.input}
-              value={answers.waterLiters || ''}
-              onChange={e => handleChange('waterLiters', Number(e.target.value))}
-            />
-            <label style={styles.label}>Porciones de frutas/verduras al día</label>
-            <input
-              type="number"
-              min="0"
-              max="10"
-              style={styles.input}
-              value={answers.fruitVegServings ?? 0}
-              onChange={e => handleChange('fruitVegServings', Number(e.target.value))}
-            />
-            <label style={styles.label}>Ultraprocesados por semana (comidas)</label>
-            <input
-              type="number"
-              min="0"
-              max="14"
-              style={styles.input}
-              value={answers.ultraprocessedPerWeek ?? 0}
-              onChange={e => handleChange('ultraprocessedPerWeek', Number(e.target.value))}
-            />
-          </div>
-        );
-      case 5:
-        return (
-          <div>
-            <h2 style={styles.stepTitle}>Salud Digestiva</h2>
-            <label style={styles.label}>Tipo de heces (Escala de Bristol)</label>
-            <select
-              style={styles.select}
-              value={answers.bristolType || ''}
-              onChange={e => handleChange('bristolType', Number(e.target.value))}
-            >
-              <option value="">Selecciona un tipo...</option>
-              <option value="1">Tipo 1 — Trozos duros separados</option>
-              <option value="2">Tipo 2 — En forma de salchicha pero grumosa</option>
-              <option value="3">Tipo 3 — Con forma de salchicha con grietas</option>
-              <option value="4">Tipo 4 — Suave y lisa como una serpiente (ideal)</option>
-              <option value="5">Tipo 5 — Trozos blandos con bordes definidos</option>
-              <option value="6">Tipo 6 — Trozos blandos y pastosos</option>
-              <option value="7">Tipo 7 — Completamente líquida</option>
-            </select>
-            <label style={styles.label}>Frecuencia intestinal</label>
-            <select
-              style={styles.select}
-              value={answers.bowelFrequency || ''}
-              onChange={e => handleChange('bowelFrequency', e.target.value)}
-            >
-              <option value="">Selecciona...</option>
-              <option value="multiple_daily">Varias veces al día</option>
-              <option value="daily">Una vez al día</option>
-              <option value="few_per_week">Pocas veces por semana</option>
-              <option value="less">Menos frecuente</option>
-            </select>
-            <label style={styles.label}>Sensación de hinchazón (inflamación)</label>
-            <select
-              style={styles.select}
-              value={answers.bloating || ''}
-              onChange={e => handleChange('bloating', e.target.value)}
-            >
-              <option value="">Selecciona...</option>
-              <option value="never">Nunca</option>
-              <option value="sometimes">A veces</option>
-              <option value="often">Frecuentemente</option>
-              <option value="always">Siempre</option>
-            </select>
-          </div>
-        );
-      case 6:
-        return (
-          <div>
-            <h2 style={styles.stepTitle}>Salud Mental</h2>
-            <label style={styles.label}>Nivel de estrés (1-10)</label>
-            <input
-              type="range"
-              min="1"
-              max="10"
-              style={{...styles.input, padding: '0', background: `linear-gradient(90deg, #22c55e, #eab308, #ef4444)`}}
-              value={answers.stressLevel || 5}
-              onChange={e => handleChange('stressLevel', Number(e.target.value))}
-            />
-            <div style={{textAlign: 'center', fontWeight: 'bold', marginBottom: '16px'}}>{answers.stressLevel || 5}</div>
-            
-            <label style={styles.label}>Estado de ánimo general</label>
-            <select
-              style={styles.select}
-              value={answers.moodLevel || ''}
-              onChange={e => handleChange('moodLevel', Number(e.target.value))}
-            >
-              <option value="">Selecciona...</option>
-              <option value="1">Muy malo</option>
-              <option value="2">Malo</option>
-              <option value="3">Regular</option>
-              <option value="4">Bueno</option>
-              <option value="5">Excelente</option>
-            </select>
-            <label style={styles.label}>Exposición al sol diaria</label>
-            <select
-              style={styles.select}
-              value={answers.sunExposure || ''}
-              onChange={e => handleChange('sunExposure', e.target.value)}
-            >
-              <option value="">Selecciona...</option>
-              <option value="none">Poca o nula</option>
-              <option value="some">Moderada (10-30 min)</option>
-              <option value="plenty">Abundante (más de 30 min)</option>
-            </select>
-          </div>
-        );
-      case 7:
-        return (
-          <div>
-            <h2 style={styles.stepTitle}>Hábitos y Prevención</h2>
-            <label style={styles.label}>¿Fumas?</label>
-            <select
-              style={styles.select}
-              value={answers.smokes !== undefined ? String(answers.smokes) : ''}
-              onChange={e => handleChange('smokes', e.target.value === 'true')}
-            >
-              <option value="">Selecciona...</option>
-              <option value="true">Sí</option>
-              <option value="false">No</option>
-            </select>
-            <label style={styles.label}>Copas de alcohol por semana</label>
-            <input
-              type="number"
-              min="0"
-              max="21"
-              style={styles.input}
-              value={answers.alcoholPerWeek ?? 0}
-              onChange={e => handleChange('alcoholPerWeek', Number(e.target.value))}
-            />
-            <label style={styles.label}>Tazas de café al día</label>
-            <input
-              type="number"
-              min="0"
-              max="10"
-              style={styles.input}
-              value={answers.coffeePerDay ?? 0}
-              onChange={e => handleChange('coffeePerDay', Number(e.target.value))}
-            />
-            <label style={styles.label}>Tu objetivo principal</label>
-            <select
-              style={styles.select}
-              value={answers.goal || ''}
-              onChange={e => handleChange('goal', e.target.value)}
-            >
-              <option value="">Selecciona...</option>
-              <option value="lose">Perder peso</option>
-              <option value="maintain">Mantener peso y mejorar salud</option>
-              <option value="gain">Ganar masa muscular</option>
-            </select>
-            <label style={styles.label}>Condiciones médicas conocidas (Opcional)</label>
-            <textarea
-              style={{...styles.input, minHeight: '80px', resize: 'vertical'}}
-              value={answers.knownConditions || ''}
-              onChange={e => handleChange('knownConditions', e.target.value)}
-              placeholder="Ej. Hipertensión, asma..."
-            />
-          </div>
+          <TextareaInput
+            label={question.label}
+            hint={question.hint}
+            value={answer}
+            onChange={onChange}
+            placeholder={question.placeholder}
+          />
         );
       default:
-        return null;
+        return (
+          <TextInput
+            label={question.label}
+            hint={question.hint}
+            value={answer}
+            onChange={onChange}
+            placeholder={question.placeholder}
+          />
+        );
     }
   };
 
-  const progressPercentage = ((currentStep + 1) / totalSteps) * 100;
-  const valid = isStepValid();
-  const guidance = stepGuidance[currentStep];
+  return (
+    <motion.div
+      key={question.id}
+      custom={1}
+      variants={slideVariants}
+      initial="enter"
+      animate="center"
+      exit="exit"
+      transition={spring}
+      className="w-full space-y-5"
+    >
+      {renderInput()}
+    </motion.div>
+  );
+}
+
+/* ── Main Component ────────────────────────────────────────────────── */
+
+export default function WellnessQuestionnaire({ onComplete }) {
+  const {
+    answers,
+    setAnswers,
+    currentQuestionId,
+    setCurrentQuestionId,
+    completedQuestions: contextCompletedQuestions,
+    setCompletedQuestions,
+    submitEvaluation,
+  } = useWellnessTwin();
+  const completedQuestions = Array.isArray(contextCompletedQuestions) ? contextCompletedQuestions : [];
+
+  const [direction, setDirection] = useState(1);
+  const [lastAnswer, setLastAnswer] = useState(null);
+  const [lastRecognition, setLastRecognition] = useState(null);
+  const [skippedQuestions, setSkippedQuestions] = useState([]);
+
+  // Initialize first question on mount
+  useEffect(() => {
+    if (!currentQuestionId) {
+      const next = getNextQuestion(answers, completedQuestions);
+      if (next) {
+        setCurrentQuestionId(next.question.id);
+      }
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const currentQuestion = useMemo(
+    () => getQuestionById(currentQuestionId),
+    [currentQuestionId]
+  );
+
+  const currentAnswer = currentQuestion
+    ? answers[currentQuestion.field]
+    : undefined;
+
+  const progress = useMemo(
+    () => Math.round((completedQuestions.length / QUESTION_ORDER.length) * 100),
+    [completedQuestions.length]
+  );
+
+  const groupProgress = useMemo(
+    () => getGroupProgress(completedQuestions),
+    [completedQuestions]
+  );
+
+  const handleAnswer = useCallback(
+    (field, value) => {
+      setAnswers((prev) => ({ ...prev, [field]: value }));
+      if (currentQuestion) {
+        setLastRecognition(recognizeAnswer(getCategory(field), value, currentAnswer));
+      }
+    },
+    [setAnswers, currentQuestion, currentAnswer]
+  );
+
+  const handleConfirm = useCallback(async () => {
+    if (!currentQuestion) return;
+
+    // Validate required
+    if (currentQuestion.required && currentAnswer === undefined || currentAnswer === '') {
+      return;
+    }
+
+    // Mark as completed
+    const { answers: newAnswers, completedIds } = completeQuestion(
+      currentQuestion.id,
+      currentAnswer,
+      answers,
+      completedQuestions
+    );
+
+    setAnswers(newAnswers);
+    setCompletedQuestions(completedIds);
+
+    // Get next question
+    const next = getNextQuestion(newAnswers, completedIds);
+    if (next) {
+      setDirection(1);
+      setLastAnswer(currentAnswer);
+      setCurrentQuestionId(next.question.id);
+      setSkippedQuestions(next.skipped || []);
+    } else {
+      // Done! Submit
+      setLastAnswer(currentAnswer);
+      setLastRecognition(recognizeAnswer(getCategory(currentQuestion.field), currentAnswer));
+
+      await submitEvaluation(newAnswers);
+      onComplete?.();
+    }
+  }, [
+    currentQuestion,
+    currentAnswer,
+    answers,
+    completedQuestions,
+    setAnswers,
+    setCompletedQuestions,
+    setCurrentQuestionId,
+    submitEvaluation,
+    onComplete,
+  ]);
+
+  const handleBack = useCallback(() => {
+    if (completedQuestions.length === 0) return;
+
+    const lastId = completedQuestions[completedQuestions.length - 1];
+    const beforeLast = completedQuestions[completedQuestions.length - 2];
+
+    if (beforeLast) {
+      setDirection(-1);
+      setCurrentQuestionId(beforeLast);
+    }
+  }, [completedQuestions, setCurrentQuestionId]);
+
+  // ── Render ────────────────────────────────────────────────────────
+
+  if (!currentQuestion) {
+    return (
+      <div className="mx-auto w-full max-w-2xl px-0 pb-28 sm:pb-4">
+        <motion.section
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={spring}
+          className="relative overflow-hidden rounded-[28px] border border-white/70 bg-white/88 p-5 shadow-[0_24px_70px_rgba(15,23,42,0.10)] backdrop-blur md:p-8"
+        >
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-emerald-50 to-transparent" />
+          <div className="relative">
+            <div className="text-center py-8">
+              <span className="inline-block mb-4 text-5xl">✓</span>
+              <h2 className="text-2xl font-bold text-gray-950">Cuestionario completado</h2>
+              <p className="mt-2 text-sm text-gray-500">
+                {completedQuestions.length} de {QUESTION_ORDER.length} preguntas respondidas.
+              </p>
+            </div>
+          </div>
+        </motion.section>
+      </div>
+    );
+  }
 
   return (
-    <div style={styles.container}>
-      <div style={styles.progressBarContainer}>
-        <div style={{ ...styles.progressBar, width: `${progressPercentage}%` }} />
-      </div>
-      
-      <div style={{ position: 'relative', overflow: 'visible', minHeight: '400px' }}>
-        <AnimatePresence mode="wait" custom={direction}>
-          <motion.div
-            key={currentStep}
-            custom={direction}
-            variants={slideVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{ x: { type: "spring", stiffness: 300, damping: 30 }, opacity: { duration: 0.2 } }}
-            style={{ width: '100%' }}
-          >
-            {guidance && (
+    <div className="mx-auto w-full max-w-2xl px-0 pb-28 sm:pb-4">
+      <motion.section
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={spring}
+        className="relative overflow-hidden rounded-[28px] border border-white/70 bg-white/88 p-5 shadow-[0_24px_70px_rgba(15,23,42,0.10)] backdrop-blur md:p-8"
+      >
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-emerald-50 to-transparent" />
+        <div className="relative">
+          {/* Progress bar */}
+          <div className="mb-6">
+            <div className="mb-3 flex items-center justify-between gap-3">
+              <span className="text-xs font-bold uppercase tracking-[0.16em] text-emerald-700">
+                {completedQuestions.length} de {QUESTION_ORDER.length} preguntas
+              </span>
+              <span className="text-xs font-semibold text-gray-500">{progress}% completado</span>
+            </div>
+            <div className="h-2 overflow-hidden rounded-full bg-gray-100">
               <motion.div
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.12 }}
-                style={styles.guidanceCard}
-              >
-                <div style={styles.guidanceBadge}>i</div>
-                <div>
-                  <p style={{
-                    margin: '0 0 4px',
-                    fontSize: '0.76rem',
-                    fontWeight: 800,
-                    letterSpacing: '0.08em',
-                    color: '#15803d',
-                    textTransform: 'uppercase'
-                  }}>
-                    {guidance.label}
-                  </p>
-                  <p style={{ margin: 0, color: '#365314', fontSize: '0.88rem', lineHeight: 1.55 }}>
-                    {guidance.message}
-                  </p>
+                className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-500"
+                initial={false}
+                animate={{ width: `${progress}%` }}
+                transition={spring}
+              />
+            </div>
+            {/* Group dots */}
+            <div className="mt-3 flex items-center gap-1.5 overflow-x-auto py-1">
+              {groupProgress.map(({ id, label, done, total }) => (
+                <div
+                  key={id}
+                  className="group relative shrink-0"
+                  title={label}
+                >
+                  <div
+                    className={`h-1.5 w-8 rounded-full ${
+                      done >= total ? 'bg-emerald-500' : 'bg-gray-200'
+                    }`}
+                  />
+                  <span className="absolute left-1/2 -translate-x-1/2 top-3 whitespace-nowrap rounded bg-gray-900/80 px-2 py-0.5 text-[10px] text-white opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                    {label}
+                  </span>
                 </div>
-              </motion.div>
-            )}
-            {renderStepContent()}
-          </motion.div>
-        </AnimatePresence>
-      </div>
+              ))}
+            </div>
+          </div>
 
-      <div style={styles.buttonContainer}>
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          style={{ ...styles.btnPrev, visibility: currentStep === 0 ? 'hidden' : 'visible' }}
-          onClick={handlePrev}
-        >
-          <HugeiconsIcon icon={ArrowLeft01Icon} size={20} /> Anterior
-        </motion.button>
-        
-        <motion.button
-          whileHover={valid ? { scale: 1.05, boxShadow: '0 4px 12px rgba(34,197,94,0.3)' } : {}}
-          whileTap={valid ? { scale: 0.95 } : {}}
-          style={{ ...styles.btnNext, ...( !valid ? styles.disabledBtn : {} ) }}
-          onClick={handleNext}
-          disabled={!valid}
-        >
-          {currentStep === totalSteps - 1 ? (
-            <>Finalizar Evaluación <HugeiconsIcon icon={CheckmarkCircle02Icon} size={20} /></>
-          ) : (
-            <>Siguiente <HugeiconsIcon icon={ArrowRight01Icon} size={20} /></>
+          {/* Recognition banner (shown before next question) */}
+          {lastAnswer !== null && lastRecognition && currentQuestionId && (
+            <div className="mb-5">
+              <RecognitionBanner
+                message={lastRecognition.text}
+                severity={lastRecognition.severity}
+                question={getQuestionById(
+                  QUESTION_ORDER.find(
+                    (id) => id.replace('q_', '') === Object.keys(answers).find((k) => answers[k] === lastAnswer)
+                  )
+                )}
+              />
+            </div>
           )}
-        </motion.button>
+
+          {/* Skipped questions indicator */}
+          {skippedQuestions.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="mb-4 flex flex-wrap gap-2"
+            >
+              {skippedQuestions.map((sk) => (
+                <span
+                  key={sk.id}
+                  className="inline-flex items-center gap-1 rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs text-gray-500"
+                >
+                  <span className="text-gray-400">⏭</span>
+                  {sk.reason}
+                </span>
+              ))}
+            </motion.div>
+          )}
+
+          {/* Question */}
+          <div className="relative min-h-[300px] overflow-visible">
+            <AnimatePresence mode="wait" custom={direction}>
+              <QuestionCard
+                key={currentQuestion.id}
+                question={currentQuestion}
+                answer={currentAnswer}
+                onChange={(e) => handleAnswer(currentQuestion.field, e.target.value)}
+                onConfirm={handleConfirm}
+              />
+            </AnimatePresence>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* Bottom bar */}
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-emerald-100 bg-white/92 px-4 py-3 shadow-[0_-18px_40px_rgba(15,23,42,0.10)] backdrop-blur sm:static sm:mt-5 sm:border-0 sm:bg-transparent sm:px-0 sm:py-0 sm:shadow-none">
+        <div className="mx-auto flex max-w-2xl items-center justify-between gap-3">
+          <motion.button
+            type="button"
+            whileHover={{ y: -1 }}
+            whileTap={{ scale: 0.97 }}
+            transition={spring}
+            className="flex min-h-[48px] items-center gap-2 rounded-2xl border border-emerald-200 bg-white px-4 text-sm font-bold text-emerald-700 shadow-sm disabled:invisible"
+            onClick={handleBack}
+            disabled={completedQuestions.length === 0}
+          >
+            <HugeiconsIcon icon={ArrowLeft01Icon} size={18} />
+            Anterior
+          </motion.button>
+
+          <motion.button
+            type="button"
+            whileHover={{ y: -1 }}
+            whileTap={{ scale: 0.97 }}
+            transition={spring}
+            className={`flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-2xl px-5 text-sm font-bold text-white shadow-[0_16px_32px_rgba(16,185,129,0.22)] transition-all sm:flex-none ${
+              currentQuestion.required && currentAnswer === undefined
+                ? 'bg-gray-300 shadow-none'
+                : 'bg-gradient-to-r from-emerald-600 to-teal-600'
+            }`}
+            onClick={handleConfirm}
+            disabled={currentQuestion.required && currentAnswer === undefined}
+          >
+            {currentQuestion.type === 'choice' ? (
+              <>
+                Siguiente <HugeiconsIcon icon={ArrowRight01Icon} size={20} />
+              </>
+            ) : currentQuestion.type === 'textarea' ? (
+              <>
+                Continuar <HugeiconsIcon icon={ArrowRight01Icon} size={20} />
+              </>
+            ) : (
+              <>
+                Confirmar <HugeiconsIcon icon={CheckmarkCircle02Icon} size={20} />
+              </>
+            )}
+          </motion.button>
+        </div>
       </div>
     </div>
   );

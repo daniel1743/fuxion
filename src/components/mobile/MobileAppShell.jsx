@@ -75,12 +75,7 @@ const MobileAppShell = ({
           </button>
         ) : isAuthenticated && user ? (
           <>
-            {/* Premium Animated Avatar Ring */}
             <div className="relative flex items-center justify-center w-12 h-12 rounded-full shrink-0 overflow-hidden shadow-md">
-              {/* Spinning Gradient Background */}
-              <div className="absolute inset-[-50%] bg-[conic-gradient(from_0deg,transparent_0%,#fbbf24_20%,#34d399_50%,#fbbf24_80%,transparent_100%)] animate-[spin_3s_linear_infinite]" />
-              {/* Inner Mask (matches Hero background to hide center of gradient) */}
-              <div className="absolute inset-[2px] bg-fuxion rounded-full" />
               {/* Avatar Image */}
               <img
                 src={user.avatar}
