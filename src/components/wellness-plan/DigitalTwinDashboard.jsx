@@ -1,8 +1,6 @@
-import React, { useMemo, useState } from 'react';
+import React, { Suspense, lazy, useMemo, useState } from 'react';
 import { generatePremiumReportContent } from '@/lib/engine/AiReportGenerator';
-import PremiumReportTemplate, { downloadPremiumPDF } from './PremiumReportTemplate';
 import { motion } from 'framer-motion';
-import ReactECharts from 'echarts-for-react';
 import { HugeiconsIcon } from '@hugeicons/react';
 import {
   Download04Icon,
@@ -20,7 +18,10 @@ import {
 import { WhatsAppIcon } from '@/components/icons/BrandIcons';
 import { useWellnessTwin } from '@/context/WellnessTwinContext';
 import { classifyIIBLevel, classifyBMI } from '@/lib/wellnessAlgorithms';
-import { generateWellnessPDF } from '@/lib/generateWellnessPDF';
+import GemeloLetter from './GemeloLetter';
+
+const ReactECharts = lazy(() => import('echarts-for-react'));
+const PremiumReportTemplate = lazy(() => import('./PremiumReportTemplate'));
 
 const DOMAIN_CONFIG = {
   nutrition:  { label: 'Nutrición e Hidratación', icon: Leaf01Icon, color: '#22c55e' },
@@ -31,6 +32,23 @@ const DOMAIN_CONFIG = {
   digestion:  { label: 'Salud Digestiva',          icon: Shield01Icon,  color: '#14b8a6' },
   habits:     { label: 'Hábitos y Prevención',     icon: Rocket01Icon,    color: '#6366f1' },
 };
+
+const GOAL_DISPLAY_LABELS = {
+  lose: 'control de peso',
+  gain: 'ganancia muscular',
+  energy: 'energia y vitalidad',
+  digestion: 'salud digestiva',
+  stress: 'estres y descanso',
+  maintain: 'mantener y optimizar salud',
+  general: 'bienestar general',
+};
+
+function getGoalDisplayLabel(twinData) {
+  const profile = twinData?.behavior_profile || {};
+  const rawAnswers = twinData?.raw_answers || {};
+  const candidate = profile.goal_label || profile.goal || rawAnswers.goal;
+  return GOAL_DISPLAY_LABELS[candidate] || candidate || 'bienestar general';
+}
 
 // ── Anillo de Progreso SVG ────────────────────────────────────
 function ScoreRing({ score, size = 180, strokeWidth = 12 }) {
@@ -184,8 +202,413 @@ function DomainRadarChart({ domains }) {
 
   return (
     <div style={{ height: 320, width: '100%' }}>
-      <ReactECharts option={option} style={{ height: '100%', width: '100%' }} />
+      <Suspense fallback={<div style={{ height: '100%', borderRadius: 16, background: '#f8fafc' }} />}>
+        <ReactECharts option={option} style={{ height: '100%', width: '100%' }} />
+      </Suspense>
     </div>
+  );
+}
+
+function AdaptiveSummary({ analysis }) {
+  if (!analysis) return null;
+
+  const completeness = analysis.data_completeness;
+  const insights = analysis.domain_insights;
+  const risks = analysis.risk_flags || [];
+  const levers = analysis.adaptive_levers || [];
+  const primaryFocus = analysis.primary_focus;
+
+  return (
+    <motion.section
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.75, duration: 0.5 }}
+      style={{
+        background: 'white',
+        borderRadius: 20,
+        padding: '22px 20px',
+        boxShadow: '0 4px 24px rgba(0,0,0,0.06)',
+        marginBottom: 32,
+        border: '1px solid #ecfdf5',
+      }}
+    >
+      <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12, marginBottom: 18 }}>
+        <div style={{
+          width: 42,
+          height: 42,
+          borderRadius: 12,
+          background: '#ecfdf5',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexShrink: 0,
+        }}>
+          <HugeiconsIcon icon={InformationCircleIcon} size={22} color="#059669" />
+        </div>
+        <div>
+          <h3 style={{ margin: '0 0 4px', fontSize: '1rem', fontWeight: 800, color: '#064e3b' }}>
+            Lectura adaptativa del estudio
+          </h3>
+          <p style={{ margin: 0, color: '#4b5563', fontSize: '0.84rem', lineHeight: 1.5 }}>
+            El motor cruzo tus respuestas, el objetivo declarado y los dominios mas sensibles para ordenar el plan por impacto real.
+          </p>
+        </div>
+      </div>
+
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
+        gap: 10,
+        marginBottom: 16,
+      }}>
+        <div style={{ background: '#f8fafc', borderRadius: 12, padding: 12 }}>
+          <span style={{ display: 'block', color: '#64748b', fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase' }}>
+            Confianza
+          </span>
+          <strong style={{ display: 'block', color: '#0f172a', fontSize: '1.1rem', marginTop: 4 }}>
+            {completeness?.confidence || 'media'} · {completeness?.score || 0}%
+          </strong>
+        </div>
+        <div style={{ background: '#f8fafc', borderRadius: 12, padding: 12 }}>
+          <span style={{ display: 'block', color: '#64748b', fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase' }}>
+            Foco primario
+          </span>
+          <strong style={{ display: 'block', color: '#0f172a', fontSize: '1.1rem', marginTop: 4 }}>
+            {primaryFocus?.label || 'Bienestar integral'}
+          </strong>
+        </div>
+        <div style={{ background: '#f8fafc', borderRadius: 12, padding: 12 }}>
+          <span style={{ display: 'block', color: '#64748b', fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase' }}>
+            Perfil
+          </span>
+          <strong style={{ display: 'block', color: '#0f172a', fontSize: '1.1rem', marginTop: 4 }}>
+            {insights?.pattern === 'perfil_desbalanceado' ? 'Desbalanceado' : insights?.pattern === 'perfil_solido' ? 'Solido' : 'En construccion'}
+          </strong>
+        </div>
+      </div>
+
+      {levers.length > 0 && (
+        <div style={{ marginBottom: risks.length ? 16 : 0 }}>
+          <h4 style={{ margin: '0 0 10px', color: '#334155', fontSize: '0.78rem', fontWeight: 800, textTransform: 'uppercase' }}>
+            Palancas de mayor impacto
+          </h4>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            {levers.map((lever) => (
+              <div key={lever.domain} style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                gap: 12,
+                padding: '10px 12px',
+                borderRadius: 12,
+                background: '#f9fafb',
+                border: '1px solid #eef2f7',
+              }}>
+                <span style={{ color: '#374151', fontSize: '0.84rem', fontWeight: 700 }}>
+                  {lever.label}
+                </span>
+                <span style={{ color: '#64748b', fontSize: '0.8rem', textAlign: 'right' }}>
+                  {lever.current} → {lever.target}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {risks.length > 0 && (
+        <div style={{
+          background: '#fffbeb',
+          border: '1px solid #fde68a',
+          borderRadius: 12,
+          padding: '12px 14px',
+        }}>
+          <strong style={{ display: 'block', color: '#92400e', fontSize: '0.82rem', marginBottom: 4 }}>
+            Senal que requiere prioridad
+          </strong>
+          <p style={{ margin: 0, color: '#92400e', fontSize: '0.8rem', lineHeight: 1.5 }}>
+            {risks[0].title}: {risks[0].message}
+          </p>
+        </div>
+      )}
+    </motion.section>
+  );
+}
+
+function ExecutiveSnapshot({ userData, biometrics, iib, analysis, goalLabel }) {
+  const bmiLabel = biometrics?.bmiClass?.label || classifyBMI(biometrics?.bmi).label;
+  const focus = analysis?.primary_focus?.label || 'Bienestar integral';
+  const weakest = analysis?.domain_insights?.weakest || [];
+  const strongest = analysis?.domain_insights?.strongest || [];
+  const goal = goalLabel || 'bienestar general';
+
+  return (
+    <motion.section
+      initial={{ opacity: 0, y: 18 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.45, duration: 0.55 }}
+      style={{
+        background: 'linear-gradient(135deg, #052e2b, #0f766e)',
+        color: 'white',
+        borderRadius: 20,
+        padding: '24px 22px',
+        marginBottom: 24,
+        boxShadow: '0 18px 50px rgba(15,118,110,0.22)',
+        overflow: 'hidden',
+        position: 'relative',
+      }}
+    >
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+        gap: 18,
+        alignItems: 'center',
+      }}>
+        <div style={{ minWidth: 0 }}>
+          <span style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 6,
+            padding: '5px 10px',
+            borderRadius: 999,
+            background: 'rgba(255,255,255,0.12)',
+            color: '#ccfbf1',
+            fontSize: '0.72rem',
+            fontWeight: 800,
+            textTransform: 'uppercase',
+          }}>
+            Estudio ejecutivo
+          </span>
+          <h3 style={{
+            margin: '14px 0 8px',
+            fontSize: '1.35rem',
+            lineHeight: 1.15,
+            fontWeight: 800,
+            color: 'white',
+          }}>
+            {userData?.name ? `${userData.name}, tu plan empieza por ${focus.toLowerCase()}` : `Tu plan empieza por ${focus.toLowerCase()}`}
+          </h3>
+          <p style={{ margin: 0, color: '#d1fae5', fontSize: '0.9rem', lineHeight: 1.55 }}>
+            Objetivo: {goal}. El tablero prioriza los cambios que tienen mejor relacion entre impacto, urgencia y facilidad de ejecucion.
+          </p>
+        </div>
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+          gap: 10,
+        }}>
+          {[
+            { label: 'IIB', value: `${iib.score}/100` },
+            { label: 'IMC', value: biometrics?.bmi ? `${biometrics.bmi}` : '--' },
+            { label: 'Rango', value: bmiLabel },
+            { label: 'Confianza', value: `${analysis?.data_completeness?.score || 0}%` },
+          ].map((item) => (
+            <div key={item.label} style={{
+              minHeight: 74,
+              borderRadius: 14,
+              padding: 12,
+              background: 'rgba(255,255,255,0.12)',
+              border: '1px solid rgba(255,255,255,0.18)',
+            }}>
+              <span style={{ display: 'block', color: '#99f6e4', fontSize: '0.68rem', fontWeight: 800, textTransform: 'uppercase' }}>
+                {item.label}
+              </span>
+              <strong style={{ display: 'block', color: 'white', fontSize: '1rem', marginTop: 6, lineHeight: 1.2 }}>
+                {item.value}
+              </strong>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {(weakest.length > 0 || strongest.length > 0) && (
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+          gap: 10,
+          marginTop: 18,
+        }}>
+          <div style={{ borderTop: '1px solid rgba(255,255,255,0.18)', paddingTop: 12 }}>
+            <span style={{ color: '#99f6e4', fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase' }}>
+              Mayor oportunidad
+            </span>
+            <p style={{ margin: '5px 0 0', color: 'white', fontSize: '0.88rem', lineHeight: 1.4 }}>
+              {weakest.map((item) => `${item.label} ${item.score}/100`).join(' · ')}
+            </p>
+          </div>
+          <div style={{ borderTop: '1px solid rgba(255,255,255,0.18)', paddingTop: 12 }}>
+            <span style={{ color: '#99f6e4', fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase' }}>
+              Base fuerte
+            </span>
+            <p style={{ margin: '5px 0 0', color: 'white', fontSize: '0.88rem', lineHeight: 1.4 }}>
+              {strongest.map((item) => `${item.label} ${item.score}/100`).join(' · ')}
+            </p>
+          </div>
+        </div>
+      )}
+    </motion.section>
+  );
+}
+
+function RecommendationImpactChart({ recommendations }) {
+  if (!recommendations?.length) return null;
+
+  const chartData = recommendations.map((rec, index) => ({
+    name: `Paso ${index + 1}`,
+    action: rec.action,
+    value: rec.finalScore || rec.priority || 70,
+    impact: rec.expected_impact || 'medio',
+  }));
+
+  const option = {
+    grid: { left: 8, right: 8, top: 12, bottom: 20, containLabel: true },
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: { type: 'shadow' },
+      formatter: (params) => {
+        const item = params?.[0]?.data;
+        return item ? `<strong>${item.name}</strong><br/>Prioridad: ${item.value}/100<br/>Impacto: ${item.impact}` : '';
+      },
+    },
+    xAxis: {
+      type: 'value',
+      max: 100,
+      axisLabel: { color: '#64748b', fontSize: 11 },
+      splitLine: { lineStyle: { color: '#eef2f7' } },
+    },
+    yAxis: {
+      type: 'category',
+      data: chartData.map((item) => item.name),
+      axisLabel: { color: '#334155', fontSize: 12, fontWeight: 700 },
+      axisLine: { show: false },
+      axisTick: { show: false },
+    },
+    series: [{
+      type: 'bar',
+      data: chartData,
+      barWidth: 18,
+      itemStyle: {
+        borderRadius: [0, 8, 8, 0],
+        color: '#0f766e',
+      },
+      label: {
+        show: true,
+        position: 'right',
+        formatter: '{c}',
+        color: '#0f172a',
+        fontWeight: 800,
+      },
+    }],
+  };
+
+  return (
+    <motion.section
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 1.35, duration: 0.5 }}
+      style={{
+        background: 'white',
+        borderRadius: 20,
+        padding: '22px 20px',
+        boxShadow: '0 4px 24px rgba(0,0,0,0.06)',
+        marginBottom: 24,
+      }}
+    >
+      <h3 style={{
+        margin: '0 0 6px',
+        color: '#0f172a',
+        fontSize: '1rem',
+        fontWeight: 800,
+      }}>
+        Mapa de impacto
+      </h3>
+      <p style={{ margin: '0 0 12px', color: '#64748b', fontSize: '0.82rem', lineHeight: 1.5 }}>
+        Cada barra muestra la fuerza relativa de la recomendacion dentro de tu perfil actual.
+      </p>
+      <div style={{ height: 220, width: '100%' }}>
+        <Suspense fallback={<div style={{ height: '100%', borderRadius: 16, background: '#f8fafc' }} />}>
+          <ReactECharts option={option} style={{ height: '100%', width: '100%' }} />
+        </Suspense>
+      </div>
+    </motion.section>
+  );
+}
+
+function ThirtyDayRoadmap({ recommendations, analysis }) {
+  if (!recommendations?.length) return null;
+
+  const focus = analysis?.primary_focus?.label || 'tu foco principal';
+  const roadmap = [
+    {
+      range: 'Dias 1-7',
+      title: 'Estabilizar',
+      detail: recommendations[0]?.action || `Ajustar ${focus.toLowerCase()}`,
+    },
+    {
+      range: 'Dias 8-21',
+      title: 'Consolidar',
+      detail: recommendations[1]?.action || 'Convertir el habito principal en rutina diaria',
+    },
+    {
+      range: 'Dias 22-30',
+      title: 'Medir',
+      detail: recommendations[2]?.action || 'Revisar energia, digestion, sueno y adherencia',
+    },
+  ];
+
+  return (
+    <motion.section
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 1.55, duration: 0.5 }}
+      style={{
+        background: '#f8fafc',
+        border: '1px solid #e2e8f0',
+        borderRadius: 20,
+        padding: '22px 20px',
+        marginBottom: 24,
+      }}
+    >
+      <h3 style={{ margin: '0 0 14px', color: '#0f172a', fontSize: '1rem', fontWeight: 800 }}>
+        Roadmap de 30 dias
+      </h3>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: 12 }}>
+        {roadmap.map((item, index) => (
+          <div key={item.range} style={{
+            background: 'white',
+            borderRadius: 14,
+            padding: 14,
+            border: '1px solid #e5e7eb',
+            minHeight: 142,
+          }}>
+            <span style={{
+              width: 30,
+              height: 30,
+              borderRadius: 999,
+              background: index === 0 ? '#0f766e' : '#e0f2fe',
+              color: index === 0 ? 'white' : '#0369a1',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontWeight: 900,
+              fontSize: '0.82rem',
+              marginBottom: 10,
+            }}>
+              {index + 1}
+            </span>
+            <p style={{ margin: 0, color: '#64748b', fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase' }}>
+              {item.range}
+            </p>
+            <strong style={{ display: 'block', marginTop: 4, color: '#0f172a', fontSize: '0.95rem' }}>
+              {item.title}
+            </strong>
+            <p style={{ margin: '8px 0 0', color: '#475569', fontSize: '0.8rem', lineHeight: 1.45 }}>
+              {item.detail}
+            </p>
+          </div>
+        ))}
+      </div>
+    </motion.section>
   );
 }
 
@@ -241,6 +664,11 @@ function RecommendationCard({ rec, index, isPriority = false }) {
              ✨ Mayor Impacto
           </span>
         )}
+        {rec.severity && (
+          <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#64748b' }}>
+            Prioridad {rec.severity}
+          </span>
+        )}
       </div>
       <h4 style={{ fontSize: isPriority ? '1.2rem' : '1rem', fontWeight: 700, color: '#1f2937', margin: '0 0 8px' }}>
         {rec.action}
@@ -254,6 +682,11 @@ function RecommendationCard({ rec, index, isPriority = false }) {
         <strong style={{ color: color, display: 'block', marginBottom: 4 }}>¿Por qué funciona?</strong> 
         {rec.reason}
       </div>
+      {rec.personalization_note && (
+        <p style={{ margin: '10px 0 0', color: '#64748b', fontSize: '0.78rem', lineHeight: 1.45 }}>
+          {rec.personalization_note}
+        </p>
+      )}
     </motion.div>
   );
 }
@@ -261,7 +694,7 @@ function RecommendationCard({ rec, index, isPriority = false }) {
 // ── Dashboard Principal ───────────────────────────────────────
 
 export default function DigitalTwinDashboard() {
-  const { twinData, userData, resetEvaluation, activateUserPlan } = useWellnessTwin();
+  const { twinData, userData, answers, resetEvaluation, activateUserPlan } = useWellnessTwin();
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
   const [generatedMarkdown, setGeneratedMarkdown] = useState('');
 
@@ -275,6 +708,8 @@ export default function DigitalTwinDashboard() {
   const { twin_state, recommendations } = twinData;
   const { iib, biometrics } = twin_state;
   const activeDomains = iib?.domains || twin_state?.domains || {};
+  const adaptiveAnalysis = twin_state?.adaptive_analysis;
+  const goalLabel = getGoalDisplayLabel(twinData);
   const { tdee, protein, waterL, bmi, bmiClass } = biometrics;
 
   const handleDownload = async () => {
@@ -299,6 +734,7 @@ export default function DigitalTwinDashboard() {
       setTimeout(async () => {
         const element = document.getElementById('premium-pdf-container');
         if (element) {
+          const { downloadPremiumPDF } = await import('./PremiumReportTemplate');
           await downloadPremiumPDF(element, `Plan_Bienestar_${userData.name.replace(/\s+/g, '_')}.pdf`);
         }
         setIsGeneratingPDF(false);
@@ -338,10 +774,13 @@ export default function DigitalTwinDashboard() {
       <div style={{ position: 'absolute', top: -9999, left: -9999, opacity: 0, pointerEvents: 'none' }}>
         <div id="premium-pdf-container">
           {generatedMarkdown && (
-            <PremiumReportTemplate 
-              markdownContent={generatedMarkdown} 
-              userData={userData} 
-            />
+            <Suspense fallback={null}>
+              <PremiumReportTemplate
+                markdownContent={generatedMarkdown}
+                userData={userData}
+                twinData={twinData}
+              />
+            </Suspense>
           )}
         </div>
       </div>
@@ -376,6 +815,19 @@ export default function DigitalTwinDashboard() {
           {userData?.name ? `Hola ${userData.name}, este` : 'Este'} es tu análisis integral personalizado
         </p>
       </motion.div>
+
+      {/* ── Carta del Gemelo Digital (primero, antes de cualquier métrica) ── */}
+      <GemeloLetter twinData={twinData} answers={answers} />
+
+      <ExecutiveSnapshot
+        userData={userData}
+        biometrics={biometrics}
+        iib={iib}
+        analysis={adaptiveAnalysis}
+        goalLabel={goalLabel}
+      />
+
+      <AdaptiveSummary analysis={adaptiveAnalysis} />
 
       {/* ── Tu Prioridad de Hoy ── */}
       {recommendations && recommendations.length > 0 && (
@@ -416,6 +868,10 @@ export default function DigitalTwinDashboard() {
           </div>
         </motion.div>
       )}
+
+      <RecommendationImpactChart recommendations={recommendations} />
+
+      <ThirtyDayRoadmap recommendations={recommendations} analysis={adaptiveAnalysis} />
 
       {/* ── Score Ring ── */}
       <motion.div

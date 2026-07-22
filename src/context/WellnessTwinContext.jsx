@@ -3,6 +3,7 @@ import { useAuth } from '@/context/AuthContext';
 import { supabase } from '@/lib/supabaseClient';
 import { generateDigitalTwin } from '@/lib/engine/DigitalTwinEngine';
 import { digitalTwinService } from '@/lib/services/digitalTwinService';
+import { canEvaluate, registerEvaluation } from '@/services/evaluationLimitService';
 
 const WellnessTwinContext = createContext(null);
 
@@ -145,6 +146,16 @@ export const WellnessTwinProvider = ({ children }) => {
   const submitEvaluation = async (finalAnswers) => {
     setIsLoading(true);
     try {
+      // Check evaluation limit
+      if (isAuthenticated && user) {
+        const limitCheck = await canEvaluate(user.id);
+        if (!limitCheck.canEvaluate) {
+          alert(`Alcanzaste el límite de evaluaciones de este mes. Tu próxima evaluación estará disponible el 1 de ${new Date().toLocaleDateString('es-CL', { month: 'long' })}.`);
+          setIsLoading(false);
+          return;
+        }
+      }
+
       // 1. Ejecutar el nuevo motor
       const newTwin = generateDigitalTwin(finalAnswers);
       setTwinData(newTwin);
@@ -154,10 +165,13 @@ export const WellnessTwinProvider = ({ children }) => {
       if (isAuthenticated && user) {
         // A. Obtener/crear Gemelo Base
         const twin = await digitalTwinService.getOrCreateTwin(user.id, newTwin.behavior_profile);
-        
+
         // B. Guardar Evaluación en el historial
         const evaluation = await digitalTwinService.saveEvaluation(twin.id, finalAnswers, newTwin);
-        
+
+        // C. Registrar consumo de evaluación
+        await registerEvaluation(user.id);
+
         // Guardamos las IDs en el objeto para usarlas al "Activar"
         newTwin._meta = { twinId: twin.id, evaluationId: evaluation.id };
         setTwinData(newTwin);

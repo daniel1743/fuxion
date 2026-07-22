@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HugeiconsIcon } from '@hugeicons/react';
 import {
@@ -12,32 +12,41 @@ import { useWellnessTwin } from '@/context/WellnessTwinContext';
 import WellnessQuestionnaire from '@/components/wellness-plan/WellnessQuestionnaire';
 import DigitalTwinDashboard from '@/components/wellness-plan/DigitalTwinDashboard';
 import ActivePlanDashboard from '@/components/wellness-plan/ActivePlanDashboard';
+import EvaluationLimitBadge from '@/components/wellness-plan/EvaluationLimitBadge';
+import { useAuth } from '@/context/AuthContext';
 
-// ── Vista de Carga / Análisis ─────────────────────────────────
-function AnalysisScreen({ onDone }) {
+// ── Vista de Carga / Análisis Conversacional ─────────────────
+function AnalysisScreen({ onDone, userName }) {
   const messages = [
-    'Procesando tus datos biométricos…',
-    'Evaluando tu perfil nutricional…',
-    'Analizando calidad de sueño y recuperación…',
-    'Calculando tu Índice Integral de Bienestar…',
-    'Generando microhábitos personalizados…',
-    'Construyendo tu Gemelo Digital de Bienestar…',
+    `Terminé de leer lo que me contaste, ${userName || 'amigo'}…`,
+    'Ahora estoy cruzando tus datos. Hay señales interesantes.',
+    'Voy a preparar un informe que va a tener sentido solo para vos.',
+    'Ya tengo tu lectura. Abrila cuando estés listo.',
   ];
 
-  const [messageIndex, setMessageIndex] = React.useState(0);
+  const [messageIndex, setMessageIndex] = useState(0);
+  const [showProgress, setShowProgress] = useState(false);
 
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      setMessageIndex(prev => {
-        if (prev >= messages.length - 1) {
-          clearInterval(interval);
-          setTimeout(onDone, 800);
-          return prev;
-        }
-        return prev + 1;
-      });
-    }, 600);
-    return () => clearInterval(interval);
+  useEffect(() => {
+    const totalDuration = messages.length * 1200 + 600;
+    const timers = [];
+
+    messages.forEach((_, i) => {
+      if (i === 2) {
+        timers.push(setTimeout(() => setShowProgress(true), i * 1200));
+      }
+      timers.push(setTimeout(() => {
+        setMessageIndex(prev => {
+          if (prev >= messages.length - 1) {
+            setTimeout(onDone, 800);
+            return prev;
+          }
+          return prev + 1;
+        });
+      }, i * 1200 + 1200));
+    });
+
+    return () => timers.forEach(clearTimeout);
   }, [onDone, messages.length]);
 
   return (
@@ -52,64 +61,62 @@ function AnalysisScreen({ onDone }) {
         padding: '40px 20px',
       }}
     >
-      {/* Pulsing orb */}
+      {/* Breathing orb */}
       <motion.div
         animate={{
-          scale: [1, 1.15, 1],
-          boxShadow: [
-            '0 0 0px rgba(34,197,94,0.3)',
-            '0 0 40px rgba(34,197,94,0.5)',
-            '0 0 0px rgba(34,197,94,0.3)',
-          ],
+          scale: [1, 1.12, 1],
         }}
-        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
         style={{
-          width: 100, height: 100, borderRadius: '50%',
+          width: 80, height: 80, borderRadius: '50%',
           background: 'linear-gradient(135deg, #22c55e, #14b8a6)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          marginBottom: 32,
+          marginBottom: 40,
+          boxShadow: '0 0 40px rgba(34,197,94,0.25)',
         }}
       >
-        <HugeiconsIcon icon={SparklesIcon} size={44} color="white" />
+        <HugeiconsIcon icon={SparklesIcon} size={36} color="white" />
       </motion.div>
 
-      <h2 style={{
-        fontFamily: "'Cormorant Garamond', serif",
-        fontSize: '1.5rem', fontWeight: 600, color: '#1f2937',
-        marginBottom: 24, textAlign: 'center',
-      }}>
-        Analizando tu bienestar…
-      </h2>
-
-      {/* Progress messages */}
-      <div style={{ height: 30, overflow: 'hidden', textAlign: 'center' }}>
+      {/* Conversational message */}
+      <div style={{ height: 60, overflow: 'hidden', textAlign: 'center', marginBottom: 32 }}>
         <AnimatePresence mode="wait">
           <motion.p
             key={messageIndex}
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3 }}
-            style={{ fontSize: '0.9rem', color: '#6b7280', margin: 0 }}
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+            style={{
+              fontSize: '1.15rem',
+              color: '#1f2937',
+              margin: 0,
+              fontFamily: "'Cormorant Garamond', serif",
+              fontStyle: 'italic',
+              lineHeight: 1.5,
+              maxWidth: 480,
+            }}
           >
-            {messages[messageIndex]}
+            "{messages[messageIndex]}"
           </motion.p>
         </AnimatePresence>
       </div>
 
-      {/* Animated progress bar */}
-      <div style={{
-        width: '100%', maxWidth: 320, height: 4,
-        backgroundColor: '#e5e7eb', borderRadius: 2,
-        marginTop: 24, overflow: 'hidden',
-      }}>
+      {/* Subtle progress */}
+      {showProgress && (
         <motion.div
-          initial={{ width: '0%' }}
-          animate={{ width: '100%' }}
-          transition={{ duration: messages.length * 0.6 + 0.5, ease: 'easeInOut' }}
-          style={{ height: '100%', backgroundColor: '#22c55e', borderRadius: 2 }}
-        />
-      </div>
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.4 }}
+          style={{ width: '100%', maxWidth: 200, height: 2, backgroundColor: '#e5e7eb', borderRadius: 1, overflow: 'hidden' }}
+        >
+          <motion.div
+            initial={{ width: '0%' }}
+            animate={{ width: '100%' }}
+            transition={{ duration: 1.5, ease: 'easeInOut' }}
+            style={{ height: '100%', backgroundColor: '#22c55e', borderRadius: 1 }}
+          />
+        </motion.div>
+      )}
     </motion.div>
   );
 }
@@ -128,7 +135,14 @@ function LandingView({ onStart }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      style={{ maxWidth: 640, margin: '0 auto', padding: '40px 20px' }}
+      style={{
+        width: 'calc(100vw - 32px)',
+        maxWidth: 640,
+        margin: '0 auto',
+        padding: '40px 0',
+        boxSizing: 'border-box',
+        overflowX: 'hidden',
+      }}
     >
       {/* Hero */}
       <motion.div
@@ -156,12 +170,18 @@ function LandingView({ onStart }) {
           fontFamily: "'Cormorant Garamond', serif",
           fontSize: '2.2rem', fontWeight: 600, color: '#1f2937',
           margin: '0 0 12px', lineHeight: 1.2,
+          maxWidth: '320px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
         }}>
           Tu Plan a Medida
         </h1>
         <p style={{
           fontSize: '1rem', color: '#6b7280', lineHeight: 1.6,
-          margin: '0 auto', maxWidth: 480,
+          margin: '0 auto',
+          width: '320px',
+          maxWidth: '100%',
+          overflowWrap: 'anywhere',
         }}>
           Descubre cómo está tu bienestar mediante una evaluación integral y recibe
           recomendaciones personalizadas basadas en evidencia científica.
@@ -171,8 +191,10 @@ function LandingView({ onStart }) {
       {/* Benefits grid */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(min(260px, 100%), 1fr))',
         gap: 16, marginBottom: 32,
+        width: '100%',
+        boxSizing: 'border-box',
       }}>
         {benefits.map((b, i) => (
           <motion.div
@@ -185,6 +207,10 @@ function LandingView({ onStart }) {
               padding: '20px 24px',
               boxShadow: '0 2px 12px rgba(0,0,0,0.05)',
               display: 'flex', alignItems: 'flex-start', gap: 14,
+              minWidth: 0,
+              width: '100%',
+              maxWidth: '100%',
+              boxSizing: 'border-box',
             }}
           >
             <div style={{
@@ -195,11 +221,11 @@ function LandingView({ onStart }) {
             }}>
               <HugeiconsIcon icon={b.icon} size={20} color="#22c55e" />
             </div>
-            <div>
+            <div style={{ minWidth: 0 }}>
               <h3 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#1f2937', margin: '0 0 4px' }}>
                 {b.title}
               </h3>
-              <p style={{ fontSize: '0.82rem', color: '#6b7280', lineHeight: 1.5, margin: 0 }}>
+              <p style={{ fontSize: '0.82rem', color: '#6b7280', lineHeight: 1.5, margin: 0, overflowWrap: 'anywhere' }}>
                 {b.desc}
               </p>
             </div>
@@ -233,6 +259,8 @@ function LandingView({ onStart }) {
               fontSize: '1.05rem', fontWeight: 600, cursor: 'pointer',
               boxShadow: '0 6px 24px rgba(34,197,94,0.35)',
               transition: 'transform 0.2s, box-shadow 0.2s',
+              maxWidth: '100%',
+              boxSizing: 'border-box',
             }}
             onMouseEnter={e => {
               e.currentTarget.style.transform = 'translateY(-2px)';
@@ -255,6 +283,10 @@ function LandingView({ onStart }) {
           Esta evaluación es completamente opcional y gratuita. No forma parte del
           proceso de registro y puedes realizarla cuando lo desees.
         </p>
+
+        {isAuthenticated && user && (
+          <EvaluationLimitBadge userId={user.id} />
+        )}
       </motion.div>
     </motion.div>
   );
@@ -263,7 +295,8 @@ function LandingView({ onStart }) {
 // ── Página Contenedora ────────────────────────────────────────
 export default function PersonalizedPlanPage() {
   const wellnessTwinContextData = useWellnessTwin();
-  const { hasCompletedEvaluation, activePlan } = wellnessTwinContextData;
+  const { hasCompletedEvaluation, activePlan, answers } = wellnessTwinContextData;
+  const { user, isAuthenticated } = useAuth();
   
   // Views: 'landing' | 'questionnaire' | 'analyzing' | 'dashboard' | 'active-plan'
   const determineInitialView = () => {
@@ -292,7 +325,8 @@ export default function PersonalizedPlanPage() {
       style={{
         minHeight: '100vh',
         backgroundColor: '#FCFBF8',
-        paddingTop: '80px'
+        paddingTop: '80px',
+        overflowX: 'hidden',
       }}
     >
       <AnimatePresence mode="wait">
@@ -312,7 +346,7 @@ export default function PersonalizedPlanPage() {
           </motion.div>
         )}
         {view === 'analyzing' && (
-          <AnalysisScreen key="analyzing" onDone={handleAnalysisDone} />
+          <AnalysisScreen key="analyzing" onDone={handleAnalysisDone} userName={wellnessTwinContextData.answers?.name} />
         )}
         {view === 'dashboard' && (
           <motion.div key="dashboard" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
