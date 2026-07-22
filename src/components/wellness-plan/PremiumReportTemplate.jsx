@@ -367,14 +367,47 @@ export default function PremiumReportTemplate({ markdownContent, userData, twinD
 
 // Función auxiliar para exportar a PDF utilizando html2pdf
 export async function downloadPremiumPDF(element, filename = 'Mi_Plan_Bienestar.pdf') {
+  // Restaurar visibilidad temporalmente para que html2pdf pueda renderizar
+  const originalClipPath = element.style.clipPath;
+  const originalVisibility = element.style.visibility;
+  const originalZIndex = element.style.zIndex;
+  const originalPointerEvents = element.style.pointerEvents;
+
+  element.style.clipPath = 'none';
+  element.style.zIndex = '99999';
+  element.style.pointerEvents = 'none';
+
+  // Esperar a que se renderice y las imágenes carguen
+  await new Promise(resolve => setTimeout(resolve, 1000));
+
   const opt = {
-    margin:       [0, 0, 0, 0], // El margen lo maneja el CSS del componente
-    filename:     filename,
-    image:        { type: 'jpeg', quality: 0.94 },
-    html2canvas:  { scale: 1.35, useCORS: true, logging: false },
-    jsPDF:        { unit: 'px', format: 'a4', orientation: 'portrait' },
-    pagebreak:    { mode: ['css', 'legacy'] }
+    margin: [10, 10, 10, 10],
+    filename: filename,
+    image: { type: 'jpeg', quality: 0.95 },
+    html2canvas: {
+      scale: 2,
+      useCORS: true,
+      allowTaint: true,
+      logging: false,
+      letterRendering: true,
+      scrollX: 0,
+      scrollY: 0,
+      windowWidth: 800,
+    },
+    jsPDF: {
+      unit: 'mm',
+      format: 'a4',
+      orientation: 'portrait',
+    },
+    pagebreak: { mode: ['css', 'legacy', 'avoid-before'], before: '.pdf-page-break' },
   };
 
-  return html2pdf().from(element).set(opt).save();
+  try {
+    await html2pdf().from(element).set(opt).save();
+  } finally {
+    // Restaurar estado original
+    element.style.clipPath = originalClipPath;
+    element.style.zIndex = originalZIndex;
+    element.style.pointerEvents = originalPointerEvents;
+  }
 }

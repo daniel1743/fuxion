@@ -19,6 +19,7 @@ import { WhatsAppIcon } from '@/components/icons/BrandIcons';
 import { useWellnessTwin } from '@/context/WellnessTwinContext';
 import { classifyIIBLevel, classifyBMI } from '@/lib/wellnessAlgorithms';
 import GemeloLetter from './GemeloLetter';
+import EvaluationHistory from './EvaluationHistory';
 
 const ReactECharts = lazy(() => import('echarts-for-react'));
 const PremiumReportTemplate = lazy(() => import('./PremiumReportTemplate'));
@@ -714,23 +715,23 @@ export default function DigitalTwinDashboard() {
 
   const handleDownload = async () => {
     if (!twinData || !userData) return;
-    
+
     setIsGeneratingPDF(true);
     try {
       // 1. Verificar si ya tenemos el reporte en el estado (cache)
       let markdown = twinData.ai_report_markdown;
-      
+
       if (!markdown) {
         // 2. Si no, llamar a la IA para generarlo a través de nuestro backend
         markdown = await generatePremiumReportContent(userData, twinData);
-        
+
         // Lo guardamos temporalmente en el estado para no volver a generarlo si descarga 2 veces
-        twinData.ai_report_markdown = markdown; 
+        twinData.ai_report_markdown = markdown;
       }
-      
+
       setGeneratedMarkdown(markdown);
-      
-      // Damos un pequeño respiro a React para que renderice el markdown oculto
+
+      // Dar tiempo a que React renderice el PDF
       setTimeout(async () => {
         const element = document.getElementById('premium-pdf-container');
         if (element) {
@@ -738,7 +739,7 @@ export default function DigitalTwinDashboard() {
           await downloadPremiumPDF(element, `Plan_Bienestar_${userData.name.replace(/\s+/g, '_')}.pdf`);
         }
         setIsGeneratingPDF(false);
-      }, 500);
+      }, 600);
 
     } catch (err) {
       console.error("Error al generar PDF Premium:", err);
@@ -770,19 +771,25 @@ export default function DigitalTwinDashboard() {
         </div>
       )}
 
-      {/* ── Contenedor Oculto para Renderizar el PDF ── */}
-      <div style={{ position: 'absolute', top: -9999, left: -9999, opacity: 0, pointerEvents: 'none' }}>
-        <div id="premium-pdf-container">
-          {generatedMarkdown && (
-            <Suspense fallback={null}>
-              <PremiumReportTemplate
-                markdownContent={generatedMarkdown}
-                userData={userData}
-                twinData={twinData}
-              />
-            </Suspense>
-          )}
-        </div>
+      {/* ── Contenedor para Renderizar el PDF (oculto visualmente pero renderizable) ── */}
+      <div id="premium-pdf-container" style={{
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        width: '800px',
+        zIndex: '-1',
+        pointerEvents: 'none',
+        clipPath: 'inset(100%)',
+      }}>
+        {generatedMarkdown && (
+          <Suspense fallback={null}>
+            <PremiumReportTemplate
+              markdownContent={generatedMarkdown}
+              userData={userData}
+              twinData={twinData}
+            />
+          </Suspense>
+        )}
       </div>
 
       {/* ── Header: Gemelo Digital ── */}
@@ -1066,6 +1073,9 @@ export default function DigitalTwinDashboard() {
           Realizar nueva evaluación
         </button>
       </motion.div>
+
+      {/* ── Historial de evaluaciones ── */}
+      <EvaluationHistory />
 
       {/* ── Contact Footer ── */}
       <motion.div
