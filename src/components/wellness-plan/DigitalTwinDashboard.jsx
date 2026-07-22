@@ -22,7 +22,6 @@ import GemeloLetter from './GemeloLetter';
 import EvaluationHistory from './EvaluationHistory';
 
 const ReactECharts = lazy(() => import('echarts-for-react'));
-const PremiumReportTemplate = lazy(() => import('./PremiumReportTemplate'));
 
 const DOMAIN_CONFIG = {
   nutrition:  { label: 'Nutrición e Hidratación', icon: Leaf01Icon, color: '#22c55e' },
@@ -697,7 +696,6 @@ function RecommendationCard({ rec, index, isPriority = false }) {
 export default function DigitalTwinDashboard() {
   const { twinData, userData, answers, resetEvaluation, activateUserPlan } = useWellnessTwin();
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
-  const [generatedMarkdown, setGeneratedMarkdown] = useState('');
 
   const level = useMemo(
     () => twinData ? classifyIIBLevel(twinData.twin_state.iib.score) : null,
@@ -718,39 +716,35 @@ export default function DigitalTwinDashboard() {
 
     setIsGeneratingPDF(true);
     try {
-      // 1. Verificar si ya tenemos el reporte en el estado (cache)
       let markdown = twinData.ai_report_markdown;
 
       if (!markdown) {
-        // 2. Si no, llamar a la IA para generarlo a través de nuestro backend
         markdown = await generatePremiumReportContent(userData, twinData);
-
-        // Lo guardamos temporalmente en el estado para no volver a generarlo si descarga 2 veces
         twinData.ai_report_markdown = markdown;
       }
 
-      setGeneratedMarkdown(markdown);
+      // Descargar como archivo .md (más confiable que PDF)
+      const blob = new Blob([markdown], { type: 'text/markdown;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `Plan_Bienestar_${userData.name.replace(/\s+/g, '_')}.md`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
 
-      // Dar tiempo a que React renderice el PDF
-      setTimeout(async () => {
-        const element = document.getElementById('premium-pdf-container');
-        if (element) {
-          const { downloadPremiumPDF } = await import('./PremiumReportTemplate');
-          await downloadPremiumPDF(element, `Plan_Bienestar_${userData.name.replace(/\s+/g, '_')}.pdf`);
-        }
-        setIsGeneratingPDF(false);
-      }, 600);
-
+      setIsGeneratingPDF(false);
     } catch (err) {
-      console.error("Error al generar PDF Premium:", err);
-      alert("Hubo un error al generar tu reporte premium: " + err.message);
+      console.error("Error al generar informe:", err);
+      alert("Hubo un error al generar tu informe: " + err.message);
       setIsGeneratingPDF(false);
     }
   };
 
   return (
     <div style={{ maxWidth: 800, margin: '0 auto', padding: '40px 20px', fontFamily: "'Inter', sans-serif", position: 'relative' }}>
-      {/* ── Overlay de Carga PDF ── */}
+      {/* ── Overlay de Carga ── */}
       {isGeneratingPDF && (
         <div style={{
           position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
@@ -765,32 +759,11 @@ export default function DigitalTwinDashboard() {
             ⏳
           </motion.div>
           <h2 style={{ color: '#166534', fontFamily: "'Cormorant Garamond', serif" }}>
-            Redactando tu libro personalizado...
+            Preparando tu informe...
           </h2>
-          <p style={{ color: '#6b7280' }}>Nuestra IA está analizando tus resultados.</p>
+          <p style={{ color: '#6b7280' }}>Esto tomará unos segundos.</p>
         </div>
       )}
-
-      {/* ── Contenedor para Renderizar el PDF (oculto visualmente pero renderizable) ── */}
-      <div id="premium-pdf-container" style={{
-        position: 'fixed',
-        top: '0',
-        left: '0',
-        width: '800px',
-        zIndex: '-1',
-        pointerEvents: 'none',
-        clipPath: 'inset(100%)',
-      }}>
-        {generatedMarkdown && (
-          <Suspense fallback={null}>
-            <PremiumReportTemplate
-              markdownContent={generatedMarkdown}
-              userData={userData}
-              twinData={twinData}
-            />
-          </Suspense>
-        )}
-      </div>
 
       {/* ── Header: Gemelo Digital ── */}
       <motion.div
@@ -1053,7 +1026,7 @@ export default function DigitalTwinDashboard() {
           onMouseLeave={e => { e.currentTarget.style.background = '#ffffff'; }}
         >
           <HugeiconsIcon icon={Download04Icon} size={20} color="#16a34a" />
-          Descargar Plan en PDF
+          Descargar Informe (.md)
         </button>
 
         <button

@@ -122,7 +122,7 @@ function AnalysisScreen({ onDone, userName }) {
 }
 
 // ── Vista de Introducción / Landing ───────────────────────────
-function LandingView({ onStart }) {
+function LandingView({ onStart, user, isAuthenticated }) {
   const benefits = [
     { icon: HeartIcon, title: 'Análisis integral', desc: 'Evaluamos 7 dominios de tu bienestar: nutrición, sueño, actividad, estrés, digestión, biometría y hábitos.' },
     { icon: SparklesIcon, title: 'Recomendaciones inteligentes', desc: 'Recibes los 3 microhábitos de mayor impacto para tu perfil específico.' },
@@ -331,7 +331,7 @@ export default function PersonalizedPlanPage() {
     >
       <AnimatePresence mode="wait">
         {view === 'landing' && (
-          <LandingView key="landing" onStart={handleStartQuestionnaire} />
+          <LandingView key="landing" onStart={handleStartQuestionnaire} user={user} isAuthenticated={isAuthenticated} />
         )}
         {view === 'questionnaire' && (
           <motion.div
