@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
 import { useAuth } from '@/context/AuthContext';
-import { supabase } from '@/lib/supabaseClient';
 import { generateDigitalTwin } from '@/lib/engine/DigitalTwinEngine';
 import { digitalTwinService } from '@/lib/services/digitalTwinService';
 import { canEvaluate, registerEvaluation } from '@/services/evaluationLimitService';
@@ -68,21 +67,6 @@ export const WellnessTwinProvider = ({ children }) => {
         setHasCompletedEvaluation(true);
         // Normalizamos el twin_state del active plan
         setTwinData(normalizeTwinData(plan.wellness_evaluations?.twin_state));
-      } else {
-        // Fallback al esquema viejo por retrocompatibilidad temporal
-        const { data } = await supabase
-          .from('wellness_plans')
-          .select('*')
-          .eq('user_id', user.id)
-          .order('created_at', { ascending: false })
-          .limit(1)
-          .single();
-
-        if (data && data.twin_data) {
-          setAnswers(data.answers || data.twin_data.raw_answers || {});
-          setTwinData(normalizeTwinData(data.twin_data));
-          setHasCompletedEvaluation(true);
-        }
       }
     } catch (err) {
       console.error('Error loading from supabase:', err);
@@ -109,17 +93,21 @@ export const WellnessTwinProvider = ({ children }) => {
 
   const migrateLocalToSupabase = useCallback(async (localData) => {
     try {
-      const { error } = await supabase.from('wellness_plans').upsert({
-        user_id: user.id,
-        full_name: localData.answers.name || 'Usuario',
-        answers: localData.answers,
-        recommendations: localData.twinData?.recommendations || [],
-        iib_score: localData.twinData?.twin_state?.iib?.score || 0,
-        twin_data: localData.twinData || {}
-      });
-      if (!error) {
-        localStorage.removeItem('wellness_twin_data');
-      }
+      const twinDataToSave = normalizeTwinData(localData.twinData);
+      if (!twinDataToSave) return;
+
+      const twin = await digitalTwinService.getOrCreateTwin(
+        user.id,
+        twinDataToSave.behavior_profile || {}
+      );
+      const evaluation = await digitalTwinService.saveEvaluation(
+        twin.id,
+        localData.answers || twinDataToSave.raw_answers || {},
+        twinDataToSave
+      );
+
+      twinDataToSave._meta = { twinId: twin.id, evaluationId: evaluation.id };
+      localStorage.removeItem('wellness_twin_data');
     } catch (err) {
       console.error('Error migrating data:', err);
     }
@@ -219,6 +207,7 @@ export const WellnessTwinProvider = ({ children }) => {
   const resetEvaluation = () => {
     setAnswers({});
     setTwinData(null);
+    setActivePlan(null);
     setHasCompletedEvaluation(false);
     setCurrentStep(0);
     setCurrentQuestionId(null);

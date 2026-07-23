@@ -165,9 +165,19 @@ export const QUESTIONS = [
     stepGroup: 'sleep',
   },
   {
-    id: 'q_waterLiters', field: 'waterLiters', type: 'text', required: true,
+    id: 'q_waterLiters', field: 'waterLiters', type: 'choice', required: true,
     label: 'Litros de agua al día',
-    placeholder: 'Ej. 2',
+    hint: 'Elige el rango más cercano a tu consumo habitual.',
+    options: [
+      { value: 0.25, title: 'Menos de medio litro', desc: 'Muy poca hidratación diaria.' },
+      { value: 0.5, title: 'Medio litro', desc: 'Aproximadamente 1 botella pequeña.' },
+      { value: 1, title: '1 litro', desc: 'Consumo bajo, pero constante.' },
+      { value: 1.5, title: '1 litro y medio', desc: 'Punto intermedio habitual.' },
+      { value: 2, title: '2 litros', desc: 'Buena base para muchas personas.' },
+      { value: 2.5, title: '2 litros y medio', desc: 'Hidratación sólida.' },
+      { value: 3, title: '3 litros', desc: 'Consumo alto y planificado.' },
+      { value: 3.5, title: '3 litros y medio o más', desc: 'Hidratación muy alta.' },
+    ],
     stepGroup: 'nutrition',
   },
   {
@@ -178,6 +188,8 @@ export const QUESTIONS = [
   {
     id: 'q_ultraprocessedPerWeek', field: 'ultraprocessedPerWeek', type: 'text', required: false,
     label: 'Comidas ultraprocesadas por semana',
+    hint: 'Cuenta veces por semana en que consumes comida o snacks industriales/listos para comer: pizza o hamburguesa de delivery, papas fritas de bolsa, galletas, embutidos, nuggets, bebidas azucaradas o comida rápida. No cuentes comida casera simple solo porque tenga aceite o esté frita.',
+    placeholder: 'Ej. 3',
     stepGroup: 'nutrition',
   },
   {

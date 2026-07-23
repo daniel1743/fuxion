@@ -10,7 +10,7 @@ export const digitalTwinService = {
         .from('wellness_twins')
         .select('*')
         .eq('user_id', userId)
-        .single();
+        .maybeSingle();
         
       if (error && error.code !== 'PGRST116') throw error;
       
@@ -102,7 +102,7 @@ export const digitalTwinService = {
         .eq('is_active', true)
         .order('created_at', { ascending: false })
         .limit(1)
-        .single();
+        .maybeSingle();
         
       if (error && error.code !== 'PGRST116') throw error;
       return data;
@@ -145,7 +145,7 @@ export const digitalTwinService = {
         .select('*')
         .eq('plan_id', planId)
         .eq('tracking_date', today)
-        .single();
+        .maybeSingle();
         
       if (error && error.code !== 'PGRST116') throw error;
       return data || { completed_habits: [] };

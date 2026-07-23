@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect, useCallback } from 'react';
+import React, { useMemo, useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HugeiconsIcon } from '@hugeicons/react';
 import {
@@ -62,6 +62,10 @@ function formatValue(field, value) {
   if (typeof value === 'boolean') return value ? 'Sí' : 'No';
   if (typeof value === 'number') return String(value);
   return String(value);
+}
+
+function canSubmitQuestion(question, answer) {
+  return !question?.required || (answer !== undefined && answer !== '');
 }
 
 function getGroupProgress(completedIds) {
@@ -230,6 +234,38 @@ function RecognitionBanner({ message, severity, question }) {
 /* ── Question Card ─────────────────────────────────────────────────── */
 
 function QuestionCard({ question, answer, onChange, onConfirm }) {
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    const focusId = window.requestAnimationFrame(() => {
+      const focusable = cardRef.current?.querySelector(
+        [
+          'input:not([type="hidden"]):not([type="range"]):not([disabled])',
+          'textarea:not([disabled])',
+          'select:not([disabled])',
+          'input[type="range"]:not([disabled])',
+          'button:not([disabled])',
+        ].join(',')
+      );
+
+      focusable?.focus({ preventScroll: true });
+      if (focusable?.tagName === 'INPUT' && focusable.type !== 'range') {
+        focusable.select?.();
+      }
+    });
+
+    return () => window.cancelAnimationFrame(focusId);
+  }, [question.id]);
+
+  const handleKeyDown = (event) => {
+    if (event.key !== 'Enter' || event.shiftKey || event.isComposing) return;
+    if (event.target?.tagName === 'TEXTAREA') return;
+    if (!canSubmitQuestion(question, answer)) return;
+
+    event.preventDefault();
+    onConfirm();
+  };
+
   const renderInput = () => {
     switch (question.type) {
       case 'choice':
@@ -279,6 +315,7 @@ function QuestionCard({ question, answer, onChange, onConfirm }) {
 
   return (
     <motion.div
+      ref={cardRef}
       key={question.id}
       custom={1}
       variants={slideVariants}
@@ -287,6 +324,7 @@ function QuestionCard({ question, answer, onChange, onConfirm }) {
       exit="exit"
       transition={spring}
       className="w-full space-y-5"
+      onKeyDown={handleKeyDown}
     >
       {renderInput()}
     </motion.div>
@@ -311,6 +349,7 @@ export default function WellnessQuestionnaire({ onComplete }) {
   const [lastAnswer, setLastAnswer] = useState(null);
   const [lastRecognition, setLastRecognition] = useState(null);
   const [skippedQuestions, setSkippedQuestions] = useState([]);
+  const questionnaireRef = useRef(null);
 
   // Initialize first question on mount
   useEffect(() => {
@@ -341,6 +380,20 @@ export default function WellnessQuestionnaire({ onComplete }) {
     [completedQuestions]
   );
 
+  useEffect(() => {
+    if (!currentQuestionId || !questionnaireRef.current) return;
+
+    const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    const scrollId = window.requestAnimationFrame(() => {
+      questionnaireRef.current?.scrollIntoView({
+        block: 'start',
+        behavior: reduceMotion ? 'auto' : 'smooth',
+      });
+    });
+
+    return () => window.cancelAnimationFrame(scrollId);
+  }, [currentQuestionId]);
+
   const handleAnswer = useCallback(
     (field, value) => {
       setAnswers((prev) => ({ ...prev, [field]: value }));
@@ -355,7 +408,7 @@ export default function WellnessQuestionnaire({ onComplete }) {
     if (!currentQuestion) return;
 
     // Validate required
-    if (currentQuestion.required && currentAnswer === undefined || currentAnswer === '') {
+    if (!canSubmitQuestion(currentQuestion, currentAnswer)) {
       return;
     }
 
@@ -436,7 +489,7 @@ export default function WellnessQuestionnaire({ onComplete }) {
   }
 
   return (
-    <div className="mx-auto w-full max-w-2xl px-0 pb-28 sm:pb-4">
+    <div ref={questionnaireRef} className="mx-auto w-full max-w-2xl scroll-mt-24 px-0 pb-28 sm:pb-4">
       <motion.section
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
@@ -523,7 +576,10 @@ export default function WellnessQuestionnaire({ onComplete }) {
                 key={currentQuestion.id}
                 question={currentQuestion}
                 answer={currentAnswer}
-                onChange={(e) => handleAnswer(currentQuestion.field, e.target.value)}
+                onChange={(eventOrValue) => {
+                  const value = eventOrValue?.target ? eventOrValue.target.value : eventOrValue;
+                  handleAnswer(currentQuestion.field, value);
+                }}
                 onConfirm={handleConfirm}
               />
             </AnimatePresence>
@@ -553,12 +609,12 @@ export default function WellnessQuestionnaire({ onComplete }) {
             whileTap={{ scale: 0.97 }}
             transition={spring}
             className={`flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-2xl px-5 text-sm font-bold text-white shadow-[0_16px_32px_rgba(16,185,129,0.22)] transition-all sm:flex-none ${
-              currentQuestion.required && currentAnswer === undefined
+              !canSubmitQuestion(currentQuestion, currentAnswer)
                 ? 'bg-gray-300 shadow-none'
                 : 'bg-gradient-to-r from-emerald-600 to-teal-600'
             }`}
             onClick={handleConfirm}
-            disabled={currentQuestion.required && currentAnswer === undefined}
+            disabled={!canSubmitQuestion(currentQuestion, currentAnswer)}
           >
             {currentQuestion.type === 'choice' ? (
               <>

@@ -1,0 +1,1452 @@
+[
+  {
+    "filename": "hidratacion-constante-orina-clara.webp",
+    "files": [
+      "hidratacion-constante-orina-clara.webp"
+    ],
+    "prompt": "Sophisticated editorial healthcare photograph illustrating everyday hydration monitoring without embarrassment or sensationalism. In a bright private bathroom, an adult refills a reusable glass water bottle beside the sink while a discreet translucent urine-color reference card with unlabeled pale-yellow gradients rests near the mirror, softly out of focus. A clear drinking glass catches the morning light in the foreground, becoming the visual hero. Capture from a side angle with a 50mm lens, using warm sunrise illumination, natural reflections and realistic household details. The scene should communicate hydration awareness and digestive wellbeing through a calm daily ritual. Tasteful composition, no visible bodily functions, no dark alarming colors, no brands, no logos, no readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:43:05.120Z",
+    "resolution": "1344x768",
+    "duration": 18121,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "hidratacion-constante-orina-clara",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 57954,
+      "webBytes": 29306,
+      "reductionPercent": 49,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "suspension-medicacion-constipante.webp",
+    "files": [
+      "suspension-medicacion-constipante.webp"
+    ],
+    "prompt": "Premium medical editorial photograph showing a gastroenterologist carefully reviewing an adult patient’s complete medication regimen during a private consultation. Several unbranded tablets, a neutral pill organizer and generic prescription containers are arranged on the desk beside an anatomical colon model, while the physician separates one medication from the group and explains a possible treatment adjustment. Photograph from over the patient’s shoulder with an 85mm lens, placing the physician’s hands and colon model in sharp focus while faces remain naturally visible. Soft clinical daylight, calm collaborative mood, realistic shared decision-making, no suggestion that medication should be stopped without supervision, no commercial packaging, no logos, no readable prescriptions or text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:43:24.982Z",
+    "resolution": "1344x768",
+    "duration": 19856,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "suspension-medicacion-constipante",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 61718,
+      "webBytes": 34240,
+      "reductionPercent": 45,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "prucaloprida-motilidad-intestinal.webp",
+    "files": [
+      "prucaloprida-motilidad-intestinal.webp"
+    ],
+    "prompt": "High-end gastroenterology editorial photograph portraying a targeted treatment discussion for persistent chronic constipation after lifestyle measures have been insufficient. A physician points to a detailed three-dimensional colon model while an adult patient listens attentively, holding a glass of water. A single unbranded tablet in a neutral medication tray remains discreetly visible beside the model, secondary to the professional consultation. In the softly blurred background, a tablet displays an abstract, text-free visualization of coordinated intestinal movement. Capture at desk level using an 85mm lens, with clean side lighting and refined clinical architecture. The image should emphasize supervised prokinetic therapy and restored motility without promising results. No branded packaging, no exaggerated glowing organs, no logos, no readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:43:55.670Z",
+    "resolution": "1344x768",
+    "duration": 30586,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "prucaloprida-motilidad-intestinal",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 75472,
+      "webBytes": 38724,
+      "reductionPercent": 49,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "oxido-magnesio-leche-magnesia.webp",
+    "files": [
+      "oxido-magnesio-leche-magnesia.webp"
+    ],
+    "prompt": "Professional editorial pharmacy photograph showing a pharmacist explaining magnesium-based constipation treatment to an adult customer at a clean consultation counter. In the foreground, a plain white suspension bottle, a small measuring cup and an unbranded container of magnesium oxide tablets are arranged beside a glass of water, all without visible labels. The pharmacist gestures toward the measuring cup while the customer listens carefully, conveying correct dosing and professional guidance rather than casual self-medication. Frame from a close three-quarter angle with a 50mm lens, crisp focus on hands and measuring tools, softly blurred pharmacy shelves behind them. Bright neutral lighting, realistic materials, restrained clinical palette, no excessive medicine display, no commercial brands, no logos, no readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:44:20.624Z",
+    "resolution": "1344x768",
+    "duration": 24946,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "oxido-magnesio-leche-magnesia",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 50904,
+      "webBytes": 26096,
+      "reductionPercent": 49,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "masticacion-completa-alimentos.webp",
+    "files": [
+      "masticacion-completa-alimentos.webp"
+    ],
+    "prompt": "Intimate editorial nutrition photograph capturing the precise moment an adult pauses while eating a textured whole-food meal, chewing slowly before taking another bite. The plate contains crisp vegetables, legumes, whole grains and a piece of firm fruit that naturally require thorough mastication. The fork rests on the ceramic plate while the subject remains upright and attentive, with no phone, television or laptop nearby. Photograph from table level using an 85mm lens, focusing on the relaxed facial expression and detailed food textures while the kitchen background dissolves into warm blur. Soft window light, quiet midday atmosphere, authentic home setting, premium digestive-health magazine aesthetic, no exaggerated mouth close-up, no staged smile, no logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:44:41.275Z",
+    "resolution": "1344x768",
+    "duration": 20647,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "masticacion-completa-alimentos",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 68060,
+      "webBytes": 36306,
+      "reductionPercent": 47,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "entrenamiento-reflejo-gastrocolico.webp",
+    "files": [
+      "entrenamiento-reflejo-gastrocolico.webp"
+    ],
+    "prompt": "Narrative editorial lifestyle photograph showing an adult establishing a calm morning bowel routine after breakfast. A warm bowl of oats, fruit and a cup of tea remain on the kitchen table in the foreground, while the person rises unhurriedly and walks toward a softly lit hallway leading to a private bathroom, responding to the natural post-meal urge rather than delaying it. Capture from behind the dining table with a wide 35mm lens, creating depth between the finished breakfast, the moving subject and the open doorway. Gentle morning sunlight, realistic home details, subtle motion, peaceful atmosphere and clear visual storytelling about consistency and timing. No visible toilet use, no anatomy graphics, no urgency or discomfort, no logos, no readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:45:03.128Z",
+    "resolution": "1344x768",
+    "duration": 21838,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "entrenamiento-reflejo-gastrocolico",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 60730,
+      "webBytes": 31322,
+      "reductionPercent": 48,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "dieta-baja-fodmaps-eliminacion.webp",
+    "files": [
+      "dieta-baja-fodmaps-eliminacion.webp"
+    ],
+    "prompt": "Premium clinical nutrition photograph showing a dietitian guiding an adult patient through the temporary elimination phase of a low-FODMAP diet. On a large wooden consultation table, recognizable foods are carefully organized into two visually distinct groups: rice, oats, carrots, zucchini, strawberries, grapes and firm cheese in the foreground, while onions, garlic, wheat bread, apples and certain legumes remain farther away and softly blurred. The dietitian points to a simple blank meal-planning card as the patient arranges ingredients into a basket. Capture from a slightly elevated 45-degree perspective with abundant natural daylight and refined food styling. The scene should communicate structured professional guidance, not permanent restriction. No labels, no forbidden-food symbols, no logos, no readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:45:28.586Z",
+    "resolution": "1344x768",
+    "duration": 25452,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "dieta-baja-fodmaps-eliminacion",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 92004,
+      "webBytes": 53860,
+      "reductionPercent": 41,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "evitar-esfuerzo-defecatorio.webp",
+    "files": [
+      "evitar-esfuerzo-defecatorio.webp"
+    ],
+    "prompt": "Respectful editorial healthcare photograph showing a pelvic-floor physiotherapist teaching an adult patient how to avoid excessive straining during bowel movements. In a private education room designed like a modern bathroom, the fully clothed patient sits on a closed toilet lid with feet elevated on a small stool, knees naturally above hip level, while practicing slow diaphragmatic breathing. The therapist demonstrates relaxed abdominal expansion with one hand over their own lower ribs. Frame from the side using a 50mm lens so posture and breathing mechanics are immediately understandable without exposing the patient. Soft indirect lighting, calm reassuring atmosphere, realistic body proportions, no visible toileting, no grimacing, no hemorrhoid imagery, no warning graphics, no logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:45:47.385Z",
+    "resolution": "1344x768",
+    "duration": 18797,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "evitar-esfuerzo-defecatorio",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 51920,
+      "webBytes": 25618,
+      "reductionPercent": 51,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "consumo-dos-kiwis-diarios.webp",
+    "files": [
+      "consumo-dos-kiwis-diarios.webp"
+    ],
+    "prompt": "Vibrant editorial food photograph built around the specific daily habit of eating two kiwis. Two ripe green kiwis, one sliced and one whole, sit prominently beside a simple breakfast of plain yogurt, oats and water on a sunlit kitchen table. An adult hand uses a spoon to scoop the sliced fruit while the second kiwi remains clearly visible in the foreground, making the quantity unmistakable without numbers or text. Photograph from a close 45-degree angle with a 50mm macro-style lens, emphasizing glossy seeds, fresh pulp and realistic condensation on the water glass. Bright morning light, natural green and earth tones, premium digestive-wellness magazine styling, no excessive fruit assortment, no supplement products, no logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:46:06.500Z",
+    "resolution": "1344x768",
+    "duration": 19111,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "consumo-dos-kiwis-diarios",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 79288,
+      "webBytes": 44052,
+      "reductionPercent": 44,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "polietilenglicol-peg3350.webp",
+    "files": [
+      "polietilenglicol-peg3350.webp"
+    ],
+    "prompt": "High-quality editorial healthcare photograph showing the practical preparation of unbranded polyethylene glycol powder under professional guidance. At a gastroenterology consultation desk, an adult patient pours a measured amount of fine white powder from a plain sachet into a clear glass of water while a clinician observes and explains the routine. The dissolving powder creates subtle swirling patterns in the glass, captured sharply in the foreground, while an anatomical colon model and hydration bottle remain softly blurred behind. Use a close 85mm perspective with clean side lighting and realistic clinical textures. The image should communicate supervised osmotic treatment and correct mixing without presenting a commercial product. No branded packets, no readable dosage, no dramatic medical effects, no logos or text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:46:26.753Z",
+    "resolution": "1344x768",
+    "duration": 20247,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "polietilenglicol-peg3350",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 61044,
+      "webBytes": 32974,
+      "reductionPercent": 46,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "limitar-calcio-suplementario.webp",
+    "files": [
+      "limitar-calcio-suplementario.webp"
+    ],
+    "prompt": "Sophisticated medical nutrition photograph showing a physician reviewing calcium intake with an older adult experiencing constipation concerns. A plain supplement bottle and several unbranded calcium tablets sit on one side of the desk, while yogurt, leafy greens and a small serving of calcium-rich foods occupy the other, suggesting a broader assessment of total intake rather than simple avoidance. A detailed bone model and colon model appear together in the midground, visually connecting skeletal needs with digestive effects. Capture from a diagonal desk-level angle using an 85mm lens, with the physician gently moving the supplement bottle aside while discussing the plan. Natural clinical light, balanced non-alarmist composition, no implication of stopping prescribed supplements independently, no labels, no logos, no readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:46:47.487Z",
+    "resolution": "1344x768",
+    "duration": 20732,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "limitar-calcio-suplementario",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 83754,
+      "webBytes": 43452,
+      "reductionPercent": 48,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "masaje-abdominal-colonico.webp",
+    "files": [
+      "masaje-abdominal-colonico.webp"
+    ],
+    "prompt": "Respectful editorial physiotherapy photograph showing a clinician guiding an adult patient through a sequential abdominal massage intended to follow the path of the colon. The patient lies comfortably on a treatment table wearing soft clothing with the abdomen covered by a thin fitted shirt, while the therapist places both hands gently on the lower right side and prepares to move upward in a slow, controlled sequence. A translucent anatomical colon overlay appears subtly beneath the fabric, precise and understated, helping explain the direction without arrows or labels. Photograph from above at a slight diagonal using a 50mm lens, with soft daylight, warm neutral tones and a calm therapeutic atmosphere. No exposed abdomen, no painful expression, no unrealistic glowing organs, no logos or text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:47:32.094Z",
+    "resolution": "1344x768",
+    "duration": 16292,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "masaje-abdominal-colonico",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 81248,
+      "webBytes": 45514,
+      "reductionPercent": 44,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "lactulosa-jarabe.webp",
+    "files": [
+      "lactulosa-jarabe.webp"
+    ],
+    "prompt": "Professional editorial pharmacy photograph focused on accurate preparation of lactulose syrup without commercial branding. An adult carefully pours a measured amount of clear amber liquid from a plain bottle into a small dosing cup while a pharmacist watches from across the consultation counter. The viscous stream is frozen in motion and illuminated by soft side light, creating a visually distinctive focal point. A glass of water and a discreet colon model sit nearby, while pharmacy shelves fade into a gentle background blur. Capture from counter height with an 85mm lens, realistic hands, clean clinical surfaces and a reassuring atmosphere. The image should communicate supervised dosing and practical treatment, not a sweet beverage. No branded bottle, no readable measurement numbers, no logos or visible text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:47:53.492Z",
+    "resolution": "1344x768",
+    "duration": 21395,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "lactulosa-jarabe",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 61758,
+      "webBytes": 34054,
+      "reductionPercent": 45,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "manometria-anorrectal-test-expulsivo.webp",
+    "files": [
+      "manometria-anorrectal-test-expulsivo.webp"
+    ],
+    "prompt": "Sophisticated clinical editorial photograph depicting preparation for anorectal manometry and a balloon-expulsion assessment without showing an invasive procedure. In a specialized motility laboratory, a gastroenterology nurse explains a slim pressure-sensing catheter and a small medical balloon model to an adult patient seated fully clothed beside the examination bed. A monitor in the background displays abstract colored pressure waves with no numbers or words, while disposable equipment remains neatly arranged in sealed neutral packaging. Frame from the patient’s perspective using a 50mm lens, placing the device and clinician’s reassuring hands in focus. Bright but gentle clinical lighting, private respectful environment, technically credible equipment, no catheter insertion, no exposed body, no distress, no logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:48:09.990Z",
+    "resolution": "1344x768",
+    "duration": 16495,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "manometria-anorrectal-test-expulsivo",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 54884,
+      "webBytes": 28408,
+      "reductionPercent": 48,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "bebida-caliente-ayunas.webp",
+    "files": [
+      "bebida-caliente-ayunas.webp"
+    ],
+    "prompt": "Atmospheric editorial lifestyle photograph capturing an early-morning digestive routine centered on a warm beverage before breakfast. An adult stands beside a kitchen window holding a steaming ceramic cup of tea or black coffee with both hands, while the first light of dawn enters through partially open curtains. The breakfast table behind them remains unprepared except for a glass of water and a bowl of fruit, making the timing of the beverage visually clear. Photograph from a quiet side angle with a 50mm lens, crisp steam rising into the cool morning light and a soft silhouette of the relaxed subject. Authentic Latin American home atmosphere, calm introspective mood, no claims of guaranteed bowel stimulation, no coffee branding, no disposable cups, no logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:48:26.257Z",
+    "resolution": "1344x768",
+    "duration": 16265,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "bebida-caliente-ayunas",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 42854,
+      "webBytes": 19784,
+      "reductionPercent": 54,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "linaclotida-plecanatida.webp",
+    "files": [
+      "linaclotida-plecanatida.webp"
+    ],
+    "prompt": "High-end gastroenterology editorial photograph showing a specialist discussing prescription options for persistent constipation with an adult patient. A single unbranded capsule rests discreetly in a neutral medication tray beside a detailed small-intestine and colon model. The physician points to a tablet displaying a clean, text-free medical visualization of intestinal fluid movement and luminal transit, using subtle blue highlights rather than dramatic effects. Capture from above the desk at a shallow diagonal with an 85mm lens, creating layered focus across the capsule, anatomy model and attentive faces. Modern clinical interior, natural daylight, confident but cautious atmosphere, no suggestion of self-medication, no visible pharmaceutical boxes, no brand colors, no logos, no readable data or text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:48:48.827Z",
+    "resolution": "1344x768",
+    "duration": 22568,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "linaclotida-plecanatida",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 58132,
+      "webBytes": 29158,
+      "reductionPercent": 50,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "suplementacion-psyllium.webp",
+    "files": [
+      "suplementacion-psyllium.webp"
+    ],
+    "prompt": "Premium editorial nutrition photograph capturing psyllium preparation at the exact moment it begins thickening in water. An adult slowly stirs a measured spoonful of pale psyllium husk into a large transparent glass, creating visible suspended fibers and a subtle gel-like texture. A second full glass of water stands prominently nearby, reinforcing adequate hydration through composition alone. Whole grains, pears and oats appear softly blurred in the background, connecting the supplement with a broader fiber-rich diet. Shoot from a close 45-degree angle using a macro-style 85mm lens, with bright side lighting highlighting the swirling texture and realistic reflections. Clean kitchen environment, no supplement advertising, no overflowing powder, no branded container, no dosage text, no logos or readable labels.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:49:06.887Z",
+    "resolution": "1344x768",
+    "duration": 18058,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "suplementacion-psyllium",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 80110,
+      "webBytes": 43016,
+      "reductionPercent": 46,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "biofeedback-suelo-pelvico.webp",
+    "files": [
+      "biofeedback-suelo-pelvico.webp"
+    ],
+    "prompt": "Refined editorial rehabilitation photograph showing an adult patient participating in pelvic-floor biofeedback therapy for functional constipation. The fully clothed patient sits comfortably in a private clinical room while a specialized physiotherapist guides slow breathing and coordinated relaxation. A discreet external sensor cable connects to a monitor displaying abstract rising and falling waveforms without numbers, labels or anatomical imagery. The therapist points gently toward the waveform as the patient practices releasing tension, creating a clear moment of active learning rather than passive treatment. Capture from a side three-quarter angle with an 85mm lens, soft indirect daylight, muted calming colors and shallow depth of field. Respectful, technically credible environment, no exposed body, no invasive equipment visible, no discomfort, no logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:49:28.787Z",
+    "resolution": "1344x768",
+    "duration": 21897,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "biofeedback-suelo-pelvico",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 62618,
+      "webBytes": 30678,
+      "reductionPercent": 51,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "ciruelas-pasas-estrenimiento.webp",
+    "files": [
+      "ciruelas-pasas-estrenimiento.webp"
+    ],
+    "prompt": "Rich editorial food photograph centered on a practical breakfast featuring glossy whole prunes, several sliced open to reveal their natural texture, served beside oatmeal, plain yogurt and a large glass of water. An adult hand gently adds the prunes to the bowl while a small glass jar containing additional dried fruit remains in the midground. Photograph from a close 45-degree angle with a macro-style 85mm lens, emphasizing wrinkled fruit surfaces, moisture, ceramic tableware and soft steam from the oats. Warm morning window light creates deep amber and plum tones across a natural wooden table. Premium digestive-wellness magazine styling, realistic portion, no syrup, no supplement products, no packaging, no logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:52:31.111Z",
+    "resolution": "1344x768",
+    "duration": 17864,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "ciruelas-pasas-estrenimiento",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 65248,
+      "webBytes": 36300,
+      "reductionPercent": 44,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "actividad-aerobica-intestinal.webp",
+    "files": [
+      "actividad-aerobica-intestinal.webp"
+    ],
+    "prompt": "Dynamic environmental health photograph showing a middle-aged adult alternating between brisk walking and gentle jogging along a leafy riverside path as part of a realistic daily routine. The main subject moves comfortably through the foreground while an older walker and another recreational jogger appear at different distances, reinforcing accessible aerobic activity rather than competitive sport. Capture from a low lateral angle with a 35mm documentary lens, subtle motion blur in the legs and crisp focus on relaxed posture. Early-morning sunlight filters through trees and creates rhythmic shadows across the trail. Fresh natural palette, authentic body diversity, premium public-health editorial style, no extreme exertion, no race setting, no sportswear branding, no logos or text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:52:48.373Z",
+    "resolution": "1344x768",
+    "duration": 17226,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "actividad-aerobica-intestinal",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 147230,
+      "webBytes": 90392,
+      "reductionPercent": 39,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "lubiprostona-estrenimiento.webp",
+    "files": [
+      "lubiprostona-estrenimiento.webp"
+    ],
+    "prompt": "Sophisticated gastroenterology editorial photograph showing a specialist explaining prescription treatment for persistent constipation after simpler measures have not been sufficient. A single unbranded soft capsule rests in a neutral medication tray beside a detailed small-intestine and colon model. The physician points toward a tablet displaying a subtle, text-free medical visualization of increased intestinal fluid movement, rendered with restrained blue highlights rather than dramatic glowing effects. Frame the consultation from slightly above desk level using an 85mm lens, creating layered focus across the capsule, anatomical model and attentive patient. Bright contemporary clinic, confident but cautious atmosphere, realistic medical decision-making, no self-medication message, no branded boxes, no readable records, no logos or text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:53:02.303Z",
+    "resolution": "1344x768",
+    "duration": 13926,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "lubiprostona-estrenimiento",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 55142,
+      "webBytes": 29282,
+      "reductionPercent": 47,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "linaza-molida-salud-intestinal.webp",
+    "files": [
+      "linaza-molida-salud-intestinal.webp"
+    ],
+    "prompt": "Premium editorial kitchen photograph capturing freshly ground flaxseed being incorporated into an everyday meal. A small wooden grinder, whole golden and brown flaxseeds, and a spoonful of finely ground linseed occupy the foreground while an adult sprinkles the powder over oatmeal with pear, berries and plain yogurt. A full glass of water sits clearly beside the bowl, adding hydration context without becoming instructional. Photograph from directly above with carefully layered ingredients, realistic scattered seeds and natural imperfections. Soft side-window light reveals the contrast between glossy whole seeds and the fine ground texture. Warm earth tones, refined food-magazine composition, no capsules, no supplement claims, no commercial bags, no logos or readable labels.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:53:19.910Z",
+    "resolution": "1344x768",
+    "duration": 17603,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "linaza-molida-salud-intestinal",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 123192,
+      "webBytes": 72578,
+      "reductionPercent": 41,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "supositorios-glicerina-microenema.webp",
+    "files": [
+      "supositorios-glicerina-microenema.webp"
+    ],
+    "prompt": "Respectful clinical pharmacy photograph showing a healthcare professional explaining short-term rectal treatment options without depicting their use. On a clean consultation tray, an individually wrapped neutral glycerin suppository and a small unbranded microenema applicator are displayed beside a simple anatomical rectum and colon model. The pharmacist wears gloves and demonstrates the unopened applicator using a printed instruction sheet turned away from the camera while the adult patient listens privately. Capture with a close 85mm lens, focusing on the professional’s careful hands and sealed equipment as the background fades softly. Bright hygienic lighting, restrained medical palette, calm non-embarrassing atmosphere, no exposed body, no insertion, no discomfort, no commercial branding, no readable instructions, no logos or text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:53:50.579Z",
+    "resolution": "1344x768",
+    "duration": 30655,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "supositorios-glicerina-microenema",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 61442,
+      "webBytes": 33916,
+      "reductionPercent": 45,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "probiotico-bifidobacterium-lactis.webp",
+    "files": [
+      "probiotico-bifidobacterium-lactis.webp"
+    ],
+    "prompt": "High-end scientific editorial composition portraying a specific probiotic within the broader context of intestinal health. In the foreground, a laboratory scientist examines a culture plate containing delicate, abstract bacterial colonies while a digital microscope screen shows elegant rounded microbial forms with no labels or numbers. In the softly blurred midground, plain fermented dairy, oats, kiwi and a glass of water connect the research setting with recognizable dietary habits. A translucent anatomical colon model sits at the edge of the workstation, lit subtly rather than glowing. Capture from a three-quarter laboratory perspective with cool clinical light balanced by warm daylight on the foods. Precise, credible, premium medical-magazine aesthetic, no cartoon bacteria, no oversized capsules, no brand claims, no logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:54:13.544Z",
+    "resolution": "1344x768",
+    "duration": 22958,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "probiotico-bifidobacterium-lactis",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 73236,
+      "webBytes": 42514,
+      "reductionPercent": 42,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "reduccion-ultraprocesados-intestinal.webp",
+    "files": [
+      "reduccion-ultraprocesados-intestinal.webp"
+    ],
+    "prompt": "Narrative editorial supermarket photograph showing an adult making a deliberate cart substitution in a brightly lit grocery aisle. The shopper removes a brightly colored but completely unreadable packaged snack from the basket and replaces it with oats, legumes, whole-grain bread, vegetables, fruit and plain yogurt. Photograph from inside the shopping cart looking outward, creating an immersive perspective with fresh foods sharply detailed in the foreground and long shelves of highly processed products softened in the background. Natural body language, realistic Chilean or Latin American grocery environment, balanced daylight-style retail lighting and sophisticated documentary composition. The image should communicate gradual dietary change rather than moral judgment. No warning graphics, no visible brands, no legible packages, no logos or text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:54:29.449Z",
+    "resolution": "1344x768",
+    "duration": 15902,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "reduccion-ultraprocesados-intestinal",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 116472,
+      "webBytes": 75314,
+      "reductionPercent": 35,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "aceite-oliva-ayunas.webp",
+    "files": [
+      "aceite-oliva-ayunas.webp"
+    ],
+    "prompt": "Atmospheric early-morning editorial photograph showing an adult measuring exactly one small teaspoon of extra virgin olive oil beside a quiet kitchen window before breakfast. The golden oil forms a thin reflective surface in the spoon while a dark glass bottle with no label remains secondary in the background. A glass of water and an untouched bowl of fruit sit farther along the counter, helping establish the morning timing without clocks or written instructions. Capture from a close side angle using a macro-style 85mm lens, with dawn light illuminating the oil and leaving the room in gentle blue-gray shadow. Refined Mediterranean visual language, realistic home routine, no suggestion of a miracle cure, no drinking directly from the bottle, no branding, no readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:54:46.423Z",
+    "resolution": "1344x768",
+    "duration": 16962,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "aceite-oliva-ayunas",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 51380,
+      "webBytes": 25126,
+      "reductionPercent": 51,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "mindfulness-mbsr.webp",
+    "files": [
+      "mindfulness-mbsr.webp"
+    ],
+    "prompt": "Immersive editorial wellness photograph showing a small Mindfulness-Based Stress Reduction group practicing guided awareness in a serene community studio. Five adults of different ages sit comfortably on chairs and cushions rather than performing identical yoga poses, while an instructor gently rings a small meditation bell and invites attention to the present moment. Capture from behind one participant’s shoulder with a wide 35mm lens, creating layers of softly blurred hands, calm faces and large windows overlooking trees. Diffused overcast daylight fills the room with muted greens, warm wood and natural fabrics. The atmosphere should feel clinically grounded, inclusive and quietly focused rather than mystical. No incense clouds, no religious symbols, no exaggerated bliss, no branded clothing, no logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:55:27.526Z",
+    "resolution": "1344x768",
+    "duration": 16800,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "mindfulness-mbsr",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 76152,
+      "webBytes": 44018,
+      "reductionPercent": 42,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "higiene-luz-matutina.webp",
+    "files": [
+      "higiene-luz-matutina.webp"
+    ],
+    "prompt": "Cinematic lifestyle photograph showing an adult intentionally receiving natural morning light soon after waking. The subject opens wide curtains and stands beside an east-facing window with a warm drink, allowing low golden sunlight to illuminate the face and eyes indirectly while the dim bedroom remains visible behind. A neatly made bed and inactive bedside lamp sit in cool shadow, creating a strong visual contrast between nighttime darkness and morning brightness. Capture from deep inside the room using a 35mm lens so the window becomes a luminous frame around the subject. Realistic dawn atmosphere, subtle dust particles in the light, premium circadian-health editorial storytelling, no staring directly at the sun, no artificial light therapy device, no clocks with legible numbers, no logos or text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:55:50.341Z",
+    "resolution": "1344x768",
+    "duration": 22811,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "higiene-luz-matutina",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 46966,
+      "webBytes": 20046,
+      "reductionPercent": 57,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "suspiro-fisiologico.webp",
+    "files": [
+      "suspiro-fisiologico.webp"
+    ],
+    "prompt": "Intimate editorial portrait capturing the precise mechanics of a physiological sigh during a stressful workday. An adult sits beside an open office window, shoulders beginning to relax, one hand resting lightly over the upper chest and the other over the abdomen while completing a second short inhale followed by a long controlled exhale. A laptop and scattered papers remain blurred in the foreground, providing context without readable content. Photograph in side profile with an 85mm lens as soft afternoon light outlines the nose, lips and descending shoulders; a faint curtain movement suggests airflow without diagrams. Authentic emotional transition from tension to calm, premium mental-health magazine photography, no theatrical distress, no visible breath graphics, no logos or text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:56:09.001Z",
+    "resolution": "1344x768",
+    "duration": 18656,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "suspiro-fisiologico",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 51568,
+      "webBytes": 24420,
+      "reductionPercent": 53,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "expresion-escrita-journaling.webp",
+    "files": [
+      "expresion-escrita-journaling.webp"
+    ],
+    "prompt": "Moody editorial photograph showing an adult using expressive writing to process a difficult day in a quiet home setting. The subject writes continuously in a private journal at a wooden desk while several previously filled pages curve naturally beneath the hand, all handwriting deliberately out of focus and unreadable. A rain-speckled window, cooling tea and a switched-off phone placed face down create subtle emotional context. Capture from a close over-the-shoulder viewpoint with a 50mm lens, placing the moving pen and relaxed hand in crisp focus while the person’s thoughtful profile appears softly reflected in the window. Cool evening daylight balanced by a warm desk lamp, intimate documentary atmosphere, no inspirational quotations, no decorative text, no logos.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:56:24.628Z",
+    "resolution": "1344x768",
+    "duration": 15622,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "expresion-escrita-journaling",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 45788,
+      "webBytes": 21706,
+      "reductionPercent": 53,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "meditacion-amor-bondadoso.webp",
+    "files": [
+      "meditacion-amor-bondadoso.webp"
+    ],
+    "prompt": "Warm editorial wellness portrait showing an adult practicing loving-kindness meditation in a comfortable living room rather than an idealized retreat. The person sits upright in a chair with eyes gently closed and one hand resting over the heart, while framed family photographs and a small plant remain softly blurred in the background, suggesting connection and compassion without revealing identifiable faces. Photograph from a three-quarter angle using an 85mm lens, with late-afternoon sunlight creating a soft halo along the shoulders and warm reflections across natural wood. Calm but emotionally grounded expression, muted rose, cream and earth tones, premium psychology-magazine aesthetic, no religious gestures, no floating hearts, no supernatural glow, no scripted affirmations, no logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:56:44.516Z",
+    "resolution": "1344x768",
+    "duration": 19882,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "meditacion-amor-bondadoso",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 67886,
+      "webBytes": 35434,
+      "reductionPercent": 48,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "optimizacion-higiene-sueno.webp",
+    "files": [
+      "optimizacion-higiene-sueno.webp"
+    ],
+    "prompt": "Layered editorial bedroom photograph capturing a complete but realistic wind-down routine shortly before sleep. An adult lowers blackout curtains while warm bedside lighting replaces the cool light of the hallway; a paper book, sleep mask and glass of water are arranged neatly on the bedside table. The smartphone is visible charging outside the bedroom through the open doorway, deliberately distant and out of reach. Capture from the foot of the bed with a wide 35mm lens so the darkened window, tidy bedding and device-free environment form a coherent visual story. Deep navy shadows, warm amber lamps, soft fabric textures and a quiet lived-in atmosphere, no luxury-hotel staging, no sleeping pills, no glowing screens, no readable clock numbers, no logos or text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:57:05.958Z",
+    "resolution": "1344x768",
+    "duration": 21438,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "optimizacion-higiene-sueno",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 47180,
+      "webBytes": 21932,
+      "reductionPercent": 54,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "terapia-cognitivo-conductual-mental.webp",
+    "files": [
+      "terapia-cognitivo-conductual-mental.webp"
+    ],
+    "prompt": "Sophisticated editorial psychotherapy photograph showing a cognitive behavioral therapy session focused on identifying and reframing a stressful thought pattern. A therapist and adult patient sit at an angle rather than directly opposite each other, leaning over a small table where several blank cards are being reorganized into a clearer sequence. The patient points to one card while the therapist listens attentively, allowing the interaction itself to communicate collaborative problem-solving. Capture through a softly blurred foreground bookshelf with an 85mm lens, creating privacy and visual depth. Gentle window light, neutral earth-tone office, natural expressions and premium mental-health editorial realism, no exaggerated sadness, no diagnostic labels, no visible worksheets, no clocks dominating the room, no logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:57:21.594Z",
+    "resolution": "1344x768",
+    "duration": 15632,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "terapia-cognitivo-conductual-mental",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 68396,
+      "webBytes": 35772,
+      "reductionPercent": 48,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "relajacion-muscular-progresiva.webp",
+    "files": [
+      "relajacion-muscular-progresiva.webp"
+    ],
+    "prompt": "Detailed editorial wellness photograph showing an adult practicing progressive muscle relaxation in a quiet bedroom after work. The subject lies comfortably on a yoga mat beside the bed, intentionally tensing both hands into gentle fists while the shoulders and face remain relaxed, preparing to release the contraction. A second visual cue appears through one extended foot with toes lightly flexed, illustrating sequential muscle engagement without diagrams. Capture from a low side angle with a 50mm lens, focusing on hands and facial calm while the rest of the room falls into soft evening blur. Warm indirect lamp light, muted blue and beige palette, realistic clothing and body proportions, no strenuous exercise, no spa clichés, no anatomical overlays, no logos or text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:57:45.248Z",
+    "resolution": "1344x768",
+    "duration": 23649,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "relajacion-muscular-progresiva",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 56484,
+      "webBytes": 29330,
+      "reductionPercent": 48,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "ejercicio-zona-dos.webp",
+    "files": [
+      "ejercicio-zona-dos.webp"
+    ],
+    "prompt": "Cinematic outdoor fitness photograph showing an adult performing sustained moderate-intensity aerobic exercise on a bicycle along a coastal path. The rider maintains an upright, conversational posture and controlled breathing rather than racing, while a companion cycles slightly behind at a similar comfortable pace. A discreet unbranded heart-rate watch is visible on the main subject’s wrist, but no numerical data can be read. Capture alongside the cyclists using a moving 35mm documentary perspective, with crisp faces and subtle motion blur in the wheels and background. Soft overcast morning light, ocean mist, realistic recreational clothing, premium health-and-performance editorial aesthetic, no extreme speed, no competitive equipment, no sports logos, no readable screens or text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:58:10.066Z",
+    "resolution": "1344x768",
+    "duration": 24813,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "ejercicio-zona-dos",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 66694,
+      "webBytes": 36720,
+      "reductionPercent": 45,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "respiracion-de-caja.webp",
+    "files": [
+      "respiracion-de-caja.webp"
+    ],
+    "prompt": "Architectural editorial portrait showing an adult practicing box breathing during a brief pause in a modern workplace. The subject sits upright near a large square window divided into four equal panes, using the geometry of the environment as a subtle visual metaphor without diagrams or written counts. One hand rests on the abdomen while the gaze remains soft and focused; blurred coworkers and office movement continue in the distant background, emphasizing calm within a demanding setting. Capture from a symmetrical frontal perspective with a 50mm lens, placing the person slightly below the window’s center. Cool daylight, clean lines, restrained blue-gray palette and premium mental-health magazine composition, no floating squares, no breathing arrows, no visible timer, no logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:58:29.410Z",
+    "resolution": "1344x768",
+    "duration": 19341,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "respiracion-de-caja",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 49504,
+      "webBytes": 22942,
+      "reductionPercent": 54,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "postura-defecacion-squatting.webp",
+    "files": [
+      "postura-defecacion-squatting.webp"
+    ],
+    "prompt": "Professional healthcare editorial photograph showing a pelvic-floor physiotherapist teaching a more supportive seated posture using a neutral chair and a compact footstool in a bright rehabilitation studio. A fully clothed adult sits comfortably with feet elevated, knees slightly higher than the hips, torso leaning gently forward and forearms resting loosely on the thighs. The therapist demonstrates relaxed breathing beside them while a small pelvic anatomy model remains discreetly placed on a side table. Capture from a clear side angle with a 50mm lens so the posture is immediately understandable. Soft natural light, calm educational atmosphere, realistic proportions, no bathroom use, no exposed anatomy, no medical procedure, no logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:58:48.653Z",
+    "resolution": "1344x768",
+    "duration": 19240,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "postura-defecacion-squatting",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 59790,
+      "webBytes": 31228,
+      "reductionPercent": 48,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "senosidos-senna.webp",
+    "files": [
+      "senosidos-senna.webp"
+    ],
+    "prompt": "Premium botanical healthcare editorial photograph showing a pharmacist discussing responsible short-term use of a plant-derived digestive product with an adult patient in a private consultation area. Fresh senna leaves and a small glass dish containing dried botanical material are arranged in sharp focus on a dark wooden counter, while the pharmacist points to a neutral information card turned away from the camera. A glass of water and an unbranded sealed container remain secondary in the composition. Use a close 50mm perspective with shallow depth of field, rich green and amber tones, controlled side lighting and realistic botanical textures. Sophisticated medical-magazine aesthetic, no tablets, no visible dosage, no treatment claims, no commercial packaging, no logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:59:05.545Z",
+    "resolution": "1344x768",
+    "duration": 16886,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "senosidos-senna",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 72482,
+      "webBytes": 41694,
+      "reductionPercent": 42,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "grounding-tecnica-sensorial.webp",
+    "files": [
+      "grounding-tecnica-sensorial.webp"
+    ],
+    "prompt": "Cinematic 3D medical-scientific visualization of sensory grounding inside the human nervous system. A semi-transparent head and upper torso reveal the brain, spinal cord and major sensory pathways in precise anatomical detail. Distinct visual, auditory, tactile, olfactory and taste signals appear as restrained streams of light traveling from the sensory organs through peripheral nerves toward the thalamus and prefrontal cortex, while an intensely illuminated amygdala becomes gradually less dominant. Deep navy clinical background, realistic neural tissue, microscopic synaptic detail, amber and cyan bioluminescent accents, volumetric lighting and strong cinematic depth. Educational healthcare editorial aesthetic, no seated person, no natural landscape, no numbers, no labels, no readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:03:47.526Z",
+    "resolution": "1344x768",
+    "duration": 24691,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "grounding-tecnica-sensorial",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 73858,
+      "webBytes": 40784,
+      "reductionPercent": 45,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "exposicion-frio-respuesta-interna.webp",
+    "files": [
+      "exposicion-frio-respuesta-interna.webp"
+    ],
+    "prompt": "Cinematic medical 3D cutaway showing the body’s immediate internal response to controlled cold exposure. A highly detailed cross-section of skin reveals the epidermis, sensory receptors, peripheral nerves, small blood vessels and underlying brown adipose tissue. Cool blue illumination surrounds the outer skin while deeper amber signals travel through the nerves, superficial vessels appear moderately narrowed and metabolically active brown fat cells glow subtly beneath the surface. Include realistic microcirculation, textured tissue layers and tiny cellular structures without turning the image into a diagram. Moody dark laboratory background, crisp macro focus, volumetric blue light, selective warm highlights and premium scientific editorial realism. No ice bath, no person’s face, no frostbite, no dramatic injury, no arrows, labels or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:04:33.577Z",
+    "resolution": "1344x768",
+    "duration": 26774,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "exposicion-frio-respuesta-interna",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 71940,
+      "webBytes": 38656,
+      "reductionPercent": 46,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "restriccion-tiempo-cama-sueno.webp",
+    "files": [
+      "restriccion-tiempo-cama-sueno.webp"
+    ],
+    "prompt": "Sophisticated cinematic 3D visualization of consolidated sleep within the brain rather than a bedroom scene. A transparent side view of the head reveals an anatomically precise brain transitioning into synchronized nighttime activity. Slow, coordinated waves travel across the cerebral cortex in deep blue and violet tones, while the hypothalamic circadian region and pineal area emit restrained warm highlights. Fragmented scattered pulses at the outer edge gradually converge into a stable rhythmic pattern toward the center, visually suggesting greater sleep continuity without displaying charts or clocks. Realistic neural tissue, subtle vascular detail, dark clinical atmosphere, volumetric lighting and premium neuroscience-magazine composition. No sleeping person, no bed, no devices, no numerical sleep data, no labels, no text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:04:51.510Z",
+    "resolution": "1344x768",
+    "duration": 17924,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "restriccion-tiempo-cama-sueno",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 78012,
+      "webBytes": 41084,
+      "reductionPercent": 47,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "meditacion-trascendental-cerebro.webp",
+    "files": [
+      "meditacion-trascendental-cerebro.webp"
+    ],
+    "prompt": "Premium cinematic neuroscience visualization exploring the internal state associated with deep meditative rest. A hyperrealistic 3D brain appears in sagittal section inside a faint translucent skull, revealing the prefrontal cortex, thalamus, hippocampus, amygdala and brainstem. Instead of chaotic isolated sparks, gentle synchronized neural pulses spread across distributed cortical regions, while the limbic structures remain visible but less visually dominant. Fine amber pathways connect through cool blue neural tissue, creating a balanced sense of alertness and physiological calm. Include delicate synaptic networks, realistic folds, vascular structures and atmospheric depth against a dark scientific background. No meditating person, no spiritual symbols, no supernatural energy, no floating mandalas, no labels, no readable interfaces or text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:05:17.528Z",
+    "resolution": "1344x768",
+    "duration": 26014,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "meditacion-trascendental-cerebro",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 75980,
+      "webBytes": 41306,
+      "reductionPercent": 46,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "pomodoro-ciclos-atencion.webp",
+    "files": [
+      "pomodoro-ciclos-atencion.webp"
+    ],
+    "prompt": "Cinematic 3D medical-scientific representation of alternating concentration and recovery cycles inside the brain. A detailed lateral brain cutaway highlights the prefrontal cortex and attention networks through a sequence of four controlled luminous pulses separated by darker restorative intervals, arranged organically through the neural tissue rather than as a clock or infographic. Focused amber activity travels through frontoparietal pathways during each pulse, while softer blue phases reveal reduced stimulation and metabolic recovery between periods. Realistic neurons, subtle cerebral blood flow and microscopic synaptic connections create depth and credibility. Dark navy laboratory background, dramatic rim lighting, precise anatomy and premium cognitive-science editorial style. No office worker, no timer, no tomatoes, no numbers, no charts, no labels or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:05:42.314Z",
+    "resolution": "1344x768",
+    "duration": 24780,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "pomodoro-ciclos-atencion",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 49892,
+      "webBytes": 23364,
+      "reductionPercent": 53,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "terapia-act-aceptacion.webp",
+    "files": [
+      "terapia-act-aceptacion.webp"
+    ],
+    "prompt": "High-end cinematic neuroscience illustration of psychological acceptance and cognitive flexibility. An anatomically accurate brain in three-quarter cutaway reveals the amygdala generating a concentrated warm emotional signal that remains present rather than disappearing. Multiple flexible neural pathways extend around that signal toward the anterior cingulate and prefrontal cortex, forming a broader integrated network instead of a single rigid reaction route. Use realistic neural fibers, synaptic detail, subtle vascular structures and carefully restrained amber, violet and cyan illumination. The composition should communicate making space for internal experiences while maintaining deliberate cognitive control, without using symbolic chains or written concepts. Deep clinical background, sophisticated volumetric light, premium mental-health editorial rendering, no therapist, no patient, no labels, no readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:06:05.880Z",
+    "resolution": "1344x768",
+    "duration": 23562,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "terapia-act-aceptacion",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 77418,
+      "webBytes": 42556,
+      "reductionPercent": 45,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "desconexion-digital-melatonina.webp",
+    "files": [
+      "desconexion-digital-melatonina.webp"
+    ],
+    "prompt": "Cinematic 3D medical visualization of the nighttime light-to-brain pathway and its relationship with sleep preparation. A transparent head in side profile reveals the eye, retina, optic nerve, suprachiasmatic region, pineal gland and connected brain structures. Cold blue light approaches the retina from outside but fades before reaching the deeper pathway, while warm amber activity becomes more prominent around the pineal region and spreads subtly through the sleeping brain. Include realistic ocular anatomy, fine neural connections, cerebral tissue and delicate vascular detail. Dark midnight-blue background, strong contrast, soft volumetric illumination and polished scientific-magazine realism. No phone, no bedroom, no person using a device, no exaggerated hormone molecules, no arrows, no clocks, no labels or visible text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:06:27.780Z",
+    "resolution": "1344x768",
+    "duration": 21890,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "desconexion-digital-melatonina",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 74418,
+      "webBytes": 41800,
+      "reductionPercent": 44,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "reestructuracion-valores-act.webp",
+    "files": [
+      "reestructuracion-valores-act.webp"
+    ],
+    "prompt": "Cinematic 3D neuroscience visualization of values-guided decision-making within the brain. A precise sagittal brain section reveals several competing neural routes emerging from the limbic system, initially tangled and fragmented in muted violet tones. These pathways progressively converge through the anterior cingulate and prefrontal cortex into one coherent amber route extending toward motor-planning regions, suggesting deliberate action aligned with personally meaningful direction rather than automatic stress responses. Preserve anatomical credibility with realistic white-matter fibers, synaptic junctions, cerebral folds and subtle blood vessels. Deep navy scientific background, elegant volumetric lighting, controlled color contrast and premium psychology-journal aesthetic. No human portrait, no compass, no road metaphor, no written values, no arrows, no labels, no readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:07:15.978Z",
+    "resolution": "1344x768",
+    "duration": 30324,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "reestructuracion-valores-act",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 85604,
+      "webBytes": 49336,
+      "reductionPercent": 42,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "bisacodilo-picosulfato.webp",
+    "files": [
+      "bisacodilo-picosulfato.webp"
+    ],
+    "prompt": "Cinematic 3D medical-scientific visualization of stimulant laxative action inside the large intestine, designed without medication packaging or human figures. A detailed cutaway of the colon reveals realistic mucosal folds, intestinal wall layers and coordinated waves of smooth-muscle contraction moving progressively along the bowel. Subtle amber signals activate nerve endings within the colonic wall while cool blue fluid patterns remain visible inside the lumen, suggesting increased motility and secretion without exaggeration. Use anatomically credible tissue textures, microscopic neural connections, restrained molecular particles and deep spatial layering. Dark navy clinical background, dramatic rim lighting, burgundy and amber organ tones, premium biomedical editorial rendering. No tablets, bottles, pharmacists, bodily waste, pain, obstruction, arrows, labels, logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:07:42.605Z",
+    "resolution": "1344x768",
+    "duration": 26623,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "bisacodilo-picosulfato",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 80996,
+      "webBytes": 44880,
+      "reductionPercent": 45,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "descarte-enfermedades-sistemicas.webp",
+    "files": [
+      "descarte-enfermedades-sistemicas.webp"
+    ],
+    "prompt": "Sophisticated cinematic 3D medical visualization of a whole-body diagnostic assessment for possible systemic contributors to altered intestinal function. A semi-transparent human torso reveals the thyroid gland, brain and autonomic nerves, kidneys, liver, pancreas and large intestine in anatomically accurate positions. The colon forms the central visual focus, while fine luminous pathways connect it subtly with the endocrine, metabolic, neurological and renal systems, suggesting that digestive symptoms may require broader evaluation. Each organ is rendered with realistic tissue texture and restrained illumination rather than alarming glow. Include subtle circulation, nerve fibers and hormonal signaling particles within a deep clinical environment. Premium scientific-journal composition, volumetric blue and amber lighting, no patient consultation, no blood tubes, no diagnostic conclusions, no diseased organs, no warning symbols, no arrows, labels, logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:08:09.496Z",
+    "resolution": "1344x768",
+    "duration": 26886,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "descarte-enfermedades-sistemicas",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 70472,
+      "webBytes": 39754,
+      "reductionPercent": 44,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "masaje-mecanorreceptores-musculo.webp",
+    "files": [
+      "masaje-mecanorreceptores-musculo.webp"
+    ],
+    "prompt": "Premium sports-medicine magazine illustration inspired by a futuristic anatomical training visual. A translucent blue athletic figure is shown in dynamic motion against a deep cobalt technical grid, with the skeleton, major muscle groups and peripheral nerves visible beneath the surface. Selected muscles along the shoulders, back and legs display subtle zones of relaxed alignment, while fine cyan neural pulses travel from highlighted mechanoreceptors toward the spinal cord. A clean electrocardiogram-style waveform crosses the background as a decorative medical element, without numbers or labels. Crisp rim lighting, polished 3D anatomy, energetic editorial composition, realistic proportions, sophisticated blue monochrome palette, no massage scene, no hands touching the body, no exposed tissue, no text, no logos.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:11:21.345Z",
+    "resolution": "1344x768",
+    "duration": 19897,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "masaje-mecanorreceptores-musculo",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 62790,
+      "webBytes": 33502,
+      "reductionPercent": 47,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "yoga-asanas-sistema-nervioso.webp",
+    "files": [
+      "yoga-asanas-sistema-nervioso.webp"
+    ],
+    "prompt": "Premium health-magazine medical illustration using a clean cobalt-blue technical aesthetic. An elegant anatomical model of the spine, rib cage, diaphragm, lungs, heart and major autonomic nerve pathways is arranged in a balanced three-quarter composition against a subtle blueprint grid. Soft cyan lines trace communication between the brainstem, vagus nerve, respiratory muscles and cardiovascular system, while gentle amber highlights emphasize coordinated breathing and postural stability. The image should feel polished, educational and cinematic rather than surgical, with crisp rim lighting, refined 3D rendering and realistic anatomical proportions. No full human figure, no exposed tissue, no transparent skin, no yoga studio, no mystical symbols, no chakras, no labels, no logos, no readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:12:07.122Z",
+    "resolution": "1344x768",
+    "duration": 21283,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "yoga-asanas-sistema-nervioso",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 66398,
+      "webBytes": 36020,
+      "reductionPercent": 46,
+      "format": "webp",
+      "quality": 82
+    }
+  }
+]

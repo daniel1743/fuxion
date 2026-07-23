@@ -1,7 +1,8 @@
 const ANTHROPIC_VERSION = '2023-06-01';
-const DEFAULT_ANTHROPIC_MODEL = 'claude-sonnet-4-20250514';
-const DEFAULT_ONEPROVIDER_MODEL = 'claude-sonnet-5';
-const DEFAULT_DEEPSEEK_MODEL = 'deepseek-reasoner';
+const DEFAULT_ANTHROPIC_MODEL = 'claude-haiku-4-5-20251001';
+const DEFAULT_ONEPROVIDER_MODEL = 'claude-haiku-4-5-20251001';
+const DEFAULT_DEEPSEEK_MODEL = 'deepseek-chat';
+const REPORT_MAX_TOKENS = Number(process.env.REPORT_MAX_TOKENS || 4200);
 
 function normalizeOpenAiResponse(content, provider, model, usage = {}) {
   return {
@@ -54,7 +55,7 @@ async function callAnthropicOfficial({ systemPrompt, userPrompt }) {
       system: systemPrompt,
       messages: [{ role: 'user', content: userPrompt }],
       temperature: 0.55,
-      max_tokens: 8000,
+      max_tokens: REPORT_MAX_TOKENS,
     }),
   });
 
@@ -84,7 +85,7 @@ async function callOneProviderSonnet({ systemPrompt, userPrompt }) {
       system: systemPrompt,
       messages: [{ role: 'user', content: userPrompt }],
       temperature: 0.55,
-      max_tokens: 8000,
+      max_tokens: REPORT_MAX_TOKENS,
     }),
   });
 
@@ -114,7 +115,7 @@ async function callDeepSeek({ systemPrompt, userPrompt }) {
         { role: 'user', content: userPrompt },
       ],
       temperature: 0.6,
-      max_tokens: 8000,
+      max_tokens: REPORT_MAX_TOKENS,
     }),
   });
 
@@ -131,17 +132,21 @@ async function callDeepSeek({ systemPrompt, userPrompt }) {
 }
 
 function getProviderChain() {
-  const preferred = (process.env.REPORT_AI_PROVIDER || 'sonnet').toLowerCase();
+  const preferred = (process.env.REPORT_AI_PROVIDER || 'fast').toLowerCase();
   const sonnetProviders = [callAnthropicOfficial, callOneProviderSonnet];
   const deepSeekProviders = [callDeepSeek];
 
   if (preferred === 'deepseek') return [...deepSeekProviders, ...sonnetProviders];
   if (preferred === 'oneprovider') return [callOneProviderSonnet, callAnthropicOfficial, ...deepSeekProviders];
   if (preferred === 'anthropic') return [callAnthropicOfficial, callOneProviderSonnet, ...deepSeekProviders];
+  if (preferred === 'sonnet') return [...sonnetProviders, ...deepSeekProviders];
   return [...sonnetProviders, ...deepSeekProviders];
 }
 
 export default async function handler(req, res) {
+  const requestStartedAt = Date.now();
+  const requestId = `${requestStartedAt}-${Math.random().toString(16).slice(2, 8)}`;
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
@@ -152,14 +157,40 @@ export default async function handler(req, res) {
   }
 
   const attempts = [];
+  console.info('[generate-report] request started', {
+    requestId,
+    providerPreference: process.env.REPORT_AI_PROVIDER || 'fast',
+    promptChars: String(systemPrompt).length + String(userPrompt).length,
+    hasAnthropicKey: Boolean(process.env.ANTHROPIC_API_KEY),
+    hasOneProviderKey: Boolean(process.env.ONEPROVIDER_API_KEY),
+    hasDeepSeekKey: Boolean(process.env.DEEPSEEK_API_KEY),
+    maxTokens: REPORT_MAX_TOKENS,
+  });
 
   for (const providerCall of getProviderChain()) {
     const startedAt = Date.now();
     try {
+      console.info('[generate-report] provider attempt started', {
+        requestId,
+        provider: providerCall.name,
+      });
       const data = await providerCall({ systemPrompt, userPrompt });
+      const elapsedMs = Date.now() - startedAt;
+      console.info('[generate-report] provider success', {
+        requestId,
+        provider: providerCall.name,
+        model: data.model,
+        elapsedMs,
+        totalElapsedMs: Date.now() - requestStartedAt,
+        previousFailures: attempts.length,
+        usage: data.usage || null,
+      });
       return res.status(200).json({
         ...data,
         fallback_attempts: attempts,
+        elapsed_ms: elapsedMs,
+        total_elapsed_ms: Date.now() - requestStartedAt,
+        request_id: requestId,
       });
     } catch (err) {
       attempts.push({
@@ -168,12 +199,25 @@ export default async function handler(req, res) {
         elapsed_ms: Date.now() - startedAt,
         message: err.message,
       });
-      console.error(`[generate-report] ${providerCall.name} failed:`, err.message);
+      console.warn('[generate-report] provider failed', {
+        requestId,
+        provider: providerCall.name,
+        elapsedMs: Date.now() - startedAt,
+        message: err.message,
+      });
     }
   }
+
+  console.error('[generate-report] all providers failed', {
+    requestId,
+    totalElapsedMs: Date.now() - requestStartedAt,
+    attempts,
+  });
 
   return res.status(500).json({
     error: 'No se pudo generar el informe con Sonnet ni con DeepSeek.',
     attempts,
+    total_elapsed_ms: Date.now() - requestStartedAt,
+    request_id: requestId,
   });
 }

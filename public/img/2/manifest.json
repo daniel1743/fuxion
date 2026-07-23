@@ -1,0 +1,292 @@
+[
+  {
+    "filename": "monitoreo-continuo-glucosa.webp",
+    "files": [
+      "monitoreo-continuo-glucosa.webp"
+    ],
+    "prompt": "Professional editorial healthcare photograph showing an adult wearing a discreet continuous glucose monitor on the upper arm while reviewing glucose trends with a healthcare professional using a neutral tablet interface with no readable data. The consultation emphasizes metabolic awareness, preventive care and personalized health monitoring in a bright modern clinic. Natural expressions, realistic medical setting, premium editorial photography, soft daylight, no logos, no visible text.",
+    "model": "flux-2-klein-9b",
+    "date": "2026-07-23T04:56:36.322Z",
+    "resolution": "1344x768",
+    "duration": 5890,
+    "state": "completed",
+    "cost": 1.5,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "monitoreo-continuo-glucosa",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 71984,
+      "webBytes": 40118,
+      "reductionPercent": 44,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "restriccion-tiempo-cama.webp",
+    "files": [
+      "restriccion-tiempo-cama.webp"
+    ],
+    "prompt": "Professional editorial bedroom photograph of an adult following a structured nighttime routine before sleep, calmly sitting on the edge of a neatly prepared bed while dim lighting and a bedside clock suggest a consistent sleep schedule. The atmosphere communicates healthy sleep optimization rather than insomnia. Warm ambient lighting, realistic home environment, premium wellness magazine style, no electronic distractions, no readable text.",
+    "model": "flux-2-klein-9b",
+    "date": "2026-07-23T04:56:40.782Z",
+    "resolution": "1344x768",
+    "duration": 4459,
+    "state": "completed",
+    "cost": 1.5,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "restriccion-tiempo-cama",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 49778,
+      "webBytes": 23816,
+      "reductionPercent": 52,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "orden-macronutrientes-comer.webp",
+    "files": [
+      "orden-macronutrientes-comer.webp"
+    ],
+    "prompt": "Professional editorial dining photograph showing a balanced meal where an adult begins eating leafy vegetables before moving to lean protein and whole grains, illustrating meal sequence naturally without labels or diagrams. Bright modern dining room, fresh recognizable foods, relaxed posture and mindful eating habits. Elegant composition, natural daylight, premium nutrition magazine photography, no logos, no visible text.",
+    "model": "flux-2-klein-9b",
+    "date": "2026-07-23T04:56:46.512Z",
+    "resolution": "1344x768",
+    "duration": 5728,
+    "state": "completed",
+    "cost": 1.5,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "orden-macronutrientes-comer",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 68834,
+      "webBytes": 39982,
+      "reductionPercent": 42,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "control-entorno-despensa.webp",
+    "files": [
+      "control-entorno-despensa.webp"
+    ],
+    "prompt": "Professional editorial home kitchen photograph featuring an organized pantry filled with whole grains, legumes, nuts, canned vegetables and fresh produce while highly processed snacks are absent or stored out of immediate reach. An adult is arranging healthy foods thoughtfully to create a supportive eating environment. Bright natural light, clean modern kitchen, premium editorial style, no branding, no readable labels.",
+    "model": "flux-2-klein-9b",
+    "date": "2026-07-23T04:56:53.129Z",
+    "resolution": "1344x768",
+    "duration": 6616,
+    "state": "completed",
+    "cost": 1.5,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "control-entorno-despensa",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 84622,
+      "webBytes": 49202,
+      "reductionPercent": 42,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "masticacion-lenta-mindful-eating.webp",
+    "files": [
+      "masticacion-lenta-mindful-eating.webp"
+    ],
+    "prompt": "Professional editorial lifestyle photograph of an adult eating slowly at a dining table, placing utensils down between bites while focusing fully on the meal without phones or screens. The balanced plate includes colorful vegetables, lean protein and whole grains, reinforcing mindful eating habits. Soft natural lighting, calm atmosphere, premium wellness photography, realistic expressions, no logos, no readable text.",
+    "model": "flux-2-klein-9b",
+    "date": "2026-07-23T04:56:58.527Z",
+    "resolution": "1344x768",
+    "duration": 5397,
+    "state": "completed",
+    "cost": 1.5,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "masticacion-lenta-mindful-eating",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 71032,
+      "webBytes": 40074,
+      "reductionPercent": 44,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "monitoreo-regular-peso.webp",
+    "files": [
+      "monitoreo-regular-peso.webp"
+    ],
+    "prompt": "Professional editorial healthcare photograph showing an adult recording body weight in a personal wellness journal immediately after stepping off a modern digital scale in a bright home environment. The scene emphasizes consistent self-monitoring as part of a broader healthy lifestyle rather than obsession with numbers. Clean minimalist composition, natural daylight, premium magazine photography, no visible measurements, no logos.",
+    "model": "flux-2-klein-9b",
+    "date": "2026-07-23T04:57:03.065Z",
+    "resolution": "1344x768",
+    "duration": 4537,
+    "state": "completed",
+    "cost": 1.5,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "monitoreo-regular-peso",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 73184,
+      "webBytes": 40522,
+      "reductionPercent": 45,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "cirugia-metabolica-bariatrica.webp",
+    "files": [
+      "cirugia-metabolica-bariatrica.webp"
+    ],
+    "prompt": "Professional editorial hospital consultation photograph showing a bariatric surgeon explaining a digestive system model to an adult patient before a planned metabolic procedure. The focus remains on informed medical guidance, shared decision-making and multidisciplinary obesity care rather than surgery itself. Modern clinical office, calm professional atmosphere, realistic healthcare environment, premium editorial style, no surgical gore, no logos, no readable text.",
+    "model": "flux-2-klein-9b",
+    "date": "2026-07-23T04:57:10.140Z",
+    "resolution": "1344x768",
+    "duration": 7074,
+    "state": "completed",
+    "cost": 1.5,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "cirugia-metabolica-bariatrica",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 74830,
+      "webBytes": 41516,
+      "reductionPercent": 45,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "consumo-pescado-omega3.webp",
+    "files": [
+      "consumo-pescado-omega3.webp"
+    ],
+    "prompt": "Professional editorial food photograph of a healthy meal featuring grilled salmon, sardines, fresh herbs, lemon, vegetables and whole grains elegantly arranged on a contemporary dining table. The composition highlights recognizable sources of omega-3 within a balanced dietary pattern. Bright natural daylight, realistic textures, premium culinary wellness photography, clean styling, no packaging, no logos, no readable text.",
+    "model": "flux-2-klein-9b",
+    "date": "2026-07-23T04:57:15.102Z",
+    "resolution": "1344x768",
+    "duration": 4961,
+    "state": "completed",
+    "cost": 1.5,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "consumo-pescado-omega3",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 96530,
+      "webBytes": 54890,
+      "reductionPercent": 43,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "alimentacion-restringida-tiempo.webp",
+    "files": [
+      "alimentacion-restringida-tiempo.webp"
+    ],
+    "prompt": "Professional editorial lifestyle photograph showing an adult finishing an early evening meal in a peaceful kitchen while a simple analog wall clock subtly suggests a structured eating window without emphasizing exact times. The scene conveys intentional meal timing within a healthy daily routine. Warm lighting, realistic home setting, premium editorial photography, no fasting graphics, no logos, no readable text.",
+    "model": "flux-2-klein-9b",
+    "date": "2026-07-23T04:57:19.267Z",
+    "resolution": "1344x768",
+    "duration": 4163,
+    "state": "completed",
+    "cost": 1.5,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "alimentacion-restringida-tiempo",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 87412,
+      "webBytes": 50500,
+      "reductionPercent": 42,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "reduccion-alcohol-consumo.webp",
+    "files": [
+      "reduccion-alcohol-consumo.webp"
+    ],
+    "prompt": "Professional editorial lifestyle photograph of an adult choosing sparkling water with fresh citrus over an alcoholic beverage during a relaxed social dinner with friends. The atmosphere remains positive and inclusive, emphasizing balanced lifestyle choices without judgment. Elegant dining environment, warm evening lighting, realistic interactions, premium wellness magazine photography, no alcohol branding, no logos, no readable text.",
+    "model": "flux-2-klein-9b",
+    "date": "2026-07-23T04:57:22.149Z",
+    "resolution": "1344x768",
+    "duration": 2881,
+    "state": "completed",
+    "cost": 1.5,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "reduccion-alcohol-consumo",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 94142,
+      "webBytes": 58940,
+      "reductionPercent": 37,
+      "format": "webp",
+      "quality": 82
+    }
+  }
+]

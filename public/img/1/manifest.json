@@ -1,0 +1,292 @@
+[
+  {
+    "filename": "terapia-farmacologica-glp1-gip.webp",
+    "files": [
+      "terapia-farmacologica-glp1-gip.webp"
+    ],
+    "prompt": "Professional editorial healthcare photograph showing a physician discussing a modern metabolic treatment plan with an adult patient during a consultation in a bright, contemporary clinic. Subtle educational anatomical model of the digestive system on a nearby desk to suggest hormonal regulation of appetite and metabolism without exaggeration. Calm, collaborative atmosphere emphasizing long-term obesity care under medical supervision. Natural lighting, realistic human proportions, premium wellness magazine photography, clean composition, no medication packaging, no logos, no readable text.\n\n(dieta-mind-salud-cerebral)\n\nProfessional editorial food photograph featuring a beautifully arranged MIND diet meal with leafy greens, blueberries, walnuts, whole grains, beans, extra virgin olive oil and grilled fish on a modern wooden dining table. The scene conveys sustainable nutrition supporting brain and metabolic health through recognizable whole foods. Soft natural daylight, realistic textures, elegant styling, premium editorial composition, no processed food packaging, no logos, no visible text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T04:24:00.218Z",
+    "resolution": "1344x768",
+    "duration": 22292,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "terapia-farmacologica-glp1-gip",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 87112,
+      "webBytes": 48082,
+      "reductionPercent": 45,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "dieta-mind-salud-cerebral.webp",
+    "files": [
+      "dieta-mind-salud-cerebral.webp"
+    ],
+    "prompt": "Professional editorial food photograph featuring a beautifully arranged MIND diet meal with leafy greens, blueberries, walnuts, whole grains, beans, extra virgin olive oil and grilled fish on a modern wooden dining table. The scene conveys sustainable nutrition supporting brain and metabolic health through recognizable whole foods. Soft natural daylight, realistic textures, elegant styling, premium editorial composition, no processed food packaging, no logos, no visible text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T04:32:13.340Z",
+    "resolution": "1344x768",
+    "duration": 17634,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "dieta-mind-salud-cerebral",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 126774,
+      "webBytes": 68564,
+      "reductionPercent": 46,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "entrenamiento-fuerza-muscular.webp",
+    "files": [
+      "entrenamiento-fuerza-muscular.webp"
+    ],
+    "prompt": "Professional editorial fitness photograph of an adult performing supervised resistance training with free weights in a modern fitness studio. Visible emphasis on safe technique, balanced posture and progressive strength development rather than athletic performance. Bright welcoming environment with professional trainer observing respectfully in the background. Realistic body diversity, natural lighting, premium health magazine style, uncluttered composition, no branding, no logos, no readable text.",
+    "model": "flux-2-klein-9b",
+    "date": "2026-07-23T04:37:30.063Z",
+    "resolution": "1344x768",
+    "duration": 7217,
+    "state": "completed",
+    "cost": 1.5,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "entrenamiento-fuerza-muscular",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 85158,
+      "webBytes": 49706,
+      "reductionPercent": 42,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "deficit-calorico-individualizado.webp",
+    "files": [
+      "deficit-calorico-individualizado.webp"
+    ],
+    "prompt": "Professional editorial nutrition consultation scene showing a registered dietitian reviewing a personalized meal plan with an adult patient using fresh ingredients, measuring portions and discussing individualized energy intake. The environment reflects evidence-based nutritional planning instead of restrictive dieting. Warm clinical office, realistic food selection, inviting natural light, premium editorial healthcare photography, clean composition, no calorie numbers, no logos, no readable text.",
+    "model": "flux-2-klein-9b",
+    "date": "2026-07-23T04:37:39.842Z",
+    "resolution": "1344x768",
+    "duration": 9775,
+    "state": "completed",
+    "cost": 1.5,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "deficit-calorico-individualizado",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 93388,
+      "webBytes": 54288,
+      "reductionPercent": 42,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "terapia-cognitivo-conductual-obesidad.webp",
+    "files": [
+      "terapia-cognitivo-conductual-obesidad.webp"
+    ],
+    "prompt": "Professional editorial mental health photograph showing a psychologist and an adult patient engaged in a calm cognitive behavioral therapy session focused on sustainable lifestyle change. Comfortable consultation room with supportive body language, notebook and neutral décor creating an atmosphere of trust and reflection. Natural expressions, balanced composition, premium healthcare magazine photography, soft daylight, no stigma, no logos, no visible text.",
+    "model": "flux-2-klein-9b",
+    "date": "2026-07-23T04:38:03.080Z",
+    "resolution": "1344x768",
+    "duration": 23231,
+    "state": "completed",
+    "cost": 1.5,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "terapia-cognitivo-conductual-obesidad",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 77286,
+      "webBytes": 43586,
+      "reductionPercent": 44,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "sustitucion-farmacos-obesogenicos.webp",
+    "files": [
+      "sustitucion-farmacos-obesogenicos.webp"
+    ],
+    "prompt": "Professional editorial clinical photograph of a physician carefully reviewing a patient's medication regimen during a medical consultation, discussing treatment adjustments within a holistic metabolic care plan. Prescription documents remain unreadable while attention stays on professional decision-making and patient communication. Modern examination room, realistic healthcare setting, natural lighting, premium editorial style, no branded medication containers, no logos, no readable text.",
+    "model": "flux-2-klein-9b",
+    "date": "2026-07-23T04:38:21.260Z",
+    "resolution": "1344x768",
+    "duration": 18166,
+    "state": "completed",
+    "cost": 1.5,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "sustitucion-farmacos-obesogenicos",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 81862,
+      "webBytes": 47184,
+      "reductionPercent": 42,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "aumento-proteina-alimentacion.webp",
+    "files": [
+      "aumento-proteina-alimentacion.webp"
+    ],
+    "prompt": "Professional editorial food photography showing a balanced high-protein meal prepared with grilled chicken, salmon, eggs, Greek yogurt, legumes and fresh vegetables arranged attractively on a clean kitchen countertop. The scene communicates practical healthy nutrition for metabolic wellbeing without promoting supplements. Crisp natural daylight, realistic food textures, premium wellness magazine composition, no packaging, no logos, no visible text.",
+    "model": "flux-2-klein-9b",
+    "date": "2026-07-23T04:38:41.066Z",
+    "resolution": "1344x768",
+    "duration": 19800,
+    "state": "completed",
+    "cost": 1.5,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "aumento-proteina-alimentacion",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 70038,
+      "webBytes": 39754,
+      "reductionPercent": 43,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "sustitucion-ley-etiquetados.webp",
+    "files": [
+      "sustitucion-ley-etiquetados.webp"
+    ],
+    "prompt": "Professional editorial supermarket photograph showing an adult thoughtfully comparing two packaged food products while examining simple front-of-package warning symbols without making any text readable. The shopping basket contains fresh fruits, vegetables and minimally processed foods, emphasizing healthier purchasing decisions. Bright grocery environment, authentic consumer behavior, premium editorial photography, realistic lighting, no logos, no legible labels.",
+    "model": "flux-2-klein-9b",
+    "date": "2026-07-23T04:39:06.311Z",
+    "resolution": "1344x768",
+    "duration": 25175,
+    "state": "completed",
+    "cost": 1.5,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "sustitucion-ley-etiquetados",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 172762,
+      "webBytes": 114200,
+      "reductionPercent": 34,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "incremento-neat-actividad-diaria.webp",
+    "files": [
+      "incremento-neat-actividad-diaria.webp"
+    ],
+    "prompt": "Professional editorial lifestyle photograph of an adult choosing active daily movement by walking briskly through an urban park while carrying a work bag instead of using motorized transport. The image highlights everyday physical activity integrated naturally into routine rather than structured exercise. Morning sunlight, realistic pace, welcoming environment, premium health magazine photography, clean composition, no logos, no readable text.",
+    "model": "flux-2-klein-9b",
+    "date": "2026-07-23T04:39:13.243Z",
+    "resolution": "1344x768",
+    "duration": 6928,
+    "state": "completed",
+    "cost": 1.5,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "incremento-neat-actividad-diaria",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 158064,
+      "webBytes": 102878,
+      "reductionPercent": 35,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "entrenamiento-hiit-metabolico.webp",
+    "files": [
+      "entrenamiento-hiit-metabolico.webp"
+    ],
+    "prompt": "Professional editorial fitness photograph capturing an adult performing a high-intensity interval exercise session with bodyweight movements in a modern training space under professional supervision. The subject appears energetic yet safe, with brief recovery moments suggesting interval-based training rather than exhaustion. Dynamic natural lighting, realistic movement, premium editorial sports photography, uncluttered environment, no branding, no logos, no readable text.",
+    "model": "flux-2-klein-9b",
+    "date": "2026-07-23T04:39:20.567Z",
+    "resolution": "1344x768",
+    "duration": 7322,
+    "state": "completed",
+    "cost": 1.5,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "entrenamiento-hiit-metabolico",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 82048,
+      "webBytes": 48528,
+      "reductionPercent": 41,
+      "format": "webp",
+      "quality": 82
+    }
+  }
+]

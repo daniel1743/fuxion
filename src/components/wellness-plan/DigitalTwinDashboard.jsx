@@ -1,4 +1,5 @@
-import React, { Suspense, lazy, useMemo, useState } from 'react';
+import React, { Suspense, lazy, useMemo, useRef, useState } from 'react';
+import { useReactToPrint } from 'react-to-print';
 import { generatePremiumReportContent } from '@/lib/engine/AiReportGenerator';
 import { motion } from 'framer-motion';
 import { HugeiconsIcon } from '@hugeicons/react';
@@ -20,8 +21,74 @@ import { useWellnessTwin } from '@/context/WellnessTwinContext';
 import { classifyIIBLevel, classifyBMI } from '@/lib/wellnessAlgorithms';
 import GemeloLetter from './GemeloLetter';
 import EvaluationHistory from './EvaluationHistory';
+import PremiumReportTemplate from './PremiumReportTemplate';
 
 const ReactECharts = lazy(() => import('echarts-for-react'));
+const REPORT_MARKDOWN_VERSION = 'executive-fallback-v3';
+const PRINT_PAGE_STYLE = `
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  html, body {
+    background: #ffffff !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .premium-report-print,
+  .premium-report-print * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .premium-report-print .avoid-page-break,
+  .premium-report-print .print-chart,
+  .premium-report-print blockquote,
+  .premium-report-print table,
+  .premium-report-print img {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .premium-report-print .print-page {
+    break-inside: auto;
+    page-break-inside: auto;
+  }
+
+  .premium-report-print .print-page-after {
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .premium-report-print .roadmap-block {
+    break-inside: auto;
+    page-break-inside: auto;
+  }
+
+  .premium-report-print .roadmap-row,
+  .premium-report-print .recommendation-block,
+  .premium-report-print .metric-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .premium-report-print .markdown-section-heading {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .premium-report-print .premium-markdown-content {
+    break-before: auto;
+    page-break-before: auto;
+  }
+
+  .premium-report-print a {
+    color: #0f766e !important;
+    text-decoration: underline !important;
+  }
+`;
 
 const DOMAIN_CONFIG = {
   nutrition:  { label: 'Nutrición e Hidratación', icon: Leaf01Icon, color: '#22c55e' },
@@ -48,6 +115,109 @@ function getGoalDisplayLabel(twinData) {
   const rawAnswers = twinData?.raw_answers || {};
   const candidate = profile.goal_label || profile.goal || rawAnswers.goal;
   return GOAL_DISPLAY_LABELS[candidate] || candidate || 'bienestar general';
+}
+
+function getSafeReportName(userData, twinData, answers) {
+  const rawName = userData?.name || answers?.name || twinData?.raw_answers?.name || 'Usuario';
+  const safeName = String(rawName).trim().replace(/\s+/g, '_') || 'Usuario';
+  return `Plan_Bienestar_${safeName}`;
+}
+
+async function waitForReportAssets(container) {
+  if (document.fonts?.ready) {
+    await document.fonts.ready;
+  }
+
+  const images = Array.from(container?.querySelectorAll('img') || []);
+  await Promise.all(images.map(async (image) => {
+    if (image.complete && image.naturalWidth > 0) return;
+    if (typeof image.decode === 'function') {
+      try {
+        await image.decode();
+        return;
+      } catch (_) {
+        // Continue with load fallback.
+      }
+    }
+    await new Promise((resolve) => {
+      image.addEventListener('load', resolve, { once: true });
+      image.addEventListener('error', resolve, { once: true });
+    });
+  }));
+
+  await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+}
+
+function buildPrintableReportHtml(reportNode) {
+  const headAssets = Array.from(document.head.querySelectorAll('style, link[rel="stylesheet"], link[rel="preconnect"], link[rel="preload"]'))
+    .map((node) => node.outerHTML)
+    .join('\n');
+
+  return `<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <base href="${window.location.origin}/" />
+    ${headAssets}
+    <style>
+      ${PRINT_PAGE_STYLE}
+      html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+      }
+      body {
+        font-family: Inter, system-ui, sans-serif;
+      }
+      .premium-report-print {
+        margin: 0 auto !important;
+      }
+    </style>
+  </head>
+  <body>
+    ${reportNode.outerHTML}
+  </body>
+</html>`;
+}
+
+async function downloadPdfFromServer(reportNode, filename) {
+  const html = buildPrintableReportHtml(reportNode);
+  const startedAt = performance.now();
+
+  console.info('[report-pdf] Solicitando PDF limpio al backend', {
+    htmlChars: html.length,
+    filename,
+  });
+
+  const response = await fetch('/api/render-report-pdf', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      html,
+      filename: `${filename}.pdf`,
+    }),
+  });
+
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`PDF backend ${response.status}: ${text}`);
+  }
+
+  const blob = await response.blob();
+  const blobUrl = URL.createObjectURL(blob);
+  const anchor = document.createElement('a');
+  anchor.href = blobUrl;
+  anchor.download = `${filename}.pdf`;
+  document.body.appendChild(anchor);
+  anchor.click();
+  anchor.remove();
+  URL.revokeObjectURL(blobUrl);
+
+  console.info('[report-pdf] PDF limpio descargado', {
+    elapsedMs: Math.round(performance.now() - startedAt),
+    bytes: blob.size,
+  });
 }
 
 // ── Anillo de Progreso SVG ────────────────────────────────────
@@ -696,6 +866,8 @@ function RecommendationCard({ rec, index, isPriority = false }) {
 export default function DigitalTwinDashboard() {
   const { twinData, userData, answers, resetEvaluation, activateUserPlan } = useWellnessTwin();
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
+  const [generatedMarkdown, setGeneratedMarkdown] = useState('');
+  const printableReportRef = useRef(null);
 
   const level = useMemo(
     () => twinData ? classifyIIBLevel(twinData.twin_state.iib.score) : null,
@@ -710,33 +882,100 @@ export default function DigitalTwinDashboard() {
   const adaptiveAnalysis = twin_state?.adaptive_analysis;
   const goalLabel = getGoalDisplayLabel(twinData);
   const { tdee, protein, waterL, bmi, bmiClass } = biometrics;
+  const reportSourceLabel = twinData.ai_report_source
+    ? String(twinData.ai_report_source).toUpperCase()
+    : 'PENDIENTE';
+
+  const handlePrintReport = useReactToPrint({
+    contentRef: printableReportRef,
+    documentTitle: getSafeReportName(userData, twinData, answers),
+    pageStyle: PRINT_PAGE_STYLE,
+    onBeforePrint: async () => {
+      await waitForReportAssets(printableReportRef.current);
+    },
+    onAfterPrint: () => {
+      setIsGeneratingPDF(false);
+      console.info('[report-print] Dialogo de impresion cerrado');
+    },
+    onPrintError: (location, error) => {
+      setIsGeneratingPDF(false);
+      console.error('[report-print] Error de impresion', {
+        location,
+        error: error.message,
+        stack: error.stack,
+      });
+      alert(`Hubo un error al abrir la impresión: ${error.message}`);
+    },
+  });
 
   const handleDownload = async () => {
     if (!twinData || !userData) return;
 
+    const downloadStartedAt = performance.now();
+    console.info('[report-download] Inicio', {
+      hasCachedMarkdown: Boolean(twinData.ai_report_markdown),
+      cacheVersion: twinData.ai_report_version || null,
+      userName: userData?.name || answers?.name || twinData?.raw_answers?.name || null,
+    });
+
     setIsGeneratingPDF(true);
     try {
-      let markdown = twinData.ai_report_markdown;
+      const reportUserData = {
+        ...(twinData.raw_answers || {}),
+        ...(answers || {}),
+        ...(userData || {}),
+      };
+      let markdown = twinData.ai_report_version === REPORT_MARKDOWN_VERSION
+        ? twinData.ai_report_markdown
+        : null;
 
       if (!markdown) {
-        markdown = await generatePremiumReportContent(userData, twinData);
+        const generationStartedAt = performance.now();
+        markdown = await generatePremiumReportContent(reportUserData, twinData);
         twinData.ai_report_markdown = markdown;
+        twinData.ai_report_version = REPORT_MARKDOWN_VERSION;
+        console.info('[report-download] Markdown generado', {
+          elapsedMs: Math.round(performance.now() - generationStartedAt),
+          markdownChars: markdown.length,
+        });
+      } else {
+        twinData.ai_report_source = twinData.ai_report_source || 'cache';
+        console.info('[report-download] Usando markdown cacheado', {
+          markdownChars: markdown.length,
+          source: twinData.ai_report_source,
+        });
       }
 
-      // Descargar como archivo .md (más confiable que PDF)
-      const blob = new Blob([markdown], { type: 'text/markdown;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `Plan_Bienestar_${userData.name.replace(/\s+/g, '_')}.md`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
+      setGeneratedMarkdown(markdown);
+      await new Promise((resolve) => setTimeout(resolve, 350));
+      await waitForReportAssets(printableReportRef.current);
 
-      setIsGeneratingPDF(false);
+      try {
+        await downloadPdfFromServer(
+          printableReportRef.current,
+          getSafeReportName(reportUserData, twinData, answers)
+        );
+        setIsGeneratingPDF(false);
+        return;
+      } catch (pdfError) {
+        console.warn('[report-pdf] Backend PDF fallo, usando impresion del navegador', {
+          elapsedMs: Math.round(performance.now() - downloadStartedAt),
+          error: pdfError.message,
+        });
+      }
+
+      console.info('[report-print] Abriendo dialogo de impresion', {
+        totalElapsedMs: Math.round(performance.now() - downloadStartedAt),
+        markdownChars: markdown.length,
+        reason: 'server_pdf_fallback',
+      });
+      handlePrintReport();
     } catch (err) {
-      console.error("Error al generar informe:", err);
+      console.error('[report-download] Error al generar informe', {
+        elapsedMs: Math.round(performance.now() - downloadStartedAt),
+        error: err.message,
+        stack: err.stack,
+      });
       alert("Hubo un error al generar tu informe: " + err.message);
       setIsGeneratingPDF(false);
     }
@@ -762,8 +1001,40 @@ export default function DigitalTwinDashboard() {
             Preparando tu informe...
           </h2>
           <p style={{ color: '#6b7280' }}>Esto tomará unos segundos.</p>
+          {import.meta.env.DEV && (
+            <p style={{
+              marginTop: 10,
+              color: '#64748b',
+              fontSize: '0.78rem',
+              fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
+            }}>
+              DEV · Fuente narrativa: {reportSourceLabel}
+            </p>
+          )}
         </div>
       )}
+
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'fixed',
+          left: '-10000px',
+          top: 0,
+          width: 794,
+          pointerEvents: 'none',
+          opacity: 0,
+          zIndex: -1,
+        }}
+      >
+        {generatedMarkdown && (
+          <PremiumReportTemplate
+            ref={printableReportRef}
+            markdownContent={generatedMarkdown}
+            userData={{ ...(twinData.raw_answers || {}), ...(answers || {}), ...(userData || {}) }}
+            twinData={twinData}
+          />
+        )}
+      </div>
 
       {/* ── Header: Gemelo Digital ── */}
       <motion.div

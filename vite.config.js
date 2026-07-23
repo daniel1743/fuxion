@@ -281,6 +281,10 @@ const vercelApiDevPlugin = () => ({
 		server.middlewares.use('/api/generate-report', async (req, res) => {
 			await runApiHandler(req, res, './api/generate-report.js');
 		});
+
+		server.middlewares.use('/api/render-report-pdf', async (req, res) => {
+			await runApiHandler(req, res, './api/render-report-pdf.js');
+		});
 	}
 });
 

@@ -14,6 +14,432 @@ import DigitalTwinDashboard from '@/components/wellness-plan/DigitalTwinDashboar
 import ActivePlanDashboard from '@/components/wellness-plan/ActivePlanDashboard';
 import EvaluationLimitBadge from '@/components/wellness-plan/EvaluationLimitBadge';
 import { useAuth } from '@/context/AuthContext';
+import { QUESTION_ORDER } from '@/lib/engine/questionTree';
+
+const IS_DEVELOPMENT = import.meta.env.DEV;
+
+const DEV_SCENARIOS = {
+  normal_control: {
+    label: 'Normal control',
+    desc: 'Perfil equilibrado para validar un informe sano.',
+    answers: {
+      name: 'Perfil Control Desarrollo',
+      age: 38,
+      gender: 'male',
+      weight: 76,
+      height: 176,
+      waistCm: 84,
+      activityLevel: 'moderate',
+      exerciseMinutesPerWeek: 180,
+      dailySteps: 8500,
+      sedentaryHours: 6,
+      sleepHours: 7.4,
+      sleepQuality: 4,
+      awakeningsPerNight: 1,
+      screensBeforeBed: false,
+      waterLiters: 2.5,
+      fruitVegServings: 4,
+      ultraprocessedPerWeek: 2,
+      bristolType: 4,
+      bowelFrequency: 'daily',
+      bloating: 'sometimes',
+      stressLevel: 4,
+      moodLevel: 4,
+      sunExposure: 'some',
+      smokes: false,
+      alcoholPerWeek: 1,
+      coffeePerDay: 2,
+      goal: 'maintain',
+      knownConditions: 'Sin condiciones relevantes declaradas.',
+    },
+  },
+  muy_delgada_malos_habitos: {
+    label: 'Muy delgada, malos hábitos',
+    desc: 'Bajo peso, sueño pobre, mala hidratación y digestión lenta.',
+    answers: {
+      name: 'Perfil Delgado Riesgo Desarrollo',
+      age: 29,
+      gender: 'female',
+      weight: 46,
+      height: 168,
+      waistCm: 64,
+      activityLevel: 'sedentary',
+      exerciseMinutesPerWeek: 0,
+      dailySteps: 2300,
+      sedentaryHours: 10,
+      sleepHours: 5.4,
+      sleepQuality: 2,
+      awakeningsPerNight: 3,
+      screensBeforeBed: true,
+      waterLiters: 0.5,
+      fruitVegServings: 1,
+      ultraprocessedPerWeek: 9,
+      bristolType: 2,
+      bowelFrequency: 'few_per_week',
+      bloating: 'often',
+      stressLevel: 8,
+      moodLevel: 2,
+      sunExposure: 'none',
+      smokes: true,
+      alcoholPerWeek: 3,
+      coffeePerDay: 4,
+      goal: 'gain',
+      knownConditions: 'Bajo peso percibido, fatiga frecuente y tránsito intestinal lento.',
+    },
+  },
+  sobrepeso_moderado: {
+    label: 'Sobrepeso moderado',
+    desc: 'Riesgo metabólico medio con margen claro de mejora.',
+    answers: {
+      name: 'Perfil Sobrepeso Desarrollo',
+      age: 42,
+      gender: 'male',
+      weight: 92,
+      height: 173,
+      waistCm: 105,
+      activityLevel: 'light',
+      exerciseMinutesPerWeek: 60,
+      dailySteps: 4600,
+      sedentaryHours: 9,
+      sleepHours: 6.2,
+      sleepQuality: 3,
+      awakeningsPerNight: 2,
+      screensBeforeBed: true,
+      waterLiters: 1,
+      fruitVegServings: 2,
+      ultraprocessedPerWeek: 6,
+      bristolType: 3,
+      bowelFrequency: 'daily',
+      bloating: 'sometimes',
+      stressLevel: 6,
+      moodLevel: 3,
+      sunExposure: 'some',
+      smokes: false,
+      alcoholPerWeek: 4,
+      coffeePerDay: 3,
+      goal: 'lose',
+      knownConditions: 'Aumento de cintura, cansancio vespertino y baja regularidad de entrenamiento.',
+    },
+  },
+  obesidad_alto_riesgo: {
+    label: 'Obesidad alto riesgo',
+    desc: 'Caso exigente para revisar alertas, prioridades y tono responsable.',
+    answers: {
+      name: 'Perfil Riesgo Alto Desarrollo',
+      age: 51,
+      gender: 'male',
+      weight: 118,
+      height: 170,
+      waistCm: 124,
+      activityLevel: 'sedentary',
+      exerciseMinutesPerWeek: 0,
+      dailySteps: 1800,
+      sedentaryHours: 12,
+      sleepHours: 5.2,
+      sleepQuality: 1,
+      awakeningsPerNight: 4,
+      screensBeforeBed: true,
+      waterLiters: 0.5,
+      fruitVegServings: 0,
+      ultraprocessedPerWeek: 11,
+      bristolType: 6,
+      bowelFrequency: 'multiple_daily',
+      bloating: 'always',
+      stressLevel: 9,
+      moodLevel: 2,
+      sunExposure: 'none',
+      smokes: true,
+      alcoholPerWeek: 8,
+      coffeePerDay: 5,
+      goal: 'lose',
+      knownConditions: 'Hipertensión declarada, ronquidos frecuentes, cansancio matinal y perímetro abdominal elevado.',
+    },
+  },
+  adulto_mayor_obeso: {
+    label: 'Adulto mayor obeso',
+    desc: 'Más edad, sedentarismo, tránsito lento y prioridad de seguridad.',
+    answers: {
+      name: 'Perfil Adulto Mayor Desarrollo',
+      age: 68,
+      gender: 'female',
+      weight: 104,
+      height: 165,
+      waistCm: 118,
+      activityLevel: 'sedentary',
+      exerciseMinutesPerWeek: 0,
+      dailySteps: 1500,
+      sedentaryHours: 11,
+      sleepHours: 5.8,
+      sleepQuality: 2,
+      awakeningsPerNight: 4,
+      screensBeforeBed: true,
+      waterLiters: 1,
+      fruitVegServings: 1,
+      ultraprocessedPerWeek: 5,
+      bristolType: 2,
+      bowelFrequency: 'less',
+      bloating: 'often',
+      stressLevel: 7,
+      moodLevel: 2,
+      sunExposure: 'none',
+      smokes: false,
+      alcoholPerWeek: 0,
+      coffeePerDay: 2,
+      goal: 'lose',
+      knownConditions: 'Dolor articular, presión alta controlada y baja tolerancia al ejercicio.',
+    },
+  },
+  digestion_critica: {
+    label: 'Digestión crítica',
+    desc: 'Peso medio, pero digestión e hidratación muy comprometidas.',
+    answers: {
+      name: 'Perfil Digestivo Desarrollo',
+      age: 35,
+      gender: 'female',
+      weight: 70,
+      height: 170,
+      waistCm: 82,
+      activityLevel: 'light',
+      exerciseMinutesPerWeek: 45,
+      dailySteps: 4200,
+      sedentaryHours: 9,
+      sleepHours: 6,
+      sleepQuality: 2,
+      awakeningsPerNight: 3,
+      screensBeforeBed: true,
+      waterLiters: 0.5,
+      fruitVegServings: 1,
+      ultraprocessedPerWeek: 8,
+      bristolType: 1,
+      bowelFrequency: 'less',
+      bloating: 'always',
+      stressLevel: 7,
+      moodLevel: 3,
+      sunExposure: 'some',
+      smokes: false,
+      alcoholPerWeek: 2,
+      coffeePerDay: 4,
+      goal: 'maintain',
+      knownConditions: 'Distensión abdominal diaria, estreñimiento marcado y baja tolerancia a ciertos alimentos.',
+    },
+  },
+};
+
+const DEV_SEVERITIES = {
+  base: { label: 'Base', desc: 'Usa el perfil tal como está definido.' },
+  medio: { label: 'Más grave', desc: 'Empeora hábitos y métricas clave.' },
+  severo: { label: 'Extremo', desc: 'Caso límite para probar alertas y fallback.' },
+};
+
+function clamp(value, min, max) {
+  return Math.min(max, Math.max(min, value));
+}
+
+function applyDevSeverity(baseAnswers, severity) {
+  const next = { ...baseAnswers };
+
+  if (severity === 'medio' || severity === 'severo') {
+    next.weight = Math.round(next.weight * 1.04);
+    next.waistCm = Math.round((next.waistCm || 80) + 4);
+    next.dailySteps = Math.max(500, Math.round((next.dailySteps || 3000) - 1000));
+    next.sedentaryHours = clamp((next.sedentaryHours || 8) + 1, 1, 16);
+    next.sleepHours = clamp(Number((Number(next.sleepHours || 7) - 0.7).toFixed(1)), 3, 10);
+    next.sleepQuality = clamp((next.sleepQuality || 3) - 1, 1, 5);
+    next.awakeningsPerNight = clamp((next.awakeningsPerNight || 0) + 1, 0, 8);
+    next.waterLiters = clamp(Number((Number(next.waterLiters || 1) - 0.5).toFixed(2)), 0.25, 3.5);
+    next.fruitVegServings = clamp((next.fruitVegServings || 0) - 1, 0, 8);
+    next.ultraprocessedPerWeek = clamp((next.ultraprocessedPerWeek || 0) + 2, 0, 21);
+    next.stressLevel = clamp((next.stressLevel || 5) + 1, 1, 10);
+    next.moodLevel = clamp((next.moodLevel || 3) - 1, 1, 5);
+    next.screensBeforeBed = true;
+  }
+
+  if (severity === 'severo') {
+    next.weight = Math.round(next.weight * 1.06);
+    next.waistCm = Math.round((next.waistCm || 80) + 6);
+    next.dailySteps = Math.max(300, Math.round((next.dailySteps || 2000) - 1200));
+    next.sedentaryHours = clamp((next.sedentaryHours || 10) + 2, 1, 16);
+    next.sleepHours = clamp(Number((Number(next.sleepHours || 6) - 0.8).toFixed(1)), 3, 10);
+    next.waterLiters = clamp(Number((Number(next.waterLiters || 0.75) - 0.25).toFixed(2)), 0.25, 3.5);
+    next.ultraprocessedPerWeek = clamp((next.ultraprocessedPerWeek || 0) + 3, 0, 21);
+    next.stressLevel = clamp((next.stressLevel || 7) + 1, 1, 10);
+    next.moodLevel = clamp((next.moodLevel || 2) - 1, 1, 5);
+    next.smokes = next.smokes || next.age < 60;
+    next.bloating = next.bloating === 'never' ? 'sometimes' : next.bloating;
+    next.knownConditions = `${next.knownConditions || ''} Caso extremo de desarrollo: priorizar tono prudente, alertas y recomendaciones progresivas.`.trim();
+  }
+
+  return next;
+}
+
+function buildDevAnswers(scenarioId, severity) {
+  const scenario = DEV_SCENARIOS[scenarioId] || DEV_SCENARIOS.normal_control;
+  return applyDevSeverity(scenario.answers, severity);
+}
+
+function DevScenarioPanel({ onLoadQuestionnaire, onGenerateReport, isGenerating }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [scenarioId, setScenarioId] = useState('sobrepeso_moderado');
+  const [severity, setSeverity] = useState('base');
+
+  if (!IS_DEVELOPMENT) return null;
+
+  const scenario = DEV_SCENARIOS[scenarioId];
+
+  return (
+    <div
+      style={{
+        position: 'fixed',
+        right: 18,
+        bottom: 18,
+        width: isOpen ? 'min(420px, calc(100vw - 36px))' : 'auto',
+        zIndex: 80,
+        fontFamily: 'Inter, system-ui, sans-serif',
+      }}
+    >
+      {!isOpen ? (
+        <button
+          type="button"
+          onClick={() => setIsOpen(true)}
+          style={{
+            border: '1px solid rgba(20,184,166,0.35)',
+            background: '#0f766e',
+            color: 'white',
+            borderRadius: 999,
+            padding: '11px 16px',
+            fontWeight: 800,
+            fontSize: '0.78rem',
+            letterSpacing: '0.04em',
+            boxShadow: '0 16px 38px rgba(15,118,110,0.28)',
+            cursor: 'pointer',
+          }}
+        >
+          DEV perfiles
+        </button>
+      ) : (
+        <section
+          style={{
+            background: 'rgba(255,255,255,0.97)',
+            border: '1px solid rgba(20,184,166,0.25)',
+            borderRadius: 14,
+            boxShadow: '0 24px 70px rgba(15,23,42,0.18)',
+            padding: 16,
+            backdropFilter: 'blur(12px)',
+          }}
+        >
+          <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, alignItems: 'flex-start', marginBottom: 12 }}>
+            <div>
+              <div style={{ color: '#0f766e', fontSize: '0.68rem', fontWeight: 900, letterSpacing: '0.12em', textTransform: 'uppercase' }}>
+                Solo desarrollo
+              </div>
+              <h3 style={{ margin: '4px 0 0', color: '#0f172a', fontSize: '1rem' }}>
+                Perfiles rápidos de prueba
+              </h3>
+            </div>
+            <button
+              type="button"
+              onClick={() => setIsOpen(false)}
+              aria-label="Cerrar panel de desarrollo"
+              style={{
+                border: '1px solid #e5e7eb',
+                background: 'white',
+                color: '#475569',
+                borderRadius: 8,
+                width: 30,
+                height: 30,
+                cursor: 'pointer',
+                fontWeight: 800,
+              }}
+            >
+              x
+            </button>
+          </div>
+
+          <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 800, color: '#334155', marginBottom: 6 }}>
+            Caso clínico simulado
+          </label>
+          <select
+            value={scenarioId}
+            onChange={(event) => setScenarioId(event.target.value)}
+            style={{
+              width: '100%',
+              border: '1px solid #dbe4ee',
+              borderRadius: 10,
+              padding: '10px 12px',
+              color: '#0f172a',
+              marginBottom: 10,
+              background: 'white',
+            }}
+          >
+            {Object.entries(DEV_SCENARIOS).map(([id, item]) => (
+              <option key={id} value={id}>{item.label}</option>
+            ))}
+          </select>
+
+          <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 800, color: '#334155', marginBottom: 6 }}>
+            Gravedad opcional
+          </label>
+          <select
+            value={severity}
+            onChange={(event) => setSeverity(event.target.value)}
+            style={{
+              width: '100%',
+              border: '1px solid #dbe4ee',
+              borderRadius: 10,
+              padding: '10px 12px',
+              color: '#0f172a',
+              marginBottom: 10,
+              background: 'white',
+            }}
+          >
+            {Object.entries(DEV_SEVERITIES).map(([id, item]) => (
+              <option key={id} value={id}>{item.label}</option>
+            ))}
+          </select>
+
+          <p style={{ margin: '0 0 14px', color: '#64748b', fontSize: '0.78rem', lineHeight: 1.45 }}>
+            {scenario.desc} {DEV_SEVERITIES[severity].desc}
+          </p>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+            <button
+              type="button"
+              onClick={() => onLoadQuestionnaire(scenarioId, severity)}
+              disabled={isGenerating}
+              style={{
+                border: '1px solid #99f6e4',
+                background: '#f0fdfa',
+                color: '#0f766e',
+                borderRadius: 10,
+                padding: '11px 12px',
+                fontWeight: 850,
+                cursor: isGenerating ? 'wait' : 'pointer',
+              }}
+            >
+              Cargar formulario
+            </button>
+            <button
+              type="button"
+              onClick={() => onGenerateReport(scenarioId, severity)}
+              disabled={isGenerating}
+              style={{
+                border: '1px solid #0f766e',
+                background: '#0f766e',
+                color: 'white',
+                borderRadius: 10,
+                padding: '11px 12px',
+                fontWeight: 850,
+                cursor: isGenerating ? 'wait' : 'pointer',
+              }}
+            >
+              {isGenerating ? 'Generando...' : 'Generar informe'}
+            </button>
+          </div>
+        </section>
+      )}
+    </div>
+  );
+}
 
 // ── Vista de Carga / Análisis Conversacional ─────────────────
 function AnalysisScreen({ onDone, userName }) {
@@ -295,8 +721,17 @@ function LandingView({ onStart, user, isAuthenticated }) {
 // ── Página Contenedora ────────────────────────────────────────
 export default function PersonalizedPlanPage() {
   const wellnessTwinContextData = useWellnessTwin();
-  const { hasCompletedEvaluation, activePlan, answers } = wellnessTwinContextData;
+  const {
+    hasCompletedEvaluation,
+    activePlan,
+    setAnswers,
+    setCurrentQuestionId,
+    setCompletedQuestions,
+    submitEvaluation,
+    resetEvaluation,
+  } = wellnessTwinContextData;
   const { user, isAuthenticated } = useAuth();
+  const [isDevGenerating, setIsDevGenerating] = useState(false);
   
   // Views: 'landing' | 'questionnaire' | 'analyzing' | 'dashboard' | 'active-plan'
   const determineInitialView = () => {
@@ -310,6 +745,62 @@ export default function PersonalizedPlanPage() {
   const handleStartQuestionnaire = useCallback(() => setView('questionnaire'), []);
   const handleQuestionnaireComplete = useCallback(() => setView('analyzing'), []);
   const handleAnalysisDone = useCallback(() => setView('dashboard'), []);
+
+  const handleLoadDevScenario = useCallback((scenarioId, severity) => {
+    const devAnswers = buildDevAnswers(scenarioId, severity);
+    resetEvaluation();
+    setAnswers(devAnswers);
+    setCompletedQuestions([]);
+    setCurrentQuestionId('q_name');
+    setView('questionnaire');
+    console.info('[dev-plan] Perfil cargado en cuestionario', {
+      scenarioId,
+      severity,
+      answers: devAnswers,
+    });
+  }, [resetEvaluation, setAnswers, setCompletedQuestions, setCurrentQuestionId]);
+
+  const handleGenerateDevScenario = useCallback(async (scenarioId, severity) => {
+    const devAnswers = buildDevAnswers(scenarioId, severity);
+    const startedAt = performance.now();
+
+    setIsDevGenerating(true);
+    resetEvaluation();
+    setAnswers(devAnswers);
+    setCompletedQuestions(QUESTION_ORDER);
+    setCurrentQuestionId(null);
+    setView('analyzing');
+
+    console.info('[dev-plan] Generando evaluación con perfil rápido', {
+      scenarioId,
+      severity,
+      answers: devAnswers,
+    });
+
+    try {
+      await submitEvaluation(devAnswers);
+      console.info('[dev-plan] Evaluación dev completada', {
+        scenarioId,
+        severity,
+        elapsedMs: Math.round(performance.now() - startedAt),
+      });
+    } catch (error) {
+      console.error('[dev-plan] Falló la evaluación dev', {
+        scenarioId,
+        severity,
+        elapsedMs: Math.round(performance.now() - startedAt),
+        error: error?.message || String(error),
+      });
+    } finally {
+      setIsDevGenerating(false);
+    }
+  }, [
+    resetEvaluation,
+    setAnswers,
+    setCompletedQuestions,
+    setCurrentQuestionId,
+    submitEvaluation,
+  ]);
 
   // Sync state if it loads asynchronously
   React.useEffect(() => {
@@ -359,6 +850,11 @@ export default function PersonalizedPlanPage() {
           </motion.div>
         )}
       </AnimatePresence>
+      <DevScenarioPanel
+        onLoadQuestionnaire={handleLoadDevScenario}
+        onGenerateReport={handleGenerateDevScenario}
+        isGenerating={isDevGenerating}
+      />
     </div>
   );
 }

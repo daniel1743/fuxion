@@ -126,6 +126,13 @@ Este informe tiene fines informativos y educativos. No constituye diagnóstico m
 }
 
 export async function generatePremiumReportContent(userData, twinData) {
+  const startedAt = performance.now();
+  console.info('[report] Generacion iniciada', {
+    hasTwinData: Boolean(twinData),
+    hasCachedMarkdown: Boolean(twinData?.ai_report_markdown),
+    userName: userData?.name || twinData?.raw_answers?.name || null,
+  });
+
   // ── Pipeline moderno: 6 etapas con validación clínica ─────────
   try {
     const pipelineResult = await runAiReportPipeline(
@@ -133,12 +140,33 @@ export async function generatePremiumReportContent(userData, twinData) {
       userData,
       { useCache: true }
     );
+    console.info('[report] Pipeline completado', {
+      source: pipelineResult.source,
+      latencyMs: pipelineResult.latencyMs,
+      validationScore: pipelineResult.validation?.score,
+      totalElapsedMs: Math.round(performance.now() - startedAt),
+      errors: pipelineResult.execution_log?.errors || [],
+      warnings: pipelineResult.execution_log?.warnings || [],
+    });
+    if (pipelineResult.execution_log?.stages?.length) {
+      console.table(pipelineResult.execution_log.stages);
+    }
+    if (twinData) {
+      twinData.ai_report_source = pipelineResult.source;
+      twinData.ai_report_validation = pipelineResult.validation;
+      twinData.ai_report_execution_log = pipelineResult.execution_log;
+    }
     return pipelineResult.markdown;
   } catch (err) {
-    console.error('Pipeline falló, usando fallback local:', err.message);
+    console.error('[report] Pipeline fallo, usando fallback local', {
+      elapsedMs: Math.round(performance.now() - startedAt),
+      error: err.message,
+      stack: err.stack,
+    });
   }
 
   // ── Fallback: reporte local sin IA ────────────────────────────
+  const fallbackStartedAt = performance.now();
   const { biometrics, iib } = twinData.twin_state;
   const rawAnswers = twinData.raw_answers || {};
   const profile = twinData.behavior_profile || {};
@@ -156,7 +184,7 @@ export async function generatePremiumReportContent(userData, twinData) {
     activityLevel: userData.activityLevel || rawAnswers.activityLevel || profile.activity_level || 'sin especificar',
   };
 
-  return buildLocalPremiumReport({
+  const fallbackMarkdown = buildLocalPremiumReport({
     reportUser,
     biometrics,
     iib,
@@ -167,4 +195,22 @@ export async function generatePremiumReportContent(userData, twinData) {
     adaptiveLevers,
     recommendations: twinData.recommendations || [],
   });
+
+  console.info('[report] Fallback local completado', {
+    fallbackElapsedMs: Math.round(performance.now() - fallbackStartedAt),
+    totalElapsedMs: Math.round(performance.now() - startedAt),
+    markdownChars: fallbackMarkdown.length,
+  });
+  if (twinData) {
+    twinData.ai_report_source = 'local-fallback';
+    twinData.ai_report_validation = {
+      valid: false,
+      status: 'local_fallback',
+      score: 0,
+      errors: ['Fallback local de AiReportGenerator activado.'],
+      warnings: [],
+    };
+  }
+
+  return fallbackMarkdown;
 }

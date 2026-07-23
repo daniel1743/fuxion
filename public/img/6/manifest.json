@@ -1,0 +1,872 @@
+[
+  {
+    "filename": "reestructuracion-expectativas.webp",
+    "files": [
+      "reestructuracion-expectativas.webp"
+    ],
+    "prompt": "Cinematic 3D neuroscience visualization of expectation restructuring inside the brain. An anatomically precise sagittal brain section reveals an intensely active amygdala sending rigid amber alarm pathways toward the stress-response centers. Above it, the prefrontal cortex forms several new, flexible cyan neural routes that reinterpret the incoming signal before it reaches the hypothalamus and brainstem. The original threat pathway remains visible but becomes less dominant as broader cortical networks integrate memory, context and realistic prediction. Hyper-detailed cerebral folds, white-matter fibers, synaptic junctions and subtle vascular structures, deep navy clinical background, dramatic volumetric lighting, premium international neuroscience-magazine aesthetic. Communicate cognitive reframing without erasing emotion or promising immediate relief. No therapist, no patient, no facial portrait, no chains, no written concepts, no arrows, no labels, no logos, no readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:22:27.889Z",
+    "resolution": "1344x768",
+    "duration": 20700,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "reestructuracion-expectativas",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 81944,
+      "webBytes": 47276,
+      "reductionPercent": 42,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "musicoterapia-sistema-nervioso.webp",
+    "files": [
+      "musicoterapia-sistema-nervioso.webp"
+    ],
+    "prompt": "Ultra-detailed cinematic medical rendering of sound traveling through the auditory and emotional networks of the nervous system. A close anatomical cutaway begins at the outer ear and cochlea, where elegant concentric sound waves activate delicate sensory hair cells. Fine cyan impulses continue through the auditory nerve and brainstem toward the auditory cortex, while restrained amber connections extend toward the hippocampus, amygdala and prefrontal regions. Subtle rhythmic pulses spread across both cerebral hemispheres, accompanied by a calm heart–vagus pathway in the lower composition. Realistic neural tissue, microscopic synapses, translucent nerve fibers and sophisticated depth, using cobalt blue, violet and warm gold against a dark clinical background. Premium biomedical editorial style, scientifically inspired rather than decorative. No musician, headphones, concert setting, musical notes, staff notation, labels, logos, interfaces or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:22:47.678Z",
+    "resolution": "1344x768",
+    "duration": 19786,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "musicoterapia-sistema-nervioso",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 97954,
+      "webBytes": 54388,
+      "reductionPercent": 44,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "forest-bathing-respuesta-interna.webp",
+    "files": [
+      "forest-bathing-respuesta-interna.webp"
+    ],
+    "prompt": "Cinematic 3D medical-scientific visualization of the internal sensory response associated with quiet immersion in a forest environment, without depicting a person walking among trees. A detailed side cutaway of the head and upper torso reveals the retina, optic pathways, olfactory epithelium, olfactory bulb, limbic structures, brainstem and autonomic nerves. Soft green and teal sensory particles inspired by diffuse foliage, filtered daylight and natural aromatic compounds enter through the eyes and nose, then become restrained neural signals moving toward the prefrontal cortex and vagal pathways. The amygdala remains anatomically visible but less visually dominant than the integrated sensory network. Deep blue background with subtle botanical bokeh, realistic tissue textures, cinematic volumetric light and premium environmental-health magazine rendering. No landscape scene, no mystical energy, no exaggerated molecules, no text, labels, arrows or logos.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:23:06.294Z",
+    "resolution": "1344x768",
+    "duration": 18613,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "forest-bathing-respuesta-interna",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 71424,
+      "webBytes": 38222,
+      "reductionPercent": 46,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "diario-gratitud-cerebro.webp",
+    "files": [
+      "diario-gratitud-cerebro.webp"
+    ],
+    "prompt": "High-end cinematic neuroscience illustration of attention and memory processes engaged during a gratitude-writing practice. An anatomically accurate brain appears in a three-quarter cutaway, with several dim stress-related signals emerging from the amygdala while a focused amber network develops across the medial prefrontal cortex, anterior cingulate and hippocampus. Small memory fragments represented as abstract luminous neural clusters are selected from a wider field and integrated into organized pathways, suggesting deliberate attention to meaningful experiences without portraying guaranteed emotional change. Realistic neurons, dendrites, white-matter fibers, cerebral vasculature and layered synaptic depth. Dark midnight-blue scientific environment, refined violet and warm-gold highlights, shallow cinematic focus and premium psychology-journal composition. No person writing, no notebook, no inspirational quotations, no hearts, no smiling symbols, no labels, no logos and no readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:23:31.864Z",
+    "resolution": "1344x768",
+    "duration": 25567,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "diario-gratitud-cerebro",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 79624,
+      "webBytes": 44558,
+      "reductionPercent": 44,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "tai-chi-qi-gong-equilibrio.webp",
+    "files": [
+      "tai-chi-qi-gong-equilibrio.webp"
+    ],
+    "prompt": "Premium sports-medicine illustration using a polished cobalt-blue technical aesthetic. A dynamic anatomical model performs a slow, balanced Tai Chi transition, rendered as a precise skeleton with selected muscle groups, joints and fascial chains visible rather than as a photographic person. The vestibular system inside the inner ear, cerebellum, spinal cord, diaphragm and major proprioceptive nerves are highlighted through subtle cyan pathways. Warm amber activation follows the supporting leg, pelvic stabilizers and respiratory muscles, while the extended arms show controlled muscular coordination rather than force. A faint medical grid and elegant pulse waveform create depth in the background without becoming an infographic. Crisp rim lighting, realistic biomechanics, premium rehabilitation-magazine quality. No exposed skin, no mystical energy, no outdoor park, no martial-arts costume, no chakras, no labels, logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:23:49.944Z",
+    "resolution": "1344x768",
+    "duration": 18078,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "tai-chi-qi-gong-equilibrio",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 72752,
+      "webBytes": 39964,
+      "reductionPercent": 45,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "aromaterapia-lavanda-olfato.webp",
+    "files": [
+      "aromaterapia-lavanda-olfato.webp"
+    ],
+    "prompt": "Cinematic microscopic-to-anatomical visualization of lavender aroma traveling through the olfactory system. In the foreground, restrained violet aromatic particles enter a highly detailed nasal cavity and interact with the olfactory epithelium, where delicate receptor structures activate fine neural filaments. The composition transitions smoothly toward the olfactory bulb and deeper brain structures, revealing connections with the amygdala, hippocampus and prefrontal cortex in realistic three-dimensional anatomy. Lavender flowers appear only as a subtle blurred botanical reference at the far edge, while the internal pathway remains the visual focus. Rich navy background, violet, cyan and warm amber illumination, macro tissue textures, volumetric depth and sophisticated clinical-magazine styling. Present the process as a complementary sensory mechanism without exaggerated therapeutic effects. No diffuser, spa room, person smelling oil, branded bottle, floating claims, labels, arrows, logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:24:11.685Z",
+    "resolution": "1344x768",
+    "duration": 21738,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "aromaterapia-lavanda-olfato",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 67616,
+      "webBytes": 34588,
+      "reductionPercent": 49,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "emdr-desensibilizacion.webp",
+    "files": [
+      "emdr-desensibilizacion.webp"
+    ],
+    "prompt": "Sophisticated cinematic neuroscience rendering of bilateral sensory processing associated with EMDR. A frontal anatomical cutaway reveals both eyes, optic nerves, thalamic pathways, corpus callosum, hippocampi, amygdalae and prefrontal regions. Alternating cyan and amber light pulses travel rhythmically from left to right across the visual pathways, then converge through interhemispheric connections around a fragmented memory network represented as restrained clusters of neural activity. The memory remains visible while its surrounding alarm signals become more organized and integrated, avoiding any suggestion of instant erasure. Hyperreal cerebral tissue, microscopic synapses, detailed nerve fibers and subtle blood vessels, set against a dark cobalt clinical environment with dramatic side lighting. Premium trauma-therapy editorial aesthetic, no distressed patient, no traumatic event imagery, no therapist’s hand, no flashing interface, no arrows, labels, logos or text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:24:28.895Z",
+    "resolution": "1344x768",
+    "duration": 17202,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "emdr-desensibilizacion",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 75218,
+      "webBytes": 43410,
+      "reductionPercent": 42,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "biofeedback-hrv-corazon-cerebro.webp",
+    "files": [
+      "biofeedback-hrv-corazon-cerebro.webp"
+    ],
+    "prompt": "Ultra-detailed 3D medical visualization of heart-rate variability biofeedback as a coordinated heart–brain–breathing system. The composition centers on a realistic heart connected through the vagus nerve to the brainstem and higher autonomic regions, with the diaphragm and lungs forming a second rhythmic layer below. Alternating warm and cool pulses move through the cardiac conduction system in a naturally variable pattern synchronized with expansion and relaxation of the diaphragm. A subtle waveform appears as light embedded within the dark background, decorative and non-numerical rather than a readable monitor. Realistic myocardial fibers, coronary vessels, nerve branches and respiratory anatomy, cobalt-blue technical atmosphere, amber cardiac illumination and cinematic volumetric depth. Premium cardiology and neuroscience magazine quality. No wearable device, no clinician, no screen values, no diagnostic claim, no labels, logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:24:47.781Z",
+    "resolution": "1344x768",
+    "duration": 18825,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "biofeedback-hrv-corazon-cerebro",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 90610,
+      "webBytes": 52988,
+      "reductionPercent": 42,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "mindfulness-alimentacion-interna.webp",
+    "files": [
+      "mindfulness-alimentacion-interna.webp"
+    ],
+    "prompt": "Cinematic 3D medical-scientific illustration of mindful eating through the internal gut–brain pathway. A layered cutaway connects the mouth, taste receptors, vagus nerve, stomach, intestinal tract, insular cortex and prefrontal regions within one coherent composition. Food texture activates oral sensory receptors in the upper section, while gradual stomach expansion stimulates subtle mechanoreceptors and sends measured cyan signals through the vagus nerve toward the brainstem and interoceptive cortex. Warm amber activity in the prefrontal network suggests sustained attention to taste, fullness and bodily cues without implying appetite suppression. Highly realistic mucosal surfaces, nerve fibers, muscular stomach layers and cerebral anatomy, deep navy background, cinematic teal and gold illumination, premium digestive-neuroscience editorial rendering. No diner, plate, kitchen, cutlery, weight-loss symbolism, calorie numbers, arrows, labels, logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:25:09.384Z",
+    "resolution": "1344x768",
+    "duration": 21599,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "mindfulness-alimentacion-interna",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 67348,
+      "webBytes": 34554,
+      "reductionPercent": 49,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "escaner-corporal-interocepcion.webp",
+    "files": [
+      "escaner-corporal-interocepcion.webp"
+    ],
+    "prompt": "Premium medical-magazine visualization of interoception during a body-scan practice. A cobalt-blue anatomical model lies in a neutral horizontal position against a dark technical background, showing the brain, spinal cord, peripheral nerves, heart, lungs, diaphragm and major muscle groups with precise proportions. Soft points of sensory activity begin at the feet and progress gradually through the legs, abdomen, chest, hands, shoulders and face, connected by fine cyan pathways toward the spinal cord, thalamus, somatosensory cortex and insula. The sequence should feel calm and methodical, not like pain or disease mapping. Crisp 3D anatomy, subtle internal circulation, refined rim lighting and layered cinematic depth inspired by an international rehabilitation journal. No photographic person, no meditation room, no transparent skin, no glowing chakras, no mystical aura, no written body parts, no labels, logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:25:29.048Z",
+    "resolution": "1344x768",
+    "duration": 19640,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "escaner-corporal-interocepcion",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 81180,
+      "webBytes": 44224,
+      "reductionPercent": 46,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "dilucion-bebidas-cordials.webp",
+    "files": [
+      "dilucion-bebidas-cordials.webp"
+    ],
+    "prompt": "Cinematic biomedical visualization of a diluted flavored beverage entering the digestive and circulatory systems. A transparent laboratory-style vessel releases a pale, water-rich liquid containing widely dispersed flavor particles into a detailed stomach cutaway. The fluid then moves toward the small intestine, where water molecules pass through realistic intestinal villi into nearby capillaries, while the dissolved particles remain visually sparse and secondary. Use crisp molecular-scale details, glossy gastric tissue, delicate microvilli, translucent plasma and layered vascular depth. The color should transition from a restrained amber tint in the stomach to clean cyan hydration within the bloodstream, emphasizing dilution without presenting it as plain water. Dark cobalt clinical background, dramatic edge lighting and premium nutrition-science magazine aesthetic. No person drinking, no commercial cordial bottle, no artificial brand colors, no sugar cubes, no numerical ratios, no labels, logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:25:49.083Z",
+    "resolution": "1344x768",
+    "duration": 20034,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "dilucion-bebidas-cordials",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 91780,
+      "webBytes": 52238,
+      "reductionPercent": 43,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "agua-en-cada-comida.webp",
+    "files": [
+      "agua-en-cada-comida.webp"
+    ],
+    "prompt": "High-end cinematic 3D rendering of water accompanying digestion across repeated meals, shown as an internal physiological sequence rather than a dining photograph. A central digestive tract displays three subtle stages of stomach filling across the day, connected by a continuous stream of clear cyan fluid entering the small intestine and bloodstream. Water passes through detailed intestinal villi into plasma, supporting circulation toward the kidneys, brain and working cells without exaggerated glowing effects. Recognizable food components remain secondary and partially digested within the stomach, establishing the meal context while hydration remains the hero. Realistic gastric folds, microvilli, capillary networks, renal tissue and cellular membranes, deep navy background, restrained amber organ tones and polished volumetric lighting. Premium clinical-nutrition editorial quality, no table setting, no person, no clocks, no repeated drinking glasses, no arrows, labels, logos or text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:26:12.569Z",
+    "resolution": "1344x768",
+    "duration": 23484,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "agua-en-cada-comida",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 74326,
+      "webBytes": 40996,
+      "reductionPercent": 45,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "leche-magra-alternativas-lacteas.webp",
+    "files": [
+      "leche-magra-alternativas-lacteas.webp"
+    ],
+    "prompt": "Sophisticated medical-scientific visualization of a pale dairy or fortified plant-based beverage delivering fluid and nutrients through the digestive tract. A creamy, unbranded liquid enters a realistic stomach and continues into a magnified small-intestinal section, where water, amino-acid structures and mineral-like particles move selectively through detailed villi into capillaries. The composition expands toward hydrated muscle and bone cells in the background, represented with realistic membranes and restrained molecular detail rather than exaggerated transformation. Use pearl white, soft blue and warm amber tones against a deep clinical background, with cinematic rim lighting, glossy tissue textures and premium nutrition-journal depth. Keep the beverage visually neutral so it could represent skim milk or an appropriate alternative. No carton, glass held by a person, cow imagery, plant branding, written nutrient claims, measuring numbers, labels, logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:26:31.391Z",
+    "resolution": "1344x768",
+    "duration": 18820,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "leche-magra-alternativas-lacteas",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 71816,
+      "webBytes": 39760,
+      "reductionPercent": 45,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "hidratacion-proactiva.webp",
+    "files": [
+      "hidratacion-proactiva.webp"
+    ],
+    "prompt": "Cinematic 3D whole-body medical visualization of maintaining hydration before an intense thirst signal develops. A semi-transparent anatomical silhouette reveals evenly perfused blood vessels, hydrated cells, kidneys, heart and brain, with a balanced stream of cyan fluid circulating throughout the body. In the hypothalamic region, the thirst-control network remains visible but only softly illuminated, while cellular compartments retain realistic volume and the bloodstream appears fluid rather than concentrated. A contrasting peripheral area shows the earliest subtle signs of reduced cellular water without presenting severe dehydration or injury. Precise organ placement, detailed capillaries, membranes and renal structures, cobalt-blue technical background, elegant amber highlights and strong cinematic depth. Premium preventive-health magazine rendering, no person holding water, no desert, no cracked skin, no alarm graphics, no percentage values, no arrows, labels, logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:26:50.147Z",
+    "resolution": "1344x768",
+    "duration": 18752,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "hidratacion-proactiva",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 84862,
+      "webBytes": 47688,
+      "reductionPercent": 44,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "monitoreo-visual-orina.webp",
+    "files": [
+      "monitoreo-visual-orina.webp"
+    ],
+    "prompt": "Clean cinematic medical visualization of urine concentration as an internal kidney-filtration process. A highly detailed kidney cutaway reveals the cortex, medulla, renal pyramids and collecting system, with one magnified nephron shown beside it in seamless editorial composition. Clear plasma enters the glomerulus, filtered fluid moves through the tubules and gradually becomes a pale straw-colored liquid within the collecting ducts. Several small translucent fluid droplets at the lower edge display a restrained progression from very pale yellow to deeper amber, presented without containers, labels or bodily context. Realistic microscopic membranes, capillaries and fluid reflections, dark cobalt laboratory background, warm gold highlights and crisp medical-journal rendering. The image should communicate visual hydration monitoring without diagnosing disease. No bathroom, no person, no toilet, no specimen cup, no red or brown fluid, no warning icons, no text, labels or logos.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:27:09.438Z",
+    "resolution": "1344x768",
+    "duration": 19287,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "monitoreo-visual-orina",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 72750,
+      "webBytes": 38610,
+      "reductionPercent": 47,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "electrolitos-sudor-extremo.webp",
+    "files": [
+      "electrolitos-sudor-extremo.webp"
+    ],
+    "prompt": "Ultra-detailed cinematic medical cutaway of skin, sweat glands, blood vessels and working skeletal muscle during heavy perspiration. Coiled eccrine glands release clear droplets toward the skin surface while sodium, potassium, magnesium and calcium are represented as distinct but unlabeled luminous particles moving with the fluid. Beneath the skin, capillaries and muscle fibers reveal changing water and electrolyte distribution, with controlled cyan and amber signals passing across cellular membranes. A magnified inset-like transition shows ion channels within a muscle cell without using circles, arrows or written explanations. Rich burgundy tissue, cobalt vascular tones, crisp microscopic texture, dramatic side lighting and premium sports-medicine magazine depth. No athlete portrait, no outdoor heat scene, no branded sports drink, no extreme collapse, no claims that every sweat loss requires supplementation, no chemical formulas, labels, logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:27:29.999Z",
+    "resolution": "1344x768",
+    "duration": 20559,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "electrolitos-sudor-extremo",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 152084,
+      "webBytes": 89306,
+      "reductionPercent": 41,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "monitoreo-farmacos-depletivos.webp",
+    "files": [
+      "monitoreo-farmacos-depletivos.webp"
+    ],
+    "prompt": "Sophisticated cinematic 3D medical visualization of clinical monitoring when medication may alter hydration or electrolyte balance. A central bloodstream carries a small number of neutral molecular structures past detailed kidneys, liver and body cells, while sodium- and potassium-like particles shift subtly between plasma, renal tubules and intracellular spaces. The kidney cutaway becomes the main focal point, revealing filtration, tubular transport and fluid movement with realistic anatomy. A restrained diagnostic-style light field in the background reflects several balanced biological signals but contains no numbers or written information. Use deep cobalt, teal, burgundy and amber tones, precise molecular scale, volumetric clinical lighting and premium pharmacology-journal rendering. Communicate careful surveillance and homeostasis rather than toxicity or organ damage. No pills, bottles, medication brands, physician, blood tubes, warning symbols, diseased organs, labels, logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:27:52.058Z",
+    "resolution": "1344x768",
+    "duration": 22050,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "monitoreo-farmacos-depletivos",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 76858,
+      "webBytes": 42932,
+      "reductionPercent": 44,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "nudging-botella-visible.webp",
+    "files": [
+      "nudging-botella-visible.webp"
+    ],
+    "prompt": "Conceptual premium health-magazine composition linking a visible water bottle with the body’s hydration network without showing a person. A clear reusable bottle stands prominently on a minimalist desk under focused cinematic light, its condensation and water reflections rendered with photographic realism. Behind it, an elegant cobalt-blue anatomical visualization reveals the brain, heart, kidneys, blood vessels and hydrated cells as a layered scientific backdrop. A subtle line of visual attention connects the bottle’s silhouette with the hypothalamic thirst center and circulating plasma, suggesting an environmental cue that encourages drinking without using arrows or text. Combine realistic product photography with sophisticated 3D biomedical rendering, deep navy shadows, cyan highlights and refined depth of field. No hand reaching, no office worker, no brand, no advertising slogan, no measurement markings, no glowing miracle effect, no labels, logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:28:10.936Z",
+    "resolution": "1344x768",
+    "duration": 18875,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "nudging-botella-visible",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 75392,
+      "webBytes": 42978,
+      "reductionPercent": 43,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "hidratacion-entrenamiento.webp",
+    "files": [
+      "hidratacion-entrenamiento.webp"
+    ],
+    "prompt": "Dynamic sports-medicine illustration of hydration during and after physical training, using a polished cobalt technical style rather than a conventional athlete photograph. A running anatomical model is shown in two overlapping phases: active movement and early recovery. The skeleton, major muscles, cardiovascular system, sweat glands and peripheral vessels are visible with realistic biomechanics. During movement, cyan fluid and amber electrolyte particles travel toward working muscles while perspiration leaves the skin; in the recovery phase, circulating volume and intracellular hydration gradually rebalance. A faint non-numerical pulse waveform crosses the dark grid background, adding editorial energy without becoming an infographic. Crisp rim lighting, controlled motion, realistic muscle architecture and premium performance-science rendering. No exposed skin, no sports drink brand, no collapse, no excessive sweat, no medical emergency, no labels, logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:28:31.331Z",
+    "resolution": "1344x768",
+    "duration": 20393,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "hidratacion-entrenamiento",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 95166,
+      "webBytes": 55186,
+      "reductionPercent": 42,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "estratificacion-vespertina.webp",
+    "files": [
+      "estratificacion-vespertina.webp"
+    ],
+    "prompt": "Cinematic 3D medical-scientific visualization of evening hydration within the body’s circadian rhythm. A dark blue anatomical composition connects the hypothalamic clock region, pineal area, kidneys, bloodstream and bladder through subtle neural and hormonal pathways. Warm sunset-toned illumination fades gradually across the brain while renal filtration and fluid movement continue below with restrained intensity. A gentle gradient from amber evening light to deep midnight blue divides the composition naturally, suggesting that hydration timing may be adjusted as the body approaches sleep without displaying a clock. Detailed nephrons, cerebral tissue, blood vessels and fluid compartments create layered scientific depth. Premium circadian-health journal aesthetic, anatomically accurate and non-alarmist. No person drinking at night, no bedroom, no nighttime bathroom scene, no insomnia symbolism, no exact schedule, no arrows, labels, logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T06:28:50.397Z",
+    "resolution": "1344x768",
+    "duration": 19062,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "estratificacion-vespertina",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 64380,
+      "webBytes": 33628,
+      "reductionPercent": 48,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "agua-mineral-carbonatada.webp",
+    "files": [
+      "agua-mineral-carbonatada.webp"
+    ],
+    "prompt": "Premium editorial still life inspired by the visual sophistication of Scientific American and National Geographic science features. A crystal-clear glass of carbonated mineral water stands against a deep graphite background, captured at macro scale as thousands of fine bubbles rise through the liquid and collect along the glass surface. The composition transitions subtly into a refined internal cutaway of the stomach, where dispersed gas bubbles remain secondary to the water itself, illustrating carbonation without discomfort or exaggerated swelling. Crisp condensation, realistic refraction, silver-blue highlights, restrained mineral textures and dramatic side lighting create an elegant scientific atmosphere. No bottle branding, no digestive distress, no anatomy labels, no logos, no readable text.",
+    "model": "flux-2-max",
+    "date": "2026-07-23T06:29:21.239Z",
+    "resolution": "1344x768",
+    "duration": 30838,
+    "state": "completed",
+    "cost": 7.000000000000001,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "agua-mineral-carbonatada",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 64972,
+      "webBytes": 35738,
+      "reductionPercent": 45,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "apps-smart-bottles-hidratacion.webp",
+    "files": [
+      "apps-smart-bottles-hidratacion.webp"
+    ],
+    "prompt": "Futuristic health-technology editorial image with the polished visual language of Wired and Monocle. A beautifully designed unbranded smart water bottle rests on a dark minimalist desk, illuminated by a narrow beam of cool studio light. A subtle circular light on the bottle suggests a reminder without displaying numbers or words. Behind it, a layered cobalt-blue medical visualization reveals the hypothalamic thirst center, kidneys, circulating blood and hydrated cells connected through delicate luminous pathways. The scene should merge premium industrial product photography with credible biomedical rendering, using glass, brushed metal, condensation and deep spatial contrast. Sophisticated composition, no person, no smartphone interface, no numerical tracking, no advertising slogan, no logos or readable text.",
+    "model": "flux-2-max",
+    "date": "2026-07-23T06:29:52.561Z",
+    "resolution": "1344x768",
+    "duration": 31318,
+    "state": "completed",
+    "cost": 7.000000000000001,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "apps-smart-bottles-hidratacion",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 45928,
+      "webBytes": 21280,
+      "reductionPercent": 54,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "agua-infusionada-natural.webp",
+    "files": [
+      "agua-infusionada-natural.webp"
+    ],
+    "prompt": "Luxurious food-science editorial photograph inspired by Bon Appétit, Kinfolk and premium wellness publishing. A tall glass carafe of natural water contains thin slices of cucumber, citrus peel, mint leaves and a few berries suspended in crystal-clear liquid, photographed in strong side light against a dark stone surface. The ingredients cast delicate botanical shadows while tiny flavor compounds appear as restrained translucent particles dispersing through the water. A subtle background transition reveals hydrated body cells and capillaries in an elegant scientific layer, without implying enhanced medical effects. Fresh condensation, realistic plant textures, emerald and amber accents, refined negative space and cinematic depth. No sweeteners, no commercial bottle, no detox language, no labels, logos or readable text.",
+    "model": "flux-2-max",
+    "date": "2026-07-23T06:30:37.133Z",
+    "resolution": "1344x768",
+    "duration": 44568,
+    "state": "completed",
+    "cost": 7.000000000000001,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "agua-infusionada-natural",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 81868,
+      "webBytes": 44130,
+      "reductionPercent": 46,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "regla-compensatoria-cafe-te-alcohol.webp",
+    "files": [
+      "regla-compensatoria-cafe-te-alcohol.webp"
+    ],
+    "prompt": "Sophisticated triptych-style editorial composition inspired by Scientific American and premium newspaper health supplements. Three elegant vessels containing black coffee, amber tea and a small unbranded alcoholic drink occupy the upper portion of the frame, each separated by shadow and material texture. Below them, a central glass of water becomes the visual anchor, connected to a refined internal visualization of kidneys, bloodstream and cellular fluid balance. Subtle variations in fluid concentration and renal filtration distinguish the beverages without portraying them as uniformly dehydrating or harmful. Rich espresso brown, tea gold, burgundy and cool cyan tones, museum-quality studio lighting and precise biomedical detail. No bottles, no drinking person, no warning symbols, no numerical ratios, no logos or readable text.",
+    "model": "flux-2-max",
+    "date": "2026-07-23T06:31:28.274Z",
+    "resolution": "1344x768",
+    "duration": 46671,
+    "state": "completed",
+    "cost": 7.000000000000001,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "regla-compensatoria-cafe-te-alcohol",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 78170,
+      "webBytes": 44216,
+      "reductionPercent": 43,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "filtros-domiciliarios-agua.webp",
+    "files": [
+      "filtros-domiciliarios-agua.webp"
+    ],
+    "prompt": "Premium investigative science image evoking National Geographic and contemporary environmental-health journalism. A modern home water filter is shown in elegant cross-section, revealing layered activated carbon, fine membranes and mineral media as tap water travels through each stage. The incoming water contains restrained suspended particles that become progressively reduced, while the outgoing stream appears clear and naturally illuminated rather than artificially glowing. In the background, a glass fills beside a stainless-steel kitchen tap, combining documentary realism with precise technical visualization. Deep charcoal, mineral gray and clean cyan palette, macro material textures, cinematic rim lighting and strong depth. No claims of removing every contaminant, no dirty or alarming water, no brand markings, no arrows, labels, logos or readable text.",
+    "model": "flux-2-max",
+    "date": "2026-07-23T06:32:03.322Z",
+    "resolution": "1344x768",
+    "duration": 35045,
+    "state": "completed",
+    "cost": 7.000000000000001,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "filtros-domiciliarios-agua",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 70930,
+      "webBytes": 39826,
+      "reductionPercent": 44,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "sopas-verduras-alta-agua.webp",
+    "files": [
+      "sopas-verduras-alta-agua.webp"
+    ],
+    "prompt": "High-end culinary science photograph inspired by Bon Appétit and National Geographic food reporting. A vibrant vegetable soup fills a handmade ceramic bowl, with zucchini, tomato, celery, spinach and broth rendered in exceptional detail under soft directional light. Beside it, cucumber, watermelon, lettuce and citrus are arranged as sculptural ingredients on a dark natural surface, their internal water-rich textures revealed through elegant cut sections and glistening droplets. A subtle microscopic layer beneath the composition shows water moving through intestinal villi into capillaries, integrating food and physiology without becoming an infographic. Rich organic colors, realistic steam, shallow depth of field and premium editorial styling. No packaged soup, no excessive garnish, no labels, logos or readable text.",
+    "model": "flux-2-max",
+    "date": "2026-07-23T06:32:36.839Z",
+    "resolution": "1344x768",
+    "duration": 33512,
+    "state": "completed",
+    "cost": 7.000000000000001,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "sopas-verduras-alta-agua",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 104892,
+      "webBytes": 62246,
+      "reductionPercent": 41,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "vasos-isotermicos-temperatura.webp",
+    "files": [
+      "vasos-isotermicos-temperatura.webp"
+    ],
+    "prompt": "Precision design editorial inspired by Wired, Monocle and premium industrial-design magazines. A sleek unbranded insulated tumbler appears in a dramatic three-quarter studio composition, with part of its wall rendered as a clean technical cutaway revealing the inner chamber, vacuum layer and reflective insulation. One side contains cool water with condensation and crisp blue highlights, while a second vessel holds a warm beverage with subtle steam and amber reflections. The surrounding air remains dark and controlled, making temperature retention visible through material contrast rather than thermometers or graphics. Brushed steel, ceramic coating, realistic liquid surfaces, architectural lighting and refined negative space. No hand holding the cup, no temperature numbers, no brand identity, no arrows, labels, logos or readable text.",
+    "model": "flux-2-max",
+    "date": "2026-07-23T06:33:17.977Z",
+    "resolution": "1344x768",
+    "duration": 41135,
+    "state": "completed",
+    "cost": 7.000000000000001,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "vasos-isotermicos-temperatura",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 52442,
+      "webBytes": 25208,
+      "reductionPercent": 52,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "liquidos-fiebre-infeccion.webp",
+    "files": [
+      "liquidos-fiebre-infeccion.webp"
+    ],
+    "prompt": "Cinematic medical editorial visualization with the clinical refinement of Nature Medicine and Scientific American. A semi-transparent upper torso reveals lungs, bloodstream, skin microcirculation and immune activity during fever. Warm amber illumination spreads through the core while perspiration forms at the skin and faster respiratory airflow leaves the lungs, suggesting increased fluid loss without depicting severe illness. Clear cyan fluid moves through the circulation toward tissues and kidneys, visually balancing heat, immune response and hydration needs. Include realistic white blood cells, capillary networks, tissue texture and restrained molecular detail against a deep navy background. Serious but reassuring, scientifically credible and non-sensational. No suffering patient, no hospital bed, no dangerous fever reading, no pathogens attacking organs, no labels, logos or readable text.",
+    "model": "flux-2-max",
+    "date": "2026-07-23T06:33:57.906Z",
+    "resolution": "1344x768",
+    "duration": 39926,
+    "state": "completed",
+    "cost": 7.000000000000001,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "liquidos-fiebre-infeccion",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 75180,
+      "webBytes": 41286,
+      "reductionPercent": 45,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "agua-matutina-500ml.webp",
+    "files": [
+      "agua-matutina-500ml.webp"
+    ],
+    "prompt": "Elegant morning health editorial inspired by Harvard Health, The New York Times Magazine and premium lifestyle photography. A clear glass carafe and a large tumbler of water sit on a quiet bedside table as early sunlight passes through linen curtains, projecting fluid reflections across wood and stone. Behind the still life, a refined semi-transparent anatomical silhouette reveals the overnight state of blood, brain, kidneys and body cells transitioning toward balanced morning hydration as water enters the circulation. The atmosphere should feel calm, deliberate and realistic rather than promotional. Soft dawn blue, warm golden highlights, crisp condensation, cinematic negative space and subtle scientific layering. No person drinking, no oversized measurement markings, no alarm clock numbers, no miracle effect, no logos or readable text.",
+    "model": "flux-2-max",
+    "date": "2026-07-23T06:34:28.852Z",
+    "resolution": "1344x768",
+    "duration": 30941,
+    "state": "completed",
+    "cost": 7.000000000000001,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "agua-matutina-500ml",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 58946,
+      "webBytes": 30140,
+      "reductionPercent": 49,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "reemplazo-jugos-bebidas.webp",
+    "files": [
+      "reemplazo-jugos-bebidas.webp"
+    ],
+    "prompt": "Premium editorial beverage photography with the refined visual style of a contemporary international wellness magazine. A luminous glass pitcher of cold water with lemon, cucumber and ice occupies the center of a dark stone table, surrounded by crisp condensation and elegant reflections. Several unbranded glasses containing colorful sweet beverages remain farther away, partially obscured and softly out of focus, while the clear water receives the strongest natural side light and visual emphasis. Slightly elevated camera angle, sophisticated studio composition, deep shadows, realistic glass textures, restrained cyan, amber and ruby palette, generous negative space and cinematic depth of field. No people, no medical anatomy, no comparison graphics, no cans, no packaging, no warning symbols, no logos, no labels and no readable text.",
+    "model": "flux-2-max",
+    "date": "2026-07-23T06:36:12.196Z",
+    "resolution": "1344x768",
+    "duration": 34211,
+    "state": "completed",
+    "cost": 7.000000000000001,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "reemplazo-jugos-bebidas",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 64314,
+      "webBytes": 31356,
+      "reductionPercent": 51,
+      "format": "webp",
+      "quality": 82
+    }
+  }
+]

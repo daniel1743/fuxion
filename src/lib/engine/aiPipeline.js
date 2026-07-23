@@ -20,8 +20,28 @@ import { validateReportContent, autoCorrectReport, safetySummary } from './Clini
 
 // ── Configuración ───────────────────────────────────────────────
 
-const PIPELINE_TIMEOUT_MS = 60_000; // 60 segundos máximo total
-const MAX_NARRATIVE_RETRIES = 2;
+const PIPELINE_TIMEOUT_MS = import.meta.env.DEV ? 90_000 : 60_000;
+const MAX_NARRATIVE_RETRIES = 0;
+
+const DOMAIN_LABELS = {
+  nutrition: 'Nutrición e hidratación',
+  activity: 'Actividad física',
+  sleep: 'Sueño y recuperación',
+  mental: 'Estrés y estado de ánimo',
+  biometry: 'Biometría',
+  digestion: 'Digestión',
+  habits: 'Hábitos preventivos',
+};
+
+const GOAL_LABELS = {
+  lose: 'control de peso',
+  gain: 'ganancia muscular',
+  energy: 'energía y vitalidad',
+  digestion: 'salud digestiva',
+  stress: 'estrés y descanso',
+  maintain: 'mantener y optimizar salud',
+  general: 'bienestar general',
+};
 
 // ── Memoria de caché del pipeline ──────────────────────────────
 
@@ -30,6 +50,31 @@ const CACHE_TTL_MS = 10 * 60 * 1000; // 10 minutos
 
 function _pipelineCacheKey(answersHash) {
   return `pipeline:${answersHash}`;
+}
+
+function _hashAnswers(answers = {}) {
+  const sorted = Object.entries(answers)
+    .filter(([, value]) => value != null && value !== '')
+    .sort(([a], [b]) => a.localeCompare(b));
+  return JSON.stringify(sorted);
+}
+
+function formatGoal(goal) {
+  return GOAL_LABELS[goal] || goal || 'bienestar general';
+}
+
+function formatValue(value, fallback = 'sin dato') {
+  return value === undefined || value === null || value === '' ? fallback : value;
+}
+
+function getDomainEntries(domains = {}) {
+  return Object.entries(domains)
+    .map(([key, score]) => ({
+      key,
+      label: DOMAIN_LABELS[key] || key,
+      score: Math.round(score || 0),
+    }))
+    .sort((a, b) => a.score - b.score);
 }
 
 // ── Estructura de log de ejecución ─────────────────────────────
@@ -273,8 +318,15 @@ async function generateNarrative(answers, twinData, executionLog) {
 
   for (let attempt = 0; attempt <= MAX_NARRATIVE_RETRIES; attempt++) {
     const { systemPrompt, userPrompt } = buildNarrativePrompt(answers, twinData);
+    const attemptStartedAt = performance.now();
 
     try {
+      console.info('[ai-pipeline] Llamando /api/generate-report', {
+        attempt: attempt + 1,
+        maxAttempts: MAX_NARRATIVE_RETRIES + 1,
+        promptChars: systemPrompt.length + userPrompt.length,
+      });
+
       const controller = new AbortController();
       const timeoutId = window.setTimeout(() => controller.abort(), PIPELINE_TIMEOUT_MS);
 
@@ -286,6 +338,7 @@ async function generateNarrative(answers, twinData, executionLog) {
       });
 
       window.clearTimeout(timeoutId);
+      const apiElapsedMs = Math.round(performance.now() - attemptStartedAt);
 
       if (!response.ok) {
         const errorText = await response.text();
@@ -301,14 +354,31 @@ async function generateNarrative(answers, twinData, executionLog) {
 
       const data = await response.json();
       let markdown = data.choices[0].message.content;
+      console.info('[ai-pipeline] API respondio', {
+        attempt: attempt + 1,
+        elapsedMs: apiElapsedMs,
+        provider: data.provider,
+        model: data.model,
+        markdownChars: markdown.length,
+        fallbackAttempts: data.fallback_attempts || [],
+      });
 
       // ── Etapa 4: Validar ──────────────────────────────────────
+      const validationStartedAt = performance.now();
       const validation = validateReportContent(markdown);
       executionLog.stages.push({
         stage: 'clinical_validation',
         status: validation.valid ? 'approved' : 'rejected',
         score: validation.score,
+        elapsedMs: Math.round(performance.now() - validationStartedAt),
         details: safetySummary(validation),
+      });
+      console.info('[ai-pipeline] Validacion clinica', {
+        attempt: attempt + 1,
+        valid: validation.valid,
+        score: validation.score,
+        errors: validation.errors,
+        warnings: validation.warnings,
       });
 
       if (validation.valid) {
@@ -327,6 +397,11 @@ async function generateNarrative(answers, twinData, executionLog) {
 
     } catch (err) {
       lastError = err;
+      console.warn('[ai-pipeline] Intento de narrativa fallo', {
+        attempt: attempt + 1,
+        elapsedMs: Math.round(performance.now() - attemptStartedAt),
+        error: err.name === 'AbortError' ? `Timeout de ${PIPELINE_TIMEOUT_MS}ms` : err.message,
+      });
       executionLog.errors.push(`Narrative generation attempt ${attempt + 1} failed: ${err.message}`);
     }
   }
@@ -361,12 +436,110 @@ function renderPdfContent(markdown, answers) {
  */
 async function generateFallbackReport(answers, userData) {
   try {
-    const { generatePremiumReportContent } = await import('./AiReportGenerator');
     const fallbackData = generateDigitalTwin(answers);
-    const mergedData = { ...fallbackData, ...userData };
-    return await generatePremiumReportContent(userData, mergedData);
+    const biometrics = fallbackData.twin_state?.biometrics || {};
+    const iib = fallbackData.twin_state?.iib || {};
+    const domains = iib.domains || {};
+    const adaptive = fallbackData.twin_state?.adaptive_analysis || {};
+    const recommendations = fallbackData.recommendations || [];
+    const name = userData?.name || answers?.name || 'Tu perfil';
+    const domainEntries = getDomainEntries(domains);
+    const weakest = adaptive.domain_insights?.weakest?.length
+      ? adaptive.domain_insights.weakest
+      : domainEntries.slice(0, 2);
+    const strongest = adaptive.domain_insights?.strongest?.length
+      ? adaptive.domain_insights.strongest
+      : [...domainEntries].sort((a, b) => b.score - a.score).slice(0, 2);
+    const levers = adaptive.adaptive_levers || [];
+    const risks = adaptive.risk_flags || [];
+    const primaryFocus = adaptive.primary_focus?.label || weakest[0]?.label || 'bienestar integral';
+    const confidence = adaptive.data_completeness || {};
+    const roadmapItems = recommendations.slice(0, 4);
+
+    return `# Informe Ejecutivo Bienestar en Claro
+
+Preparado para: **${name}**
+
+Este documento se generó con el motor interno de Bienestar en Claro porque la IA externa no respondió dentro del tiempo permitido. No es una respuesta genérica: usa tus respuestas, tus biometrías, tus dominios de bienestar y tus prioridades calculadas por reglas.
+
+## 1. Resumen ejecutivo
+
+Tu Índice Integral de Bienestar es **${iib.score || 0}/100**, clasificado como **${iib.level || 'moderado'}**. La lectura principal apunta a **${primaryFocus}** como foco prioritario, porque ahí se concentra la mayor oportunidad de mejora con impacto real.
+
+Tu objetivo declarado es **${formatGoal(answers.goal)}**. El plan no busca hacer todo al mismo tiempo; ordena pocas acciones de alto retorno para mejorar adherencia, energía, digestión, sueño y consistencia.
+
+**Confianza del estudio:** ${confidence.confidence || 'media'}${confidence.score ? ` (${confidence.score}%)` : ''}.
+
+## 2. Señales principales
+
+**Fortalezas detectadas**
+
+${strongest.map((item) => `- **${item.label}:** ${item.score}/100. Esta base puede sostener el resto del plan.`).join('\n') || '- Aún no hay fortalezas suficientes para destacar.'}
+
+**Oportunidades de mayor impacto**
+
+${weakest.map((item) => `- **${item.label}:** ${item.score}/100. Conviene priorizarlo antes de sumar estrategias avanzadas.`).join('\n') || '- No se detectaron oportunidades críticas con los datos disponibles.'}
+
+## 3. Lectura biométrica y metabólica
+
+- **IMC:** ${formatValue(biometrics.bmi)} (${biometrics.bmiClass?.label || biometrics.bmiClass || 'sin clasificar'}).
+- **Gasto energético estimado:** ${formatValue(biometrics.tdee)} kcal/día.
+- **Proteína sugerida:** ${formatValue(biometrics.protein)} g/día.
+- **Hidratación objetivo:** ${formatValue(biometrics.waterL)} L/día.
+
+Estas cifras no son un diagnóstico. Funcionan como referencias operativas para tomar mejores decisiones de alimentación, hidratación y rutina semanal.
+
+## 4. Mapa por dominio
+
+${domainEntries.map((item) => `- **${item.label}:** ${item.score}/100`).join('\n') || '- Sin dominios disponibles.'}
+
+## 5. Palancas de mayor impacto
+
+${levers.length ? levers.map((lever) => `- **${lever.label}:** actual ${lever.current}; objetivo ${lever.target}. Prioridad relativa: ${lever.priority}/100.`).join('\n') : '- No hay palancas calculadas con suficiente precisión.'}
+
+## 6. Señales de atención
+
+${risks.length ? risks.map((risk) => `- **${risk.title}:** ${risk.message}`).join('\n') : '- No se detectaron señales críticas con la información disponible.'}
+
+## 7. Prioridades recomendadas
+
+${recommendations.map((rec, index) => `### ${index + 1}. ${rec.action}
+
+**Por qué importa:** ${rec.why || rec.reason || 'Prioridad calculada por el motor de reglas.'}
+
+**Cómo aplicarlo hoy:** define un momento concreto del día, prepara lo necesario antes y mide cumplimiento, no perfección.
+
+**Indicador de avance:** observa energía, digestión, sueño, hambre, adherencia y sensación general durante 7 días.
+
+${rec.personalization_note ? `**Nota personalizada:** ${rec.personalization_note}` : ''}`).join('\n\n') || '### 1. Completar más datos\n\nRepite o completa la evaluación para obtener prioridades más precisas.'}
+
+## 8. Roadmap de 30 días
+
+**Días 1-7: estabilizar.** Ejecuta la primera prioridad todos los días de forma simple. El objetivo es crear tracción.
+
+**Días 8-21: consolidar.** Mantén la primera acción y suma la segunda solo si ya no exige demasiado esfuerzo mental.
+
+**Días 22-30: medir.** Revisa cambios en energía, digestión, sueño, adherencia y sensación general. Ajusta desde evidencia personal, no desde presión.
+
+${roadmapItems.length ? roadmapItems.map((rec, index) => `- Semana ${index + 1}: ${rec.action}`).join('\n') : ''}
+
+## 9. Recomendación de apoyo
+
+Los suplementos pueden ayudar como complemento, pero no reemplazan hábitos ni atención profesional. Si el foco principal es digestivo, considera priorizar primero hidratación, fibra progresiva, horarios y observación de tolerancia. Si el foco es energía, revisa sueño, proteína e hidratación antes de aumentar exigencia.
+
+## 10. Próximo seguimiento
+
+Repite esta evaluación en 30 días o después de aplicar al menos dos prioridades. Lo valioso será comparar qué dominios responden mejor y qué acciones realmente puedes sostener.
+
+## 11. Nota responsable
+
+Este informe es educativo e informativo. No reemplaza una evaluación médica ni un diagnóstico profesional.
+`;
   } catch (innerErr) {
-    console.error('[AiPipeline] Fallback generation also failed:', innerErr.message);
+    console.error('[ai-pipeline] Fallback local tambien fallo', {
+      error: innerErr.message,
+      stack: innerErr.stack,
+    });
     return 'No se pudo generar el reporte en este momento. Intenta nuevamente.';
   }
 }
@@ -385,6 +558,14 @@ async function generateFallbackReport(answers, userData) {
  */
 export async function runAiReportPipeline(answers, userData = {}, options = {}) {
   const { useCache = true, debug = false, cleanupCache = false } = options;
+  const pipelineStartedAt = performance.now();
+  console.info('[ai-pipeline] Inicio', {
+    useCache,
+    cleanupCache,
+    timeoutMs: PIPELINE_TIMEOUT_MS,
+    answersCount: Object.keys(answers || {}).length,
+    userName: userData?.name || answers?.name || null,
+  });
 
   if (cleanupCache) {
     purgeExpiredCache();
@@ -402,6 +583,10 @@ export async function runAiReportPipeline(answers, userData = {}, options = {}) 
   if (useCache) {
     const cached = _pipelineCache.get(_pipelineCacheKey(answersHash));
     if (cached && Date.now() - cached.timestamp < CACHE_TTL_MS) {
+      console.info('[ai-pipeline] Cache hit', {
+        ageMs: Date.now() - cached.timestamp,
+        source: cached.result?.source,
+      });
       return {
         ...cached.result,
         source: 'cache',
@@ -417,8 +602,10 @@ export async function runAiReportPipeline(answers, userData = {}, options = {}) 
   try {
     // ── Etapa 1-2: Motor Matemático + Reglas (GRATUITO) ─────────
     executionLog.stages.push({ stage: 'math_engine', status: 'running' });
+    const mathStartedAt = performance.now();
     const deterministic = executeDeterministicStages(answers);
     executionLog.stages[0].status = 'completed';
+    executionLog.stages[0].elapsedMs = Math.round(performance.now() - mathStartedAt);
 
     twinData = {
       ...deterministic.data,
@@ -427,8 +614,10 @@ export async function runAiReportPipeline(answers, userData = {}, options = {}) 
 
     // ── Etapa 3: Detección de Patrones (GRATUITO — heurísticas) ──
     executionLog.stages.push({ stage: 'pattern_detection', status: 'running' });
+    const patternStartedAt = performance.now();
     executePatternDetection(answers, twinData);
     executionLog.stages[1].status = 'completed';
+    executionLog.stages[1].elapsedMs = Math.round(performance.now() - patternStartedAt);
     executionLog.stages[1].patternsFound = twinData.detected_patterns?.patterns_detected || 0;
 
     // ── Etapa 5: Generador de Narrativa (SONNET — COSTO ALTO) ───
@@ -443,6 +632,7 @@ export async function runAiReportPipeline(answers, userData = {}, options = {}) 
     executionLog.stages[3].status = 'completed';
 
     const totalElapsed = performance.now() - startTime;
+    executionLog.totalElapsedMs = Math.round(totalElapsed);
 
     const result = {
       markdown: narrative.markdown,
@@ -463,21 +653,52 @@ export async function runAiReportPipeline(answers, userData = {}, options = {}) 
       });
     }
 
+    console.info('[ai-pipeline] Completado', {
+      latencyMs: result.latencyMs,
+      source: result.source,
+      validationScore: result.validation?.score,
+      stages: executionLog.stages,
+    });
+
     return result;
 
   } catch (err) {
+    const runningStage = executionLog.stages.find((stage) => stage.status === 'running');
+    if (runningStage) {
+      runningStage.status = 'failed';
+      runningStage.elapsedMs = Math.round(performance.now() - startTime);
+      runningStage.error = err.message;
+    }
+
     executionLog.errors.push(err.message);
     executionLog.totalElapsedMs = Math.round(performance.now() - startTime);
 
-    console.error('[AiPipeline] Fallback triggered:', err.message);
+    console.error('[ai-pipeline] Fallback activado', {
+      error: err.message,
+      elapsedMs: executionLog.totalElapsedMs,
+      stages: executionLog.stages,
+    });
+    const fallbackStartedAt = performance.now();
     const fallbackMarkdown = await generateFallbackReport(answers, userData);
+    const fallbackElapsedMs = Math.round(performance.now() - fallbackStartedAt);
+    console.info('[ai-pipeline] Fallback completado', {
+      fallbackElapsedMs,
+      totalElapsedMs: Math.round(performance.now() - pipelineStartedAt),
+      markdownChars: fallbackMarkdown.length,
+    });
 
     return {
       markdown: fallbackMarkdown,
       pdf_content: null,
       twin_data: twinData,
       patterns: null,
-      validation: { valid: false, errors: ['Pipeline falló, se usó fallback local'], warnings: [], score: 0 },
+      validation: {
+        valid: false,
+        status: 'not_approved_fallback',
+        errors: ['Pipeline falló, se usó fallback local'],
+        warnings: ['La IA externa no completó la narrativa dentro del tiempo disponible.'],
+        score: 0,
+      },
       source: 'fallback',
       latencyMs: Math.round(performance.now() - startTime),
       execution_log: executionLog,

@@ -16,6 +16,7 @@
 import { supabase } from '@/lib/supabaseClient';
 
 const FREE_EVALUATIONS_PER_MONTH = 2;
+const IS_DEVELOPMENT = import.meta.env.DEV;
 
 /**
  * Obtiene el mes calendario actual como string YYYY-MM.
@@ -35,10 +36,23 @@ export async function countEvaluationsThisMonth(userId) {
   const startOfMonth = new Date(year, monthNum - 1, 1, 0, 0, 0, 0);
   const endOfMonth = new Date(year, monthNum, 0, 23, 59, 59, 999);
 
+  const { data: twin, error: twinError } = await supabase
+    .from('wellness_twins')
+    .select('id')
+    .eq('user_id', userId)
+    .maybeSingle();
+
+  if (twinError) {
+    console.error('Error finding wellness twin for evaluation count:', twinError);
+    return 0;
+  }
+
+  if (!twin?.id) return 0;
+
   const { data, error } = await supabase
     .from('wellness_evaluations')
     .select('id', { count: 'exact' })
-    .eq('user_id', userId)
+    .eq('twin_id', twin.id)
     .gte('created_at', startOfMonth.toISOString())
     .lte('created_at', endOfMonth.toISOString());
 
@@ -54,6 +68,16 @@ export async function countEvaluationsThisMonth(userId) {
  * Verifica si el usuario puede generar otra evaluación este mes.
  */
 export async function canEvaluate(userId) {
+  if (IS_DEVELOPMENT) {
+    return {
+      canEvaluate: true,
+      remaining: Number.POSITIVE_INFINITY,
+      total: Number.POSITIVE_INFINITY,
+      currentMonth: getCurrentMonth(),
+      isDevelopmentBypass: true,
+    };
+  }
+
   const count = await countEvaluationsThisMonth(userId);
   return {
     canEvaluate: count < FREE_EVALUATIONS_PER_MONTH,
@@ -68,6 +92,8 @@ export async function canEvaluate(userId) {
  * Esto se hace cuando finaliza una evaluación completa exitosamente.
  */
 export async function registerEvaluation(userId) {
+  if (IS_DEVELOPMENT) return true;
+
   // La evaluación ya se registró en wellness_evaluations
   // Este registro es solo para tracking de límites
   const { error } = await supabase

@@ -1,0 +1,582 @@
+[
+  {
+    "filename": "preparacion-semanal-comidas.webp",
+    "files": [
+      "preparacion-semanal-comidas.webp"
+    ],
+    "prompt": "Premium editorial lifestyle photography captured from a wide 35mm perspective inside a lived-in contemporary kitchen on Sunday morning. An adult stands at a large wooden island assembling five varied meals into clear glass containers: roasted vegetables, brown rice, legumes, grilled chicken and fresh herbs. A baking tray cools in the background while chopped ingredients, a cutting board and reusable containers create natural layers across the frame. Sunlight enters from a side window, producing warm highlights and realistic kitchen shadows. The scene should communicate practical organization, nutritional variety and a sustainable weekly routine rather than rigid dieting. Authentic documentary atmosphere, rich food textures, subtle motion, no identical portions, no plastic branding, no logos, no readable labels or text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:30:18.569Z",
+    "resolution": "1344x768",
+    "duration": 20826,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "preparacion-semanal-comidas",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 108134,
+      "webBytes": 64558,
+      "reductionPercent": 40,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "ejercicio-aerobico-semanal.webp",
+    "files": [
+      "ejercicio-aerobico-semanal.webp"
+    ],
+    "prompt": "Dynamic editorial fitness photograph of a diverse group of adults completing a moderate aerobic training session along a waterfront urban trail at sunrise. The main subject jogs comfortably in the foreground while another person cycles and two adults walk briskly farther along the path, visually communicating that aerobic activity can take different accessible forms. Capture the scene from a low three-quarter angle with a 35mm documentary lens, slight natural motion in clothing and limbs, and the city skyline softly diffused in the distance. Cool morning air, warm sunlight reflecting from the water, realistic exertion without exhaustion, premium public-health magazine aesthetic, no race numbers, no sportswear logos, no text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:30:50.445Z",
+    "resolution": "1344x768",
+    "duration": 31874,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "ejercicio-aerobico-semanal",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 105560,
+      "webBytes": 60268,
+      "reductionPercent": 43,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "evaluacion-circunferencia-cintura.webp",
+    "files": [
+      "evaluacion-circunferencia-cintura.webp"
+    ],
+    "prompt": "Sophisticated clinical editorial photograph showing a healthcare professional performing a waist-circumference assessment on an adult patient in a private metabolic health consultation room. The measuring tape is positioned correctly around the midpoint of the torso over light clothing, with no visible numerical markings in focus. Frame the scene from chest level using an 85mm lens so the careful hand placement becomes the visual center while both faces remain softly visible and respectful. A body-composition model and neutral medical equipment appear subtly blurred behind them. Soft indirect daylight, calm collaborative mood, realistic body diversity, premium medical magazine photography, no stigmatizing pose, no exposed body, no scales dominating the scene, no logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:31:07.217Z",
+    "resolution": "1344x768",
+    "duration": 16768,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "evaluacion-circunferencia-cintura",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 54980,
+      "webBytes": 26514,
+      "reductionPercent": 52,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "transporte-activo-diario.webp",
+    "files": [
+      "transporte-activo-diario.webp"
+    ],
+    "prompt": "Cinematic environmental photograph portraying an adult integrating active transportation into a normal weekday commute. The subject rides a practical city bicycle along a protected lane while wearing everyday work clothes and carrying a simple backpack, with pedestrians walking toward a nearby transit stop in the midground. Capture the moment from a slightly elevated diagonal viewpoint as morning light passes between modern buildings and trees, creating alternating bands of sunlight and shade across the street. The image should feel like an authentic urban routine rather than a sports campaign, emphasizing mobility, daily movement and metabolic wellbeing. Realistic city architecture, gentle motion blur in the wheels, crisp subject focus, no unsafe traffic behavior, no vehicle brands, no logos, no readable signs.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:31:25.623Z",
+    "resolution": "1344x768",
+    "duration": 18404,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "transporte-activo-diario",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 82852,
+      "webBytes": 49880,
+      "reductionPercent": 40,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "restriccion-grasas-trans.webp",
+    "files": [
+      "restriccion-grasas-trans.webp"
+    ],
+    "prompt": "High-end editorial food photograph staged as a meaningful kitchen choice rather than a simple ingredient display. In the foreground, an adult hand places a tray of freshly baked whole-grain crackers made with olive oil beside nuts, avocado and seeds, all sharply detailed. In the distant background, commercially fried pastries and packaged shortening remain partially obscured inside an open cupboard, deliberately de-emphasized and out of focus. Use a close 50mm perspective with warm side lighting that highlights natural food textures and contrasts homemade ingredients with highly processed alternatives. Modern but realistic home kitchen, restrained color palette, intelligent visual storytelling, no warning symbols, no branded packages, no readable labels, no dramatic prohibition graphics, no text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:31:45.848Z",
+    "resolution": "1344x768",
+    "duration": 20223,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "restriccion-grasas-trans",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 88532,
+      "webBytes": 50930,
+      "reductionPercent": 42,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "gestion-flora-intestinal.webp",
+    "files": [
+      "gestion-flora-intestinal.webp"
+    ],
+    "prompt": "Editorial medical illustration blended with realistic food photography, depicting the relationship between daily nutrition and the intestinal microbiota. A semi-transparent, anatomically accurate human abdomen occupies one side of the composition, revealing a clean three-dimensional colon surrounded by subtle, diverse microbial forms represented as soft organic shapes rather than cartoon bacteria. On the opposite side, fermented foods, legumes, oats, vegetables, berries and seeds are arranged naturally on a kitchen table, connected visually through gentle depth and lighting rather than arrows or labels. Refined scientific magazine aesthetic, balanced teal and warm earth tones, precise anatomy, soft volumetric illumination, sophisticated layered composition, no grotesque imagery, no exaggerated glowing organs, no capsules, no logos or text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:32:04.346Z",
+    "resolution": "1344x768",
+    "duration": 18496,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "gestion-flora-intestinal",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 101272,
+      "webBytes": 56234,
+      "reductionPercent": 44,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "uso-limitado-edulcorantes.webp",
+    "files": [
+      "uso-limitado-edulcorantes.webp"
+    ],
+    "prompt": "Premium editorial still-life photograph centered on a realistic beverage-preparation moment in a bright kitchen. An adult pours plain sparkling water over ice, citrus slices and fresh herbs while several unbranded tabletop sweetener packets and a small dropper bottle sit off to one side, unopened and visually secondary. A bowl of whole fruit occupies the foreground, suggesting gradual adaptation to less intensely sweet flavors without presenting a simplistic good-versus-bad message. Photograph from a close 45-degree angle with crisp condensation on the glass, shallow depth of field and soft afternoon window light. Elegant yet authentic composition, subtle neutral colors, realistic materials, no chemical diagrams, no visible brand packaging, no legible packet text, no logos.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:32:29.088Z",
+    "resolution": "1344x768",
+    "duration": 24739,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "uso-limitado-edulcorantes",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 66036,
+      "webBytes": 36014,
+      "reductionPercent": 45,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "ejercicios-isometricos.webp",
+    "files": [
+      "ejercicios-isometricos.webp"
+    ],
+    "prompt": "Powerful editorial fitness photograph showing an adult performing a controlled wall sit in a minimalist rehabilitation studio while a physiotherapist observes alignment from the side. The subject’s knees and hips are positioned realistically, back supported against the wall, hands relaxed and expression focused rather than strained. Frame the image from a low lateral angle using a 50mm lens so the static muscular effort is visually clear despite the absence of movement. Resistance bands and a treatment table remain softly blurred in the background, adding professional context without clutter. Directional window light creates gentle definition along the legs and torso, premium sports-medicine photography, realistic body proportions, no extreme athletic physique, no logos, no readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:32:55.212Z",
+    "resolution": "1344x768",
+    "duration": 26121,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "ejercicios-isometricos",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 58354,
+      "webBytes": 29644,
+      "reductionPercent": 49,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "manejo-estatinas-colesterol.webp",
+    "files": [
+      "manejo-estatinas-colesterol.webp"
+    ],
+    "prompt": "Professional healthcare editorial photograph portraying a thoughtful medication-management consultation for elevated cholesterol. A physician and adult patient sit beside a desk where an anatomical heart model and a transparent artery model are positioned prominently in the foreground. The physician points toward the artery model while the patient listens with a medication list turned away from the camera; a small unbranded pill organizer remains discreetly visible but does not dominate the scene. Capture from over the patient’s shoulder with an 85mm lens, creating visual depth between the clinical models, hands and faces. Bright modern cardiometabolic clinic, composed and reassuring atmosphere, natural skin tones, no medication brands, no readable documents, no logos or text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:33:09.958Z",
+    "resolution": "1344x768",
+    "duration": 14745,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "manejo-estatinas-colesterol",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 59486,
+      "webBytes": 32548,
+      "reductionPercent": 45,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "optimizacion-vitamina-d.webp",
+    "files": [
+      "optimizacion-vitamina-d.webp"
+    ],
+    "prompt": "Luminous editorial wellness photograph showing an older adult enjoying safe morning sunlight on a quiet apartment balcony while preparing a balanced breakfast with eggs, salmon, mushrooms and fortified dairy in neutral containers. The subject sits partially in sunlight and partially in shade, wearing ordinary clothing and appearing relaxed rather than deliberately sunbathing. Capture from inside the home looking outward through an open doorway, allowing curtains and indoor shadows to frame the warm exterior scene. A subtle clinical appointment card lies face down on a nearby table to suggest individualized assessment without visible writing. Golden natural light, gentle atmospheric depth, premium health magazine storytelling, no supplement bottles as the hero, no exaggerated sun rays, no logos or readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:33:24.137Z",
+    "resolution": "1344x768",
+    "duration": 14178,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "optimizacion-vitamina-d",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 63286,
+      "webBytes": 33724,
+      "reductionPercent": 47,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "crononutricion-ingesta-diurna.webp",
+    "files": [
+      "crononutricion-ingesta-diurna.webp"
+    ],
+    "prompt": "Cinematic editorial photograph illustrating an intentional daytime eating pattern through a single richly layered morning scene. An adult enjoys the largest meal of the day beside a sunlit kitchen window, with eggs, whole grains, avocado, vegetables and fruit arranged on the table. In the softly blurred background, a wall clock shows a morning position through its hands without visible numbers, while the evening side of the room remains darker and empty. Capture from a side angle with a 50mm lens, allowing bright daylight to illuminate the meal and face while shadows create a subtle circadian contrast. Refined lifestyle storytelling, realistic home environment, no diagrams, no clocks with readable text, no logos.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:33:43.316Z",
+    "resolution": "1344x768",
+    "duration": 19177,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "crononutricion-ingesta-diurna",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 60432,
+      "webBytes": 31952,
+      "reductionPercent": 47,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "flexibilidad-psicologica-act.webp",
+    "files": [
+      "flexibilidad-psicologica-act.webp"
+    ],
+    "prompt": "Intimate editorial mental-health photograph showing a therapist guiding an adult patient through an Acceptance and Commitment Therapy exercise in a calm consultation room. The patient holds a small card with its blank side facing the camera while thoughtfully observing a difficult emotion represented only through natural facial expression, not dramatic symbolism. The therapist sits nearby with open posture, inviting reflection rather than giving instructions. Photograph from a quiet side perspective through soft foreground foliage, using an 85mm lens and shallow depth of field to create privacy and emotional nuance. Muted earth tones, diffused daylight, subtle warmth, premium psychology magazine aesthetic, no scales, no food props, no stigmatizing body emphasis, no readable notes, no logos.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:34:02.333Z",
+    "resolution": "1344x768",
+    "duration": 19014,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "flexibilidad-psicologica-act",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 51576,
+      "webBytes": 24742,
+      "reductionPercent": 52,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "tratamiento-intensivo-hipertension.webp",
+    "files": [
+      "tratamiento-intensivo-hipertension.webp"
+    ],
+    "prompt": "High-end medical editorial photograph captured during a focused hypertension review in a contemporary primary-care clinic. A clinician measures an adult patient’s blood pressure with the arm correctly supported at heart level while a second cuff size and a stethoscope rest neatly nearby, suggesting careful individualized assessment. The camera is positioned at desk height, placing the cuff, relaxed hand and clinician’s attentive expression along a strong diagonal composition. A kidney model and heart model appear softly blurred in the background to convey systemic cardiovascular care without becoming didactic. Clean clinical lighting balanced with natural window light, realistic equipment, calm patient demeanor, no alarming red graphics, no medication branding, no readable monitor values, no logos or text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:34:19.490Z",
+    "resolution": "1344x768",
+    "duration": 17155,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "tratamiento-intensivo-hipertension",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 67726,
+      "webBytes": 37126,
+      "reductionPercent": 45,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "diagnostico-hipotiroidismo.webp",
+    "files": [
+      "diagnostico-hipotiroidismo.webp"
+    ],
+    "prompt": "Refined endocrine-health editorial photograph showing a physician performing a gentle thyroid examination on an adult woman seated upright in a bright consultation room. The clinician stands slightly behind and to the side, carefully palpating the lower neck while the patient maintains a relaxed neutral posture. In the foreground, a detailed anatomical thyroid model rests in sharp focus beside an unreadable laboratory form, creating immediate visual context for diagnosis. Use an 85mm portrait lens with soft depth of field, natural daylight and subtle warm clinical tones. The image should communicate careful evaluation, fatigue-related concerns and metabolic assessment without dramatization. No enlarged or glowing neck, no surgical imagery, no logos, no readable test results or text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:34:45.374Z",
+    "resolution": "1344x768",
+    "duration": 25883,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "diagnostico-hipotiroidismo",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 73796,
+      "webBytes": 38696,
+      "reductionPercent": 48,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "comida-sin-pantallas.webp",
+    "files": [
+      "comida-sin-pantallas.webp"
+    ],
+    "prompt": "Warm documentary-style editorial photograph of a family sharing a relaxed evening meal at a wooden dining table while all digital devices remain intentionally collected in a small basket on a sideboard several feet away. The main subject pauses between bites and makes eye contact with another person, while colorful home-cooked food fills the foreground with natural imperfection. Capture the scene from the edge of the table using a 35mm lens, allowing conversation, hands and dishes to form an immersive layered composition. Soft pendant lighting combines with the last blue daylight from a window, creating a peaceful transition away from screens. Authentic home atmosphere, no staged smiles, no glowing devices, no logos, no readable text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:35:06.804Z",
+    "resolution": "1344x768",
+    "duration": 21429,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "comida-sin-pantallas",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 83192,
+      "webBytes": 48568,
+      "reductionPercent": 42,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "lacteos-bajos-en-grasa.webp",
+    "files": [
+      "lacteos-bajos-en-grasa.webp"
+    ],
+    "prompt": "Premium editorial food photograph showing an adult preparing a practical breakfast after replacing higher-fat dairy choices with lighter alternatives. A bowl of low-fat plain yogurt receives fresh berries and oats while a glass of reduced-fat milk, cottage cheese and a small portion of soft cheese are arranged naturally nearby. Full-fat cream and butter appear only as subtle, out-of-focus background ingredients rather than villains. Shoot from a close 45-degree angle with soft morning window light, realistic condensation and creamy textures, elegant ceramic tableware and a calm neutral palette. The image should communicate an everyday substitution within balanced nutrition, not deprivation. No commercial cartons facing the camera, no labels, no calorie numbers, no logos or text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:35:22.515Z",
+    "resolution": "1344x768",
+    "duration": 15709,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "lacteos-bajos-en-grasa",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 55016,
+      "webBytes": 27930,
+      "reductionPercent": 49,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "recompensas-no-alimentarias.webp",
+    "files": [
+      "recompensas-no-alimentarias.webp"
+    ],
+    "prompt": "Narrative editorial lifestyle photograph showing an adult celebrating progress in a health routine through a meaningful non-food reward. The subject opens a new sketchbook and art supplies at a sunlit desk after placing completed walking shoes and a habit journal nearby, visually connecting sustained effort with personal enjoyment. A balanced meal remains in the distant kitchen background but is not part of the reward. Capture from a slightly elevated over-the-shoulder perspective, with the sketchbook in sharp focus and the subject’s pleased expression reflected subtly in a small mirror. Warm afternoon light, creative home atmosphere, layered storytelling, realistic objects, no shopping brands, no readable journal entries, no logos or text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:35:41.668Z",
+    "resolution": "1344x768",
+    "duration": 19152,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "recompensas-no-alimentarias",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 75928,
+      "webBytes": 43656,
+      "reductionPercent": 43,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "cena-baja-sodio-carbohidratos.webp",
+    "files": [
+      "cena-baja-sodio-carbohidratos.webp"
+    ],
+    "prompt": "Sophisticated evening food photograph showing an adult serving a deliberately restructured dinner in a warm modern kitchen. The plate features grilled fish, roasted non-starchy vegetables, leafy greens, herbs and citrus, while a smaller side portion of whole grains remains secondary. Salt-heavy sauces, bread baskets and oversized pasta portions are absent, allowing the meal’s composition to tell the story naturally. Frame from table height with a 50mm lens as the person adds fresh herbs and lemon immediately before sitting down. Warm pendant lighting creates an intimate nighttime atmosphere while the background falls into soft shadow. Premium culinary editorial styling, realistic serving size, no diet charts, no branded condiments, no readable packaging, no logos.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:35:57.215Z",
+    "resolution": "1344x768",
+    "duration": 15545,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "cena-baja-sodio-carbohidratos",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 74242,
+      "webBytes": 42162,
+      "reductionPercent": 43,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "grasas-monoinsaturadas.webp",
+    "files": [
+      "grasas-monoinsaturadas.webp"
+    ],
+    "prompt": "Luxurious editorial food still life designed around recognizable sources of monounsaturated fats. A hand pours a thin stream of extra virgin olive oil over a vibrant plate containing avocado, almonds, olives, grilled vegetables and a modest portion of fish. The camera captures the oil in motion from a close side angle, with the avocado and glossy olives sharply detailed in the foreground and a Mediterranean-style kitchen softly blurred behind. Late-afternoon sunlight creates rich highlights across ceramic dishes, textured linen and natural wood, producing a refined but attainable atmosphere. Balanced composition, premium nutrition magazine quality, realistic portions, no oil brand labels, no packaged snacks, no logos, no visible text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:36:13.637Z",
+    "resolution": "1344x768",
+    "duration": 16416,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "grasas-monoinsaturadas",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 83490,
+      "webBytes": 48060,
+      "reductionPercent": 42,
+      "format": "webp",
+      "quality": 82
+    }
+  },
+  {
+    "filename": "apoyo-social-comunitario.webp",
+    "files": [
+      "apoyo-social-comunitario.webp"
+    ],
+    "prompt": "Emotionally warm editorial photograph showing a small community wellness group preparing a healthy shared meal together in a bright neighborhood kitchen. One adult chops vegetables, another arranges bowls of legumes and grains, while a third offers encouragement to a participant reviewing a personal habit journal with its pages turned away from the camera. Capture the scene with a wide 35mm documentary lens from within the group, creating overlapping layers of hands, ingredients and genuine interaction rather than a posed lineup. Sunlight enters through large windows, illuminating diverse ages and body types with natural warmth. The atmosphere should communicate belonging, practical support and shared progress. No clinic uniforms, no banners, no readable notes, no logos or text.",
+    "model": "flux-2-pro",
+    "date": "2026-07-23T05:36:30.628Z",
+    "resolution": "1344x768",
+    "duration": 16986,
+    "state": "completed",
+    "cost": 3,
+    "imageMetadata": {
+      "preset": "article_hero",
+      "aspectRatio": "16:9",
+      "webWidth": 1181,
+      "webHeight": 675,
+      "inputMp": 0,
+      "outputMp": 0.98,
+      "filename": "apoyo-social-comunitario",
+      "originalWidth": 1344,
+      "originalHeight": 768,
+      "originalBytes": 92068,
+      "webBytes": 54058,
+      "reductionPercent": 41,
+      "format": "webp",
+      "quality": 82
+    }
+  }
+]

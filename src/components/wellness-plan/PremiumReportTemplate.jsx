@@ -1,20 +1,34 @@
-import React, { useRef, useMemo } from 'react';
+import React, { forwardRef, useMemo } from 'react';
 import ReactMarkdown from 'react-markdown';
+import ReactECharts from 'echarts-for-react';
 import BRANDING from '@/branding/branding';
 
 const DOMAIN_LABELS = {
-  nutrition: 'Nutricion',
+  nutrition: 'Nutrición',
   activity: 'Actividad',
-  sleep: 'Sueno',
-  mental: 'Estres',
-  biometry: 'Biometria',
-  digestion: 'Digestion',
-  habits: 'Habitos',
+  sleep: 'Sueño',
+  mental: 'Estrés',
+  biometry: 'Biometría',
+  digestion: 'Digestión',
+  habits: 'Hábitos',
 };
+
+const WHATSAPP_URL = 'https://wa.me/56989639088';
+const INSTAGRAM_URL = 'https://instagram.com/donde_mi_negro';
+
+function createReportId(name) {
+  const source = `${name || 'usuario'}-${Date.now()}-${Math.random()}`;
+  let hash = 0;
+  for (let i = 0; i < source.length; i += 1) {
+    hash = ((hash << 5) - hash) + source.charCodeAt(i);
+    hash |= 0;
+  }
+  return `BEC-${new Date().getFullYear()}-${Math.abs(hash).toString(36).toUpperCase().slice(0, 8)}`;
+}
 
 function MetricCard({ label, value, helper }) {
   return (
-    <div style={{
+    <div className="metric-card" style={{
       border: '1px solid #d1fae5',
       borderRadius: 16,
       padding: '18px 16px',
@@ -53,7 +67,7 @@ function DomainRow({ label, score }) {
 
 function RecommendationBlock({ rec, index }) {
   return (
-    <div style={{
+    <div className="recommendation-block" style={{
       border: '1px solid #e2e8f0',
       borderLeft: '5px solid #0f766e',
       borderRadius: 16,
@@ -82,7 +96,7 @@ function RecommendationBlock({ rec, index }) {
 
 function ReportHeader({ label = 'Informe Premium' }) {
   return (
-    <div style={{
+    <div className="avoid-page-break" style={{
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
@@ -98,8 +112,44 @@ function ReportHeader({ label = 'Informe Premium' }) {
   );
 }
 
-export default function PremiumReportTemplate({ markdownContent, userData, twinData, onComplete }) {
-  const containerRef = useRef(null);
+function DomainRadarChart({ domains }) {
+  const entries = Object.entries(domains || {});
+  if (!entries.length) return null;
+
+  const option = {
+    animation: false,
+    color: ['#0f766e'],
+    radar: {
+      radius: '62%',
+      indicator: entries.map(([key]) => ({
+        name: DOMAIN_LABELS[key] || key,
+        max: 100,
+      })),
+      axisName: { color: '#334155', fontSize: 11 },
+      splitLine: { lineStyle: { color: '#dbeafe' } },
+      splitArea: { areaStyle: { color: ['#f8fafc', '#ecfdf5'] } },
+      axisLine: { lineStyle: { color: '#d1fae5' } },
+    },
+    series: [{
+      type: 'radar',
+      data: [{
+        value: entries.map(([, score]) => Math.round(score || 0)),
+        name: 'Perfil',
+        areaStyle: { color: 'rgba(15, 118, 110, 0.18)' },
+        lineStyle: { width: 3 },
+        symbolSize: 5,
+      }],
+    }],
+  };
+
+  return (
+    <div className="print-chart" style={{ width: '100%', height: 300, breakInside: 'avoid', pageBreakInside: 'avoid' }}>
+      <ReactECharts option={option} opts={{ renderer: 'svg' }} style={{ width: '100%', height: '100%' }} />
+    </div>
+  );
+}
+
+const PremiumReportTemplate = forwardRef(function PremiumReportTemplate({ markdownContent, userData, twinData }, ref) {
   const biometrics = twinData?.twin_state?.biometrics || {};
   const iib = twinData?.twin_state?.iib || {};
   const domains = iib.domains || {};
@@ -108,29 +158,28 @@ export default function PremiumReportTemplate({ markdownContent, userData, twinD
   const insights = analysis.domain_insights || {};
   const recommendations = twinData?.recommendations || [];
   const reportId = useMemo(() => {
-    const hash = Buffer.from(`${userData.name}-${Date.now()}-${Math.random()}`).toString('base64').slice(0, 12);
-    return `BEC-${new Date().getFullYear()}-${hash.toUpperCase()}`;
-  }, [userData.name]);
-
-  // Exponemos un método para disparar el PDF desde fuera, pero lo haremos con un hook simple
-  // de forma que al montarse o al clickear se descargue. Para este caso, el componente padre
-  // llamará a generatePDF() a través de un ref, o nosotros proveeremos una función exportada.
+    return createReportId(userData?.name);
+  }, [userData?.name]);
 
   return (
     <div
-      ref={containerRef}
+      ref={ref}
+      className="premium-report-print"
       style={{
         padding: '40px 60px',
         backgroundColor: '#ffffff',
         color: '#1f2937',
         fontFamily: "'Inter', sans-serif",
-        maxWidth: 800,
+        width: '794px',
+        maxWidth: '794px',
         margin: '0 auto',
+        printColorAdjust: 'exact',
+        WebkitPrintColorAdjust: 'exact',
       }}
     >
       {/* Portada Premium */}
       <div
-        className="pdf-page-break"
+        className="print-page print-page-after"
         style={{
           height: '1050px', // A4 aprox (dependiendo de la escala)
           display: 'flex',
@@ -138,9 +187,8 @@ export default function PremiumReportTemplate({ markdownContent, userData, twinD
           justifyContent: 'center',
           alignItems: 'center',
           textAlign: 'center',
-          pageBreakAfter: 'always',
           background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
-          margin: '-40px -60px 40px -60px', // Compensar el padding del container
+          margin: '-40px -60px 40px -60px',
           padding: '60px',
           position: 'relative',
           overflow: 'hidden',
@@ -188,7 +236,7 @@ export default function PremiumReportTemplate({ markdownContent, userData, twinD
 
         <div style={{ padding: '20px 40px', backgroundColor: 'rgba(255,255,255,0.8)', borderRadius: 20 }}>
           <p style={{ fontSize: '1.2rem', margin: '0 0 8px', fontWeight: 600 }}>Preparado exclusivamente para:</p>
-          <p style={{ fontSize: '1.5rem', margin: 0, color: '#15803d', fontWeight: 700 }}>{userData.name}</p>
+          <p style={{ fontSize: '1.5rem', margin: 0, color: '#15803d', fontWeight: 700 }}>{userData?.name || twinData?.raw_answers?.name || 'Usuario'}</p>
         </div>
 
         <p style={{ maxWidth: 520, color: '#166534', fontSize: '1rem', lineHeight: 1.6, marginTop: 28 }}>
@@ -204,11 +252,10 @@ export default function PremiumReportTemplate({ markdownContent, userData, twinD
 
       {/* Resumen Ejecutivo Visual */}
       <section
-        className="pdf-page-break"
+        className="print-page print-page-after"
         style={{
-          pageBreakAfter: 'always',
-          minHeight: 980,
           paddingTop: 10,
+          paddingBottom: 28,
         }}
       >
         <ReportHeader label="Resumen ejecutivo" />
@@ -242,6 +289,7 @@ export default function PremiumReportTemplate({ markdownContent, userData, twinD
         }}>
           <div style={{ background: '#f8fafc', borderRadius: 18, padding: 20, border: '1px solid #e2e8f0' }}>
             <h2 style={{ margin: '0 0 12px', color: '#0f172a', fontSize: '1.15rem' }}>Mapa por dominio</h2>
+            <DomainRadarChart domains={domains} />
             {Object.entries(domains).map(([key, score]) => (
               <DomainRow key={key} label={DOMAIN_LABELS[key] || key} score={score} />
             ))}
@@ -273,11 +321,10 @@ export default function PremiumReportTemplate({ markdownContent, userData, twinD
 
       {/* Prioridades de Accion */}
       <section
-        className="pdf-page-break"
+        className="print-page print-page-after"
         style={{
-          pageBreakAfter: 'always',
-          minHeight: 980,
           paddingTop: 10,
+          paddingBottom: 28,
         }}
       >
         <ReportHeader label="Plan accionable" />
@@ -295,14 +342,14 @@ export default function PremiumReportTemplate({ markdownContent, userData, twinD
           <RecommendationBlock key={rec.rule_id || rec.id || index} rec={rec} index={index} />
         ))}
 
-        <div style={{ marginTop: 26, background: '#f8fafc', borderRadius: 18, padding: 20, border: '1px solid #e2e8f0' }}>
+        <div className="roadmap-block" style={{ marginTop: 26, background: '#f8fafc', borderRadius: 18, padding: 20, border: '1px solid #e2e8f0' }}>
           <h2 style={{ margin: '0 0 12px', color: '#0f172a', fontSize: '1.15rem' }}>Roadmap de 30 dias</h2>
           {[
             ['Dias 1-7', 'Estabilizar', recommendations[0]?.action || 'Iniciar el habito principal'],
             ['Dias 8-21', 'Consolidar', recommendations[1]?.action || 'Convertir el avance en rutina'],
             ['Dias 22-30', 'Medir', recommendations[2]?.action || 'Revisar energia, digestion, sueno y adherencia'],
           ].map(([range, title, detail]) => (
-            <div key={range} style={{ display: 'grid', gridTemplateColumns: '95px 1fr', gap: 12, marginBottom: 12 }}>
+            <div className="roadmap-row" key={range} style={{ display: 'grid', gridTemplateColumns: '95px 1fr', gap: 12, marginBottom: 12 }}>
               <strong style={{ color: '#0f766e', fontSize: '0.9rem' }}>{range}</strong>
               <p style={{ margin: 0, color: '#334155', fontSize: '0.9rem', lineHeight: 1.45 }}>
                 <strong>{title}:</strong> {detail}
@@ -324,13 +371,14 @@ export default function PremiumReportTemplate({ markdownContent, userData, twinD
         <ReportHeader label="Analisis personalizado" />
         <ReactMarkdown
           components={{
-            h1: ({node, ...props}) => <h1 style={{ fontSize: '2rem', color: '#166534', marginTop: '2em', marginBottom: '1em', borderBottom: '2px solid #bbf7d0', paddingBottom: '0.5em', pageBreakBefore: 'always' }} {...props} />,
-            h2: ({node, ...props}) => <h2 style={{ fontSize: '1.5rem', color: '#15803d', marginTop: '1.5em', marginBottom: '0.8em' }} {...props} />,
-            h3: ({node, ...props}) => <h3 style={{ fontSize: '1.2rem', color: '#16a34a', marginTop: '1.2em', marginBottom: '0.5em' }} {...props} />,
+            h1: ({node, ...props}) => <h1 className="markdown-section-heading" style={{ fontSize: '2rem', color: '#166534', marginTop: '1.4em', marginBottom: '0.8em', borderBottom: '2px solid #bbf7d0', paddingBottom: '0.5em' }} {...props} />,
+            h2: ({node, ...props}) => <h2 className="markdown-section-heading" style={{ fontSize: '1.5rem', color: '#15803d', marginTop: '1.25em', marginBottom: '0.7em' }} {...props} />,
+            h3: ({node, ...props}) => <h3 className="markdown-section-heading" style={{ fontSize: '1.2rem', color: '#16a34a', marginTop: '1em', marginBottom: '0.45em' }} {...props} />,
             p: ({node, ...props}) => <p style={{ marginBottom: '1em' }} {...props} />,
             ul: ({node, ...props}) => <ul style={{ paddingLeft: '1.5em', marginBottom: '1em' }} {...props} />,
             li: ({node, ...props}) => <li style={{ marginBottom: '0.5em' }} {...props} />,
             strong: ({node, ...props}) => <strong style={{ color: '#111827', fontWeight: 700 }} {...props} />,
+            a: ({node, ...props}) => <a style={{ color: '#0f766e', fontWeight: 700, textDecoration: 'underline' }} target="_blank" rel="noopener noreferrer" {...props} />,
           }}
         >
           {markdownContent}
@@ -354,7 +402,8 @@ export default function PremiumReportTemplate({ markdownContent, userData, twinD
           <strong>Nota importante:</strong> Este documento ha sido generado por el sistema de Inteligencia Artificial de Bienestar en Claro con fines exclusivamente informativos y educativos. No constituye un diagnóstico médico ni sustituye la consulta con un profesional de la salud cualificado.
         </p>
         <p style={{ marginBottom: 4 }}>
-          WhatsApp: +56 989 63 90 88 | Instagram: @donde_mi_negro
+          WhatsApp: <a href={WHATSAPP_URL} style={{ color: '#0f766e', fontWeight: 700, textDecoration: 'underline' }}>+56 989 63 90 88</a>
+          {' '}| Instagram: <a href={INSTAGRAM_URL} style={{ color: '#0f766e', fontWeight: 700, textDecoration: 'underline' }}>@donde_mi_negro</a>
         </p>
         <p style={{ fontSize: '0.72rem', color: '#9ca3af', marginTop: 8 }}>
           Informe {reportId} · Generado el {new Date().toLocaleDateString('es-CL', { day: 'numeric', month: 'long', year: 'numeric' })} · v2.0
@@ -362,5 +411,6 @@ export default function PremiumReportTemplate({ markdownContent, userData, twinD
       </div>
     </div>
   );
-}
+});
 
+export default PremiumReportTemplate;
