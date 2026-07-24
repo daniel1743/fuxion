@@ -1,94 +1,116 @@
 /**
- * API Endpoint: Pipeline Automatizado de Bienestar Premium en Claro
- * Webhook / Trigger — v1.0.0
+ * LEGACY_WRITE_PATH — Pipeline automatizado de Bienestar Premium.
  *
- * Recibe un tema y fecha de publicación desde Airtable, Notion o manual.
- * Ejecuta el pipeline completo: IA Redactor → BFL Image → Media Upload → CMS Publication.
- *
- * POST /api/bienestar-pipeline
- * Body: { tema_solicitado: string, fecha_publicacion?: string, fuente?: string }
+ * Fase 0: contenido por defecto y siempre bloqueado en producción.
+ * El módulo que contiene efectos externos se carga únicamente después de
+ * superar todos los gates. No aceptar secretos por query string.
  */
 
-const { runBienestarPremiumPipeline } = require('../src/modules/editor-ia/pipelines/bienestar-premium/pipeline-adapter.cjs');
+const DISABLED_MESSAGE = 'Pipeline temporalmente deshabilitado.';
+const GENERIC_ERROR_MESSAGE = 'No se pudo procesar la solicitud.';
 
-/**
- * @param {import('@vercel/node').VercelRequest} req
- * @param {import('@vercel/node').VercelResponse} res
- */
-module.exports = async function handler(req, res) {
-  // ─── CORS ─────────────────────────────────────────────────────
-  res.setHeader('Access-Control-Allow-Origin', '*');
+function isPipelineEnabled(env = process.env) {
+  return env.NODE_ENV !== 'production' && env.BIENESTAR_PIPELINE_ENABLED === 'true';
+}
+
+function getAllowedOrigins(env = process.env) {
+  return String(env.BIENESTAR_PIPELINE_ALLOWED_ORIGINS || '')
+    .split(',')
+    .map((value) => value.trim())
+    .filter((value) => {
+      if (!value || value === '*') return false;
+      try {
+        const url = new URL(value);
+        return (url.protocol === 'https:' || url.protocol === 'http:') && url.origin === value;
+      } catch {
+        return false;
+      }
+    });
+}
+
+function applyCors(req, res, env = process.env) {
+  const origin = req.headers?.origin;
+  if (!origin) return true;
+
+  const allowed = getAllowedOrigins(env);
+  if (!allowed.includes(origin)) return false;
+
+  res.setHeader('Access-Control-Allow-Origin', origin);
+  res.setHeader('Vary', 'Origin');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  return true;
+}
 
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
+function createPipelineContext({ temaSolicitado, fechaPublicacion, fuente }) {
+  const pipelineId = `bienestar-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+  return {
+    pipeline_id: pipelineId,
+    job: {
+      id: pipelineId,
+      topic: temaSolicitado,
+      format: 'ARTICLE',
+      target_audience: 'Público general interesado en bienestar y salud',
+      status: 'DRAFT',
+    },
+    stages: [],
+    current_stage: 'trigger_entrada',
+    traceId: pipelineId,
+    trigger: {
+      tema_solicitado: temaSolicitado,
+      fecha_publicacion: fechaPublicacion || null,
+      fuente: fuente || 'webhook',
+    },
+    ia_output: null,
+    bfl_output: null,
+    media_output: null,
+    publication_output: null,
+    steps: [],
+    currentStepIndex: 0,
+    history: [],
+    warnings: [],
+    startedAt: new Date().toISOString(),
+    completedAt: null,
+  };
+}
+
+async function handler(req, res) {
+  res.setHeader('Cache-Control', 'no-store');
+
+  // Gate fail-closed antes de importar cualquier módulo con efectos externos.
+  if (!isPipelineEnabled()) {
+    return res.status(503).json({ success: false, error: DISABLED_MESSAGE });
   }
 
+  if (!applyCors(req, res)) {
+    return res.status(403).json({ success: false, error: 'Origen no autorizado.' });
+  }
+
+  if (req.method === 'OPTIONS') return res.status(204).end();
   if (req.method !== 'POST') {
-    return res.status(405).json({
-      success: false,
-      error: 'Método no permitido. Usa POST.',
-    });
+    return res.status(405).json({ success: false, error: 'Método no permitido.' });
   }
-
-  // ─── Rate Limiting simple (1 req/s por IP) ────────────────────
-  // Se delega a Vercel Edge / WAF en producción
 
   try {
     const { tema_solicitado, fecha_publicacion, fuente } = req.body || {};
-
-    // ─── Validación ───────────────────────────────────────────────
-    if (!tema_solicitado || typeof tema_solicitado !== 'string' || tema_solicitado.trim().length < 5) {
-      return res.status(400).json({
-        success: false,
-        error: 'Campo requerido: "tema_solicitado" (string, mínimo 5 caracteres).',
-      });
+    if (typeof tema_solicitado !== 'string' || tema_solicitado.trim().length < 5) {
+      return res.status(400).json({ success: false, error: 'Solicitud inválida.' });
+    }
+    if (fecha_publicacion && Number.isNaN(Date.parse(fecha_publicacion))) {
+      return res.status(400).json({ success: false, error: 'Solicitud inválida.' });
     }
 
-    if (fecha_publicacion && isNaN(Date.parse(fecha_publicacion))) {
-      return res.status(400).json({
-        success: false,
-        error: '"fecha_publicacion" debe ser una fecha ISO 8601 válida.',
-      });
-    }
+    // Importación diferida: nunca ocurre mientras el kill switch esté cerrado.
+    const { runBienestarPremiumPipeline } = await import(
+      '../src/modules/editor-ia/pipelines/bienestar-premium/pipeline-adapter.cjs'
+    );
 
-    // ─── Construir el contexto del pipeline ───────────────────────
-    const pipelineId = `bienestar-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
-
-    const ctx = {
-      pipeline_id: pipelineId,
-      job: {
-        id: pipelineId,
-        topic: tema_solicitado.trim(),
-        format: 'ARTICLE',
-        target_audience: 'Público general interesado en bienestar y salud',
-        status: 'DRAFT',
-      },
-      stages: [],
-      current_stage: 'trigger_entrada',
-      traceId: pipelineId,
-      // Contexto extendido de Bienestar
-      trigger: {
-        tema_solicitado: tema_solicitado.trim(),
-        fecha_publicacion: fecha_publicacion || null,
-        fuente: fuente || 'webhook',
-      },
-      ia_output: null,
-      bfl_output: null,
-      media_output: null,
-      publication_output: null,
-      // Runtime fields
-      steps: [],
-      currentStepIndex: 0,
-      history: [],
-      warnings: [],
-      startedAt: new Date().toISOString(),
-      completedAt: null,
-    };
-
-    // ─── Cargar configuración desde variables de entorno ──────────
-    const config = {
+    const context = createPipelineContext({
+      temaSolicitado: tema_solicitado.trim(),
+      fechaPublicacion: fecha_publicacion,
+      fuente,
+    });
+    const result = await runBienestarPremiumPipeline(context, {
       llm_api_key: process.env.ANTHROPIC_API_KEY,
       llm_endpoint: process.env.LLM_ENDPOINT,
       llm_model: process.env.LLM_MODEL,
@@ -97,61 +119,23 @@ module.exports = async function handler(req, res) {
       cms_base_url: process.env.WP_BASE_URL,
       cms_username: process.env.WP_USERNAME,
       cms_application_password: process.env.WP_APP_PASSWORD,
-    };
+    });
 
-    // ─── Ejecutar pipeline ───────────────────────────────────────
-    const startTime = Date.now();
-    const result = await runBienestarPremiumPipeline(ctx, config);
-    const totalMs = Date.now() - startTime;
-
-    // ─── Responder ────────────────────────────────────────────────
     return res.status(200).json({
       success: true,
       pipeline_id: result.pipeline_id,
-      duracion_ms: totalMs,
-      trigger: {
-        tema: result.trigger.tema_solicitado,
-        fecha_publicacion: result.trigger.fecha_publicacion,
-      },
-      ia_output: result.ia_output
-        ? {
-            tipo_contenido: result.ia_output.tipo_contenido,
-            seo_slug: result.ia_output.seo_slug,
-            seo_meta_title: result.ia_output.seo_meta_title,
-            seo_meta_description: result.ia_output.seo_meta_description,
-            contenido_length: result.ia_output.contenido_markdown.length,
-          }
-        : null,
-      bfl_output: result.bfl_output
-        ? {
-            image_url: result.bfl_output.image_url,
-            model: result.bfl_output.model,
-            width: result.bfl_output.width,
-            height: result.bfl_output.height,
-          }
-        : null,
-      media_output: result.media_output
-        ? {
-            media_id: result.media_output.media_id,
-            cms_url: result.media_output.cms_url,
-          }
-        : null,
-      publication_output: result.publication_output
-        ? {
-            post_url: result.publication_output.post_url,
-            estado_final: result.publication_output.estado_final,
-            post_id: result.publication_output.post_id,
-          }
-        : null,
-      warnings: result.warnings || [],
+      estado: result.publication_output?.estado_final || 'completado',
     });
-  } catch (err) {
-    console.error('[BienestarPipeline::API] Error:', err.message);
-
-    return res.status(500).json({
-      success: false,
-      error: err.message || 'Error interno del pipeline.',
-      timestamp: new Date().toISOString(),
-    });
+  } catch {
+    // Nunca devolver mensajes crudos de proveedores, rutas o configuración.
+    return res.status(500).json({ success: false, error: GENERIC_ERROR_MESSAGE });
   }
+}
+
+export default handler;
+export const __testables = {
+  isPipelineEnabled,
+  getAllowedOrigins,
+  applyCors,
+  createPipelineContext,
 };

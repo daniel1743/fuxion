@@ -1,0 +1,46 @@
+{
+  "tema": "Eje intestino-hígado",
+  "pregunta_principal": "¿Cómo se comunican el intestino, la microbiota y el hígado, y cómo influye esto en la salud hepática?",
+  "intencion_de_busqueda": "Informativa y de comprensión de mecanismos fisiológicos",
+  "perfil_del_lector": "Personas interesadas en salud digestiva, pacientes con diagnóstico reciente de hígado graso o problemas metabólicos que buscan información clara y sin promesas comerciales engañosas.",
+  "nivel_de_riesgo_ymyl": "Alto. Involucra enfermedades hepáticas crónicas y metabolismo.",
+  "evidencia_solida": [
+    "Comunicación anatómica y fisiológica bidireccional.",
+    "El papel de la vena porta, bilis, metabolitos microbianos y el sistema inmunitario.",
+    "Observación de alteraciones intestinales en enfermedades hepáticas.",
+    "Naturaleza multifactorial de MASLD.",
+    "Beneficios del tratamiento convencional: alimentación, ejercicio, control metabólico."
+  ],
+  "incertidumbres": [
+    "Qué cambios concretos de microbiota son causa, consecuencia o acompañante.",
+    "Existencia de una combinación microbiana universalmente saludable.",
+    "Eficacia de probióticos específicos para prevenir complicaciones mayores.",
+    "Utilidad real de las pruebas comerciales de microbiota.",
+    "Impacto directo de modificar la microbiota sobre cirrosis o mortalidad."
+  ],
+  "posibles_danos_a_evitar": [
+    "Sustitución de tratamiento médico por terapias detox.",
+    "Atribución de todos los síntomas digestivos inespecíficos a una supuesta filtración intestinal.",
+    "Gasto innecesario en pruebas comerciales de heces para diagnosticar MASLD.",
+    "Pérdida de oportunidad terapéutica por no controlar factores metabólicos y centrarse solo en suplementos."
+  ],
+  "senales_de_alarma": [
+    "Color amarillento de piel u ojos.",
+    "Aumento del volumen abdominal.",
+    "Hinchazón de piernas o tobillos.",
+    "Orina persistentemente oscura.",
+    "Sangrado o aparición de moretones con facilidad.",
+    "Confusión, somnolencia inusual o cambios importantes de conducta.",
+    "Vómitos con sangre o deposiciones negras.",
+    "Pérdida de peso involuntaria.",
+    "Dolor abdominal intenso o persistente."
+  ],
+  "fuentes_principales": [
+    "Cell Metabolism (Tilg et al., 2022)",
+    "Journal of Hepatology (Albillos et al., 2020)",
+    "Hepatology - Delphi consensus on MASLD (Rinella et al., 2023)",
+    "Guías Clínicas EASL-EASD-EASO (2024)",
+    "The Lancet Gastroenterology & Hepatology (Riazi et al., 2022)",
+    "Nature Reviews Gastroenterology & Hepatology (Henao-Mejia et al., 2013)"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "run-manifest.schema.json",
+  "title": "RunManifest",
+  "schema_version": "1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["run_id", "pipeline_version", "started_at", "completed_at", "status", "dry_run", "network_enabled", "source_type", "input_paths", "article_ids", "snapshots", "artifacts", "errors", "warnings", "environment_summary"],
+  "properties": {
+    "run_id": { "type": "string", "minLength": 1 },
+    "pipeline_version": { "type": "string", "minLength": 1 },
+    "started_at": { "type": "string", "minLength": 1 },
+    "completed_at": { "type": ["string", "null"] },
+    "status": { "type": "string", "enum": ["created", "source_loaded", "source_validation_failed", "snapshotted", "snapshot_failed", "normalized", "normalization_failed", "diff_generated", "restore_verified", "restore_failed", "completed", "blocked"] },
+    "dry_run": { "type": "boolean", "const": true },
+    "network_enabled": { "type": "boolean", "const": false },
+    "source_type": { "type": "string", "enum": ["fixture", "local_json_export"] },
+    "input_paths": { "type": "array", "items": { "type": "string" } },
+    "article_ids": { "type": "array", "items": { "type": "string" } },
+    "snapshots": { "type": "array" },
+    "artifacts": { "type": "array" },
+    "errors": { "type": "array" },
+    "warnings": { "type": "array", "items": { "type": "string" } },
+    "environment_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["runtime", "network", "external_services"],
+      "properties": {
+        "runtime": { "type": "string" },
+        "network": { "type": "boolean", "const": false },
+        "external_services": { "type": "boolean", "const": false }
+      }
+    }
+  }
+}

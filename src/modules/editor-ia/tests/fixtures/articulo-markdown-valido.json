@@ -1,0 +1,16 @@
+{
+  "_fixture": "synthetic",
+  "source_schema_version": "fixture-1",
+  "source_table": "local_export",
+  "article_id": "fixture-markdown",
+  "id": "fixture-markdown",
+  "slug": "habito-sintetico-markdown",
+  "status": "draft",
+  "title": "Artículo sintético en Markdown",
+  "content": "# Artículo sintético en Markdown\n\n## Introducción\n\nContenido educativo ficticio sin recomendaciones clínicas.",
+  "author": "Equipo editorial ficticio",
+  "category": "Bienestar",
+  "tags": ["fixture"],
+  "language": "es",
+  "meta_description": "Fixture sintético para validar Markdown."
+}

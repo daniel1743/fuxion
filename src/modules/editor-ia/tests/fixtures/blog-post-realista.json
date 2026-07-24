@@ -1,0 +1,14 @@
+{
+  "_fixture": "synthetic",
+  "source_schema_version": "blog-fixture-1",
+  "source_table": "blog_posts",
+  "id": "fixture-blog",
+  "slug": "explicacion-ficticia",
+  "is_published": true,
+  "title": "Explicación ficticia",
+  "body": "# Explicación ficticia\n\nTexto neutral para pruebas.",
+  "excerpt": "Resumen ficticio.",
+  "seo_title": "Explicación ficticia | Fixture",
+  "canonical_url": "https://example.invalid/articulos/explicacion-ficticia",
+  "keywords": ["fixture", "prueba"]
+}

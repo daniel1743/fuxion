@@ -18,9 +18,20 @@ import { createClient } from '@supabase/supabase-js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const SUPABASE_URL = 'https://iyloouessyxfvwvzdboc.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml5bG9vdWVzc3l4ZnZ3dnpkYm9jIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MTYzNzI3NSwiZXhwIjoyMDk3MjEzMjc1fQ.-YySdwqu5kPADvC_HFx5TtaFRLDBsj0QHMdPfn_isF4';
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+// LEGACY_WRITE_PATH: este script puede modificar wellness_articles.
+// Una service role es exclusiva de procesos de servidor y nunca debe exponerse
+// mediante variables VITE_ ni importarse desde código frontend.
+const SUPABASE_URL = process.env.SUPABASE_URL;
+const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
+  console.error('Configuración de servidor incompleta. Operación cancelada.');
+  process.exit(1);
+}
+
+const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
+  auth: { persistSession: false, autoRefreshToken: false },
+});
 
 // ── Mapeo de títulos editoriales ───────────────────────────────
 

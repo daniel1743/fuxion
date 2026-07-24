@@ -1,10 +1,18 @@
 const fs = require('fs');
 const { createClient } = require('@supabase/supabase-js');
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-const url = 'https://iyloouessyxfvwvzdboc.supabase.co';
-const key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml5bG9vdWVzc3l4ZnZ3dnpkYm9jIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE2MzcyNzUsImV4cCI6MjA5NzIxMzI3NX0.6bjQCIC3vQKFny4Sl5i-k7P1r7_4UUKhhcQ65Y5jsmc';
-const supabase = createClient(url, key);
+// LEGACY_WRITE_PATH: solo servidor. Nunca usar una service role en frontend.
+const url = process.env.SUPABASE_URL;
+const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+if (!url || !key) {
+  console.error('Configuración de servidor incompleta. Operación cancelada.');
+  process.exit(1);
+}
+
+const supabase = createClient(url, key, {
+  auth: { persistSession: false, autoRefreshToken: false },
+});
 
 // El Catálogo Oficial (Hardcoded here for the node script ease)
 const CATEGORY_CATALOG = [

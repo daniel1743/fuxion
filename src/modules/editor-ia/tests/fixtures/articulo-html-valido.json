@@ -1,0 +1,18 @@
+{
+  "_fixture": "synthetic",
+  "source_schema_version": "fixture-1",
+  "source_table": "local_export",
+  "article_id": "fixture-html",
+  "slug": "habito-sintetico-html",
+  "status": "draft",
+  "title": "Artículo sintético HTML",
+  "content_html": "<article><h1>Artículo sintético HTML</h1><p>Texto ficticio.</p></article>",
+  "json_ld": [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Artículo sintético HTML"
+    }
+  ],
+  "language": "es"
+}

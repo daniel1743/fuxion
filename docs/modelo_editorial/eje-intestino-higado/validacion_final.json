@@ -1,0 +1,24 @@
+{
+  "control_de_calidad": {
+    "utilidad_editorial": 90,
+    "seo_aeo": 86,
+    "seguridad_ymyl": 93,
+    "confianza_global": 89
+  },
+  "validaciones_obligatorias": {
+    "La pregunta principal se responde en las primeras 150 palabras": true,
+    "No existen secciones vacías": true,
+    "No existen cifras sin fuente": true,
+    "No existen referencias inventadas o incompletas": true,
+    "No existen recomendaciones farmacológicas inseguras": true,
+    "Las preguntas frecuentes pertenecen al tema": true,
+    "La categoría es correcta": true,
+    "Los enlaces funcionan": true,
+    "El Markdown se renderiza correctamente": true,
+    "La conclusión no introduce afirmaciones nuevas": true,
+    "El disclaimer aparece una sola vez": true,
+    "No se muestran productos automáticos": true
+  },
+  "resultado_final": "APROBADO",
+  "comentarios": "APROBADO tras integración y validación. Las afirmaciones clínicas principales incluyen citas dentro del cuerpo; DOI y PMID son clicables; el registro publicado no contiene productos relacionados; las FAQ visibles coinciden con el schema; existe un solo H1 y un solo aviso de salud; y las tablas se renderizan sin desbordar la página en escritorio y móvil. La categoría usada es Nutrición porque la restricción vigente de la base de datos no admite Salud hepática."
+}

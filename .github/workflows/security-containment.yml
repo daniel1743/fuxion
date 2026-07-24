@@ -1,0 +1,36 @@
+name: Security containment
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - security/**
+
+permissions:
+  contents: read
+
+jobs:
+  negative-security-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Scan current tree for secrets
+        run: npm run security:scan
+
+      - name: Run negative security tests
+        run: npm run security:test

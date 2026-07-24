@@ -117,21 +117,28 @@ async function loadBlogPostSlugs() {
 }
 
 // ── Wellness article slugs from Supabase (dynamic) ────────────
+function loadWellnessArticleSlugsFromCache() {
+  try {
+    const cachePath = path.join(ROOT_DIR, 'public/wellness-articles-cache.json');
+    if (!fs.existsSync(cachePath)) return [];
+    const articles = JSON.parse(fs.readFileSync(cachePath, 'utf-8'));
+    if (!Array.isArray(articles)) return [];
+    return articles
+      .filter((article) => article.slug && article.is_published !== false)
+      .map((article) => ({
+        slug: article.slug,
+        updated_at: article.updated_at || TODAY,
+      }));
+  } catch (err) {
+    console.error('❌ Error loading wellness cache:', err.message);
+    return [];
+  }
+}
+
 async function loadWellnessArticleSlugs() {
   try {
     if (!supabase) {
-      // Fall back to cache file
-      const cachePath = path.join(ROOT_DIR, 'public/wellness-articles-cache.json');
-      if (fs.existsSync(cachePath)) {
-        const raw = fs.readFileSync(cachePath, 'utf-8');
-        const articles = JSON.parse(raw);
-        if (Array.isArray(articles)) {
-          return articles
-            .filter((a) => a.slug && a.is_published !== false)
-            .map((a) => ({ slug: a.slug, title: a.title }));
-        }
-      }
-      return [];
+      return loadWellnessArticleSlugsFromCache();
     }
 
     const { data, error } = await supabase
@@ -142,7 +149,7 @@ async function loadWellnessArticleSlugs() {
 
     if (error) {
       console.error('❌ Error loading wellness articles:', error.message);
-      return [];
+      return loadWellnessArticleSlugsFromCache();
     }
 
     return (data || []).map((article) => ({
@@ -151,7 +158,7 @@ async function loadWellnessArticleSlugs() {
     }));
   } catch (err) {
     console.error('❌ Error loading wellness articles:', err.message);
-    return [];
+    return loadWellnessArticleSlugsFromCache();
   }
 }
 

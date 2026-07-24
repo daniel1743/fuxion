@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "article-snapshot.schema.json",
+  "title": "ArticleSnapshot",
+  "schema_version": "1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["snapshot_id", "article_id", "source_table", "source_record_id", "source_hash", "snapshot_hash", "source_schema_version", "pipeline_version", "created_at", "original_record", "canonical_article", "artifact_paths"],
+  "properties": {
+    "snapshot_id": { "type": "string", "minLength": 1 },
+    "article_id": { "type": "string", "minLength": 1 },
+    "source_table": { "type": "string", "enum": ["wellness_articles", "blog_posts", "local_export"] },
+    "source_record_id": { "type": "string", "minLength": 1 },
+    "source_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "snapshot_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "source_schema_version": { "type": "string", "minLength": 1 },
+    "pipeline_version": { "type": "string", "minLength": 1 },
+    "created_at": { "type": "string", "minLength": 1 },
+    "original_record": { "type": "object" },
+    "canonical_article": { "$ref": "canonical-article.schema.json" },
+    "artifact_paths": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["artifact_id", "article_id", "artifact_type", "path", "sha256", "created_at"],
+        "properties": {
+          "artifact_id": { "type": "string" },
+          "article_id": { "type": "string" },
+          "artifact_type": { "type": "string" },
+          "path": { "type": "string" },
+          "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+          "created_at": { "type": "string" }
+        }
+      }
+    }
+  }
+}

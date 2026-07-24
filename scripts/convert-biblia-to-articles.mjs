@@ -18,10 +18,19 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // ── Configuración ──────────────────────────────────────────────
-const SUPABASE_URL = 'https://iyloouessyxfvwvzdboc.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml5bG9vdWVzc3l4ZnZ3dnpkYm9jIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MTYzNzI3NSwiZXhwIjoyMDk3MjEzMjc1fQ.-YySdwqu5kPADvC_HFx5TtaFRLDBsj0QHMdPfn_isF4';
+// LEGACY_WRITE_PATH: este importador hace upsert en wellness_articles.
+// La service role es exclusiva de servidor y nunca debe usar prefijo VITE_.
+const SUPABASE_URL = process.env.SUPABASE_URL;
+const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
+  console.error('Configuración de servidor incompleta. Operación cancelada.');
+  process.exit(1);
+}
+
+const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
+  auth: { persistSession: false, autoRefreshToken: false },
+});
 const BIBLIA_PATH = path.join(__dirname, '..', 'public', 'branding', 'base de datos bienestar ia', 'biblioteca_bienestar.json');
 
 // Owner user — Daniel Falcón's auth user ID.

@@ -1,0 +1,68 @@
+{
+  "titulo_seo": "Eje intestino-hígado: microbiota, MASLD y evidencia",
+  "meta_descripcion": "Cómo se comunican el intestino, la microbiota y el hígado, qué relación existe con MASLD y qué intervenciones cuentan con evidencia.",
+  "slug": "eje-intestino-higado",
+  "categoria": "Nutrición",
+  "palabras_clave": [
+    "eje intestino-higado",
+    "microbiota",
+    "MASLD",
+    "higado graso",
+    "permeabilidad intestinal",
+    "salud hepatica",
+    "disbiosis"
+  ],
+  "enlaces_internos_sugeridos": [],
+  "schema": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "headline": "Eje intestino-hígado: cómo se comunican el intestino, la microbiota y el hígado",
+    "author": {
+      "@type": "Person",
+      "name": "Daniel Falcón"
+    },
+    "dateModified": "2026-07-23",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿La dieta puede cambiar la microbiota y beneficiar al hígado?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La alimentación puede modificar la actividad y composición de la microbiota. También puede influir directamente en el peso, la glucosa, los lípidos y la grasa hepática. Sin embargo, no es posible atribuir todos los beneficios de un patrón alimentario exclusivamente a la microbiota."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Debo tomar probióticos para proteger el hígado?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No existe una recomendación universal. Las cepas y dosis no son equivalentes, y los resultados obtenidos en estudios pequeños no demuestran prevención de complicaciones importantes. Una persona con enfermedad hepática o inmunosupresión debe consultar antes de consumirlos."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Una prueba de heces puede diagnosticar MASLD?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. MASLD se identifica mediante el contexto cardiometabólico y la demostración de esteatosis, junto con la evaluación de otras posibles causas. Las pruebas de heces no reemplazan los análisis sanguíneos ni los estudios hepáticos."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿El eje intestino-hígado explica por qué tengo gases o inflamación abdominal?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No necesariamente. Los gases y la distensión pueden tener muchas causas y no demuestran que exista una enfermedad hepática ni una alteración grave de la barrera intestinal."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿MASLD es lo mismo que MASH?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. MASLD es una categoría amplia. MASH describe una forma en la que, además de grasa, existe inflamación y lesión de las células hepáticas. La fibrosis indica formación de cicatrices y es uno de los factores más importantes para valorar el riesgo a largo plazo."
+        }
+      }
+    ]
+  }
+}

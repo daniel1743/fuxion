@@ -96,7 +96,9 @@ const BlogPostPage = () => {
   const renderContent = (content) => {
     if (!content) return '';
 
-    let html = content;
+    // Normalize database line endings so headings and tables render consistently
+    // whether the article was saved from Windows, the editor, or an API.
+    let html = content.replace(/\r\n?/g, '\n');
 
     // 1. Enmascarar enlaces e imágenes markdown para protegerlos del auto-linker
     const maskedLinks = [];

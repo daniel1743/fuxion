@@ -1,0 +1,14 @@
+{
+  "_fixture": "synthetic",
+  "source_schema_version": "wellness-fixture-1",
+  "source_table": "wellness_articles",
+  "id": "fixture-wellness",
+  "slug": "rutina-ficticia-bienestar",
+  "is_published": false,
+  "title": "Rutina ficticia de bienestar",
+  "content": "# Rutina ficticia de bienestar\n\nContenido de prueba, no consejo de salud.",
+  "category": "Bienestar",
+  "author_name": "Autor ficticio",
+  "published_at": null,
+  "updated_at": "2026-07-23T00:00:00.000Z"
+}

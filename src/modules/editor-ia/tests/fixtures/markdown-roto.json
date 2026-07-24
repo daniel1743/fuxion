@@ -1,0 +1,11 @@
+{
+  "_fixture": "synthetic",
+  "source_schema_version": "fixture-1",
+  "source_table": "local_export",
+  "article_id": "fixture-broken-markdown",
+  "slug": "markdown-roto",
+  "status": "draft",
+  "title": "Título duplicado",
+  "content": "# Título duplicado\n\n# Segundo título\n\n[!WARNING]\n\n- lista\ntexto defectuoso",
+  "health_notice": ["Aviso ficticio uno", "Aviso ficticio dos"]
+}

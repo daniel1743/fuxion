@@ -23,6 +23,7 @@ const defaultProductsDataset = Object.entries(fuxionDatabase.productos || {}).ma
 const MobileAppShell = ({ 
   variant = 'compact', // 'large' (Home) or 'compact' (other pages)
   title,
+  titleAs = 'h1',
   description,
   showSearch = false,
   onSearchClick,
@@ -44,6 +45,7 @@ const MobileAppShell = ({
   };
 
   const isLarge = variant === 'large';
+  const TitleTag = titleAs;
 
   // Smart sticky: hide nav on scroll down, show on scroll up
   const navHidden = scrollDirection === 'down' && !isAtTop;
@@ -206,9 +208,9 @@ const MobileAppShell = ({
           {!isLarge && (title || description) && (
             <motion.div variants={itemVariants} className="w-full pt-2">
               {title && (
-                <h1 className="text-2xl font-bold text-white tracking-tight drop-shadow-sm leading-tight">
+                <TitleTag className="text-2xl font-bold text-white tracking-tight drop-shadow-sm leading-tight">
                   {title}
-                </h1>
+                </TitleTag>
               )}
               {description && (
                 <p className="text-sm text-emerald-50 mt-1 font-medium drop-shadow-sm opacity-90">

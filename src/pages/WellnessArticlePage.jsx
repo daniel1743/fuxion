@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import SEO from '@/components/SEO';
 import { ArrowLeft, Calendar, Clock, Share2, User } from 'lucide-react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
@@ -6,13 +8,21 @@ import { Button } from '@/components/ui/button';
 import CategoryBadge from '@/components/CategoryBadge';
 import { toast } from '@/components/ui/use-toast';
 import { fetchWellnessArticleBySlug } from '@/services/wellnessArticleService';
-import { buildBreadcrumbSchema, buildPersonSchema } from '@/lib/productSeo';
-import { generateArticleSchema, generateFaqSchema, extractSemanticKeywords } from '@/lib/articleEnricher';
+import { buildBreadcrumbSchema } from '@/lib/productSeo';
+import { generateFaqSchema, extractSemanticKeywords } from '@/lib/articleEnricher';
 import { buildWebsiteSchema } from '@/lib/productSeo';
 import { useReaderTracking } from '@/hooks/useReaderTracking';
 import { trackEvent } from '@/lib/userJourneyContext';
 import MobileAppShell from '@/components/mobile/MobileAppShell';
 import TableOfContents from '@/components/TableOfContents';
+
+const headingId = (children) => React.Children.toArray(children)
+  .join('')
+  .toLowerCase()
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .replace(/[^a-z0-9\s-]/g, '')
+  .replace(/\s+/g, '-');
 
 const WellnessArticlePage = () => {
   const { slug } = useParams();
@@ -20,7 +30,6 @@ const WellnessArticlePage = () => {
   const { trackArticleOpen, trackArticleClose, trackParagraphTime, trackPageView, openChat } = useReaderTracking();
   const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [paragraphRefs, setParagraphRefs] = useState([]);
 
   useEffect(() => {
     trackPageView();
@@ -61,6 +70,9 @@ const WellnessArticlePage = () => {
 
   const words = article.content.trim().split(/\s+/).length;
   const minutes = Math.max(1, Math.ceil(words / 200));
+  const authorName = article.editor_name || article.author || 'Daniel Falcón';
+  const articleContent = article.content.replace(/^#\s+.+(?:\r?\n)+/, '');
+  const hasVisibleDisclaimer = /aviso de salud/i.test(article.content);
   const share = async () => {
     const data = { title: article.title, text: article.excerpt, url: window.location.href };
     if (navigator.share) {
@@ -85,7 +97,7 @@ const WellnessArticlePage = () => {
     },
     "author": {
       "@type": "Person",
-      "name": article.editor_name || "Daniel Falcón",
+      "name": authorName,
       "jobTitle": "Investigador de Salud y Bienestar",
       "url": "https://www.bienestarenclaro.com/sobre-nosotros"
     },
@@ -111,7 +123,7 @@ const WellnessArticlePage = () => {
     "description": article.excerpt,
     "author": {
       "@type": "Person",
-      "name": article.editor_name || "Daniel Falcón",
+      "name": authorName,
       "jobTitle": "Investigador de Salud y Bienestar"
     },
     "publisher": {
@@ -132,11 +144,6 @@ const WellnessArticlePage = () => {
     "articleSection": article.category
   });
 
-  // Enriched schema from articleEnricher
-  const personSchema = buildPersonSchema({ name: article.editor_name || 'Daniel Falcón' });
-  const enrichedSchemas = generateArticleSchema(article, personSchema, 'bienestar');
-  enrichedSchemas.forEach(s => schemas.push(s));
-
   // Extract FAQs and build FAQPage Schema
   const faqSchema = generateFaqSchema(article.content);
   if (faqSchema) schemas.push(faqSchema);
@@ -152,7 +159,7 @@ const WellnessArticlePage = () => {
         ogType="article"
         ogImage={article.image_url || undefined}
         ogImageAlt={article.title}
-        articleAuthor={article.editor_name || 'Equipo de Bienestar'}
+        articleAuthor={authorName}
         articlePublished={article.published_at || article.created_at}
         articleTags={[article.category || 'Bienestar']}
         schema={[
@@ -173,6 +180,7 @@ const WellnessArticlePage = () => {
         <MobileAppShell 
           variant="compact"
           title="Artículo"
+          titleAs="div"
           description={article.title}
           showBack={true}
         />
@@ -187,7 +195,7 @@ const WellnessArticlePage = () => {
           <h1 className="mt-5 text-4xl font-extrabold leading-tight sm:text-5xl">{article.title}</h1>
           <p className="mt-5 text-xl leading-relaxed text-muted-foreground">{article.excerpt}</p>
           <div className="mt-6 flex flex-wrap gap-4 text-sm text-muted-foreground">
-            <span className="flex items-center gap-1"><User className="h-4 w-4" /> {article.editor_name}</span>
+            <span className="flex items-center gap-1"><User className="h-4 w-4" /> {authorName}</span>
             <span className="flex items-center gap-1"><Calendar className="h-4 w-4" /> {new Date(article.published_at || article.created_at).toLocaleDateString('es-CL')}</span>
             <span className="flex items-center gap-1"><Clock className="h-4 w-4" /> {minutes} min de lectura</span>
           </div>
@@ -195,28 +203,65 @@ const WellnessArticlePage = () => {
 
         {article.image_url && <img src={article.image_url} alt={article.title} className="mt-8 max-h-[520px] w-full rounded-2xl object-cover" />}
 
-        <TableOfContents content={article.content} className="mt-8" />
+        <TableOfContents content={articleContent} className="mt-8" />
 
-        <div className="mt-10 space-y-5 text-[1.05rem] leading-8 text-muted-foreground">
-          {article.content.split(/\n\s*\n/).filter(Boolean).map((paragraph, index) => (
-            <p
-              key={`${index}-${paragraph.slice(0, 20)}`}
-              className="whitespace-pre-wrap"
-              ref={(el) => {
-                if (el) paragraphRefs[index] = el;
-              }}
-              onMouseEnter={() => trackParagraphTime(`${slug}-p-${index}`)}
-              onMouseLeave={() => trackParagraphTime(`${slug}-p-${index}`)}
-              onTouchStart={() => trackParagraphTime(`${slug}-p-${index}`)}
-            >
-              {paragraph}
-            </p>
-          ))}
+        <div className="mt-10 text-[1.05rem] leading-8 text-muted-foreground">
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            skipHtml
+            components={{
+              h1: ({ children }) => <h2 id={headingId(children)} className="mb-4 mt-10 scroll-mt-28 text-3xl font-bold text-foreground">{children}</h2>,
+              h2: ({ children }) => <h2 id={headingId(children)} className="mb-4 mt-12 scroll-mt-28 text-3xl font-bold text-foreground">{children}</h2>,
+              h3: ({ children }) => <h3 id={headingId(children)} className="mb-3 mt-8 scroll-mt-28 text-2xl font-semibold text-foreground">{children}</h3>,
+              p: ({ children }) => (
+                <p
+                  className="my-5"
+                  onMouseEnter={() => trackParagraphTime(`${slug}-content`)}
+                  onMouseLeave={() => trackParagraphTime(`${slug}-content`)}
+                  onTouchStart={() => trackParagraphTime(`${slug}-content`)}
+                >
+                  {children}
+                </p>
+              ),
+              ul: ({ children }) => <ul className="my-5 list-disc space-y-2 pl-6">{children}</ul>,
+              ol: ({ children }) => <ol className="my-5 list-decimal space-y-2 pl-6">{children}</ol>,
+              li: ({ children }) => <li className="pl-1">{children}</li>,
+              strong: ({ children }) => <strong className="font-semibold text-foreground">{children}</strong>,
+              a: ({ href, children }) => (
+                <a
+                  href={href}
+                  className="font-medium text-primary underline decoration-primary/40 underline-offset-4 hover:decoration-primary"
+                  target={href?.startsWith('http') ? '_blank' : undefined}
+                  rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined}
+                >
+                  {children}
+                </a>
+              ),
+              blockquote: ({ children }) => (
+                <blockquote className="my-7 rounded-xl border border-amber-200 bg-amber-50 px-5 py-1 text-sm text-amber-950 dark:border-amber-900 dark:bg-amber-950/30 dark:text-amber-100">
+                  {children}
+                </blockquote>
+              ),
+              table: ({ children }) => (
+                <div className="my-8 overflow-x-auto rounded-xl border border-border">
+                  <table className="w-full min-w-[680px] border-collapse text-left text-sm">{children}</table>
+                </div>
+              ),
+              thead: ({ children }) => <thead className="bg-muted text-foreground">{children}</thead>,
+              th: ({ children }) => <th className="border-b border-r border-border px-4 py-3 font-semibold last:border-r-0">{children}</th>,
+              td: ({ children }) => <td className="border-b border-r border-border px-4 py-3 align-top last:border-r-0">{children}</td>,
+              hr: () => <hr className="my-10 border-border" />,
+            }}
+          >
+            {articleContent}
+          </ReactMarkdown>
         </div>
 
-        <div className="mt-10 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900 dark:border-amber-900 dark:bg-amber-950/30 dark:text-amber-100">
-          Contenido informativo y educativo. No reemplaza una evaluación ni indicación profesional de salud.
-        </div>
+        {!hasVisibleDisclaimer && (
+          <div className="mt-10 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900 dark:border-amber-900 dark:bg-amber-950/30 dark:text-amber-100">
+            Contenido informativo y educativo. No reemplaza una evaluación ni indicación profesional de salud.
+          </div>
+        )}
 
         <Button variant="outline" className="mt-8" onClick={share}><Share2 className="mr-2 h-4 w-4" /> Compartir artículo</Button>
       </article>

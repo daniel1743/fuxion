@@ -9,8 +9,13 @@
     "sitemap": "node scripts/generate-sitemap-final.cjs",
     "preview": "vite preview --host :: --port 3000",
     "compress-images": "node scripts/compress-product-images.js",
-    "convert-biblia": "node scripts/convert-biblia-to-articles.mjs",
-    "enrich-article": "node scripts/enrich-article.mjs"
+    "security:test": "node --test tests/security/*.test.cjs",
+    "security:scan": "node scripts/security-scan.cjs",
+    "editorial:slice1": "node src/modules/editor-ia/slice1/cli.js process",
+    "editorial:verify": "node src/modules/editor-ia/slice1/cli.js verify",
+    "editorial:restore": "node src/modules/editor-ia/slice1/cli.js restore",
+    "editorial:test": "node --test tests/editorial-slice1/*.test.js",
+    "editorial:coverage": "node --test --experimental-test-coverage tests/editorial-slice1/*.test.js"
   },
   "dependencies": {
     "@hugeicons/core-free-icons": "^4.2.2",
@@ -45,6 +50,7 @@
     "react-markdown": "^10.1.0",
     "react-router-dom": "^6.16.0",
     "react-to-print": "^3.3.0",
+    "remark-gfm": "^4.0.1",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7"
   },

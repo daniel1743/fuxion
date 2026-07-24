@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "canonical-article.schema.json",
+  "title": "CanonicalArticle",
+  "schema_version": "1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["identity", "editorial", "dates", "structured_content", "seo", "source"],
+  "properties": {
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["article_id", "source_table", "source_record_id", "slug", "url", "status"],
+      "properties": {
+        "article_id": { "type": "string", "minLength": 1 },
+        "source_table": { "type": "string", "enum": ["wellness_articles", "blog_posts", "local_export"] },
+        "source_record_id": { "type": "string", "minLength": 1 },
+        "slug": { "type": "string" },
+        "url": { "type": ["string", "null"] },
+        "status": { "type": "string", "minLength": 1 }
+      }
+    },
+    "editorial": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "subtitle", "excerpt", "body", "body_format", "author", "reviewer", "category", "tags", "language"],
+      "properties": {
+        "title": { "type": "string" },
+        "subtitle": { "type": ["string", "null"] },
+        "excerpt": { "type": ["string", "null"] },
+        "body": { "type": "string" },
+        "body_format": { "type": "string", "enum": ["markdown", "html", "plain_text", "unknown"] },
+        "author": {},
+        "reviewer": {},
+        "category": { "type": ["string", "null"] },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "language": { "type": "string", "minLength": 2 }
+      }
+    },
+    "dates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["published_at", "updated_at", "reviewed_at"],
+      "properties": {
+        "published_at": { "type": ["string", "null"] },
+        "updated_at": { "type": ["string", "null"] },
+        "reviewed_at": { "type": ["string", "null"] }
+      }
+    },
+    "structured_content": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["visible_faq", "schema_faq", "references", "products", "json_ld", "table_of_contents", "health_notice"],
+      "properties": {
+        "visible_faq": { "type": "array" },
+        "schema_faq": { "type": "array" },
+        "references": { "type": "array" },
+        "products": { "type": "array" },
+        "json_ld": { "type": "array" },
+        "table_of_contents": { "type": "array" },
+        "health_notice": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "seo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["seo_title", "meta_description", "canonical_url", "keywords"],
+      "properties": {
+        "seo_title": { "type": ["string", "null"] },
+        "meta_description": { "type": ["string", "null"] },
+        "canonical_url": { "type": ["string", "null"] },
+        "keywords": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["raw_record", "unparsed_fragments", "normalization_issues", "schema_version"],
+      "properties": {
+        "raw_record": { "type": "object" },
+        "unparsed_fragments": { "type": "object" },
+        "normalization_issues": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["code", "severity", "field", "message", "original_fragment", "recoverable"],
+            "properties": {
+              "code": { "type": "string", "minLength": 1 },
+              "severity": { "type": "string", "enum": ["BLOCKER", "WARNING", "INFO"] },
+              "field": { "type": "string", "minLength": 1 },
+              "message": { "type": "string", "minLength": 1 },
+              "original_fragment": {},
+              "recoverable": { "type": "boolean" }
+            }
+          }
+        },
+        "schema_version": { "type": "string", "const": "1.0.0" }
+      }
+    }
+  }
+}

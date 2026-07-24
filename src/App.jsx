@@ -84,6 +84,8 @@ function App() {
                     <Route path="/cuenta" element={<AccountPage />} />
                     <Route path="/opiniones" element={<ReviewsPage />} />
                     <Route path="/opiniones/wellness" element={<WellnessPage />} />
+                    <Route path="/bienestar/eje-intestino-hgado" element={<Navigate to="/bienestar/eje-intestino-higado" replace />} />
+                    <Route path="/bienestar/eje-intestino-higado-microbiota" element={<Navigate to="/bienestar/eje-intestino-higado" replace />} />
                     <Route path="/bienestar/:slug" element={<WellnessArticlePage />} />
                     <Route path="/condicion/:slug" element={<ConditionHubPage />} />
                     <Route path="/blog" element={<BlogRedirectPage />} />
