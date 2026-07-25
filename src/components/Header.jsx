@@ -3,62 +3,33 @@ import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HugeiconsIcon } from '@hugeicons/react';
 import {
-  Home03Icon,
-  ShoppingCart01Icon,
-  ShoppingBag03Icon,
   Leaf01Icon,
   BookOpen02Icon,
   Rocket01Icon,
   HelpCircleIcon,
-  Store01Icon,
   Logout01Icon,
   UserIcon,
   Message01Icon,
-  ChevronRightIcon,
-  Menu01Icon,
-  Cancel01Icon,
-  LinkSquare01Icon,
+  ArrowLeft02Icon,
   PackageIcon,
   HeartIcon,
   TrendingUp,
-  InstagramIcon,
   ChevronDownIcon,
   Notification01Icon,
-  Target01Icon,
 } from '@hugeicons/core-free-icons';
-import { Button } from '@/components/ui/button';
 import { useSiteSettings } from '@/context/SiteSettingsContext';
 import { useAuth } from '@/context/AuthContext';
 import { useNotifications } from '@/context/NotificationContext';
-import MobileAppShell from '@/components/mobile/MobileAppShell';
 import BRANDING from '@/branding/branding';
 import UserMenu from '@/components/UserMenu';
-import { TiktokIcon, FacebookIcon } from '@/components/icons/BrandIcons';
 import { useScrollDirection } from '@/hooks/useScrollDirection';
-import { SPRING_PHYSICS, SPRING_SNAPPY } from '@/lib/motionTokens';
+import {
+  getSidebarMenu,
+  isSidebarItemActive,
+  NAVIGATION_CONTEXT,
+} from '@/components/mobile/sidebarNavigation';
 
 const officialStoreUrl = 'https://ifuxion.com/daniel/enrollment/chooseperson';
-
-// ── Drawer navigation items ────────────────────────────────────
-const drawerNavItems = [
-  { label: 'Inicio', icon: Home03Icon, path: '/' },
-  { label: 'Mi carrito', subtitle: 'Ver mis productos', icon: ShoppingCart01Icon, path: '/carrito' },
-  { label: 'Productos', subtitle: 'Catálogo FuXion', icon: ShoppingBag03Icon, path: '/explorar' },
-  { label: 'Tu plan a medida', subtitle: 'Diseña tu programa ideal', icon: Rocket01Icon, path: '/plan-a-medida' },
-  { label: 'Sobre Nosotros', subtitle: 'Nuestra historia y valores', icon: Leaf01Icon, path: '/sobre-nosotros' },
-  { label: 'Objetivos de bienestar', subtitle: 'Encuentra lo ideal para ti', icon: BookOpen02Icon, path: '/opiniones' },
-  { label: 'Artículos', subtitle: 'Ciencia y salud', icon: BookOpen02Icon, path: '/articulos' },
-  { label: 'Evidencias', subtitle: 'Información y contenido', icon: BookOpen02Icon, path: '/blog' },
-  { label: 'Oportunidad FuXion', subtitle: 'Conoce el proyecto', icon: Rocket01Icon, path: '/oportunidad-fuxion' },
-  { label: 'Centro de ayuda', subtitle: 'Contacto y soporte', icon: HelpCircleIcon, path: '/ayuda' },
-];
-
-// ── Social links ───────────────────────────────────────────────
-const socialLinks = [
-  { name: 'Instagram', icon: InstagramIcon, url: 'https://www.instagram.com/naturalmentefuxion/' },
-  { name: 'TikTok', icon: TiktokIcon, url: '#' }, // Agregamos URL vacia temporal o la que exista
-  { name: 'Facebook', icon: FacebookIcon, url: '#' },
-];
 
 // ── Desktop dropdown component ─────────────────────────────────
 const DesktopDropdown = ({ label, items, navigate }) => {
@@ -152,94 +123,111 @@ const Header = () => {
   const { isAuthenticated, user, openAuthModal, logout } = useAuth();
   const navigate = useNavigate();
   const drawerPanelRef = useRef(null);
+  const drawerCloseRef = useRef(null);
+  const currentLocation = useLocation();
+
+  const closeMobileMenu = useCallback(() => {
+    setIsMenuOpen(false);
+  }, []);
 
   const handleNavClick = useCallback((path) => {
-    setIsMenuOpen(false);
+    closeMobileMenu();
     navigate(path);
-  }, [navigate]);
+  }, [closeMobileMenu, navigate]);
 
-  const handleOfficialStore = useCallback(() => {
-    setIsMenuOpen(false);
-    window.open(officialStoreUrl, '_blank', 'noopener,noreferrer');
-  }, []);
-
-  // Listen for custom event from MobileHomeHeroSurface
+  // Listen for custom event from MobileHomeHeroSurface / MobileAppShell
   useEffect(() => {
-    const handleToggleMenu = () => setIsMenuOpen(prev => !prev);
-    window.addEventListener('open-mobile-menu', handleToggleMenu);
-    return () => window.removeEventListener('open-mobile-menu', handleToggleMenu);
+    const handleOpenMenu = () => {
+      setIsMenuOpen(true);
+    };
+    window.addEventListener('open-mobile-menu', handleOpenMenu);
+    return () => window.removeEventListener('open-mobile-menu', handleOpenMenu);
   }, []);
 
-  const location = useLocation();
-  const isHome = location.pathname === '/';
+  // Route changes must never carry an open drawer into the next ecosystem.
+  useEffect(() => {
+    if (isMenuOpen) closeMobileMenu();
+    // currentLocation.pathname is intentionally the trigger; closeMobileMenu is stable.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentLocation.pathname]);
 
+  const { context: navigationContext, items: drawerNavItems } = getSidebarMenu(currentLocation.pathname);
   // Smart sticky: hide on scroll down, show on scroll up
   const { scrollDirection, isAtTop } = useScrollDirection();
   const headerHidden = scrollDirection === 'down' && !isAtTop;
 
   const handleWhatsApp = useCallback(() => {
-    setIsMenuOpen(false);
+    closeMobileMenu();
     const phone = '56912345678';
     const message = encodeURIComponent('Hola, quiero hablar con un asesor Fuxion.');
     window.open(`https://wa.me/${phone}?text=${message}`, '_blank', 'noopener,noreferrer');
-  }, []);
+  }, [closeMobileMenu]);
 
   // ── Dispatch custom event for FalconBot visibility ──────────
   useEffect(() => {
     window.dispatchEvent(new CustomEvent('fuxion:mobile-menu', { detail: { isOpen: isMenuOpen } }));
   }, [isMenuOpen]);
 
-  // ── Click outside drawer to close ────────────────────────────
+  // Keep keyboard focus and page scroll predictable while the modal drawer is open.
   useEffect(() => {
-    if (!isMenuOpen) return;
+    if (!isMenuOpen) return undefined;
+    const previousOverflow = document.body.style.overflow;
+    const previousRootOverflow = document.documentElement.style.overflow;
+    const previouslyFocused = document.activeElement;
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    drawerCloseRef.current?.focus();
 
-    const handleClickOutside = (event) => {
-      // Ignore clicks on the menu toggle buttons to prevent race conditions
-      if (event.target.closest('button[aria-label="Menú"]') || event.target.closest('button[aria-label="Cerrar menú"]')) {
-        return;
-      }
-      if (drawerPanelRef.current && !drawerPanelRef.current.contains(event.target)) {
-        setIsMenuOpen(false);
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') closeMobileMenu();
+      if (event.key !== 'Tab' || !drawerPanelRef.current) return;
+      const focusable = drawerPanelRef.current.querySelectorAll(
+        'button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])'
+      );
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
       }
     };
 
-    // Use a short delay to avoid the opening click triggering close
-    const timer = setTimeout(() => {
-      document.addEventListener('mousedown', handleClickOutside);
-      document.addEventListener('touchstart', handleClickOutside, { passive: true });
-    }, 50);
-
+    document.addEventListener('keydown', handleKeyDown);
     return () => {
-      clearTimeout(timer);
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('touchstart', handleClickOutside);
+      document.body.style.overflow = previousOverflow;
+      document.documentElement.style.overflow = previousRootOverflow;
+      document.removeEventListener('keydown', handleKeyDown);
+      previouslyFocused?.focus?.();
     };
-  }, [isMenuOpen]);
+  }, [closeMobileMenu, isMenuOpen]);
 
   // ── Drawer animation variants ────────────────────────────────
   const drawerVariants = {
     closed: {
-      x: '100%',
-      opacity: 0,
-      transition: SPRING_SNAPPY,
+      x: '-104%',
+      transition: { duration: 0.22, ease: [0.4, 0, 1, 1] },
     },
     open: {
       x: 0,
-      opacity: 1,
-      transition: SPRING_PHYSICS,
+      transition: { duration: 0.26, ease: [0.22, 0.61, 0.36, 1] },
     },
   };
 
   const overlayVariants = {
-    closed: { opacity: 0, transition: { duration: 0.15 } },
-    open: { opacity: 1, transition: { duration: 0.2 } },
+    closed: { opacity: 0, transition: { duration: 0.22 } },
+    open: { opacity: 1, transition: { duration: 0.26 } },
   };
 
   const itemVariants = {
-    closed: { opacity: 0 },
+    closed: { opacity: 0, x: -8 },
     open: (i) => ({
       opacity: 1,
-      transition: { delay: 0.02 * i, ...SPRING_PHYSICS },
+      x: 0,
+      transition: { delay: 0.035 + (0.018 * i), duration: 0.2, ease: 'easeOut' },
     }),
   };
 
@@ -350,8 +338,9 @@ const Header = () => {
             initial="closed"
             animate="open"
             exit="closed"
-            className="fixed inset-0 z-backdrop bg-black/30 backdrop-blur-[6px] md:hidden pointer-events-auto"
-            onClick={() => setIsMenuOpen(false)}
+            className="fixed inset-0 z-backdrop bg-black/[.42] backdrop-blur-[2px] md:hidden pointer-events-auto"
+            onClick={closeMobileMenu}
+            aria-hidden="true"
           />
         )}
 
@@ -363,195 +352,172 @@ const Header = () => {
             initial="closed"
             animate="open"
             exit="closed"
-            className="fixed top-0 right-0 z-modal h-[100dvh] w-[80vw] max-w-[320px] bg-white dark:bg-surface-muted shadow-2xl md:hidden flex flex-col overflow-hidden pointer-events-auto"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Menú principal"
+            className="premium-mobile-drawer fixed inset-y-0 left-0 z-modal h-[100dvh] w-[86vw] max-w-[380px] bg-white text-[#18181B] md:hidden flex flex-col overflow-visible pointer-events-auto rounded-r-[30px]"
           >
-            {/* Close button — top right */}
-              <button
-                type="button"
-                onClick={() => setIsMenuOpen(false)}
-                className="absolute top-4 right-4 z-content flex items-center justify-center w-10 h-10 rounded-full bg-white dark:bg-surface-elevated shadow-md hover:shadow-lg transition-shadow duration-200"
-                aria-label="Cerrar menú"
-              >
-                <HugeiconsIcon icon={Cancel01Icon} className="w-[22px] h-[22px] text-foreground" />
-              </button>
-
-              {/* ── Profile Header ─────────────────────────────── */}
-              {/* pt accounts for: safe-area-inset-top + close button height (40px=10) + gap */}
-              <div className="flex flex-col items-center pt-[max(env(safe-area-inset-top,0px)_+_56px,_72px)] pb-4 px-6 shrink-0">
-                {/* Avatar — reduced size by ~25% and made clickable to go to /cuenta */}
-                <div className="relative mt-2 mb-2">
-                  <button
-                    type="button"
-                    onClick={() => handleNavClick('/cuenta')}
-                    className="w-[56px] h-[56px] rounded-full shadow-md overflow-hidden focus:outline-none focus:ring-4 transition-shadow cursor-pointer block"
-                    aria-label="Ir a mi cuenta y notificaciones"
+              {/* ── Violet profile hero ───────────────────────── */}
+              <div className="relative h-[220px] shrink-0 overflow-visible">
+                <div className="premium-drawer-hero absolute inset-x-0 top-0 h-[220px] overflow-hidden rounded-tr-[30px]">
+                  <div className="absolute -left-14 -top-20 h-64 w-64 rounded-full bg-[#D8B4FE]/35 blur-[54px]" />
+                  <div className="absolute right-[-65px] top-4 h-52 w-52 rounded-full bg-[#F0ABFC]/25 blur-[48px]" />
+                  <div className="absolute bottom-5 left-[38%] h-28 w-48 rounded-full bg-[#A78BFA]/30 blur-[38px]" />
+                  <svg
+                    className="absolute -bottom-px left-0 h-[66px] w-full text-white"
+                    viewBox="0 0 400 72"
+                    preserveAspectRatio="none"
+                    aria-hidden="true"
                   >
-                    {isAuthenticated && user?.avatar ? (
-                      <img
-                        src={user.avatar}
-                        alt={user.name || 'Mi cuenta'}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <img
-                        src={BRANDING.logos.isotype}
-                        alt={settings.site_name || 'FuXion'}
-                        className="w-[70%] h-[70%] mt-[15%] ml-[15%] object-contain"
-                      />
-                    )}
-                  </button>
+                    <path fill="currentColor" d="M0,45 C70,72 142,62 210,36 C282,9 337,18 400,3 L400,72 L0,72 Z" />
+                  </svg>
                 </div>
 
-                {/* User info or welcome */}
+                <motion.div
+                  className="premium-avatar-ring absolute left-[20px] top-[106px] flex h-[122px] w-[122px] items-center justify-center rounded-full"
+                    animate={{ y: [0, -3, 0] }}
+                    transition={{ duration: 4.8, repeat: Infinity, ease: 'easeInOut' }}
+                  >
+                    <motion.button
+                      type="button"
+                      onClick={() => handleNavClick('/cuenta')}
+                      whileTap={{ scale: 0.96 }}
+                      className="premium-drawer-avatar relative z-[2] flex h-[108px] w-[108px] items-center justify-center overflow-hidden rounded-full border-[4px] border-white bg-white focus:outline-none focus-visible:ring-4 focus-visible:ring-violet-300"
+                      aria-label="Ir a mi cuenta y notificaciones"
+                    >
+                      {isAuthenticated && user?.avatar ? (
+                        <img
+                          src={user.avatar}
+                          alt={user.name || 'Mi cuenta'}
+                          className="h-full w-full object-cover"
+                        />
+                      ) : (
+                        <img
+                          src={BRANDING.logos.isotype}
+                          alt={settings.site_name || 'Bienestar en Claro'}
+                          className="h-[68%] w-[68%] object-contain"
+                        />
+                      )}
+                    </motion.button>
+                  </motion.div>
+              </div>
+
+              {/* Floating close control centered on drawer edge */}
+              <button
+                ref={drawerCloseRef}
+                type="button"
+                onClick={closeMobileMenu}
+                className="premium-drawer-close absolute right-[-26px] top-[84px] z-[9999] flex h-[52px] w-[52px] touch-manipulation select-none items-center justify-center rounded-full bg-white text-[#6D28D9] transition-transform duration-180 hover:scale-[1.04] active:scale-90 focus:outline-none focus-visible:ring-4 focus-visible:ring-violet-300"
+                aria-label="Cerrar menú"
+              >
+                <HugeiconsIcon icon={ArrowLeft02Icon} className="h-[26px] w-[26px]" strokeWidth={2} />
+              </button>
+
+              {/* ── Identity ──────────────────────────────────── */}
+              <div className="shrink-0 px-[26px] pt-[26px]">
                 {isAuthenticated && user ? (
                   <>
-                    <h2 className="text-sm font-bold text-foreground tracking-tight">
+                    <h2 className="truncate text-[30px] font-bold leading-[1.08] tracking-[-0.035em] text-[#18181B]">
                       {user.name}
                     </h2>
-                    <p className="text-xxs text-muted-foreground mt-0.5">
-                      Mi cuenta
+                    <p className="mt-2 truncate text-[15px] font-medium leading-5 text-[#71717A]">
+                      {user.email || 'Mi cuenta'}
                     </p>
                   </>
                 ) : (
                   <>
-                    <h2 className="text-sm font-bold text-foreground tracking-tight">
-                      Bienvenido
+                    <h2 className="text-[30px] font-bold leading-[1.08] tracking-[-0.035em] text-[#18181B]">
+                      {navigationContext === NAVIGATION_CONTEXT.FUXION ? 'Fuxion' : 'Bienvenido'}
                     </h2>
-                    <p className="text-xxs text-muted-foreground mt-0.5">
-                      Explora nuestra tienda
+                    <p className="mt-2 text-[15px] font-medium leading-5 text-[#71717A]">
+                      {navigationContext === NAVIGATION_CONTEXT.FUXION
+                        ? 'Productos y bienestar'
+                        : 'Tu bienestar empieza aquí'}
                     </p>
                   </>
                 )}
               </div>
 
               {/* ── Navigation Items ───────────────────────────── */}
-              <div className="flex-1 px-3 py-2 space-y-0.5 overflow-y-auto">
+              <div className="premium-drawer-scroll mt-6 min-h-0 flex-1 overflow-x-hidden overflow-y-auto overscroll-contain px-[22px] pb-4">
                 {drawerNavItems.map((item, i) => {
                   const IconComponent = item.icon;
-                  const isActive = window.location.pathname === item.path;
+                  const isActive = isSidebarItemActive(item, currentLocation.pathname);
                   return (
-                    <motion.button
-                      key={item.path}
-                      custom={i}
-                      variants={itemVariants}
-                      initial="closed"
-                      animate="open"
-                      onClick={() => handleNavClick(item.path)}
-                      className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all duration-200 group ${
-                        isActive
-                          ? 'bg-emerald-50 dark:bg-emerald-900/20 border-l-[3px] border-emerald-500'
-                          : 'hover:bg-emerald-50/60 dark:hover:bg-emerald-900/10 border-l-[3px] border-transparent'
-                      }`}
-                    >
-                      <div className={`flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center transition-colors duration-200 ${
-                        isActive
-                          ? 'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400'
-                          : 'bg-secondary text-muted-foreground group-hover:bg-emerald-100 dark:group-hover:bg-emerald-900/30 group-hover:text-emerald-600 dark:group-hover:text-emerald-400'
-                      }`}>
-                        <HugeiconsIcon icon={IconComponent} size={18} />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className={`text-sm font-semibold ${
-                          isActive ? 'text-emerald-700 dark:text-emerald-300' : 'text-gray-800 dark:text-gray-300'
-                        }`}>
+                    <React.Fragment key={item.id}>
+                      {item.sectionBreak && <div className="mx-3 my-3 border-t border-black/[.08]" aria-hidden="true" />}
+                      <motion.button
+                        custom={i}
+                        variants={itemVariants}
+                        initial="closed"
+                        animate="open"
+                        onClick={() => handleNavClick(item.path)}
+                        whileTap={{ scale: 0.98 }}
+                        aria-current={isActive ? 'page' : undefined}
+                        className={`group mb-1 flex min-h-[46px] w-full items-center gap-3 rounded-[13px] px-4 text-left transition-colors duration-180 focus:outline-none focus-visible:ring-4 focus-visible:ring-violet-200 ${
+                          isActive
+                            ? 'bg-gradient-to-r from-[#F4E8FF] to-[#E9D5FF] text-[#6D28D9]'
+                            : item.isContextExit
+                              ? 'text-[#6D28D9] hover:bg-violet-600/[.08]'
+                              : 'text-[#27272A] hover:bg-violet-600/[.08]'
+                        }`}
+                      >
+                        <HugeiconsIcon
+                          icon={IconComponent}
+                          size={20}
+                          strokeWidth={2}
+                          className={`shrink-0 transition-colors duration-180 ${
+                            isActive || item.isContextExit
+                              ? 'text-[#6D28D9]'
+                              : 'text-[#52525B] group-hover:text-[#7C3AED]'
+                          }`}
+                        />
+                        <span className="min-w-0 flex-1 truncate text-[15px] font-semibold leading-5 tracking-[-0.01em]">
                           {item.label}
-                        </p>
-                        {item.subtitle && (
-                          <p className="text-xxs text-muted-foreground mt-0.5 truncate">
-                            {item.subtitle}
-                          </p>
+                        </span>
+                        {item.contextHint && (
+                          <span className="rounded-full bg-violet-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[#6D28D9]">
+                            {item.contextHint}
+                          </span>
                         )}
-                      </div>
-                      <HugeiconsIcon icon={ChevronRightIcon} className={`transition-colors duration-200 ${
-                        isActive
-                          ? 'text-emerald-500'
-                          : 'text-muted-foreground/40 group-hover:text-emerald-400'
-                      }`} size={14} />
-                    </motion.button>
+                      </motion.button>
+                    </React.Fragment>
                   );
                 })}
 
-                {/* Tienda oficial */}
-                <motion.button
-                  custom={drawerNavItems.length}
-                  variants={itemVariants}
-                  initial="closed"
-                  animate="open"
-                  onClick={handleOfficialStore}
-                  className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all duration-200 group hover:bg-emerald-50/60 dark:hover:bg-emerald-900/10 border-l-[3px] border-transparent"
-                >
-                  <div className="flex-shrink-0 w-9 h-9 rounded-full bg-secondary flex items-center justify-center text-muted-foreground group-hover:bg-emerald-100 dark:group-hover:bg-emerald-900/30 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-200">
-                    <HugeiconsIcon icon={Store01Icon} size={18} />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-gray-800 dark:text-gray-300">
-                      Tienda oficial
-                    </p>
-                    <p className="text-xxs text-muted-foreground mt-0.5 truncate">
-                      Compra directa en FuXion
-                    </p>
-                  </div>
-                  <HugeiconsIcon icon={ChevronRightIcon} className="text-muted-foreground/40 group-hover:text-emerald-400 transition-colors duration-200" size={14} />
-                </motion.button>
-              </div>
-
-              {/* ── Footer: Social + WhatsApp + Logout ─────────── */}
-              {/* pb-safe ensures logout never hides behind the bottom nav on mobile */}
-              <div
-                className="px-5 pt-4 pb-3 shrink-0 shadow-[0_-1px_0_rgba(0,0,0,0.05)] dark:shadow-[0_-1px_0_rgba(255,255,255,0.05)] space-y-3"
-                style={{ paddingBottom: 'max(calc(env(safe-area-inset-bottom) + 4.5rem), 4.5rem)' }}
-              >
-                {/* Social + WhatsApp row */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    {socialLinks.map((social) => {
-                      const IconComponent = social.icon;
-                      const isHugeicon = typeof IconComponent !== 'function';
-                      return (
-                        <a
-                          key={social.name}
-                          href={social.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-9 h-9 rounded-full border border-emerald-200 dark:border-emerald-800/50 flex items-center justify-center text-emerald-600 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-900/30 hover:border-emerald-300 dark:hover:border-emerald-700 transition-all duration-200"
-                          aria-label={social.name}
-                          title={social.name}
-                        >
-                          {isHugeicon ? (
-                            <HugeiconsIcon icon={IconComponent} className="w-[18px] h-[18px]" size={18} />
-                          ) : (
-                            <IconComponent className="w-[18px] h-[18px]" strokeWidth={2.0} />
-                          )}
-                        </a>
-                      );
-                    })}
-                  </div>
+                {/* ── Secondary actions ───────────────────────── */}
+                <div className="mx-3 mb-2 mt-3 border-t border-black/[.08] pt-3">
                   <button
                     onClick={handleWhatsApp}
-                    className="flex items-center gap-1.5 text-xs font-medium text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors px-3 py-1.5 rounded-full hover:bg-emerald-50 dark:hover:bg-emerald-900/20"
+                    className="group flex min-h-[46px] w-full items-center gap-3 rounded-[13px] px-1 text-left text-[#3F3F46] transition-colors duration-180 hover:bg-violet-600/[.08] focus:outline-none focus-visible:ring-4 focus-visible:ring-violet-200"
                   >
-                    <HugeiconsIcon icon={Message01Icon} className="w-4 h-4" size={16} />
-                    <span>WhatsApp</span>
+                    <HugeiconsIcon icon={Message01Icon} size={20} strokeWidth={2} className="text-[#52525B] group-hover:text-[#7C3AED]" />
+                    <span className="text-[15px] font-semibold">Hablar por WhatsApp</span>
                   </button>
                 </div>
+              </div>
 
-                {/* Logout / Login — always at the very end, secondary */}
-                <div className="pt-1">
+              {/* ── Fixed session footer ──────────────────────── */}
+              <div
+                className="shrink-0 rounded-br-[30px] bg-white px-[22px] pt-3"
+                style={{ paddingBottom: 'max(env(safe-area-inset-bottom, 0px), 18px)' }}
+              >
+                <div className="border-t border-black/10 pt-3">
                   {isAuthenticated || user ? (
                     <button
-                      onClick={() => { setIsMenuOpen(false); logout(); }}
-                      className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-xs text-muted-foreground/70 hover:text-muted-foreground hover:bg-secondary/50 transition-all duration-200"
+                      onClick={() => { closeMobileMenu(); logout(); }}
+                      className="group flex min-h-[56px] w-full items-center gap-3 rounded-2xl px-[18px] text-left text-[#27272A] transition-colors duration-180 hover:bg-violet-600/[.08] active:scale-[.98] focus:outline-none focus-visible:ring-4 focus-visible:ring-violet-200"
                     >
-                      <HugeiconsIcon icon={Logout01Icon} className="w-3.5 h-3.5" size={14} />
-                      <span>Cerrar sesión</span>
+                      <HugeiconsIcon icon={Logout01Icon} size={22} strokeWidth={2} className="shrink-0 text-[#52525B] group-hover:text-[#7C3AED]" />
+                      <span className="text-[17px] font-bold">Cerrar sesión</span>
                     </button>
                   ) : (
                     <button
-                      onClick={() => { setIsMenuOpen(false); openAuthModal(); }}
-                      className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-xs text-muted-foreground/70 hover:text-muted-foreground hover:bg-secondary/50 transition-all duration-200"
+                      onClick={() => { closeMobileMenu(); openAuthModal(); }}
+                      className="group flex min-h-[56px] w-full items-center gap-3 rounded-2xl px-[18px] text-left text-[#27272A] transition-colors duration-180 hover:bg-violet-600/[.08] active:scale-[.98] focus:outline-none focus-visible:ring-4 focus-visible:ring-violet-200"
                     >
-                      <HugeiconsIcon icon={UserIcon} className="w-3.5 h-3.5" size={14} />
-                      <span>Iniciar sesión</span>
+                      <HugeiconsIcon icon={UserIcon} size={22} strokeWidth={2} className="shrink-0 text-[#52525B] group-hover:text-[#7C3AED]" />
+                      <span className="text-[17px] font-bold">Iniciar sesión</span>
                     </button>
                   )}
                 </div>
