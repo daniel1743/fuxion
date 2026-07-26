@@ -92,7 +92,7 @@ const PwaInstallPrompt = () => {
             <Button
               type="button"
               onClick={handleInstall}
-              className="h-9 flex-1 gap-2 bg-emerald-600 text-white hover:bg-emerald-700"
+              className="h-9 flex-1 gap-2 bg-fuxion text-white hover:bg-fuxion-light"
             >
               <Download className="h-4 w-4" />
               Instalar app

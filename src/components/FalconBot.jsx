@@ -1159,8 +1159,9 @@ Nombre: ${productCtx.name}`;
                                 />
                                 <Button
                                     type="submit"
+                                    variant="default"
                                     size="icon"
-                                    className="rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 shadow-sm shadow-emerald-500/20 transition-all hover:shadow-md hover:shadow-emerald-500/30"
+                                    className="rounded-full"
                                     disabled={!input.trim() || isLoading}
                                 >
                                     <Send className="h-4 w-4" />

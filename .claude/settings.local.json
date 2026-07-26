@@ -61,7 +61,16 @@
       "Bash(npx vitest *)",
       "Bash(npx tsc *)",
       "WebFetch(domain:docs.bfl.ml)",
-      "WebFetch(domain:api.bfl.ai)"
+      "WebFetch(domain:api.bfl.ai)",
+      "Bash(Select-Object -Last 30)",
+      "Bash(pwsh -c 'npm run build 2>&1 | Out-String')",
+      "Bash(Start-Sleep *)",
+      "Bash(pwsh -c 'Start-Sleep -Seconds 5')",
+      "Bash(pwsh -c 'Get-ChildItem node_modules/@sparticuz/chromium -Recurse -Filter \"*.ps1\" | Select-Object -First 3 FullName')",
+      "Bash(pwsh -c '$env:PUPPETEER_EXECUTABLE_PATH = \\(Get-ChildItem \"$env:LOCALAPPDATA\\\\Google\\\\Chrome\\\\Application\\\\chrome.exe\" -ErrorAction SilentlyContinue | Select-Object -First 1\\).FullName; if \\($env:PUPPETEER_EXECUTABLE_PATH\\) { echo $env:PUPPETEER_EXECUTIVE_PATH } else { echo \"NO_CHROME\" }')",
+      "Bash(pwsh -c 'Get-ChildItem \"$env:LOCALAPPDATA\\\\Microsoft\\\\Edge\\\\Application\\\\msedge.exe\" -ErrorAction SilentlyContinue; Get-ChildItem \"C:\\\\Program Files*\\\\chromium\\\\chromium.exe\" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1; Get-ChildItem \"C:\\\\Program Files*\\\\Chromium\\\\Application\\\\chrome.exe\" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1')",
+      "Bash(pwsh -c 'Get-ChildItem auditorias/home-home-* -Recurse | Rename-Item -NewName { $_.Name.Replace\\(\"home-home-\", \"home-\"\\) }')",
+      "Bash(pwsh -c 'Remove-Item auditorias/home-375-baseline.png,auditorias/home-1024-baseline.png,auditorias/home-1440-baseline.png -ErrorAction SilentlyContinue; Get-ChildItem auditorias/home-home-* | Rename-Item -NewName { $_.Name.Replace\\(\"home-home-\", \"home-\"\\) }')"
     ]
   }
 }

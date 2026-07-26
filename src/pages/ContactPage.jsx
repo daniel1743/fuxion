@@ -299,7 +299,7 @@ const ContactPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Badge variant="outline" className="mb-6 px-4 py-2 text-sm border-emerald-200 text-emerald-700 dark:border-emerald-800 dark:text-emerald-300 bg-white/80 dark:bg-emerald-950/40">
+            <Badge variant="outline" className="mb-6 px-4 py-2 text-sm bg-white/80 dark:bg-card/40">
               <MessageCircle className="w-4 h-4 mr-2" />
               Centro de Atención
             </Badge>
@@ -418,7 +418,7 @@ const ContactPage = () => {
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                   <Button
-                    variant="outline"
+variant="whatsapp"
                     onClick={() => openWhatsapp('Hola, recibí información sobre mi consulta FuXion y quiero saber más.')}
                   >
                     <MessageCircle className="mr-2 h-4 w-4" />
@@ -435,7 +435,7 @@ const ContactPage = () => {
                 exit={{ opacity: 0, y: -20 }}
               >
                 <div className="text-center mb-10">
-                  <Badge className="mb-4 px-4 py-1.5 bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 border-0">
+                  <Badge variant="success" className="mb-4 px-4 py-1.5 border-0">
                     <Send className="w-4 h-4 mr-1.5" />
                     Envíanos un mensaje
                   </Badge>

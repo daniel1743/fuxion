@@ -202,7 +202,7 @@ const PremiumInput = forwardRef(
       // Placeholder
       'placeholder:text-gray-400/70 placeholder:font-light',
       // Focus
-      'focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 focus:shadow-lg focus:shadow-emerald-400/10',
+      'focus:border-fuxion focus:ring-2 focus:ring-fuxion/20 focus:shadow-lg focus:shadow-fuxion/10',
       // Disabled
       'disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-100/50',
       // Error
@@ -228,7 +228,7 @@ const PremiumInput = forwardRef(
       // Posición flotante
       floatingLabel
         ? isFocused || hasValue
-          ? 'top-2 text-xs text-emerald-600'
+          ? 'top-2 text-xs text-fuxion'
           : 'top-1/2 -translate-y-1/2 text-base'
         : 'top-1/2 -translate-y-1/2 text-base',
       // Error
@@ -240,7 +240,7 @@ const PremiumInput = forwardRef(
     const iconContainerClasses = cn(
       'absolute top-1/2 -translate-y-1/2 transition-all duration-200',
       iconPosition === 'left' ? 'left-4' : 'right-4',
-      isFocused ? 'text-emerald-500' : 'text-gray-400',
+      isFocused ? 'text-fuxion' : 'text-gray-400',
       error && 'text-red-400',
       success && 'text-emerald-500'
     );

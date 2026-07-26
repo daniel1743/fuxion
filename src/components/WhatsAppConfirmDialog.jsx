@@ -33,7 +33,7 @@ const WhatsAppConfirmDialog = () => {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="max-w-md border-emerald-100 bg-white p-0 shadow-2xl dark:border-emerald-900 dark:bg-card">
+      <DialogContent className="max-w-md border-border bg-card p-0">
         <div className="p-6">
           <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 text-green-700 dark:bg-green-950 dark:text-green-300">
             <WhatsAppIcon className="h-6 w-6" />
@@ -48,8 +48,8 @@ const WhatsAppConfirmDialog = () => {
             </DialogDescription>
           </DialogHeader>
 
-          <div className="mt-5 flex gap-3 rounded-xl border border-emerald-100 bg-emerald-50 p-4 text-sm text-emerald-900 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-100">
-            <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-700 dark:text-emerald-300" />
+          <div className="mt-5 flex gap-3 rounded-xl border border-fuxion/20 bg-fuxion/10 p-4 text-sm text-foreground">
+            <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-fuxion" />
             <span>La conversación se abrirá en una nueva pestaña con el mensaje listo para enviar.</span>
           </div>
         </div>

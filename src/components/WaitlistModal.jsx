@@ -78,10 +78,10 @@ const WaitlistModal = ({ isOpen, onClose }) => {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-lg bg-white dark:bg-surface-elevated rounded-3xl shadow-2xl overflow-hidden z-content"
+            className="relative w-full max-w-lg bg-surface rounded-modal shadow-premium-soft overflow-hidden z-content"
           >
             {/* Header */}
-            <div className="relative h-32 bg-gradient-to-br from-emerald-600 to-emerald-800 overflow-hidden flex items-center justify-center">
+            <div className="relative h-32 bg-gradient-to-br from-fuxion to-fuxion-dark overflow-hidden flex items-center justify-center">
               <div 
                 className="absolute inset-0 bg-no-repeat bg-center opacity-10 bg-[length:150%]" 
                 style={{ backgroundImage: `url('${BRANDING.logos.isotype}')` }} 
@@ -111,9 +111,9 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ type: 'spring', bounce: 0.5 }}
-                  className="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/50 rounded-full flex items-center justify-center mb-6"
+                  className="w-20 h-20 bg-fuxion/10 rounded-full flex items-center justify-center mb-6"
                 >
-                  <HugeiconsIcon icon={CheckmarkBadge01Icon} className="w-10 h-10 text-emerald-600 dark:text-emerald-400" />
+                  <HugeiconsIcon icon={CheckmarkBadge01Icon} className="w-10 h-10 text-fuxion" />
                 </motion.div>
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">¡Reserva Exitosa!</h3>
                 <p className="text-gray-600 dark:text-gray-300">
@@ -143,7 +143,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full pl-10 pr-4 py-2.5 bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-white/10 rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all dark:text-white"
+                        className="w-full pl-10 pr-4 py-2.5 bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-white/10 rounded-xl text-sm focus:ring-2 focus:ring-fuxion focus:border-fuxion outline-none transition-all dark:text-white"
                         placeholder="Ej. María Pérez"
                         required
                       />
@@ -161,7 +161,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                           name="email"
                           value={formData.email}
                           onChange={handleChange}
-                          className="w-full pl-10 pr-4 py-2.5 bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-white/10 rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all dark:text-white"
+                          className="w-full pl-10 pr-4 py-2.5 bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-white/10 rounded-xl text-sm focus:ring-2 focus:ring-fuxion focus:border-fuxion outline-none transition-all dark:text-white"
                           placeholder="tu@email.com"
                           required
                         />
@@ -176,7 +176,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                           name="phone"
                           value={formData.phone}
                           onChange={handleChange}
-                          className="w-full pl-10 pr-4 py-2.5 bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-white/10 rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all dark:text-white"
+                          className="w-full pl-10 pr-4 py-2.5 bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-white/10 rounded-xl text-sm focus:ring-2 focus:ring-fuxion focus:border-fuxion outline-none transition-all dark:text-white"
                           placeholder="+56 9..."
                         />
                       </div>
@@ -197,7 +197,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                           onClick={() => handleGoalSelect(g)}
                           className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
                             formData.goal === g 
-                              ? 'bg-emerald-600 text-white shadow-md' 
+                              ? 'bg-fuxion text-white shadow-md' 
                               : 'bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/10'
                           }`}
                         >
@@ -219,7 +219,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                           name="weight"
                           value={formData.weight}
                           onChange={handleChange}
-                          className="w-full pl-10 pr-4 py-2.5 bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-white/10 rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all dark:text-white"
+                          className="w-full pl-10 pr-4 py-2.5 bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-white/10 rounded-xl text-sm focus:ring-2 focus:ring-fuxion focus:border-fuxion outline-none transition-all dark:text-white"
                           placeholder="Ej. 70.5"
                         />
                       </div>
@@ -234,7 +234,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                           name="height"
                           value={formData.height}
                           onChange={handleChange}
-                          className="w-full pl-10 pr-4 py-2.5 bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-white/10 rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all dark:text-white"
+                          className="w-full pl-10 pr-4 py-2.5 bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-white/10 rounded-xl text-sm focus:ring-2 focus:ring-fuxion focus:border-fuxion outline-none transition-all dark:text-white"
                           placeholder="Ej. 175"
                         />
                       </div>
@@ -245,7 +245,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                 <button 
                   type="submit"
                   disabled={isSubmitting}
-                  className="mt-8 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 transition-all disabled:opacity-70 disabled:scale-100 active:scale-[0.98]"
+                  className="mt-8 w-full bg-fuxion hover:bg-fuxion-light text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-fuxion/20 transition-all disabled:opacity-70 disabled:scale-100 active:scale-[0.98]"
                 >
                   {isSubmitting ? (
                     <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />

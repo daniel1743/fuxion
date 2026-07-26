@@ -159,7 +159,7 @@ const WellnessJourneyCarousel = () => {
 
                 <Button
                   onClick={() => handleAction(slide.destination)}
-                  className="w-full mt-4 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold h-10 rounded-xl flex items-center justify-center gap-1.5 shadow-sm transition-all"
+                  className="w-full mt-4 text-white text-xs font-bold h-10 rounded-xl flex items-center justify-center gap-1.5 shadow-sm transition-all"
                 >
                   <span>{slide.action}</span>
                   <HugeiconsIcon icon={ArrowRight02Icon} className="h-3.5 w-3.5" />

@@ -121,7 +121,7 @@ const EvidencePage = () => {
       <section className="container mx-auto px-6 py-12 md:py-12 mt-4 md:mt-0">
         <div className="mx-auto max-w-4xl text-center">
           <div className="hidden md:block">
-            <Badge className="mb-4 bg-emerald-100 text-emerald-800 hover:bg-emerald-100">
+            <Badge variant="success" className="mb-4">
               <ShieldCheck className="mr-2 h-4 w-4" />
               Experiencias FuXion
             </Badge>

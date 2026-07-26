@@ -285,7 +285,9 @@ const HomePage = () => {
               >
                 <Button
                   onClick={() => handleWhatsAppClick('Hola, quiero empezar mi cambio con Fuxion')}
-                  className="w-full sm:w-auto justify-center h-12 px-8 rounded-full bg-emerald-800 hover:bg-emerald-900 text-white font-semibold flex items-center gap-2 shadow-lg shadow-emerald-900/10 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 text-base"
+                  variant="default"
+                  size="hero"
+                  className="w-full sm:w-auto justify-center rounded-full shadow-lg shadow-fuxion/10 hover:shadow-xl"
                 >
                   <span>Recibir asesoría</span>
                   <HugeiconsIcon icon={ArrowRight02Icon} size={20} className="shrink-0" />
@@ -370,7 +372,7 @@ const HomePage = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
               >
-                <Card variant="trust" className="p-3.5 items-start border-gray-100/80 dark:border-emerald-950/30">
+                <Card variant="trust" className="p-3.5 items-start">
                   <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400">
                     <HugeiconsIcon icon={item.rawIcon} size={20} />
                   </div>
@@ -395,7 +397,7 @@ const HomePage = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.15 }}
               >
-                <Card variant="trust" className="gap-4 p-5 hover:shadow-md transition-all duration-300">
+                <Card variant="trust" className="gap-4 p-5 transition-all duration-300">
                   <div className="text-emerald-600 dark:text-emerald-400 shrink-0">{item.icon}</div>
                   <div>
                     <h2 className="font-bold text-foreground">{item.title}</h2>
@@ -795,7 +797,7 @@ const HomePage = () => {
       </section>
 
       {/* SECCIÓN FINAL – Cierre emocional */}
-      <section className="py-12 md:py-20 bg-secondary/30">
+      <section className="py-8 md:py-12 bg-secondary/30">
         <div className="container mx-auto px-6 max-w-4xl text-center">
           <motion.h2
             className="text-3xl md:text-5xl font-bold mb-6 text-foreground"

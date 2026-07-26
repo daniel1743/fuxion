@@ -355,7 +355,7 @@ const Header = () => {
             role="dialog"
             aria-modal="true"
             aria-label="Menú principal"
-            className="premium-mobile-drawer fixed inset-y-0 left-0 z-modal h-[100dvh] w-[86vw] max-w-[380px] bg-white text-[#18181B] md:hidden flex flex-col overflow-visible pointer-events-auto rounded-r-[30px]"
+            className="premium-mobile-drawer fixed inset-y-0 left-0 z-modal h-[100dvh] w-[86vw] max-w-[380px] bg-white text-zinc-900 md:hidden flex flex-col overflow-visible pointer-events-auto rounded-r-[30px]"
           >
               {/* ── Violet profile hero ───────────────────────── */}
               <div className="relative h-[220px] shrink-0 overflow-visible">
@@ -382,7 +382,7 @@ const Header = () => {
                       type="button"
                       onClick={() => handleNavClick('/cuenta')}
                       whileTap={{ scale: 0.96 }}
-                      className="premium-drawer-avatar relative z-[2] flex h-[108px] w-[108px] items-center justify-center overflow-hidden rounded-full border-[4px] border-white bg-white focus:outline-none focus-visible:ring-4 focus-visible:ring-violet-300"
+                      className="premium-drawer-avatar relative z-[2] flex h-[108px] w-[108px] items-center justify-center overflow-hidden rounded-full border-[4px] border-white bg-white focus:outline-none focus-visible:ring-4 focus-visible:ring-purple-300"
                       aria-label="Ir a mi cuenta y notificaciones"
                     >
                       {isAuthenticated && user?.avatar ? (
@@ -407,7 +407,7 @@ const Header = () => {
                 ref={drawerCloseRef}
                 type="button"
                 onClick={closeMobileMenu}
-                className="premium-drawer-close absolute right-[-26px] top-[84px] z-[9999] flex h-[52px] w-[52px] touch-manipulation select-none items-center justify-center rounded-full bg-white text-[#6D28D9] transition-transform duration-180 hover:scale-[1.04] active:scale-90 focus:outline-none focus-visible:ring-4 focus-visible:ring-violet-300"
+                className="premium-drawer-close absolute right-[-26px] top-[84px] z-[9999] flex h-[52px] w-[52px] touch-manipulation select-none items-center justify-center rounded-full bg-white text-purple-700 transition-transform duration-180 hover:scale-[1.04] active:scale-90 focus:outline-none focus-visible:ring-4 focus-visible:ring-purple-300"
                 aria-label="Cerrar menú"
               >
                 <HugeiconsIcon icon={ArrowLeft02Icon} className="h-[26px] w-[26px]" strokeWidth={2} />
@@ -417,19 +417,19 @@ const Header = () => {
               <div className="shrink-0 px-[26px] pt-[26px]">
                 {isAuthenticated && user ? (
                   <>
-                    <h2 className="truncate text-[30px] font-bold leading-[1.08] tracking-[-0.035em] text-[#18181B]">
+                    <h2 className="truncate text-[30px] font-bold leading-[1.08] tracking-[-0.035em] text-zinc-900">
                       {user.name}
                     </h2>
-                    <p className="mt-2 truncate text-[15px] font-medium leading-5 text-[#71717A]">
+                    <p className="mt-2 truncate text-[15px] font-medium leading-5 text-zinc-500">
                       {user.email || 'Mi cuenta'}
                     </p>
                   </>
                 ) : (
                   <>
-                    <h2 className="text-[30px] font-bold leading-[1.08] tracking-[-0.035em] text-[#18181B]">
+                    <h2 className="text-[30px] font-bold leading-[1.08] tracking-[-0.035em] text-zinc-900">
                       {navigationContext === NAVIGATION_CONTEXT.FUXION ? 'Fuxion' : 'Bienvenido'}
                     </h2>
-                    <p className="mt-2 text-[15px] font-medium leading-5 text-[#71717A]">
+                    <p className="mt-2 text-[15px] font-medium leading-5 text-zinc-500">
                       {navigationContext === NAVIGATION_CONTEXT.FUXION
                         ? 'Productos y bienestar'
                         : 'Tu bienestar empieza aquí'}
@@ -454,12 +454,12 @@ const Header = () => {
                         onClick={() => handleNavClick(item.path)}
                         whileTap={{ scale: 0.98 }}
                         aria-current={isActive ? 'page' : undefined}
-                        className={`group mb-1 flex min-h-[46px] w-full items-center gap-3 rounded-[13px] px-4 text-left transition-colors duration-180 focus:outline-none focus-visible:ring-4 focus-visible:ring-violet-200 ${
+                        className={`group mb-1 flex min-h-[46px] w-full items-center gap-3 rounded-[13px] px-4 text-left transition-colors duration-180 focus:outline-none focus-visible:ring-4 focus-visible:ring-purple-200 ${
                           isActive
-                            ? 'bg-gradient-to-r from-[#F4E8FF] to-[#E9D5FF] text-[#6D28D9]'
+                            ? 'bg-gradient-to-r from-purple-100 to-purple-200 text-purple-700'
                             : item.isContextExit
-                              ? 'text-[#6D28D9] hover:bg-violet-600/[.08]'
-                              : 'text-[#27272A] hover:bg-violet-600/[.08]'
+                              ? 'text-purple-700 hover:bg-purple-600/[.08]'
+                              : 'text-zinc-800 hover:bg-purple-600/[.08]'
                         }`}
                       >
                         <HugeiconsIcon
@@ -468,15 +468,15 @@ const Header = () => {
                           strokeWidth={2}
                           className={`shrink-0 transition-colors duration-180 ${
                             isActive || item.isContextExit
-                              ? 'text-[#6D28D9]'
-                              : 'text-[#52525B] group-hover:text-[#7C3AED]'
+                              ? 'text-purple-700'
+                              : 'text-zinc-500 group-hover:text-purple-600'
                           }`}
                         />
                         <span className="min-w-0 flex-1 truncate text-[15px] font-semibold leading-5 tracking-[-0.01em]">
                           {item.label}
                         </span>
                         {item.contextHint && (
-                          <span className="rounded-full bg-violet-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[#6D28D9]">
+                          <span className="rounded-full bg-purple-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-purple-700">
                             {item.contextHint}
                           </span>
                         )}
@@ -489,9 +489,9 @@ const Header = () => {
                 <div className="mx-3 mb-2 mt-3 border-t border-black/[.08] pt-3">
                   <button
                     onClick={handleWhatsApp}
-                    className="group flex min-h-[46px] w-full items-center gap-3 rounded-[13px] px-1 text-left text-[#3F3F46] transition-colors duration-180 hover:bg-violet-600/[.08] focus:outline-none focus-visible:ring-4 focus-visible:ring-violet-200"
+                    className="group flex min-h-[46px] w-full items-center gap-3 rounded-[13px] px-1 text-left text-zinc-700 transition-colors duration-180 hover:bg-purple-600/[.08] focus:outline-none focus-visible:ring-4 focus-visible:ring-purple-200"
                   >
-                    <HugeiconsIcon icon={Message01Icon} size={20} strokeWidth={2} className="text-[#52525B] group-hover:text-[#7C3AED]" />
+                    <HugeiconsIcon icon={Message01Icon} size={20} strokeWidth={2} className="text-zinc-500 group-hover:text-purple-600" />
                     <span className="text-[15px] font-semibold">Hablar por WhatsApp</span>
                   </button>
                 </div>
@@ -506,17 +506,17 @@ const Header = () => {
                   {isAuthenticated || user ? (
                     <button
                       onClick={() => { closeMobileMenu(); logout(); }}
-                      className="group flex min-h-[56px] w-full items-center gap-3 rounded-2xl px-[18px] text-left text-[#27272A] transition-colors duration-180 hover:bg-violet-600/[.08] active:scale-[.98] focus:outline-none focus-visible:ring-4 focus-visible:ring-violet-200"
+                      className="group flex min-h-[56px] w-full items-center gap-3 rounded-2xl px-[18px] text-left text-zinc-800 transition-colors duration-180 hover:bg-purple-600/[.08] active:scale-[.98] focus:outline-none focus-visible:ring-4 focus-visible:ring-purple-200"
                     >
-                      <HugeiconsIcon icon={Logout01Icon} size={22} strokeWidth={2} className="shrink-0 text-[#52525B] group-hover:text-[#7C3AED]" />
+                      <HugeiconsIcon icon={Logout01Icon} size={22} strokeWidth={2} className="shrink-0 text-zinc-500 group-hover:text-purple-600" />
                       <span className="text-[17px] font-bold">Cerrar sesión</span>
                     </button>
                   ) : (
                     <button
                       onClick={() => { closeMobileMenu(); openAuthModal(); }}
-                      className="group flex min-h-[56px] w-full items-center gap-3 rounded-2xl px-[18px] text-left text-[#27272A] transition-colors duration-180 hover:bg-violet-600/[.08] active:scale-[.98] focus:outline-none focus-visible:ring-4 focus-visible:ring-violet-200"
+                      className="group flex min-h-[56px] w-full items-center gap-3 rounded-2xl px-[18px] text-left text-zinc-800 transition-colors duration-180 hover:bg-purple-600/[.08] active:scale-[.98] focus:outline-none focus-visible:ring-4 focus-visible:ring-purple-200"
                     >
-                      <HugeiconsIcon icon={UserIcon} size={22} strokeWidth={2} className="shrink-0 text-[#52525B] group-hover:text-[#7C3AED]" />
+                      <HugeiconsIcon icon={UserIcon} size={22} strokeWidth={2} className="shrink-0 text-zinc-500 group-hover:text-purple-600" />
                       <span className="text-[17px] font-bold">Iniciar sesión</span>
                     </button>
                   )}

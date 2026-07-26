@@ -191,7 +191,7 @@ const QuestionDetail = ({ questionId, onClose }) => {
                 <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 sm:gap-4">
                   <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground break-words overflow-hidden">{question.title}</h1>
                   {question.solved && (
-                    <Badge variant="success" className="bg-green-500/20 text-green-400 border-green-500/30 flex items-center gap-1 whitespace-nowrap self-start">
+                    <Badge variant="success" className="flex items-center gap-1 whitespace-nowrap self-start">
                       <CheckCircle2 className="w-3 h-3 sm:w-4 sm:h-4" />
                       Resuelto
                     </Badge>
@@ -349,7 +349,7 @@ const QuestionDetail = ({ questionId, onClose }) => {
                       {/* Content */}
                       <div className="flex-1 space-y-3">
                         {answer.isAccepted && (
-                          <Badge variant="success" className="bg-green-500/20 text-green-400 border-green-500/30 flex items-center gap-1 w-fit">
+                          <Badge variant="success" className="flex items-center gap-1 w-fit">
                             <CheckCircle2 className="w-3 h-3" />
                             Solución Aceptada
                           </Badge>

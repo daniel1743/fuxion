@@ -19,6 +19,8 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80 shadow-premium-soft",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-fuxion underline-offset-4 hover:underline",
+        success:
+          "bg-emerald-500 text-white hover:bg-emerald-600 shadow-premium-soft hover:shadow-premium-hover",
         whatsapp:
           "bg-whatsapp text-white hover:bg-whatsapp-hover shadow-premium-soft hover:shadow-premium-hover",
       },

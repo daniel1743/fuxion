@@ -35,13 +35,13 @@ const sizeMap = {
 
 const variantStyles = {
   default:
-    'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 shadow-sm',
+    'bg-fuxion/10 dark:bg-fuxion/20 text-fuxion shadow-sm',
   ghost:
-    'bg-emerald-50/70 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400',
+    'bg-fuxion/5 dark:bg-fuxion/10 text-fuxion',
   outline:
-    'border-2 border-emerald-200 dark:border-emerald-800 bg-transparent text-emerald-600 dark:text-emerald-400',
+    'border-2 border-fuxion/20 dark:border-fuxion/40 bg-transparent text-fuxion',
   glow:
-    'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 shadow-lg shadow-emerald-200/50 dark:shadow-emerald-900/30',
+    'bg-fuxion/10 dark:bg-fuxion/20 text-fuxion shadow-lg shadow-fuxion/30',
 };
 
 const PremiumIcon = ({
@@ -75,8 +75,8 @@ const PremiumIcon = ({
         transition-all duration-300 ease-out
         ${sizes.container}
         ${variantStyles[variant] || variantStyles.default}
-        hover:shadow-md hover:bg-emerald-200/80 dark:hover:bg-emerald-800/60
-        hover:border-emerald-300 dark:hover:border-emerald-700
+        hover:shadow-md hover:bg-fuxion/20 dark:hover:bg-fuxion/30
+        hover:border-fuxion/30 dark:hover:border-fuxion/50
         ${className}
       `}
       role="img"

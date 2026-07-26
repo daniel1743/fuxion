@@ -3,6 +3,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Unificar grosores de íconos (Lucide y Hugeicons) */
+svg.lucide, svg[data-hugeicons="true"] {
+  stroke-width: 1.5px !important;
+}
+
 @layer base {
   :root {
     --background: 240 10% 3.9%;

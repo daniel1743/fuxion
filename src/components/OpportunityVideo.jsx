@@ -116,7 +116,7 @@ const OpportunityVideo = () => {
                 initial={{ scale: 0.9, opacity: 0.8 }}
                 whileHover={{ scale: 1.05, opacity: 1 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full bg-emerald-600/90 hover:bg-emerald-600 text-white shadow-xl shadow-emerald-600/30 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-emerald-500/40"
+                className="flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full bg-fuxion/90 hover:bg-fuxion text-white shadow-xl shadow-fuxion/30 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-fuxion/40"
               >
                 <Play className="w-7 h-7 md:w-8 md:h-8 ml-1 fill-white" />
               </motion.div>

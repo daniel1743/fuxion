@@ -454,7 +454,7 @@ const ExplorePage = () => {
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {relatedProducts.map((product) => (
-              <Card key={product.id} variant="trust" className="p-4 bg-card dark:bg-card hover:border-primary">
+              <Card key={product.id} variant="trust" className="p-4">
                 <Link
                   to={`/producto/${product.slug}`}
                   className="block h-full"

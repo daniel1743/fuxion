@@ -7,10 +7,10 @@ const cardVariants = cva(
   {
     variants: {
       variant: {
-        default: "rounded-card border border-border/50 shadow-elevation-1 hover:shadow-elevation-2",
-        product: "group relative rounded-card overflow-hidden border border-border flex flex-col h-full hover:border-primary hover:shadow-elevation-3 hover:-translate-y-0.5",
-        feature: "rounded-card border border-emerald-100 dark:border-border flex flex-col h-full hover:border-primary hover:shadow-elevation-3 hover:-translate-y-0.5 p-8",
-        trust: "rounded-card border border-white/30 dark:border-emerald-900/30 bg-white/70 dark:bg-card/70 backdrop-blur-sm shadow-elevation-1 hover:shadow-elevation-2 h-full flex flex-col p-5 gap-4",
+        default: "rounded-card border border-border shadow-premium-soft hover:shadow-premium-hover",
+        product: "group relative rounded-card overflow-hidden border border-border flex flex-col h-full hover:border-fuxion hover:shadow-premium-hover hover:-translate-y-0.5",
+        feature: "rounded-card border border-border flex flex-col h-full hover:border-fuxion hover:shadow-premium-hover hover:-translate-y-0.5 p-8",
+        trust: "rounded-card border border-border bg-white/70 dark:bg-card/70 backdrop-blur-sm shadow-premium-soft hover:shadow-premium-hover h-full flex flex-col p-5 gap-4",
       },
     },
     defaultVariants: {

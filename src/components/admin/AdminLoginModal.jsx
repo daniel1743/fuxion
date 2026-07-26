@@ -42,8 +42,8 @@ const AdminLoginModal = () => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-modal flex items-center justify-center p-4">
-      <div className="bg-card border border-border rounded-xl shadow-2xl max-w-md w-full p-6 relative">
+    <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-modal flex items-center justify-center p-4">
+      <div className="bg-card border border-border rounded-modal shadow-premium-soft max-w-md w-full p-6 relative">
         {/* Close button */}
         <button
           onClick={handleClose}
@@ -73,7 +73,7 @@ const AdminLoginModal = () => {
               id="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full px-4 py-2 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-foreground"
+              className="w-full px-4 py-2 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-fuxion text-foreground"
               placeholder="Ingresa tu usuario"
               required
             />
@@ -89,7 +89,7 @@ const AdminLoginModal = () => {
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full rounded-lg border border-border bg-background px-4 py-2 pr-11 text-foreground focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full rounded-lg border border-border bg-background px-4 py-2 pr-11 text-foreground focus:outline-none focus:ring-2 focus:ring-fuxion"
                 placeholder="Ingresa tu contraseña"
                 required
               />
@@ -113,7 +113,7 @@ const AdminLoginModal = () => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-emerald-700 text-white font-semibold py-3 rounded-lg hover:bg-emerald-800 transition-all duration-300 shadow-lg hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-70 flex items-center justify-center gap-2"
+            className="w-full bg-fuxion text-white font-semibold py-3 rounded-lg hover:bg-fuxion-light transition-all duration-300 shadow-lg hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-70 flex items-center justify-center gap-2"
           >
             {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
             {isSubmitting ? 'Verificando...' : 'Iniciar Sesión'}

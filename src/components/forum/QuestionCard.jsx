@@ -67,7 +67,7 @@ const QuestionCard = ({ question, onClick }) => {
             </h3>
             <div className="flex items-center gap-2 flex-shrink-0">
               {question.solved && (
-                <Badge variant="success" className="bg-green-500/20 text-green-400 border-green-500/30 flex items-center gap-1 whitespace-nowrap text-xs">
+                <Badge variant="success" className="flex items-center gap-1 whitespace-nowrap text-xs">
                   <CheckCircle2 className="w-3 h-3" />
                   <span className="hidden sm:inline">Resuelto</span>
                   <span className="sm:hidden">✓</span>

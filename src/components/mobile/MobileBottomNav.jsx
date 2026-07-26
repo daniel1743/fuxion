@@ -61,18 +61,18 @@ const MobileBottomNav = () => {
               <motion.div
                 whileTap={{ scale: 0.9 }}
                 className={`relative flex items-center justify-center w-8 h-8 rounded-full ${
-                  isActive 
-                    ? 'text-emerald-600 dark:text-emerald-400' 
-                    : 'text-gray-400 dark:text-gray-500'
+                  isActive
+                    ? 'text-emerald-600 dark:text-emerald-400'
+                    : 'text-zinc-400 dark:text-zinc-500'
                 }`}
               >
                 <HugeiconsIcon icon={Icon} className="w-5 h-5" strokeWidth={isActive ? 2.5 : 2} />
               </motion.div>
-              <span 
+              <span
                 className={`text-xxs font-medium leading-none ${
-                  isActive 
-                    ? 'text-emerald-700 dark:text-emerald-400 font-semibold' 
-                    : 'text-gray-500 dark:text-gray-400'
+                  isActive
+                    ? 'text-emerald-700 dark:text-emerald-400 font-semibold'
+                    : 'text-zinc-500 dark:text-zinc-400'
                 }`}
               >
                 {item.label}

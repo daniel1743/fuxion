@@ -71,10 +71,10 @@ const WellnessPlanDialog = ({ open, onOpenChange, identity, name, onPlanChange }
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-h-[92vh] max-w-3xl overflow-y-auto p-0">
-        <div className="border-b border-border bg-emerald-50 p-5 dark:bg-emerald-950/30 sm:p-6">
+        <div className="border-b border-border bg-fuxion/5 p-5 dark:bg-fuxion/10 sm:p-6">
           <DialogHeader className="text-left">
             <DialogTitle className="flex items-center gap-2 text-2xl">
-              <Sparkles className="h-6 w-6 text-emerald-600" />
+              <Sparkles className="h-6 w-6 text-fuxion" />
               Mi plan de bienestar
             </DialogTitle>
             <DialogDescription>
@@ -84,7 +84,7 @@ const WellnessPlanDialog = ({ open, onOpenChange, identity, name, onPlanChange }
           {step < 3 && (
             <div className="mt-5 grid grid-cols-3 gap-2">
               {[0, 1, 2].map((item) => (
-                <div key={item} className={`h-2 rounded-full ${item <= step ? 'bg-emerald-600' : 'bg-emerald-100 dark:bg-emerald-900'}`} />
+                <div key={item} className={`h-2 rounded-full ${item <= step ? 'bg-fuxion' : 'bg-fuxion/20 dark:bg-fuxion/30'}`} />
               ))}
             </div>
           )}
@@ -214,7 +214,7 @@ const PlanResult = ({ plan, name, onRestart }) => (
   <section>
     <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
       <div>
-        <p className="text-sm text-emerald-700 dark:text-emerald-300">Plan para {name}</p>
+        <p className="text-sm text-fuxion">Plan para {name}</p>
         <h3 className="text-2xl font-bold">{plan.objective}</h3>
         <p className="mt-1 text-sm text-muted-foreground">
           Creado el {new Date(plan.createdAt).toLocaleDateString('es-CL')}

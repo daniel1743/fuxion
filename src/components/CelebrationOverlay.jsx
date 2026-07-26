@@ -34,15 +34,15 @@ const CelebrationOverlay = ({ show, onComplete, title, message }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ delay: 0.1, duration: 0.4 }}
-            className="bg-card/95 backdrop-blur-sm border border-emerald-100 dark:border-border rounded-2xl p-8 md:p-10 shadow-2xl text-center max-w-sm mx-4"
+            className="bg-card/95 backdrop-blur-sm border border-fuxion/20 dark:border-border rounded-modal p-8 md:p-10 shadow-premium-soft text-center max-w-sm mx-4"
           >
             <motion.div
               initial={{ scale: 0, rotate: -10 }}
               animate={{ scale: 1, rotate: 0 }}
               transition={{ type: 'spring', stiffness: 200, delay: 0.2 }}
-              className="w-16 h-16 rounded-full bg-gradient-to-br from-emerald-100 to-emerald-50 dark:from-emerald-900/40 dark:to-emerald-800/20 flex items-center justify-center mx-auto mb-5"
+              className="w-16 h-16 rounded-full bg-gradient-to-br from-fuxion/20 to-fuxion/5 dark:from-fuxion/40 dark:to-fuxion/20 flex items-center justify-center mx-auto mb-5"
             >
-              <Sparkles className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
+              <Sparkles className="w-8 h-8 text-fuxion" />
             </motion.div>
             <h3 className="text-xl font-bold text-foreground mb-2">
               {title || '¡Celebración!'}

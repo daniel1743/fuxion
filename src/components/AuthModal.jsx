@@ -160,7 +160,7 @@ const AuthModal = () => {
               </div>
             )}
             {formMessage && (
-              <div className="mt-4 rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm text-emerald-700">
+              <div className="mt-4 rounded-lg border border-fuxion/20 bg-fuxion/10 px-3 py-2 text-sm text-fuxion">
                 {formMessage}
               </div>
             )}
@@ -168,7 +168,7 @@ const AuthModal = () => {
               <form onSubmit={handleLogin} className="space-y-4 mt-4">
                 <div className="space-y-2">
                   <Label htmlFor="login-email">Email</Label>
-                  <Input id="login-email" type="email" autoComplete="email" placeholder="nombre@ejemplo.com" value={email} onChange={(e) => setEmail(e.target.value)} onBlur={(e) => { if (e.target.value && !e.target.checkValidity()) setFormError('El correo ingresado no es válido'); else setFormError(''); }} className="[&:not(:placeholder-shown):invalid]:border-red-500 [&:not(:placeholder-shown):invalid]:ring-red-500 [&:not(:placeholder-shown):valid]:border-emerald-500" required />
+                  <Input id="login-email" type="email" autoComplete="email" placeholder="nombre@ejemplo.com" value={email} onChange={(e) => setEmail(e.target.value)} onBlur={(e) => { if (e.target.value && !e.target.checkValidity()) setFormError('El correo ingresado no es válido'); else setFormError(''); }} className="[&:not(:placeholder-shown):invalid]:border-red-500 [&:not(:placeholder-shown):invalid]:ring-red-500 [&:not(:placeholder-shown):valid]:border-fuxion/50" required />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="login-password">Contraseña</Label>
@@ -181,7 +181,7 @@ const AuthModal = () => {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       onBlur={(e) => { if (e.target.value.length > 0 && e.target.value.length < 6) setFormError('La contraseña debe tener al menos 6 caracteres'); else setFormError(''); }}
-                      className="pr-11 [&:not(:placeholder-shown):invalid]:border-red-500 [&:not(:placeholder-shown):valid]:border-emerald-500"
+                      className="pr-11 [&:not(:placeholder-shown):invalid]:border-red-500 [&:not(:placeholder-shown):valid]:border-fuxion/50"
                       required
                       minLength={6}
                     />
@@ -255,7 +255,7 @@ const AuthModal = () => {
                     value={registerData.email}
                     onChange={(e) => setRegisterData({ ...registerData, email: e.target.value })}
                     onBlur={(e) => { if (e.target.value && !e.target.checkValidity()) setFormError('El correo ingresado no es válido'); else setFormError(''); }}
-                    className="[&:not(:placeholder-shown):invalid]:border-red-500 [&:not(:placeholder-shown):valid]:border-emerald-500"
+                    className="[&:not(:placeholder-shown):invalid]:border-red-500 [&:not(:placeholder-shown):valid]:border-fuxion/50"
                     required
                   />
                 </div>

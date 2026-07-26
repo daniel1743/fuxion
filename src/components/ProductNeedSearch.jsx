@@ -39,13 +39,13 @@ const ProductNeedSearch = ({
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             placeholder="Buscar productos, beneficios o ingredientes..."
-            className={`w-full rounded-full border border-transparent bg-emerald-50/70 pl-12 pr-4 text-foreground outline-none transition focus:border-emerald-300 focus:bg-white dark:bg-secondary/60 dark:focus:bg-card ${
+            className={`w-full rounded-full border border-transparent bg-fuxion/5 pl-12 pr-4 text-foreground outline-none transition focus:border-fuxion focus:bg-white dark:bg-secondary/60 dark:focus:bg-card ${
               compact ? 'h-12 text-sm' : 'h-14 text-base'
             }`}
             aria-label="Buscar productos por necesidad"
           />
         </div>
-        <Button type="submit" className={`${compact ? 'h-12' : 'h-14'} bg-emerald-600 hover:bg-emerald-700 text-white gap-2 rounded-xl px-5 shrink-0`}>
+        <Button type="submit" className={`${compact ? 'h-12' : 'h-14'} text-white gap-2 rounded-full px-5 shrink-0`}>
           Comenzar a explorar
           <HugeiconsIcon icon={ArrowRight02Icon} className="h-4 w-4" />
         </Button>
