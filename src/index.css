@@ -497,9 +497,9 @@ body.light {
 
 .premium-drawer-hero {
   background:
-    radial-gradient(circle at 22% 28%, rgba(216, 180, 254, 0.58) 0%, rgba(216, 180, 254, 0) 32%),
-    radial-gradient(circle at 88% 68%, rgba(236, 72, 153, 0.26) 0%, rgba(236, 72, 153, 0) 35%),
-    linear-gradient(135deg, #4c1d95 0%, #6d28d9 29%, #7c3aed 58%, #a855f7 100%);
+    radial-gradient(circle at 22% 28%, rgba(16, 185, 129, 0.25) 0%, rgba(16, 185, 129, 0) 32%),
+    radial-gradient(circle at 88% 68%, rgba(5, 150, 105, 0.15) 0%, rgba(5, 150, 105, 0) 35%),
+    linear-gradient(135deg, #042b24 0%, #064e3b 29%, #065f46 58%, #059669 100%);
 }
 
 .premium-drawer-hero::after {
@@ -511,41 +511,16 @@ body.light {
   pointer-events: none;
 }
 
-.premium-avatar-ring::before,
-.premium-avatar-ring::after {
-  position: absolute;
-  content: "";
-  border-radius: 9999px;
-  pointer-events: none;
-}
-
-.premium-avatar-ring::before {
-  inset: 0;
-  background: conic-gradient(
-    from 20deg,
-    #7c3aed 0deg,
-    #c084fc 70deg,
-    #f0abfc 132deg,
-    #f59e0b 190deg,
-    #a78bfa 255deg,
-    #6d28d9 318deg,
-    #7c3aed 360deg
-  );
-  box-shadow:
-    0 0 0 1px rgba(255,255,255,.72),
-    0 0 22px rgba(168,85,247,.48);
-  animation: premium-avatar-orbit 5.5s linear infinite;
-}
-
-.premium-avatar-ring::after {
-  inset: -7px;
-  z-index: -1;
-  background: conic-gradient(from 180deg, transparent, rgba(240,171,252,.40), transparent 34%, rgba(245,158,11,.24), transparent 68%);
-  filter: blur(9px);
-  animation: premium-avatar-orbit 8s linear infinite reverse;
-}
-
 @keyframes premium-avatar-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes avatar-ring-spin {
+  from {
+    transform: rotate(0deg);
+  }
   to {
     transform: rotate(360deg);
   }
@@ -553,20 +528,20 @@ body.light {
 
 .premium-drawer-avatar {
   box-shadow:
-    0 14px 28px rgba(24, 24, 27, 0.18),
-    0 0 20px rgba(168, 85, 247, 0.46);
+    0 10px 24px rgba(24, 24, 27, 0.15),
+    0 0 20px rgba(168, 85, 247, 0.2);
   will-change: transform;
 }
 
 .premium-drawer-close {
   box-shadow:
-    0 12px 26px rgba(24, 24, 27, 0.20),
-    0 2px 6px rgba(24, 24, 27, 0.08);
+    0 8px 20px rgba(24, 24, 27, 0.12),
+    0 2px 6px rgba(24, 24, 27, 0.06);
 }
 
 .premium-drawer-scroll {
   scrollbar-width: thin;
-  scrollbar-color: rgba(124, 58, 237, 0.16) transparent;
+  scrollbar-color: rgba(16, 185, 129, 0.08) transparent;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -579,7 +554,7 @@ body.light {
 }
 
 .premium-drawer-scroll::-webkit-scrollbar-thumb {
-  background: rgba(124, 58, 237, 0.16);
+  background: rgba(16, 185, 129, 0.08);
   border-radius: 9999px;
 }
 
@@ -600,9 +575,10 @@ body.light {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .premium-drawer-avatar,
-  .premium-avatar-ring::before,
-  .premium-avatar-ring::after {
+  .premium-drawer-avatar {
+    animation: none !important;
+  }
+  .premium-drawer-avatar > span[style*="conic-gradient"] {
     animation: none !important;
   }
 }

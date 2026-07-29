@@ -360,9 +360,9 @@ const Header = () => {
               {/* ── Violet profile hero ───────────────────────── */}
               <div className="relative h-[220px] shrink-0 overflow-visible">
                 <div className="premium-drawer-hero absolute inset-x-0 top-0 h-[220px] overflow-hidden rounded-tr-[30px]">
-                  <div className="absolute -left-14 -top-20 h-64 w-64 rounded-full bg-[#D8B4FE]/35 blur-[54px]" />
-                  <div className="absolute right-[-65px] top-4 h-52 w-52 rounded-full bg-[#F0ABFC]/25 blur-[48px]" />
-                  <div className="absolute bottom-5 left-[38%] h-28 w-48 rounded-full bg-[#A78BFA]/30 blur-[38px]" />
+                  <div className="absolute -left-14 -top-20 h-64 w-64 rounded-full bg-emerald-300/15 blur-[54px]" />
+                  <div className="absolute right-[-65px] top-4 h-52 w-52 rounded-full bg-emerald-400/10 blur-[48px]" />
+                  <div className="absolute bottom-5 left-[38%] h-28 w-48 rounded-full bg-emerald-500/12 blur-[38px]" />
                   <svg
                     className="absolute -bottom-px left-0 h-[66px] w-full text-white"
                     viewBox="0 0 400 72"
@@ -374,15 +374,23 @@ const Header = () => {
                 </div>
 
                 <motion.div
-                  className="premium-avatar-ring absolute left-[20px] top-[106px] flex h-[122px] w-[122px] items-center justify-center rounded-full"
+                  className="absolute left-[20px] top-[106px] flex h-[122px] w-[122px] items-center justify-center"
                     animate={{ y: [0, -3, 0] }}
                     transition={{ duration: 4.8, repeat: Infinity, ease: 'easeInOut' }}
                   >
+                    {/* Animated conic ring — Google premium style */}
+                    <span className="absolute inset-0 rounded-full"
+                      style={{
+                        background: 'conic-gradient(from 0deg, #7c3aed, #f59e0b, #ec4899, #a78bfa, #fde68a, #f9a8d4, #7c3aed)',
+                        padding: '3px',
+                        animation: 'avatar-ring-spin 6s linear infinite',
+                      }}
+                    />
                     <motion.button
                       type="button"
                       onClick={() => handleNavClick('/cuenta')}
                       whileTap={{ scale: 0.96 }}
-                      className="premium-drawer-avatar relative z-[2] flex h-[108px] w-[108px] items-center justify-center overflow-hidden rounded-full border-[4px] border-white bg-white focus:outline-none focus-visible:ring-4 focus-visible:ring-purple-300"
+                      className="premium-drawer-avatar relative z-[2] flex h-[108px] w-[108px] items-center justify-center overflow-hidden rounded-full border-[3px] border-white bg-white focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-300"
                       aria-label="Ir a mi cuenta y notificaciones"
                     >
                       {isAuthenticated && user?.avatar ? (
@@ -407,7 +415,7 @@ const Header = () => {
                 ref={drawerCloseRef}
                 type="button"
                 onClick={closeMobileMenu}
-                className="premium-drawer-close absolute right-[-26px] top-[84px] z-[9999] flex h-[52px] w-[52px] touch-manipulation select-none items-center justify-center rounded-full bg-white text-purple-700 transition-transform duration-180 hover:scale-[1.04] active:scale-90 focus:outline-none focus-visible:ring-4 focus-visible:ring-purple-300"
+                className="premium-drawer-close absolute right-[-26px] top-[84px] z-[9999] flex h-[52px] w-[52px] touch-manipulation select-none items-center justify-center rounded-full bg-white text-emerald-600/80 transition-transform duration-180 hover:scale-[1.04] active:scale-90 focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-300"
                 aria-label="Cerrar menú"
               >
                 <HugeiconsIcon icon={ArrowLeft02Icon} className="h-[26px] w-[26px]" strokeWidth={2} />
@@ -445,7 +453,7 @@ const Header = () => {
                   const isActive = isSidebarItemActive(item, currentLocation.pathname);
                   return (
                     <React.Fragment key={item.id}>
-                      {item.sectionBreak && <div className="mx-3 my-3 border-t border-black/[.08]" aria-hidden="true" />}
+                      {item.sectionBreak && <div className="mx-3 my-3 border-t border-zinc-200/60" aria-hidden="true" />}
                       <motion.button
                         custom={i}
                         variants={itemVariants}
@@ -454,29 +462,29 @@ const Header = () => {
                         onClick={() => handleNavClick(item.path)}
                         whileTap={{ scale: 0.98 }}
                         aria-current={isActive ? 'page' : undefined}
-                        className={`group mb-1 flex min-h-[46px] w-full items-center gap-3 rounded-[13px] px-4 text-left transition-colors duration-180 focus:outline-none focus-visible:ring-4 focus-visible:ring-purple-200 ${
+                        className={`group mb-1 flex min-h-[46px] w-full items-center gap-3 rounded-[13px] px-4 text-left transition-all duration-200 focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-300 ${
                           isActive
-                            ? 'bg-gradient-to-r from-purple-100 to-purple-200 text-purple-700'
+                            ? 'bg-emerald-50 text-emerald-800 shadow-sm border border-emerald-200/50'
                             : item.isContextExit
-                              ? 'text-purple-700 hover:bg-purple-600/[.08]'
-                              : 'text-zinc-800 hover:bg-purple-600/[.08]'
+                              ? 'text-emerald-700 hover:bg-emerald-50/80'
+                              : 'text-zinc-800 hover:bg-emerald-50/60'
                         }`}
                       >
                         <HugeiconsIcon
                           icon={IconComponent}
                           size={20}
                           strokeWidth={2}
-                          className={`shrink-0 transition-colors duration-180 ${
+                          className={`shrink-0 transition-colors duration-200 ${
                             isActive || item.isContextExit
-                              ? 'text-purple-700'
-                              : 'text-zinc-500 group-hover:text-purple-600'
+                              ? 'text-emerald-600'
+                              : 'text-zinc-400 group-hover:text-emerald-500'
                           }`}
                         />
                         <span className="min-w-0 flex-1 truncate text-[15px] font-semibold leading-5 tracking-[-0.01em]">
                           {item.label}
                         </span>
                         {item.contextHint && (
-                          <span className="rounded-full bg-purple-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-purple-700">
+                          <span className="rounded-full bg-emerald-100/60 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-emerald-700">
                             {item.contextHint}
                           </span>
                         )}
@@ -486,12 +494,12 @@ const Header = () => {
                 })}
 
                 {/* ── Secondary actions ───────────────────────── */}
-                <div className="mx-3 mb-2 mt-3 border-t border-black/[.08] pt-3">
+                <div className="mx-3 mb-2 mt-3 border-t border-zinc-200/60 pt-3">
                   <button
                     onClick={handleWhatsApp}
-                    className="group flex min-h-[46px] w-full items-center gap-3 rounded-[13px] px-1 text-left text-zinc-700 transition-colors duration-180 hover:bg-purple-600/[.08] focus:outline-none focus-visible:ring-4 focus-visible:ring-purple-200"
+                    className="group flex min-h-[46px] w-full items-center gap-3 rounded-[13px] px-1 text-left text-zinc-600 transition-colors duration-200 hover:bg-emerald-50/60 focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-300"
                   >
-                    <HugeiconsIcon icon={Message01Icon} size={20} strokeWidth={2} className="text-zinc-500 group-hover:text-purple-600" />
+                    <HugeiconsIcon icon={Message01Icon} size={20} strokeWidth={2} className="text-zinc-400 group-hover:text-emerald-500" />
                     <span className="text-[15px] font-semibold">Hablar por WhatsApp</span>
                   </button>
                 </div>
@@ -502,21 +510,21 @@ const Header = () => {
                 className="shrink-0 rounded-br-[30px] bg-white px-[22px] pt-3"
                 style={{ paddingBottom: 'max(env(safe-area-inset-bottom, 0px), 18px)' }}
               >
-                <div className="border-t border-black/10 pt-3">
+                <div className="border-t border-zinc-200/60 pt-3">
                   {isAuthenticated || user ? (
                     <button
                       onClick={() => { closeMobileMenu(); logout(); }}
-                      className="group flex min-h-[56px] w-full items-center gap-3 rounded-2xl px-[18px] text-left text-zinc-800 transition-colors duration-180 hover:bg-purple-600/[.08] active:scale-[.98] focus:outline-none focus-visible:ring-4 focus-visible:ring-purple-200"
+                      className="group flex min-h-[56px] w-full items-center gap-3 rounded-2xl px-[18px] text-left text-zinc-700 transition-colors duration-200 hover:bg-emerald-50/60 active:scale-[.98] focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-300"
                     >
-                      <HugeiconsIcon icon={Logout01Icon} size={22} strokeWidth={2} className="shrink-0 text-zinc-500 group-hover:text-purple-600" />
+                      <HugeiconsIcon icon={Logout01Icon} size={22} strokeWidth={2} className="shrink-0 text-zinc-400 group-hover:text-emerald-500" />
                       <span className="text-[17px] font-bold">Cerrar sesión</span>
                     </button>
                   ) : (
                     <button
                       onClick={() => { closeMobileMenu(); openAuthModal(); }}
-                      className="group flex min-h-[56px] w-full items-center gap-3 rounded-2xl px-[18px] text-left text-zinc-800 transition-colors duration-180 hover:bg-purple-600/[.08] active:scale-[.98] focus:outline-none focus-visible:ring-4 focus-visible:ring-purple-200"
+                      className="group flex min-h-[56px] w-full items-center gap-3 rounded-2xl px-[18px] text-left text-zinc-700 transition-colors duration-200 hover:bg-emerald-50/60 active:scale-[.98] focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-300"
                     >
-                      <HugeiconsIcon icon={UserIcon} size={22} strokeWidth={2} className="shrink-0 text-zinc-500 group-hover:text-purple-600" />
+                      <HugeiconsIcon icon={UserIcon} size={22} strokeWidth={2} className="shrink-0 text-zinc-400 group-hover:text-emerald-500" />
                       <span className="text-[17px] font-bold">Iniciar sesión</span>
                     </button>
                   )}

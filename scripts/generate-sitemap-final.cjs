@@ -17,7 +17,8 @@ const SITE_URL = 'https://www.bienestarenclaro.com';
 const TODAY = new Date().toISOString().split('T')[0];
 
 // ── Supabase client (requires SUPABASE_SERVICE_ROLE_KEY env var) ────
-const SUPABASE_URL = process.env.SUPABASE_URL || 'https://iyloouessyxfvwvzdboc.supabase.co';
+const RAW_SUPABASE_URL = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL || 'https://iyloouessyxfvwvzdboc.supabase.co';
+const SUPABASE_URL = RAW_SUPABASE_URL.replace(/\/rest\/v1\/?$/, '');
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 if (!SUPABASE_SERVICE_ROLE_KEY) {

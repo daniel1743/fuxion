@@ -242,3 +242,11 @@ El documento **`UI_MASTER_BIBLE_2026.md`** se consagra como la **fuente oficial,
 
 ---
 *Fin del documento máster oficial UI_MASTER_BIBLE_2026.md — Proyecto APEX Fase 03.*
+
+## Checkpoint 17.1 – Home congelada
+
+- Estado: **HOME_APROBADA**
+- Verificado diff limpio y build exitoso.
+- MobileBottomNav incluye `pb-[env(safe-area-inset-bottom)]` y altura `h-[68px]`.
+- Documentación actualizada.
+- Backlog actualizado con ítem de cierre.

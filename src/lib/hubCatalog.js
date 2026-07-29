@@ -18,7 +18,7 @@ export const HUB_CATALOG = [
     articles: [
       { title: 'Hígado graso: causas y síntomas', excerpt: 'Todo sobre NAFLD y cómo afecta tu salud hepática.', url: '/articulos/higado-graso-causas', image: '/branding/social/og-image.png' },
       { title: 'Cómo tratar el hígado graso naturalmente', excerpt: 'Alimentación, ejercicio y suplementos efectivos.', url: '/articulos/higado-graso-tratamiento', image: '/branding/social/og-image.png' },
-      { title: '¿Qué es la cirrosis hepática?', excerpt: 'La etapa avanzada del daño hepático.', url: '/articulos/cirrosis-hepatica', image: '/branding/social/og-image.png' },
+      { title: 'Primeros síntomas de cirrosis hepática', excerpt: 'Señales tempranas, signos de alarma y cuándo consultar sin entrar en pánico.', url: '/articulos/cirrosis-hepatica-que-es-senales-y-que-hacer-sin-panico', image: '/images/cirrosis%20hepatica%20nuevo%20articulo.png' },
       { title: 'Refluxo gastroesofágico: causas y tratamiento', excerpt: 'ERGE y cómo manejarlo efectivamente.', url: '/articulos/reflujo-gastroesofagico', image: '/branding/social/og-image.png' },
       { title: 'Hígado graso en jóvenes', excerpt: 'Por qué cada vez más jóvenes desarrollan esta condición.', url: '/articulos/higado-graso-jovenes', image: '/branding/social/og-image.png' },
     ],

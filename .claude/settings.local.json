@@ -70,7 +70,20 @@
       "Bash(pwsh -c '$env:PUPPETEER_EXECUTABLE_PATH = \\(Get-ChildItem \"$env:LOCALAPPDATA\\\\Google\\\\Chrome\\\\Application\\\\chrome.exe\" -ErrorAction SilentlyContinue | Select-Object -First 1\\).FullName; if \\($env:PUPPETEER_EXECUTABLE_PATH\\) { echo $env:PUPPETEER_EXECUTIVE_PATH } else { echo \"NO_CHROME\" }')",
       "Bash(pwsh -c 'Get-ChildItem \"$env:LOCALAPPDATA\\\\Microsoft\\\\Edge\\\\Application\\\\msedge.exe\" -ErrorAction SilentlyContinue; Get-ChildItem \"C:\\\\Program Files*\\\\chromium\\\\chromium.exe\" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1; Get-ChildItem \"C:\\\\Program Files*\\\\Chromium\\\\Application\\\\chrome.exe\" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1')",
       "Bash(pwsh -c 'Get-ChildItem auditorias/home-home-* -Recurse | Rename-Item -NewName { $_.Name.Replace\\(\"home-home-\", \"home-\"\\) }')",
-      "Bash(pwsh -c 'Remove-Item auditorias/home-375-baseline.png,auditorias/home-1024-baseline.png,auditorias/home-1440-baseline.png -ErrorAction SilentlyContinue; Get-ChildItem auditorias/home-home-* | Rename-Item -NewName { $_.Name.Replace\\(\"home-home-\", \"home-\"\\) }')"
+      "Bash(pwsh -c 'Remove-Item auditorias/home-375-baseline.png,auditorias/home-1024-baseline.png,auditorias/home-1440-baseline.png -ErrorAction SilentlyContinue; Get-ChildItem auditorias/home-home-* | Rename-Item -NewName { $_.Name.Replace\\(\"home-home-\", \"home-\"\\) }')",
+      "Bash(pwsh -c 'Start-Sleep -Seconds 8')",
+      "Bash(pwsh -c 'Start-Sleep -Seconds 10')",
+      "WebFetch(domain:aa.usno.navy.mil)",
+      "WebSearch",
+      "Bash(xargs grep -l \"2A\\\\|fase-2a\\\\|Fase 2A\")",
+      "Bash(xargs grep -l \"PlanetaryEngine\\\\|PlanetaryPosition\\\\|PlanetarySnapshot\")",
+      "Bash(mv documentacion/fase-2a/AUDITORIA_V3_FINAL.md documentacion/fase-2a/AUDITORIA_V3_FINAL.md.OBSOLETO)",
+      "Bash(mv documentacion/fase-2a/JPL_HORIZONS_FIXTURE_PACK_FINAL.md documentacion/fase-2a/JPL_HORIZONS_FIXTURE_PACK_FINAL.md.OBSOLETO)",
+      "Bash(mv documentacion/fase-2a/TABLA_VENTANAS_DERIVACION_FINAL.md documentacion/fase-2a/TABLA_VENTANAS_DERIVACION_FINAL.md.OBSOLETO)",
+      "Bash(mv documentacion/fase-2a/LISTA_PRUEBAS_CODEX_FASE_2A_FINAL.md documentacion/fase-2a/LISTA_PRUEBAS_CODEX_FASE_2A_FINAL.md.OBSOLETO)",
+      "Bash(mv documentacion/fase-2a/fixtures-phase-2a-25-COMPLETO.json documentacion/fase-2a/fixtures-phase-2a-25-COMPLETO.json.OBSOLETO)",
+      "Bash(rm -rf scratch/)",
+      "Bash(rm -f scripts/compute-phase-2a-fixtures.py scripts/fetch-jpl-fixtures.py)"
     ]
   }
 }
